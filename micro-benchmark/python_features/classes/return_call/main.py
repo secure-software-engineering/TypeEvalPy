@@ -1,4 +1,5 @@
-#A class method returns a different class method. 
+# A class method returns a different class method.
+
 
 class MyClass:
     def func2(self):

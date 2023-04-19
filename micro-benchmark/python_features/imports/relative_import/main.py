@@ -8,4 +8,5 @@ import to_import
 def func():
     return "Hello from main module"
 
+
 a = func()

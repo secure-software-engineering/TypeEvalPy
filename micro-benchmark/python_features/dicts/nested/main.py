@@ -9,11 +9,7 @@ def func2():
     return "Hello from func2"
 
 
-d = {
-    "a": {
-        "b": func1
-    }
-}
+d = {"a": {"b": func1}}
 
 d["a"]["b"] = func2
 

@@ -5,11 +5,11 @@ def func2():
     return "Hello from func2"
 
 
-def func(key='a'):
+def func(key="a"):
     d[key] = func2
 
 
 d = {}
 
 func()
-e = d['a']()
+e = d["a"]()

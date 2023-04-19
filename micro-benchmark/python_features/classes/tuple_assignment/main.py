@@ -1,5 +1,6 @@
 # We perform tuple assignment on class methods.
 
+
 class MyClass:
     def __init__(self):
         pass

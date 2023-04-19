@@ -1,5 +1,6 @@
 # A method returns a method of its parent class.
 
+
 class A:
     def func1(self):
         return "Hello from func1"

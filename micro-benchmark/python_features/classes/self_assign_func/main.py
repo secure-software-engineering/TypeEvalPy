@@ -1,5 +1,6 @@
 # A class is assigned as a self item to a class.
 
+
 class A:
     def func(self):
         pass

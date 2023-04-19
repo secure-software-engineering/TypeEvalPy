@@ -10,6 +10,7 @@ a = MyClass()
 b = a.func
 c = b()
 
+
 class MyClass:
     def func2(self):
         return "Hello from func2 in MyClass"
@@ -18,4 +19,3 @@ class MyClass:
 a = MyClass()
 b = a.func2
 c = b()
-

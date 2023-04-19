@@ -9,10 +9,8 @@ def func2():
     return 42
 
 
-d = {
-    "a": func1
-}
+d = {"a": func1}
 
 d["a"] = func2
 
-e= d["a"]()
+e = d["a"]()

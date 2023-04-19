@@ -4,5 +4,6 @@ def func(a):
     else:
         return "hello"
 
+
 x = func(1)
 y = func("world")

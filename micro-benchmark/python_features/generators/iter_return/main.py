@@ -17,7 +17,7 @@ class Cls:
         if self.n > self.max:
             raise StopIteration
 
-        result = 2 ** self.n
+        result = 2**self.n
         self.n += 1
         return func
 

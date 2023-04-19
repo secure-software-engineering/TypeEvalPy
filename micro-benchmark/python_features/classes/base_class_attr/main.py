@@ -11,5 +11,5 @@ class C(A.B):
 
 
 c = C()
-d=c.cfunc()
-e=c.bfunc()
+d = c.cfunc()
+e = c.bfunc()

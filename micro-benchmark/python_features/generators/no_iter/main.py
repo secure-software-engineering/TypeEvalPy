@@ -1,8 +1,9 @@
-# A generator is initialized but never itered. 
+# A generator is initialized but never itered.
 
 
 def func():
     pass
+
 
 class Cls:
     def __init__(self, max=0):
@@ -16,7 +17,7 @@ class Cls:
         if self.n > self.max:
             raise StopIteration
 
-        result = 2 ** self.n
+        result = 2**self.n
         self.n += 1
         return func
 

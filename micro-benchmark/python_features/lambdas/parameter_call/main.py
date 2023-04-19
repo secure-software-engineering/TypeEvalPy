@@ -4,6 +4,7 @@
 def func(a):
     return a(1)
 
+
 y = lambda x: x + 1
 
 b = func(y)

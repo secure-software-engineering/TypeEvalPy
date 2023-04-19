@@ -14,15 +14,15 @@ def func3():
 
 
 def func4():
-    return [1,2]
+    return [1, 2]
 
 
 def func5():
-    return (1,2)
+    return (1, 2)
 
 
 def func6():
-    return {a:"Hello"}
+    return {a: "Hello"}
 
 
 a, (b, c) = func1, (func2, func3)

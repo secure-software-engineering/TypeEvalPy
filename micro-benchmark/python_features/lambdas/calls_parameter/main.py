@@ -4,8 +4,10 @@
 def func1():
     return 42
 
+
 def func2():
     return "Hello from func2"
+
 
 x = lambda x: x()
 

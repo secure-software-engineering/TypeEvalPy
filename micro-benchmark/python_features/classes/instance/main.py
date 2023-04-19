@@ -1,4 +1,5 @@
-# A class is instantiated 
+# A class is instantiated
+
 
 class MyClass:
     def __init__(self):

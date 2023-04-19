@@ -1,4 +1,4 @@
-#Functions are assigned to variables via starred assignment
+# Functions are assigned to variables via starred assignment
 def func1():
     pass
 

@@ -1,5 +1,6 @@
 # A decorator as a variable that has been assigned to function(s).
 
+
 def dec1(f):
     return f
 

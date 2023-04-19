@@ -1,5 +1,6 @@
 # A function is assigned as a self attribute.
 
+
 class A:
     def __init__(self):
         self.smth = self.func2

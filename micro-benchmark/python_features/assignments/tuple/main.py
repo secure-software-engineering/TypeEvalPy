@@ -1,4 +1,4 @@
-#Two variables are assigned a value via a tuple assignment.
+# Two variables are assigned a value via a tuple assignment.
 def func1():
     pass
 

@@ -16,7 +16,6 @@ for i in map(func2, [1, 2, 3]):
 
 
 def func3(x):
-
     def func():
         return x
 

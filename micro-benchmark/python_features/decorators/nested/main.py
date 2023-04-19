@@ -13,4 +13,5 @@ def func():
     def inner():
         return "Hello from inner"
 
+
 a = func()

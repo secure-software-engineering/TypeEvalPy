@@ -3,8 +3,9 @@
 def param_func():
     return "Hello from param_func"
 
+
 def func(a):
     return a()
 
+
 b = func(param_func)
- 

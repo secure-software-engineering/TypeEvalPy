@@ -1,5 +1,6 @@
 # A function is called inside a class using self.
 
+
 class MyClass:
     def __init__(self):
         self.func1()

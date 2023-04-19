@@ -8,4 +8,5 @@ def func(value):
         case _:
             return "unknown type"
 
+
 a = func("case2")

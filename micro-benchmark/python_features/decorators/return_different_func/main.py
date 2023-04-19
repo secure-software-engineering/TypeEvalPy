@@ -1,5 +1,6 @@
 # A decorator returns a different function than that assigned to it.
 
+
 def dec(f):
     def inner():
         f()

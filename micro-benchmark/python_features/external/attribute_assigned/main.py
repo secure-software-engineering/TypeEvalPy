@@ -3,8 +3,10 @@
 
 from pycg_external_module.ext import Cls
 
+
 def fn(a):
     return a()
+
 
 a = Cls()
 

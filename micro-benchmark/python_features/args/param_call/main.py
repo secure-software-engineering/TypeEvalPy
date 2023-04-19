@@ -4,13 +4,17 @@
 # A function `func3` is defined which does nothing but returns a string value.
 # The `func` function is called with the return value of `func2` as the argument.
 
+
 def func(a):
     return a()
+
 
 def func2():
     return func3
 
+
 def func3():
     return "Hello from func3"
+
 
 b = func(func2())
