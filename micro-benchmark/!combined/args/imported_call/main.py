@@ -5,4 +5,4 @@ from to_import_call import func
 def param_func():
     return "Hello from param_func"
 
-func(param_func)
+b = func(param_func)

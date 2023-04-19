@@ -6,4 +6,4 @@ def param_func():
     return "Hello from param_func"
 
 a = param_func
-func(a)
+b = func(a)

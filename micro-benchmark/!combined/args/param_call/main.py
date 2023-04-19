@@ -5,7 +5,7 @@
 # The `func` function is called with the return value of `func2` as the argument.
 
 def func(a):
-    b = a()
+    return a()
 
 def func2():
     return func3
@@ -13,4 +13,4 @@ def func2():
 def func3():
     return "Hello from func3"
 
-func(func2())
+b = func(func2())

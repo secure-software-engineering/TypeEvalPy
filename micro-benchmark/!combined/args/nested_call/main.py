@@ -7,11 +7,11 @@ def nested_func():
     return "Hello from nested_func"
 
 def param_func(a):
-    d = a()
+    return a()
 
 def func(a):
-    a(nested_func)
+    return a(nested_func)
 
 b = param_func
 c = func
-c(b)
+d = c(b)
