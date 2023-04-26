@@ -1,3 +1,8 @@
+# The program defines a class called 'ArithmeticOperation', which has a method called 'compute' that adds two attributes 'a' and 'b' of the class instance, and stores the result in another attribute called 'result'.
+# The program creates two instances of the class with different types for the 'a' and 'b' attributes, and calls the 'compute' method on each instance, producing different results.
+# This program is an example of object sensitivity.
+
+
 class ArithmeticOperation:
     def __init__(self, a, b):
         self.a = a
