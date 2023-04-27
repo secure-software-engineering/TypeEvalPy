@@ -9,4 +9,6 @@ def func(value):
             return "unknown type"
 
 
-a = func("case2")
+a = func("case1")
+b = func("case2")
+c = func("case3")

@@ -4,6 +4,10 @@ def count_words(string):
     word_count = 0
 
     while word := words.pop():
+        print(word)
         word_count += 1
 
     return word_count
+
+
+a = count_words("Hello Python")

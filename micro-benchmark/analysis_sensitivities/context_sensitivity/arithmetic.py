@@ -5,16 +5,9 @@
 
 def arithmetic_op(a, b):
     result = a + b
-    if result >= 5:
-        result = 0
-    else:
-        result = "Negative"
     return result
 
 
-x = 2
-y = 1
-result1 = arithmetic_op(x, y)
-u = 3
-v = 2
-result2 = arithmetic_op(u, v)
+result1 = arithmetic_op(5, 10)
+result2 = arithmetic_op(5.2, 10.3)
+result3 = arithmetic_op("Hello", "World")

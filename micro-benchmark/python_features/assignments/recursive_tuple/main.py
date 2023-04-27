@@ -2,23 +2,23 @@
 
 
 def func1():
-    pass
+    return "Hello from func1"
 
 
 def func2():
-    pass
+    return 42
 
 
 def func3():
-    pass
+    return 42.5
 
 
 def func4():
-    pass
+    return [2, 4]
 
 
 def func5():
-    pass
+    return {"a": "Hello"}
 
 
 def func6():
