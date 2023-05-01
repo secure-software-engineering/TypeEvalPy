@@ -1,4 +1,4 @@
-#
+# This code imports the itertools module in Python, which provides various functions that help with efficient looping and iteration
 
 import itertools
 

@@ -1,4 +1,4 @@
-#
+# Example of a Python function that accepts a variable number of arguments.
 
 
 def my_sum(a, b, *integers):

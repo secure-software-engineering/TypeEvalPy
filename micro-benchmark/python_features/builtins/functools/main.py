@@ -1,4 +1,4 @@
-#
+# A program demonstrating the use of the reduce() function from the functools module in Python.
 from functools import reduce
 
 
