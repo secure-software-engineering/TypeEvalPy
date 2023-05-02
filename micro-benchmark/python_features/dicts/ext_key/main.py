@@ -10,4 +10,4 @@ def func():
 
 d = {"a": func}
 
-d[key]()
+e = d[key]()

@@ -2,7 +2,7 @@
 
 
 def return_func():
-    pass
+    return "Hello from return_func"
 
 
 def func():

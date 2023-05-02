@@ -2,13 +2,14 @@
 
 
 def func1():
-    pass
+    return "Hello from func1"
 
 
 def func2():
-    pass
+    return 42
 
 
 d = {1: func1, "1": func2}
 
-d[1]()
+e = d[1]()
+f = d["1"]()

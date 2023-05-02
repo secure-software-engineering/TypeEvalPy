@@ -4,7 +4,7 @@
 
 class A:
     def __init__(self):
-        pass
+        a = 42
 
 
 class B(A):

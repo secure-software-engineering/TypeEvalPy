@@ -5,6 +5,9 @@ class A:
     def __init__(self):
         pass
 
+    def func(self):
+        return 42.5
+
 
 class B:
     def func(self):

@@ -7,4 +7,5 @@ class A:
             pass
 
 
+a = A.B
 raise A.B

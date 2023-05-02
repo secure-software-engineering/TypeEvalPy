@@ -1,4 +1,4 @@
-# A new key is added to the dictionary.
+# A new key-value is added to the dictionary which is a function.
 
 
 def func():

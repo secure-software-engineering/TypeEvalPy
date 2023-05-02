@@ -2,7 +2,7 @@
 
 
 def func2():
-    pass
+    return "Hello from func2"
 
 
 def func1():

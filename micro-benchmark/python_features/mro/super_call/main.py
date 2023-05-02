@@ -2,18 +2,19 @@
 
 
 class A:
-    def __init__(self):
-        pass
+    def func(self):
+        return "Hellow from class A"
 
 
 class B(A):
-    def __init__(self):
-        super().__init__()
+    def func(self):
+        return super().func()
 
 
 class C(B):
-    def __init__(self):
-        super().__init__()
+    def func(self):
+        return super().func()
 
 
 c = C()
+d = c.func()
