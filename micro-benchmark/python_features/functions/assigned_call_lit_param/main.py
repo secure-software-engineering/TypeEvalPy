@@ -7,4 +7,4 @@ def func(x):
 
 x = func
 a = x(1)
-a = x("y")
+b = x("y")
