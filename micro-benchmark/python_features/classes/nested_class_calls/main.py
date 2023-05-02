@@ -1,7 +1,7 @@
 # Initialize classes with self parameters in a nested manner.
 class C:
     def func(self):
-        pass
+        return "Hello from class C"
 
 
 class B:
@@ -9,7 +9,7 @@ class B:
         self.c = c
 
     def func(self):
-        self.c.func()
+        return self.c.func()
 
 
 class A:
@@ -18,8 +18,8 @@ class A:
 
     def func(self):
         b = B(self.c)
-        b.func()
+        return b.func()
 
 
 a = A()
-a.func()
+b = a.func()

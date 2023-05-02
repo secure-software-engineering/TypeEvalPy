@@ -1,7 +1,7 @@
 # The base class calls a function defined by the child class.
 class A:
     def func(self):
-        self.child()
+        return self.child()
 
 
 class B(A):
@@ -9,7 +9,7 @@ class B(A):
         self.child = self.func2
 
     def func2(self):
-        pass
+        return "Hello from class B"
 
 
 class C(A):
@@ -17,11 +17,11 @@ class C(A):
         self.child = self.func2
 
     def func2(self):
-        pass
+        return 42
 
 
 b = B()
-b.func()
+d = b.func()
 
 c = C()
-c.func()
+e = c.func()

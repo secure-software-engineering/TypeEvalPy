@@ -3,11 +3,11 @@
 
 class MyClass:
     def func2(self):
-        pass
+        return "Hello from func2"
 
     def func1(self):
         return self.func2
 
 
 a = MyClass()
-a.func1()()
+b = a.func1()()

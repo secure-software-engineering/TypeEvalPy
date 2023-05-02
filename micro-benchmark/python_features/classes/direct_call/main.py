@@ -6,7 +6,7 @@ class MyClass:
         pass
 
     def func(self):
-        pass
+        return "Hello from MyClass"
 
 
-MyClass().func()
+a = MyClass().func()

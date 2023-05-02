@@ -3,7 +3,7 @@
 
 class A:
     def func(self):
-        pass
+        return "Hello from classA"
 
 
 class B:
@@ -11,11 +11,11 @@ class B:
         self.a = a
 
     def func(self):
-        self.a.func()
+        return self.a.func()
 
 
 a = A()
 
 b = B(a)
 
-b.func()
+c = b.func()

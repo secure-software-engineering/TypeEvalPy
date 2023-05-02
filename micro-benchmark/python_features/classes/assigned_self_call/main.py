@@ -5,8 +5,8 @@ class MyClass:
 
     def func2(self):
         a = self
-        a.func1()
+        return a.func1()
 
 
 a = MyClass()
-a.func2()
+b = a.func2()

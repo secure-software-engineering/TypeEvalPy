@@ -19,3 +19,4 @@ def func():
 
 
 a = func()
+b = dec1(a)

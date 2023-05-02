@@ -6,11 +6,11 @@ class A:
         self.smth = self.func2
 
     def func(self):
-        self.smth()
+        return self.smth()
 
     def func2(self):
-        pass
+        return "Hello from func2"
 
 
 a = A()
-a.func()
+b = a.func()
