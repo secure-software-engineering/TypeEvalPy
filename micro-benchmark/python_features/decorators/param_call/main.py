@@ -2,13 +2,14 @@
 
 
 def dec(f):
-    f()
-    return f
+    a = f()
+    return a
 
 
 @dec
 def func():
     a = "In the func"
+    return a
 
 
-func()
+b = func()

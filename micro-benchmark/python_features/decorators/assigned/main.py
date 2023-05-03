@@ -2,15 +2,14 @@
 
 
 def dec1(f):
-    return f
+    return func2
 
 
-def dec2(f):
-    return f
+def func2():
+    return 42
 
 
 a = dec1
-a = dec2
 
 
 @a
@@ -18,5 +17,4 @@ def func():
     return "Hello from func"
 
 
-a = func()
-b = dec1(a)
+c = func()

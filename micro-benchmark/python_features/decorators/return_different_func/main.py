@@ -17,4 +17,4 @@ def func2():
     return func()
 
 
-a = func2()
+a = func()

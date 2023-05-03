@@ -5,9 +5,4 @@
 
 import to_import_sub.to_import_sub
 
-
-def func():
-    return "Hello from main module"
-
-
-a = func()
+a = to_import_sub.to_import_sub.func()

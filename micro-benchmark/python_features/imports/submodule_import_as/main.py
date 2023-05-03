@@ -3,9 +3,4 @@
 
 import to_import.to_import as as_to_import
 
-
-def func():
-    return "Hello from func"
-
-
-a = func()
+a = as_to_import.func()

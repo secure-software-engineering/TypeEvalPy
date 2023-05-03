@@ -1,17 +1,18 @@
 # A function defined inside another function's context serves as a decorator.
 
 
-def dec(f):
-    return f
-
-
 def func():
     def dec(f):
-        return f
+        return modified_inner
+
+    def modified_inner():
+        return 42
 
     @dec
     def inner():
         return "Hello from inner"
+
+    return inner()
 
 
 a = func()

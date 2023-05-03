@@ -3,7 +3,10 @@
 
 def func1():
     def dec(f):
-        return f
+        return inner
+
+    def inner():
+        return 42
 
     return dec
 
