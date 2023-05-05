@@ -2,7 +2,7 @@
 
 
 def func2():
-    pass
+    return 5
 
 
 def func1(n):
@@ -12,5 +12,8 @@ def func1(n):
         num += 1
 
 
-for i in func1(100):
-    i()
+for i in func1(10):
+    try:
+        a += i()
+    except NameError:
+        a = i()
