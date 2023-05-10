@@ -20,6 +20,7 @@ class ArithmeticOperation:
 x = 2
 y = 1
 result1 = ArithmeticOperation(x, y)
+first_result = result1.compute()
 u = 3
 v = 2
 result2 = ArithmeticOperation(u, v)

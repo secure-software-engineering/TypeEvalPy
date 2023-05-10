@@ -23,4 +23,4 @@ class Cls:
         return func
 
 
-func(Cls())
+a = func(Cls())

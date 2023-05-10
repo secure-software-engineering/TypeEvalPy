@@ -14,6 +14,7 @@ class ArithmeticOperation:
 
 
 arith_op = ArithmeticOperation(5, 10)
+result = arith_op.compute()
 arith_op.a = "Hello"
 arith_op.b = "world"
 result = arith_op.compute()
