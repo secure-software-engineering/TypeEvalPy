@@ -4,12 +4,12 @@
 
 class A:
     def __init__(self):
-        a = 42
+        self.a = 42
 
 
 class B(A):
     def func(self):
-        return "Hello from func"
+        return self.a
 
 
 b = B()

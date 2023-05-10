@@ -1,4 +1,4 @@
-# A function that returns an addition.
+# A function that returns after computations.
 
 
 def func():
