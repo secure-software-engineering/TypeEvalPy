@@ -3,10 +3,6 @@
 # The program does not call any other functions, so the analysis is focused on the behavior of this single function.
 def arithmetic_op(a, b):
     result = a + b
-    if result < 0:
-        result = "Negative"
-    else:
-        result = "Positive"
     return result
 
 

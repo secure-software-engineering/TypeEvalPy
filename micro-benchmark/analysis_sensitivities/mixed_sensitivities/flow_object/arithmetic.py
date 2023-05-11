@@ -13,19 +13,13 @@ class ArithmeticOperation:
         elif self.b == 0:
             self.result = self.a
         else:
-            self.result = self.add(self.a, self.b)
-
-        if self.result is not None and self.result < 0:
-            self.result = None
-        elif self.result is not None:
-            self.result = "Positive"
-
-        return self.result
-
-    def add(self):
-        self.result = self.a + self.b
+            self.result = self.a + self.b
         return self.result
 
 
 arith_op1 = ArithmeticOperation(5, 10)
+result = arith_op1.compute()
+arith_op2 = ArithmeticOperation(5, 0)
+result = arith_op2.compute()
+arith_op3 = ArithmeticOperation(0, 10)
 result = arith_op1.compute()

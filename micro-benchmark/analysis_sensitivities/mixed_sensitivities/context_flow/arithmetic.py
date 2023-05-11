@@ -1,5 +1,5 @@
 # This program is an example of flow sensitivity as the behavior of the program is dependent on the flow of execution, specifically the values assigned to the 'a' and 'b' fields of the 'arith_op' object.
-# It is also an example of field sensitivity because the 'compute' method of the 'ArithmeticOperation' class is dependent on the values of the 'a' and 'b' fields of the object on which it is called.
+# This program is an example of context sensitivity as the behavior of the program is dependent on the context of function call execution, specifically the values assigned to the 'a' and 'b' fields of the 'ArithmeticOperation' class objects.
 
 
 def arithmetic_op(a, b):

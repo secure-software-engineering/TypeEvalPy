@@ -10,18 +10,10 @@ class ArithmeticOperation:
 
     def compute(self):
         self.result = self.a + self.b
-        if self.result >= 5:
-            self.result = 0
-        else:
-            self.result = "Negative"
         return self.result
 
 
-x = 2
-y = 1
-result1 = ArithmeticOperation(x, y)
+result1 = ArithmeticOperation(5, 10)
 first_result = result1.compute()
-u = 3
-v = 2
-result2 = ArithmeticOperation(u, v)
+result2 = ArithmeticOperation("Hello", "World")
 final_result = result2.compute()
