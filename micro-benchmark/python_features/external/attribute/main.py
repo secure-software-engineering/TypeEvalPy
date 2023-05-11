@@ -1,5 +1,4 @@
 # Attribute call on an externally imported class.
-# external module is created for the benchmark and can be installed via pip. `pip install pycg-external-module`
 
 
 from typeevalpy_external_module.ext import Cls
