@@ -6,22 +6,21 @@ class ArithmeticOperation:
         self.b = b
         self.result = None
 
-    def change_value(self, u, v):
-        self.a = u
-        self.b = v
-
     def compute(self):
-        self.result = self.a + self.b
+        if self.a == 0:
+            self.result = self.b
+        elif self.b == 0:
+            self.result = self.a
+        else:
+            self.result = self.a + self.b
+
+        if self.result is not None and self.result < 0:
+            self.result = None
+        elif self.result is not None:
+            self.result = "Positive"
+
         return self.result
 
 
-x = 5
-y = 10
-arith_op = ArithmeticOperation(x, y)
-arith_op.a = "Hello"
-arith_op.b = "world"
+arith_op = ArithmeticOperation(5, 10)
 result = arith_op.compute()
-x = 10
-y = 5
-arith_op.change_value(x, y)
-result2 = arith_op.compute()

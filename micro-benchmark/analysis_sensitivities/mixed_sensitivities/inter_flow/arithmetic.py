@@ -4,8 +4,19 @@
 
 
 def arithmetic_op(a, b):
-    result = "Hello"
-    result = add(a, b)
+    if a == 0:
+        result = b
+        return result
+    elif b == 0:
+        result = a
+        return result
+    else:
+        result = add(a, b)
+
+    if result < 0:
+        result = None
+    else:
+        result = "Positive"
     return result
 
 
@@ -14,4 +25,8 @@ def add(a, b):
     return result
 
 
-result = arithmetic_op(5, 10)
+x = 5
+y = 10
+result = arithmetic_op(x, y)
+x = 0
+result = arithmetic_op(x, y)

@@ -8,13 +8,24 @@ class ArithmeticOperation:
         self.result = None
 
     def compute(self):
+        if self.a == 0:
+            self.result = self.b
+        elif self.b == 0:
+            self.result = self.a
+        else:
+            self.result = self.add(self.a, self.b)
+
+        if self.result is not None and self.result < 0:
+            self.result = None
+        elif self.result is not None:
+            self.result = "Positive"
+
+        return self.result
+
+    def add(self):
         self.result = self.a + self.b
         return self.result
 
 
 arith_op1 = ArithmeticOperation(5, 10)
-arith_op2 = ArithmeticOperation("Hello", "World")
-result1 = arith_op1.compute()
-arith_op1.a = "Hello"
-arith_op1.b = "World"
-result2 = arith_op1.compute()
+result = arith_op1.compute()
