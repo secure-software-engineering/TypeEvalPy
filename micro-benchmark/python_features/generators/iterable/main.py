@@ -17,5 +17,4 @@ class func(object):
             raise StopIteration()
 
 
-for i in func(100):
-    pass
+output_list = [i for i in func(100)]

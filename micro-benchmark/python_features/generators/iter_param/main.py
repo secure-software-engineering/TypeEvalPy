@@ -2,8 +2,8 @@
 
 
 def func(c):
-    for i in c:
-        pass
+    output_list = [i for i in c]
+    return output_list
 
 
 class Cls:
@@ -20,7 +20,7 @@ class Cls:
 
         result = 2**self.n
         self.n += 1
-        return func
+        return result
 
 
-a = func(Cls())
+a = func(Cls(2))

@@ -2,7 +2,7 @@
 
 
 def func():
-    pass
+    return 5
 
 
 class Cls:
@@ -22,5 +22,4 @@ class Cls:
         return func
 
 
-for i in Cls():
-    i()
+output_list = [i for i in Cls(1)]

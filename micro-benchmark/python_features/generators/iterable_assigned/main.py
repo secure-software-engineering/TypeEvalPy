@@ -18,7 +18,6 @@ class Cls:
         return self.n
 
 
-c = Cls()
+c = Cls(100)
 
-for i in c:
-    pass
+output_list = [i for i in c]
