@@ -1,22 +1,16 @@
-# This program exhibits context and field sensitivity.
-# The context sensitivity comes from the fact that the same Identity() function is used in different contexts.
-# It is used to assign both "secret value" and 5 to value1, which could result in different behavior depending on how value1 is used later in the program.
-# The field sensitivity comes from the fact that Identity() is applied to specific object fields (value1 and value2) rather than the entire object.
+# A class Identity is defined that can store different types of values in a member variable value.
+# The constructor takes an initial value as a parameter, and the get_value method returns the current value of the value member variable.
+# This is field-sensitive , allowing the value member variable to store different types of values in different contexts.
+class Identity:
+    def __init__(self, x):
+        self.value = x
+
+    def get_value(self):
+        return self.value
 
 
-class SimpleClass:
-    def __init__(self):
-        self.value1 = ""
-        self.value2 = ""
+id1 = Identity(5)
+id2 = Identity("Hello")
 
-
-def Identity(s):
-    return s
-
-
-classObject = SimpleClass()
-classObject.value1 = Identity("secret value")
-classObject.value2 = Identity("non secret value")
-classObject.value1 = Identity(5)
-
-a = classObject.value1
+result1 = id1.get_value()
+result2 = id2.get_value()
