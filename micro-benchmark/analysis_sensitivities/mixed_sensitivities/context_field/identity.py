@@ -11,6 +11,6 @@ class Identity:
 
 id1 = Identity(5)
 id2 = Identity("Hello")
-
+id1.value = "string"
 result1 = id1.get_value()
 result2 = id2.get_value()
