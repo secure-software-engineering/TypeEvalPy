@@ -8,7 +8,7 @@ def my_function(my_bool):
     return x
 
 
-a = 0
+a = False
 result = my_function(a)
 a = "Hello"
 result = my_function(a)
