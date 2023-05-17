@@ -13,6 +13,6 @@ class IdentityOperation:
 
 identity_op1 = IdentityOperation(5)
 identity_op2 = IdentityOperation("String")
-identity_op1.value = "Hello"
+identity_op1.value = identity_op2.value
 result = identity_op1.identity()
 result2 = identity_op2.identity()

@@ -21,7 +21,7 @@ class Identity:
 id1 = Identity(5)
 id2 = Identity("Hello")
 
-id2.nested.value = 20
+id2.nested.value = id1.nested.value
 
 result1 = id1.get_value()
 result2 = id2.get_value()
