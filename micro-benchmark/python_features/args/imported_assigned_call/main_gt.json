@@ -1,0 +1,26 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "import": "func",
+        "module": "to_import"
+    },
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "function": "param_func",
+        "type": ["str"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 10,
+        "variable": "a",
+        "type": ["function"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 11,
+        "variable": "b",
+        "type": ["str"]
+    }
+]
