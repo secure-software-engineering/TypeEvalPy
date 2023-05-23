@@ -11,6 +11,7 @@ data = [
 
 
 sorted_data = sorted(data, key=lambda x: x["city"])
+
 grouped_data = itertools.groupby(sorted_data, key=lambda x: x["city"])
 
 for city, group in grouped_data:

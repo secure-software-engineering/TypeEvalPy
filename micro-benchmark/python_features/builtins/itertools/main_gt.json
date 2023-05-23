@@ -1,0 +1,80 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "variable": "data",
+        "type": ["list[dict]"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "variable": "sorted_data",
+        "type": ["list[dict]"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 15,
+        "variable": "grouped_data",
+        "type": ["itertools.groupby object"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 17,
+        "variable": "city",
+        "type": ["str"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 17,
+        "variable": "group",
+        "type": ["itertools._grouper object"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 16,
+        "variable": "counter",
+        "type": ["itertools.count object"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 19,
+        "variable": "cycler",
+        "type": ["itertools.cycle object"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 22,
+        "variable": "repeater",
+        "type": ["itertools.repeat object"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 25,
+        "variable": "chained",
+        "type": ["itertools.chain object"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 28,
+        "variable": "compressed",
+        "type": ["itertools.compress object"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 31,
+        "variable": "perms",
+        "type": ["itertools.permutations object"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 34,
+        "variable": "combs",
+        "type": ["itertools.combinations object"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 37,
+        "variable": "cartesian",
+        "type": ["itertools.product object"]
+    }
+]

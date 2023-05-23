@@ -1,0 +1,33 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 2,
+        "function": "func",
+        "type": ["Union[int, str]"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 2,
+        "function": "func",
+        "parameter": "value",
+        "type": ["any"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 12,
+        "variable": "a",
+        "type": ["int"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "variable": "b",
+        "type": ["str"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 14,
+        "variable": "c",
+        "type": ["str"]
+    }
+]

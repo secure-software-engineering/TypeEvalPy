@@ -1,0 +1,33 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "function": "concatenate",
+        "type": ["str"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "function": "concatenate",
+        "parameter": "kwargs",
+        "type": ["dict"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "variable": "result",
+        "type": ["str"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "variable": "arg",
+        "type": ["str"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 11,
+        "variable": "c",
+        "type": ["str"]
+    }
+]

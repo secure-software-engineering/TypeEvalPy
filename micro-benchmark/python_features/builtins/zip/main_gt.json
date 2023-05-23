@@ -1,0 +1,26 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 3,
+        "variable": "names",
+        "type": ["list[str]"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "variable": "ages",
+        "type": ["list[int]"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 7,
+        "variable": "combined",
+        "type": ["zip object"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 9,
+        "variable": "result",
+        "type": ["list[tuple]"]
+    }
+]

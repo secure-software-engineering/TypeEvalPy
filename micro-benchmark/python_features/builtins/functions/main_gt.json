@@ -1,0 +1,50 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 3,
+        "variable": "my_list",
+        "type": ["list[int]"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "variable": "length",
+        "type": ["int"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 7,
+        "variable": "total",
+        "type": ["int"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 9,
+        "variable": "largest",
+        "type": ["int"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 11,
+        "variable": "smallest",
+        "type": ["int"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "variable": "sorted_list",
+        "type": ["list[int]"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 15,
+        "variable": "any_list",
+        "type": ["bool"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 17,
+        "variable": "all_list",
+        "type": ["bool"]
+    }
+]

@@ -1,0 +1,14 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 3,
+        "variable": "a",
+        "type": ["str"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "variable": "b",
+        "type": ["list[str]"]
+    }
+]
