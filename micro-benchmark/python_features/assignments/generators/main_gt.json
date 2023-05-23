@@ -1,0 +1,20 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "variable": "x",
+        "type": ["int"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "variable": "y",
+        "type": ["int"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "variable": "z",
+        "type": ["int"]
+    }
+]

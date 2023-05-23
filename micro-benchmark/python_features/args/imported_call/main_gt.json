@@ -1,0 +1,14 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "function": "param_func",
+        "type": ["str"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 10,
+        "variable": "b",
+        "type": ["str"]
+    }
+]

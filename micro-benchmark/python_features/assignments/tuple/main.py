@@ -12,11 +12,11 @@ def func3():
 
 
 a, b = func1, func2
-a()
-b()
+f = a()
+g = b()
 
 c, d, e = func1, func2, func3
 
 c()
 d()
-e()
+h = e()

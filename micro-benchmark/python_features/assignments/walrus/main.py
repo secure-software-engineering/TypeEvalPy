@@ -3,7 +3,7 @@ def count_words(string):
     words = string.split()
     word_count = 0
 
-    while word := words.pop():
+    while words and (word := words.pop()):
         print(word)
         word_count += 1
 

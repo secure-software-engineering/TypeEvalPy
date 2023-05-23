@@ -1,0 +1,40 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "function": "my_sum",
+        "parameter": "a",
+        "type": ["any"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "parameter": "b",
+        "type": ["any"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "variable": "result",
+        "type": ["int"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "variable": "x",
+        "type": ["int"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 11,
+        "function": "func",
+        "parameter": "a",
+        "type": ["function"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 15,
+        "variable": "b",
+        "type": ["int"]
+    }
+]

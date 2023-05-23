@@ -32,9 +32,9 @@ c()
 
 a, (b, (c, d)) = func1, (func2, (func3, func4))
 
-d()
+h = d()
 
 f, b = c, e = func5, func6
 
 e()
-f()
+i = f()

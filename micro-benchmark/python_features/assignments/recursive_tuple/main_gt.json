@@ -1,0 +1,110 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "function": "func1",
+        "type": ["str"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "function": "func2",
+        "type": ["int"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 12,
+        "function": "func3",
+        "type": ["float"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 16,
+        "function": "func4",
+        "type": ["list[int]"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 20,
+        "function": "func5",
+        "type": ["dict"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 24,
+        "function": "func6",
+        "type": ["None"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 28,
+        "variable": "a",
+        "type": ["function"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 28,
+        "variable": "b",
+        "type": ["function"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 28,
+        "variable": "c",
+        "type": ["function"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 33,
+        "function": "a",
+        "type": ["function"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 33,
+        "variable": "b",
+        "type": ["function"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 33,
+        "variable": "c",
+        "type": ["function"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 33,
+        "variable": "d",
+        "type": ["function"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 35,
+        "variable": "h",
+        "type": ["list[int]"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 37,
+        "variable": "f",
+        "type": ["function"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 37,
+        "variable": "b",
+        "type": ["function"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 37,
+        "variable": "e",
+        "type": ["function"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 40,
+        "variable": "e",
+        "type": ["dict"]
+    }
+]

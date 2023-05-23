@@ -1,0 +1,9 @@
+[
+    {
+        "file": "to_import_call.py",
+        "line_number": 4,
+        "function": "func",
+        "parameter": "a",
+        "type": ["any"]
+    }
+]

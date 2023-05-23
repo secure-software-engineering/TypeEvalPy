@@ -1,0 +1,50 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "function": "func1",
+        "type": ["str"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 9,
+        "function": "func2",
+        "type": ["int"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "function": "func3",
+        "type": ["float"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 17,
+        "function": "func4",
+        "type": ["list[int]"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 21,
+        "variable": "a",
+        "type": ["function"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 21,
+        "variable": "b",
+        "type": ["function"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 21,
+        "variable": "c",
+        "type": ["function"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 21,
+        "variable": "d",
+        "type": ["function"]
+    }
+]
