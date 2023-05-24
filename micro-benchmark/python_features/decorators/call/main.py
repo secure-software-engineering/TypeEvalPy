@@ -2,12 +2,15 @@
 
 
 def dec(f):
-    return f
+    def wrapper():
+        return "Hello from dec"
+
+    return wrapper
 
 
 @dec
 def func():
-    return "Hello from func"
+    pass
 
 
 a = func()

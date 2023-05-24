@@ -1,20 +1,20 @@
-# A decorator returns a different function than that assigned to it.
+# A decorator returns a different function than the source function.
 
 
 def dec(f):
     def inner():
-        f()
+        return "Hello from inner"
 
     return inner
 
 
 @dec
 def func():
-    return "Hello from func"
+    pass
 
 
 def func2():
     return func()
 
 
-a = func()
+a = func2()

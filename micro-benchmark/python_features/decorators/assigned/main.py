@@ -2,19 +2,19 @@
 
 
 def dec1(f):
-    return func2
+    def wrapper(a, b):
+        result = f(a, b)
+        return result
 
-
-def func2():
-    return 42
+    return wrapper
 
 
 a = dec1
 
 
 @a
-def func():
-    return "Hello from func"
+def func(a, b):
+    return a + b
 
 
-c = func()
+c = func("Hello", "world!")

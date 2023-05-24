@@ -13,5 +13,4 @@ class MyClass:
 
 
 a = MyClass()
-
 b = a.func2()

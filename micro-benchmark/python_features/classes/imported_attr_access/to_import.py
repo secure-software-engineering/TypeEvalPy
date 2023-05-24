@@ -1,3 +1,4 @@
-# This module defines a function `func` which simply return a string.
-def func():
-    return "Hello from import"
+# This module defines a Class A with an attribute.
+class A:
+    def __init__(self):
+        self.b = "Hello __init__"

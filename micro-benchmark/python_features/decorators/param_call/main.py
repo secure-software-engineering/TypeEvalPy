@@ -1,15 +1,17 @@
-# The decorator calls the func assigned to it.
+# The decorator calls the func assigned to it with parameters.
 
 
 def dec(f):
-    a = f()
-    return a
+    def wrapper(a, b):
+        result = f(a, b)
+        return result
+
+    return wrapper
 
 
 @dec
-def func():
-    a = "In the func"
-    return a
+def func(a, b):
+    return a + b
 
 
-b = func()
+c = func("Hello", "world!")

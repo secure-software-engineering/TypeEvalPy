@@ -15,7 +15,5 @@ class B:
 
 
 a = A()
-
 b = B(a)
-
 c = b.func()
