@@ -1,0 +1,65 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "function": "arithmetic_op",
+        "type": ["int", "str"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "function": "arithmetic_op",
+        "variable": "a",
+        "type": ["int"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "function": "arithmetic_op",
+        "variable": "b",
+        "type": ["int"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 7,
+        "function": "arithmetic_op",
+        "variable": "result",
+        "type": ["int", "str"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 14,
+        "variable": "x",
+        "type": ["int"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 15,
+        "variable": "y",
+        "type": ["int"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 16,
+        "variable": "result",
+        "type": ["str"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 18,
+        "variable": "u",
+        "type": ["int"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 19,
+        "variable": "v",
+        "type": ["int"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 20,
+        "variable": "result",
+        "type": ["int"]
+    }
+]

@@ -1,0 +1,33 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 2,
+        "function": "my_function",
+        "type": ["int", "str"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 2,
+        "function": "my_function",
+        "parameter": "my_bool",
+        "type": ["bool"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "variable": "x",
+        "type": ["int"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "variable": "x",
+        "type": ["str"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 7,
+        "variable": "x",
+        "type": ["int", "str"]
+    }
+]

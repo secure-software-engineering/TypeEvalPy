@@ -1,0 +1,62 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "function": "arithmetic_op",
+        "type": ["any"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "function": "arithmetic_op",
+        "variable": "a",
+        "type": ["any"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "function": "arithmetic_op",
+        "variable": "b",
+        "type": ["any"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 7,
+        "function": "arithmetic_op",
+        "variable": "result",
+        "type": ["any"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 11,
+        "function": "add",
+        "type": ["any"]
+    }
+    {
+        "file": "main.py",
+        "line_number": 11,
+        "function": "add",
+        "variable": "a",
+        "type": ["any"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 11,
+        "function": "add",
+        "variable": "b",
+        "type": ["any"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 12,
+        "function": "add",
+        "variable": "result",
+        "type": ["any"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 14,
+        "variable": "result",
+        "type": ["int"]
+    }
+]

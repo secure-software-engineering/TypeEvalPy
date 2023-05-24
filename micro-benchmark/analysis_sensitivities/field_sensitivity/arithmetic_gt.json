@@ -1,0 +1,65 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "class": "ArithmeticOperation",
+        "function": "__init__",
+        "variable": "a",
+        "type": ["any"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "class": "ArithmeticOperation",
+        "function": "__init__",
+        "variable": "b",
+        "type": ["any"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 9,
+        "class": "ArithmeticOperation",
+        "function": "__init__",
+        "variable": "result",
+        "type": ["None"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 11,
+        "class": "ArithmeticOperation",
+        "function": "compute",
+        "type": ["Any"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 12,
+        "class": "ArithmeticOperation",
+        "function": "compute",
+        "variable": "result",
+        "type": ["Any"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 16,
+        "variable": "arith_op",
+        "type": ["ArithmeticOperation object"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 17,
+        "variable": "arith_op.a",
+        "type": ["str"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 18,
+        "variable": "arith_op.b",
+        "type": ["str"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 19,
+        "variable": "result",
+        "type": ["str"]
+    }
+]

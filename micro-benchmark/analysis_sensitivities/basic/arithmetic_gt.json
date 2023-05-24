@@ -1,0 +1,22 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 3,
+        "function": "arithmetic_op",
+        "parameter": "a",
+        "type": ["any"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 3,
+        "function": "arithmetic_op",
+        "parameter": "b",
+        "type": ["any"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "variable": "result",
+        "type": ["any"]
+    }
+]

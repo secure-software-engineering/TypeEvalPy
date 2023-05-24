@@ -1,0 +1,15 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "function": "compute_length",
+        "type": ["int"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "function": "compute_length",
+        "parameter": "s",
+        "type": ["str"]
+    }
+]

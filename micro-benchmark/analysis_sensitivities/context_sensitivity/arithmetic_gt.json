@@ -1,0 +1,40 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "function": "arithmetic_op",
+        "parameter": "a",
+        "type": ["any"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "function": "arithmetic_op",
+        "parameter": "b",
+        "type": ["any"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "variable": "result",
+        "type": ["any"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 11,
+        "variable": "result1",
+        "type": ["int"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 12,
+        "variable": "result2",
+        "type": ["float"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "variable": "result3",
+        "type": ["str"]
+    }
+]
