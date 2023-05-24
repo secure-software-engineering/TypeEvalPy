@@ -1,8 +1,18 @@
 [
     {
         "file": "main.py",
-        "line_number": 11,
-        "function": "func2",
+        "line_number": 6,
+        "class":"A",
+        "function": "__init__",
+        "variable":"smth",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "function": "A.func",
         "type": [
             "str"
         ]
@@ -11,6 +21,22 @@
         "file": "main.py",
         "line_number": 11,
         "function": "A.func2",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 15,
+        "variable":"a",
+        "type": [
+            "A"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 16,
+        "variable":"b",
         "type": [
             "str"
         ]

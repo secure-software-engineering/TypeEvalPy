@@ -2,15 +2,39 @@
     {
         "file": "main.py",
         "line_number": 5,
-        "function": "func1",
+        "function": "A.func1",
         "type": [
             "str"
         ]
     },
     {
         "file": "main.py",
-        "line_number": 5,
-        "function": "A.func1",
+        "line_number": 10,
+        "function": "B.func2",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 14,
+        "variable": "b",
+        "type": [
+            "B"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 15,
+        "variable": "fn",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 16,
+        "variable": "b",
         "type": [
             "str"
         ]

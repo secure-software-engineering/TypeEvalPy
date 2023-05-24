@@ -2,30 +2,6 @@
     {
         "file": "main.py",
         "line_number": 8,
-        "function": "func1",
-        "type": [
-            "int"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 11,
-        "function": "func2",
-        "type": [
-            "float"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 14,
-        "function": "func3",
-        "type": [
-            "str"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 8,
         "function": "MyClass.func1",
         "type": [
             "int"
@@ -46,5 +22,78 @@
         "type": [
             "str"
         ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 23,
+        "variable": "a",
+        "type": [
+            "MyClass"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 23,
+        "variable": "b",
+        "type": [
+            "MyClass2"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 25,
+        "variable": "c",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 25,
+        "variable": "d",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 25,
+        "variable": "e",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 27,
+        "variable": "f",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 28,
+        "variable": "g",
+        "type": [
+            "float"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 29,
+        "variable": "h",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 25,
+        "variable": "e",
+        "type": [
+            "callable"
+        ]
     }
+
 ]

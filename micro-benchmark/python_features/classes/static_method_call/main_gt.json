@@ -2,15 +2,15 @@
     {
         "file": "main.py",
         "line_number": 6,
-        "function": "func",
+        "function": "MyClass.func",
         "type": [
             "str"
         ]
     },
     {
         "file": "main.py",
-        "line_number": 6,
-        "function": "MyClass.func",
+        "line_number": 10,
+        "variable": "a",
         "type": [
             "str"
         ]

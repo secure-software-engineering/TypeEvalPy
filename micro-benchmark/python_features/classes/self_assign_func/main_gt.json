@@ -10,6 +10,7 @@
     {
         "file": "main.py",
         "line_number": 10,
+        "class":"B",
         "parameter": "a",
         "function": "__init__",
         "type": [
@@ -18,11 +19,35 @@
     },
     {
         "file": "main.py",
-        "line_number": 10,
-        "parameter": "a",
-        "function": "__init__",
+        "line_number": 13,
+        "function": "B.func",
         "type": [
-            "any"
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 17,
+        "variable": "a",
+        "type": [
+            "A"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 18,
+        "variable": "b",
+        "type": [
+            "B"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 19,
+        "variable": "c",
+        "type": [
+            "str"
         ]
     }
+
 ]
