@@ -1,0 +1,11 @@
+[
+    {
+        "file": "to_import.py",
+        "line_number": 4,
+        "class":"A",
+        "variable": "b",
+        "type": [
+            "str"
+        ]
+    }
+]

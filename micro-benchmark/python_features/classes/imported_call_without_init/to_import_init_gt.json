@@ -1,0 +1,10 @@
+[
+    {
+        "file": "to_import_init.py",
+        "line_number": 3,
+        "function": "MyClass.func",
+        "type": [
+            "str"
+        ]
+    }
+]

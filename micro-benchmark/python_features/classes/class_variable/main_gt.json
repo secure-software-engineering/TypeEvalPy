@@ -1,0 +1,36 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 3,
+        "class":"MyClass",
+        "variable": "class_var",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "parameter": "instance_var",
+        "function": "__init__",
+        "type": [
+            "any"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 9,
+        "variable": "a",
+        "type": [
+            "MyClass"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 10,
+        "variable": "b",
+        "type": [
+            "int"
+        ]
+    }
+]

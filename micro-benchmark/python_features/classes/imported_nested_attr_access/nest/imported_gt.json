@@ -1,0 +1,19 @@
+[
+    {
+        "file": "imported.py",
+        "line_number": 6,
+        "class": "A",
+        "variable": "b",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "imported.py",
+        "line_number": 6,
+        "function": "A.func",
+        "type": [
+            "str"
+        ]
+    }
+]

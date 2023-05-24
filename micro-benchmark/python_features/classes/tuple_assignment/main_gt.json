@@ -1,0 +1,50 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "function": "func1",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 11,
+        "function": "func2",
+        "type": [
+            "float"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 14,
+        "function": "func3",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "function": "MyClass.func1",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 11,
+        "function": "MyClass.func2",
+        "type": [
+            "float"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 14,
+        "function": "MyClass.func3",
+        "type": [
+            "str"
+        ]
+    }
+]

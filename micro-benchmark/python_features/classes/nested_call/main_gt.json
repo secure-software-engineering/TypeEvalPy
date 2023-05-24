@@ -1,0 +1,34 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "function": "MyClass.func.nested",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 3,
+        "function": "MyClass.func",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 10,
+        "variable": "a",
+        "type": [
+            "MyClass"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 11,
+        "variable": "b",
+        "type": [
+            "str"
+        ]
+    }
+]

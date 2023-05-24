@@ -1,0 +1,43 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "function": "MyClass.func2",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "function": "MyClass.func1",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 12,
+        "variable": "a",
+        "type": [
+            "MyClass"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "variable": "b",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 14,
+        "variable": "c",
+        "type": [
+            "str"
+        ]
+    }
+
+]

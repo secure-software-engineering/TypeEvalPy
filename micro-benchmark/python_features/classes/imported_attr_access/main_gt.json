@@ -1,0 +1,18 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "variable": "a",
+        "type": [
+            "to_import.A"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "variable": "b",
+        "type": [
+            "str"
+        ]
+    }
+]

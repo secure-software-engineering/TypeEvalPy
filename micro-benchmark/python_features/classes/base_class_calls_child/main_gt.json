@@ -1,0 +1,76 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 3,
+        "function": "func",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 9,
+        "class": "B",
+        "variable": "child",
+        "type": [
+            "B.func2"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 11,
+        "function": "B.func2",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 17,
+        "class": "B",
+        "variable": "child",
+        "type": [
+            "C.func2"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 19,
+        "function": "C.func2",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 23,
+        "variable": "b",
+        "type": [
+            "B"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 24,
+        "variable": "d",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 26,
+        "variable": "c",
+        "type": [
+            "C"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 27,
+        "variable": "e",
+        "type": [
+            "int"
+        ]
+    }
+]

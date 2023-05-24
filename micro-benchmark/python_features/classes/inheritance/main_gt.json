@@ -1,0 +1,42 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 3,
+        "function": "MyClass.func",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "function": "MySubClass.sub_func",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 12,
+        "variable": "a",
+        "type": [
+            "MySubClass"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "variable": "b",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 14,
+        "variable": "c",
+        "type": [
+            "int"
+        ]
+    }
+]

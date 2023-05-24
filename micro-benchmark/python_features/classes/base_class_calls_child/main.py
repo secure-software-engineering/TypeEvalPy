@@ -22,6 +22,6 @@ class C(A):
 
 b = B()
 d = b.func()
-
+print(d)
 c = C()
 e = c.func()
