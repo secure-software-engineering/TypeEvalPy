@@ -1,0 +1,10 @@
+[
+    {
+        "file": "relative_rel.py",
+        "line_number": 1,
+        "function": "func2",
+        "type": [
+            "str"
+        ]
+    }
+]

@@ -1,0 +1,10 @@
+[
+    {
+        "file": "__init__.py",
+        "line_number": 4,
+        "function": "func",
+        "type": [
+            "int"
+        ]
+    }
+]

@@ -1,0 +1,18 @@
+[
+    {
+        "file": "nested_module_sub.py",
+        "line_number": 1,
+        "function": "func1",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "nested_module_sub.py",
+        "line_number": 5,
+        "function": "func2",
+        "type": [
+            "str"
+        ]
+    }
+]

@@ -1,0 +1,10 @@
+[
+    {
+        "file": "chained_import.py",
+        "line_number": 1,
+        "function": "func1",
+        "type": [
+            "str"
+        ]
+    }
+]

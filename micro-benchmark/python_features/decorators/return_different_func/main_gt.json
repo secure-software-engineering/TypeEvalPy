@@ -1,0 +1,27 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "function": "dec",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "function": "inner",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "parameter": "f",
+        "function": "dec",
+        "type": [
+            "any"
+        ]
+    }
+]

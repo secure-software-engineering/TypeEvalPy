@@ -1,0 +1,43 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "function": "my_decorator",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "function": "my_method",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 14,
+        "function": "MyClass.my_method",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "function": "NewClass.my_method",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "parameter": "cls",
+        "function": "my_decorator",
+        "type": [
+            "any"
+        ]
+    }
+]

@@ -1,0 +1,27 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "function": "func",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "function": "func2",
+        "type": [
+            "any"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "parameter": "a",
+        "function": "func2",
+        "type": [
+            "any"
+        ]
+    }
+]

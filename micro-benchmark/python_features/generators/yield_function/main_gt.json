@@ -1,0 +1,36 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "function": "func2",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "function": "func1",
+        "type": [
+            "generator"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "parameter": "n",
+        "function": "func1",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 9,
+        "variable": "num",
+        "function": "func1",
+        "type": [
+            "int"
+        ]
+    }
+]

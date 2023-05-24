@@ -1,0 +1,10 @@
+[
+    {
+        "file": "to_import.py",
+        "line_number": 4,
+        "function": "func",
+        "type": [
+            "float"
+        ]
+    }
+]

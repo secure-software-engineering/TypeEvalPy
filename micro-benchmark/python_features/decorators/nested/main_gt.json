@@ -1,0 +1,44 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "function": "func",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "function": "modified_inner",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 12,
+        "function": "inner",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "parameter": "f",
+        "function": "func",
+        "type": [
+            "any"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "parameter": "f",
+        "function": "dec",
+        "type": [
+            "any"
+        ]
+    }
+]

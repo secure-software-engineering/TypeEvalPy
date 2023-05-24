@@ -1,0 +1,10 @@
+[
+    {
+        "file": "from_mod.py",
+        "line_number": 1,
+        "function": "func",
+        "type": [
+            "str"
+        ]
+    }
+]

@@ -1,0 +1,38 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 2,
+        "function": "unique_substring",
+        "type": [
+            "any",
+            "NoneType"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 2,
+        "parameter": "input_string",
+        "function": "unique_substring",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 3,
+        "variable": "substrings",
+        "function": "unique_substring",
+        "type": [
+            "list"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "variable": "unique",
+        "function": "unique_substring",
+        "type": [
+            "list"
+        ]
+    }
+]

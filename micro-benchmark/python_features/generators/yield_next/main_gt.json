@@ -1,0 +1,19 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "function": "squares",
+        "type": [
+            "generator"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "variable": "n",
+        "function": "squares",
+        "type": [
+            "int"
+        ]
+    }
+]

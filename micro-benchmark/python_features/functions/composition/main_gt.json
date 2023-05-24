@@ -1,0 +1,45 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "function": "add",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "function": "square",
+        "type": [
+            null
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "parameter": "x",
+        "function": "add",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "parameter": "y",
+        "function": "add",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "parameter": "x",
+        "function": "square",
+        "type": [
+            "any"
+        ]
+    }
+]

@@ -1,0 +1,99 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "function": "dec",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "function": "func",
+        "type": [
+            null
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "parameter": "f",
+        "function": "dec",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "parameter": "a",
+        "function": "dec",
+        "type": [
+            "any"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "parameter": "b",
+        "function": "dec",
+        "type": [
+            "any"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "variable": "result",
+        "function": "dec",
+        "type": [
+            "any"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "parameter": "a",
+        "function": "func",
+        "type": [
+            "any"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "parameter": "b",
+        "function": "func",
+        "type": [
+            "any"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "parameter": "a",
+        "function": "wrapper",
+        "type": [
+            "any"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "parameter": "b",
+        "function": "wrapper",
+        "type": [
+            "any"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "variable": "result",
+        "function": "wrapper",
+        "type": [
+            "any"
+        ]
+    }
+]

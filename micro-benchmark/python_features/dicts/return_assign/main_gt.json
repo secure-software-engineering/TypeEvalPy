@@ -1,0 +1,10 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "function": "func2",
+        "type": [
+            "str"
+        ]
+    }
+]

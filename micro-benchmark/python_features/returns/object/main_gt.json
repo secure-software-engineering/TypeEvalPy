@@ -1,0 +1,46 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 10,
+        "function": "func",
+        "type": [
+            "Person"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "parameter": "name",
+        "function": "__init__",
+        "type": [
+            "any"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "parameter": "age",
+        "function": "__init__",
+        "type": [
+            "any"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "parameter": "name",
+        "function": "__init__",
+        "type": [
+            "any"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "parameter": "age",
+        "function": "__init__",
+        "type": [
+            "any"
+        ]
+    }
+]

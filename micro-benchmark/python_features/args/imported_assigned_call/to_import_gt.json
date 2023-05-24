@@ -1,0 +1,19 @@
+[
+    {
+        "file": "to_import.py",
+        "line_number": 4,
+        "function": "func",
+        "type": [
+            "any"
+        ]
+    },
+    {
+        "file": "to_import.py",
+        "line_number": 4,
+        "parameter": "a",
+        "function": "func",
+        "type": [
+            "callable"
+        ]
+    }
+]

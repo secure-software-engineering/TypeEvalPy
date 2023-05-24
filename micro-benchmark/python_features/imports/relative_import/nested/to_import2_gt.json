@@ -1,0 +1,10 @@
+[
+    {
+        "file": "to_import2.py",
+        "line_number": 1,
+        "function": "func",
+        "type": [
+            "int"
+        ]
+    }
+]

@@ -1,0 +1,27 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "function": "func2",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "function": "func1",
+        "type": [
+            "Dict[str, any]"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 9,
+        "variable": "d",
+        "function": "func1",
+        "type": [
+            "Dict[str, any]"
+        ]
+    }
+]

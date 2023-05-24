@@ -1,0 +1,27 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "function": "my_function",
+        "type": [
+            "any"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "function": "my_function",
+        "type": [
+            "any"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "variable": "my_default_dict",
+        "function": "my_function",
+        "type": [
+            "any"
+        ]
+    }
+]

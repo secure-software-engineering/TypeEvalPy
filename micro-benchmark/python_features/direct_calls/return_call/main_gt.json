@@ -1,0 +1,18 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "function": "return_func",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "function": "nested_return_func",
+        "type": [
+            "str"
+        ]
+    }
+]

@@ -1,0 +1,44 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "function": "func1",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 15,
+        "function": "func2",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "function": "inner",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "parameter": "f",
+        "function": "func1",
+        "type": [
+            "any"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "parameter": "f",
+        "function": "dec",
+        "type": [
+            "any"
+        ]
+    }
+]

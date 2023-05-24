@@ -1,0 +1,18 @@
+[
+    {
+        "file": "to_import_rel.py",
+        "line_number": 4,
+        "function": "func1",
+        "type": [
+            "any"
+        ]
+    },
+    {
+        "file": "to_import_rel.py",
+        "line_number": 4,
+        "function": "func1",
+        "type": [
+            "any"
+        ]
+    }
+]

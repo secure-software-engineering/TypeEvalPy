@@ -1,0 +1,60 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "function": "func",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 12,
+        "function": "__iter__",
+        "type": [
+            "any"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 12,
+        "function": "__iter__",
+        "type": [
+            "any"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 12,
+        "function": "Cls.__iter__",
+        "type": [
+            "any"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 12,
+        "function": "Cls.__iter__",
+        "type": [
+            "any"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 9,
+        "parameter": "max",
+        "function": "__init__",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 9,
+        "parameter": "max",
+        "function": "__init__",
+        "type": [
+            "any"
+        ]
+    }
+]

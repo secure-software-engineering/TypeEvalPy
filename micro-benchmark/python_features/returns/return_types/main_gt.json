@@ -1,0 +1,51 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "function": "func",
+        "type": [
+            "Tuple[int]"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "function": "func1",
+        "type": [
+            "Dict[str, int]"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 23,
+        "function": "func3",
+        "type": [
+            "Point"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 32,
+        "function": "func4",
+        "type": [
+            "set"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 40,
+        "function": "func5",
+        "type": [
+            "list"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 24,
+        "variable": "Point",
+        "function": "func3",
+        "type": [
+            "callable"
+        ]
+    }
+]

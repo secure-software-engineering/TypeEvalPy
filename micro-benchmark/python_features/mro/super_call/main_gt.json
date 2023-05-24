@@ -1,0 +1,26 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "function": "A.func",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 10,
+        "function": "B.func",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 15,
+        "function": "C.func",
+        "type": [
+            "str"
+        ]
+    }
+]
