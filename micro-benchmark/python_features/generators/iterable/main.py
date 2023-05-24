@@ -1,7 +1,7 @@
 # Test that all the methods of a generator are called.
 
 
-class func(object):
+class func:
     def __init__(self, n):
         self.n = n
         self.num = 0

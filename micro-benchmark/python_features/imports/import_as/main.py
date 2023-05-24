@@ -9,3 +9,4 @@ def func():
 
 
 a = func()
+b = as_to_import.func()

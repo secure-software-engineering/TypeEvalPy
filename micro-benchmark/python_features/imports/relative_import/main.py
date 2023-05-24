@@ -2,11 +2,11 @@
 # We define functions accordingly with `test_chained_import`. The import is of the form `from . import to_import`.
 
 
-import to_import
+import nested.to_import
 
 
 def func():
     return "Hello from main module"
 
 
-a = func()
+a = nested.to_import.func()
