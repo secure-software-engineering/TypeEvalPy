@@ -14,7 +14,8 @@
         "parameter": "my_bool",
         "function": "my_function",
         "type": [
-            "any"
+            "str",
+            "int"
         ]
     },
     {
@@ -31,6 +32,22 @@
         "line_number": 6,
         "variable": "x",
         "function": "my_function",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 10,
+        "variable": "a",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 11,
+        "variable": "b",
         "type": [
             "str"
         ]

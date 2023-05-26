@@ -10,3 +10,4 @@ def unique_substring(input_string):
 
 
 c = unique_substring("aaabcbbccc")
+d = unique_substring("")

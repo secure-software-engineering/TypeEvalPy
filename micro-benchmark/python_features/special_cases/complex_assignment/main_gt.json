@@ -4,7 +4,7 @@
         "line_number": 2,
         "function": "unique_substring",
         "type": [
-            "any",
+            "list[str]",
             "NoneType"
         ]
     },
@@ -23,7 +23,16 @@
         "variable": "substrings",
         "function": "unique_substring",
         "type": [
-            "list"
+            "list[str]"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 3,
+        "variable": "i",
+        "function": "unique_substring",
+        "type": [
+            "int"
         ]
     },
     {
@@ -32,7 +41,31 @@
         "variable": "unique",
         "function": "unique_substring",
         "type": [
+            "list[str]"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "variable": "x",
+        "function": "unique_substring",
+        "type": [
+            "str"
+        ]
+    },    {
+        "file": "main.py",
+        "line_number": 12,
+        "variable": "c",
+        "type": [
             "list"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "variable": "d",
+        "type": [
+            "NoneType"
         ]
     }
 ]

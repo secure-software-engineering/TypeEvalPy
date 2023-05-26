@@ -10,11 +10,18 @@
     },
     {
         "file": "main.py",
-        "line_number": 7,
-        "parameter": "x",
-        "function": "func",
+        "line_number": 14,
+        "variable": "a",
         "type": [
             "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 15,
+        "variable": "b",
+        "type": [
+            "str"
         ]
     }
 ]

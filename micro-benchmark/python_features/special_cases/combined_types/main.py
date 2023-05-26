@@ -5,3 +5,7 @@ def my_function(my_bool):
     else:
         x = "Hello World!"
     return x
+
+
+a = my_function(True)
+b = my_function(False)
