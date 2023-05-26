@@ -1,0 +1,5039 @@
+('micro-benchmark', 'analysis_sensitivities', 'basic', 'arithmetic.py')
+Symtable: type=module, name=top
+  identifiers: ['arithmetic_op']
+     Symtable: type=function, name=arithmetic_op
+       identifiers: ['a', 'b', 'result']
+
+
+{'result': [4, 5], 'a': [4], 'b': [4]}
+
+
+###########################
+
+
+('micro-benchmark', 'analysis_sensitivities', 'basic', 'combined_types.py')
+Symtable: type=module, name=top
+  identifiers: ['my_function']
+     Symtable: type=function, name=my_function
+       identifiers: ['my_bool', 'x']
+
+
+{'my_bool': [3], 'x': [7, 4, 6]}
+
+
+###########################
+
+
+('micro-benchmark', 'analysis_sensitivities', 'basic', 'identity.py')
+Symtable: type=module, name=top
+  identifiers: ['identity']
+     Symtable: type=function, name=identity
+       identifiers: ['x']
+
+
+{'x': [3]}
+
+
+###########################
+
+
+('micro-benchmark', 'analysis_sensitivities', 'basic', 'len.py')
+Symtable: type=module, name=top
+  identifiers: ['compute_length']
+     Symtable: type=function, name=compute_length
+       identifiers: ['s', 'len']
+
+
+{'len': [5], 's': [5]}
+
+
+###########################
+
+
+('micro-benchmark', 'analysis_sensitivities', 'basic', 'max_value.py')
+Symtable: type=module, name=top
+  identifiers: ['max_value']
+     Symtable: type=function, name=max_value
+       identifiers: ['a', 'b', 'max']
+
+
+{'max': [3], 'a': [3], 'b': [3]}
+
+
+###########################
+
+
+('micro-benchmark', 'analysis_sensitivities', 'context_sensitivity', 'arithmetic.py')
+Symtable: type=module, name=top
+  identifiers: ['arithmetic_op', 'result1', 'result2', 'result3']
+     Symtable: type=function, name=arithmetic_op
+       identifiers: ['a', 'b', 'result']
+
+
+{'result1': [11], 'result2': [12], 'result3': [13], 'result': [7, 8], 'arithmetic_op': [11, 12, 13], 'a': [7], 'b': [7]}
+
+
+###########################
+
+
+('micro-benchmark', 'analysis_sensitivities', 'context_sensitivity', 'combined_types.py')
+Symtable: type=module, name=top
+  identifiers: ['my_function', 'a', 'result']
+     Symtable: type=function, name=my_function
+       identifiers: ['my_bool', 'x']
+
+
+{'a': [11, 13, 12, 14], 'result': [12, 14], 'my_bool': [4], 'x': [8, 5, 7], 'my_function': [12, 14]}
+
+
+###########################
+
+
+('micro-benchmark', 'analysis_sensitivities', 'context_sensitivity', 'identity.py')
+Symtable: type=module, name=top
+  identifiers: ['identity', 'result']
+     Symtable: type=function, name=identity
+       identifiers: ['x', 'type']
+
+
+{'result': [9, 10, 11, 12], 'identity': [9, 10, 11, 12], 'type': [6], 'x': [6]}
+
+
+###########################
+
+
+('micro-benchmark', 'analysis_sensitivities', 'context_sensitivity', 'len.py')
+Symtable: type=module, name=top
+  identifiers: ['compute_length', 'result']
+     Symtable: type=function, name=compute_length
+       identifiers: ['s', 'len']
+
+
+{'result': [9, 10], 'compute_length': [9, 10], 'len': [6], 's': [6]}
+
+
+###########################
+
+
+('micro-benchmark', 'analysis_sensitivities', 'context_sensitivity', 'max_value.py')
+Symtable: type=module, name=top
+  identifiers: ['max_value', 'a', 'b', 'result']
+     Symtable: type=function, name=max_value
+       identifiers: ['a', 'b', 'max']
+
+
+{'a': [9, 12, 11, 14, 6], 'b': [10, 13, 11, 14, 6], 'result': [11, 14], 'max_value': [11, 14], 'max': [6]}
+
+
+###########################
+
+
+('micro-benchmark', 'analysis_sensitivities', 'field_sensitivity', 'arithmetic.py')
+Symtable: type=module, name=top
+  identifiers: ['ArithmeticOperation', 'arith_op', 'result']
+     Symtable: type=class, name=ArithmeticOperation
+       identifiers: ['__init__', 'compute']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'a', 'b']
+          Symtable: type=function, name=compute
+            identifiers: ['self']
+
+
+{'arith_op': [16, 17, 18, 19], 'result': [19], 'ArithmeticOperation': [16], 'a': [7], 'b': [8], 'self': [7, 8, 9, 12, 13, 12, 12]}
+
+
+###########################
+
+
+('micro-benchmark', 'analysis_sensitivities', 'field_sensitivity', 'arithmetic_depth_2.py')
+Symtable: type=module, name=top
+  identifiers: ['ArithmeticOperation', 'arith_op', 'result']
+     Symtable: type=class, name=ArithmeticOperation
+       identifiers: ['__init__', 'Nested', 'compute']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'a', 'b']
+          Symtable: type=class, name=Nested
+            identifiers: ['__init__', 'compute']
+               Symtable: type=function, name=__init__
+                 identifiers: ['self', 'b']
+               Symtable: type=function, name=compute
+                 identifiers: ['self']
+          Symtable: type=function, name=compute
+            identifiers: ['self']
+
+
+{'arith_op': [21, 22, 23, 24], 'result': [24], 'ArithmeticOperation': [21], 'a': [5], 'self': [5, 6, 7, 17, 18, 7, 11, 14, 17, 17], 'b': [7, 11]}
+
+
+###########################
+
+
+('micro-benchmark', 'analysis_sensitivities', 'field_sensitivity', 'combined_types.py')
+Symtable: type=module, name=top
+  identifiers: ['CombinedTypes', 'combined', 'result']
+     Symtable: type=class, name=CombinedTypes
+       identifiers: ['__init__', 'my_function']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'x']
+          Symtable: type=function, name=my_function
+            identifiers: ['self', 'x']
+
+
+{'combined': [17, 18, 19], 'result': [19], 'CombinedTypes': [17], 'x': [7, 14, 11, 13], 'self': [7, 10]}
+
+
+###########################
+
+
+('micro-benchmark', 'analysis_sensitivities', 'field_sensitivity', 'combined_types_depth_2.py')
+Symtable: type=module, name=top
+  identifiers: ['CombinedTypes', 'combined', 'result']
+     Symtable: type=class, name=CombinedTypes
+       identifiers: ['__init__', 'Value', 'my_function']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'my_bool']
+          Symtable: type=class, name=Value
+            identifiers: ['__init__', 'my_function']
+               Symtable: type=function, name=__init__
+                 identifiers: ['self']
+               Symtable: type=function, name=my_function
+                 identifiers: ['self', 'x']
+          Symtable: type=function, name=my_function
+            identifiers: ['self']
+
+
+{'combined': [23, 24, 25], 'result': [25], 'CombinedTypes': [23], 'my_bool': [6], 'self': [5, 5, 6, 10, 13, 20], 'x': [17, 14, 16]}
+
+
+###########################
+
+
+('micro-benchmark', 'analysis_sensitivities', 'field_sensitivity', 'depyth_3.py')
+Symtable: type=module, name=top
+  identifiers: ['A', 'B', 'C', 'a', 'result']
+     Symtable: type=class, name=A
+       identifiers: ['__init__']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'b']
+     Symtable: type=class, name=B
+       identifiers: ['__init__']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'c']
+     Symtable: type=class, name=C
+       identifiers: ['__init__']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'value']
+
+
+{'a': [17, 18], 'result': [18], 'A': [17], 'b': [4], 'c': [9], 'value': [14], 'B': [17], 'self': [4, 9, 14], 'C': [17]}
+
+
+###########################
+
+
+('micro-benchmark', 'analysis_sensitivities', 'field_sensitivity', 'identity.py')
+Symtable: type=module, name=top
+  identifiers: ['Identity', 'id1', 'result1']
+     Symtable: type=class, name=Identity
+       identifiers: ['__init__', 'get_value']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'x']
+          Symtable: type=function, name=get_value
+            identifiers: ['self']
+
+
+{'id1': [12, 14], 'result1': [14], 'Identity': [12], 'x': [6], 'self': [6, 9]}
+
+
+###########################
+
+
+('micro-benchmark', 'analysis_sensitivities', 'field_sensitivity', 'identity_depth_2.py')
+Symtable: type=module, name=top
+  identifiers: ['Identity', 'id1', 'result1']
+     Symtable: type=class, name=Identity
+       identifiers: ['__init__', 'Nested', 'get_value']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'x']
+          Symtable: type=class, name=Nested
+            identifiers: ['__init__', 'get_value']
+               Symtable: type=function, name=__init__
+                 identifiers: ['self', 'y']
+               Symtable: type=function, name=get_value
+                 identifiers: ['self']
+          Symtable: type=function, name=get_value
+            identifiers: ['self']
+
+
+{'id1': [19, 20, 22], 'result1': [22], 'Identity': [19], 'x': [5], 'self': [5, 6, 6, 10, 13, 16], 'y': [10]}
+
+
+###########################
+
+
+('micro-benchmark', 'analysis_sensitivities', 'field_sensitivity', 'len.py')
+Symtable: type=module, name=top
+  identifiers: ['Len', 'lf', 'result']
+     Symtable: type=class, name=Len
+       identifiers: ['__init__', 'get_length']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'x']
+          Symtable: type=function, name=get_length
+            identifiers: ['self', 'len']
+
+
+{'lf': [14, 16], 'result': [16], 'Len': [14], 'x': [8], 'self': [8, 11], 'len': [11]}
+
+
+###########################
+
+
+('micro-benchmark', 'analysis_sensitivities', 'field_sensitivity', 'len_depth_2.py')
+Symtable: type=module, name=top
+  identifiers: ['Len', 'lf', 'result']
+     Symtable: type=class, name=Len
+       identifiers: ['__init__', 'Nested', 'get_length']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'x']
+          Symtable: type=class, name=Nested
+            identifiers: ['__init__', 'get_length']
+               Symtable: type=function, name=__init__
+                 identifiers: ['self', 'y']
+               Symtable: type=function, name=get_length
+                 identifiers: ['self', 'len']
+          Symtable: type=function, name=get_length
+            identifiers: ['self']
+
+
+{'lf': [19, 20, 22], 'result': [22], 'Len': [19], 'x': [5], 'self': [5, 6, 6, 10, 13, 16], 'y': [10], 'len': [13]}
+
+
+###########################
+
+
+('micro-benchmark', 'analysis_sensitivities', 'field_sensitivity', 'max_value.py')
+Symtable: type=module, name=top
+  identifiers: ['MaxValue', 'mf', 'result']
+     Symtable: type=class, name=MaxValue
+       identifiers: ['__init__', 'get_max']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'a', 'b']
+          Symtable: type=function, name=get_max
+            identifiers: ['self', 'max']
+
+
+{'mf': [16, 18], 'result': [18], 'MaxValue': [16], 'a': [9], 'b': [10], 'self': [9, 10, 13, 13], 'max': [13]}
+
+
+###########################
+
+
+('micro-benchmark', 'analysis_sensitivities', 'field_sensitivity', 'max_value_depth_2.py')
+Symtable: type=module, name=top
+  identifiers: ['MaxField', 'mf', 'result']
+     Symtable: type=class, name=MaxField
+       identifiers: ['__init__', 'Nested', 'get_max']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'a', 'b']
+          Symtable: type=class, name=Nested
+            identifiers: ['__init__', 'get_max']
+               Symtable: type=function, name=__init__
+                 identifiers: ['self', 'x', 'y']
+               Symtable: type=function, name=get_max
+                 identifiers: ['self', 'max']
+          Symtable: type=function, name=get_max
+            identifiers: ['self']
+
+
+{'mf': [21, 22, 23, 24], 'result': [24], 'MaxField': [21], 'a': [5], 'b': [6], 'self': [5, 6, 7, 7, 11, 12, 15, 15, 18], 'x': [11], 'y': [12], 'max': [15]}
+
+
+###########################
+
+
+('micro-benchmark', 'analysis_sensitivities', 'flow_sensitivity', 'arithmetic.py')
+Symtable: type=module, name=top
+  identifiers: ['arithmetic_op', 'x', 'y', 'result', 'u', 'v']
+     Symtable: type=function, name=arithmetic_op
+       identifiers: ['a', 'b', 'result']
+
+
+{'x': [14, 16], 'y': [15, 16], 'result': [16, 20, 7, 8, 9], 'u': [18, 20], 'v': [19, 20], 'arithmetic_op': [16, 20], 'a': [7], 'b': [7]}
+
+
+###########################
+
+
+('micro-benchmark', 'analysis_sensitivities', 'flow_sensitivity', 'combined_types.py')
+Symtable: type=module, name=top
+  identifiers: ['my_function', 'result1', 'result2', 'result3']
+     Symtable: type=function, name=my_function
+       identifiers: ['my_bool']
+
+
+{'result1': [12], 'result2': [13], 'result3': [14], 'my_bool': [6], 'my_function': [12, 13, 14]}
+
+
+###########################
+
+
+('micro-benchmark', 'analysis_sensitivities', 'flow_sensitivity', 'identity.py')
+Symtable: type=module, name=top
+  identifiers: ['identity', 'result1', 'result2', 'result3', 'result4']
+     Symtable: type=function, name=identity
+       identifiers: ['x', 'isinstance', 'str', 'int', 'float']
+
+
+{'result1': [16], 'result2': [17], 'result3': [18], 'result4': [19], 'identity': [16, 17, 18, 19], 'isinstance': [6, 8, 10], 'x': [6, 7, 8, 9, 10, 13, 11], 'str': [6, 7], 'int': [8, 9], 'float': [10, 11]}
+
+
+###########################
+
+
+('micro-benchmark', 'analysis_sensitivities', 'flow_sensitivity', 'len.py')
+Symtable: type=module, name=top
+  identifiers: ['compute_length', 'result1', 'result2', 'result3']
+     Symtable: type=function, name=compute_length
+       identifiers: ['s', 'isinstance', 'str', 'len', 'list']
+
+
+{'result1': [14], 'result2': [15], 'result3': [16], 'compute_length': [14, 15, 16], 'isinstance': [6, 8], 's': [6, 7, 8, 9], 'str': [6], 'len': [7, 9], 'list': [8]}
+
+
+###########################
+
+
+('micro-benchmark', 'analysis_sensitivities', 'flow_sensitivity', 'max_value.py')
+Symtable: type=module, name=top
+  identifiers: ['max_value', 'result1', 'result2', 'result3', 'result4']
+     Symtable: type=function, name=max_value
+       identifiers: ['a', 'b', 'isinstance', 'int', 'max', 'float']
+
+
+{'result1': [14], 'result2': [15], 'result3': [16], 'result4': [17], 'max_value': [14, 15, 16, 17], 'isinstance': [6, 6, 8, 8], 'a': [6, 7, 8, 9], 'int': [6, 6], 'b': [6, 7, 8, 9], 'max': [7, 9], 'float': [8, 8]}
+
+
+###########################
+
+
+('micro-benchmark', 'analysis_sensitivities', 'inter_procedural', 'arithmetic.py')
+Symtable: type=module, name=top
+  identifiers: ['arithmetic_op', 'add', 'result']
+     Symtable: type=function, name=arithmetic_op
+       identifiers: ['a', 'b', 'result', 'add']
+     Symtable: type=function, name=add
+       identifiers: ['a', 'b', 'result']
+
+
+{'result': [16, 7, 8, 12, 13], 'arithmetic_op': [16], 'add': [7], 'a': [7, 12], 'b': [7, 12]}
+
+
+###########################
+
+
+('micro-benchmark', 'analysis_sensitivities', 'inter_procedural', 'combined_types.py')
+Symtable: type=module, name=top
+  identifiers: ['my_function', 'operation', 'result']
+     Symtable: type=function, name=my_function
+       identifiers: ['my_bool']
+     Symtable: type=function, name=operation
+       identifiers: ['my_bool', 'result', 'my_function']
+
+
+{'result': [17, 13, 14], 'my_bool': [6, 13], 'operation': [17], 'my_function': [13]}
+
+
+###########################
+
+
+('micro-benchmark', 'analysis_sensitivities', 'inter_procedural', 'identity.py')
+Symtable: type=module, name=top
+  identifiers: ['identity', 'operation', 'result']
+     Symtable: type=function, name=identity
+       identifiers: ['x']
+     Symtable: type=function, name=operation
+       identifiers: ['a', 'b', 'result', 'identity']
+
+
+{'result': [14, 10, 11], 'x': [6], 'operation': [14], 'identity': [10, 10], 'a': [10], 'b': [10]}
+
+
+###########################
+
+
+('micro-benchmark', 'analysis_sensitivities', 'inter_procedural', 'len.py')
+Symtable: type=module, name=top
+  identifiers: ['compute_length', 'operation', 'result']
+     Symtable: type=function, name=compute_length
+       identifiers: ['s', 'len']
+     Symtable: type=function, name=operation
+       identifiers: ['a', 'b', 'result', 'compute_length']
+
+
+{'result': [14, 10, 11], 'operation': [14], 'len': [6], 's': [6], 'compute_length': [10, 10], 'a': [10], 'b': [10]}
+
+
+###########################
+
+
+('micro-benchmark', 'analysis_sensitivities', 'inter_procedural', 'max_value.py')
+Symtable: type=module, name=top
+  identifiers: ['max_value', 'operation', 'result']
+     Symtable: type=function, name=max_value
+       identifiers: ['a', 'b', 'max']
+     Symtable: type=function, name=operation
+       identifiers: ['a', 'b', 'result', 'max_value']
+
+
+{'result': [14, 10, 11], 'operation': [14], 'max': [6], 'a': [6, 10], 'b': [6, 10], 'max_value': [10]}
+
+
+###########################
+
+
+('micro-benchmark', 'analysis_sensitivities', 'intra_procedural', 'arithmetic.py')
+Symtable: type=module, name=top
+  identifiers: ['arithmetic_op', 'result']
+     Symtable: type=function, name=arithmetic_op
+       identifiers: ['a', 'b', 'result']
+
+
+{'result': [9, 5, 6], 'arithmetic_op': [9], 'a': [5], 'b': [5]}
+
+
+###########################
+
+
+('micro-benchmark', 'analysis_sensitivities', 'intra_procedural', 'combined_types.py')
+Symtable: type=module, name=top
+  identifiers: ['my_function', 'result']
+     Symtable: type=function, name=my_function
+       identifiers: ['my_bool']
+
+
+{'result': [9], 'my_bool': [3], 'my_function': [9]}
+
+
+###########################
+
+
+('micro-benchmark', 'analysis_sensitivities', 'intra_procedural', 'identity.py')
+Symtable: type=module, name=top
+  identifiers: ['identity', 'a']
+     Symtable: type=function, name=identity
+       identifiers: ['x']
+
+
+{'a': [6], 'x': [3], 'identity': [6]}
+
+
+###########################
+
+
+('micro-benchmark', 'analysis_sensitivities', 'intra_procedural', 'len.py')
+Symtable: type=module, name=top
+  identifiers: ['compute_length', 'a']
+     Symtable: type=function, name=compute_length
+       identifiers: ['s', 'len']
+
+
+{'a': [6], 'compute_length': [6], 'len': [3], 's': [3]}
+
+
+###########################
+
+
+('micro-benchmark', 'analysis_sensitivities', 'intra_procedural', 'max_value.py')
+Symtable: type=module, name=top
+  identifiers: ['max_value', 'result']
+     Symtable: type=function, name=max_value
+       identifiers: ['a', 'b', 'max']
+
+
+{'result': [6], 'max_value': [6], 'max': [3], 'a': [3], 'b': [3]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'context_field', 'arithmetic.py')
+Symtable: type=module, name=top
+  identifiers: ['ArithmeticOperation', 'result1', 'first_result', 'result2', 'final_result']
+     Symtable: type=class, name=ArithmeticOperation
+       identifiers: ['__init__', 'compute']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'a', 'b']
+          Symtable: type=function, name=compute
+            identifiers: ['self']
+
+
+{'result1': [16, 17], 'first_result': [17], 'result2': [18, 19], 'final_result': [19], 'ArithmeticOperation': [16, 18], 'a': [7], 'b': [8], 'self': [7, 8, 9, 12, 13, 12, 12]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'context_field', 'arithmetic_depth_2.py')
+Symtable: type=module, name=top
+  identifiers: ['ArithmeticOperation', 'result1', 'first_result', 'result2', 'final_result']
+     Symtable: type=class, name=ArithmeticOperation
+       identifiers: ['__init__', 'Nested', 'compute']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'a', 'b']
+          Symtable: type=class, name=Nested
+            identifiers: ['__init__', 'compute']
+               Symtable: type=function, name=__init__
+                 identifiers: ['self', 'b']
+               Symtable: type=function, name=compute
+                 identifiers: ['self']
+          Symtable: type=function, name=compute
+            identifiers: ['self']
+
+
+{'result1': [24, 25], 'first_result': [25], 'result2': [26, 27], 'final_result': [27], 'ArithmeticOperation': [24, 26], 'a': [8], 'self': [8, 9, 10, 20, 21, 10, 14, 17, 20, 20], 'b': [10, 14]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'context_field', 'combined_types.py')
+Symtable: type=module, name=top
+  identifiers: ['CombinedTypesContext', 'context1', 'context2', 'result1', 'result2']
+     Symtable: type=class, name=CombinedTypesContext
+       identifiers: ['__init__', 'process_data']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'data']
+          Symtable: type=function, name=process_data
+            identifiers: ['self', 'isinstance', 'int', 'str']
+
+
+{'context1': [19, 22], 'context2': [20, 21, 23], 'result1': [22], 'result2': [23], 'CombinedTypesContext': [19, 20], 'data': [8], 'self': [8, 11, 12, 13, 16, 14], 'isinstance': [11, 13], 'int': [11], 'str': [13]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'context_field', 'combined_types_depth_2.py')
+Symtable: type=module, name=top
+  identifiers: ['CombinedTypesContext', 'context1', 'context2', 'result1', 'result2']
+     Symtable: type=class, name=CombinedTypesContext
+       identifiers: ['__init__', 'Nested', 'process_data']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'data']
+          Symtable: type=class, name=Nested
+            identifiers: ['__init__', 'get_value']
+               Symtable: type=function, name=__init__
+                 identifiers: ['self', 'value']
+               Symtable: type=function, name=get_value
+                 identifiers: ['self']
+          Symtable: type=function, name=process_data
+            identifiers: ['self', 'isinstance', 'int', 'str']
+
+
+{'context1': [28, 31], 'context2': [29, 30, 32], 'result1': [31], 'result2': [32], 'CombinedTypesContext': [28, 29], 'data': [9], 'self': [9, 10, 10, 14, 17, 20, 21, 25, 22, 23], 'value': [14], 'isinstance': [20, 22], 'int': [20], 'str': [22]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'context_field', 'identity.py')
+Symtable: type=module, name=top
+  identifiers: ['Identity', 'id1', 'id2', 'result1', 'result2']
+     Symtable: type=class, name=Identity
+       identifiers: ['__init__', 'get_value']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'x']
+          Symtable: type=function, name=get_value
+            identifiers: ['self']
+
+
+{'id1': [12, 14, 15], 'id2': [13, 16], 'result1': [15], 'result2': [16], 'Identity': [12, 13], 'x': [6], 'self': [6, 9]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'context_field', 'identity_depth_2.py')
+Symtable: type=module, name=top
+  identifiers: ['Identity', 'id1', 'id2', 'result1', 'result2']
+     Symtable: type=class, name=Identity
+       identifiers: ['__init__', 'Nested', 'get_value']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'x']
+          Symtable: type=class, name=Nested
+            identifiers: ['__init__', 'get_value']
+               Symtable: type=function, name=__init__
+                 identifiers: ['self', 'y']
+               Symtable: type=function, name=get_value
+                 identifiers: ['self']
+          Symtable: type=function, name=get_value
+            identifiers: ['self']
+
+
+{'id1': [19, 24], 'id2': [20, 22, 25], 'result1': [24], 'result2': [25], 'Identity': [19, 20], 'x': [5], 'self': [5, 6, 6, 10, 13, 16], 'y': [10]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'context_field', 'len.py')
+Symtable: type=module, name=top
+  identifiers: ['Len', 'context1', 'context2', 'result1', 'result2']
+     Symtable: type=class, name=Len
+       identifiers: ['__init__', 'compute_length']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'value']
+          Symtable: type=function, name=compute_length
+            identifiers: ['self', 'len']
+
+
+{'context1': [14, 17], 'context2': [15, 16, 18], 'result1': [17], 'result2': [18], 'Len': [14, 15], 'value': [8], 'self': [8, 11], 'len': [11]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'context_field', 'len_depth_2.py')
+Symtable: type=module, name=top
+  identifiers: ['Len', 'context1', 'context2', 'result1', 'result2']
+     Symtable: type=class, name=Len
+       identifiers: ['__init__', 'Nested', 'compute_length']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'text']
+          Symtable: type=class, name=Nested
+            identifiers: ['__init__', 'get_value']
+               Symtable: type=function, name=__init__
+                 identifiers: ['self', 'value']
+               Symtable: type=function, name=get_value
+                 identifiers: ['self']
+          Symtable: type=function, name=compute_length
+            identifiers: ['self', 'isinstance', 'str', 'len']
+
+
+{'context1': [28, 31], 'context2': [29, 30, 32], 'result1': [31], 'result2': [32], 'Len': [28, 29], 'text': [9], 'self': [9, 10, 10, 14, 17, 20, 21, 22, 23], 'value': [14], 'isinstance': [20, 22], 'str': [20, 22], 'len': [21, 23]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'context_field', 'max_value.py')
+Symtable: type=module, name=top
+  identifiers: ['MaxValueContext', 'context1', 'context2', 'result1', 'result2']
+     Symtable: type=class, name=MaxValueContext
+       identifiers: ['__init__', 'get_max_value']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'a', 'b']
+          Symtable: type=function, name=get_max_value
+            identifiers: ['self', 'max']
+
+
+{'context1': [15, 18], 'context2': [16, 17, 19], 'result1': [18], 'result2': [19], 'MaxValueContext': [15, 16], 'a': [8], 'b': [9], 'self': [8, 9, 12, 12], 'max': [12]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'context_field', 'max_value_depth_2.py')
+Symtable: type=module, name=top
+  identifiers: ['MaxValueContext', 'context1', 'context2', 'result1', 'result2']
+     Symtable: type=class, name=MaxValueContext
+       identifiers: ['__init__', 'Nested', 'get_max_value']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'a', 'b']
+          Symtable: type=class, name=Nested
+            identifiers: ['__init__', 'get_value']
+               Symtable: type=function, name=__init__
+                 identifiers: ['self', 'value']
+               Symtable: type=function, name=get_value
+                 identifiers: ['self']
+          Symtable: type=function, name=get_max_value
+            identifiers: ['self', 'max_value', 'max', 'nested_value', 'isinstance', 'int']
+
+
+{'context1': [29, 32], 'context2': [30, 31, 33], 'result1': [32], 'result2': [33], 'MaxValueContext': [29, 30], 'a': [9], 'b': [10], 'max_value': [21, 23, 24], 'nested_value': [22, 23, 24], 'self': [9, 10, 11, 11, 15, 18, 21, 21, 22], 'value': [15], 'max': [21, 24], 'isinstance': [23, 23], 'int': [23, 23]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'context_flow', 'arithmetic.py')
+Symtable: type=module, name=top
+  identifiers: ['arithmetic_op', 'result', 'result2']
+     Symtable: type=function, name=arithmetic_op
+       identifiers: ['a', 'b', 'result']
+
+
+{'result': [22, 19, 7, 8, 15, 16, 18, 10, 11, 13], 'result2': [23, 24], 'arithmetic_op': [22, 23, 24], 'a': [6, 10, 13], 'b': [7, 9, 13]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'context_flow', 'combined_types.py')
+Symtable: type=module, name=top
+  identifiers: ['process_data', 'result1', 'result2', 'result3']
+     Symtable: type=function, name=process_data
+       identifiers: ['data', 'isinstance', 'int', 'str']
+
+
+{'result1': [14], 'result2': [15], 'result3': [16], 'process_data': [14, 15, 16], 'isinstance': [6, 8], 'data': [6, 7, 8, 9], 'int': [6], 'str': [8]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'context_flow', 'identity.py')
+Symtable: type=module, name=top
+  identifiers: ['identity', 'a', 'b', 'c']
+     Symtable: type=function, name=identity
+       identifiers: ['x', 'isinstance', 'str', 'int']
+
+
+{'a': [14], 'b': [15], 'c': [16], 'identity': [14, 15, 16], 'isinstance': [6, 8], 'x': [6, 8, 7, 9], 'str': [6], 'int': [8]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'context_flow', 'len.py')
+Symtable: type=module, name=top
+  identifiers: ['compute_length', 'text', 'numbers', 'result1', 'result2', 'result3']
+     Symtable: type=function, name=compute_length
+       identifiers: ['s', 'isinstance', 'str', 'len', 'list']
+
+
+{'text': [14, 16], 'numbers': [15, 17], 'result1': [16], 'result2': [17], 'result3': [18], 'compute_length': [16, 17, 18], 'isinstance': [6, 8], 's': [6, 7, 8, 9], 'str': [6], 'len': [7, 9], 'list': [8]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'context_flow', 'max_value.py')
+Symtable: type=module, name=top
+  identifiers: ['max_value', 'result1', 'result2', 'result3', 'result4']
+     Symtable: type=function, name=max_value
+       identifiers: ['a', 'b', 'isinstance', 'int', 'max', 'float']
+
+
+{'result1': [14], 'result2': [15], 'result3': [16], 'result4': [17], 'max_value': [14, 15, 16, 17], 'isinstance': [6, 6, 8, 8], 'a': [6, 7, 8, 9], 'int': [6, 6], 'b': [6, 7, 8, 9], 'max': [7, 9], 'float': [8, 8]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'context_inter', 'arithmetic.py')
+Symtable: type=module, name=top
+  identifiers: ['arithmetic_op', 'add', 'x', 'y', 'result1', 'u', 'v', 'result2']
+     Symtable: type=function, name=arithmetic_op
+       identifiers: ['a', 'b', 'result', 'add']
+     Symtable: type=function, name=add
+       identifiers: ['a', 'b', 'result']
+
+
+{'x': [16, 18], 'y': [17, 18], 'result1': [18], 'u': [19, 21], 'v': [20, 21], 'result2': [21], 'result': [7, 8, 12, 13], 'arithmetic_op': [18, 21], 'add': [7], 'a': [7, 12], 'b': [7, 12]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'context_inter', 'combined_types.py')
+Symtable: type=module, name=top
+  identifiers: ['process_data', 'double_value', 'uppercase', 'value1', 'value2', 'value3', 'result1', 'result2', 'result3']
+     Symtable: type=function, name=process_data
+       identifiers: ['data', 'isinstance', 'int', 'result', 'double_value', 'str', 'uppercase']
+     Symtable: type=function, name=double_value
+       identifiers: ['num']
+     Symtable: type=function, name=uppercase
+       identifiers: ['s']
+
+
+{'value1': [24, 27], 'value2': [25, 28], 'value3': [26, 29], 'result1': [27], 'result2': [28], 'result3': [29], 'result': [13, 8, 10, 12], 'process_data': [27, 28, 29], 'isinstance': [7, 9], 'data': [7, 8, 9, 10], 'int': [7], 'num': [17], 'double_value': [8], 'str': [9], 's': [21], 'uppercase': [10]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'context_inter', 'identity.py')
+Symtable: type=module, name=top
+  identifiers: ['identity', 'uppercase', 'a', 'b', 'c']
+     Symtable: type=function, name=identity
+       identifiers: ['x', 'isinstance', 'str', 'result', 'uppercase']
+     Symtable: type=function, name=uppercase
+       identifiers: ['s']
+
+
+{'a': [16], 'b': [17], 'c': [18], 'result': [9, 6, 8], 'identity': [16, 17, 18], 'isinstance': [5], 'x': [5, 8, 6], 'str': [5], 'uppercase': [6], 's': [13]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'context_inter', 'len.py')
+Symtable: type=module, name=top
+  identifiers: ['compute_length', 'length', 'text', 'numbers', 'result1', 'result2', 'result3']
+     Symtable: type=function, name=compute_length
+       identifiers: ['s', 'result', 'length']
+     Symtable: type=function, name=length
+       identifiers: ['s', 'len']
+
+
+{'text': [15, 17], 'numbers': [16, 18], 'result1': [17], 'result2': [18], 'result3': [19], 'result': [7, 8], 'compute_length': [17, 18, 19], 'length': [7], 's': [7, 12], 'len': [12]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'context_inter', 'max_value.py')
+Symtable: type=module, name=top
+  identifiers: ['max_value', 'maximum', 'result1', 'result4']
+     Symtable: type=function, name=max_value
+       identifiers: ['a', 'b', 'result', 'maximum']
+     Symtable: type=function, name=maximum
+       identifiers: ['a', 'b', 'max']
+
+
+{'result1': [15], 'result4': [16], 'result': [7, 8], 'max_value': [15, 16], 'maximum': [7], 'a': [7, 12], 'b': [7, 12], 'max': [12]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'context_object', 'arithmetic.py')
+Symtable: type=module, name=top
+  identifiers: ['CallContext', 'arithmetic_op', 'context1', 'result1', 'context2', 'result2']
+     Symtable: type=class, name=CallContext
+       identifiers: ['__init__']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'a', 'b']
+     Symtable: type=function, name=arithmetic_op
+       identifiers: ['context', 'result']
+
+
+{'context1': [16, 17, 18], 'result1': [18], 'context2': [20, 21, 22], 'result2': [22], 'result': [12, 13], 'CallContext': [16, 20], 'arithmetic_op': [17, 21], 'a': [6], 'b': [7], 'context': [13, 12, 12], 'self': [6, 7, 8]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'context_object', 'combined_types.py')
+Symtable: type=module, name=top
+  identifiers: ['CombinedTypesOperation', 'value1', 'value2', 'combined_op1', 'combined_op2', 'result1', 'result2']
+     Symtable: type=class, name=CombinedTypesOperation
+       identifiers: ['__init__', 'process_data']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'data']
+          Symtable: type=function, name=process_data
+            identifiers: ['self', 'isinstance', 'int', 'str']
+
+
+{'value1': [21, 23], 'value2': [22, 24], 'combined_op1': [23, 25], 'combined_op2': [24, 26], 'result1': [25], 'result2': [26], 'CombinedTypesOperation': [23, 24], 'data': [8], 'self': [8, 9, 18, 12, 13, 13, 14, 15, 17, 15], 'isinstance': [12, 14], 'int': [12], 'str': [14]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'context_object', 'identity.py')
+Symtable: type=module, name=top
+  identifiers: ['IdentityOperation', 'identity', 'context1', 'context2', 'result1', 'result2']
+     Symtable: type=class, name=IdentityOperation
+       identifiers: ['__init__']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'x']
+     Symtable: type=function, name=identity
+       identifiers: ['context', 'type']
+
+
+{'context1': [19, 21], 'context2': [20, 22], 'result1': [21], 'result2': [22], 'IdentityOperation': [19, 20], 'identity': [21, 22], 'x': [10], 'context': [15, 15, 16], 'type': [16], 'self': [10, 11]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'context_object', 'len.py')
+Symtable: type=module, name=top
+  identifiers: ['LengthOperation', 'text', 'input', 'length_op1', 'length_op2', 'result1', 'result2']
+     Symtable: type=class, name=LengthOperation
+       identifiers: ['__init__', 'compute_length']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'data']
+          Symtable: type=function, name=compute_length
+            identifiers: ['self', 'len']
+
+
+{'text': [16, 18], 'input': [17, 19], 'length_op1': [18, 20], 'length_op2': [19, 21], 'result1': [20], 'result2': [21], 'LengthOperation': [18, 19], 'data': [8], 'self': [8, 9, 12, 13, 12], 'len': [12]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'context_object', 'max_value.py')
+Symtable: type=module, name=top
+  identifiers: ['MaxValueOperation', 'value1', 'value2', 'max_op1', 'result1', 'max_op2', 'result2']
+     Symtable: type=class, name=MaxValueOperation
+       identifiers: ['__init__', 'compute_max_value']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'a', 'b']
+          Symtable: type=function, name=compute_max_value
+            identifiers: ['self', 'max']
+
+
+{'value1': [17, 19], 'value2': [18, 19], 'max_op1': [19, 20], 'result1': [20], 'max_op2': [21, 22], 'result2': [22], 'MaxValueOperation': [19, 21], 'a': [8], 'b': [9], 'self': [8, 9, 10, 13, 14, 13, 13], 'max': [13]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'field_flow', 'arithmetic.py')
+Symtable: type=module, name=top
+  identifiers: ['ArithmeticOperation', 'arith_op', 'result']
+     Symtable: type=class, name=ArithmeticOperation
+       identifiers: ['__init__', 'compute']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'a', 'b']
+          Symtable: type=function, name=compute
+            identifiers: ['self']
+
+
+{'arith_op': [25, 26, 27, 28], 'result': [28], 'ArithmeticOperation': [25], 'a': [5], 'b': [6], 'self': [5, 6, 7, 22, 10, 11, 11, 18, 12, 13, 13, 15, 17, 17, 19, 20, 15, 15]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'field_flow', 'arithmetic_depth_2.py')
+Symtable: type=module, name=top
+  identifiers: ['ArithmeticOperation', 'arith_op', 'result']
+     Symtable: type=class, name=ArithmeticOperation
+       identifiers: ['__init__', 'Nested', 'compute']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'a', 'b']
+          Symtable: type=class, name=Nested
+            identifiers: ['__init__', 'compute']
+               Symtable: type=function, name=__init__
+                 identifiers: ['self', 'b']
+               Symtable: type=function, name=compute
+                 identifiers: ['self']
+          Symtable: type=function, name=compute
+            identifiers: ['self']
+
+
+{'arith_op': [34, 35, 36, 37], 'result': [37], 'ArithmeticOperation': [34], 'a': [6], 'self': [6, 7, 8, 18, 31, 8, 12, 15, 18, 19, 20, 20, 27, 21, 22, 22, 24, 26, 26, 28, 29, 24, 24], 'b': [8, 12]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'field_flow', 'combined_types.py')
+Symtable: type=module, name=top
+  identifiers: ['CombinedTypes', 'context1', 'context2', 'result1', 'result2']
+     Symtable: type=class, name=CombinedTypes
+       identifiers: ['__init__', 'process_data']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'data']
+          Symtable: type=function, name=process_data
+            identifiers: ['self', 'isinstance', 'int', 'str']
+
+
+{'context1': [19, 22], 'context2': [20, 21, 23], 'result1': [22], 'result2': [23], 'CombinedTypes': [19, 20], 'data': [8], 'self': [8, 11, 12, 13, 16, 14], 'isinstance': [11, 13], 'int': [11], 'str': [13]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'field_flow', 'combined_types_depth_2.py')
+Symtable: type=module, name=top
+  identifiers: ['CombinedTypes', 'context1', 'context2', 'result1', 'result2']
+     Symtable: type=class, name=CombinedTypes
+       identifiers: ['__init__', 'Nested', 'process_data']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'data']
+          Symtable: type=class, name=Nested
+            identifiers: ['__init__', 'get_value']
+               Symtable: type=function, name=__init__
+                 identifiers: ['self', 'value']
+               Symtable: type=function, name=get_value
+                 identifiers: ['self']
+          Symtable: type=function, name=process_data
+            identifiers: ['self', 'isinstance', 'int', 'str']
+
+
+{'context1': [28, 31], 'context2': [29, 30, 32], 'result1': [31], 'result2': [32], 'CombinedTypes': [28, 29], 'data': [9], 'self': [9, 10, 10, 14, 17, 20, 21, 25, 22, 23], 'value': [14], 'isinstance': [20, 22], 'int': [20], 'str': [22]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'field_flow', 'identity.py')
+Symtable: type=module, name=top
+  identifiers: ['Identity', 'id1', 'id2', 'result1', 'result2']
+     Symtable: type=class, name=Identity
+       identifiers: ['__init__', 'get_value']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'x']
+          Symtable: type=function, name=get_value
+            identifiers: ['self', 'isinstance', 'str', 'int']
+
+
+{'id1': [18, 22], 'id2': [19, 20, 23], 'result1': [22], 'result2': [23], 'Identity': [18, 19], 'x': [7], 'self': [7, 10, 12, 11, 13], 'isinstance': [10, 12], 'str': [10], 'int': [12]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'field_flow', 'identity_depth_2.py')
+Symtable: type=module, name=top
+  identifiers: ['Identity', 'id1', 'id2', 'result1', 'result2']
+     Symtable: type=class, name=Identity
+       identifiers: ['__init__', 'Nested', 'get_value']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'x']
+          Symtable: type=class, name=Nested
+            identifiers: ['__init__', 'get_value']
+               Symtable: type=function, name=__init__
+                 identifiers: ['self', 'y']
+               Symtable: type=function, name=get_value
+                 identifiers: ['self']
+          Symtable: type=function, name=get_value
+            identifiers: ['self', 'isinstance', 'str', 'int']
+
+
+{'id1': [24, 29], 'id2': [25, 27, 30], 'result1': [29], 'result2': [30], 'Identity': [24, 25], 'x': [5], 'self': [5, 6, 6, 10, 13, 16, 18, 17, 19], 'y': [10], 'isinstance': [16, 18], 'str': [16], 'int': [18]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'field_flow', 'len.py')
+Symtable: type=module, name=top
+  identifiers: ['Len', 'str_len', 'str_len2', 'result', 'result2']
+     Symtable: type=class, name=Len
+       identifiers: ['__init__', 'get_length']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 's', 'len']
+          Symtable: type=function, name=get_length
+            identifiers: ['self', 'isinstance', 'int']
+
+
+{'str_len': [18, 20], 'str_len2': [19, 21, 22], 'result': [20], 'result2': [22], 'Len': [18, 19], 'self': [9, 12, 13], 'len': [9], 's': [9], 'isinstance': [12], 'int': [12]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'field_flow', 'len_depth_2.py')
+Symtable: type=module, name=top
+  identifiers: ['Len', 'str_len', 'result']
+     Symtable: type=class, name=Len
+       identifiers: ['__init__', 'Nested', 'get_length']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 's', 'len']
+          Symtable: type=class, name=Nested
+            identifiers: ['__init__', 'get_value']
+               Symtable: type=function, name=__init__
+                 identifiers: ['self', 'y']
+               Symtable: type=function, name=get_value
+                 identifiers: ['self']
+          Symtable: type=function, name=get_length
+            identifiers: ['self', 'isinstance', 'int']
+
+
+{'str_len': [27, 28, 29, 30], 'result': [28, 30], 'Len': [27], 'self': [9, 10, 24, 10, 14, 17, 21, 23, 20, 21], 'len': [9], 's': [9], 'y': [14], 'isinstance': [20], 'int': [20]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'field_flow', 'max_value.py')
+Symtable: type=module, name=top
+  identifiers: ['MaxValue', 'max_val', 'max_val2', 'result', 'result2']
+     Symtable: type=class, name=MaxValue
+       identifiers: ['__init__', 'get_max_value']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'a', 'b', 'max']
+          Symtable: type=function, name=get_max_value
+            identifiers: ['self', 'isinstance', 'int']
+
+
+{'max_val': [18, 21], 'max_val2': [19, 20, 22], 'result': [21], 'result2': [22], 'MaxValue': [18, 19], 'self': [9, 12, 13], 'max': [9], 'a': [9], 'b': [9], 'isinstance': [12], 'int': [12]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'field_flow', 'max_value_depth_2.py')
+Symtable: type=module, name=top
+  identifiers: ['MaxValue', 'max_val', 'result']
+     Symtable: type=class, name=MaxValue
+       identifiers: ['__init__', 'Nested', 'get_max_value']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'a', 'b', 'max']
+          Symtable: type=class, name=Nested
+            identifiers: ['__init__', 'get_value']
+               Symtable: type=function, name=__init__
+                 identifiers: ['self', 'y']
+               Symtable: type=function, name=get_value
+                 identifiers: ['self']
+          Symtable: type=function, name=get_max_value
+            identifiers: ['self', 'isinstance', 'int', 'max']
+
+
+{'max_val': [27, 28, 29, 30], 'result': [28, 30], 'MaxValue': [27], 'self': [9, 10, 24, 10, 14, 17, 21, 23, 21, 20, 21], 'max': [9, 21], 'a': [9], 'b': [9], 'y': [14], 'isinstance': [20], 'int': [20]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'field_inter', 'arithmetic.py')
+Symtable: type=module, name=top
+  identifiers: ['ArithmeticOperation', 'arith_op', 'result']
+     Symtable: type=class, name=ArithmeticOperation
+       identifiers: ['__init__', 'compute', 'add']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'a', 'b']
+          Symtable: type=function, name=compute
+            identifiers: ['self']
+          Symtable: type=function, name=add
+            identifiers: ['self']
+
+
+{'arith_op': [21, 22, 23, 24], 'result': [24], 'ArithmeticOperation': [21], 'a': [8], 'b': [9], 'self': [8, 9, 10, 13, 14, 17, 18, 13, 13, 13, 17, 17]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'field_inter', 'arithmetic_depth_2.py')
+Symtable: type=module, name=top
+  identifiers: ['ArithmeticOperation', 'arith_op', 'result']
+     Symtable: type=class, name=ArithmeticOperation
+       identifiers: ['__init__', 'Nested', 'compute', 'add']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'a', 'b']
+          Symtable: type=class, name=Nested
+            identifiers: ['__init__', 'compute']
+               Symtable: type=function, name=__init__
+                 identifiers: ['self', 'b']
+               Symtable: type=function, name=compute
+                 identifiers: ['self']
+          Symtable: type=function, name=compute
+            identifiers: ['self']
+          Symtable: type=function, name=add
+            identifiers: ['self']
+
+
+{'arith_op': [29, 30, 31, 32], 'result': [32], 'ArithmeticOperation': [29], 'a': [8], 'self': [8, 9, 10, 20, 21, 22, 25, 26, 10, 14, 17, 21, 25, 25, 20], 'b': [10, 14]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'field_inter', 'combined_types.py')
+Symtable: type=module, name=top
+  identifiers: ['my_function', 'CombinedTypes', 'obj', 'result']
+     Symtable: type=function, name=my_function
+       identifiers: ['my_bool', 'x']
+     Symtable: type=class, name=CombinedTypes
+       identifiers: ['__init__', 'get_value']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'my_bool', 'my_function']
+          Symtable: type=function, name=get_value
+            identifiers: ['self', 'isinstance', 'str']
+
+
+{'obj': [27, 28, 29], 'result': [29], 'my_bool': [9, 18], 'x': [13, 10, 12], 'CombinedTypes': [27], 'self': [18, 21, 24, 22], 'my_function': [18], 'isinstance': [21], 'str': [21]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'field_inter', 'combined_types_depth_2.py')
+Symtable: type=module, name=top
+  identifiers: ['my_function', 'CombinedTypes', 'obj', 'result']
+     Symtable: type=function, name=my_function
+       identifiers: ['my_bool', 'x']
+     Symtable: type=class, name=CombinedTypes
+       identifiers: ['__init__', 'Nested', 'get_value']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'my_bool', 'my_function']
+          Symtable: type=class, name=Nested
+            identifiers: ['__init__', 'operation']
+               Symtable: type=function, name=__init__
+                 identifiers: ['self', 'y']
+               Symtable: type=function, name=operation
+                 identifiers: ['self']
+          Symtable: type=function, name=get_value
+            identifiers: ['self', 'isinstance', 'str']
+
+
+{'obj': [35, 36, 37], 'result': [37], 'my_bool': [10, 19], 'x': [14, 11, 13], 'CombinedTypes': [35], 'self': [19, 20, 32, 20, 24, 27, 31, 30, 31], 'my_function': [19], 'y': [24], 'isinstance': [30], 'str': [30]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'field_inter', 'identity.py')
+Symtable: type=module, name=top
+  identifiers: ['Identity', 'id1', 'result']
+     Symtable: type=class, name=Identity
+       identifiers: ['__init__', 'get_value', 'operation']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'x']
+          Symtable: type=function, name=get_value
+            identifiers: ['self']
+          Symtable: type=function, name=operation
+            identifiers: ['self', 'str']
+
+
+{'id1': [16, 17, 18], 'result': [18], 'Identity': [16], 'x': [7], 'self': [7, 10, 13], 'str': [13]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'field_inter', 'identity_depth_2.py')
+Symtable: type=module, name=top
+  identifiers: ['Identity', 'id1', 'id2', 'result1', 'result2']
+     Symtable: type=class, name=Identity
+       identifiers: ['__init__', 'Nested', 'get_value']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'x']
+          Symtable: type=class, name=Nested
+            identifiers: ['__init__', 'operation']
+               Symtable: type=function, name=__init__
+                 identifiers: ['self', 'y']
+               Symtable: type=function, name=operation
+                 identifiers: ['self', 'str']
+          Symtable: type=function, name=get_value
+            identifiers: ['self']
+
+
+{'id1': [20, 25], 'id2': [21, 23, 26], 'result1': [25], 'result2': [26], 'Identity': [20, 21], 'x': [6], 'self': [6, 7, 7, 7, 11, 17, 14], 'y': [11], 'str': [14]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'field_inter', 'len.py')
+Symtable: type=module, name=top
+  identifiers: ['compute_length', 'Len', 'str_len', 'result']
+     Symtable: type=function, name=compute_length
+       identifiers: ['s', 'len']
+     Symtable: type=class, name=Len
+       identifiers: ['__init__', 'get_length']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 's']
+          Symtable: type=function, name=get_length
+            identifiers: ['self', 'compute_length', 'isinstance', 'int']
+
+
+{'str_len': [23, 24, 25], 'result': [25], 'Len': [23], 'len': [8], 's': [8, 13], 'self': [13, 16, 16, 17, 18], 'compute_length': [16], 'isinstance': [17], 'int': [17]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'field_inter', 'len_depth_2.py')
+Symtable: type=module, name=top
+  identifiers: ['compute_length', 'Len', 'str_len', 'result']
+     Symtable: type=function, name=compute_length
+       identifiers: ['s', 'len']
+     Symtable: type=class, name=Len
+       identifiers: ['__init__', 'Nested', 'get_length']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 's', 'compute_length']
+          Symtable: type=class, name=Nested
+            identifiers: ['__init__', 'operation']
+               Symtable: type=function, name=__init__
+                 identifiers: ['self', 'y']
+               Symtable: type=function, name=operation
+                 identifiers: ['self']
+          Symtable: type=function, name=get_length
+            identifiers: ['self']
+
+
+{'str_len': [29, 30, 31], 'result': [31], 'Len': [29], 'len': [9], 's': [9, 14], 'self': [14, 15, 25, 26, 15, 19, 22, 25], 'compute_length': [14], 'y': [19]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'field_inter', 'max_value.py')
+Symtable: type=module, name=top
+  identifiers: ['max_value', 'MaxValue', 'max_val', 'result']
+     Symtable: type=function, name=max_value
+       identifiers: ['a', 'b', 'max']
+     Symtable: type=class, name=MaxValue
+       identifiers: ['__init__', 'get_max_value']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'a', 'b', 'max_value']
+          Symtable: type=function, name=get_max_value
+            identifiers: ['self', 'isinstance', 'int']
+
+
+{'max_val': [24, 25, 26], 'result': [26], 'MaxValue': [24], 'max': [8], 'a': [8, 13], 'b': [8, 14], 'self': [13, 14, 15, 15, 15, 18, 19], 'max_value': [15], 'isinstance': [18], 'int': [18]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'field_inter', 'max_value_depth_2.py')
+Symtable: type=module, name=top
+  identifiers: ['max_value', 'MaxValue', 'max_val', 'result']
+     Symtable: type=function, name=max_value
+       identifiers: ['a', 'b', 'max']
+     Symtable: type=class, name=MaxValue
+       identifiers: ['__init__', 'Nested', 'get_max_value']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'a', 'b', 'max_value']
+          Symtable: type=class, name=Nested
+            identifiers: ['__init__', 'operation']
+               Symtable: type=function, name=__init__
+                 identifiers: ['self', 'y']
+               Symtable: type=function, name=operation
+                 identifiers: ['self']
+          Symtable: type=function, name=get_max_value
+            identifiers: ['self', 'isinstance', 'int', 'max']
+
+
+{'max_val': [32, 33, 34], 'result': [34], 'MaxValue': [32], 'max': [9, 26], 'a': [9, 14], 'b': [9, 14], 'self': [14, 15, 29, 15, 19, 22, 26, 28, 26, 25, 28, 26], 'max_value': [14], 'y': [19], 'isinstance': [25], 'int': [25]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'field_object', 'arithmetic.py')
+Symtable: type=module, name=top
+  identifiers: ['ArithmeticOperation', 'arith_op1', 'arith_op2', 'result1', 'result2']
+     Symtable: type=class, name=ArithmeticOperation
+       identifiers: ['__init__', 'compute']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'a', 'b']
+          Symtable: type=function, name=compute
+            identifiers: ['self']
+
+
+{'arith_op1': [16, 19, 20, 18, 21], 'arith_op2': [17, 19, 20], 'result1': [18], 'result2': [21], 'ArithmeticOperation': [16, 17], 'a': [7], 'b': [8], 'self': [7, 8, 9, 12, 13, 12, 12]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'field_object', 'arithmetic_depth_2.py')
+Symtable: type=module, name=top
+  identifiers: ['ArithmeticOperation', 'arith_op1', 'arith_op2', 'result1', 'result2']
+     Symtable: type=class, name=ArithmeticOperation
+       identifiers: ['__init__', 'Nested', 'compute']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'a', 'b']
+          Symtable: type=class, name=Nested
+            identifiers: ['__init__', 'compute']
+               Symtable: type=function, name=__init__
+                 identifiers: ['self', 'b']
+               Symtable: type=function, name=compute
+                 identifiers: ['self']
+          Symtable: type=function, name=compute
+            identifiers: ['self']
+
+
+{'arith_op1': [24, 27, 26, 28, 29], 'arith_op2': [25, 27, 28], 'result1': [26], 'result2': [29], 'ArithmeticOperation': [24, 25], 'a': [7], 'self': [7, 8, 9, 19, 20, 21, 9, 13, 16, 20, 20, 19], 'b': [9, 13]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'field_object', 'combined_types.py')
+Symtable: type=module, name=top
+  identifiers: ['CombinedTypes', 'obj1', 'obj2', 'result1', 'result2']
+     Symtable: type=class, name=CombinedTypes
+       identifiers: ['__init__', 'get_value']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'my_bool']
+          Symtable: type=function, name=get_value
+            identifiers: ['self', 'isinstance', 'int']
+
+
+{'obj1': [22, 24, 25], 'obj2': [23, 24, 26], 'result1': [25], 'result2': [26], 'CombinedTypes': [22, 23], 'my_bool': [10], 'isinstance': [16], 'int': [16], 'self': [11, 13, 16, 17, 19]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'field_object', 'combined_types_depth_2.py')
+Symtable: type=module, name=top
+  identifiers: ['CombinedTypesObject', 'object1', 'object2', 'result1', 'result2']
+     Symtable: type=class, name=CombinedTypesObject
+       identifiers: ['__init__', 'Nested', 'process_data']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'data']
+          Symtable: type=class, name=Nested
+            identifiers: ['__init__', 'get_value']
+               Symtable: type=function, name=__init__
+                 identifiers: ['self', 'value']
+               Symtable: type=function, name=get_value
+                 identifiers: ['self']
+          Symtable: type=function, name=process_data
+            identifiers: ['self', 'isinstance', 'int', 'str']
+
+
+{'object1': [28, 30, 31], 'object2': [29, 30, 32], 'result1': [31], 'result2': [32], 'CombinedTypesObject': [28, 29], 'data': [9], 'self': [9, 10, 10, 14, 17, 20, 21, 25, 22, 23], 'value': [14], 'isinstance': [20, 22], 'int': [20], 'str': [22]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'field_object', 'identity.py')
+Symtable: type=module, name=top
+  identifiers: ['IdentityOperation', 'identity_op1', 'identity_op2', 'result', 'result2']
+     Symtable: type=class, name=IdentityOperation
+       identifiers: ['__init__', 'identity']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'x']
+          Symtable: type=function, name=identity
+            identifiers: ['self']
+
+
+{'identity_op1': [14, 16, 17], 'identity_op2': [15, 16, 18], 'result': [17], 'result2': [18], 'IdentityOperation': [14, 15], 'x': [6], 'self': [6, 7, 10, 10, 11]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'field_object', 'identity_depth_2.py')
+Symtable: type=module, name=top
+  identifiers: ['Identity', 'id1', 'id2', 'result1', 'result2']
+     Symtable: type=class, name=Identity
+       identifiers: ['__init__', 'Nested', 'get_value']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'x']
+          Symtable: type=class, name=Nested
+            identifiers: ['__init__', 'get_value']
+               Symtable: type=function, name=__init__
+                 identifiers: ['self', 'y']
+               Symtable: type=function, name=get_value
+                 identifiers: ['self']
+          Symtable: type=function, name=get_value
+            identifiers: ['self']
+
+
+{'id1': [21, 24, 26], 'id2': [22, 24, 27], 'result1': [26], 'result2': [27], 'Identity': [21, 22], 'x': [7], 'self': [7, 8, 8, 12, 15, 18], 'y': [12]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'field_object', 'len.py')
+Symtable: type=module, name=top
+  identifiers: ['Len', 'str_len', 'result', 'str_len2', 'result2']
+     Symtable: type=class, name=Len
+       identifiers: ['__init__', 'get_length']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 's']
+          Symtable: type=function, name=get_length
+            identifiers: ['self', 'len']
+
+
+{'str_len': [17, 20, 18], 'result': [18], 'str_len2': [19, 20, 21], 'result2': [21], 'Len': [17, 19], 's': [9], 'self': [9, 10, 13, 14, 13], 'len': [13]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'field_object', 'len_depth_2.py')
+Symtable: type=module, name=top
+  identifiers: ['Len', 'object1', 'object2', 'result1', 'result2']
+     Symtable: type=class, name=Len
+       identifiers: ['__init__', 'Nested', 'compute_length']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'text']
+          Symtable: type=class, name=Nested
+            identifiers: ['__init__', 'get_value']
+               Symtable: type=function, name=__init__
+                 identifiers: ['self', 'value']
+               Symtable: type=function, name=get_value
+                 identifiers: ['self']
+          Symtable: type=function, name=compute_length
+            identifiers: ['self', 'isinstance', 'str', 'len']
+
+
+{'object1': [28, 30, 31], 'object2': [29, 30, 32], 'result1': [31], 'result2': [32], 'Len': [28, 29], 'text': [9], 'self': [9, 10, 10, 14, 17, 20, 21, 22, 23], 'value': [14], 'isinstance': [20, 22], 'str': [20, 22], 'len': [21, 23]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'field_object', 'max_value.py')
+Symtable: type=module, name=top
+  identifiers: ['MaxValueObject', 'object1', 'object2', 'result1', 'result2']
+     Symtable: type=class, name=MaxValueObject
+       identifiers: ['__init__', 'get_max_value']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'a', 'b']
+          Symtable: type=function, name=get_max_value
+            identifiers: ['self', 'max']
+
+
+{'object1': [15, 17, 18], 'object2': [16, 17, 19], 'result1': [18], 'result2': [19], 'MaxValueObject': [15, 16], 'a': [8], 'b': [9], 'self': [8, 9, 12, 12], 'max': [12]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'field_object', 'max_value_depth_2.py')
+Symtable: type=module, name=top
+  identifiers: ['MaxValueObject', 'object1', 'object2', 'result1', 'result2']
+     Symtable: type=class, name=MaxValueObject
+       identifiers: ['__init__', 'Nested', 'get_max_value']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'a', 'b']
+          Symtable: type=class, name=Nested
+            identifiers: ['__init__', 'get_value']
+               Symtable: type=function, name=__init__
+                 identifiers: ['self', 'value']
+               Symtable: type=function, name=get_value
+                 identifiers: ['self']
+          Symtable: type=function, name=get_max_value
+            identifiers: ['self', 'max_value', 'max', 'nested_value', 'isinstance', 'int']
+
+
+{'object1': [29, 31, 32], 'object2': [30, 31, 33], 'result1': [32], 'result2': [33], 'MaxValueObject': [29, 30], 'a': [9], 'b': [10], 'max_value': [21, 23, 24], 'nested_value': [22, 23, 24], 'self': [9, 10, 11, 11, 15, 18, 21, 21, 22], 'value': [15], 'max': [21, 24], 'isinstance': [23, 23], 'int': [23, 23]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'flow_inter', 'arithmetic.py')
+Symtable: type=module, name=top
+  identifiers: ['arithmetic_op', 'add', 'x', 'y', 'result']
+     Symtable: type=function, name=arithmetic_op
+       identifiers: ['a', 'b', 'result', 'add']
+     Symtable: type=function, name=add
+       identifiers: ['a', 'b', 'result']
+
+
+{'x': [28, 31, 30, 32], 'y': [29, 30, 32], 'result': [30, 32, 20, 24, 25, 8, 9, 16, 17, 19, 11, 12, 14], 'arithmetic_op': [30, 32], 'a': [7, 24, 11, 14], 'b': [8, 24, 10, 14], 'add': [14]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'flow_inter', 'combined_types.py')
+Symtable: type=module, name=top
+  identifiers: ['combined_types', 'int_operation', 'string_operation', 'result1', 'result2', 'result3']
+     Symtable: type=function, name=combined_types
+       identifiers: ['value', 'isinstance', 'int', 'int_operation', 'str', 'string_operation']
+     Symtable: type=function, name=int_operation
+       identifiers: ['x']
+     Symtable: type=function, name=string_operation
+       identifiers: ['s']
+
+
+{'result1': [23], 'result2': [24], 'result3': [25], 'combined_types': [23, 24, 25], 'isinstance': [7, 9], 'value': [7, 8, 9, 10], 'int': [7], 'x': [16], 'int_operation': [8], 'str': [9], 's': [20], 'string_operation': [10]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'flow_inter', 'identity.py')
+Symtable: type=module, name=top
+  identifiers: ['identity', 'string_operation', 'int_operation', 'result1', 'result2']
+     Symtable: type=function, name=identity
+       identifiers: ['x', 'isinstance', 'str', 'string_operation', 'int', 'int_operation']
+     Symtable: type=function, name=string_operation
+       identifiers: ['a', 'result']
+     Symtable: type=function, name=int_operation
+       identifiers: ['a', 'result']
+
+
+{'result1': [24], 'result2': [25], 'result': [15, 16, 20, 21], 'identity': [24, 25], 'isinstance': [6, 8], 'x': [6, 7, 8, 11, 9], 'str': [6], 'a': [15, 20], 'string_operation': [7], 'int': [8], 'int_operation': [9]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'flow_inter', 'len.py')
+Symtable: type=module, name=top
+  identifiers: ['len_value', 'calculate_length', 'text', 'numbers', 'result1', 'result2']
+     Symtable: type=function, name=len_value
+       identifiers: ['value', 'isinstance', 'str', 'calculate_length', 'list']
+     Symtable: type=function, name=calculate_length
+       identifiers: ['data', 'len']
+
+
+{'text': [19, 21], 'numbers': [20, 22], 'result1': [21], 'result2': [22], 'len_value': [21, 22], 'isinstance': [7, 9], 'value': [7, 8, 9, 10], 'str': [7], 'len': [16], 'data': [16], 'calculate_length': [8, 10], 'list': [9]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'flow_inter', 'max_value.py')
+Symtable: type=module, name=top
+  identifiers: ['max_value', 'find_max', 'result1', 'result2', 'result3']
+     Symtable: type=function, name=max_value
+       identifiers: ['a', 'b', 'isinstance', 'int', 'find_max', 'float']
+     Symtable: type=function, name=find_max
+       identifiers: ['x', 'y', 'max']
+
+
+{'result1': [19], 'result2': [20], 'result3': [21], 'max_value': [19, 20, 21], 'max': [16], 'x': [16], 'y': [16], 'isinstance': [7, 7, 9, 9], 'a': [7, 8, 9, 10], 'int': [7, 7], 'b': [7, 8, 9, 10], 'find_max': [8, 10], 'float': [9, 9, 10, 10]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'flow_object', 'arithmetic.py')
+Symtable: type=module, name=top
+  identifiers: ['ArithmeticOperation', 'arith_op1', 'result', 'arith_op2', 'arith_op3']
+     Symtable: type=class, name=ArithmeticOperation
+       identifiers: ['__init__', 'compute']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'a', 'b']
+          Symtable: type=function, name=compute
+            identifiers: ['self']
+
+
+{'arith_op1': [20, 21, 25], 'result': [21, 23, 25], 'arith_op2': [22, 23], 'arith_op3': [24], 'ArithmeticOperation': [20, 22, 24], 'a': [6], 'b': [7], 'self': [6, 7, 8, 17, 11, 12, 12, 13, 14, 14, 16, 16, 16]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'flow_object', 'combined_types.py')
+Symtable: type=module, name=top
+  identifiers: ['CombinedTypesOperation', 'combined_types', 'value1', 'value2', 'combined_op1', 'combined_op2', 'result1', 'result2']
+     Symtable: type=class, name=CombinedTypesOperation
+       identifiers: ['__init__']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'value']
+     Symtable: type=function, name=combined_types
+       identifiers: ['self', 'isinstance', 'int', 'str']
+
+
+{'value1': [17, 19], 'value2': [18, 20], 'combined_op1': [19, 21], 'combined_op2': [20, 22], 'result1': [21], 'result2': [22], 'CombinedTypesOperation': [19, 20], 'value': [5], 'isinstance': [9, 11], 'int': [9], 'self': [5, 9, 10, 11, 12], 'str': [11]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'flow_object', 'identity.py')
+Symtable: type=module, name=top
+  identifiers: ['IdentityOperation', 'identity_op1', 'identity_op2', 'result1', 'result2']
+     Symtable: type=class, name=IdentityOperation
+       identifiers: ['__init__', 'identity']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'x']
+          Symtable: type=function, name=identity
+            identifiers: ['self', 'isinstance', 'str', 'int', 'float']
+
+
+{'identity_op1': [21, 23], 'identity_op2': [22, 24], 'result1': [23], 'result2': [24], 'IdentityOperation': [21, 22], 'x': [7], 'self': [7, 8, 11, 12, 13, 14, 15, 18, 16], 'isinstance': [11, 13, 15], 'str': [11, 12], 'int': [13, 14], 'float': [15, 16]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'flow_object', 'len.py')
+Symtable: type=module, name=top
+  identifiers: ['LenOperation', 'text', 'numbers', 'len_op1', 'len_op2', 'result1', 'result2']
+     Symtable: type=class, name=LenOperation
+       identifiers: ['__init__', 'calculate_length']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'value']
+          Symtable: type=function, name=calculate_length
+            identifiers: ['self', 'isinstance', 'str', 'len', 'list']
+
+
+{'text': [18, 20], 'numbers': [19, 21], 'len_op1': [20, 22], 'len_op2': [21, 23], 'result1': [22], 'result2': [23], 'LenOperation': [20, 21], 'value': [7], 'self': [7, 10, 11, 12, 13], 'isinstance': [10, 12], 'str': [10], 'len': [11, 13], 'list': [12]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'flow_object', 'max_value.py')
+Symtable: type=module, name=top
+  identifiers: ['MaxOperation', 'max_op1', 'max_op2', 'result1', 'result2']
+     Symtable: type=class, name=MaxOperation
+       identifiers: ['__init__', 'find_max']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'a', 'b']
+          Symtable: type=function, name=find_max
+            identifiers: ['self', 'isinstance', 'int', 'max', 'float']
+
+
+{'max_op1': [19, 21], 'max_op2': [20, 22], 'result1': [21], 'result2': [22], 'MaxOperation': [19, 20], 'a': [7], 'b': [8], 'self': [7, 8, 11, 11, 12, 12, 13, 13, 14, 14], 'isinstance': [11, 11, 13, 13], 'int': [11, 11], 'max': [12, 14], 'float': [13, 13]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'inter_object', 'arithmetic.py')
+Symtable: type=module, name=top
+  identifiers: ['ArithmeticOperation', 'arith_op1', 'arith_op2', 'result']
+     Symtable: type=class, name=ArithmeticOperation
+       identifiers: ['__init__', 'compute', 'add']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'a', 'b']
+          Symtable: type=function, name=compute
+            identifiers: ['self']
+          Symtable: type=function, name=add
+            identifiers: ['self']
+
+
+{'arith_op1': [21, 23], 'arith_op2': [22], 'result': [23], 'ArithmeticOperation': [21, 22], 'a': [8], 'b': [9], 'self': [8, 9, 10, 13, 14, 17, 18, 13, 13, 13, 17, 17]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'inter_object', 'combined_types.py')
+Symtable: type=module, name=top
+  identifiers: ['CombinedTypesOperation', 'combined_op1', 'combined_op2', 'result1']
+     Symtable: type=class, name=CombinedTypesOperation
+       identifiers: ['__init__', 'combined_types', 'multiply_by_two', 'capitalize_string']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'x']
+          Symtable: type=function, name=combined_types
+            identifiers: ['self', 'isinstance', 'int', 'str']
+          Symtable: type=function, name=multiply_by_two
+            identifiers: ['self']
+          Symtable: type=function, name=capitalize_string
+            identifiers: ['self']
+
+
+{'combined_op1': [28, 30], 'combined_op2': [29], 'result1': [30], 'CombinedTypesOperation': [28, 29], 'x': [7], 'self': [7, 8, 17, 20, 21, 24, 25, 11, 12, 20, 12, 13, 14, 16, 24, 14], 'isinstance': [11, 13], 'int': [11], 'str': [13]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'inter_object', 'identity.py')
+Symtable: type=module, name=top
+  identifiers: ['IdentityOperation', 'identity_op1', 'identity_op2', 'result1', 'result2']
+     Symtable: type=class, name=IdentityOperation
+       identifiers: ['__init__', 'identity', 'operation']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'x']
+          Symtable: type=function, name=identity
+            identifiers: ['self']
+          Symtable: type=function, name=operation
+            identifiers: ['self', 'type']
+
+
+{'identity_op1': [19, 21], 'identity_op2': [20, 22], 'result1': [21], 'result2': [22], 'IdentityOperation': [19, 20], 'x': [7], 'self': [7, 8, 11, 12, 15, 16, 11, 15], 'type': [15]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'inter_object', 'len.py')
+Symtable: type=module, name=top
+  identifiers: ['LengthOperation', 'text', 'input', 'length_op1', 'length_op2', 'result1']
+     Symtable: type=class, name=LengthOperation
+       identifiers: ['__init__', 'get_result', 'compute_length']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'data']
+          Symtable: type=function, name=get_result
+            identifiers: ['self']
+          Symtable: type=function, name=compute_length
+            identifiers: ['self', 'len']
+
+
+{'text': [19, 21], 'input': [20, 22], 'length_op1': [21, 23], 'length_op2': [22], 'result1': [23], 'LengthOperation': [21, 22], 'data': [8], 'self': [8, 9, 13, 16, 12, 16], 'len': [16]}
+
+
+###########################
+
+
+('analysis_sensitivities', 'mixed_sensitivities', 'inter_object', 'max_value.py')
+Symtable: type=module, name=top
+  identifiers: ['MaxOperation', 'max_op1', 'max_op2', 'result1']
+     Symtable: type=class, name=MaxOperation
+       identifiers: ['__init__', 'get_result', 'find_max']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'x', 'y']
+          Symtable: type=function, name=get_result
+            identifiers: ['self']
+          Symtable: type=function, name=find_max
+            identifiers: ['self', 'max']
+
+
+{'max_op1': [19, 21], 'max_op2': [20], 'result1': [21], 'MaxOperation': [19, 20], 'x': [7], 'y': [8], 'self': [7, 8, 9, 13, 16, 12, 16, 16], 'max': [16]}
+
+
+###########################
+
+
+('micro-benchmark', 'analysis_sensitivities', 'object_sensitivity', 'arithmetic.py')
+Symtable: type=module, name=top
+  identifiers: ['ArithmeticOperation', 'arith_op1', 'arith_op2', 'result1', 'result2']
+     Symtable: type=class, name=ArithmeticOperation
+       identifiers: ['__init__', 'compute']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'a', 'b']
+          Symtable: type=function, name=compute
+            identifiers: ['self']
+
+
+{'arith_op1': [17, 19], 'arith_op2': [18, 20], 'result1': [19], 'result2': [20], 'ArithmeticOperation': [17, 18], 'a': [8], 'b': [9], 'self': [8, 9, 10, 13, 14, 13, 13]}
+
+
+###########################
+
+
+('micro-benchmark', 'analysis_sensitivities', 'object_sensitivity', 'combined_types.py')
+Symtable: type=module, name=top
+  identifiers: ['CombinedTypesOperation', 'combined_op1', 'combined_op2', 'result1', 'result2']
+     Symtable: type=class, name=CombinedTypesOperation
+       identifiers: ['__init__', 'my_function']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'my_bool']
+          Symtable: type=function, name=my_function
+            identifiers: ['self']
+
+
+{'combined_op1': [18, 20], 'combined_op2': [19, 21], 'result1': [20], 'result2': [21], 'CombinedTypesOperation': [18, 19], 'my_bool': [7], 'self': [7, 8, 11, 15, 12, 14]}
+
+
+###########################
+
+
+('micro-benchmark', 'analysis_sensitivities', 'object_sensitivity', 'identity.py')
+Symtable: type=module, name=top
+  identifiers: ['IdentityOperation', 'identity_op1', 'identity_op2', 'result1', 'result2']
+     Symtable: type=class, name=IdentityOperation
+       identifiers: ['__init__', 'identity']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'x']
+          Symtable: type=function, name=identity
+            identifiers: ['self']
+
+
+{'identity_op1': [15, 17], 'identity_op2': [16, 18], 'result1': [17], 'result2': [18], 'IdentityOperation': [15, 16], 'x': [7], 'self': [7, 8, 11, 11, 12]}
+
+
+###########################
+
+
+('micro-benchmark', 'analysis_sensitivities', 'object_sensitivity', 'len.py')
+Symtable: type=module, name=top
+  identifiers: ['Len', 'length_op1', 'length_op2', 'result1', 'result2']
+     Symtable: type=class, name=Len
+       identifiers: ['__init__', 'compute_length']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'x']
+          Symtable: type=function, name=compute_length
+            identifiers: ['self', 'len']
+
+
+{'length_op1': [15, 17], 'length_op2': [16, 18], 'result1': [17], 'result2': [18], 'Len': [15, 16], 'x': [7], 'self': [7, 8, 11, 12, 11], 'len': [11]}
+
+
+###########################
+
+
+('micro-benchmark', 'analysis_sensitivities', 'object_sensitivity', 'max_value.py')
+Symtable: type=module, name=top
+  identifiers: ['MaxValueOperation', 'max_op1', 'max_op2', 'result1', 'result2']
+     Symtable: type=class, name=MaxValueOperation
+       identifiers: ['__init__', 'max_value']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'a', 'b']
+          Symtable: type=function, name=max_value
+            identifiers: ['self', 'max']
+
+
+{'max_op1': [16, 18], 'max_op2': [17, 19], 'result1': [18], 'result2': [19], 'MaxValueOperation': [16, 17], 'a': [7], 'b': [8], 'self': [7, 8, 9, 12, 13, 12, 12], 'max': [12]}
+
+
+###########################
+
+
+('python_features', 'args', 'assigned_call', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['param_func', 'func', 'b', 'c']
+     Symtable: type=function, name=param_func
+       identifiers: []
+     Symtable: type=function, name=func
+       identifiers: ['a']
+
+
+{'b': [12, 13], 'param_func': [12], 'c': [13], 'func': [13], 'a': [9]}
+
+
+###########################
+
+
+('python_features', 'args', 'call', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['param_func', 'func', 'b']
+     Symtable: type=function, name=param_func
+       identifiers: []
+     Symtable: type=function, name=func
+       identifiers: ['a']
+
+
+{'b': [11], 'func': [11], 'param_func': [11], 'a': [8]}
+
+
+###########################
+
+
+('python_features', 'args', 'default', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['param_func', 'param_func2', 'func', 'b']
+     Symtable: type=function, name=param_func
+       identifiers: []
+     Symtable: type=function, name=param_func2
+       identifiers: []
+     Symtable: type=function, name=func
+       identifiers: ['a']
+
+
+{'b': [16], 'param_func2': [12], 'func': [16], 'param_func': [16], 'a': [13]}
+
+
+###########################
+
+
+('python_features', 'args', 'imported_assigned_call', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func', 'param_func', 'a', 'b']
+     Symtable: type=function, name=param_func
+       identifiers: []
+
+
+{'a': [10, 11], 'param_func': [10], 'b': [11], 'func': [11]}
+
+
+###########################
+
+
+('python_features', 'args', 'imported_assigned_call', 'to_import.py')
+Symtable: type=module, name=top
+  identifiers: ['func']
+     Symtable: type=function, name=func
+       identifiers: ['a']
+
+
+{'a': [5]}
+
+
+###########################
+
+
+('python_features', 'args', 'imported_call', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func', 'param_func', 'b']
+     Symtable: type=function, name=param_func
+       identifiers: []
+
+
+{'b': [10], 'func': [10], 'param_func': [10]}
+
+
+###########################
+
+
+('python_features', 'args', 'imported_call', 'to_import_call.py')
+Symtable: type=module, name=top
+  identifiers: ['func']
+     Symtable: type=function, name=func
+       identifiers: ['a']
+
+
+{'a': [5]}
+
+
+###########################
+
+
+('python_features', 'args', 'multiple', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['my_sum', 'func', 'b']
+     Symtable: type=function, name=my_sum
+       identifiers: ['a', 'b', 'integers', 'result', 'x']
+     Symtable: type=function, name=func
+       identifiers: ['a']
+
+
+{'b': [15, 5], 'result': [5, 8, 7], 'x': [6, 7], 'integers': [6], 'func': [15], 'my_sum': [15], 'a': [5, 12]}
+
+
+###########################
+
+
+('python_features', 'args', 'nested_call', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['nested_func', 'param_func', 'func', 'b', 'c', 'd']
+     Symtable: type=function, name=nested_func
+       identifiers: []
+     Symtable: type=function, name=param_func
+       identifiers: ['a']
+     Symtable: type=function, name=func
+       identifiers: ['a', 'nested_func']
+
+
+{'b': [19, 21], 'param_func': [19], 'c': [20, 21], 'func': [20], 'd': [21], 'a': [12, 16], 'nested_func': [16]}
+
+
+###########################
+
+
+('python_features', 'args', 'param_call', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func', 'func2', 'func3', 'b']
+     Symtable: type=function, name=func
+       identifiers: ['a']
+     Symtable: type=function, name=func2
+       identifiers: ['func3']
+     Symtable: type=function, name=func3
+       identifiers: []
+
+
+{'b': [20], 'func3': [13], 'func': [20], 'a': [9], 'func2': [20]}
+
+
+###########################
+
+
+('python_features', 'assignments', 'augmented', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func1', 'b']
+     Symtable: type=function, name=func1
+       identifiers: ['a']
+
+
+{'b': [11], 'a': [6, 7, 8], 'func1': [11]}
+
+
+###########################
+
+
+('python_features', 'assignments', 'chained', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func1', 'func2', 'a', 'b', 'c', 'd']
+     Symtable: type=function, name=func1
+       identifiers: []
+     Symtable: type=function, name=func2
+       identifiers: []
+
+
+{'a': [12, 16, 18], 'b': [12, 16, 14], 'func1': [12], 'c': [14], 'func2': [16], 'd': [18]}
+
+
+###########################
+
+
+('python_features', 'assignments', 'generators', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['x', 'y', 'z', 'range']
+     Symtable: type=function, name=genexpr
+       identifiers: ['.0', 'i']
+
+
+{'x': [4], 'y': [4], 'z': [4], 'i': [4, 4], 'range': [4]}
+
+
+###########################
+
+
+('python_features', 'assignments', 'nested_unpack', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func1', 'func2', 'func3', 'func4', 'a', 'b', 'c', 'd']
+     Symtable: type=function, name=func1
+       identifiers: []
+     Symtable: type=function, name=func2
+       identifiers: []
+     Symtable: type=function, name=func3
+       identifiers: []
+     Symtable: type=function, name=func4
+       identifiers: []
+
+
+{'a': [21], 'b': [21], 'c': [21], 'd': [21], 'func1': [21], 'func2': [21], 'func3': [21], 'func4': [21]}
+
+
+###########################
+
+
+('python_features', 'assignments', 'recursive_tuple', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func1', 'func2', 'func3', 'func4', 'func5', 'func6', 'a', 'b', 'c', 'd', 'h', 'f', 'e', 'i']
+     Symtable: type=function, name=func1
+       identifiers: []
+     Symtable: type=function, name=func2
+       identifiers: []
+     Symtable: type=function, name=func3
+       identifiers: []
+     Symtable: type=function, name=func4
+       identifiers: []
+     Symtable: type=function, name=func5
+       identifiers: []
+     Symtable: type=function, name=func6
+       identifiers: []
+
+
+{'h': [35], 'i': [40], 'a': [28, 29, 33], 'func1': [28, 33], 'b': [30, 37, 28, 33], 'c': [31, 37, 28, 33], 'd': [35, 33], 'f': [37, 40], 'e': [37, 39], 'func5': [37], 'func6': [37], 'func2': [28, 33], 'func3': [28, 33], 'func4': [33]}
+
+
+###########################
+
+
+('python_features', 'assignments', 'starred', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func1', 'func2', 'func3', 'func4', 'a', 'b', 'c', 'd', 'e', 'f', 'g']
+     Symtable: type=function, name=func1
+       identifiers: []
+     Symtable: type=function, name=func2
+       identifiers: []
+     Symtable: type=function, name=func3
+       identifiers: []
+     Symtable: type=function, name=func4
+       identifiers: []
+
+
+{'d': [20], 'e': [21], 'f': [22], 'g': [23], 'a': [18, 20], 'c': [18, 23], 'func1': [18], 'func2': [18], 'func3': [18], 'func4': [18], 'b': [18, 21, 22]}
+
+
+###########################
+
+
+('python_features', 'assignments', 'tuple', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func1', 'func2', 'func3', 'a', 'b', 'f', 'g', 'c', 'd', 'e', 'h']
+     Symtable: type=function, name=func1
+       identifiers: []
+     Symtable: type=function, name=func2
+       identifiers: []
+     Symtable: type=function, name=func3
+       identifiers: []
+
+
+{'f': [15], 'g': [16], 'h': [22], 'a': [14, 15], 'b': [14, 16], 'func1': [14, 18], 'func2': [14, 18], 'c': [18, 20], 'd': [18, 21], 'e': [18, 22], 'func3': [18]}
+
+
+###########################
+
+
+('python_features', 'assignments', 'walrus', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['count_words', 'a']
+     Symtable: type=function, name=count_words
+       identifiers: ['string', 'words', 'word_count', 'word', 'print']
+
+
+{'a': [13], 'words': [3, 6, 6], 'word_count': [4, 10, 8], 'count_words': [13], 'string': [3], 'word': [6, 7], 'print': [7]}
+
+
+###########################
+
+
+('python_features', 'builtins', 'functions', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['my_list', 'length', 'len', 'total', 'sum', 'largest', 'max', 'smallest', 'min', 'sorted_list', 'sorted', 'any_list', 'any', 'all_list', 'all']
+
+
+{'my_list': [3, 5, 7, 9, 11, 13], 'length': [5], 'total': [7], 'largest': [9], 'smallest': [11], 'sorted_list': [13], 'any_list': [15], 'all_list': [17], 'len': [5], 'sum': [7], 'max': [9], 'min': [11], 'sorted': [13], 'any': [15], 'all': [17]}
+
+
+###########################
+
+
+('python_features', 'builtins', 'functools', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['reduce', 'multiply', 'numbers', 'product']
+     Symtable: type=function, name=multiply
+       identifiers: ['x', 'y']
+
+
+{'numbers': [9, 10], 'product': [10], 'reduce': [10], 'multiply': [10], 'x': [6], 'y': [6]}
+
+
+###########################
+
+
+('python_features', 'builtins', 'itertools', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['itertools', 'data', 'sorted_data', 'sorted', 'grouped_data', 'city', 'group', 'print', 'list', 'counter', 'cycler', 'repeater', 'chained', 'selector', 'compressed', 'perms', 'combs', 'cartesian']
+     Symtable: type=function, name=lambda
+       identifiers: ['x']
+     Symtable: type=function, name=lambda
+       identifiers: ['x']
+
+
+{'data': [5, 13], 'sorted_data': [13, 15], 'grouped_data': [15, 17], 'counter': [20], 'cycler': [23], 'repeater': [26], 'chained': [29], 'selector': [32, 33], 'compressed': [33], 'perms': [36], 'combs': [39], 'cartesian': [42], 'sorted': [13], 'city': [17, 18], 'group': [17, 18], 'itertools': [15, 20, 23, 26, 29, 33, 36, 39, 42], 'print': [18], 'list': [18], 'x': [13, 15]}
+
+
+###########################
+
+
+('python_features', 'builtins', 'map', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func', 'res', 'map', 'x', 'y', 'z']
+     Symtable: type=function, name=func
+       identifiers: ['x']
+
+
+{'res': [6, 8], 'x': [3, 8], 'map': [6], 'func': [6], 'y': [8], 'z': [8]}
+
+
+###########################
+
+
+('python_features', 'builtins', 'switch', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func', 'a', 'b', 'c']
+     Symtable: type=function, name=func
+       identifiers: ['value']
+
+
+{'a': [12], 'b': [13], 'c': [14], 'value': [3], 'func': [12, 13, 14]}
+
+
+###########################
+
+
+('python_features', 'builtins', 'types', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['a', 'b']
+
+
+{'a': [3], 'b': [5]}
+
+
+###########################
+
+
+('python_features', 'builtins', 'zip', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['names', 'ages', 'combined', 'zip', 'result', 'list']
+
+
+{'names': [3, 7], 'ages': [5, 7], 'combined': [7, 9], 'result': [9], 'zip': [7], 'list': [9]}
+
+
+###########################
+
+
+('python_features', 'classes', 'abstract_class', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['ABC', 'abstractmethod', 'Shape', 'Rectangle', 'a', 'b']
+     Symtable: type=class, name=Shape
+       identifiers: ['area', 'abstractmethod']
+          Symtable: type=function, name=area
+            identifiers: ['self']
+     Symtable: type=class, name=Rectangle
+       identifiers: ['__init__', 'area']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'width', 'height']
+          Symtable: type=function, name=area
+            identifiers: ['self']
+
+
+{'ABC': [4], 'Shape': [10], 'a': [19, 20], 'b': [20], 'abstractmethod': [5], 'Rectangle': [19], 'width': [12], 'height': [13], 'self': [12, 13, 16, 16]}
+
+
+###########################
+
+
+('python_features', 'classes', 'assigned_call', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['MyClass', 'a', 'b']
+     Symtable: type=class, name=MyClass
+       identifiers: ['func']
+          Symtable: type=function, name=func
+            identifiers: ['self']
+
+
+{'a': [7, 8], 'b': [8, 9], 'MyClass': [7]}
+
+
+###########################
+
+
+('python_features', 'classes', 'assigned_self_call', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['MyClass', 'a', 'b']
+     Symtable: type=class, name=MyClass
+       identifiers: ['func1', 'func2']
+          Symtable: type=function, name=func1
+            identifiers: ['self']
+          Symtable: type=function, name=func2
+            identifiers: ['self', 'a']
+
+
+{'a': [11, 7, 12, 8], 'b': [12], 'MyClass': [11], 'self': [7]}
+
+
+###########################
+
+
+('python_features', 'classes', 'base_class_attr', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['A', 'C', 'c', 'd', 'e']
+     Symtable: type=class, name=A
+       identifiers: ['B']
+          Symtable: type=class, name=B
+            identifiers: ['__init__', 'bfunc']
+               Symtable: type=function, name=__init__
+                 identifiers: ['self']
+               Symtable: type=function, name=bfunc
+                 identifiers: ['self']
+     Symtable: type=class, name=C
+       identifiers: ['__init__', 'cfunc']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'super', '__class__']
+          Symtable: type=function, name=cfunc
+            identifiers: ['self']
+
+
+{'c': [19, 20, 21], 'd': [20], 'e': [21], 'A': [11], 'C': [19], 'self': [16, 5], 'super': [13]}
+
+
+###########################
+
+
+('python_features', 'classes', 'base_class_calls_child', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['A', 'B', 'C', 'b', 'd', 'print', 'c', 'e']
+     Symtable: type=class, name=A
+       identifiers: ['func']
+          Symtable: type=function, name=func
+            identifiers: ['self']
+     Symtable: type=class, name=B
+       identifiers: ['__init__', 'func2']
+          Symtable: type=function, name=__init__
+            identifiers: ['self']
+          Symtable: type=function, name=func2
+            identifiers: ['self']
+     Symtable: type=class, name=C
+       identifiers: ['__init__', 'func2']
+          Symtable: type=function, name=__init__
+            identifiers: ['self']
+          Symtable: type=function, name=func2
+            identifiers: ['self']
+
+
+{'A': [7, 15], 'b': [23, 24], 'd': [24, 25], 'c': [26, 27], 'e': [27], 'B': [23], 'print': [25], 'C': [26], 'self': [9, 9, 17, 17, 4]}
+
+
+###########################
+
+
+('python_features', 'classes', 'call', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['MyClass', 'a', 'b']
+     Symtable: type=class, name=MyClass
+       identifiers: ['func']
+          Symtable: type=function, name=func
+            identifiers: ['self']
+
+
+{'a': [7, 8], 'b': [8], 'MyClass': [7]}
+
+
+###########################
+
+
+('python_features', 'classes', 'class_variable', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['MyClass', 'a', 'b']
+     Symtable: type=class, name=MyClass
+       identifiers: ['class_var', '__init__']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'instance_var']
+
+
+{'a': [9, 10], 'b': [10], 'class_var': [3], 'MyClass': [9], 'instance_var': [6], 'self': [6]}
+
+
+###########################
+
+
+('python_features', 'classes', 'direct_call', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['MyClass', 'a']
+     Symtable: type=class, name=MyClass
+       identifiers: ['__init__', 'func']
+          Symtable: type=function, name=__init__
+            identifiers: ['self']
+          Symtable: type=function, name=func
+            identifiers: ['self']
+
+
+{'a': [12], 'MyClass': [12]}
+
+
+###########################
+
+
+('python_features', 'classes', 'imported_attr_access', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['to_import', 'a', 'b']
+
+
+{'a': [5, 6], 'b': [6], 'to_import': [5]}
+
+
+###########################
+
+
+('python_features', 'classes', 'imported_attr_access', 'to_import.py')
+Symtable: type=module, name=top
+  identifiers: ['A']
+     Symtable: type=class, name=A
+       identifiers: ['__init__']
+          Symtable: type=function, name=__init__
+            identifiers: ['self']
+
+
+{'self': [4]}
+
+
+###########################
+
+
+('python_features', 'classes', 'imported_call', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['MyClass', 'a', 'b']
+
+
+{'a': [5, 6], 'b': [6], 'MyClass': [5]}
+
+
+###########################
+
+
+('python_features', 'classes', 'imported_call', 'to_import_call.py')
+Symtable: type=module, name=top
+  identifiers: ['MyClass']
+     Symtable: type=class, name=MyClass
+       identifiers: ['__init__', 'func']
+          Symtable: type=function, name=__init__
+            identifiers: ['self']
+          Symtable: type=function, name=func
+            identifiers: ['self']
+
+
+{}
+
+
+###########################
+
+
+('python_features', 'classes', 'imported_call_without_init', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['MyClass', 'a', 'b']
+
+
+{'a': [6, 7], 'b': [7], 'MyClass': [6]}
+
+
+###########################
+
+
+('python_features', 'classes', 'imported_call_without_init', 'to_import_init.py')
+Symtable: type=module, name=top
+  identifiers: ['MyClass']
+     Symtable: type=class, name=MyClass
+       identifiers: ['func']
+          Symtable: type=function, name=func
+            identifiers: ['self']
+
+
+{}
+
+
+###########################
+
+
+('python_features', 'classes', 'imported_nested_attr_access', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['imported', 'a', 'b']
+
+
+{'a': [5, 6], 'b': [6], 'imported': [5]}
+
+
+###########################
+
+
+('classes', 'imported_nested_attr_access', 'nest', '__init__.py')
+Symtable: type=module, name=top
+  identifiers: []
+
+
+{}
+
+
+###########################
+
+
+('classes', 'imported_nested_attr_access', 'nest', 'imported.py')
+Symtable: type=module, name=top
+  identifiers: ['A']
+     Symtable: type=class, name=A
+       identifiers: ['__init__', 'func']
+          Symtable: type=function, name=__init__
+            identifiers: ['self']
+          Symtable: type=function, name=func
+            identifiers: ['self']
+
+
+{'self': [4, 7]}
+
+
+###########################
+
+
+('python_features', 'classes', 'inheritance', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['MyClass', 'MySubClass', 'a', 'b', 'c']
+     Symtable: type=class, name=MyClass
+       identifiers: ['func']
+          Symtable: type=function, name=func
+            identifiers: ['self']
+     Symtable: type=class, name=MySubClass
+       identifiers: ['sub_func']
+          Symtable: type=function, name=sub_func
+            identifiers: ['self']
+
+
+{'MyClass': [7], 'a': [12, 13, 14], 'b': [13], 'c': [14], 'MySubClass': [12]}
+
+
+###########################
+
+
+('python_features', 'classes', 'inheritance_overriding', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['MyClass', 'MySubClass', 'a', 'b']
+     Symtable: type=class, name=MyClass
+       identifiers: ['func']
+          Symtable: type=function, name=func
+            identifiers: ['self']
+     Symtable: type=class, name=MySubClass
+       identifiers: ['func']
+          Symtable: type=function, name=func
+            identifiers: ['self']
+
+
+{'MyClass': [7], 'a': [12, 13], 'b': [13], 'MySubClass': [12]}
+
+
+###########################
+
+
+('python_features', 'classes', 'instance', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['MyClass', 'a', 'b']
+     Symtable: type=class, name=MyClass
+       identifiers: ['__init__', 'func']
+          Symtable: type=function, name=__init__
+            identifiers: ['self']
+          Symtable: type=function, name=func
+            identifiers: ['self']
+
+
+{'a': [12, 13], 'b': [13], 'MyClass': [12]}
+
+
+###########################
+
+
+('python_features', 'classes', 'nested_call', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['MyClass', 'a', 'b']
+     Symtable: type=class, name=MyClass
+       identifiers: ['func']
+          Symtable: type=function, name=func
+            identifiers: ['self', 'nested']
+               Symtable: type=function, name=nested
+                 identifiers: []
+
+
+{'a': [10, 11], 'b': [11], 'MyClass': [10], 'nested': [7]}
+
+
+###########################
+
+
+('python_features', 'classes', 'nested_class_calls', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['C', 'B', 'A', 'a', 'b']
+     Symtable: type=class, name=C
+       identifiers: ['func']
+          Symtable: type=function, name=func
+            identifiers: ['self']
+     Symtable: type=class, name=B
+       identifiers: ['__init__', 'func']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'c']
+          Symtable: type=function, name=func
+            identifiers: ['self']
+     Symtable: type=class, name=A
+       identifiers: ['__init__', 'func']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'C']
+          Symtable: type=function, name=func
+            identifiers: ['self', 'b', 'B']
+
+
+{'a': [24, 25], 'b': [25, 20, 21], 'A': [24], 'c': [9], 'self': [9, 17, 20, 12], 'C': [17], 'B': [20]}
+
+
+###########################
+
+
+('python_features', 'classes', 'parameter_call', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['MyClass', 'a', 'd']
+     Symtable: type=class, name=MyClass
+       identifiers: ['func3', 'func2', 'func1']
+          Symtable: type=function, name=func3
+            identifiers: ['self']
+          Symtable: type=function, name=func2
+            identifiers: ['self', 'a']
+          Symtable: type=function, name=func1
+            identifiers: ['self', 'a', 'b']
+
+
+{'a': [13, 14, 14, 14, 7, 10], 'd': [14], 'MyClass': [13], 'b': [10]}
+
+
+###########################
+
+
+('python_features', 'classes', 'return_call', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['MyClass', 'a', 'b', 'c']
+     Symtable: type=class, name=MyClass
+       identifiers: ['func2', 'func1']
+          Symtable: type=function, name=func2
+            identifiers: ['self']
+          Symtable: type=function, name=func1
+            identifiers: ['self']
+
+
+{'a': [12, 13], 'b': [13, 14], 'c': [14], 'MyClass': [12], 'self': [9]}
+
+
+###########################
+
+
+('python_features', 'classes', 'return_call_direct', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['MyClass', 'a', 'b']
+     Symtable: type=class, name=MyClass
+       identifiers: ['func2', 'func1']
+          Symtable: type=function, name=func2
+            identifiers: ['self']
+          Symtable: type=function, name=func1
+            identifiers: ['self']
+
+
+{'a': [12, 13], 'b': [13], 'MyClass': [12], 'self': [9]}
+
+
+###########################
+
+
+('python_features', 'classes', 'self_assign_func', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['A', 'B', 'a', 'b', 'c']
+     Symtable: type=class, name=A
+       identifiers: ['func']
+          Symtable: type=function, name=func
+            identifiers: ['self']
+     Symtable: type=class, name=B
+       identifiers: ['__init__', 'func']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'a']
+          Symtable: type=function, name=func
+            identifiers: ['self']
+
+
+{'a': [17, 18, 11], 'b': [18, 19], 'c': [19], 'A': [17], 'B': [18], 'self': [11, 14]}
+
+
+###########################
+
+
+('python_features', 'classes', 'self_assignment', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['A', 'a', 'b']
+     Symtable: type=class, name=A
+       identifiers: ['__init__', 'func', 'func2']
+          Symtable: type=function, name=__init__
+            identifiers: ['self']
+          Symtable: type=function, name=func
+            identifiers: ['self']
+          Symtable: type=function, name=func2
+            identifiers: ['self']
+
+
+{'a': [15, 16], 'b': [16], 'A': [15], 'self': [6, 6, 9]}
+
+
+###########################
+
+
+('python_features', 'classes', 'self_call', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['MyClass', 'a', 'b']
+     Symtable: type=class, name=MyClass
+       identifiers: ['__init__', 'func1', 'func2']
+          Symtable: type=function, name=__init__
+            identifiers: ['self']
+          Symtable: type=function, name=func1
+            identifiers: ['self']
+          Symtable: type=function, name=func2
+            identifiers: ['self']
+
+
+{'a': [15, 16], 'b': [16], 'MyClass': [15], 'self': [6, 12]}
+
+
+###########################
+
+
+('python_features', 'classes', 'static_method_call', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['MyClass', 'a']
+     Symtable: type=class, name=MyClass
+       identifiers: ['func', 'staticmethod']
+          Symtable: type=function, name=func
+            identifiers: []
+
+
+{'a': [10], 'staticmethod': [5], 'MyClass': [10]}
+
+
+###########################
+
+
+('python_features', 'classes', 'super_class_return', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['A', 'B', 'b', 'fn', 'c']
+     Symtable: type=class, name=A
+       identifiers: ['func1']
+          Symtable: type=function, name=func1
+            identifiers: ['self']
+     Symtable: type=class, name=B
+       identifiers: ['func2']
+          Symtable: type=function, name=func2
+            identifiers: ['self']
+
+
+{'A': [9], 'b': [14, 15], 'fn': [15, 16], 'c': [16], 'B': [14], 'self': [11]}
+
+
+###########################
+
+
+('python_features', 'classes', 'tuple_assignment', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['MyClass', 'MyClass2', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
+     Symtable: type=class, name=MyClass
+       identifiers: ['__init__', 'func1', 'func2', 'func3']
+          Symtable: type=function, name=__init__
+            identifiers: ['self']
+          Symtable: type=function, name=func1
+            identifiers: ['self']
+          Symtable: type=function, name=func2
+            identifiers: ['self']
+          Symtable: type=function, name=func3
+            identifiers: ['self']
+     Symtable: type=class, name=MyClass2
+       identifiers: ['__init__']
+          Symtable: type=function, name=__init__
+            identifiers: ['self']
+
+
+{'f': [27], 'g': [28], 'h': [29], 'a': [23, 25, 25, 25], 'b': [23], 'c': [25, 27], 'd': [28, 25], 'e': [29, 25], 'MyClass': [23], 'MyClass2': [23]}
+
+
+###########################
+
+
+('python_features', 'decorators', 'assigned', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['dec1', 'a', 'func', 'c']
+     Symtable: type=function, name=dec1
+       identifiers: ['f', 'wrapper']
+          Symtable: type=function, name=wrapper
+            identifiers: ['a', 'b', 'result', 'f']
+     Symtable: type=function, name=func
+       identifiers: ['a', 'b']
+
+
+{'a': [12, 15, 17, 6], 'dec1': [12], 'c': [20], 'wrapper': [9], 'func': [20], 'result': [6, 7], 'b': [17, 6], 'f': [6]}
+
+
+###########################
+
+
+('python_features', 'decorators', 'call', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['dec', 'func', 'a']
+     Symtable: type=function, name=dec
+       identifiers: ['f', 'wrapper']
+          Symtable: type=function, name=wrapper
+            identifiers: []
+     Symtable: type=function, name=func
+       identifiers: []
+
+
+{'dec': [11], 'a': [16], 'wrapper': [8], 'func': [16]}
+
+
+###########################
+
+
+('python_features', 'decorators', 'classes', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['my_decorator', 'MyClass', 'a', 'b']
+     Symtable: type=function, name=my_decorator
+       identifiers: ['cls', 'NewClass']
+          Symtable: type=class, name=NewClass
+            identifiers: ['my_method']
+               Symtable: type=function, name=my_method
+                 identifiers: ['self']
+     Symtable: type=class, name=MyClass
+       identifiers: ['my_method']
+          Symtable: type=function, name=my_method
+            identifiers: ['self']
+
+
+{'my_decorator': [12], 'a': [18, 19], 'b': [19], 'cls': [5], 'NewClass': [9], 'MyClass': [18]}
+
+
+###########################
+
+
+('python_features', 'decorators', 'nested', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func', 'a']
+     Symtable: type=function, name=func
+       identifiers: ['dec', 'modified_inner', 'inner']
+          Symtable: type=function, name=dec
+            identifiers: ['f', 'modified_inner']
+          Symtable: type=function, name=modified_inner
+            identifiers: []
+          Symtable: type=function, name=inner
+            identifiers: []
+
+
+{'a': [18], 'dec': [11], 'func': [18], 'modified_inner': [6], 'inner': [15]}
+
+
+###########################
+
+
+('python_features', 'decorators', 'nested_decorators', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['dec1', 'dec2', 'func', 'a']
+     Symtable: type=function, name=dec1
+       identifiers: ['f', 'inner']
+          Symtable: type=function, name=inner
+            identifiers: ['f']
+     Symtable: type=function, name=dec2
+       identifiers: ['f', 'inner']
+          Symtable: type=function, name=inner
+            identifiers: []
+     Symtable: type=function, name=func
+       identifiers: []
+
+
+{'dec1': [18], 'dec2': [19], 'a': [24], 'inner': [8, 15], 'func': [24], 'f': [6]}
+
+
+###########################
+
+
+('python_features', 'decorators', 'param_call', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['dec', 'func', 'c']
+     Symtable: type=function, name=dec
+       identifiers: ['f', 'wrapper']
+          Symtable: type=function, name=wrapper
+            identifiers: ['a', 'b', 'result', 'f']
+     Symtable: type=function, name=func
+       identifiers: ['a', 'b']
+
+
+{'dec': [12], 'c': [17], 'wrapper': [9], 'func': [17], 'result': [6, 7], 'a': [14, 6], 'b': [14, 6], 'f': [6]}
+
+
+###########################
+
+
+('python_features', 'decorators', 'return', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func1', 'func2', 'a']
+     Symtable: type=function, name=func1
+       identifiers: ['dec', 'inner']
+          Symtable: type=function, name=dec
+            identifiers: ['f', 'inner']
+          Symtable: type=function, name=inner
+            identifiers: []
+     Symtable: type=function, name=func2
+       identifiers: []
+
+
+{'a': [19], 'dec': [11], 'func1': [14], 'func2': [19], 'inner': [6]}
+
+
+###########################
+
+
+('python_features', 'decorators', 'return_different_func', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['dec', 'func', 'func2', 'a']
+     Symtable: type=function, name=dec
+       identifiers: ['f', 'inner']
+          Symtable: type=function, name=inner
+            identifiers: []
+     Symtable: type=function, name=func
+       identifiers: []
+     Symtable: type=function, name=func2
+       identifiers: ['func']
+
+
+{'dec': [11], 'a': [20], 'inner': [8], 'func2': [20], 'func': [17]}
+
+
+###########################
+
+
+('python_features', 'dicts', 'add_key', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func', 'd', 'e']
+     Symtable: type=function, name=func
+       identifiers: []
+
+
+{'d': [8, 10, 11], 'func': [10], 'e': [11]}
+
+
+###########################
+
+
+('python_features', 'dicts', 'assign', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func1', 'func2', 'd', 'e']
+     Symtable: type=function, name=func1
+       identifiers: []
+     Symtable: type=function, name=func2
+       identifiers: []
+
+
+{'d': [12, 14, 16], 'func2': [14], 'e': [16], 'func1': [12]}
+
+
+###########################
+
+
+('python_features', 'dicts', 'call', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func1', 'func2', 'd', 'e', 'f']
+     Symtable: type=function, name=func1
+       identifiers: []
+     Symtable: type=function, name=func2
+       identifiers: []
+
+
+{'d': [12, 14, 15], 'e': [14], 'f': [15], 'func1': [12], 'func2': [12]}
+
+
+###########################
+
+
+('python_features', 'dicts', 'ext_key', 'ext.py')
+Symtable: type=module, name=top
+  identifiers: ['key']
+
+
+{'key': [2]}
+
+
+###########################
+
+
+('python_features', 'dicts', 'ext_key', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['key', 'func', 'd', 'e']
+     Symtable: type=function, name=func
+       identifiers: []
+
+
+{'d': [11, 13], 'e': [13], 'func': [11], 'key': [13]}
+
+
+###########################
+
+
+('python_features', 'dicts', 'merge', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['dict1', 'dict2', 'merged_dict']
+
+
+{'dict1': [4, 6], 'dict2': [5, 6], 'merged_dict': [6]}
+
+
+###########################
+
+
+('python_features', 'dicts', 'merge_pipe', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['dict1', 'dict2', 'merged_dict']
+
+
+{'dict1': [4, 6], 'dict2': [5, 6], 'merged_dict': [6]}
+
+
+###########################
+
+
+('python_features', 'dicts', 'nested', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func1', 'func2', 'd', 'e']
+     Symtable: type=function, name=func1
+       identifiers: []
+     Symtable: type=function, name=func2
+       identifiers: []
+
+
+{'d': [12, 14, 16], 'func2': [14], 'e': [16], 'func1': [12]}
+
+
+###########################
+
+
+('python_features', 'dicts', 'new_key_param', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func2', 'func', 'd', 'e']
+     Symtable: type=function, name=func2
+       identifiers: []
+     Symtable: type=function, name=func
+       identifiers: ['key', 'd', 'func2']
+
+
+{'d': [12, 9, 15], 'e': [15], 'func2': [9], 'func': [14], 'key': [9]}
+
+
+###########################
+
+
+('python_features', 'dicts', 'param', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func2', 'func1', 'd', 'e']
+     Symtable: type=function, name=func2
+       identifiers: []
+     Symtable: type=function, name=func1
+       identifiers: ['d']
+
+
+{'d': [12, 14, 9], 'e': [14], 'func2': [12], 'func1': [14]}
+
+
+###########################
+
+
+('python_features', 'dicts', 'param_key', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func1', 'func2', 'func3', 'd', 'e', 'f']
+     Symtable: type=function, name=func1
+       identifiers: ['key', 'd']
+     Symtable: type=function, name=func2
+       identifiers: []
+     Symtable: type=function, name=func3
+       identifiers: []
+
+
+{'d': [16, 5], 'e': [18], 'f': [19], 'func2': [16], 'func3': [16], 'func1': [18, 19], 'key': [5]}
+
+
+###########################
+
+
+('python_features', 'dicts', 'return', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func2', 'func1', 'b', 'c']
+     Symtable: type=function, name=func2
+       identifiers: []
+     Symtable: type=function, name=func1
+       identifiers: ['d', 'func2']
+
+
+{'b': [13, 14], 'c': [14], 'd': [9, 10], 'func1': [13], 'func2': [9]}
+
+
+###########################
+
+
+('python_features', 'dicts', 'return_assign', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func2', 'func1', 'd', 'e']
+     Symtable: type=function, name=func2
+       identifiers: []
+     Symtable: type=function, name=func1
+       identifiers: ['func2']
+
+
+{'d': [12, 14], 'e': [14], 'func2': [9], 'func1': [12]}
+
+
+###########################
+
+
+('python_features', 'dicts', 'type_coercion', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func1', 'func2', 'd', 'e', 'f']
+     Symtable: type=function, name=func1
+       identifiers: []
+     Symtable: type=function, name=func2
+       identifiers: []
+
+
+{'d': [12, 14, 15], 'e': [14], 'f': [15], 'func1': [12], 'func2': [12]}
+
+
+###########################
+
+
+('python_features', 'dicts', 'update', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func1', 'func2', 'd', 'e']
+     Symtable: type=function, name=func1
+       identifiers: []
+     Symtable: type=function, name=func2
+       identifiers: []
+
+
+{'d': [12, 14, 15], 'e': [15], 'func1': [12], 'func2': [14]}
+
+
+###########################
+
+
+('python_features', 'dicts', 'zip', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['keys', 'values', 'my_dict', 'dict', 'zip']
+
+
+{'keys': [4, 6], 'values': [5, 6], 'my_dict': [6], 'dict': [6], 'zip': [6]}
+
+
+###########################
+
+
+('python_features', 'direct_calls', 'assigned_call', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['return_func', 'func', 'a', 'b']
+     Symtable: type=function, name=return_func
+       identifiers: []
+     Symtable: type=function, name=func
+       identifiers: ['a', 'return_func']
+
+
+{'a': [13, 9, 10, 14], 'func': [13], 'b': [14], 'return_func': [9]}
+
+
+###########################
+
+
+('python_features', 'direct_calls', 'imported_return_call', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func', 'a']
+
+
+{'a': [6], 'func': [6]}
+
+
+###########################
+
+
+('python_features', 'direct_calls', 'imported_return_call', 'to_import.py')
+Symtable: type=module, name=top
+  identifiers: ['return_func', 'func']
+     Symtable: type=function, name=return_func
+       identifiers: []
+     Symtable: type=function, name=func
+       identifiers: ['return_func']
+
+
+{'return_func': [6]}
+
+
+###########################
+
+
+('python_features', 'direct_calls', 'lambda', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['result']
+     Symtable: type=function, name=lambda
+       identifiers: ['x']
+     Symtable: type=function, name=lambda
+       identifiers: ['x']
+
+
+{'result': [4], 'x': [4, 4]}
+
+
+###########################
+
+
+('python_features', 'direct_calls', 'return_call', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['return_func', 'func', 'a', 'b']
+     Symtable: type=function, name=return_func
+       identifiers: ['nested_return_func']
+          Symtable: type=function, name=nested_return_func
+            identifiers: []
+     Symtable: type=function, name=func
+       identifiers: ['return_func']
+
+
+{'a': [15], 'b': [16], 'nested_return_func': [8], 'return_func': [12], 'func': [15, 16]}
+
+
+###########################
+
+
+('python_features', 'direct_calls', 'single_argument', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['add_one', 'double', 'result']
+     Symtable: type=function, name=add_one
+       identifiers: ['x']
+     Symtable: type=function, name=double
+       identifiers: ['x']
+
+
+{'result': [12], 'double': [12], 'x': [5, 9], 'add_one': [12]}
+
+
+###########################
+
+
+('python_features', 'direct_calls', 'with_parameters', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func', 'func2', 'func3', 'a']
+     Symtable: type=function, name=func
+       identifiers: []
+     Symtable: type=function, name=func2
+       identifiers: ['a']
+     Symtable: type=function, name=func3
+       identifiers: ['func2']
+
+
+{'a': [16, 9], 'func2': [13], 'func': [16], 'func3': [16]}
+
+
+###########################
+
+
+('python_features', 'dynamic', 'compile', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['code', 'code_obj', 'compile', 'exec', 'b', 'a']
+
+
+{'code': [4, 5], 'code_obj': [5, 6], 'b': [7], 'a': [7], 'compile': [5], 'exec': [6]}
+
+
+###########################
+
+
+('python_features', 'dynamic', 'eval', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func', 'a', 'eval']
+     Symtable: type=function, name=func
+       identifiers: []
+
+
+{'a': [8], 'eval': [8]}
+
+
+###########################
+
+
+('python_features', 'dynamic', 'exec', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['code', 'exec', 'b', 'a']
+
+
+{'code': [4, 5], 'b': [6], 'a': [6], 'exec': [5]}
+
+
+###########################
+
+
+('python_features', 'exceptions', 'raise_assigned', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['A', 'Exception', 'a']
+     Symtable: type=class, name=A
+       identifiers: ['__init__']
+          Symtable: type=function, name=__init__
+            identifiers: ['self']
+
+
+{'Exception': [4], 'a': [9, 10], 'A': [9]}
+
+
+###########################
+
+
+('python_features', 'exceptions', 'raise_attr', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['A', 'a']
+     Symtable: type=class, name=A
+       identifiers: ['B', 'Exception']
+          Symtable: type=class, name=B
+            identifiers: ['__init__']
+               Symtable: type=function, name=__init__
+                 identifiers: ['self']
+
+
+{'a': [10], 'Exception': [5], 'A': [10, 11]}
+
+
+###########################
+
+
+('python_features', 'external', 'attribute', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['Cls', 'a', 'b']
+
+
+{'a': [6, 7], 'b': [7], 'Cls': [6]}
+
+
+###########################
+
+
+('python_features', 'external', 'attribute_assigned', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['Cls', 'fn', 'a', 'b']
+     Symtable: type=function, name=fn
+       identifiers: ['a']
+
+
+{'a': [11, 8, 13], 'b': [13], 'Cls': [11], 'fn': [13]}
+
+
+###########################
+
+
+('python_features', 'external', 'cls_parent', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['Parent', 'A', 'a', 'b']
+     Symtable: type=class, name=A
+       identifiers: ['fn']
+          Symtable: type=function, name=fn
+            identifiers: ['self']
+
+
+{'Parent': [5], 'a': [10, 11], 'b': [11], 'A': [10], 'self': [7]}
+
+
+###########################
+
+
+('python_features', 'external', 'cls_parent_init', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['ParentInit', 'A', 'a', 'b']
+     Symtable: type=class, name=A
+       identifiers: ['fn']
+          Symtable: type=function, name=fn
+            identifiers: ['self']
+
+
+{'ParentInit': [5], 'a': [10, 11], 'b': [11], 'A': [10], 'self': [7]}
+
+
+###########################
+
+
+('python_features', 'external', 'function', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['function', 'a']
+
+
+{'a': [4], 'function': [4]}
+
+
+###########################
+
+
+('python_features', 'external', 'function_asname', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['fn', 'a']
+
+
+{'a': [4], 'fn': [4]}
+
+
+###########################
+
+
+('python_features', 'external', 'function_assigned', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['function', 'a', 'b']
+
+
+{'a': [6, 8], 'function': [6], 'b': [8]}
+
+
+###########################
+
+
+('python_features', 'external', 'typeevalpy_external_module', 'setup.py')
+Symtable: type=module, name=top
+  identifiers: ['setuptools']
+
+
+{'setuptools': [3, 12]}
+
+
+###########################
+
+
+('external', 'typeevalpy_external_module', 'typeevalpy_external_module', '__init__.py')
+Symtable: type=module, name=top
+  identifiers: ['name']
+
+
+{'name': [1]}
+
+
+###########################
+
+
+('external', 'typeevalpy_external_module', 'typeevalpy_external_module', 'ext.py')
+Symtable: type=module, name=top
+  identifiers: ['Cls', 'Parent', 'ParentInit', 'function']
+     Symtable: type=class, name=Cls
+       identifiers: ['__init__', 'fun']
+          Symtable: type=function, name=__init__
+            identifiers: ['self']
+          Symtable: type=function, name=fun
+            identifiers: ['self']
+     Symtable: type=class, name=Parent
+       identifiers: ['parent_fun']
+          Symtable: type=function, name=parent_fun
+            identifiers: ['self']
+     Symtable: type=class, name=ParentInit
+       identifiers: ['__init__', 'parent_fun']
+          Symtable: type=function, name=__init__
+            identifiers: ['self']
+          Symtable: type=function, name=parent_fun
+            identifiers: ['self']
+     Symtable: type=function, name=function
+       identifiers: []
+
+
+{}
+
+
+###########################
+
+
+('python_features', 'functions', 'assigned_call', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func', 'a', 'b']
+     Symtable: type=function, name=func
+       identifiers: []
+
+
+{'a': [8, 9], 'func': [8], 'b': [9]}
+
+
+###########################
+
+
+('python_features', 'functions', 'assigned_call_lit_param', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func', 'x', 'a', 'b']
+     Symtable: type=function, name=func
+       identifiers: ['x']
+
+
+{'x': [8, 5, 9, 10], 'func': [8], 'a': [9], 'b': [10]}
+
+
+###########################
+
+
+('python_features', 'functions', 'call', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func', 'a']
+     Symtable: type=function, name=func
+       identifiers: []
+
+
+{'a': [8], 'func': [8]}
+
+
+###########################
+
+
+('python_features', 'functions', 'composition', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['add', 'square', 'result']
+     Symtable: type=function, name=add
+       identifiers: ['x', 'y']
+     Symtable: type=function, name=square
+       identifiers: ['x']
+
+
+{'result': [12], 'square': [12], 'x': [5, 9, 9], 'y': [5], 'add': [12]}
+
+
+###########################
+
+
+('python_features', 'functions', 'default', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['my_func', 'result1', 'result2', 'result3']
+     Symtable: type=function, name=my_func
+       identifiers: ['x', 'y']
+
+
+{'result1': [6], 'result2': [7], 'result3': [8], 'my_func': [6, 7, 8], 'x': [3], 'y': [3]}
+
+
+###########################
+
+
+('python_features', 'functions', 'imported_call', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func', 'a', 'b']
+
+
+{'a': [6, 7], 'func': [6], 'b': [7]}
+
+
+###########################
+
+
+('python_features', 'functions', 'imported_call', 'to_import.py')
+Symtable: type=module, name=top
+  identifiers: ['func']
+     Symtable: type=function, name=func
+       identifiers: []
+
+
+{}
+
+
+###########################
+
+
+('python_features', 'functions', 'nested', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['outer', 'a']
+     Symtable: type=function, name=outer
+       identifiers: ['x', 'inner']
+          Symtable: type=function, name=inner
+            identifiers: ['x']
+
+
+{'a': [15], 'x': [5, 9, 10], 'outer': [15], 'inner': [12]}
+
+
+###########################
+
+
+('python_features', 'functions', 'recursive_function', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['recursive_func', 'a']
+     Symtable: type=function, name=recursive_func
+       identifiers: ['x', 'recursive_func']
+
+
+{'a': [8], 'recursive_func': [8, 5], 'x': [3, 4, 5, 5]}
+
+
+###########################
+
+
+('python_features', 'functions', 'static', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['MyClass', 'result']
+     Symtable: type=class, name=MyClass
+       identifiers: ['my_static_method', 'staticmethod']
+          Symtable: type=function, name=my_static_method
+            identifiers: ['x', 'y']
+
+
+{'result': [10], 'staticmethod': [5], 'MyClass': [10], 'x': [7], 'y': [7]}
+
+
+###########################
+
+
+('python_features', 'generators', 'iter_param', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func', 'Cls', 'a']
+     Symtable: type=function, name=func
+       identifiers: ['c', 'output_list']
+          Symtable: type=function, name=listcomp
+            identifiers: ['.0', 'i']
+     Symtable: type=class, name=Cls
+       identifiers: ['__init__', '__iter__', '__next__']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'max']
+          Symtable: type=function, name=__iter__
+            identifiers: ['self']
+          Symtable: type=function, name=__next__
+            identifiers: ['self', 'StopIteration', 'result']
+
+
+{'a': [26], 'output_list': [5, 6], 'func': [26], 'i': [5, 5], 'max': [11], 'self': [15, 11, 14, 22, 18, 18, 21], 'result': [21, 23], 'Cls': [26], 'c': [5], 'StopIteration': [19]}
+
+
+###########################
+
+
+('python_features', 'generators', 'iter_return', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func', 'Cls', 'output_list']
+     Symtable: type=function, name=func
+       identifiers: []
+     Symtable: type=class, name=Cls
+       identifiers: ['__init__', '__iter__', '__next__']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'max']
+          Symtable: type=function, name=__iter__
+            identifiers: ['self']
+          Symtable: type=function, name=__next__
+            identifiers: ['self', 'StopIteration', 'func']
+     Symtable: type=function, name=listcomp
+       identifiers: ['.0', 'i']
+
+
+{'output_list': [23], 'i': [23, 23], 'max': [10], 'self': [14, 10, 13, 19, 17, 17], 'func': [20], 'StopIteration': [18], 'Cls': [23]}
+
+
+###########################
+
+
+('python_features', 'generators', 'iterable', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func', 'output_list']
+     Symtable: type=class, name=func
+       identifiers: ['__init__', '__iter__', '__next__']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'n']
+          Symtable: type=function, name=__iter__
+            identifiers: ['self']
+          Symtable: type=function, name=__next__
+            identifiers: ['self', 'cur', 'StopIteration']
+     Symtable: type=function, name=listcomp
+       identifiers: ['.0', 'i']
+
+
+{'output_list': [20], 'i': [20, 20], 'n': [6], 'self': [10, 6, 7, 13, 13, 14, 14, 14], 'cur': [15, 14], 'func': [20], 'StopIteration': [17]}
+
+
+###########################
+
+
+('python_features', 'generators', 'iterable_assigned', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['Cls', 'c', 'output_list']
+     Symtable: type=class, name=Cls
+       identifiers: ['__init__', '__iter__', '__next__']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'max']
+          Symtable: type=function, name=__iter__
+            identifiers: ['self']
+          Symtable: type=function, name=__next__
+            identifiers: ['self', 'StopIteration', 'result']
+     Symtable: type=function, name=listcomp
+       identifiers: ['.0', 'i']
+
+
+{'c': [21, 23], 'output_list': [23], 'Cls': [21], 'i': [23, 23], 'max': [6], 'self': [10, 6, 9, 17, 18, 13, 13, 16], 'result': [16], 'StopIteration': [14]}
+
+
+###########################
+
+
+('python_features', 'generators', 'yield_function', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func2', 'func1', 'i', 'a', 'NameError']
+     Symtable: type=function, name=func2
+       identifiers: []
+     Symtable: type=function, name=func1
+       identifiers: ['n', 'num', 'func2']
+
+
+{'i': [15, 17, 19], 'num': [9, 10, 12], 'func1': [15], 'n': [10], 'a': [17, 19], 'NameError': [18], 'func2': [11]}
+
+
+###########################
+
+
+('python_features', 'generators', 'yield_next', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['squares', 'gen', 'i', 'range', 'a', 'next', 'NameError']
+     Symtable: type=function, name=squares
+       identifiers: ['n']
+
+
+{'gen': [11, 15, 17], 'i': [13], 'n': [5, 8, 7], 'squares': [11], 'range': [13], 'a': [15, 17], 'NameError': [16], 'next': [15, 17]}
+
+
+###########################
+
+
+('python_features', 'imports', 'chained_import', 'chained_import.py')
+Symtable: type=module, name=top
+  identifiers: ['func1']
+     Symtable: type=function, name=func1
+       identifiers: []
+
+
+{}
+
+
+###########################
+
+
+('python_features', 'imports', 'chained_import', 'from_import.py')
+Symtable: type=module, name=top
+  identifiers: ['func1', 'func2']
+     Symtable: type=function, name=func2
+       identifiers: ['func1']
+
+
+{'func1': [5]}
+
+
+###########################
+
+
+('python_features', 'imports', 'chained_import', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func2', 'a']
+
+
+{'a': [7], 'func2': [7]}
+
+
+###########################
+
+
+('python_features', 'imports', 'import_all', 'from_module.py')
+Symtable: type=module, name=top
+  identifiers: ['func1', 'func2']
+     Symtable: type=function, name=func1
+       identifiers: []
+     Symtable: type=function, name=func2
+       identifiers: []
+
+
+{}
+
+
+###########################
+
+
+('python_features', 'imports', 'import_all', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['a', 'func1', 'b', 'func2']
+
+
+{'a': [6], 'b': [7], 'func1': [6], 'func2': [7]}
+
+
+###########################
+
+
+('python_features', 'imports', 'import_as', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['as_to_import', 'func', 'a', 'b']
+     Symtable: type=function, name=func
+       identifiers: []
+
+
+{'a': [11], 'b': [12], 'func': [11], 'as_to_import': [12]}
+
+
+###########################
+
+
+('python_features', 'imports', 'import_as', 'to_import.py')
+Symtable: type=module, name=top
+  identifiers: ['func']
+     Symtable: type=function, name=func
+       identifiers: []
+
+
+{}
+
+
+###########################
+
+
+('python_features', 'imports', 'import_from', 'from_mod.py')
+Symtable: type=module, name=top
+  identifiers: ['func']
+     Symtable: type=function, name=func
+       identifiers: []
+
+
+{}
+
+
+###########################
+
+
+('python_features', 'imports', 'import_from', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func', 'a']
+
+
+{'a': [6], 'func': [6]}
+
+
+###########################
+
+
+('python_features', 'imports', 'init_func_import', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func', 'func2', 'a', 'b']
+
+
+{'a': [6], 'b': [7], 'func': [6], 'func2': [7]}
+
+
+###########################
+
+
+('imports', 'init_func_import', 'nested', '__init__.py')
+Symtable: type=module, name=top
+  identifiers: ['func2', 'func']
+     Symtable: type=function, name=func
+       identifiers: []
+
+
+{}
+
+
+###########################
+
+
+('imports', 'init_func_import', 'nested', 'mod.py')
+Symtable: type=module, name=top
+  identifiers: ['func2']
+     Symtable: type=function, name=func2
+       identifiers: []
+
+
+{}
+
+
+###########################
+
+
+('python_features', 'imports', 'init_import', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['smth', 'a']
+
+
+{'a': [6], 'smth': [6]}
+
+
+###########################
+
+
+('imports', 'init_import', 'nested_init', '__init__.py')
+Symtable: type=module, name=top
+  identifiers: ['smth']
+
+
+{}
+
+
+###########################
+
+
+('imports', 'init_import', 'nested_init', 'nested_init.py')
+Symtable: type=module, name=top
+  identifiers: ['Smth', 'smth']
+     Symtable: type=class, name=Smth
+       identifiers: ['func']
+          Symtable: type=function, name=func
+            identifiers: ['self']
+
+
+{'smth': [6], 'Smth': [6]}
+
+
+###########################
+
+
+('python_features', 'imports', 'parent_import', '__init__.py')
+Symtable: type=module, name=top
+  identifiers: []
+
+
+{}
+
+
+###########################
+
+
+('python_features', 'imports', 'parent_import', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['to_import', 'func', 'a', 'b', 'c']
+     Symtable: type=function, name=func
+       identifiers: []
+
+
+{'a': [10], 'b': [11], 'c': [12], 'func': [10], 'to_import': [11, 12]}
+
+
+###########################
+
+
+('imports', 'parent_import', 'nested', '__init__.py')
+Symtable: type=module, name=top
+  identifiers: []
+
+
+{}
+
+
+###########################
+
+
+('imports', 'parent_import', 'nested', 'to_import.py')
+Symtable: type=module, name=top
+  identifiers: ['to_import2', 'func']
+     Symtable: type=function, name=func
+       identifiers: []
+
+
+{}
+
+
+###########################
+
+
+('python_features', 'imports', 'parent_import', 'to_import2.py')
+Symtable: type=module, name=top
+  identifiers: ['func']
+     Symtable: type=function, name=func
+       identifiers: []
+
+
+{}
+
+
+###########################
+
+
+('python_features', 'imports', 'relative_import', '__init__.py')
+Symtable: type=module, name=top
+  identifiers: []
+
+
+{}
+
+
+###########################
+
+
+('python_features', 'imports', 'relative_import', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['nested', 'func', 'a']
+     Symtable: type=function, name=func
+       identifiers: []
+
+
+{'a': [12], 'nested': [12]}
+
+
+###########################
+
+
+('imports', 'relative_import', 'nested', '__init__.py')
+Symtable: type=module, name=top
+  identifiers: []
+
+
+{}
+
+
+###########################
+
+
+('imports', 'relative_import', 'nested', 'to_import.py')
+Symtable: type=module, name=top
+  identifiers: ['to_import2', 'func']
+
+
+{'func': [3], 'to_import2': [3]}
+
+
+###########################
+
+
+('imports', 'relative_import', 'nested', 'to_import2.py')
+Symtable: type=module, name=top
+  identifiers: ['func']
+     Symtable: type=function, name=func
+       identifiers: []
+
+
+{}
+
+
+###########################
+
+
+('python_features', 'imports', 'relative_import', 'to_import.py')
+Symtable: type=module, name=top
+  identifiers: ['func']
+     Symtable: type=function, name=func
+       identifiers: []
+
+
+{}
+
+
+###########################
+
+
+('python_features', 'imports', 'relative_import_with_name', '__init__.py')
+Symtable: type=module, name=top
+  identifiers: []
+
+
+{}
+
+
+###########################
+
+
+('python_features', 'imports', 'relative_import_with_name', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func1', 'a']
+
+
+{'a': [6], 'func1': [6]}
+
+
+###########################
+
+
+('imports', 'relative_import_with_name', 'nested_rel', '__init__.py')
+Symtable: type=module, name=top
+  identifiers: []
+
+
+{}
+
+
+###########################
+
+
+('imports', 'relative_import_with_name', 'nested_rel', 'relative_rel.py')
+Symtable: type=module, name=top
+  identifiers: ['func2']
+     Symtable: type=function, name=func2
+       identifiers: []
+
+
+{}
+
+
+###########################
+
+
+('imports', 'relative_import_with_name', 'nested_rel', 'to_import_rel.py')
+Symtable: type=module, name=top
+  identifiers: ['func2', 'func1']
+     Symtable: type=function, name=func1
+       identifiers: ['func2']
+
+
+{'func2': [5]}
+
+
+###########################
+
+
+('python_features', 'imports', 'simple_import', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['to_import', 'a']
+
+
+{'a': [6], 'to_import': [6]}
+
+
+###########################
+
+
+('python_features', 'imports', 'simple_import', 'to_import.py')
+Symtable: type=module, name=top
+  identifiers: ['func']
+     Symtable: type=function, name=func
+       identifiers: []
+
+
+{}
+
+
+###########################
+
+
+('python_features', 'imports', 'submodule_import', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['to_import_sub', 'a']
+
+
+{'a': [8], 'to_import_sub': [8]}
+
+
+###########################
+
+
+('imports', 'submodule_import', 'to_import_sub', '__init__.py')
+Symtable: type=module, name=top
+  identifiers: ['func']
+     Symtable: type=function, name=func
+       identifiers: []
+
+
+{}
+
+
+###########################
+
+
+('imports', 'submodule_import', 'to_import_sub', 'to_import_sub.py')
+Symtable: type=module, name=top
+  identifiers: ['func']
+     Symtable: type=function, name=func
+       identifiers: []
+
+
+{}
+
+
+###########################
+
+
+('imports', 'submodule_import_all', 'from_all', '__init__.py')
+Symtable: type=module, name=top
+  identifiers: []
+
+
+{}
+
+
+###########################
+
+
+('imports', 'submodule_import_all', 'from_all', 'nested_module.py')
+Symtable: type=module, name=top
+  identifiers: ['func1', 'func2']
+     Symtable: type=function, name=func1
+       identifiers: []
+     Symtable: type=function, name=func2
+       identifiers: []
+
+
+{}
+
+
+###########################
+
+
+('python_features', 'imports', 'submodule_import_all', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['a', 'func1', 'b', 'func2']
+
+
+{'a': [6], 'b': [7], 'func1': [6], 'func2': [7]}
+
+
+###########################
+
+
+('python_features', 'imports', 'submodule_import_as', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['as_to_import', 'a']
+
+
+{'a': [6], 'as_to_import': [6]}
+
+
+###########################
+
+
+('imports', 'submodule_import_as', 'to_import', '__init__.py')
+Symtable: type=module, name=top
+  identifiers: ['func']
+     Symtable: type=function, name=func
+       identifiers: []
+
+
+{}
+
+
+###########################
+
+
+('imports', 'submodule_import_as', 'to_import', 'to_import.py')
+Symtable: type=module, name=top
+  identifiers: ['func']
+     Symtable: type=function, name=func
+       identifiers: []
+
+
+{}
+
+
+###########################
+
+
+('imports', 'submodule_import_from', 'from_module_sub', '__init__.py')
+Symtable: type=module, name=top
+  identifiers: []
+
+
+{}
+
+
+###########################
+
+
+('imports', 'submodule_import_from', 'from_module_sub', 'nested_module_sub.py')
+Symtable: type=module, name=top
+  identifiers: ['func1', 'func2']
+     Symtable: type=function, name=func1
+       identifiers: []
+     Symtable: type=function, name=func2
+       identifiers: []
+
+
+{}
+
+
+###########################
+
+
+('python_features', 'imports', 'submodule_import_from', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func1', 'func2', 'a', 'b']
+
+
+{'a': [6], 'b': [7], 'func1': [6], 'func2': [7]}
+
+
+###########################
+
+
+('python_features', 'kwargs', 'assigned_call', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func2', 'func', 'a', 'b', 'c']
+     Symtable: type=function, name=func2
+       identifiers: []
+     Symtable: type=function, name=func
+       identifiers: ['a']
+
+
+{'a': [12, 14, 9], 'func': [12], 'b': [13, 14], 'func2': [13], 'c': [14]}
+
+
+###########################
+
+
+('python_features', 'kwargs', 'call', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func1', 'func', 'c']
+     Symtable: type=function, name=func1
+       identifiers: []
+     Symtable: type=function, name=func
+       identifiers: ['a']
+
+
+{'c': [12], 'func': [12], 'a': [9], 'func1': [12]}
+
+
+###########################
+
+
+('python_features', 'kwargs', 'chained_call', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func3', 'func2', 'func1', 'c']
+     Symtable: type=function, name=func3
+       identifiers: []
+     Symtable: type=function, name=func2
+       identifiers: ['a']
+     Symtable: type=function, name=func1
+       identifiers: ['a', 'b']
+
+
+{'c': [17], 'func3': [9, 17], 'func2': [13, 17], 'func1': [17], 'a': [10, 14], 'b': [14]}
+
+
+###########################
+
+
+('python_features', 'kwargs', 'multiple', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['concatenate', 'c']
+     Symtable: type=function, name=concatenate
+       identifiers: ['kwargs', 'result', 'arg']
+
+
+{'c': [11], 'result': [5, 8, 7], 'arg': [6, 7], 'concatenate': [11], 'kwargs': [6]}
+
+
+###########################
+
+
+('python_features', 'lambdas', 'call', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['x', 'a']
+     Symtable: type=function, name=lambda
+       identifiers: ['x']
+
+
+{'x': [4, 6, 4], 'a': [6]}
+
+
+###########################
+
+
+('python_features', 'lambdas', 'calls_parameter', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func1', 'func2', 'x', 'a', 'b']
+     Symtable: type=function, name=func1
+       identifiers: []
+     Symtable: type=function, name=func2
+       identifiers: []
+     Symtable: type=function, name=lambda
+       identifiers: ['x']
+
+
+{'x': [12, 14, 15, 12], 'a': [14], 'b': [15], 'func1': [14], 'func2': [15]}
+
+
+###########################
+
+
+('python_features', 'lambdas', 'chained_calls', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func3', 'func2', 'func1', 'd']
+     Symtable: type=function, name=func3
+       identifiers: ['a']
+     Symtable: type=function, name=func2
+       identifiers: ['a', 'b', 'func3']
+     Symtable: type=function, name=func1
+       identifiers: ['a', 'b', 'c', 'func2']
+     Symtable: type=function, name=lambda
+       identifiers: ['x']
+     Symtable: type=function, name=lambda
+       identifiers: ['x']
+     Symtable: type=function, name=lambda
+       identifiers: ['x']
+
+
+{'d': [18], 'func1': [18], 'a': [5, 9, 14], 'func3': [10], 'b': [10, 15], 'func2': [15], 'c': [15], 'x': [18, 18, 18]}
+
+
+###########################
+
+
+('python_features', 'lambdas', 'composition', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['result']
+     Symtable: type=function, name=lambda
+       identifiers: ['x']
+     Symtable: type=function, name=lambda
+       identifiers: ['x']
+
+
+{'result': [4], 'x': [4, 4]}
+
+
+###########################
+
+
+('python_features', 'lambdas', 'parameter_call', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func', 'y', 'b']
+     Symtable: type=function, name=func
+       identifiers: ['a']
+     Symtable: type=function, name=lambda
+       identifiers: ['x']
+
+
+{'y': [8, 10], 'b': [10], 'func': [10], 'a': [5], 'x': [8]}
+
+
+###########################
+
+
+('python_features', 'lambdas', 'return_call', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func', 'y', 'a']
+     Symtable: type=function, name=func
+       identifiers: []
+          Symtable: type=function, name=lambda
+            identifiers: ['x']
+
+
+{'y': [8, 9], 'a': [9], 'func': [8], 'x': [5]}
+
+
+###########################
+
+
+('python_features', 'lists', 'comprehension_if', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func', 'a', 'range']
+     Symtable: type=function, name=func
+       identifiers: []
+     Symtable: type=function, name=listcomp
+       identifiers: ['.0', 'a', 'func']
+
+
+{'a': [8, 8, 8], 'range': [8], 'func': [8]}
+
+
+###########################
+
+
+('python_features', 'lists', 'comprehension_val', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func', 'ls', 'range']
+     Symtable: type=function, name=func
+       identifiers: ['a']
+     Symtable: type=function, name=listcomp
+       identifiers: ['.0', 'a', 'func']
+
+
+{'ls': [8], 'a': [5, 8, 8], 'func': [8], 'range': [8]}
+
+
+###########################
+
+
+('python_features', 'lists', 'copy', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['my_list', 'copy_of_my_list']
+
+
+{'my_list': [2, 3], 'copy_of_my_list': [3]}
+
+
+###########################
+
+
+('python_features', 'lists', 'ext_index', 'ext.py')
+Symtable: type=module, name=top
+  identifiers: ['key']
+
+
+{'key': [2]}
+
+
+###########################
+
+
+('python_features', 'lists', 'ext_index', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['key', 'func1', 'func2', 'ls', 'a']
+     Symtable: type=function, name=func1
+       identifiers: []
+     Symtable: type=function, name=func2
+       identifiers: []
+
+
+{'ls': [15, 17], 'a': [17], 'func1': [15], 'func2': [15], 'key': [17]}
+
+
+###########################
+
+
+('python_features', 'lists', 'nested', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func1', 'func2', 'ls', 'a']
+     Symtable: type=function, name=func1
+       identifiers: []
+     Symtable: type=function, name=func2
+       identifiers: []
+
+
+{'ls': [12, 14], 'a': [14], 'func2': [12], 'func1': [12]}
+
+
+###########################
+
+
+('python_features', 'lists', 'nested_comprehension', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func1', 'func2', 'c', 'range']
+     Symtable: type=function, name=func1
+       identifiers: ['a']
+     Symtable: type=function, name=func2
+       identifiers: ['a']
+     Symtable: type=function, name=listcomp
+       identifiers: ['.0', 'b', 'func2']
+     Symtable: type=function, name=listcomp
+       identifiers: ['.0', 'a', 'func1']
+
+
+{'c': [12], 'a': [5, 9, 12, 12], 'func1': [12], 'func2': [12], 'b': [12, 12], 'range': [12]}
+
+
+###########################
+
+
+('python_features', 'lists', 'param_index', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func2', 'func1', 'ls', 'a']
+     Symtable: type=function, name=func2
+       identifiers: []
+     Symtable: type=function, name=func1
+       identifiers: ['key', 'ls']
+
+
+{'ls': [12, 9], 'a': [14], 'func1': [12, 14], 'func2': [12], 'key': [9]}
+
+
+###########################
+
+
+('python_features', 'lists', 'simple', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func1', 'func2', 'func3', 'a', 'c', 'd', 'e', 'func4', 'b', 'f']
+     Symtable: type=function, name=func1
+       identifiers: []
+     Symtable: type=function, name=func2
+       identifiers: []
+     Symtable: type=function, name=func3
+       identifiers: []
+     Symtable: type=function, name=func4
+       identifiers: []
+
+
+{'a': [16, 18, 19, 20], 'c': [18], 'd': [19], 'e': [20], 'b': [27, 28, 30], 'func4': [28], 'f': [30], 'func1': [16], 'func2': [16], 'func3': [16]}
+
+
+###########################
+
+
+('python_features', 'lists', 'slice', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func1', 'func2', 'func3', 'ls', 'ls2', 'c']
+     Symtable: type=function, name=func1
+       identifiers: []
+     Symtable: type=function, name=func2
+       identifiers: []
+     Symtable: type=function, name=func3
+       identifiers: []
+
+
+{'ls': [16, 18], 'ls2': [18, 20], 'c': [20], 'func1': [16], 'func2': [16], 'func3': [16]}
+
+
+###########################
+
+
+('python_features', 'lists', 'unpacking', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['a', 'b', 'c', 'd']
+
+
+{'a': [2, 3], 'b': [3], 'c': [3], 'd': [3]}
+
+
+###########################
+
+
+('python_features', 'mro', 'basic', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['A', 'B', 'b', 'c']
+     Symtable: type=class, name=A
+       identifiers: ['func']
+          Symtable: type=function, name=func
+            identifiers: ['self']
+     Symtable: type=class, name=B
+       identifiers: []
+
+
+{'A': [9], 'b': [13, 14], 'c': [14], 'B': [13]}
+
+
+###########################
+
+
+('python_features', 'mro', 'basic_init', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['A', 'B', 'b', 'c']
+     Symtable: type=class, name=A
+       identifiers: ['__init__']
+          Symtable: type=function, name=__init__
+            identifiers: ['self']
+     Symtable: type=class, name=B
+       identifiers: ['func']
+          Symtable: type=function, name=func
+            identifiers: ['self']
+
+
+{'A': [10], 'b': [15, 16], 'c': [16], 'B': [15], 'self': [7, 12]}
+
+
+###########################
+
+
+('python_features', 'mro', 'parents_same_superclass', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['A', 'B', 'C', 'D', 'd', 'e']
+     Symtable: type=class, name=A
+       identifiers: ['__init__', 'func']
+          Symtable: type=function, name=__init__
+            identifiers: ['self']
+          Symtable: type=function, name=func
+            identifiers: ['self']
+     Symtable: type=class, name=B
+       identifiers: []
+     Symtable: type=class, name=C
+       identifiers: ['func']
+          Symtable: type=function, name=func
+            identifiers: ['self']
+     Symtable: type=class, name=D
+       identifiers: []
+
+
+{'A': [15, 19], 'B': [24], 'C': [24], 'd': [28, 29], 'e': [29], 'D': [28]}
+
+
+###########################
+
+
+('python_features', 'mro', 'self_assignment', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['B', 'A', 'a', 'b']
+     Symtable: type=class, name=B
+       identifiers: ['funcb', 'func']
+          Symtable: type=function, name=funcb
+            identifiers: ['self']
+          Symtable: type=function, name=func
+            identifiers: ['self']
+     Symtable: type=class, name=A
+       identifiers: ['funca', 'func']
+          Symtable: type=function, name=funca
+            identifiers: ['self']
+          Symtable: type=function, name=func
+            identifiers: ['self']
+
+
+{'B': [12], 'a': [20, 21, 22, 24, 25], 'b': [22, 25], 'A': [20], 'self': [6, 6, 14, 14]}
+
+
+###########################
+
+
+('python_features', 'mro', 'super_call', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['A', 'B', 'C', 'c', 'd']
+     Symtable: type=class, name=A
+       identifiers: ['func']
+          Symtable: type=function, name=func
+            identifiers: ['self']
+     Symtable: type=class, name=B
+       identifiers: ['func']
+          Symtable: type=function, name=func
+            identifiers: ['self', 'super', '__class__']
+     Symtable: type=class, name=C
+       identifiers: ['func']
+          Symtable: type=function, name=func
+            identifiers: ['self', 'super', '__class__']
+
+
+{'A': [9], 'B': [14], 'c': [19, 20], 'd': [20], 'C': [19], 'super': [11, 16]}
+
+
+###########################
+
+
+('python_features', 'mro', 'two_parents', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['A', 'B', 'C', 'c', 'd']
+     Symtable: type=class, name=A
+       identifiers: ['func']
+          Symtable: type=function, name=func
+            identifiers: ['self']
+     Symtable: type=class, name=B
+       identifiers: ['__init__', 'func']
+          Symtable: type=function, name=__init__
+            identifiers: ['self']
+          Symtable: type=function, name=func
+            identifiers: ['self']
+     Symtable: type=class, name=C
+       identifiers: []
+
+
+{'A': [17], 'B': [17], 'c': [21, 22], 'd': [22], 'C': [21]}
+
+
+###########################
+
+
+('python_features', 'mro', 'two_parents_method_defined', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['A', 'B', 'C', 'c', 'd']
+     Symtable: type=class, name=A
+       identifiers: ['__init__', 'func']
+          Symtable: type=function, name=__init__
+            identifiers: ['self']
+          Symtable: type=function, name=func
+            identifiers: ['self']
+     Symtable: type=class, name=B
+       identifiers: ['func']
+          Symtable: type=function, name=func
+            identifiers: ['self']
+     Symtable: type=class, name=C
+       identifiers: ['__init__', 'func']
+          Symtable: type=function, name=__init__
+            identifiers: ['self']
+          Symtable: type=function, name=func
+            identifiers: ['self']
+
+
+{'A': [17], 'B': [17], 'c': [25, 26], 'd': [26], 'C': [25]}
+
+
+###########################
+
+
+('python_features', 'returns', 'call', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['return_func', 'func', 'a', 'b']
+     Symtable: type=function, name=return_func
+       identifiers: []
+     Symtable: type=function, name=func
+       identifiers: ['return_func']
+
+
+{'a': [12, 13], 'b': [13], 'return_func': [9], 'func': [12]}
+
+
+###########################
+
+
+('python_features', 'returns', 'imported_call', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func', 'a', 'b']
+
+
+{'a': [6, 7], 'b': [7], 'func': [6]}
+
+
+###########################
+
+
+('python_features', 'returns', 'imported_call', 'to_import.py')
+Symtable: type=module, name=top
+  identifiers: ['return_func', 'func']
+     Symtable: type=function, name=return_func
+       identifiers: []
+     Symtable: type=function, name=func
+       identifiers: ['return_func']
+
+
+{'return_func': [7]}
+
+
+###########################
+
+
+('python_features', 'returns', 'multiple_types', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['Union', 'func', 'int', 'str', 'a', 'b']
+     Symtable: type=function, name=func
+       identifiers: ['x']
+
+
+{'a': [14], 'b': [15], 'Union': [7], 'func': [14, 15], 'int': [7, 7], 'x': [8, 9], 'str': [7]}
+
+
+###########################
+
+
+('python_features', 'returns', 'nested_import_call', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func', 'a', 'b']
+
+
+{'a': [6, 7], 'b': [7], 'func': [6]}
+
+
+###########################
+
+
+('python_features', 'returns', 'nested_import_call', 'to_import2.py')
+Symtable: type=module, name=top
+  identifiers: ['return_func']
+     Symtable: type=function, name=return_func
+       identifiers: []
+
+
+{}
+
+
+###########################
+
+
+('python_features', 'returns', 'nested_import_call', 'to_import_nested.py')
+Symtable: type=module, name=top
+  identifiers: ['return_func', 'func']
+     Symtable: type=function, name=func
+       identifiers: ['return_func']
+
+
+{'return_func': [7]}
+
+
+###########################
+
+
+('python_features', 'returns', 'object', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['Person', 'func', 'p']
+     Symtable: type=class, name=Person
+       identifiers: ['__init__']
+          Symtable: type=function, name=__init__
+            identifiers: ['self', 'name', 'age']
+     Symtable: type=function, name=func
+       identifiers: ['Person']
+
+
+{'p': [14], 'func': [14], 'name': [6], 'age': [7], 'Person': [11], 'self': [6, 7]}
+
+
+###########################
+
+
+('python_features', 'returns', 'return_complex', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func', 'a', 'func2', 'func3', 'func4', 'b', 'func5', 'c']
+     Symtable: type=function, name=func
+       identifiers: []
+     Symtable: type=function, name=func2
+       identifiers: []
+     Symtable: type=function, name=func3
+       identifiers: ['func2']
+     Symtable: type=function, name=func4
+       identifiers: ['func3']
+     Symtable: type=function, name=func5
+       identifiers: ['func2']
+
+
+{'a': [8], 'b': [23], 'c': [30], 'func': [8], 'func2': [16, 27], 'func5': [30], 'func3': [20], 'func4': [23]}
+
+
+###########################
+
+
+('python_features', 'returns', 'return_lambda', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func', 'f', 'a']
+     Symtable: type=function, name=func
+       identifiers: []
+          Symtable: type=function, name=lambda
+            identifiers: ['x']
+
+
+{'f': [8, 9], 'a': [9], 'func': [8], 'x': [5]}
+
+
+###########################
+
+
+('python_features', 'returns', 'return_types', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['func', 'a', 'func1', 'b', 'namedtuple', 'func3', 'c', 'func4', 'd', 'func5', 'e']
+     Symtable: type=function, name=func
+       identifiers: []
+     Symtable: type=function, name=func1
+       identifiers: []
+     Symtable: type=function, name=func3
+       identifiers: ['Point', 'namedtuple']
+     Symtable: type=function, name=func4
+       identifiers: ['set']
+     Symtable: type=function, name=func5
+       identifiers: ['range']
+          Symtable: type=function, name=listcomp
+            identifiers: ['.0', 'x']
+
+
+{'a': [9], 'b': [17], 'c': [28], 'd': [36], 'e': [44], 'func': [9], 'func1': [17], 'Point': [24, 25], 'func3': [28], 'func4': [36], 'func5': [44], 'namedtuple': [24], 'set': [33], 'x': [41, 41], 'range': [41]}
+
+
+###########################
+
+
+('python_features', 'special_cases', 'combined_types', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['my_function', 'a', 'b']
+     Symtable: type=function, name=my_function
+       identifiers: ['my_bool', 'x']
+
+
+{'a': [10], 'b': [11], 'my_bool': [3], 'x': [7, 4, 6], 'my_function': [10, 11]}
+
+
+###########################
+
+
+('python_features', 'special_cases', 'complex_assignment', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['unique_substring', 'c', 'd']
+     Symtable: type=function, name=unique_substring
+       identifiers: ['input_string', 'substrings', 'range', 'len', 'print', 'unique']
+          Symtable: type=function, name=listcomp
+            identifiers: ['.0', 'i', 'input_string']
+          Symtable: type=function, name=listcomp
+            identifiers: ['.0', 'x', 'len', 'set']
+
+
+{'c': [12], 'd': [13], 'substrings': [3, 4, 5], 'unique': [5, 6, 7], 'unique_substring': [12, 13], 'print': [4], 'x': [5, 5, 5], 'input_string': [3, 3], 'i': [3, 3, 3], 'range': [3], 'len': [5, 3], 'set': [5]}
+
+
+###########################
+
+
+('python_features', 'special_cases', 'rare_types', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['defaultdict', 'my_function', 'a']
+     Symtable: type=function, name=my_function
+       identifiers: ['my_default_dict', 'defaultdict']
+
+
+{'a': [10], 'my_default_dict': [6, 7], 'my_function': [10], 'defaultdict': [6]}
+
+
+###########################
+
+
+('python_features', 'special_cases', 'wrong_type_annotation', 'main.py')
+Symtable: type=module, name=top
+  identifiers: ['Union', 'func', 'int', 'float', 'a', 'b']
+     Symtable: type=function, name=func
+       identifiers: ['x']
+
+
+{'a': [14], 'b': [15], 'Union': [7], 'func': [14, 15], 'int': [7, 7], 'x': [8, 9], 'float': [7]}
+
+
+###########################
