@@ -15,5 +15,38 @@
         "type": [
             "int"
         ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 11,
+        "variable": "gen",
+        "type": [
+            "callable"
+        ]
+    },
+
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "variable": "i",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 15,
+        "variable": "a",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 17,
+        "variable": "a",
+        "type": [
+            "int"
+        ]
     }
 ]

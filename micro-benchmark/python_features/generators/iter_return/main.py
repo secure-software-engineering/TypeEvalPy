@@ -21,3 +21,4 @@ class Cls:
 
 
 output_list = [i for i in Cls(1)]
+a = output_list[1]()

@@ -1,18 +1,11 @@
 [
     {
         "file": "main.py",
-        "line_number": 8,
-        "function": "__iter__",
+        "line_number": 6,
+        "parameter": "max",
+        "function": "Cls.__init__",
         "type": [
-            "any"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 8,
-        "function": "__iter__",
-        "type": [
-            "any"
+            "int"
         ]
     },
     {
@@ -20,49 +13,65 @@
         "line_number": 8,
         "function": "Cls.__iter__",
         "type": [
-            "any"
+            "Cls"
         ]
     },
     {
         "file": "main.py",
-        "line_number": 8,
+        "line_number": 9,
+        "variable":"n",
         "function": "Cls.__iter__",
         "type": [
-            "any"
+            "Cls"
         ]
     },
     {
         "file": "main.py",
-        "line_number": 5,
-        "parameter": "max",
-        "function": "__init__",
+        "line_number": 12,
+        "function": "Cls.__next__",
         "type": [
-            "int"
+            "int",
+            "StopIteration"
         ]
     },
     {
         "file": "main.py",
         "line_number": 16,
         "variable": "result",
-        "function": "__next__",
+        "function": "Cls.__next__",
         "type": [
             "int"
         ]
     },
     {
         "file": "main.py",
-        "line_number": 5,
-        "parameter": "max",
-        "function": "__init__",
+        "line_number": 17,
+        "variable": "n",
+        "function": "Cls.__next__",
         "type": [
-            "any"
+            "int"
         ]
     },
     {
         "file": "main.py",
-        "line_number": 16,
-        "variable": "result",
-        "function": "__next__",
+        "line_number": 21,
+        "variable": "c",
+        "type": [
+            "Cls"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 23,
+        "variable": "output_list",
+        "type": [
+            "list[int]"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 23,
+        "variable": "i",
         "type": [
             "int"
         ]

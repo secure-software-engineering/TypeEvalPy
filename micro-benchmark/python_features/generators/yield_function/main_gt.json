@@ -32,5 +32,29 @@
         "type": [
             "int"
         ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 15,
+        "variable": "i",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 17,
+        "variable": "a",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 19,
+        "variable": "a",
+        "type": [
+            "int"
+        ]
     }
 ]

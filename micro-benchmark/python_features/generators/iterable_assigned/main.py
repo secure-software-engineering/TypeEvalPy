@@ -15,9 +15,9 @@ class Cls:
 
         result = 2**self.n
         self.n += 1
-        return self.n
+        return result
 
 
-c = Cls(100)
+c = Cls(10)
 
 output_list = [i for i in c]

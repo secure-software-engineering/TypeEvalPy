@@ -9,52 +9,69 @@
     },
     {
         "file": "main.py",
-        "line_number": 12,
-        "function": "__iter__",
-        "type": [
-            "any"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 12,
-        "function": "__iter__",
-        "type": [
-            "any"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 12,
-        "function": "Cls.__iter__",
-        "type": [
-            "any"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 12,
-        "function": "Cls.__iter__",
-        "type": [
-            "any"
-        ]
-    },
-    {
-        "file": "main.py",
         "line_number": 9,
         "parameter": "max",
-        "function": "__init__",
+        "function": "Cls.__init__",
         "type": [
             "int"
         ]
     },
     {
         "file": "main.py",
-        "line_number": 9,
-        "parameter": "max",
-        "function": "__init__",
+        "line_number": 12,
+        "function": "Cls.__iter__",
         "type": [
-            "any"
+            "Cls"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 17,
+        "function": "Cls.__next__",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 21,
+        "variable": "result",
+        "function": "Cls.__next__",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 22,
+        "variable": "n",
+        "function": "Cls.__next__",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 23,
+        "variable": "output_list",
+        "type": [
+            "list[callable]"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 23,
+        "variable": "i",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 24,
+        "variable": "a",
+        "type": [
+            "int"
         ]
     }
 ]

@@ -9,24 +9,36 @@
     },
     {
         "file": "main.py",
-        "line_number": 13,
-        "function": "__iter__",
+        "line_number": 4,
+        "parameter": "c",
+        "function": "func",
         "type": [
             "any"
         ]
     },
     {
         "file": "main.py",
-        "line_number": 13,
-        "function": "__iter__",
+        "line_number": 4,
+        "variable": "i",
+        "function": "func",
         "type": [
-            "any"
+            "int"
         ]
     },
     {
         "file": "main.py",
-        "line_number": 17,
-        "function": "__next__",
+        "line_number": 5,
+        "variable": "output_list",
+        "function": "func",
+        "type": [
+            "list[any]"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 10,
+        "parameter": "max",
+        "function": "Cls.__init__",
         "type": [
             "int"
         ]
@@ -36,15 +48,16 @@
         "line_number": 13,
         "function": "Cls.__iter__",
         "type": [
-            "any"
+            "Cls"
         ]
     },
     {
         "file": "main.py",
         "line_number": 13,
+        "variable": "n",
         "function": "Cls.__iter__",
         "type": [
-            "any"
+            "int"
         ]
     },
     {
@@ -57,56 +70,28 @@
     },
     {
         "file": "main.py",
-        "line_number": 4,
-        "parameter": "c",
-        "function": "func",
-        "type": [
-            "any"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 5,
-        "variable": "output_list",
-        "function": "func",
-        "type": [
-            "list"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 10,
-        "parameter": "max",
-        "function": "__init__",
-        "type": [
-            "int"
-        ]
-    },
-    {
-        "file": "main.py",
         "line_number": 21,
         "variable": "result",
-        "function": "__next__",
+        "function": "Cls.__next__",
         "type": [
             "int"
         ]
     },
     {
         "file": "main.py",
-        "line_number": 10,
-        "parameter": "max",
-        "function": "__init__",
+        "line_number": 22,
+        "variable": "n",
+        "function": "Cls.__next__",
         "type": [
-            "any"
+            "int"
         ]
     },
     {
         "file": "main.py",
-        "line_number": 21,
-        "variable": "result",
-        "function": "__next__",
+        "line_number": 26,
+        "variable": "a",
         "type": [
-            "int"
+            "list[int]"
         ]
     }
 ]
