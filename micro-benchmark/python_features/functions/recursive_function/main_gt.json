@@ -4,7 +4,6 @@
         "line_number": 2,
         "function": "recursive_func",
         "type": [
-            "any",
             "int"
         ]
     },
@@ -13,6 +12,14 @@
         "line_number": 2,
         "parameter": "x",
         "function": "recursive_func",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "variable": "a",
         "type": [
             "int"
         ]

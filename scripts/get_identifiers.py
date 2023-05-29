@@ -17,7 +17,7 @@ def describe_symtable(st, recursive=True, indent=0):
             describe_symtable(child_st, recursive, indent + 5)
 
 
-in_py_path = "../micro-benchmark/python_features/external"
+in_py_path = "../micro-benchmark/python_features/functions"
 for _file in sorted(Path(in_py_path).rglob("*.py")):
     # Create a dictionary to store line numbers for identifiers
     identifiers = {}

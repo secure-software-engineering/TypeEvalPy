@@ -13,9 +13,7 @@ def list_python_files(folder_path):
     return python_files
 
 
-folder_path = (
-    "/home/sam/master-thesis-of-samkutty/micro-benchmark/python_features/external"
-)
+folder_path = "../micro-benchmark/python_features/functions"
 
 python_files = list_python_files(folder_path)
 

@@ -4,7 +4,7 @@
         "line_number": 4,
         "function": "add",
         "type": [
-            "int"
+            "any"
         ]
     },
     {
@@ -12,7 +12,7 @@
         "line_number": 8,
         "function": "square",
         "type": [
-            null
+            "int","float"
         ]
     },
     {
@@ -21,7 +21,7 @@
         "parameter": "x",
         "function": "add",
         "type": [
-            "int"
+            "any"
         ]
     },
     {
@@ -30,7 +30,7 @@
         "parameter": "y",
         "function": "add",
         "type": [
-            "int"
+            "any"
         ]
     },
     {
@@ -39,7 +39,15 @@
         "parameter": "x",
         "function": "square",
         "type": [
-            "any"
+            "int","float"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 12,
+        "variable": "result",
+        "type": [
+            "int"
         ]
     }
 ]

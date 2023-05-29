@@ -9,17 +9,26 @@
     },
     {
         "file": "main.py",
-        "line_number": 7,
-        "function": "inner",
+        "line_number": 5,
+        "variable": "x",
+        "function": "outer",
         "type": [
             "int"
         ]
     },
     {
         "file": "main.py",
-        "line_number": 5,
-        "variable": "x",
-        "function": "outer",
+        "line_number": 7,
+        "function": "inner",
+        "type": [
+            "int"
+        ]
+    },
+
+    {
+        "file": "main.py",
+        "line_number": 12,
+        "variable": "a",
         "type": [
             "int"
         ]

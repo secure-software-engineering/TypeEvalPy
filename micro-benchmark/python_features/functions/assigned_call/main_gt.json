@@ -6,5 +6,21 @@
         "type": [
             "str"
         ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "variable": "a",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 9,
+        "variable": "b",
+        "type": [
+            "str"
+        ]
     }
 ]

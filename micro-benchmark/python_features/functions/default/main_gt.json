@@ -24,5 +24,29 @@
         "type": [
             "int"
         ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "variable": "result1",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 7,
+        "variable": "result2",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "variable": "result3",
+        "type": [
+            "int"
+        ]
     }
 ]

@@ -15,5 +15,29 @@
         "type": [
             "any"
         ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "variable": "x",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 9,
+        "variable": "a",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 10,
+        "variable": "b",
+        "type": [
+            "str"
+        ]
     }
 ]

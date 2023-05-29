@@ -2,34 +2,8 @@
     {
         "file": "main.py",
         "line_number": 6,
-        "function": "my_static_method",
-        "type": [
-            null
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 6,
         "function": "MyClass.my_static_method",
         "type": [
-            null
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 6,
-        "parameter": "x",
-        "function": "my_static_method",
-        "type": [
-            "any"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 6,
-        "parameter": "y",
-        "function": "my_static_method",
-        "type": [
             "any"
         ]
     },
@@ -49,6 +23,14 @@
         "function": "my_static_method",
         "type": [
             "any"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 10,
+        "variable": "result",
+        "type": [
+            "int"
         ]
     }
 ]
