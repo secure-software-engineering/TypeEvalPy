@@ -13,7 +13,31 @@
         "variable": "a",
         "function": "func",
         "type": [
-            "any"
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "function": "func",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "variable": "a",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 14,
+        "variable": "b",
+        "type": [
+            "str"
         ]
     }
 ]

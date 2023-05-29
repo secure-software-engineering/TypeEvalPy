@@ -1,1 +1,11 @@
-[]
+[
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "variable": "result",
+        "type": [
+            "int"
+        ]
+    }
+
+]

@@ -10,7 +10,23 @@
     {
         "file": "main.py",
         "line_number": 5,
-        "function": "nested_return_func",
+        "function": "return_func.nested_return_func",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 15,
+        "variable": "a",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 16,
+        "variable": "b",
         "type": [
             "str"
         ]

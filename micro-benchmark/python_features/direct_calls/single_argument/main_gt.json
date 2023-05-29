@@ -32,5 +32,13 @@
         "type": [
             "any"
         ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 12,
+        "variable": "result",
+        "type": [
+            "int"
+        ]
     }
 ]
