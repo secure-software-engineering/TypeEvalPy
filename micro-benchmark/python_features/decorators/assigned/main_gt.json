@@ -9,14 +9,6 @@
     },
     {
         "file": "main.py",
-        "line_number": 16,
-        "function": "func",
-        "type": [
-            null
-        ]
-    },
-    {
-        "file": "main.py",
         "line_number": 4,
         "parameter": "f",
         "function": "dec1",
@@ -27,44 +19,7 @@
     {
         "file": "main.py",
         "line_number": 5,
-        "parameter": "a",
-        "function": "dec1",
-        "type": [
-            "any"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 5,
-        "parameter": "b",
-        "function": "dec1",
-        "type": [
-            "any"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 6,
-        "variable": "result",
-        "function": "dec1",
-        "type": [
-            "any"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 16,
-        "parameter": "a",
-        "function": "func",
-        "type": [
-            "any"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 16,
-        "parameter": "b",
-        "function": "func",
+        "function": "wrapper",
         "type": [
             "any"
         ]
@@ -92,6 +47,48 @@
         "line_number": 6,
         "variable": "result",
         "function": "wrapper",
+        "type": [
+            "any"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 12,
+        "variable": "a",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 16,
+        "function": "func",
+        "type": [
+            "any"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 16,
+        "parameter": "a",
+        "function": "func",
+        "type": [
+            "any"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 16,
+        "parameter": "b",
+        "function": "func",
+        "type": [
+            "any"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 20,
+        "variable": "c",
         "type": [
             "any"
         ]

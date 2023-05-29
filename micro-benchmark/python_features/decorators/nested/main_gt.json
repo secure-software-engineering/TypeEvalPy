@@ -9,6 +9,23 @@
     },
     {
         "file": "main.py",
+        "line_number": 5,
+        "function": "dec",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "parameter": "f",
+        "function": "dec",
+        "type": [
+            "any"
+        ]
+    },
+    {
+        "file": "main.py",
         "line_number": 8,
         "function": "modified_inner",
         "type": [
@@ -25,20 +42,11 @@
     },
     {
         "file": "main.py",
-        "line_number": 5,
-        "parameter": "f",
-        "function": "func",
+        "line_number": 12,
+        "variable": "a",
         "type": [
-            "any"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 5,
-        "parameter": "f",
-        "function": "dec",
-        "type": [
-            "any"
+            "int"
         ]
     }
+
 ]

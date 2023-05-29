@@ -9,10 +9,19 @@
     },
     {
         "file": "main.py",
-        "line_number": 15,
-        "function": "func2",
+        "line_number": 5,
+        "function": "func1",
         "type": [
-            "str"
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "parameter": "f",
+        "function": "dec",
+        "type": [
+            "any"
         ]
     },
     {
@@ -25,20 +34,18 @@
     },
     {
         "file": "main.py",
-        "line_number": 5,
-        "parameter": "f",
-        "function": "func1",
+        "line_number": 15,
+        "function": "func2",
         "type": [
-            "any"
+            "str"
         ]
     },
     {
         "file": "main.py",
-        "line_number": 5,
-        "parameter": "f",
-        "function": "dec",
+        "line_number": 19,
+        "variable": "a",
         "type": [
-            "any"
+            "int"
         ]
     }
 ]

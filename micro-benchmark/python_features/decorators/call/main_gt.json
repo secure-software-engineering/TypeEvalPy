@@ -9,6 +9,15 @@
     },
     {
         "file": "main.py",
+        "line_number": 4,
+        "parameter": "f",
+        "function": "dec",
+        "type": [
+            "any"
+        ]
+    },
+    {
+        "file": "main.py",
         "line_number": 5,
         "function": "wrapper",
         "type": [
@@ -17,11 +26,18 @@
     },
     {
         "file": "main.py",
-        "line_number": 4,
-        "parameter": "f",
-        "function": "dec",
+        "line_number": 12,
+        "function": "func",
         "type": [
-            "any"
+            "None"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 16,
+        "variable": "a",
+        "type": [
+            "str"
         ]
     }
 ]

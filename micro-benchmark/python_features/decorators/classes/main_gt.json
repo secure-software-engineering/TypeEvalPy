@@ -4,13 +4,22 @@
         "line_number": 4,
         "function": "my_decorator",
         "type": [
-            "callable"
+            "NewClass"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "function": "my_decorator",
+        "parameter": "cls",
+        "type": [
+            "Class"
         ]
     },
     {
         "file": "main.py",
         "line_number": 6,
-        "function": "my_method",
+        "function": "NewClass.my_method",
         "type": [
             "str"
         ]
@@ -25,19 +34,18 @@
     },
     {
         "file": "main.py",
-        "line_number": 6,
-        "function": "NewClass.my_method",
+        "line_number": 18,
+        "variable": "a",
         "type": [
-            "str"
+            "my_decorator.NewClass"
         ]
     },
     {
         "file": "main.py",
-        "line_number": 4,
-        "parameter": "cls",
-        "function": "my_decorator",
+        "line_number": 19,
+        "variable": "b",
         "type": [
-            "any"
+            "str"
         ]
     }
 ]

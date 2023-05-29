@@ -9,10 +9,44 @@
     },
     {
         "file": "main.py",
+        "line_number": 4,
+        "parameter": "f",
+        "function": "dec1",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "function": "dec1.inner",
+        "type": [
+            "any"
+        ]
+    },
+    {
+        "file": "main.py",
         "line_number": 11,
         "function": "dec2",
         "type": [
             "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 11,
+        "parameter": "f",
+        "function": "dec",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 12,
+        "function": "dec2.inner",
+        "type": [
+            "int"
         ]
     },
     {
@@ -23,30 +57,14 @@
             "str"
         ]
     },
+
+
     {
         "file": "main.py",
-        "line_number": 12,
-        "function": "inner",
+        "line_number": 24,
+        "variable": "a",
         "type": [
             "int"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 4,
-        "parameter": "f",
-        "function": "dec1",
-        "type": [
-            "callable"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 11,
-        "parameter": "f",
-        "function": "dec2",
-        "type": [
-            "callable"
         ]
     }
 ]
