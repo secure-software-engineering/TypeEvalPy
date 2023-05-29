@@ -1,1 +1,10 @@
-[]
+[
+    {
+        "file": "main.py",
+        "line_number": 9,
+        "variable": "a",
+        "type": [
+            "A"
+        ]
+    }
+]
