@@ -9,6 +9,15 @@
     },
     {
         "file": "main.py",
+        "line_number": 4,
+        "parameter": "key",
+        "function": "func1",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
         "line_number": 8,
         "function": "func2",
         "type": [
@@ -23,13 +32,29 @@
             "int"
         ]
     },
+
     {
         "file": "main.py",
-        "line_number": 4,
-        "parameter": "key",
-        "function": "func1",
+        "line_number": 16,
+        "variable": "d",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 17,
+        "variable": "e",
         "type": [
             "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 17,
+        "variable": "f",
+        "type": [
+            "int"
         ]
     }
 ]

@@ -10,8 +10,40 @@
     {
         "file": "main.py",
         "line_number": 8,
+        "function": "func",
+        "type": [
+            "None"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
         "parameter": "key",
         "function": "func",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "variable": "d[key]",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 12,
+        "variable": "d",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 15,
+        "variable": "e",
         "type": [
             "str"
         ]

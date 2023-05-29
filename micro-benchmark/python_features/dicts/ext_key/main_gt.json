@@ -6,5 +6,21 @@
         "type": [
             "str"
         ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 11,
+        "variable": "d",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "variable": "e",
+        "type": [
+            "str"
+        ]
     }
 ]

@@ -21,7 +21,23 @@
         "parameter": "d",
         "function": "func1",
         "type": [
-            "any"
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 12,
+        "variable": "d",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 14,
+        "variable": "e",
+        "type": [
+            "str"
         ]
     }
 ]

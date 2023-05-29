@@ -12,7 +12,7 @@
         "line_number": 8,
         "function": "func1",
         "type": [
-            "Dict[str, any]"
+            "dict"
         ]
     },
     {
@@ -21,7 +21,23 @@
         "variable": "d",
         "function": "func1",
         "type": [
-            "Dict[str, any]"
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "variable": "b",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 14,
+        "variable": "d",
+        "type": [
+            "str"
         ]
     }
 ]

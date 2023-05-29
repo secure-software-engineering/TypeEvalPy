@@ -14,5 +14,29 @@
         "type": [
             "int"
         ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 12,
+        "variable": "d",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 14,
+        "variable": "d['a']",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 15,
+        "variable": "e",
+        "type": [
+            "int"
+        ]
     }
 ]

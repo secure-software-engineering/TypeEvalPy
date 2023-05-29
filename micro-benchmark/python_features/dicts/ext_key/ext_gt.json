@@ -1,1 +1,10 @@
-[]
+[
+    {
+        "file": "ext.py",
+        "line_number": 2,
+        "variable": "key",
+        "type": [
+            "str"
+        ]
+    }
+]

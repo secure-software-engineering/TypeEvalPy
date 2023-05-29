@@ -1,1 +1,27 @@
-[]
+[
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "variable": "keys",
+        "type": [
+            "list[str]"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "variable": "values",
+        "type": [
+            "list[int]"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "variable": "my_dict",
+        "type": [
+            "dict"
+        ]
+    }
+
+]
