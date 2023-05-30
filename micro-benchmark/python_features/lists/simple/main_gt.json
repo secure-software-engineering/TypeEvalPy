@@ -25,8 +25,64 @@
     },
     {
         "file": "main.py",
+        "line_number": 16,
+        "variable": "a",
+        "type": [
+            "list[callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 18,
+        "variable": "c",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 19,
+        "variable": "d",
+        "type": [
+            "float"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 20,
+        "variable": "e",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
         "line_number": 23,
         "function": "func4",
+        "type": [
+            "bool"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 27,
+        "variable": "b",
+        "type": [
+            "list[None]"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 28,
+        "variable": "b[0]",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 30,
+        "variable": "f",
         "type": [
             "bool"
         ]

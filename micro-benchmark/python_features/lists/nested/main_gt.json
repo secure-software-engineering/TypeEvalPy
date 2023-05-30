@@ -14,5 +14,21 @@
         "type": [
             "str"
         ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 12,
+        "variable": "ls",
+        "type": [
+            "list"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 14,
+        "variable": "a",
+        "type": [
+            "int"
+        ]
     }
 ]

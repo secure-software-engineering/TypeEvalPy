@@ -22,5 +22,29 @@
         "type": [
             "str"
         ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 16,
+        "variable": "ls",
+        "type": [
+            "list[callable]"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 18,
+        "variable": "ls2",
+        "type": [
+            "list[callable]"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 20,
+        "variable": "c",
+        "type": [
+            "float"
+        ]
     }
 ]

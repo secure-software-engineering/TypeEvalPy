@@ -21,7 +21,7 @@
         "parameter": "a",
         "function": "func1",
         "type": [
-            "any"
+            "int"
         ]
     },
     {
@@ -30,7 +30,31 @@
         "parameter": "a",
         "function": "func2",
         "type": [
-            "any"
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 12,
+        "variable": "c",
+        "type": [
+            "list[int]"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 12,
+        "variable": "a",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 12,
+        "variable": "b",
+        "type": [
+            "int"
         ]
     }
 ]

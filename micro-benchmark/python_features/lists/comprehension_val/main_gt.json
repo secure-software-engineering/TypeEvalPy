@@ -13,7 +13,23 @@
         "parameter": "a",
         "function": "func",
         "type": [
-            "any"
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "variable": "ls",
+        "type": [
+            "list[int]"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "variable": "a",
+        "type": [
+            "int"
         ]
     }
 ]
