@@ -2,17 +2,17 @@
     {
         "file": "nested_init.py",
         "line_number": 2,
-        "function": "func",
+        "function": "Smth.func",
         "type": [
             "str"
         ]
     },
     {
         "file": "nested_init.py",
-        "line_number": 2,
-        "function": "Smth.func",
+        "line_number": 6,
+        "variable": "smth",
         "type": [
-            "str"
+            "Smth"
         ]
     }
 ]

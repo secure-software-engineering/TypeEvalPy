@@ -6,5 +6,21 @@
         "type": [
             "str"
         ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 11,
+        "variable": "a",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 12,
+        "variable": "b",
+        "type": [
+            "int"
+        ]
     }
 ]

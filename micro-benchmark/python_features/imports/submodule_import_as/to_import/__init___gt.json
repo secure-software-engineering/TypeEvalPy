@@ -1,1 +1,10 @@
-[]
+[
+    {
+        "file": "__init__.py",
+        "line_number": 1,
+        "fucntion": "func",
+        "type": [
+            "None"
+        ]
+    }
+]

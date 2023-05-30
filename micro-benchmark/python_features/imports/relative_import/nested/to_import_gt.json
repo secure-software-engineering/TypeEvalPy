@@ -1,1 +1,10 @@
-[]
+[
+    {
+        "file": "to_import.py",
+        "line_number": 3,
+        "variable": "func",
+        "type": [
+            "callable"
+        ]
+    }
+]

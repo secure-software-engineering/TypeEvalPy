@@ -6,5 +6,29 @@
         "type": [
             "str"
         ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 10,
+        "variable": "a",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 11,
+        "variable": "b",
+        "type": [
+            "float"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 12,
+        "variable": "c",
+        "type": [
+            "int"
+        ]
     }
 ]
