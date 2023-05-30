@@ -1,1 +1,18 @@
-[]
+[
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "variable": "x",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "variable": "a",
+        "type": [
+            "int"
+        ]
+    }
+]

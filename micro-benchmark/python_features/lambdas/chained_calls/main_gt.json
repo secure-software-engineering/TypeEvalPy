@@ -9,27 +9,19 @@
     },
     {
         "file": "main.py",
-        "line_number": 8,
-        "function": "func2",
-        "type": [
-            "any"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 13,
-        "function": "func1",
-        "type": [
-            "any"
-        ]
-    },
-    {
-        "file": "main.py",
         "line_number": 4,
         "parameter": "a",
         "function": "func3",
         "type": [
             "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "function": "func2",
+        "type": [
+            "any"
         ]
     },
     {
@@ -46,6 +38,14 @@
         "line_number": 8,
         "parameter": "b",
         "function": "func2",
+        "type": [
+            "any"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "function": "func1",
         "type": [
             "any"
         ]
@@ -75,6 +75,14 @@
         "function": "func1",
         "type": [
             "any"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 18,
+        "variable": "d",
+        "type": [
+            "int"
         ]
     }
 ]

@@ -4,7 +4,23 @@
         "line_number": 4,
         "function": "func",
         "type": [
-            "lambda"
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "variable": "y",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 9,
+        "variable": "a",
+        "type": [
+            "int"
         ]
     }
 ]

@@ -12,4 +12,5 @@ def func2():
 x = lambda x: x()
 
 a = x(func1)
+
 b = x(func2)

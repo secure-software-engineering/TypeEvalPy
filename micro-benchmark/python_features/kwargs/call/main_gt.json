@@ -9,14 +9,14 @@
         "file": "main.py",
         "line_number": 8,
         "function": "func",
-        "type": ["function"]
+        "type": ["any"]
     },
     {
         "file": "main.py",
         "line_number": 8,
         "function": "func",
         "parameter": "a",
-        "type": ["function"]
+        "type": ["callable"]
     },
     {
         "file": "main.py",
