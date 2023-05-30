@@ -24,7 +24,7 @@ def func4():
     return True
 
 
-b = [None]
+b = []
 b[0] = func4
 
 f = b[0]()

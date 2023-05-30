@@ -28,7 +28,7 @@
         "line_number": 16,
         "variable": "ls",
         "type": [
-            "list[callable]"
+            "list"
         ]
     },
     {
@@ -36,7 +36,7 @@
         "line_number": 18,
         "variable": "ls2",
         "type": [
-            "list[callable]"
+            "list"
         ]
     },
     {

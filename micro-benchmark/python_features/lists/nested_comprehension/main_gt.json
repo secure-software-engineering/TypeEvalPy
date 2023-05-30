@@ -9,17 +9,17 @@
     },
     {
         "file": "main.py",
-        "line_number": 8,
-        "function": "func2",
+        "line_number": 4,
+        "parameter": "a",
+        "function": "func1",
         "type": [
             "int"
         ]
     },
     {
         "file": "main.py",
-        "line_number": 4,
-        "parameter": "a",
-        "function": "func1",
+        "line_number": 8,
+        "function": "func2",
         "type": [
             "int"
         ]
@@ -38,7 +38,7 @@
         "line_number": 12,
         "variable": "c",
         "type": [
-            "list[int]"
+            "list"
         ]
     },
     {

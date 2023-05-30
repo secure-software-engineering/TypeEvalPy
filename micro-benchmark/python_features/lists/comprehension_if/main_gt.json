@@ -12,7 +12,7 @@
         "line_number": 8,
         "variable": "a",
         "type": [
-            "list[int]"
+            "list"
         ]
     }
 ]

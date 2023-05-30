@@ -11,4 +11,6 @@ def func2():
 
 ls = [[func1], func2]
 
-a = ls[0][0]()
+a = ls[0]
+b = a[0]
+c = b()

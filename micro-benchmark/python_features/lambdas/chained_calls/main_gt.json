@@ -4,7 +4,7 @@
         "line_number": 4,
         "function": "func3",
         "type": [
-            "any"
+            "int"
         ]
     },
     {
@@ -21,7 +21,7 @@
         "line_number": 8,
         "function": "func2",
         "type": [
-            "any"
+            "int"
         ]
     },
     {
@@ -39,7 +39,7 @@
         "parameter": "b",
         "function": "func2",
         "type": [
-            "any"
+            "callable"
         ]
     },
     {
@@ -47,7 +47,7 @@
         "line_number": 13,
         "function": "func1",
         "type": [
-            "any"
+            "int"
         ]
     },
     {
@@ -65,7 +65,7 @@
         "parameter": "b",
         "function": "func1",
         "type": [
-            "any"
+            "callable"
         ]
     },
     {
@@ -74,13 +74,40 @@
         "parameter": "c",
         "function": "func1",
         "type": [
-            "any"
+            "callable"
         ]
     },
     {
         "file": "main.py",
         "line_number": 18,
         "variable": "d",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 18,
+        "function": "lambda3",
+        "variable": "x",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 18,
+        "function": "lambda2",
+        "variable": "x",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 18,
+        "function": "lambda1",
+        "variable": "x",
         "type": [
             "int"
         ]

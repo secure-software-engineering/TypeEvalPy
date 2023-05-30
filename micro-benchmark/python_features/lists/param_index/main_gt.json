@@ -29,7 +29,7 @@
         "line_number": 12,
         "variable": "ls",
         "type": [
-            "list[callable]"
+            "list"
         ]
     },
     {

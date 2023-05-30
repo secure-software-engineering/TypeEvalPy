@@ -25,6 +25,15 @@
     },
     {
         "file": "main.py",
+        "line_number": 12,
+        "function": "lambda1",
+        "variable": "x",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
         "line_number": 14,
         "variable": "a",
         "type": [

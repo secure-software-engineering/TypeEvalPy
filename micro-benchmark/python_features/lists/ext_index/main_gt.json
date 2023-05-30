@@ -20,7 +20,7 @@
         "line_number": 15,
         "variable": "ls",
         "type": [
-            "list[callable]"
+            "list"
         ]
     },
     {
@@ -28,7 +28,7 @@
         "line_number": 17,
         "variable": "a",
         "type": [
-            "int"
+            "str"
         ]
     }
 ]

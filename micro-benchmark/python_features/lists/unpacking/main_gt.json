@@ -4,7 +4,7 @@
         "line_number": 2,
         "variable": "a",
         "type": [
-            "list[any]"
+            "list"
         ]
     },
     {

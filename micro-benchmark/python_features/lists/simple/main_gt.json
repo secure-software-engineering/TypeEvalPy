@@ -28,7 +28,7 @@
         "line_number": 16,
         "variable": "a",
         "type": [
-            "list[callable"
+            "list"
         ]
     },
     {
@@ -68,7 +68,7 @@
         "line_number": 27,
         "variable": "b",
         "type": [
-            "list[None]"
+            "list"
         ]
     },
     {

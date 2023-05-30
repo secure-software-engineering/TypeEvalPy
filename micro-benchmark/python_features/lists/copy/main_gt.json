@@ -4,7 +4,7 @@
         "line_number": 2,
         "variable": "my_list",
         "type": [
-            "list[int]"
+            "list"
         ]
     },
     {
@@ -12,7 +12,7 @@
         "line_number": 3,
         "variable": "copy_of_my_list",
         "type": [
-            "list[int]"
+            "list"
         ]
     }
 ]

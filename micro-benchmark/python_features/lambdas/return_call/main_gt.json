@@ -9,12 +9,22 @@
     },
     {
         "file": "main.py",
+        "line_number": 5,
+        "function": "lambda1",
+        "variable": "x",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
         "line_number": 8,
         "variable": "y",
         "type": [
             "callable"
         ]
     },
+
     {
         "file": "main.py",
         "line_number": 9,

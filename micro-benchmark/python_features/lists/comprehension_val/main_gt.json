@@ -21,7 +21,7 @@
         "line_number": 8,
         "variable": "ls",
         "type": [
-            "list[int]"
+            "list"
         ]
     },
     {
