@@ -1,1 +1,10 @@
-[]
+[
+    {
+        "file": "to_import_nested.py",
+        "line_number": 6,
+        "function": "func",
+        "type": [
+            "callable"
+        ]
+    }
+]

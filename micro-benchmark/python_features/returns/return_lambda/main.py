@@ -7,3 +7,4 @@ def func():
 
 f = func()
 a = f(4)
+b = f(4.4)

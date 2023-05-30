@@ -1,1 +1,35 @@
-[]
+[
+    {
+        "file": "main.py",
+        "line_number": 7,
+        "function": "A.__init__",
+        "variable": "A.a",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 11,
+        "function": "B.func",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 15,
+        "variable": "b",
+        "type": [
+            "B"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 16,
+        "variable": "c",
+        "type": [
+            "int"
+        ]
+    }
+]

@@ -11,7 +11,7 @@ class B:
         pass
 
     def func(self):
-        return "Hello from classB"
+        return "Hello from class B"
 
 
 class C(A, B):

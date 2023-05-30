@@ -19,7 +19,7 @@ class C(A, B):
         pass
 
     def func(self):
-        return "Hello from func in classC"
+        return "Hello from func in class C"
 
 
 c = C()

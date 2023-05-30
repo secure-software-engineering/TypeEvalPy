@@ -6,5 +6,38 @@
         "type": [
             "lambda"
         ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "function": "func",
+        "variable": "x",
+        "type": [
+            "any"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "variable": "f",
+        "type": [
+            "lambda"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 9,
+        "variable": "a",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 10,
+        "variable": "b",
+        "type": [
+            "float"
+        ]
     }
 ]

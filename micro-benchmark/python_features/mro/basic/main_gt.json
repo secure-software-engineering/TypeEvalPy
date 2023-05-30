@@ -2,15 +2,23 @@
     {
         "file": "main.py",
         "line_number": 5,
-        "function": "func",
+        "function": "A.func",
         "type": [
             "int"
         ]
     },
     {
         "file": "main.py",
-        "line_number": 5,
-        "function": "A.func",
+        "line_number": 13,
+        "variable": "b",
+        "type": [
+            "B"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 14,
+        "variable": "c",
         "type": [
             "int"
         ]

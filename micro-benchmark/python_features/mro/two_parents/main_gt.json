@@ -1,14 +1,6 @@
 [
     {
         "file": "main.py",
-        "line_number": 13,
-        "function": "func",
-        "type": [
-            "str"
-        ]
-    },
-    {
-        "file": "main.py",
         "line_number": 5,
         "function": "A.func",
         "type": [
@@ -21,6 +13,22 @@
         "function": "B.func",
         "type": [
             "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 21,
+        "variable": "c",
+        "type": [
+            "C"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 22,
+        "variable": "d",
+        "type": [
+            "int"
         ]
     }
 ]

@@ -9,8 +9,24 @@
     },
     {
         "file": "main.py",
+        "line_number": 9,
+        "variable": "a",
+        "type": [
+            "Tuple[int]"
+        ]
+    },
+    {
+        "file": "main.py",
         "line_number": 13,
         "function": "func1",
+        "type": [
+            "Dict[str, int]"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 17,
+        "variable": "b",
         "type": [
             "Dict[str, int]"
         ]
@@ -25,10 +41,35 @@
     },
     {
         "file": "main.py",
+        "line_number": 24,
+        "function": "func3",
+        "variable": "Point",
+        "type": [
+            "type"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 28,
+        "variable": "c",
+        "type": [
+            "Point"
+        ]
+    },
+    {
+        "file": "main.py",
         "line_number": 32,
         "function": "func4",
         "type": [
-            "set"
+            "Set[int]"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 36,
+        "variable": "d",
+        "type": [
+            "Set[int]"
         ]
     },
     {
@@ -36,16 +77,24 @@
         "line_number": 40,
         "function": "func5",
         "type": [
-            "list"
+            "List[int]"
         ]
     },
     {
         "file": "main.py",
-        "line_number": 24,
-        "variable": "Point",
-        "function": "func3",
+        "line_number": 41,
+        "function": "func5",
+        "variable": "x",
         "type": [
-            "callable"
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 44,
+        "variable": "e",
+        "type": [
+            "List[int]"
         ]
     }
 ]

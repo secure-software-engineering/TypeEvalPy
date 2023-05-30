@@ -1,6 +1,42 @@
 [
     {
         "file": "main.py",
+        "line_number": 5,
+        "parameter": "name",
+        "function": "__init__",
+        "type": [
+            "any"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "parameter": "age",
+        "function": "__init__",
+        "type": [
+            "any"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "variable": "Person.name",
+        "function": "__init__",
+        "type": [
+            "any"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 7,
+        "parameter": "Person.age",
+        "function": "__init__",
+        "type": [
+            "any"
+        ]
+    },
+    {
+        "file": "main.py",
         "line_number": 10,
         "function": "func",
         "type": [
@@ -9,38 +45,10 @@
     },
     {
         "file": "main.py",
-        "line_number": 5,
-        "parameter": "name",
-        "function": "__init__",
+        "line_number": 14,
+        "variable": "p",
         "type": [
-            "any"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 5,
-        "parameter": "age",
-        "function": "__init__",
-        "type": [
-            "any"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 5,
-        "parameter": "name",
-        "function": "__init__",
-        "type": [
-            "any"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 5,
-        "parameter": "age",
-        "function": "__init__",
-        "type": [
-            "any"
+            "Person"
         ]
     }
 ]
