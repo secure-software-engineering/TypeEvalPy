@@ -12,7 +12,7 @@
         "line_number": 8,
         "function": "func2",
         "type": [
-            "any"
+            "callable"
         ]
     },
     {
@@ -21,12 +21,12 @@
         "parameter": "a",
         "function": "func2",
         "type": [
-            "any"
+            "callable"
         ]
     },
     {
         "file": "main.py",
-        "line_number": 8,
+        "line_number": 12,
         "function": "func3",
         "type": [
             "callable"

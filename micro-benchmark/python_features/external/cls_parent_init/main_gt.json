@@ -17,7 +17,7 @@
     },
     {
         "file": "main.py",
-        "line_number": 13,
+        "line_number": 11,
         "variable": "b",
         "type": [
             "int"

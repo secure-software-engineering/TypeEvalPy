@@ -17,6 +17,14 @@
     },
     {
         "file": "main.py",
+        "line_number": 11,
+        "function": "func",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
         "line_number": 15,
         "variable": "a",
         "type": [

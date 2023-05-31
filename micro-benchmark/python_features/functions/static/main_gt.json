@@ -4,25 +4,25 @@
         "line_number": 6,
         "function": "MyClass.my_static_method",
         "type": [
-            "any"
+            "int"
         ]
     },
     {
         "file": "main.py",
         "line_number": 6,
         "parameter": "x",
-        "function": "my_static_method",
+        "function": "MyClass.my_static_method",
         "type": [
-            "any"
+            "int"
         ]
     },
     {
         "file": "main.py",
         "line_number": 6,
         "parameter": "y",
-        "function": "my_static_method",
+        "function": "MyClass.my_static_method",
         "type": [
-            "any"
+            "int"
         ]
     },
     {

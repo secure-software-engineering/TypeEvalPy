@@ -9,8 +9,7 @@
     },
     {
         "file": "main.py",
-        "line_number": 9,
-        "variable": "a",
+        "line_number": 8,
         "function": "func",
         "type": [
             "callable"
@@ -18,7 +17,8 @@
     },
     {
         "file": "main.py",
-        "line_number": 8,
+        "line_number": 9,
+        "variable": "a",
         "function": "func",
         "type": [
             "callable"

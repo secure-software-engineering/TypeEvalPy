@@ -9,14 +9,6 @@
     },
     {
         "file": "main.py",
-        "line_number": 8,
-        "function": "double",
-        "type": [
-            "int"
-        ]
-    },
-    {
-        "file": "main.py",
         "line_number": 4,
         "parameter": "x",
         "function": "add_one",
@@ -27,10 +19,18 @@
     {
         "file": "main.py",
         "line_number": 8,
+        "function": "double",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
         "parameter": "x",
         "function": "double",
         "type": [
-            "any"
+            "int"
         ]
     },
     {

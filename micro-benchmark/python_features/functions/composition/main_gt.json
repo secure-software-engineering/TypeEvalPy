@@ -4,15 +4,8 @@
         "line_number": 4,
         "function": "add",
         "type": [
-            "any"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 8,
-        "function": "square",
-        "type": [
-            "int","float"
+            "int",
+            "float"
         ]
     },
     {
@@ -21,7 +14,8 @@
         "parameter": "x",
         "function": "add",
         "type": [
-            "any"
+            "int",
+            "float"
         ]
     },
     {
@@ -30,7 +24,17 @@
         "parameter": "y",
         "function": "add",
         "type": [
-            "any"
+            "int",
+            "float"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "function": "square",
+        "type": [
+            "int",
+            "float"
         ]
     },
     {
@@ -39,15 +43,24 @@
         "parameter": "x",
         "function": "square",
         "type": [
-            "int","float"
+            "int",
+            "float"
         ]
     },
     {
         "file": "main.py",
         "line_number": 12,
-        "variable": "result",
+        "variable": "a",
         "type": [
             "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "variable": "b",
+        "type": [
+            "float"
         ]
     }
 ]

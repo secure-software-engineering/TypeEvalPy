@@ -9,8 +9,8 @@
     },
     {
         "file": "main.py",
-        "line_number": 6,
-        "variable": "b",
+        "line_number": 5,
+        "variable": "a",
         "type": [
             "str"
         ]
@@ -18,10 +18,9 @@
     {
         "file": "main.py",
         "line_number": 6,
-        "variable": "a",
+        "variable": "b",
         "type": [
             "str"
         ]
     }
-
 ]

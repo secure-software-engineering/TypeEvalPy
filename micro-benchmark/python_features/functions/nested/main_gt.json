@@ -24,10 +24,17 @@
             "int"
         ]
     },
-
     {
         "file": "main.py",
-        "line_number": 12,
+        "line_number": 9,
+        "function": "inner",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 15,
         "variable": "a",
         "type": [
             "int"

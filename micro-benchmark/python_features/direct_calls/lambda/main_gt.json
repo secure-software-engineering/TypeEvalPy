@@ -6,6 +6,23 @@
         "type": [
             "int"
         ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "function": "lambda1",
+        "variable": "x",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "function": "lambda2",
+        "variable": "x",
+        "type": [
+            "int"
+        ]
     }
-
 ]

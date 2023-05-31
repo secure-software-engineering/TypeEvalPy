@@ -1,7 +1,7 @@
 [
     {
         "file": "main.py",
-        "line_number": 4,
+        "line_number": 6,
         "variable": "a",
         "type": [
             "callable"
@@ -12,7 +12,7 @@
         "line_number": 8,
         "variable": "b",
         "type": [
-            "None"
+            "Nonetype"
         ]
     }
 ]
