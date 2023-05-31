@@ -9,7 +9,7 @@
         "file": "main.py",
         "line_number": 9,
         "function": "func2",
-        "type": ["any"]
+        "type": ["str"]
     },
     {
         "file": "main.py",
@@ -22,7 +22,7 @@
         "file": "main.py",
         "line_number": 13,
         "function": "func1",
-        "type": ["any"]
+        "type": ["str"]
     },
     {
         "file": "main.py",

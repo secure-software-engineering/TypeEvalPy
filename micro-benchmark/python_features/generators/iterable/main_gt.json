@@ -5,13 +5,22 @@
         "parameter": "n",
         "function": "func.__init__",
         "type": [
-            "any"
+            "int"
         ]
     },
     {
         "file": "main.py",
         "line_number": 6,
-        "parameter": "num",
+        "parameter": "func.n",
+        "function": "func.__init__",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 7,
+        "parameter": "func.num",
         "function": "func.__init__",
         "type": [
             "int"
@@ -31,12 +40,12 @@
         "function": "func.__next__",
         "type": [
             "int",
-            "StopIteration"
+            "Nonetype"
         ]
     },
     {
         "file": "main.py",
-        "line_number": 12,
+        "line_number": 14,
         "variable":"cur",
         "function": "func.__next__",
         "type": [
@@ -45,8 +54,8 @@
     },
     {
         "file": "main.py",
-        "line_number": 12,
-        "variable":"num",
+        "line_number": 14,
+        "variable":"func.num",
         "function": "func.__next__",
         "type": [
             "int"
@@ -54,15 +63,15 @@
     },
     {
         "file": "main.py",
-        "line_number": 23,
+        "line_number": 20,
         "variable": "output_list",
         "type": [
-            "list[int]"
+            "list"
         ]
     },
     {
         "file": "main.py",
-        "line_number": 23,
+        "line_number": 20,
         "variable": "i",
         "type": [
             "int"

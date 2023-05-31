@@ -18,6 +18,15 @@
     },
     {
         "file": "main.py",
+        "line_number": 10,
+        "variable": "Cls.max",
+        "function": "Cls.__init__",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
         "line_number": 12,
         "function": "Cls.__iter__",
         "type": [
@@ -26,8 +35,26 @@
     },
     {
         "file": "main.py",
-        "line_number": 17,
+        "line_number": 13,
+        "function": "Cls.__iter__",
+        "variable": "Cls.n",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 16,
         "function": "Cls.__next__",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 19,
+        "function": "Cls.__next__",
+        "variable": "Cls.n",
         "type": [
             "int"
         ]
@@ -43,19 +70,10 @@
     },
     {
         "file": "main.py",
-        "line_number": 22,
-        "variable": "n",
-        "function": "Cls.__next__",
-        "type": [
-            "int"
-        ]
-    },
-    {
-        "file": "main.py",
         "line_number": 23,
         "variable": "output_list",
         "type": [
-            "list[callable]"
+            "list"
         ]
     },
     {

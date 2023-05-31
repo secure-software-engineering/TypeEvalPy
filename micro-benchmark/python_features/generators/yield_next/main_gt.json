@@ -18,10 +18,19 @@
     },
     {
         "file": "main.py",
+        "line_number": 8,
+        "variable": "n",
+        "function": "squares",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
         "line_number": 11,
         "variable": "gen",
         "type": [
-            "callable"
+            "generator"
         ]
     },
 
@@ -30,7 +39,7 @@
         "line_number": 13,
         "variable": "i",
         "type": [
-            "callable"
+            "int"
         ]
     },
     {

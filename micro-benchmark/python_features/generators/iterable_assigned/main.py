@@ -1,4 +1,4 @@
-# A generator is assigned to a variable and then itered.
+# A generator is assigned to a variable and then iterated.
 
 
 class Cls:

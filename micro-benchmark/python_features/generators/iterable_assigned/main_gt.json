@@ -1,8 +1,17 @@
 [
     {
         "file": "main.py",
-        "line_number": 6,
+        "line_number": 5,
         "parameter": "max",
+        "function": "Cls.__init__",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "variable": "Cls.max",
         "function": "Cls.__init__",
         "type": [
             "int"
@@ -19,10 +28,10 @@
     {
         "file": "main.py",
         "line_number": 9,
-        "variable":"n",
         "function": "Cls.__iter__",
+        "variable": "Cls.n",
         "type": [
-            "Cls"
+            "int"
         ]
     },
     {
@@ -31,7 +40,7 @@
         "function": "Cls.__next__",
         "type": [
             "int",
-            "StopIteration"
+            "Nonetype"
         ]
     },
     {
@@ -46,7 +55,7 @@
     {
         "file": "main.py",
         "line_number": 17,
-        "variable": "n",
+        "variable": "Cls.n",
         "function": "Cls.__next__",
         "type": [
             "int"
@@ -65,7 +74,7 @@
         "line_number": 23,
         "variable": "output_list",
         "type": [
-            "list[int]"
+            "list"
         ]
     },
     {

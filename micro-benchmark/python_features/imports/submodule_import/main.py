@@ -6,3 +6,4 @@
 import to_import_sub.to_import_sub
 
 a = to_import_sub.to_import_sub.func()
+b = to_import_sub.func()
