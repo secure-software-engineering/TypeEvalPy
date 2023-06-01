@@ -3,24 +3,32 @@
         "file": "main.py",
         "line_number": 4,
         "function": "param_func",
-        "type": ["str"]
+        "type": [
+            "str"
+        ]
     },
     {
         "file": "main.py",
         "line_number": 8,
         "function": "func",
-        "type": ["any"]
+        "type": [
+            "str"
+        ]
     },
     {
         "file": "main.py",
         "line_number": 12,
         "variable": "b",
-        "type": ["function"]
+        "type": [
+            "callable"
+        ]
     },
     {
         "file": "main.py",
         "line_number": 13,
         "variable": "c",
-        "type": ["str"]
+        "type": [
+            "str"
+        ]
     }
 ]

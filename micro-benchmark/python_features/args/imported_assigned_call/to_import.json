@@ -1,9 +1,0 @@
-[
-    {
-        "file": "to_import.py",
-        "line_number": 4,
-        "function": "func",
-        "parameter": "a",
-        "type": ["any"]
-    }
-]

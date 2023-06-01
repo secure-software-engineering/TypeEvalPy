@@ -14,3 +14,4 @@ def func(a=param_func2):
 
 
 b = func(param_func)
+c = func()

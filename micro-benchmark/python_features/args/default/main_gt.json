@@ -3,32 +3,50 @@
         "file": "main.py",
         "line_number": 4,
         "function": "param_func",
-        "type": ["str"]
+        "type": [
+            "str"
+        ]
     },
     {
         "file": "main.py",
         "line_number": 8,
         "function": "param_func2",
-        "type": ["int"]
+        "type": [
+            "int"
+        ]
     },
     {
         "file": "main.py",
         "line_number": 12,
         "function": "func",
-        "type": ["any"]
+        "type": [
+            "str",
+            "int"
+        ]
     },
     {
         "file": "main.py",
         "line_number": 12,
         "function": "func",
         "parameter": "a",
-        "type": ["any"],
-        "default_value": "param_func2"
+        "type": [
+            "callable"
+        ]
     },
     {
         "file": "main.py",
         "line_number": 16,
         "variable": "b",
-        "type": ["int"]
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 17,
+        "variable": "c",
+        "type": [
+            "int"
+        ]
     }
 ]
