@@ -3,108 +3,176 @@
         "file": "main.py",
         "line_number": 4,
         "function": "func1",
-        "type": ["str"]
+        "type": [
+            "str"
+        ]
     },
     {
         "file": "main.py",
         "line_number": 8,
         "function": "func2",
-        "type": ["int"]
+        "type": [
+            "int"
+        ]
     },
     {
         "file": "main.py",
         "line_number": 12,
         "function": "func3",
-        "type": ["float"]
+        "type": [
+            "float"
+        ]
     },
     {
         "file": "main.py",
         "line_number": 16,
         "function": "func4",
-        "type": ["list[int]"]
+        "type": [
+            "list"
+        ]
     },
     {
         "file": "main.py",
         "line_number": 20,
         "function": "func5",
-        "type": ["dict"]
+        "type": [
+            "dict"
+        ]
     },
     {
         "file": "main.py",
         "line_number": 24,
         "function": "func6",
-        "type": ["None"]
+        "type": [
+            "Nonetype"
+        ]
     },
     {
         "file": "main.py",
         "line_number": 28,
         "variable": "a",
-        "type": ["function"]
+        "type": [
+            "callable"
+        ]
     },
     {
         "file": "main.py",
         "line_number": 28,
         "variable": "b",
-        "type": ["function"]
+        "type": [
+            "callable"
+        ]
     },
     {
         "file": "main.py",
         "line_number": 28,
         "variable": "c",
-        "type": ["function"]
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 29,
+        "variable": "i",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 30,
+        "variable": "j",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 31,
+        "variable": "k",
+        "type": [
+            "float"
+        ]
     },
     {
         "file": "main.py",
         "line_number": 33,
         "function": "a",
-        "type": ["function"]
+        "type": [
+            "callable"
+        ]
     },
     {
         "file": "main.py",
         "line_number": 33,
         "variable": "b",
-        "type": ["function"]
+        "type": [
+            "callable"
+        ]
     },
     {
         "file": "main.py",
         "line_number": 33,
         "variable": "c",
-        "type": ["function"]
+        "type": [
+            "callable"
+        ]
     },
     {
         "file": "main.py",
         "line_number": 33,
         "variable": "d",
-        "type": ["function"]
+        "type": [
+            "callable"
+        ]
     },
     {
         "file": "main.py",
         "line_number": 35,
         "variable": "h",
-        "type": ["list[int]"]
+        "type": [
+            "list[int]"
+        ]
     },
     {
         "file": "main.py",
         "line_number": 37,
         "variable": "f",
-        "type": ["function"]
+        "type": [
+            "callable"
+        ]
     },
     {
         "file": "main.py",
         "line_number": 37,
         "variable": "b",
-        "type": ["function"]
+        "type": [
+            "callable"
+        ]
     },
     {
         "file": "main.py",
         "line_number": 37,
         "variable": "e",
-        "type": ["function"]
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 39,
+        "variable": "l",
+        "type": [
+            "Nonetype"
+        ]
     },
     {
         "file": "main.py",
         "line_number": 40,
-        "variable": "e",
-        "type": ["dict"]
+        "variable": "m",
+        "type": [
+            "dict"
+        ]
     }
 ]

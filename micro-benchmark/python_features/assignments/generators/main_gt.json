@@ -2,19 +2,33 @@
     {
         "file": "main.py",
         "line_number": 4,
+        "variable": "i",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 4,
         "variable": "x",
-        "type": ["int"]
+        "type": [
+            "int"
+        ]
     },
     {
         "file": "main.py",
         "line_number": 4,
         "variable": "y",
-        "type": ["int"]
+        "type": [
+            "int"
+        ]
     },
     {
         "file": "main.py",
         "line_number": 4,
         "variable": "z",
-        "type": ["int"]
+        "type": [
+            "int"
+        ]
     }
 ]

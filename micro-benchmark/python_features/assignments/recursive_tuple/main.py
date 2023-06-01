@@ -26,9 +26,9 @@ def func6():
 
 
 a, (b, c) = func1, (func2, func3)
-a()
-b()
-c()
+i = a()
+j = b()
+k = c()
 
 a, (b, (c, d)) = func1, (func2, (func3, func4))
 
@@ -36,5 +36,5 @@ h = d()
 
 f, b = c, e = func5, func6
 
-e()
-i = f()
+l = e()
+m = f()

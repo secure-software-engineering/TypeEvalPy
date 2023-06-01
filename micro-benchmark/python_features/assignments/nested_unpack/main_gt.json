@@ -3,48 +3,64 @@
         "file": "main.py",
         "line_number": 5,
         "function": "func1",
-        "type": ["str"]
+        "type": [
+            "str"
+        ]
     },
     {
         "file": "main.py",
         "line_number": 9,
         "function": "func2",
-        "type": ["int"]
+        "type": [
+            "int"
+        ]
     },
     {
         "file": "main.py",
         "line_number": 13,
         "function": "func3",
-        "type": ["float"]
+        "type": [
+            "float"
+        ]
     },
     {
         "file": "main.py",
         "line_number": 17,
         "function": "func4",
-        "type": ["list[int]"]
+        "type": [
+            "list"
+        ]
     },
     {
         "file": "main.py",
         "line_number": 21,
         "variable": "a",
-        "type": ["function"]
+        "type": [
+            "callable"
+        ]
     },
     {
         "file": "main.py",
         "line_number": 21,
         "variable": "b",
-        "type": ["function"]
+        "type": [
+            "callable"
+        ]
     },
     {
         "file": "main.py",
         "line_number": 21,
         "variable": "c",
-        "type": ["function"]
+        "type": [
+            "callable"
+        ]
     },
     {
         "file": "main.py",
         "line_number": 21,
         "variable": "d",
-        "type": ["function"]
+        "type": [
+            "callable"
+        ]
     }
 ]

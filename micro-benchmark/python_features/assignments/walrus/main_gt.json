@@ -3,47 +3,61 @@
         "file": "main.py",
         "line_number": 2,
         "function": "count_words",
-        "type": ["int"]
+        "type": [
+            "int"
+        ]
     },
     {
         "file": "main.py",
         "line_number": 2,
         "function": "count_words",
         "parameter": "string",
-        "type": ["str"]
+        "type": [
+            "str"
+        ]
     },
     {
         "file": "main.py",
         "line_number": 3,
         "variable": "words",
         "function": "count_words",
-        "type": ["list[str]"]
+        "type": [
+            "list"
+        ]
     },
     {
         "file": "main.py",
         "line_number": 4,
         "variable": "word_count",
         "function": "count_words",
-        "type": ["int"]
+        "type": [
+            "int"
+        ]
     },
     {
         "file": "main.py",
         "line_number": 6,
         "variable": "word",
         "function": "count_words",
-        "type": ["str"]
+        "type": [
+            "str"
+        ]
     },
     {
         "file": "main.py",
         "line_number": 8,
         "variable": "word_count",
         "function": "count_words",
-        "type": ["int"]
+        "type": [
+            "int"
+        ]
     },
     {
         "file": "main.py",
         "line_number": 13,
         "variable": "a",
-        "type": ["int"]
+        "type": [
+            "int"
+        ]
     }
 ]
