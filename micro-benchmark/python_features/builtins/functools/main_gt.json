@@ -3,26 +3,42 @@
         "file": "main.py",
         "line_number": 5,
         "function": "multiply",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "function": "multiply",
         "parameter": "x",
-        "type": ["int"]
+        "type": [
+            "int"
+        ]
     },
     {
         "file": "main.py",
         "line_number": 5,
         "function": "multiply",
         "parameter": "y",
-        "type": ["int"]
+        "type": [
+            "int"
+        ]
     },
     {
         "file": "main.py",
         "line_number": 9,
         "variable": "numbers",
-        "type": ["list[int]"]
+        "type": [
+            "list"
+        ]
     },
     {
         "file": "main.py",
         "line_number": 10,
         "variable": "product",
-        "type": ["int"]
+        "type": [
+            "int"
+        ]
     }
 ]

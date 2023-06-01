@@ -3,31 +3,53 @@
         "file": "main.py",
         "line_number": 2,
         "function": "func",
+        "type": [
+            "int",
+            "str",
+            "float"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 2,
+        "function": "func",
         "parameter": "x",
-        "type": ["any"]
+        "type": [
+            "int",
+            "str",
+            "float"
+        ]
     },
     {
         "file": "main.py",
         "line_number": 3,
         "variable": "res",
-        "type": ["map object"]
+        "type": [
+            "map"
+        ]
     },
     {
         "file": "main.py",
         "line_number": 8,
         "variable": "x",
-        "type": ["int"]
+        "type": [
+            "int"
+        ]
     },
     {
         "file": "main.py",
         "line_number": 8,
         "variable": "y",
-        "type": ["str"]
+        "type": [
+            "str"
+        ]
     },
     {
         "file": "main.py",
         "line_number": 8,
         "variable": "z",
-        "type": ["float"]
+        "type": [
+            "float"
+        ]
     }
 ]
