@@ -12,7 +12,7 @@
         "line_number": 8,
         "function": "func1",
         "type": [
-            "any"
+            "str"
         ]
     },
     {
@@ -30,6 +30,14 @@
         "variable": "d",
         "type": [
             "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 12,
+        "variable": "d['a']",
+        "type": [
+            "callable"
         ]
     },
     {

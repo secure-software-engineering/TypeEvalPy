@@ -4,7 +4,8 @@
         "line_number": 4,
         "function": "func1",
         "type": [
-            "any"
+            "str",
+            "int"
         ]
     },
     {
@@ -32,7 +33,6 @@
             "int"
         ]
     },
-
     {
         "file": "main.py",
         "line_number": 16,
@@ -43,7 +43,23 @@
     },
     {
         "file": "main.py",
-        "line_number": 17,
+        "line_number": 16,
+        "variable": "d['a']",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 16,
+        "variable": "d['b']",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 18,
         "variable": "e",
         "type": [
             "str"
@@ -51,7 +67,7 @@
     },
     {
         "file": "main.py",
-        "line_number": 17,
+        "line_number": 19,
         "variable": "f",
         "type": [
             "int"

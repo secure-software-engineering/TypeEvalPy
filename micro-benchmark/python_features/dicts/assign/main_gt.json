@@ -25,6 +25,14 @@
     },
     {
         "file": "main.py",
+        "line_number": 12,
+        "variable": "d['a']",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
         "line_number": 14,
         "variable": "d['a']",
         "type": [

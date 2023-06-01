@@ -26,6 +26,15 @@
     },
     {
         "file": "main.py",
+        "line_number": 9,
+        "variable": "d['a']",
+        "function": "func1",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
         "line_number": 13,
         "variable": "b",
         "type": [
@@ -35,7 +44,7 @@
     {
         "file": "main.py",
         "line_number": 14,
-        "variable": "d",
+        "variable": "c",
         "type": [
             "str"
         ]

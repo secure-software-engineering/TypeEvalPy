@@ -25,8 +25,32 @@
     },
     {
         "file": "main.py",
-        "line_number": 14,
+        "line_number": 12,
         "variable": "d['a']",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 12,
+        "variable": "d[1]",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 12,
+        "variable": "d[2]",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 14,
+        "variable": "e",
         "type": [
             "str"
         ]
@@ -34,7 +58,7 @@
     {
         "file": "main.py",
         "line_number": 15,
-        "variable": "e",
+        "variable": "f",
         "type": [
             "int"
         ]
