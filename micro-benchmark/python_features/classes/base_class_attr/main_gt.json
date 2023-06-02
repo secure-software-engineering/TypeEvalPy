@@ -1,9 +1,9 @@
 [
     {
         "file": "main.py",
-        "line_number": 7,
+        "line_number": 5,
         "class": "A.B",
-        "variable": "a",
+        "variable": "A.B.a",
         "type": [
             "str"
         ]
@@ -21,7 +21,7 @@
         "line_number": 15,
         "function": "C.cfunc",
         "type": [
-            "C.A.B.a"
+            "str"
         ]
     },
     {

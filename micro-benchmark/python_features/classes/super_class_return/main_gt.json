@@ -34,7 +34,7 @@
     {
         "file": "main.py",
         "line_number": 16,
-        "variable": "b",
+        "variable": "c",
         "type": [
             "str"
         ]

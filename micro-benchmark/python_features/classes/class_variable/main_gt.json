@@ -3,7 +3,7 @@
         "file": "main.py",
         "line_number": 3,
         "class":"MyClass",
-        "variable": "class_var",
+        "variable": "MyClass.class_var",
         "type": [
             "int"
         ]
@@ -14,7 +14,16 @@
         "parameter": "instance_var",
         "function": "__init__",
         "type": [
-            "any"
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "variable": "MyClass.instance_var",
+        "function": "__init__",
+        "type": [
+            "int"
         ]
     },
     {

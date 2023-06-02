@@ -1,16 +1,16 @@
 [
     {
         "file": "main.py",
-        "line_number": 4,
-        "function": "MyClass.func.nested",
+        "line_number": 3,
+        "function": "MyClass.func",
         "type": [
             "str"
         ]
     },
     {
         "file": "main.py",
-        "line_number": 3,
-        "function": "MyClass.func",
+        "line_number": 4,
+        "function": "MyClass.func.nested",
         "type": [
             "str"
         ]

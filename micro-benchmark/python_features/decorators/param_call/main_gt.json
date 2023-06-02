@@ -19,36 +19,36 @@
     {
         "file": "main.py",
         "line_number": 5,
-        "function": "dec.wrapper",
+        "function": "wrapper",
         "type": [
-            "any"
+            "str"
         ]
     },
     {
         "file": "main.py",
         "line_number": 5,
         "parameter": "a",
-        "function": "dec.wrapper",
+        "function": "wrapper",
         "type": [
-            "any"
+            "str"
         ]
     },
     {
         "file": "main.py",
         "line_number": 5,
         "parameter": "b",
-        "function": "dec.wrapper",
+        "function": "wrapper",
         "type": [
-            "any"
+            "str"
         ]
     },
     {
         "file": "main.py",
         "line_number": 6,
         "variable": "result",
-        "function": "dec.wrapper",
+        "function": "wrapper",
         "type": [
-            "any"
+            "str"
         ]
     },
     {
@@ -56,7 +56,7 @@
         "line_number": 13,
         "function": "func",
         "type": [
-            "any"
+            "str"
         ]
     },
     {
@@ -65,7 +65,7 @@
         "parameter": "a",
         "function": "func",
         "type": [
-            "any"
+            "str"
         ]
     },
     {
@@ -74,7 +74,7 @@
         "parameter": "b",
         "function": "func",
         "type": [
-            "any"
+            "str"
         ]
     },
     {

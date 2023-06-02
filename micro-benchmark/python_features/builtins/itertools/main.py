@@ -3,10 +3,8 @@
 import itertools
 
 data = [
-    {"name": "Alice", "age": 30, "city": "New York"},
-    {"name": "Bob", "age": 25, "city": "San Francisco"},
-    {"name": "Charlie", "age": 35, "city": "New York"},
-    {"name": "David", "age": 40, "city": "San Francisco"},
+    {"name": "Alice", "city": "New York"},
+    {"name": "Bob", "city": "San Francisco"},
 ]
 
 
@@ -29,8 +27,8 @@ repeater = itertools.repeat("hello", 3)
 chained = itertools.chain("ABC", "DEF")
 
 # compress() example
-selector = [True, False, True, False]
-compressed = itertools.compress("ABCD", selector)
+selector = [True, False]
+compressed = itertools.compress("AB", selector)
 
 # permutations() example
 perms = itertools.permutations("ABC", 2)

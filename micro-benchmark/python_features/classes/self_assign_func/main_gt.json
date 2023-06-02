@@ -10,11 +10,19 @@
     {
         "file": "main.py",
         "line_number": 10,
-        "class":"B",
         "parameter": "a",
-        "function": "__init__",
+        "function": "B.__init__",
         "type": [
-            "any"
+            "A"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 11,
+        "variable": "B.a",
+        "function": "B.__init__",
+        "type": [
+            "A"
         ]
     },
     {

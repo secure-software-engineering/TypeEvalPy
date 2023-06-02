@@ -10,7 +10,7 @@
     {
         "file": "main.py",
         "line_number": 5,
-        "function": "func1",
+        "function": "dec",
         "type": [
             "callable"
         ]
@@ -21,7 +21,7 @@
         "parameter": "f",
         "function": "dec",
         "type": [
-            "any"
+            "callable"
         ]
     },
     {
@@ -37,7 +37,7 @@
         "line_number": 15,
         "function": "func2",
         "type": [
-            "str"
+            "int"
         ]
     },
     {

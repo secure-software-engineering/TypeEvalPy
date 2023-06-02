@@ -13,13 +13,13 @@
         "parameter": "f",
         "function": "dec",
         "type": [
-            "any"
+            "callable"
         ]
     },
     {
         "file": "main.py",
         "line_number": 5,
-        "function": "dec.inner",
+        "function": "inner",
         "type": [
             "str"
         ]
@@ -29,7 +29,7 @@
         "line_number": 12,
         "function": "func",
         "type": [
-            "None"
+            "str"
         ]
     },
     {
@@ -37,7 +37,7 @@
         "line_number": 16,
         "function": "func2",
         "type": [
-            "None"
+            "str"
         ]
     },
     {

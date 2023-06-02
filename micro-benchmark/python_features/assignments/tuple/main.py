@@ -17,6 +17,4 @@ g = b()
 
 c, d, e = func1, func2, func3
 
-c()
-d()
 h = e()

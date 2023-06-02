@@ -11,9 +11,9 @@
         "file": "main.py",
         "line_number": 9,
         "class": "B",
-        "variable": "child",
+        "variable": "B.child",
         "type": [
-            "B.func2"
+            "callable"
         ]
     },
     {
@@ -28,9 +28,9 @@
         "file": "main.py",
         "line_number": 17,
         "class": "B",
-        "variable": "child",
+        "variable": "C.child",
         "type": [
-            "C.func2"
+            "callable"
         ]
     },
     {

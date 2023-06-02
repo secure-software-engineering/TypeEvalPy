@@ -9,6 +9,23 @@
     },
     {
         "file": "main.py",
+        "line_number": 3,
+        "variable": "my_list[0]",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 3,
+        "variable": "my_list[1]",
+        "type": [
+            "int"
+        ]
+    },
+
+    {
+        "file": "main.py",
         "line_number": 5,
         "variable": "length",
         "type": [

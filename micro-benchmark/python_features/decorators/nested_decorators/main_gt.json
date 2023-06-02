@@ -19,9 +19,9 @@
     {
         "file": "main.py",
         "line_number": 5,
-        "function": "dec1.inner",
+        "function": "inner",
         "type": [
-            "any"
+            "int"
         ]
     },
     {
@@ -44,7 +44,7 @@
     {
         "file": "main.py",
         "line_number": 12,
-        "function": "dec2.inner",
+        "function": "inner",
         "type": [
             "int"
         ]
@@ -54,7 +54,7 @@
         "line_number": 20,
         "function": "func",
         "type": [
-            "str"
+            "int"
         ]
     },
 

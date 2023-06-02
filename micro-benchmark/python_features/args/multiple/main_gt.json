@@ -54,6 +54,15 @@
     },
     {
         "file": "main.py",
+        "line_number": 7,
+        "function": "my_sum",
+        "variable": "result",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
         "line_number": 11,
         "function": "func",
         "type": [

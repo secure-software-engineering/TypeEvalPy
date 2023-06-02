@@ -4,20 +4,68 @@
         "line_number": 5,
         "variable": "data",
         "type": [
-            "list[dict]"
+            "list"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "variable": "data[0]",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "variable": "data[0]['name']",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "variable": "data[0]['city']",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "variable": "data[1]",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "variable": "data[1]['name']",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "variable": "data[1]['city']",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 11,
+        "variable": "sorted_data",
+        "type": [
+            "list"
         ]
     },
     {
         "file": "main.py",
         "line_number": 13,
-        "variable": "sorted_data",
-        "type": [
-            "list[dict]"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 15,
         "variable": "grouped_data",
         "type": [
             "itertools.groupby"
@@ -25,7 +73,7 @@
     },
     {
         "file": "main.py",
-        "line_number": 17,
+        "line_number": 15,
         "variable": "city",
         "type": [
             "str"
@@ -33,7 +81,7 @@
     },
     {
         "file": "main.py",
-        "line_number": 17,
+        "line_number": 15,
         "variable": "group",
         "type": [
             "itertools._grouper"
@@ -41,7 +89,7 @@
     },
     {
         "file": "main.py",
-        "line_number": 16,
+        "line_number": 18,
         "variable": "counter",
         "type": [
             "itertools.count"
@@ -49,7 +97,7 @@
     },
     {
         "file": "main.py",
-        "line_number": 19,
+        "line_number": 21,
         "variable": "cycler",
         "type": [
             "itertools.cycle"
@@ -57,7 +105,7 @@
     },
     {
         "file": "main.py",
-        "line_number": 22,
+        "line_number": 24,
         "variable": "repeater",
         "type": [
             "itertools.repeat"
@@ -65,7 +113,7 @@
     },
     {
         "file": "main.py",
-        "line_number": 25,
+        "line_number": 27,
         "variable": "chained",
         "type": [
             "itertools.chain"
@@ -73,7 +121,31 @@
     },
     {
         "file": "main.py",
-        "line_number": 28,
+        "line_number": 30,
+        "variable": "selector",
+        "type": [
+            "list"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 30,
+        "variable": "selector[0]",
+        "type": [
+            "bool"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 30,
+        "variable": "selector[1]",
+        "type": [
+            "bool"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 31,
         "variable": "compressed",
         "type": [
             "itertools.compress"
@@ -81,7 +153,7 @@
     },
     {
         "file": "main.py",
-        "line_number": 31,
+        "line_number": 34,
         "variable": "perms",
         "type": [
             "itertools.permutations"
@@ -89,7 +161,7 @@
     },
     {
         "file": "main.py",
-        "line_number": 34,
+        "line_number": 37,
         "variable": "combs",
         "type": [
             "itertools.combinations"
@@ -97,7 +169,7 @@
     },
     {
         "file": "main.py",
-        "line_number": 37,
+        "line_number": 40,
         "variable": "cartesian",
         "type": [
             "itertools.product"

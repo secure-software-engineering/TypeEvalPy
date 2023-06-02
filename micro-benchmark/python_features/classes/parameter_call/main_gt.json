@@ -12,7 +12,7 @@
         "line_number": 6,
         "function": "MyClass.func2",
         "type": [
-            "any"
+            "str"
         ]
     },
     {
@@ -29,10 +29,9 @@
         "line_number": 9,
         "function": "MyClass.func1",
         "type": [
-            "any"
+            "str"
         ]
     },
-
     {
         "file": "main.py",
         "line_number": 9,
@@ -48,7 +47,7 @@
         "parameter": "b",
         "function": "MyClass.func1",
         "type": [
-            "any"
+            "callable"
         ]
     },
     {
@@ -62,7 +61,7 @@
     {
         "file": "main.py",
         "line_number": 14,
-        "variable": "b",
+        "variable": "d",
         "type": [
             "str"
         ]

@@ -4,15 +4,7 @@
         "line_number": 6,
         "function": "Shape.area",
         "type": [
-            "None"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 15,
-        "function": "Rectangle.area",
-        "type": [
-            "any"
+            "Nonetype"
         ]
     },
     {
@@ -21,7 +13,7 @@
         "parameter": "width",
         "function": "__init__",
         "type": [
-            "any"
+            "int"
         ]
     },
     {
@@ -30,7 +22,33 @@
         "parameter": "height",
         "function": "__init__",
         "type": [
-            "any"
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 12,
+        "variable": "Shape.width",
+        "function": "__init__",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "variable": "Shape.height",
+        "function": "__init__",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 15,
+        "function": "Rectangle.area",
+        "type": [
+            "int"
         ]
     },
     {
@@ -46,7 +64,7 @@
         "line_number": 20,
         "variable": "b",
         "type": [
-            "any"
+            "int"
         ]
     }
 ]

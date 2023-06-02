@@ -2,9 +2,8 @@
     {
         "file": "main.py",
         "line_number": 6,
-        "class":"A",
-        "function": "__init__",
-        "variable":"smth",
+        "function": "A.__init__",
+        "variable":"A.smth",
         "type": [
             "callable"
         ]

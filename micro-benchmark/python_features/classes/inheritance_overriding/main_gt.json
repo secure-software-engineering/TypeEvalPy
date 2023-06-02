@@ -28,7 +28,7 @@
         "line_number": 13,
         "variable": "b",
         "type": [
-            "str"
+            "int"
         ]
     }
 ]

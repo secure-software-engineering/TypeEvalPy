@@ -2,4 +2,4 @@
 
 a = " ".join(["1", "2", "3"])
 
-b = "a b c".split(" ")
+b = "a b".split(" ")

@@ -22,7 +22,7 @@
     },
     {
         "file": "main.py",
-        "line_number": 3,
+        "line_number": 6,
         "variable": "res",
         "type": [
             "map"

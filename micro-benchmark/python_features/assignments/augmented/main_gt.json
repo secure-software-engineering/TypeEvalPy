@@ -18,6 +18,24 @@
     },
     {
         "file": "main.py",
+        "line_number": 6,
+        "function": "func1",
+        "parameter": "a",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 7,
+        "function": "func1",
+        "parameter": "a",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
         "line_number": 11,
         "variable": "b",
         "type": [

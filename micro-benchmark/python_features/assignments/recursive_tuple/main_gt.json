@@ -132,7 +132,7 @@
         "line_number": 35,
         "variable": "h",
         "type": [
-            "list[int]"
+            "list"
         ]
     },
     {
@@ -147,6 +147,14 @@
         "file": "main.py",
         "line_number": 37,
         "variable": "b",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 37,
+        "variable": "c",
         "type": [
             "callable"
         ]
@@ -174,5 +182,14 @@
         "type": [
             "dict"
         ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 40,
+        "variable": "m['a']",
+        "type": [
+            "str"
+        ]
     }
+
 ]

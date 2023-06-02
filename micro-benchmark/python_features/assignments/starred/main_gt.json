@@ -28,7 +28,7 @@
         "line_number": 14,
         "function": "func4",
         "type": [
-            "list[int]"
+            "list"
         ]
     },
     {
@@ -45,6 +45,22 @@
         "variable": "b",
         "type": [
             "list"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 18,
+        "variable": "b[0]",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 18,
+        "variable": "b[1]",
+        "type": [
+            "callable"
         ]
     },
     {
@@ -85,6 +101,22 @@
         "variable": "g",
         "type": [
             "list"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 23,
+        "variable": "g[0]",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 23,
+        "variable": "g[1]",
+        "type": [
+            "int"
         ]
     }
 ]

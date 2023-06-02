@@ -13,7 +13,7 @@
         "parameter": "f",
         "function": "dec",
         "type": [
-            "any"
+            "callable"
         ]
     },
     {
@@ -29,7 +29,7 @@
         "line_number": 12,
         "function": "func",
         "type": [
-            "None"
+            "str"
         ]
     },
     {

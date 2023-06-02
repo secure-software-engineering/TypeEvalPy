@@ -35,6 +35,22 @@
     },
     {
         "file": "main.py",
+        "line_number": 9,
+        "variable": "numbers[0]",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 9,
+        "variable": "numbers[1]",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
         "line_number": 10,
         "variable": "product",
         "type": [

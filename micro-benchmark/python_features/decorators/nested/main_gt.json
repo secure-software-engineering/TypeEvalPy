@@ -21,7 +21,7 @@
         "parameter": "f",
         "function": "dec",
         "type": [
-            "any"
+            "callable"
         ]
     },
     {
@@ -42,7 +42,7 @@
     },
     {
         "file": "main.py",
-        "line_number": 12,
+        "line_number": 18,
         "variable": "a",
         "type": [
             "int"

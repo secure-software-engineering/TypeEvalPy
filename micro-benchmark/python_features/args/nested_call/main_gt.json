@@ -47,7 +47,7 @@
         "variable": "b",
         "type": [
             "callable"
-            ]
+        ]
     },
     {
         "file": "main.py",

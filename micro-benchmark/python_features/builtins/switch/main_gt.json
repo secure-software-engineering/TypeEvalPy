@@ -14,7 +14,6 @@
         "function": "func",
         "parameter": "value",
         "type": [
-            "int",
             "str"
         ]
     },

@@ -21,7 +21,7 @@
         "line_number": 5,
         "function": "wrapper",
         "type": [
-            "any"
+            "str"
         ]
     },
     {
@@ -30,7 +30,7 @@
         "parameter": "a",
         "function": "wrapper",
         "type": [
-            "any"
+            "str"
         ]
     },
     {
@@ -39,7 +39,7 @@
         "parameter": "b",
         "function": "wrapper",
         "type": [
-            "any"
+            "str"
         ]
     },
     {
@@ -48,7 +48,7 @@
         "variable": "result",
         "function": "wrapper",
         "type": [
-            "any"
+            "str"
         ]
     },
     {
@@ -64,7 +64,7 @@
         "line_number": 16,
         "function": "func",
         "type": [
-            "any"
+            "str"
         ]
     },
     {
@@ -73,7 +73,7 @@
         "parameter": "a",
         "function": "func",
         "type": [
-            "any"
+            "str"
         ]
     },
     {
@@ -82,7 +82,7 @@
         "parameter": "b",
         "function": "func",
         "type": [
-            "any"
+            "str"
         ]
     },
     {
@@ -90,7 +90,7 @@
         "line_number": 20,
         "variable": "c",
         "type": [
-            "any"
+            "str"
         ]
     }
 ]

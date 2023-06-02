@@ -86,14 +86,5 @@
         "type": [
             "str"
         ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 25,
-        "variable": "e",
-        "type": [
-            "callable"
-        ]
     }
-
 ]
