@@ -1,0 +1,108 @@
+import json
+import os
+import tarfile
+
+import docker
+
+
+class FileHandler:
+    def _copy_files_to_container(self, container, src, dst):
+        os.chdir(os.path.dirname(src))
+        srcname = os.path.basename(src)
+        tar = tarfile.open(src + ".tar", mode="w")
+        try:
+            tar.add(srcname)
+        finally:
+            tar.close()
+
+        data = open(src + ".tar", "rb").read()
+        container.put_archive(os.path.dirname(dst), data)
+
+    def _copy_files_from_container(self, container, src, dst):
+        stream, _ = container.get_archive(src)
+        tar = tarfile.open(fileobj=stream)
+        tar.extractall(path=dst)
+        tar.close()
+
+    def _list_python_files(self, directory):
+        python_files = []
+        for root, _, files in os.walk(directory):
+            for file in files:
+                if file.endswith(".py"):
+                    python_files.append(
+                        os.path.relpath(os.path.join(root, file), directory)
+                    )
+        return python_files
+
+
+class TypeEvalPyRunner:
+    def __init__(self, tool_name, dockerfile_path):
+        self.docker_client = docker.from_env()
+        self.tool_name = tool_name
+        self.dockerfile_path = dockerfile_path
+        self.dockerfile_name = tool_name
+        self.script_path = f"{self.tool_name}_script.py"
+        self.docker_script_path = f"/tmp/{self.tool_name}_script.py"
+
+    def _build_docker_image(self):
+        image, _ = self.docker_client.images.build(
+            path=self.dockerfile_path, tag=self.dockerfile_name
+        )
+        return image
+
+    def _spawn_docker_instance(self):
+        container = self.docker_client.containers.run(
+            self.dockerfile_name, detach=True, stdin_open=True, tty=True
+        )
+        return container
+
+    def _run_test_in_session(self, script_path):
+        print("befopre build")
+        self._build_docker_image()
+        print("after build")
+        container = self._spawn_docker_instance()
+        print("after container")
+        file_handler = FileHandler()
+        src = "../../micro-benchmark"
+        dst = "/tmp/micro-benchmark"
+        file_handler._copy_files_to_container(container, src, dst)
+        file_handler._copy_files_to_container(
+            container, self.script_path, self.docker_script_path
+        )
+
+        container.exec_run(f"python {script_path}")
+        file_handler._copy_files_from_container(
+            container, "/micro-benchmark", self.dockerfile_path
+        )
+        container.stop()
+        container.remove()
+
+
+class ScalpelRunner(TypeEvalPyRunner):
+    def __init__(self):
+        super().__init__("scalpel", "../target_tools/scalpel")
+
+    def run_tool_test(self):
+        script_path = f"/tmp/{self.tool_name}_script.py"
+        self._run_test_in_session(script_path)
+
+
+class PytypeRunner(TypeEvalPyRunner):
+    def __init__(self):
+        super().__init__("pytype", "../target_tools/pytype")
+
+    def run_tool_test(self):
+        script_path = f"/tmp/{self.tool_name}_script.py"
+        self._run_test_in_session(script_path)
+
+
+def main():
+    runner = ScalpelRunner()
+    runner.run_tool_test()
+
+    runner = PytypeRunner()
+    runner.run_tool_test()
+
+
+if __name__ == "__main__":
+    main()
