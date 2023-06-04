@@ -7,16 +7,24 @@ import docker
 
 class FileHandler:
     def _copy_files_to_container(self, container, src, dst):
-        os.chdir(os.path.dirname(src))
-        srcname = os.path.basename(src)
-        tar = tarfile.open(src + ".tar", mode="w")
+        original_directory = os.getcwd()
+        src_dirname = os.path.dirname(src)
+        src_basename = os.path.basename(src)
+
+        if os.path.isfile(src):
+            os.chdir(src_dirname)
+        else:
+            os.chdir(os.path.dirname(src))
+
+        tar = tarfile.open(src_basename + ".tar", mode="w")
         try:
-            tar.add(srcname)
+            tar.add(src_basename)
         finally:
             tar.close()
 
         data = open(src + ".tar", "rb").read()
         container.put_archive(os.path.dirname(dst), data)
+        os.chdir(original_directory)
 
     def _copy_files_from_container(self, container, src, dst):
         stream, _ = container.get_archive(src)
@@ -41,7 +49,7 @@ class TypeEvalPyRunner:
         self.tool_name = tool_name
         self.dockerfile_path = dockerfile_path
         self.dockerfile_name = tool_name
-        self.script_path = f"{self.tool_name}_script.py"
+        self.script_path = f"./{self.tool_name}_script.py"
         self.docker_script_path = f"/tmp/{self.tool_name}_script.py"
 
     def _build_docker_image(self):
@@ -56,12 +64,9 @@ class TypeEvalPyRunner:
         )
         return container
 
-    def _run_test_in_session(self, script_path):
-        print("befopre build")
+    def _run_test_in_session(self):
         self._build_docker_image()
-        print("after build")
         container = self._spawn_docker_instance()
-        print("after container")
         file_handler = FileHandler()
         src = "../../micro-benchmark"
         dst = "/tmp/micro-benchmark"
@@ -69,8 +74,7 @@ class TypeEvalPyRunner:
         file_handler._copy_files_to_container(
             container, self.script_path, self.docker_script_path
         )
-
-        container.exec_run(f"python {script_path}")
+        container.exec_run(f"python {self.docker_script_path}")
         file_handler._copy_files_from_container(
             container, "/micro-benchmark", self.dockerfile_path
         )
@@ -83,8 +87,7 @@ class ScalpelRunner(TypeEvalPyRunner):
         super().__init__("scalpel", "../target_tools/scalpel")
 
     def run_tool_test(self):
-        script_path = f"/tmp/{self.tool_name}_script.py"
-        self._run_test_in_session(script_path)
+        self._run_test_in_session()
 
 
 class PytypeRunner(TypeEvalPyRunner):
@@ -92,8 +95,7 @@ class PytypeRunner(TypeEvalPyRunner):
         super().__init__("pytype", "../target_tools/pytype")
 
     def run_tool_test(self):
-        script_path = f"/tmp/{self.tool_name}_script.py"
-        self._run_test_in_session(script_path)
+        self._run_test_in_session()
 
 
 def main():
