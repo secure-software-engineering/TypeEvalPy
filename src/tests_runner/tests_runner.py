@@ -1,6 +1,6 @@
-import json
 import os
 import tarfile
+from io import BytesIO
 
 import docker
 
@@ -28,7 +28,10 @@ class FileHandler:
 
     def _copy_files_from_container(self, container, src, dst):
         stream, _ = container.get_archive(src)
-        tar = tarfile.open(fileobj=stream)
+        stream_bytes = b"".join(stream)
+        stream_bytes_io = BytesIO(stream_bytes)
+
+        tar = tarfile.open(fileobj=stream_bytes_io)
         tar.extractall(path=dst)
         tar.close()
 
@@ -76,7 +79,7 @@ class TypeEvalPyRunner:
         )
         container.exec_run(f"python {self.docker_script_path}")
         file_handler._copy_files_from_container(
-            container, "/micro-benchmark", self.dockerfile_path
+            container, "/tmp/micro-benchmark", self.dockerfile_path
         )
         container.stop()
         container.remove()
