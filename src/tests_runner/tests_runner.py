@@ -93,9 +93,9 @@ class ScalpelRunner(TypeEvalPyRunner):
         self._run_test_in_session()
 
 
-class PytypeRunner(TypeEvalPyRunner):
+class PyreRunner(TypeEvalPyRunner):
     def __init__(self):
-        super().__init__("pytype", "../target_tools/pytype")
+        super().__init__("pyre", "../target_tools/pyre")
 
     def run_tool_test(self):
         self._run_test_in_session()
@@ -105,7 +105,7 @@ def main():
     runner = ScalpelRunner()
     runner.run_tool_test()
 
-    runner = PytypeRunner()
+    runner = PyreRunner()
     runner.run_tool_test()
 
 
