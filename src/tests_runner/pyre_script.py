@@ -11,7 +11,7 @@ def list_python_files(folder_path):
     return python_files
 
 
-root_directory = "/tmps"
+root_directory = "/tmp"
 
 # Check if `.pyre_configuration` file exists
 pyre_config_file = os.path.join(root_directory, ".pyre_configuration")

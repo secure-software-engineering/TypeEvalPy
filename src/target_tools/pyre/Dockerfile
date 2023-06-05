@@ -11,7 +11,8 @@ WORKDIR /app
 # Install dependencies
 RUN apt-get update \
     && apt-get -y install gcc \
-    && apt-get -y install watchman
+    && apt-get -y install watchman \
+    && apt-get -y install jq
 
 COPY requirements.txt /app/requirements.txt
 

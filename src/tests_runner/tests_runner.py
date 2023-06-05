@@ -56,18 +56,22 @@ class TypeEvalPyRunner:
         self.docker_script_path = f"/tmp/{self.tool_name}_script.py"
 
     def _build_docker_image(self):
+        print("Building image")
         image, _ = self.docker_client.images.build(
             path=self.dockerfile_path, tag=self.dockerfile_name
         )
         return image
 
     def _spawn_docker_instance(self):
+        print("Creating container")
         container = self.docker_client.containers.run(
             self.dockerfile_name, detach=True, stdin_open=True, tty=True
         )
         return container
 
     def _run_test_in_session(self):
+        print("#####################################################")
+        print("Running :", self.tool_name)
         self._build_docker_image()
         container = self._spawn_docker_instance()
         file_handler = FileHandler()
@@ -77,12 +81,13 @@ class TypeEvalPyRunner:
         file_handler._copy_files_to_container(
             container, self.script_path, self.docker_script_path
         )
+        print("Type inferring.. ")
         container.exec_run(f"python {self.docker_script_path}")
         file_handler._copy_files_from_container(
             container, "/tmp/micro-benchmark", self.dockerfile_path
         )
-        container.stop()
-        container.remove()
+        # container.stop()
+        # container.remove()
 
 
 class ScalpelRunner(TypeEvalPyRunner):
