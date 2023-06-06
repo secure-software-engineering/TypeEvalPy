@@ -86,8 +86,8 @@ class TypeEvalPyRunner:
         file_handler._copy_files_from_container(
             container, result_path, self.dockerfile_path
         )
-        # container.stop()
-        # container.remove()
+        container.stop()
+        container.remove()
 
 
 class ScalpelRunner(TypeEvalPyRunner):
@@ -114,6 +114,14 @@ class PyrightRunner(TypeEvalPyRunner):
         self._run_test_in_session("/tmp/typings")
 
 
+class PytypeRunner(TypeEvalPyRunner):
+    def __init__(self):
+        super().__init__("pytype", "../target_tools/pytype")
+
+    def run_tool_test(self):
+        self._run_test_in_session()
+
+
 def main():
     runner = ScalpelRunner()
     runner.run_tool_test()
@@ -122,6 +130,9 @@ def main():
     runner.run_tool_test()
 
     runner = PyrightRunner()
+    runner.run_tool_test()
+
+    runner = PytypeRunner()
     runner.run_tool_test()
 
 
