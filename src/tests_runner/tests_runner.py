@@ -69,7 +69,7 @@ class TypeEvalPyRunner:
         )
         return container
 
-    def _run_test_in_session(self):
+    def _run_test_in_session(self, result_path="/tmp/micro-benchmark"):
         print("#####################################################")
         print("Running :", self.tool_name)
         self._build_docker_image()
@@ -84,7 +84,7 @@ class TypeEvalPyRunner:
         print("Type inferring.. ")
         container.exec_run(f"python {self.docker_script_path}")
         file_handler._copy_files_from_container(
-            container, "/tmp/micro-benchmark", self.dockerfile_path
+            container, result_path, self.dockerfile_path
         )
         # container.stop()
         # container.remove()
@@ -106,11 +106,22 @@ class PyreRunner(TypeEvalPyRunner):
         self._run_test_in_session()
 
 
+class PyrightRunner(TypeEvalPyRunner):
+    def __init__(self):
+        super().__init__("pyright", "../target_tools/pyright")
+
+    def run_tool_test(self):
+        self._run_test_in_session("/tmp/typings")
+
+
 def main():
     runner = ScalpelRunner()
     runner.run_tool_test()
 
     runner = PyreRunner()
+    runner.run_tool_test()
+
+    runner = PyrightRunner()
     runner.run_tool_test()
 
 

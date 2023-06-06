@@ -1,2 +1,0 @@
-pip install docker
-python-scalpel==1.0b0

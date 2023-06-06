@@ -6,7 +6,7 @@ from scalpel.typeinfer.typeinfer import TypeInference
 
 def list_python_files(folder_path):
     python_files = []
-    for root, files in os.walk(os.path.abspath(folder_path)):
+    for root, Readme, files in os.walk(os.path.abspath(folder_path)):
         for file in files:
             if file.endswith(".py"):
                 python_files.append(os.path.join(root, file))
