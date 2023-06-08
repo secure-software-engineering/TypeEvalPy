@@ -13,25 +13,29 @@ def list_python_files(folder_path):
     return python_files
 
 
-folder_path = "/tmp/micro-benchmark/"
+folder_path = "/tmp/micro-benchmark/python_features"
 
 python_files = list_python_files(folder_path)
-
+error_count = 0
 for file in python_files:
-    print(file)
-    inferer = TypeInference(name=file, entry_point=file)
-    inferer.infer_types()
-    inferred = inferer.get_types()
-    print(inferred)
-    json_file_path = file.replace(".py", "_scalpel.json")
+    try:
+        print(file)
+        inferer = TypeInference(name=file, entry_point=file)
+        inferer.infer_types()
+        inferred = inferer.get_types()
+        print(inferred)
+        json_file_path = file.replace(".py", "_scalpel.json")
 
-    if os.path.exists(json_file_path):
-        print(f"JSON file already exists: {json_file_path}")
-        continue
+        if os.path.exists(json_file_path):
+            print(f"JSON file already exists: {json_file_path}")
+            continue
 
-    with open(json_file_path, "w") as json_file:
-        inferred_serializable = [
-            {k: list(v) if isinstance(v, set) else v for k, v in d.items()}
-            for d in inferred
-        ]
-        json.dump(inferred_serializable, json_file, indent=4)
+        with open(json_file_path, "w") as json_file:
+            inferred_serializable = [
+                {k: list(v) if isinstance(v, set) else v for k, v in d.items()}
+                for d in inferred
+            ]
+            json.dump(inferred_serializable, json_file, indent=4)
+    except Exception as e:
+        print(f"Command returned non-zero exit status: {e}")
+        error_count += 1

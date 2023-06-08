@@ -1,5 +1,6 @@
 import os
 import tarfile
+import time
 from io import BytesIO
 
 import docker
@@ -82,7 +83,11 @@ class TypeEvalPyRunner:
             container, self.script_path, self.docker_script_path
         )
         print("Type inferring.. ")
+        start_time = time.time()
         container.exec_run(f"python {self.docker_script_path}")
+        end_time = time.time()
+        execution_time = end_time - start_time
+        print(f"Execution time: {execution_time} seconds")
         file_handler._copy_files_from_container(
             container, result_path, self.dockerfile_path
         )
@@ -126,13 +131,13 @@ def main():
     runner = ScalpelRunner()
     runner.run_tool_test()
 
-    runner = PyreRunner()
-    runner.run_tool_test()
-
     runner = PyrightRunner()
     runner.run_tool_test()
 
     runner = PytypeRunner()
+    runner.run_tool_test()
+
+    runner = PyreRunner()
     runner.run_tool_test()
 
 

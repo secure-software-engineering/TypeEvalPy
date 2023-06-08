@@ -12,18 +12,22 @@ def list_python_files(folder_path):
 
 
 os.chdir("/tmp")
-root_directory = "./micro-benchmark"
+root_directory = "./micro-benchmark/python_features"
 
-# Run `pyright' in the root directory for node installation
+# Run `pytype' in the root directory for node installation
 
 python_files = list_python_files(root_directory)
-
-# Run `pyright` for all files
+error_count = 0
+# Run `pytype` for all files
 for file_path in python_files:
     print(file_path)
     dir_path, file_name = os.path.split(file_path)
-    pyright_stub = (
+    pytype_stub = (
         "pytype -k --precise-return  --protocols --strict-parameter-checks"
         f" '{file_name}'"
     )
-    subprocess.run(pyright_stub, shell=True, cwd=dir_path, check=True)
+    try:
+        subprocess.run(pytype_stub, shell=True, cwd=dir_path, check=True)
+    except subprocess.CalledProcessError as e:
+        print(f"Command returned non-zero exit status: {e.returncode}")
+        error_count += 1

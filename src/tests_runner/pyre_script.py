@@ -31,7 +31,7 @@ if not os.path.exists(pyre_config_file):
     pyre_process.wait()
 
 python_files = list_python_files(root_directory)
-
+error_count = 0
 # Run `pyre query` for all files
 for file in python_files:
     print(file)
@@ -43,6 +43,9 @@ for file in python_files:
         continue
 
     pyre_query = f"pyre query \"types(path='{file}')\" | jq . > {pyre_output_file}"
-    subprocess.run(pyre_query, shell=True, cwd=root_directory, check=True)
-
-    print(f"Pyre JSON file created: {pyre_output_file}")
+    try:
+        subprocess.run(pyre_query, shell=True, cwd=root_directory, check=True)
+        print(f"Pyre JSON file created: {pyre_output_file}")
+    except subprocess.CalledProcessError as e:
+        print(f"Command returned non-zero exit status: {e.returncode}")
+        error_count += 1
