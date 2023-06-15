@@ -5,7 +5,7 @@
 # The 'result' field is accessed and modified in a context-sensitive manner, where the behavior of the program depends on the specific context object that is used.
 
 
-class IdentityOperation:
+class ValueStore:
     def __init__(self, x):
         self.x = x
         self.result = None
@@ -16,7 +16,7 @@ def identity(context):
     return type(context.result)
 
 
-context1 = IdentityOperation(5)
-context2 = IdentityOperation("Hello World")
+context1 = ValueStore(5)
+context2 = ValueStore("Hello World")
 result1 = identity(context1)
 result2 = identity(context2)

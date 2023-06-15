@@ -3,21 +3,27 @@
         "file": "main.py",
         "line_number": 6,
         "function": "arithmetic_op",
+        "type": ["int", "str", "float"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "function": "arithmetic_op",
         "parameter": "a",
-        "type": ["any"]
+        "type": ["int", "str", "float"]
     },
     {
         "file": "main.py",
         "line_number": 6,
         "function": "arithmetic_op",
         "parameter": "b",
-        "type": ["any"]
+        "type": ["int", "str", "float"]
     },
     {
         "file": "main.py",
-        "line_number": 6,
+        "line_number": 7,
         "variable": "result",
-        "type": ["any"]
+        "type": ["int", "str", "float"]
     },
     {
         "file": "main.py",

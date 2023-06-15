@@ -13,12 +13,14 @@ class ArithmeticOperation:
         self.result = self.add(self.a, self.b)
         return self.result
 
-    def add(self):
-        self.result = self.a + self.b
+    def add(self, a, b):
+        self.result = a + b
         return self.result
 
 
 arith_op = ArithmeticOperation(5, 10)
-arith_op.a = "Hello"
-arith_op.b = "world"
-result = arith_op.compute()
+result1 = arith_op.compute()
+
+arith_op.a = 1.0
+arith_op.b = 5.0
+result2 = arith_op.compute()

@@ -1,5 +1,7 @@
 # The given code is an example of field sensitivity because it can recognise values based on the values assigned to its member variables.
 # The program is also flow sensitive as the result changes according to values assigned to the member variables a and b in execution flow.
+
+
 class ArithmeticOperation:
     def __init__(self, a, b):
         self.a = a
@@ -23,6 +25,8 @@ class ArithmeticOperation:
 
 
 arith_op = ArithmeticOperation(5, 10)
-arith_op.a = 0
-arith_op.nested.b = 5
+result = arith_op.compute()
+
+arith_op.a = -10
+arith_op.b = 5
 result = arith_op.compute()

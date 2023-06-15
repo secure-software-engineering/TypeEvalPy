@@ -16,22 +16,18 @@ def my_function(my_bool):
 
 class CombinedTypes:
     def __init__(self, my_bool):
-        self.x = my_function(my_bool)
-        self.nested = self.Nested(10)
+        self.nested = self.Nested(my_bool)
 
     class Nested:
         def __init__(self, y):
             self.value = y
 
-        def operation(self):
-            return self.value
-
     def get_value(self):
-        if isinstance(self.nested.operation(), str):
-            self.x = self.nested.operation().upper()
-        return self.x
+        return my_function(self.nested.value)
 
 
 obj = CombinedTypes(True)
-obj.nested.value = "Hello"
-result = obj.get_value()
+result1 = obj.get_value()
+
+obj.nested.value = False
+result2 = obj.get_value()

@@ -16,11 +16,14 @@ class CombinedTypes:
         if isinstance(self.x, int):
             return self.x + 1
         else:
-            return self.x.upper()
+            return self.x * 3
 
 
 obj1 = CombinedTypes(True)
 obj2 = CombinedTypes(False)
-obj2.x = obj1.x
+
 result1 = obj1.get_value()
 result2 = obj2.get_value()
+
+obj2.x = obj1.x
+result3 = obj2.get_value()

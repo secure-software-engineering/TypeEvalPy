@@ -6,27 +6,26 @@
 
 class CombinedTypes:
     def __init__(self, data):
-        self.data = data
-        self.nested = self.Nested(10)
+        self.nested = self.Nested(data)
 
     class Nested:
         def __init__(self, value):
             self.value = value
 
-        def get_value(self):
-            return self.value
-
     def process_data(self):
-        if isinstance(self.data, int):
-            return self.data * 2
+        if isinstance(self.nested.value, int):
+            return self.nested.value * 2
         elif isinstance(self.nested.value, str):
-            return self.nested.value.upper()
+            return self.nested.value * 3
         else:
-            return self.data
+            return self.nested.value
 
 
 context1 = CombinedTypes(5)
+result = context1.process_data()
+
 context2 = CombinedTypes("hello")
+result = context2.process_data()
+
 context2.nested.value = 20
-result1 = context1.process_data()
-result2 = context2.process_data()
+result = context2.process_data()

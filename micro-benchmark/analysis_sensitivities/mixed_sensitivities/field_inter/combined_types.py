@@ -15,15 +15,14 @@ def my_function(my_bool):
 
 class CombinedTypes:
     def __init__(self, my_bool):
-        self.x = my_function(my_bool)
+        self.x = my_bool
 
     def get_value(self):
-        if isinstance(self.x, str):
-            return self.x.upper()
-        else:
-            return self.x
+        return my_function(self.x)
 
 
 obj = CombinedTypes(True)
-obj.x = "Hello"
-result = obj.get_value()
+result1 = obj.get_value()
+
+obj.x = False
+result2 = obj.get_value()

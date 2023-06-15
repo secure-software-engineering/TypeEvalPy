@@ -1,5 +1,7 @@
 # The given code is an example of field sensitivity because it can recognise values based on the values assigned to its member variables.
 # Also it has multiple depth in field sensitivity
+
+
 class ArithmeticOperation:
     def __init__(self, a, b):
         self.a = a
@@ -10,15 +12,14 @@ class ArithmeticOperation:
         def __init__(self, b):
             self.b = b
 
-        def compute(self):
-            return self.b
-
     def compute(self):
-        self.result = self.a + self.nested.compute()
+        self.result = self.a + self.nested.b
         return self.result
 
 
 arith_op = ArithmeticOperation(5, 4)
+result1 = arith_op.compute()
+
 arith_op.a = "Hello"
 arith_op.nested.b = "World"
-result = arith_op.compute()
+result2 = arith_op.compute()

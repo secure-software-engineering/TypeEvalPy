@@ -1,9 +1,4 @@
-# A simple Python program that defines a function called 'my_function' with combined return types.
-def my_function(my_bool):
-    if my_bool:
-        return 5
-    else:
-        return "Hello World!"
+# A simple Python program with multiple types for a single variable
 
-
-result = my_function(True)
+result = 5
+result = "Hello world!"

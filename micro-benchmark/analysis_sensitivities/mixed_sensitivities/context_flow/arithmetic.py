@@ -3,22 +3,21 @@
 
 
 def arithmetic_op(a, b):
+    result = None
     if a == 0:
         result = b
-        return result
     elif b == 0:
         result = a
-        return result
     else:
         result = a + b
 
-    if result < 0:
-        result = None
+    if result <= 0:
+        result = 0
     else:
         result = "Positive"
     return result
 
 
 result = arithmetic_op(5, 10)
-result2 = arithmetic_op(0, 10)
-result2 = arithmetic_op(-5, -10)
+result = arithmetic_op(1.0, 10.0)
+result = arithmetic_op(-5, -10)

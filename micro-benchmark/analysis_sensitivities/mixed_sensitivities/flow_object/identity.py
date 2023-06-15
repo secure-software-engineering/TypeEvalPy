@@ -18,7 +18,11 @@ class IdentityOperation:
             return self.x
 
 
-identity_op1 = IdentityOperation(5)
-identity_op2 = IdentityOperation("Hello World")
-result1 = identity_op1.identity()
-result2 = identity_op2.identity()
+identity_op = IdentityOperation(5)
+result = identity_op.identity()
+
+identity_op = IdentityOperation(1.0)
+result = identity_op.identity()
+
+identity_op = IdentityOperation("Hello World")
+result = identity_op.identity()

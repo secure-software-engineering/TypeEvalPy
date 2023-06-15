@@ -16,6 +16,7 @@ class ArithmeticOperation:
 arith_op1 = ArithmeticOperation(5, 10)
 arith_op2 = ArithmeticOperation("Hello", "World")
 result1 = arith_op1.compute()
+
 arith_op1.a = arith_op2.a
 arith_op1.b = arith_op2.b
 result2 = arith_op1.compute()

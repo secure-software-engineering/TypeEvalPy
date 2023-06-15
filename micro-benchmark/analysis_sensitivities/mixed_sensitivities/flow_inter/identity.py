@@ -4,22 +4,16 @@
 
 def identity(x):
     if isinstance(x, str):
-        return string_operation(x)
+        return identity_2(x)
     elif isinstance(x, int):
-        return int_operation(x)
+        return identity_2(x)
     else:
         return x
 
 
-def string_operation(a):
-    result = a + "string"
-    return result
+def identity_2(y):
+    return y
 
 
-def int_operation(a):
-    result = a + 1
-    return result
-
-
-result1 = identity(5)
-result2 = identity("Hello")
+result = identity(5)
+result = identity("Hello")

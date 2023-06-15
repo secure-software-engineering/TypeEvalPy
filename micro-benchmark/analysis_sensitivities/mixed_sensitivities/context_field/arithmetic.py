@@ -2,18 +2,19 @@
 # It is also an example of field sensitivity because the 'compute' method of the 'ArithmeticOperation' class is dependent on the values of the 'a' and 'b' fields of the object on which it is called.
 
 
-class ArithmeticOperation:
+def arithmetic_op(a, b):
+    result = a + b
+    return result
+
+
+class ValueStore:
     def __init__(self, a, b):
         self.a = a
         self.b = b
-        self.result = None
-
-    def compute(self):
-        self.result = self.a + self.b
-        return self.result
 
 
-result1 = ArithmeticOperation(5, 10)
-first_result = result1.compute()
-result2 = ArithmeticOperation("Hello", "World")
-final_result = result2.compute()
+op1 = ValueStore(5, 10)
+op2 = ValueStore("Hello", "World")
+
+result1 = arithmetic_op(op1.a, op1.b)
+result2 = arithmetic_op(op2.a, op2.b)

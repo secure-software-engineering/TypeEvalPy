@@ -10,9 +10,11 @@ class Identity:
         return self.operation()
 
     def operation(self):
-        return str(self.value) + " string"
+        return self.value
 
 
 id1 = Identity(5)
+result1 = id1.get_value()
+
 id1.value = "Hello"
-result = id1.get_value()
+result2 = id1.get_value()

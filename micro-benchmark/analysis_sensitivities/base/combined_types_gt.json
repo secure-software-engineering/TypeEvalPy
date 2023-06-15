@@ -10,7 +10,7 @@
         "line_number": 2,
         "function": "my_function",
         "parameter": "my_bool",
-        "type": ["bool"]
+        "type": ["any"]
     },
     {
         "file": "main.py",
@@ -20,7 +20,7 @@
     },
     {
         "file": "main.py",
-        "line_number": 4,
+        "line_number": 6,
         "variable": "x",
         "type": ["str"]
     },

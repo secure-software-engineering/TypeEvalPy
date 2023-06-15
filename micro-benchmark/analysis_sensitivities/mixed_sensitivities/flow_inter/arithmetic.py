@@ -6,10 +6,8 @@
 def arithmetic_op(a, b):
     if a == 0:
         result = b
-        return result
     elif b == 0:
         result = a
-        return result
     else:
         result = add(a, b)
 
@@ -28,5 +26,7 @@ def add(a, b):
 x = 5
 y = 10
 result = arithmetic_op(x, y)
-x = 0
+
+x = -10
+y = -5
 result = arithmetic_op(x, y)

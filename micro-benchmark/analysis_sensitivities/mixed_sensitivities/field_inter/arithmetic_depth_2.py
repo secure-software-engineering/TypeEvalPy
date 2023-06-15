@@ -13,20 +13,18 @@ class ArithmeticOperation:
         def __init__(self, b):
             self.b = b
 
-        def compute(self):
-            return self.b
-
     def compute(self):
-        self.b = self.nested.compute()
-        self.result = self.add()
+        self.result = self.add(self.a, self.nested.b)
         return self.result
 
-    def add(self):
-        self.result = self.a + self.b
+    def add(self, a, b):
+        self.result = a + b
         return self.result
 
 
 arith_op = ArithmeticOperation(5, 10)
+result1 = arith_op.compute()
+
 arith_op.a = "Hello"
 arith_op.nested.b = "world"
-result = arith_op.compute()
+result2 = arith_op.compute()

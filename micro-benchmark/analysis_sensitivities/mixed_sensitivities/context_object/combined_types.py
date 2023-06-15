@@ -3,24 +3,31 @@
 
 # The behavior of the program is object-sensitive as the behavior of the process_data method depends on the type of the data attribute of the instance.
 # The result field is accessed and modified in a context-sensitive manner, where the behavior of the program depends on the specific context object that is used.
-class CombinedTypesOperation:
-    def __init__(self, data):
-        self.data = data
+class ValueStore:
+    def __init__(self, a):
+        self.a = a
         self.result = None
 
-    def process_data(self):
-        if isinstance(self.data, int):
-            self.result = self.data * 2
-        elif isinstance(self.data, str):
-            self.result = self.data.upper()
+
+class CallContext:
+    def process_data(self, value):
+        if isinstance(value.a, int):
+            result = value.a * 2.0
+        elif isinstance(value.a, str):
+            result = value.a * 5
         else:
-            self.result = None
-        return self.result
+            result = None
+        return result
 
 
-value1 = 5
-value2 = 2.5
-combined_op1 = CombinedTypesOperation(value1)
-combined_op2 = CombinedTypesOperation(value2)
-result1 = combined_op1.process_data()
-result2 = combined_op2.process_data()
+value1 = ValueStore(5)
+value2 = ValueStore(2.5)
+value3 = ValueStore("Hello")
+
+call_obj1 = CallContext()
+call_obj2 = CallContext()
+call_obj3 = CallContext()
+
+result1 = call_obj1.process_data(value1)
+result2 = call_obj2.process_data(value2)
+result3 = call_obj3.process_data(value3)

@@ -3,21 +3,21 @@
 # The 'data' member variable is field-sensitive, allowing it to store different types of values in different contexts.
 
 
-class CombinedTypesContext:
-    def __init__(self, data):
-        self.data = data
-
-    def process_data(self):
-        if isinstance(self.data, int):
-            return self.data * 2
-        elif isinstance(self.data, str):
-            return self.data.upper()
-        else:
-            return self.data
+def my_function(my_bool):
+    if my_bool:
+        x = 5
+    else:
+        x = "Hello World!"
+    return x
 
 
-context1 = CombinedTypesContext(5)
-context2 = CombinedTypesContext("hello")
-context2.data = [1, 2]
-result1 = context1.process_data()
-result2 = context2.process_data()
+class ValueStore:
+    def __init__(self, a):
+        self.a = a
+
+
+op1 = ValueStore(True)
+op2 = ValueStore(False)
+
+result1 = my_function(op1.a)
+result2 = my_function(op2.a)

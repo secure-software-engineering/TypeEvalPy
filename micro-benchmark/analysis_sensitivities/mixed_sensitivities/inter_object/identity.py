@@ -12,8 +12,7 @@ class IdentityOperation:
         return self.result
 
     def operation(self):
-        self.result = type(self.x)
-        return self.result
+        return self.x
 
 
 identity_op1 = IdentityOperation(5)

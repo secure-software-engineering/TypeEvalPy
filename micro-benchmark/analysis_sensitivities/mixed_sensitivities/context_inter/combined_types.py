@@ -7,7 +7,7 @@ def process_data(data):
     if isinstance(data, int):
         result = double_value(data)
     elif isinstance(data, str):
-        result = uppercase(data)
+        result = double_value(data)
     else:
         result = None
     return result
@@ -15,10 +15,6 @@ def process_data(data):
 
 def double_value(num):
     return num * 2
-
-
-def uppercase(s):
-    return s.upper()
 
 
 value1 = 5

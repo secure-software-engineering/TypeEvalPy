@@ -13,20 +13,19 @@ class CombinedTypesObject:
         def __init__(self, value):
             self.value = value
 
-        def get_value(self):
-            return self.value
-
     def process_data(self):
         if isinstance(self.data, int):
             return self.data * 2
         elif isinstance(self.nested.value, str):
-            return self.nested.value.upper()
+            return self.nested.value * 2
         else:
             return self.data
 
 
 object1 = CombinedTypesObject(5)
 object2 = CombinedTypesObject("hello")
-object2.nested.value = object1.nested.value
 result1 = object1.process_data()
 result2 = object2.process_data()
+
+object2.nested.value = object1.nested.value
+result3 = object2.process_data()

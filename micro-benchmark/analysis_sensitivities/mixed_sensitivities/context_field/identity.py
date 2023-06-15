@@ -9,8 +9,16 @@ class Identity:
         return self.value
 
 
-id1 = Identity(5)
-id2 = Identity("Hello")
-id1.value = "string"
+class ValueStore:
+    def __init__(self, a):
+        self.a = a
+
+
+op1 = ValueStore(5)
+op2 = ValueStore("Hello")
+
+id1 = Identity(op1.a)
+id2 = Identity(op2.a)
+
 result1 = id1.get_value()
 result2 = id2.get_value()

@@ -1,5 +1,7 @@
 # The given code is an example of field sensitivity because it can recognize values based on the values assigned to its member variables.
 # It also demonstrates multiple levels of field sensitivity.
+
+
 class CombinedTypes:
     def __init__(self, my_bool):
         self.value = self.Value()
@@ -21,5 +23,8 @@ class CombinedTypes:
 
 
 combined = CombinedTypes(5)
+combined.value.my_bool = True
+result = combined.my_function()
+
 combined.value.my_bool = False
 result = combined.my_function()

@@ -13,9 +13,14 @@ def add(a, b):
     return result
 
 
-x = 2
-y = 1
-result1 = arithmetic_op(x, y)
-u = 3
-v = 2
-result2 = arithmetic_op(u, v)
+x1 = 2
+y1 = 1
+result1 = arithmetic_op(x1, y1)
+
+x2 = 3.0
+y2 = 2.0
+result2 = arithmetic_op(x2, y2)
+
+x3 = "Hello"
+y3 = "World!"
+result2 = arithmetic_op(x3, y3)

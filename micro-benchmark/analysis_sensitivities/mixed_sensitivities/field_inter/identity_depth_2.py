@@ -3,24 +3,21 @@
 # Also it has multiple depth in field sensitivity
 class Identity:
     def __init__(self, x):
-        self.value = x
-        self.nested = self.Nested(self.value)
+        self.nested = self.Nested(x)
 
     class Nested:
         def __init__(self, y):
             self.value = y
 
         def operation(self):
-            return str(self.value) + " string"
+            return self.value
 
     def get_value(self):
         return self.nested.operation()
 
 
 id1 = Identity(5)
-id2 = Identity("Hello")
-
-id2.nested.value = 20
-
 result1 = id1.get_value()
-result2 = id2.get_value()
+
+id1.nested.value = "Hello world!"
+result2 = id1.get_value()

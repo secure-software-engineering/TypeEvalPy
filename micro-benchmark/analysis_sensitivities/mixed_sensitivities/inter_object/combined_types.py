@@ -11,7 +11,7 @@ class CombinedTypesOperation:
         if isinstance(self.x, int):
             self.result = self.multiply_by_two()
         elif isinstance(self.x, str):
-            self.result = self.capitalize_string()
+            self.result = self.multiply_string()
         else:
             self.result = None
         return self.result
@@ -20,11 +20,13 @@ class CombinedTypesOperation:
         self.result = self.x * 2
         return self.result
 
-    def capitalize_string(self):
-        self.result = self.x.upper()
+    def multiply_string(self):
+        self.result = self.x * 3
         return self.result
 
 
 combined_op1 = CombinedTypesOperation(5)
 combined_op2 = CombinedTypesOperation("hello")
+
 result1 = combined_op1.combined_types()
+result2 = combined_op1.combined_types()

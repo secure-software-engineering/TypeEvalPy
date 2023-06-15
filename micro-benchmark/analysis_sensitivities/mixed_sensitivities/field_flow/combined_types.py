@@ -11,13 +11,16 @@ class CombinedTypes:
         if isinstance(self.data, int):
             return self.data * 2
         elif isinstance(self.data, str):
-            return self.data.upper()
+            return self.data * 3
         else:
             return self.data
 
 
 context1 = CombinedTypes(5)
+result = context1.process_data()
+
 context2 = CombinedTypes("hello")
+result = context2.process_data()
+
 context2.data = [1, 2]
-result1 = context1.process_data()
-result2 = context2.process_data()
+result = context2.process_data()

@@ -6,7 +6,7 @@ def identity(x):
     return type(x)
 
 
-result = identity(5)
-result = identity(5.2)
-result = identity("Hello")
-result = identity([1, 2, 3])
+result1 = identity(5)
+result2 = identity(5.2)
+result3 = identity("Hello")
+result4 = identity([1, 2, 3])

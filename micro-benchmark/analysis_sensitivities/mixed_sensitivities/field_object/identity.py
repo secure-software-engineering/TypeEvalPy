@@ -3,16 +3,17 @@
 # This is field-sensitive , allowing the value member variable to store different types of values in different contexts.
 class IdentityOperation:
     def __init__(self, x):
-        self.x = x
-        self.result = None
+        self.value = x
 
     def identity(self):
-        self.result = self.x
-        return self.result
+        return self.value
 
 
 identity_op1 = IdentityOperation(5)
 identity_op2 = IdentityOperation("String")
-identity_op1.value = identity_op2.value
-result = identity_op1.identity()
+
+result1 = identity_op1.identity()
 result2 = identity_op2.identity()
+
+identity_op1.value = identity_op2.value
+result3 = identity_op1.identity()

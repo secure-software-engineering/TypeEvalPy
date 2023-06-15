@@ -17,9 +17,11 @@ class ArithmeticOperation:
         return self.result
 
 
-arith_op1 = ArithmeticOperation(5, 10)
-result = arith_op1.compute()
-arith_op2 = ArithmeticOperation(5, 0)
-result = arith_op2.compute()
-arith_op3 = ArithmeticOperation(0, 10)
-result = arith_op1.compute()
+arith_op = ArithmeticOperation(5, 10)
+result = arith_op.compute()
+
+arith_op = ArithmeticOperation(5, 0)
+result = arith_op.compute()
+
+arith_op = ArithmeticOperation(0, 10)
+result = arith_op.compute()

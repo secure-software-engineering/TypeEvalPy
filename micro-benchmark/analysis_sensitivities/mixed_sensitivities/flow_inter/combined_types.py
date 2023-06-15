@@ -17,9 +17,9 @@ def int_operation(x):
 
 
 def string_operation(s):
-    return s.upper()
+    return s * 3
 
 
-result1 = combined_types(5)
-result2 = combined_types("hello")
-result3 = combined_types(2.5)
+result = combined_types(5)
+result = combined_types("hello")
+result = combined_types(2.5)

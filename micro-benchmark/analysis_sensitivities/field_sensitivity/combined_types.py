@@ -15,5 +15,7 @@ class CombinedTypes:
 
 
 combined = CombinedTypes(5)
+result1 = combined.my_function()
+
 combined.value = False
-result = combined.my_function()
+result2 = combined.my_function()

@@ -6,9 +6,9 @@ def identity(x):
     return x
 
 
-def operation(a, b):
-    result = identity(a) + identity(b)
+def operation(a):
+    result = identity(a)
     return result
 
 
-result = operation(5, 10)
+result = operation(5)

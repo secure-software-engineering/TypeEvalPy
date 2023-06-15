@@ -3,14 +3,15 @@
 
 
 def identity(x):
+    value = None
     if isinstance(x, str):
-        return x.upper()
+        value = x * 2
     elif isinstance(x, int):
-        return x + 1
-    else:
-        return None
+        value = x + 1
+
+    return value
 
 
-a = identity(5)
-b = identity("hello")
-c = identity(2.5)
+result = identity(5)
+result = identity("hello")
+result = identity(2.5)

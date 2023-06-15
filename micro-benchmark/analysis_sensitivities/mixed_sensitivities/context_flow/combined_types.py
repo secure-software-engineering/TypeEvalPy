@@ -6,11 +6,11 @@ def process_data(data):
     if isinstance(data, int):
         return data * 2
     elif isinstance(data, str):
-        return data.upper()
+        return data * 5
     else:
         return None
 
 
-result1 = process_data(5)
-result2 = process_data("hello")
-result3 = process_data(2.5)
+result = process_data(5)
+result = process_data("hello")
+result = process_data(2.5)
