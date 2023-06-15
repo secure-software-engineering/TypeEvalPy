@@ -1,18 +1,23 @@
-# Function which has a combined return type [int,str]
-# The given code is context sensitive because it produces different results based on the context in which it is executed.
+# This program is an example of flow sensitivity as the behavior of the program is dependent on the flow of execution, specifically the values assigned to the 'a' and 'b' fields of the 'arith_op' object.
+# This program is an example of context sensitivity as the behavior of the program is dependent on the context of function call execution, specifically the values assigned to the 'a' and 'b' fields of the 'ArithmeticOperation' class objects.
 
 
-def my_function(my_bool):
-    if my_bool:
-        x = 5
+def arithmetic_op(a, b):
+    result = None
+    if a == 0:
+        result = b
+    elif b == 0:
+        result = a
     else:
-        x = "Hello World!"
-    return x
+        result = a + b
+
+    if result <= 0:
+        result = 0
+    else:
+        result = "Positive"
+    return result
 
 
-result1 = my_function(False)
-result2 = my_function(0)
-
-result3 = my_function(True)
-result4 = my_function(1)
-result5 = my_function("Y")
+result = arithmetic_op(5, 10)
+result = arithmetic_op(1.0, 10.0)
+result = arithmetic_op(-5, -10)
