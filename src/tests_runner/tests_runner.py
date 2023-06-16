@@ -127,8 +127,19 @@ class PytypeRunner(TypeEvalPyRunner):
         self._run_test_in_session()
 
 
+class JediRunner(TypeEvalPyRunner):
+    def __init__(self):
+        super().__init__("jedi", "../target_tools/jedi")
+
+    def run_tool_test(self):
+        self._run_test_in_session()
+
+
 def main():
     runner = ScalpelRunner()
+    runner.run_tool_test()
+
+    runner = JediRunner()
     runner.run_tool_test()
 
     runner = PyrightRunner()
