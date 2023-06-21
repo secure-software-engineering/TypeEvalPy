@@ -18,6 +18,7 @@ def query_pyre(folder_name, attribute):
         print(result)
         query_output = json.loads(result.stdout)
         attribute_type = query_output["response"]["type"]
+        attribute_type = attribute_type.lstrip("typing.")
         print(attribute_type)
         return attribute_type
     except (json.JSONDecodeError, KeyError):
@@ -45,9 +46,9 @@ def analyze_files(file_list):
                 )  # Provide "Y" and "." as answers to prompts
 
                 # Run `pyre` command
-                pyre_command = ["pyre"]
-                pyre_process = subprocess.Popen(pyre_command, cwd=directory_name)
-                pyre_process.wait()
+            pyre_command = ["pyre"]
+            pyre_process = subprocess.Popen(pyre_command, cwd=directory_name)
+            pyre_process.wait()
             for attribute in attributes:
                 if "function" in attribute:
                     func = attribute["function"]
@@ -57,7 +58,7 @@ def analyze_files(file_list):
                     if attribute_type:
                         type_info.append(
                             {
-                                "file": filename,
+                                "file": os.path.basename(filename),
                                 "line_number": attribute["line_number"],
                                 "function": func,
                                 "type": [attribute_type],
@@ -73,7 +74,7 @@ def analyze_files(file_list):
                     if attribute_type:
                         type_info.append(
                             {
-                                "file": filename,
+                                "file": os.path.basename(filename),
                                 "line_number": attribute["line_number"],
                                 "parameter": param,
                                 "function": func,
@@ -87,9 +88,12 @@ def analyze_files(file_list):
                         directory_name, filename.replace(".py", "") + "." + variable
                     )
                     if attribute_type:
+                        attribute_type = attribute_type.lstrip(
+                            f"{os.path.basename(filename.replace('.py', ''))}."
+                        )
                         type_info.append(
                             {
-                                "file": filename,
+                                "file": os.path.basename(filename),
                                 "line_number": attribute["line_number"],
                                 "variable": variable,
                                 "type": [attribute_type],
@@ -130,7 +134,7 @@ def pyre_main():
             type_info = analyze_files([file_data])
 
             # Generate JSON file with type information
-            json_filepath = python_file.replace(".py", "_pyre .json")
+            json_filepath = python_file.replace(".py", "_pyre.json")
             print(json_filepath)
             generate_json_file(json_filepath, type_info)
         except Exception as e:
