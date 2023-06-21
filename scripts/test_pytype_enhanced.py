@@ -60,19 +60,29 @@ def get_annotations_list(module):
     current_class = None
     for node in ast.walk(module):
         if hasattr(node, "resolved_type"):
+            """if hasattr(node, "id"):
+                print(node.id)
+            elif isinstance(node, ast.Attribute):
+                print(node.attr)
+            else:
+                members = dir(node)
+                for member in members:
+                    value = getattr(node, member)
+                    print(f"{member}: {value}")"""
             if isinstance(node, ast.ClassDef):
-                current_class = node.name
+                current_class = node.id
+                print(node.name)
             if isinstance(node, ast.FunctionDef):
+                # print(node.id)
                 function = {
                     "file": "test.py",
                     "line_number": node.lineno,
                     "function": node.name,
                     "type": [node.resolved_annotation],
                 }
-                results.append(function)
-
                 if current_class:
                     function["function"] = f"{current_class}.{node.name}"
+                results.append(function)
 
                 for param in node.args.args:
                     parameter = {
@@ -86,6 +96,15 @@ def get_annotations_list(module):
                         function["function"] = f"{current_class}.{node.name}"
                     results.append(parameter)
 
+            elif isinstance(node, ast.Attribute):
+                parameter = {
+                    "file": "test.py",
+                    "line_number": node.lineno,
+                    "parameter": node.attr,
+                    "function": node.value,
+                    "type": [node.resolved_annotation],
+                }
+                results.append(parameter)
             elif isinstance(node, ast.Name) and isinstance(node.ctx, ast.Store):
                 variable = {
                     "file": "test.py",
@@ -94,7 +113,6 @@ def get_annotations_list(module):
                     "type": [node.resolved_annotation],
                 }
                 results.append(variable)
-
     return results
 
 
