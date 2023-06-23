@@ -129,7 +129,9 @@ class TypeInferenceJedi:
                                 "function": self.get_function_name(inferred),
                                 "type": _type if _type else {"any"},
                             }
-
+                            variable_name = var.split(":")[0].strip()
+                            if variable_name != self.get_function_name(inferred):
+                                _info["variable"] = variable_name
                             if _type:
                                 output_inferred.append(_info)
 
@@ -149,12 +151,13 @@ class TypeInferenceJedi:
                                 "file": node.name,
                                 "line_number": pos["line"],
                                 "variable": var.split(":")[0],
-                                "function": self.get_function_name(
-                                    pos["jedi_obj"].parent()
-                                ),
                                 "type": {_type},
                             }
-
+                            if self.get_function_name(pos["jedi_obj"].parent()):
+                                print(self.get_function_name(pos["jedi_obj"].parent()))
+                                _info["function"] = self.get_function_name(
+                                    pos["jedi_obj"].parent()
+                                )
                             if _type:
                                 output_inferred.append(_info)
 
