@@ -33,7 +33,7 @@ class TypeInferenceJedi:
         _type = set()
         if type_hint:
             try:
-                _t = type_hint.split(" -> ")[1]
+                _t = type_hint.split(" -> ")[-1]
                 if "Union" in _t:
                     _list_of_types = (
                         _t.split("Union")[1]
