@@ -1,6 +1,15 @@
 import json
 import subprocess
 import os
+import re
+
+
+def format_type(type):
+    pattern = r"Callable\(.*?\)\[.*?,\s*typing\.(\w+)]"
+    match = re.search(pattern, type)
+    if match:
+        type = match.group(1)
+    return type
 
 
 def query_pyre(folder_name, attribute):
@@ -56,6 +65,7 @@ def analyze_files(file_list):
                         directory_name, filename.replace(".py", "") + "." + func
                     )
                     if attribute_type:
+                        attribute_type = format_type(attribute_type)
                         type_info.append(
                             {
                                 "file": os.path.basename(filename),
