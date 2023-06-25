@@ -16,30 +16,55 @@ for key, value in hityper.items():
     else:
         function_name = f"{class_name}.{function_name}"
     for item in value:
-        print("here")
-        print(item)
         for gt_item in main_gt:
-            if "function" in gt_item and gt_item["function"] == function_name:
-                formatted_item = {
-                    "file": gt_item["file"],
-                    "line_number": gt_item["line_number"],
-                    "function": gt_item["function"],
-                    "type": item["type"],
-                }
-                if "variable" in gt_item and item["category"] == "local":
-                    formatted_item["variable"] = gt_item["variable"]
-                elif "parameter" in gt_item and item["category"] == "arg":
-                    formatted_item["parameter"] = gt_item["parameter"]
-                formatted_output.append(formatted_item)
-            elif "variable" in gt_item and gt_item["variable"] == item["name"]:
-                formatted_item = {
-                    "file": gt_item["file"],
-                    "line_number": gt_item["line_number"],
-                    "variable": gt_item["variable"],
-                    "type": item["type"],
-                }
-                formatted_output.append(formatted_item)
-        print(formatted_output)
+            formatted_item = {}
+            if item["category"] == "local" and "variable" in gt_item:
+                if function_name == "global":
+                    if gt_item["variable"] == item["name"]:
+                        formatted_item = {
+                            "file": gt_item["file"],
+                            "line_number": gt_item["line_number"],
+                            "variable": gt_item["variable"],
+                            "type": item["type"],
+                        }
+                        formatted_output.append(formatted_item)
+                elif "function" in gt_item and gt_item["function"] == function_name:
+                    if gt_item["variable"] == item["name"]:
+                        formatted_item = {
+                            "file": gt_item["file"],
+                            "line_number": gt_item["line_number"],
+                            "function": gt_item["function"],
+                            "variable": gt_item["variable"],
+                            "type": item["type"],
+                        }
+                        formatted_output.append(formatted_item)
+            elif item["category"] == "arg" and "parameter" in gt_item:
+                if (
+                    "function" in gt_item
+                    and gt_item["function"] == function_name
+                    and gt_item["parameter"] == item["name"]
+                ):
+                    formatted_item = {
+                        "file": gt_item["file"],
+                        "line_number": gt_item["line_number"],
+                        "function": gt_item["function"],
+                        "parameter": gt_item["parameter"],
+                        "type": item["type"],
+                    }
+                    formatted_output.append(formatted_item)
+            elif item["category"] == "return":
+                if (
+                    "function" in gt_item
+                    and gt_item["function"] == function_name
+                    and not any(key in gt_item for key in ["variable", "parameter"])
+                ):
+                    formatted_item = {
+                        "file": gt_item["file"],
+                        "line_number": gt_item["line_number"],
+                        "function": gt_item["function"],
+                        "type": item["type"],
+                    }
+                    formatted_output.append(formatted_item)
 # Write the formatted output to main_gt.json
 with open("formatted.json", "w") as output_file:
     json.dump(formatted_output, output_file, indent=4)
