@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-microbench_folder_path = "../micro-benchmark/python_features"
+microbench_folder_path = "../micro-benchmark/"
 
 json_files = [_file for _file in sorted(Path(microbench_folder_path).rglob("*.json"))]
 python_files = [_file for _file in sorted(Path(microbench_folder_path).rglob("*.py"))]
