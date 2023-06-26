@@ -24,7 +24,7 @@ class CombinedTypes:
 
 combined = CombinedTypes(5)
 combined.value.my_bool = True
-result = combined.my_function()
+result1 = combined.my_function()
 
 combined.value.my_bool = False
-result = combined.my_function()
+result2 = combined.my_function()

@@ -1,0 +1,61 @@
+[
+    {
+        "file": "identity.py",
+        "line_number": 7,
+        "parameter": "x",
+        "function": "Identity.__init__",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "identity.py",
+        "line_number": 8,
+        "variable": "Identity.value",
+        "function": "Identity.__init__",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "identity.py",
+        "line_number": 10,
+        "function": "Identity.get_value",
+        "type": [
+            "int",
+            "str"
+        ]
+    },
+    {
+        "file": "identity.py",
+        "line_number": 14,
+        "variable": "id1",
+        "type": [
+            "Identity"
+        ]
+    },
+    {
+        "file": "identity.py",
+        "line_number": 15,
+        "variable": "result1",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "identity.py",
+        "line_number": 17,
+        "variable": "id1.value",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "identity.py",
+        "line_number": 18,
+        "variable": "result2",
+        "type": [
+            "str"
+        ]
+    }
+]

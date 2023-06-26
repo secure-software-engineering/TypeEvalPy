@@ -1,65 +1,80 @@
 [
     {
-        "file": "main.py",
-        "line_number": 6,
-        "class": "ArithmeticOperation",
-        "function": "__init__",
-        "variable": "a",
-        "type": ["any"]
+        "file": "arithmetic.py",
+        "line_number": 8,
+        "function": "ArithmeticOperation.__init__",
+        "parameter": "a",
+        "type": ["int"]
     },
     {
-        "file": "main.py",
-        "line_number": 6,
-        "class": "ArithmeticOperation",
-        "function": "__init__",
-        "variable": "b",
-        "type": ["any"]
+        "file": "arithmetic.py",
+        "line_number": 8,
+        "function": "ArithmeticOperation.__init__",
+        "parameter": "b",
+        "type": ["int"]
     },
     {
-        "file": "main.py",
+        "file": "arithmetic.py",
         "line_number": 9,
-        "class": "ArithmeticOperation",
-        "function": "__init__",
-        "variable": "result",
+        "function": "ArithmeticOperation.__init__",
+        "variable": "ArithmeticOperation.a",
+        "type": ["int"]
+    },
+    {
+        "file": "arithmetic.py",
+        "line_number": 10,
+        "function": "ArithmeticOperation.__init__",
+        "variable": "ArithmeticOperation.b",
+        "type": ["int"]
+    },
+    {
+        "file": "arithmetic.py",
+        "line_number": 11,
+        "function": "ArithmeticOperation.__init__",
+        "variable": "ArithmeticOperation.result",
         "type": ["None"]
     },
     {
-        "file": "main.py",
-        "line_number": 11,
-        "class": "ArithmeticOperation",
-        "function": "compute",
-        "type": ["Any"]
+        "file": "arithmetic.py",
+        "line_number": 13,
+        "function": "ArithmeticOperation.compute",
+        "type": ["str", "int"]
     },
     {
-        "file": "main.py",
-        "line_number": 12,
-        "class": "ArithmeticOperation",
-        "function": "compute",
-        "variable": "result",
-        "type": ["Any"]
+        "file": "arithmetic.py",
+        "line_number": 14,
+        "function": "ArithmeticOperation.compute",
+        "variable": "ArithmeticOperation.result",
+        "type": ["str", "int"]
     },
     {
-        "file": "main.py",
-        "line_number": 16,
+        "file": "arithmetic.py",
+        "line_number": 18,
         "variable": "arith_op",
-        "type": ["ArithmeticOperation object"]
+        "type": ["ArithmeticOperation"]
     },
     {
-        "file": "main.py",
-        "line_number": 17,
+        "file": "arithmetic.py",
+        "line_number": 19,
+        "variable": "result1",
+        "type": ["int"]
+    },
+    {
+        "file": "arithmetic.py",
+        "line_number": 21,
         "variable": "arith_op.a",
         "type": ["str"]
     },
     {
-        "file": "main.py",
-        "line_number": 18,
+        "file": "arithmetic.py",
+        "line_number": 22,
         "variable": "arith_op.b",
         "type": ["str"]
     },
     {
-        "file": "main.py",
-        "line_number": 19,
-        "variable": "result",
+        "file": "arithmetic.py",
+        "line_number": 23,
+        "variable": "result2",
         "type": ["str"]
     }
 ]

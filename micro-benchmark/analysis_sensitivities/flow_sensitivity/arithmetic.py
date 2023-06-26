@@ -9,7 +9,7 @@ result = None
 if value >= 5:
     result = value
 else:
-    result = "Negative"
+    result = "Less than or equal 5"
 
 result = result
 
@@ -20,6 +20,6 @@ result = None
 if value >= 5:
     result = value
 else:
-    result = "Negative"
+    result = "Less than or equal 5"
 
 result = result

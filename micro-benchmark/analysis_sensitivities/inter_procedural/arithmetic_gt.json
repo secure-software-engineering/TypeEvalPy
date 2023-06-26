@@ -1,62 +1,80 @@
 [
     {
-        "file": "main.py",
+        "file": "arithmetic.py",
         "line_number": 6,
         "function": "arithmetic_op",
-        "type": ["any"]
+        "type": [
+            "int"
+        ]
     },
     {
-        "file": "main.py",
+        "file": "arithmetic.py",
         "line_number": 6,
+        "parameter": "a",
         "function": "arithmetic_op",
-        "variable": "a",
-        "type": ["any"]
+        "type": [
+            "int"
+        ]
     },
     {
-        "file": "main.py",
+        "file": "arithmetic.py",
         "line_number": 6,
+        "parameter": "b",
         "function": "arithmetic_op",
-        "variable": "b",
-        "type": ["any"]
+        "type": [
+            "int"
+        ]
     },
     {
-        "file": "main.py",
+        "file": "arithmetic.py",
         "line_number": 7,
+        "variable": "result",
         "function": "arithmetic_op",
-        "variable": "result",
-        "type": ["any"]
+        "type": [
+            "int"
+        ]
     },
     {
-        "file": "main.py",
+        "file": "arithmetic.py",
         "line_number": 11,
         "function": "add",
-        "type": ["any"]
+        "type": [
+            "int"
+        ]
     },
     {
-        "file": "main.py",
+        "file": "arithmetic.py",
         "line_number": 11,
+        "parameter": "a",
         "function": "add",
-        "variable": "a",
-        "type": ["any"]
+        "type": [
+            "int"
+        ]
     },
     {
-        "file": "main.py",
+        "file": "arithmetic.py",
         "line_number": 11,
+        "parameter": "b",
         "function": "add",
-        "variable": "b",
-        "type": ["any"]
+        "type": [
+            "int"
+        ]
     },
     {
-        "file": "main.py",
+        "file": "arithmetic.py",
         "line_number": 12,
-        "function": "add",
         "variable": "result",
-        "type": ["any"]
+        "function": "add",
+        "type": [
+            "int"
+        ]
     },
     {
-        "file": "main.py",
-        "line_number": 14,
+        "file": "arithmetic.py",
+        "line_number": 16,
         "variable": "result",
-        "type": ["int"]
+        "type": [
+            "int"
+        ]
     }
 ]

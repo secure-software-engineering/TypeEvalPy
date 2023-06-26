@@ -11,4 +11,6 @@ def operation(a):
     return result
 
 
-result = operation(5)
+result1 = operation(5)
+result2 = operation(5.0)
+result3 = operation("Hello world")

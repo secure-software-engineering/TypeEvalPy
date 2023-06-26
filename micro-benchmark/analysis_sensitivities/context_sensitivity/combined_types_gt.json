@@ -1,0 +1,40 @@
+[
+    {
+        "file": "combined_types.py",
+        "line_number": 5,
+        "function": "my_function",
+        "type": [
+            "int",
+            "str"
+        ]
+    },
+    {
+        "file": "combined_types.py",
+        "line_number": 5,
+        "parameter": "my_bool",
+        "function": "my_function",
+        "type": [
+            "str",
+            "int",
+            "bool"
+        ]
+    },
+    {
+        "file": "combined_types.py",
+        "line_number": 7,
+        "variable": "x",
+        "function": "my_function",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "combined_types.py",
+        "line_number": 9,
+        "variable": "x",
+        "function": "my_function",
+        "type": [
+            "str"
+        ]
+    }
+]

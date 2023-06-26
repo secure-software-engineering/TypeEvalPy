@@ -1,0 +1,79 @@
+[
+    {
+        "file": "combined_types.py",
+        "line_number": 6,
+        "parameter": "x",
+        "function": "CombinedTypes.__init__",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "combined_types.py",
+        "line_number": 7,
+        "variable": "CombinedTypes.value",
+        "function": "CombinedTypes.__init__",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "combined_types.py",
+        "line_number": 9,
+        "function": "CombinedTypes.my_function",
+        "type": [
+            "int",
+            "str"
+        ]
+    },
+    {
+        "file": "combined_types.py",
+        "line_number": 11,
+        "variable": "x",
+        "function": "my_function",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "combined_types.py",
+        "line_number": 13,
+        "variable": "x",
+        "function": "my_function",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "combined_types.py",
+        "line_number": 17,
+        "variable": "combined",
+        "type": [
+            "CombinedTypes"
+        ]
+    },
+    {
+        "file": "combined_types.py",
+        "line_number": 18,
+        "variable": "result1",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "combined_types.py",
+        "line_number": 20,
+        "variable": "combined.value",
+        "type": [
+            "bool"
+        ]
+    },
+    {
+        "file": "combined_types.py",
+        "line_number": 21,
+        "variable": "result2",
+        "type": [
+            "str"
+        ]
+    }
+]

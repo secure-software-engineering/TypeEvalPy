@@ -1,0 +1,114 @@
+[
+    {
+        "file": "combined_types_depth_2.py",
+        "line_number": 6,
+        "parameter": "my_bool",
+        "function": "CombinedTypes.__init__",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "combined_types_depth_2.py",
+        "line_number": 7,
+        "variable": "CombinedTypes.value",
+        "function": "CombinedTypes.__init__",
+        "type": [
+            "CombinedTypes.Value"
+        ]
+    },
+    {
+        "file": "combined_types_depth_2.py",
+        "line_number": 8,
+        "variable": "CombinedTypes.value.my_bool",
+        "function": "CombinedTypes.__init__",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "combined_types_depth_2.py",
+        "line_number": 12,
+        "variable": "CombinedTypes.Value.my_bool",
+        "function": "CombinedTypes.Value.__init__",
+        "type": [
+            "bool"
+        ]
+    },
+    {
+        "file": "combined_types_depth_2.py",
+        "line_number": 14,
+        "function": "CombinedTypes.Value.my_function",
+        "type": [
+            "int",
+            "str"
+        ]
+    },
+    {
+        "file": "combined_types_depth_2.py",
+        "line_number": 16,
+        "variable": "x",
+        "function": "CombinedTypes.Value.my_function",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "combined_types_depth_2.py",
+        "line_number": 18,
+        "variable": "x",
+        "function": "CombinedTypes.Value.my_function",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "combined_types_depth_2.py",
+        "line_number": 21,
+        "function": "CombinedTypes.my_function",
+        "type": [
+            "int",
+            "str"
+        ]
+    },
+    {
+        "file": "combined_types_depth_2.py",
+        "line_number": 25,
+        "variable": "combined",
+        "type": [
+            "CombinedTypes"
+        ]
+    },
+    {
+        "file": "combined_types_depth_2.py",
+        "line_number": 26,
+        "variable": "combined.value.my_bool",
+        "type": [
+            "bool"
+        ]
+    },
+    {
+        "file": "combined_types_depth_2.py",
+        "line_number": 27,
+        "variable": "result1",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "combined_types_depth_2.py",
+        "line_number": 29,
+        "variable": "combined.value.my_bool",
+        "type": [
+            "bool"
+        ]
+    },
+    {
+        "file": "combined_types_depth_2.py",
+        "line_number": 30,
+        "variable": "result2",
+        "type": [
+            "str"
+        ]
+    }
+]

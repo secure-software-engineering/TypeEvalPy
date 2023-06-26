@@ -9,8 +9,7 @@ elif isinstance(x, int):
     value = int(x)
 elif isinstance(x, float):
     value = float(x)
-else:
-    value = x
+
 
 result = value
 
@@ -22,7 +21,6 @@ elif isinstance(x, int):
     value = int(x)
 elif isinstance(x, float):
     value = float(x)
-else:
-    value = x
+
 
 result = value

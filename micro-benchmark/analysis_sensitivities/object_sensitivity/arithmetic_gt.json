@@ -1,0 +1,54 @@
+[
+    {
+        "file": "arithmetic.py",
+        "line_number": 7,
+        "parameter": "a",
+        "function": "__init__",
+        "type": [
+            "any"
+        ]
+    },
+    {
+        "file": "arithmetic.py",
+        "line_number": 7,
+        "parameter": "b",
+        "function": "__init__",
+        "type": [
+            "any"
+        ]
+    },
+    {
+        "file": "arithmetic.py",
+        "line_number": 7,
+        "parameter": "a",
+        "function": "__init__",
+        "type": [
+            "any"
+        ]
+    },
+    {
+        "file": "arithmetic.py",
+        "line_number": 7,
+        "parameter": "b",
+        "function": "__init__",
+        "type": [
+            "any"
+        ]
+    },
+    {
+        "file": "arithmetic.py",
+        "line_number": 12,
+        "function": "compute",
+        "type": [
+            "any"
+        ]
+    },
+    {
+        "file": "arithmetic.py",
+        "line_number": 12,
+        "function": "ArithmeticOperation.compute",
+        "type": [
+            "any"
+        ]
+    }
+]

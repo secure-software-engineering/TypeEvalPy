@@ -14,4 +14,5 @@ def operation(my_bool):
     return result
 
 
-result = operation(True)
+result1 = operation(True)
+result2 = operation(False)

@@ -23,6 +23,7 @@
         "file": "main.py",
         "line_number": 7,
         "variable": "result",
+        "function": "arithmetic_op",
         "type": ["int", "str", "float"]
     },
     {

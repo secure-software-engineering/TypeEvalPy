@@ -1,33 +1,29 @@
 [
     {
         "file": "main.py",
-        "line_number": 2,
+        "line_number": 4,
         "function": "my_function",
         "type": ["int", "str"]
     },
     {
         "file": "main.py",
-        "line_number": 2,
+        "line_number": 4,
         "function": "my_function",
         "parameter": "my_bool",
         "type": ["any"]
     },
     {
         "file": "main.py",
-        "line_number": 4,
+        "line_number": 6,
+        "function": "my_function",
         "variable": "x",
         "type": ["int"]
     },
     {
         "file": "main.py",
-        "line_number": 6,
+        "line_number": 8,
+        "function": "my_function",
         "variable": "x",
         "type": ["str"]
-    },
-    {
-        "file": "main.py",
-        "line_number": 7,
-        "variable": "x",
-        "type": ["int", "str"]
     }
 ]

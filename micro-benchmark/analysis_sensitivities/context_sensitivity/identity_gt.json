@@ -1,0 +1,38 @@
+[
+    {
+        "file": "identity.py",
+        "line_number": 5,
+        "parameter": "x",
+        "function": "identity",
+        "type": [
+            "str",
+            "int",
+            "float",
+            "list"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 9,
+        "variable": "result1",
+        "type": ["int"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 10,
+        "variable": "result2",
+        "type": ["float"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 11,
+        "variable": "result3",
+        "type": ["str"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 12,
+        "variable": "result4",
+        "type": ["list"]
+    }
+]

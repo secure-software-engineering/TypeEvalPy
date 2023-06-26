@@ -1,0 +1,64 @@
+[
+    {
+        "file": "combined_types.py",
+        "line_number": 5,
+        "function": "my_function",
+        "type": [
+            "int",
+            "str"
+        ]
+    },
+    {
+        "file": "combined_types.py",
+        "line_number": 5,
+        "parameter": "my_bool",
+        "function": "my_function",
+        "type": [
+            "bool"
+        ]
+    },
+    {
+        "file": "combined_types.py",
+        "line_number": 12,
+        "function": "operation",
+        "type": [
+            "int",
+            "str"
+        ]
+    },
+    {
+        "file": "combined_types.py",
+        "line_number": 12,
+        "parameter": "my_bool",
+        "function": "operation",
+        "type": [
+            "bool"
+        ]
+    },
+    {
+        "file": "combined_types.py",
+        "line_number": 13,
+        "variable": "result",
+        "function": "operation",
+        "type": [
+            "int",
+            "str"
+        ]
+    },
+    {
+        "file": "combined_types.py",
+        "line_number": 17,
+        "variable": "result1",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "combined_types.py",
+        "line_number": 18,
+        "variable": "result2",
+        "type": [
+            "str"
+        ]
+    }
+]
