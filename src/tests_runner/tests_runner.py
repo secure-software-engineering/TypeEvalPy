@@ -135,6 +135,14 @@ class JediRunner(TypeEvalPyRunner):
         self._run_test_in_session()
 
 
+class HityperRunner(TypeEvalPyRunner):
+    def __init__(self):
+        super().__init__("hityper", "../target_tools/hityper")
+
+    def run_tool_test(self):
+        self._run_test_in_session()
+
+
 def main():
     runner = ScalpelRunner()
     runner.run_tool_test()
@@ -149,6 +157,9 @@ def main():
     runner.run_tool_test()
 
     runner = PyreRunner()
+    runner.run_tool_test()
+
+    runner = HityperRunner()
     runner.run_tool_test()
 
 

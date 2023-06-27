@@ -158,5 +158,9 @@ dmypy.json
 ### VisualStudioCode Patch ###
 # Ignore all local history of files
 **/.history
+#test_runner intermediates
+micro-benchmark.tar
+src/target_tools/*/micro-benchmark
+src/*/*.tar
 
 !setup.sh
