@@ -3,12 +3,13 @@
 
 
 def process_data(data):
+    result = None
     if isinstance(data, int):
-        return data * 2
+        result = data * 2
     elif isinstance(data, str):
-        return data * 5
-    else:
-        return None
+        result = data * 5
+
+    return result
 
 
 result = process_data(5)

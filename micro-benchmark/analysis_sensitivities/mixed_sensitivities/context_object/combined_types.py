@@ -3,6 +3,8 @@
 
 # The behavior of the program is object-sensitive as the behavior of the process_data method depends on the type of the data attribute of the instance.
 # The result field is accessed and modified in a context-sensitive manner, where the behavior of the program depends on the specific context object that is used.
+
+
 class ValueStore:
     def __init__(self, a):
         self.a = a
@@ -12,7 +14,7 @@ class ValueStore:
 class CallContext:
     def process_data(self, value):
         if isinstance(value.a, int):
-            result = value.a * 2.0
+            result = value.a * 2
         elif isinstance(value.a, str):
             result = value.a * 5
         else:

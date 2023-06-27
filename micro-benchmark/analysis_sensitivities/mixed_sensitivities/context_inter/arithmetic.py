@@ -23,4 +23,4 @@ result2 = arithmetic_op(x2, y2)
 
 x3 = "Hello"
 y3 = "World!"
-result2 = arithmetic_op(x3, y3)
+result3 = arithmetic_op(x3, y3)

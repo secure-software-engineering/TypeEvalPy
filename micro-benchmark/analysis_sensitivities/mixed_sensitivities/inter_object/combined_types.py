@@ -29,4 +29,4 @@ combined_op1 = CombinedTypesOperation(5)
 combined_op2 = CombinedTypesOperation("hello")
 
 result1 = combined_op1.combined_types()
-result2 = combined_op1.combined_types()
+result2 = combined_op2.combined_types()

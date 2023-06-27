@@ -13,8 +13,8 @@ def my_function(my_bool):
 
 
 class ValueStore:
-    def __init__(self, a, b):
-        self.a = self.Nested(b)
+    def __init__(self, a):
+        self.a = self.Nested(a)
 
     class Nested:
         def __init__(self, b):

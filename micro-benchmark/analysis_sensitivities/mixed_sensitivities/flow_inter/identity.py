@@ -16,4 +16,5 @@ def identity_2(y):
 
 
 result = identity(5)
+result = identity(5.0)
 result = identity("Hello")

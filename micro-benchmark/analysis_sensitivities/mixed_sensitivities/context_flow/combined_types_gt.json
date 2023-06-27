@@ -1,0 +1,77 @@
+[
+    {
+        "file": "combined_types.py",
+        "line_number": 5,
+        "function": "process_data",
+        "type": [
+            "NoneType",
+            "int",
+            "str"
+        ]
+    },
+    {
+        "file": "combined_types.py",
+        "line_number": 5,
+        "parameter": "data",
+        "function": "process_data",
+        "type": [
+            "str",
+            "int",
+            "float"
+        ]
+    },
+    {
+        "file": "combined_types.py",
+        "line_number": 6,
+        "variable": "result",
+        "function": "process_data",
+        "type": [
+            "NoneType"
+        ]
+    },
+    {
+        "file": "combined_types.py",
+        "line_number": 8,
+        "variable": "result",
+        "function": "process_data",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "combined_types.py",
+        "line_number": 10,
+        "variable": "result",
+        "function": "process_data",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "combined_types.py",
+        "line_number": 15,
+        "variable": "result",
+        "function": "process_data",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "combined_types.py",
+        "line_number": 16,
+        "variable": "result",
+        "function": "process_data",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "combined_types.py",
+        "line_number": 17,
+        "variable": "result",
+        "function": "process_data",
+        "type": [
+            "NoneType"
+        ]
+    }
+]

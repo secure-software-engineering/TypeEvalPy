@@ -1,0 +1,133 @@
+[
+    {
+        "file": "combined_types.py",
+        "line_number": 6,
+        "parameter": "x",
+        "function": "CombinedTypesOperation.__init__",
+        "type": [
+            "int",
+            "str"
+        ]
+    },
+    {
+        "file": "combined_types.py",
+        "line_number": 7,
+        "variable": "CombinedTypesOperation.x",
+        "function": "CombinedTypesOperation.__init__",
+        "type": [
+            "int",
+            "str"
+        ]
+    },
+    {
+        "file": "combined_types.py",
+        "line_number": 8,
+        "variable": "CombinedTypesOperation.result",
+        "function": "CombinedTypesOperation.__init__",
+        "type": [
+            "NoneType"
+        ]
+    },
+    {
+        "file": "combined_types.py",
+        "line_number": 10,
+        "function": "CombinedTypesOperation.combined_types",
+        "type": [
+            "int",
+            "str"
+        ]
+    },
+    {
+        "file": "combined_types.py",
+        "line_number": 12,
+        "function": "CombinedTypesOperation.combined_types",
+        "variable": "CombinedTypesOperation.result",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "combined_types.py",
+        "line_number": 14,
+        "function": "CombinedTypesOperation.combined_types",
+        "variable": "CombinedTypesOperation.result",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "combined_types.py",
+        "line_number": 16,
+        "function": "CombinedTypesOperation.combined_types",
+        "variable": "CombinedTypesOperation.result",
+        "type": [
+            "NoneType"
+        ]
+    },
+    {
+        "file": "combined_types.py",
+        "line_number": 19,
+        "function": "CombinedTypesOperation.multiply_by_two",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "combined_types.py",
+        "line_number": 20,
+        "function": "CombinedTypesOperation.multiply_by_two",
+        "variable": "CombinedTypesOperation.result",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "combined_types.py",
+        "line_number": 23,
+        "function": "CombinedTypesOperation.multiply_string",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "combined_types.py",
+        "line_number": 24,
+        "function": "CombinedTypesOperation.multiply_string",
+        "variable": "CombinedTypesOperation.result",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "combined_types.py",
+        "line_number": 28,
+        "variable": "combined_op1",
+        "type": [
+            "CombinedTypesOperation"
+        ]
+    },
+    {
+        "file": "combined_types.py",
+        "line_number": 29,
+        "variable": "combined_op1",
+        "type": [
+            "CombinedTypesOperation"
+        ]
+    },
+    {
+        "file": "combined_types.py",
+        "line_number": 31,
+        "variable": "result1",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "combined_types.py",
+        "line_number": 32,
+        "variable": "result2",
+        "type": [
+            "str"
+        ]
+    }
+]

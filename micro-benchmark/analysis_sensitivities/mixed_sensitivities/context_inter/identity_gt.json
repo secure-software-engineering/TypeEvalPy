@@ -1,0 +1,83 @@
+[
+    {
+        "file": "identity.py",
+        "line_number": 6,
+        "function": "identity",
+        "type": [
+            "int",
+            "str",
+            "float"
+        ]
+    },
+    {
+        "file": "identity.py",
+        "line_number": 6,
+        "parameter": "x",
+        "function": "identity",
+        "type": [
+            "str",
+            "int",
+            "float"
+        ]
+    },
+    {
+        "file": "identity.py",
+        "line_number": 8,
+        "variable": "value",
+        "function": "identity",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "identity.py",
+        "line_number": 10,
+        "variable": "value",
+        "function": "identity",
+        "type": [
+            "int",
+            "float"
+        ]
+    },
+    {
+        "file": "identity.py",
+        "line_number": 14,
+        "function": "identity_2",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "identity.py",
+        "line_number": 14,
+        "parameter": "s",
+        "function": "identity_2",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "identity.py",
+        "line_number": 18,
+        "variable": "a",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "identity.py",
+        "line_number": 19,
+        "variable": "b",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "identity.py",
+        "line_number": 20,
+        "variable": "c",
+        "type": [
+            "float"
+        ]
+    }
+]

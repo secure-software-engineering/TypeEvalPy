@@ -5,9 +5,9 @@
 def arithmetic_op(a, b):
     result = None
     if a == 0:
-        result = b
+        result = 0
     elif b == 0:
-        result = a
+        result = 0
     else:
         result = a + b
 

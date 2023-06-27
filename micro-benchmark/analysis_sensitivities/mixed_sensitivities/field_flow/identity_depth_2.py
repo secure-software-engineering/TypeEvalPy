@@ -25,5 +25,5 @@ result = id1.get_value()
 id2 = Identity("Hello")
 result = id2.get_value()
 
-id2.nested.value = 20
+id2.nested.value = 20.0
 result = id2.get_value()

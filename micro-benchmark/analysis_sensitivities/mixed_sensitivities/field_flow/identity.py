@@ -23,5 +23,5 @@ result = id1.get_value()
 id2 = Identity("Hello")
 result = id2.get_value()
 
-id2.value = 6
+id2.value = 6.0
 result = id2.get_value()

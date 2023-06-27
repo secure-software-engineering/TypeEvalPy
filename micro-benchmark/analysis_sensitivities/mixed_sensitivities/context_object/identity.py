@@ -13,7 +13,7 @@ class ValueStore:
 
 def identity(context):
     context.result = context.x
-    return type(context.result)
+    return context.result
 
 
 context1 = ValueStore(5)

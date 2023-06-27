@@ -5,9 +5,9 @@
 
 def arithmetic_op(a, b):
     if a == 0:
-        result = b
+        result = 0
     elif b == 0:
-        result = a
+        result = 0
     else:
         result = add(a, b)
 
@@ -27,6 +27,6 @@ x = 5
 y = 10
 result = arithmetic_op(x, y)
 
-x = -10
-y = -5
+x = -10.0
+y = -5.0
 result = arithmetic_op(x, y)

@@ -1,0 +1,106 @@
+[
+    {
+        "file": "combined_types_depth_2.py",
+        "line_number": 9,
+        "function": "my_function",
+        "type": [
+            "str",
+            "int"
+        ]
+    },
+    {
+        "file": "combined_types_depth_2.py",
+        "line_number": 11,
+        "variable": "x",
+        "function": "my_function",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "combined_types_depth_2.py",
+        "line_number": 13,
+        "variable": "x",
+        "function": "my_function",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "combined_types_depth_2.py",
+        "line_number": 18,
+        "parameter": "my_bool",
+        "function": "CombinedTypes.__init__",
+        "type": [
+            "bool"
+        ]
+    },
+    {
+        "file": "combined_types_depth_2.py",
+        "line_number": 19,
+        "variable": "CombinedTypes.nested",
+        "function": "CombinedTypes.__init__",
+        "type": [
+            "CombinedTypes.Nested"
+        ]
+    },
+    {
+        "file": "combined_types_depth_2.py",
+        "line_number": 22,
+        "parameter": "y",
+        "function": "CombinedTypes.Nested.__init__",
+        "type": [
+            "bool"
+        ]
+    },
+    {
+        "file": "combined_types_depth_2.py",
+        "line_number": 23,
+        "variable": "CombinedTypes.Nested.value",
+        "function": "CombinedTypes.Nested.__init__",
+        "type": [
+            "bool"
+        ]
+    },
+    {
+        "file": "combined_types_depth_2.py",
+        "line_number": 25,
+        "function": "CombinedTypes.get_value",
+        "type": [
+            "str",
+            "int"
+        ]
+    },
+    {
+        "file": "combined_types_depth_2.py",
+        "line_number": 29,
+        "variable": "obj",
+        "type": [
+            "CombinedTypes"
+        ]
+    },
+    {
+        "file": "combined_types_depth_2.py",
+        "line_number": 30,
+        "variable": "result1",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "combined_types_depth_2.py",
+        "line_number": 32,
+        "variable": "obj.nested.value",
+        "type": [
+            "bool"
+        ]
+    },
+    {
+        "file": "combined_types_depth_2.py",
+        "line_number": 33,
+        "variable": "result2",
+        "type": [
+            "str"
+        ]
+    }
+]

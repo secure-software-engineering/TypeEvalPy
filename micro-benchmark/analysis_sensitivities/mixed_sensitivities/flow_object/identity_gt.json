@@ -1,0 +1,91 @@
+[
+    {
+        "file": "identity.py",
+        "line_number": 6,
+        "parameter": "x",
+        "function": "IdentityOperation.__init__",
+        "type": [
+            "int",
+            "float",
+            "str"
+        ]
+    },
+    {
+        "file": "identity.py",
+        "line_number": 7,
+        "variable": "IdentityOperation.x",
+        "function": "IdentityOperation.__init__",
+        "type": [
+            "int",
+            "float",
+            "str"
+        ]
+    },
+    {
+        "file": "identity.py",
+        "line_number": 8,
+        "variable": "IdentityOperation.result",
+        "function": "IdentityOperation.__init__",
+        "type": [
+            "Nonetype"
+        ]
+    },
+    {
+        "file": "identity.py",
+        "line_number": 10,
+        "function": "IdentityOperation.identity",
+        "type": [
+            "str",
+            "float",
+            "int"
+        ]
+    },
+    {
+        "file": "identity.py",
+        "line_number": 21,
+        "variable": "identity_op",
+        "type": [
+            "IdentityOperation"
+        ]
+    },
+    {
+        "file": "identity.py",
+        "line_number": 22,
+        "variable": "result",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "identity.py",
+        "line_number": 24,
+        "variable": "identity_op",
+        "type": [
+            "IdentityOperation"
+        ]
+    },
+    {
+        "file": "identity.py",
+        "line_number": 25,
+        "variable": "result",
+        "type": [
+            "float"
+        ]
+    },
+    {
+        "file": "identity.py",
+        "line_number": 27,
+        "variable": "identity_op",
+        "type": [
+            "IdentityOperation"
+        ]
+    },
+    {
+        "file": "identity.py",
+        "line_number": 28,
+        "variable": "result",
+        "type": [
+            "str"
+        ]
+    }
+]

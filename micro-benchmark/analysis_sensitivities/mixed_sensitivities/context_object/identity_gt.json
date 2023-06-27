@@ -1,0 +1,91 @@
+[
+    {
+        "file": "identity.py",
+        "line_number": 9,
+        "parameter": "x",
+        "function": "ValueStore.__init__",
+        "type": [
+            "int",
+            "str"
+        ]
+    },
+    {
+        "file": "identity.py",
+        "line_number": 10,
+        "parameter": "ValueStore.x",
+        "function": "ValueStore.__init__",
+        "type": [
+            "int",
+            "str"
+        ]
+    },
+    {
+        "file": "identity.py",
+        "line_number": 11,
+        "parameter": "ValueStore.result",
+        "function": "ValueStore.__init__",
+        "type": [
+            "Nonetype"
+        ]
+    },
+    {
+        "file": "identity.py",
+        "line_number": 14,
+        "function": "identity",
+        "type": [
+            "int",
+            "str"
+        ]
+    },
+    {
+        "file": "identity.py",
+        "line_number": 14,
+        "parameter": "context",
+        "function": "identity",
+        "type": [
+            "int",
+            "str"
+        ]
+    },
+    {
+        "file": "identity.py",
+        "line_number": 15,
+        "function": "context.result",
+        "type": [
+            "int",
+            "str"
+        ]
+    },
+    {
+        "file": "identity.py",
+        "line_number": 19,
+        "function": "context1",
+        "type": [
+            "ValueStore"
+        ]
+    },
+    {
+        "file": "identity.py",
+        "line_number": 20,
+        "function": "context2",
+        "type": [
+            "ValueStore"
+        ]
+    },
+    {
+        "file": "identity.py",
+        "line_number": 21,
+        "function": "result1",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "identity.py",
+        "line_number": 22,
+        "function": "result2",
+        "type": [
+            "str"
+        ]
+    }
+]

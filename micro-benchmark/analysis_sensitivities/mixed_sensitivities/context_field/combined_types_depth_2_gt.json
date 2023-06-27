@@ -1,0 +1,106 @@
+[
+    {
+        "file": "combined_types_depth_2.py",
+        "line_number": 7,
+        "function": "my_function",
+        "type": [
+            "str",
+            "int"
+        ]
+    },
+    {
+        "file": "combined_types_depth_2.py",
+        "line_number": 7,
+        "parameter": "my_bool",
+        "function": "my_function",
+        "type": [
+            "bool"
+        ]
+    },
+    {
+        "file": "combined_types_depth_2.py",
+        "line_number": 9,
+        "variable": "x",
+        "function": "my_function",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "combined_types_depth_2.py",
+        "line_number": 11,
+        "variable": "x",
+        "function": "my_function",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "combined_types_depth_2.py",
+        "line_number": 16,
+        "parameter": "a",
+        "function": "ValueStore.__init__",
+        "type": [
+            "bool"
+        ]
+    },
+    {
+        "file": "combined_types_depth_2.py",
+        "line_number": 17,
+        "variable": "ValueStore.a",
+        "function": "ValueStore.__init__",
+        "type": [
+            "ValueStore.Nested"
+        ]
+    },
+    {
+        "file": "combined_types_depth_2.py",
+        "line_number": 20,
+        "parameter": "b",
+        "function": "ValueStore.Nested.__init__",
+        "type": [
+            "bool"
+        ]
+    },
+    {
+        "file": "combined_types_depth_2.py",
+        "line_number": 20,
+        "variable": "ValueStore.Nested.b",
+        "function": "ValueStore.Nested.__init__",
+        "type": [
+            "bool"
+        ]
+    },
+    {
+        "file": "combined_types_depth_2.py",
+        "line_number": 24,
+        "variable": "op1",
+        "type": [
+            "ValueStore"
+        ]
+    },
+    {
+        "file": "combined_types_depth_2.py",
+        "line_number": 25,
+        "variable": "op2",
+        "type": [
+            "ValueStore"
+        ]
+    },
+    {
+        "file": "combined_types_depth_2.py",
+        "line_number": 27,
+        "variable": "result1",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "combined_types_depth_2.py",
+        "line_number": 28,
+        "variable": "result2",
+        "type": [
+            "str"
+        ]
+    }
+]

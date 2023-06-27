@@ -8,12 +8,15 @@ class CombinedTypes:
         self.data = data
 
     def process_data(self):
+        result = None
         if isinstance(self.data, int):
-            return self.data * 2
+            result = self.data * 2
         elif isinstance(self.data, str):
-            return self.data * 3
+            result = self.data * 3
         else:
-            return self.data
+            result = self.data
+
+        return result
 
 
 context1 = CombinedTypes(5)

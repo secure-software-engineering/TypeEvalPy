@@ -16,13 +16,13 @@ class ArithmeticOperation:
     def compute(self):
         self.b = self.nested.b
         if self.a == 0:
-            self.result = self.b
+            self.result = 0
         elif self.b == 0:
-            self.result = self.a
+            self.result = 0
         else:
             self.result = self.a + self.b
 
-        if self.result is not None and self.result < 0:
+        if self.result is not None and self.result <= 0:
             self.result = None
         elif self.result is not None:
             self.result = "Positive"

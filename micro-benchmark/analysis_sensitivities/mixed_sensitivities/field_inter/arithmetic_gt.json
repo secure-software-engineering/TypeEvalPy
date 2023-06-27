@@ -1,0 +1,145 @@
+[
+    {
+        "file": "arithmetic.py",
+        "line_number": 7,
+        "parameter": "a",
+        "function": "ArithmeticOperation.__init__",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "arithmetic.py",
+        "line_number": 7,
+        "parameter": "b",
+        "function": "ArithmeticOperation.__init__",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "arithmetic.py",
+        "line_number": 8,
+        "variable": "ArithmeticOperation.a",
+        "function": "ArithmeticOperation.__init__",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "arithmetic.py",
+        "line_number": 9,
+        "variable": "ArithmeticOperation.b",
+        "function": "ArithmeticOperation.__init__",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "arithmetic.py",
+        "line_number": 10,
+        "variable": "ArithmeticOperation.result",
+        "function": "ArithmeticOperation.__init__",
+        "type": [
+            "Nonetype"
+        ]
+    },
+    {
+        "file": "arithmetic.py",
+        "line_number": 12,
+        "function": "ArithmeticOperation.compute",
+        "type": [
+            "int",
+            "float"
+        ]
+    },
+    {
+        "file": "arithmetic.py",
+        "line_number": 13,
+        "function": "ArithmeticOperation.compute",
+        "variable": "ArithmeticOperation.result",
+        "type": [
+            "int",
+            "float"
+        ]
+    },
+    {
+        "file": "arithmetic.py",
+        "line_number": 16,
+        "function": "ArithmeticOperation.add",
+        "type": [
+            "int",
+            "float"
+        ]
+    },
+    {
+        "file": "arithmetic.py",
+        "line_number": 16,
+        "parameter": "a",
+        "function": "ArithmeticOperation.add",
+        "type": [
+            "int",
+            "float"
+        ]
+    },
+    {
+        "file": "arithmetic.py",
+        "line_number": 16,
+        "parameter": "b",
+        "function": "ArithmeticOperation.add",
+        "type": [
+            "int",
+            "float"
+        ]
+    },
+    {
+        "file": "arithmetic.py",
+        "line_number": 17,
+        "function": "ArithmeticOperation.add",
+        "variable": "ArithmeticOperation.result",
+        "type": [
+            "int",
+            "float"
+        ]
+    },
+    {
+        "file": "arithmetic.py",
+        "line_number": 21,
+        "variable": "arith_op",
+        "type": [
+            "ArithmeticOperation"
+        ]
+    },
+    {
+        "file": "arithmetic.py",
+        "line_number": 22,
+        "variable": "result1",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "arithmetic.py",
+        "line_number": 24,
+        "variable": "arith_op.a",
+        "type": [
+            "float"
+        ]
+    },
+    {
+        "file": "arithmetic.py",
+        "line_number": 25,
+        "variable": "arith_op.b",
+        "type": [
+            "float"
+        ]
+    },
+    {
+        "file": "arithmetic.py",
+        "line_number": 26,
+        "variable": "result2",
+        "type": [
+            "float"
+        ]
+    }
+]

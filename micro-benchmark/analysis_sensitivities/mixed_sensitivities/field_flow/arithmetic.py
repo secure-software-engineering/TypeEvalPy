@@ -10,9 +10,9 @@ class ArithmeticOperation:
 
     def compute(self):
         if self.a == 0:
-            self.result = self.b
+            self.result = 0
         elif self.b == 0:
-            self.result = self.a
+            self.result = 0
         else:
             self.result = self.a + self.b
 

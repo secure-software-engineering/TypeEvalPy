@@ -25,3 +25,6 @@ result = arith_op.compute()
 
 arith_op = ArithmeticOperation(0, 10)
 result = arith_op.compute()
+
+arith_op = ArithmeticOperation("Hello", "World!")
+result = arith_op.compute()
