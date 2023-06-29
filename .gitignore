@@ -164,3 +164,6 @@ src/target_tools/*/micro-benchmark
 src/*/*.tar
 
 !setup.sh
+evaluation/type-inference-micro-benchmark
+src/results_*
+micro-benchmark/**/*.py

@@ -2,7 +2,6 @@
     {
         "file": "main.py",
         "line_number": 5,
-        "class": "A.B",
         "variable": "A.B.a",
         "type": [
             "str"

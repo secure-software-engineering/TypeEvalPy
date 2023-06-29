@@ -2,7 +2,6 @@
     {
         "file": "imported.py",
         "line_number": 4,
-        "class": "A",
         "variable": "A.b",
         "type": [
             "str"

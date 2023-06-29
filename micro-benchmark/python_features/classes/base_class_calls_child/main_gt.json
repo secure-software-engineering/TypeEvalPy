@@ -10,7 +10,6 @@
     {
         "file": "main.py",
         "line_number": 9,
-        "class": "B",
         "variable": "B.child",
         "type": [
             "callable"
@@ -27,7 +26,6 @@
     {
         "file": "main.py",
         "line_number": 17,
-        "class": "B",
         "variable": "C.child",
         "type": [
             "callable"

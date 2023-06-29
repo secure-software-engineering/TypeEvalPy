@@ -2,7 +2,6 @@
     {
         "file": "main.py",
         "line_number": 3,
-        "class":"MyClass",
         "variable": "MyClass.class_var",
         "type": [
             "int"
