@@ -17,5 +17,7 @@ COPY requirements.txt /app/requirements.txt
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
+COPY src /tmp/src
+
 # Run the application
 CMD ["bash"]

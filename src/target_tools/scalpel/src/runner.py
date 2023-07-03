@@ -1,16 +1,19 @@
 import argparse
+import json
 import logging
+import os
 from pathlib import Path
-from sys import stdout
+
+from scalpel.typeinfer.typeinfer import TypeInference
 
 # Create a logger
 logger = logging.getLogger("runner")
 logger.setLevel(logging.DEBUG)
 
-file_handler = logging.FileHandler("/tmp/<tool_name>_log.log")
+file_handler = logging.FileHandler("/tmp/scalpel_log.log")
 file_handler.setLevel(logging.DEBUG)
 
-console_handler = logging.StreamHandler(stdout)
+console_handler = logging.StreamHandler()
 console_handler.setLevel(logging.DEBUG)
 formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 file_handler.setFormatter(formatter)
@@ -29,9 +32,18 @@ def main_runner(args):
     error_count = 0
     for file in python_files:
         try:
-            # Run the inference here and gather results in /tmp/results
-            pass
+            logger.info(file)
+            inferer = TypeInference(name=file, entry_point=file)
+            inferer.infer_types()
+            inferred = inferer.get_types()
+            json_file_path = str(file).replace(".py", "_result.json")
 
+            with open(json_file_path, "w") as json_file:
+                inferred_serializable = [
+                    {k: list(v) if isinstance(v, set) else v for k, v in d.items()}
+                    for d in inferred
+                ]
+                json.dump(inferred_serializable, json_file, indent=4)
         except Exception as e:
             logger.info(f"Command returned non-zero exit status: {e} for file: {file}")
             error_count += 1
