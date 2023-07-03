@@ -4,6 +4,7 @@ import logging
 import os
 from pathlib import Path
 
+import utils
 from scalpel.typeinfer.typeinfer import TypeInference
 
 # Create a logger
@@ -27,15 +28,20 @@ def list_python_files(folder_path):
     return python_files
 
 
+def process_file(file_path):
+    inferer = TypeInference(name=file_path, entry_point=file_path)
+    inferer.infer_types()
+    inferred = inferer.get_types()
+    return inferred
+
+
 def main_runner(args):
     python_files = list_python_files(args.bechmark_path)
     error_count = 0
     for file in python_files:
         try:
             logger.info(file)
-            inferer = TypeInference(name=file, entry_point=file)
-            inferer.infer_types()
-            inferred = inferer.get_types()
+            inferred = process_file(file)
             json_file_path = str(file).replace(".py", "_result.json")
 
             with open(json_file_path, "w") as json_file:
@@ -52,12 +58,22 @@ def main_runner(args):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "--bechmark_path",
-        help="Specify the benchmark path",
-        default="/tmp/micro-benchmark",
-    )
+    is_running_in_docker = utils.is_running_in_docker()
+    if is_running_in_docker:
+        print("Python is running inside a Docker container")
+        parser = argparse.ArgumentParser()
+        parser.add_argument(
+            "--bechmark_path",
+            help="Specify the benchmark path",
+            default="/tmp/micro-benchmark",
+        )
 
-    args = parser.parse_args()
-    main_runner(args)
+        args = parser.parse_args()
+        main_runner(args)
+    else:
+        print("Python is not running inside a Docker container")
+        file_path = (
+            "/mnt/Projects/PhD/Research/Student-Thesis/4_type_inference_benchmark(Sam)/git_sources/master-thesis-of-samkutty/src/results_03-07"
+            " 12:51/scalpel/micro-benchmark/python_features/builtins/switch/main.py"
+        )
+        process_file(file_path)

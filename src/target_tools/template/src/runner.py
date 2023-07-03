@@ -3,6 +3,8 @@ import logging
 from pathlib import Path
 from sys import stdout
 
+import utils
+
 # Create a logger
 logger = logging.getLogger("runner")
 logger.setLevel(logging.DEBUG)
@@ -24,13 +26,18 @@ def list_python_files(folder_path):
     return python_files
 
 
+def process_file(file_path):
+    # Process file here and return results
+    pass
+
+
 def main_runner(args):
     python_files = list_python_files(args.bechmark_path)
     error_count = 0
     for file in python_files:
         try:
             # Run the inference here and gather results in /tmp/results
-            pass
+            inferred = process_file(file)
 
         except Exception as e:
             logger.info(f"Command returned non-zero exit status: {e} for file: {file}")
@@ -40,12 +47,19 @@ def main_runner(args):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "--bechmark_path",
-        help="Specify the benchmark path",
-        default="/tmp/micro-benchmark",
-    )
+    is_running_in_docker = utils.is_running_in_docker()
+    if is_running_in_docker:
+        print("Python is running inside a Docker container")
+        parser = argparse.ArgumentParser()
+        parser.add_argument(
+            "--bechmark_path",
+            help="Specify the benchmark path",
+            default="/tmp/micro-benchmark",
+        )
 
-    args = parser.parse_args()
-    main_runner(args)
+        args = parser.parse_args()
+        main_runner(args)
+    else:
+        print("Python is not running inside a Docker container")
+        file_path = ""
+        process_file(file_path)

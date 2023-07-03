@@ -19,5 +19,8 @@ RUN pip install -r requirements.txt
 
 COPY src /tmp/src
 
+# Custom patch to fix simple errors
+COPY patches/typeinfer.py /usr/local/lib/python3.10/site-packages/scalpel/typeinfer/typeinfer.py
+
 # Run the application
 CMD ["bash"]
