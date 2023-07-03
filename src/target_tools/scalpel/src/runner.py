@@ -49,6 +49,7 @@ def main_runner(args):
                     {k: list(v) if isinstance(v, set) else v for k, v in d.items()}
                     for d in inferred
                 ]
+                inferred_serializable.sort(key=lambda x: x["line_number"])
                 json.dump(inferred_serializable, json_file, indent=4)
         except Exception as e:
             logger.info(f"Command returned non-zero exit status: {e} for file: {file}")

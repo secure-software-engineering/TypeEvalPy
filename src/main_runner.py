@@ -56,13 +56,13 @@ class FileHandler:
 
 
 class TypeEvalPyRunner:
-    def __init__(self, tool_name, dockerfile_path):
+    def __init__(self, tool_name, dockerfile_path, host_results_path):
         self.docker_client = docker.from_env()
         self.tool_name = tool_name
         self.dockerfile_path = dockerfile_path
         self.dockerfile_name = tool_name
         self.test_runner_script_path = f"/tmp/src/runner.py"
-        self.host_results_path = f"./results_{datetime.now().strftime('%d-%m %H:%M')}"
+        self.host_results_path = host_results_path
 
         if not os.path.exists(self.host_results_path):
             os.makedirs(self.host_results_path)
@@ -116,70 +116,71 @@ class TypeEvalPyRunner:
 
 
 class ScalpelRunner(TypeEvalPyRunner):
-    def __init__(self):
-        super().__init__("scalpel", "./target_tools/scalpel")
+    def __init__(self, host_results_path):
+        super().__init__("scalpel", "./target_tools/scalpel", host_results_path)
 
     def run_tool_test(self):
         self._run_test_in_session()
 
 
 class PyreRunner(TypeEvalPyRunner):
-    def __init__(self):
-        super().__init__("pyre", "./target_tools/pyre")
+    def __init__(self, host_results_path):
+        super().__init__("pyre", "./target_tools/pyre", host_results_path)
 
     def run_tool_test(self):
         self._run_test_in_session()
 
 
 class PyrightRunner(TypeEvalPyRunner):
-    def __init__(self):
-        super().__init__("pyright", "./target_tools/pyright")
+    def __init__(self, host_results_path):
+        super().__init__("pyright", "./target_tools/pyright", host_results_path)
 
     def run_tool_test(self):
         self._run_test_in_session("/tmp/typings")
 
 
 class PytypeRunner(TypeEvalPyRunner):
-    def __init__(self):
-        super().__init__("pytype", "./target_tools/pytype")
+    def __init__(self, host_results_path):
+        super().__init__("pytype", "./target_tools/pytype", host_results_path)
 
     def run_tool_test(self):
         self._run_test_in_session()
 
 
 class JediRunner(TypeEvalPyRunner):
-    def __init__(self):
-        super().__init__("jedi", "./target_tools/jedi")
+    def __init__(self, host_results_path):
+        super().__init__("jedi", "./target_tools/jedi", host_results_path)
 
     def run_tool_test(self):
         self._run_test_in_session()
 
 
 class HityperRunner(TypeEvalPyRunner):
-    def __init__(self):
-        super().__init__("hityper", "./target_tools/hityper")
+    def __init__(self, host_results_path):
+        super().__init__("hityper", "./target_tools/hityper", host_results_path)
 
     def run_tool_test(self):
         self._run_test_in_session()
 
 
 def main():
-    runner = ScalpelRunner()
+    host_results_path = f"./results_{datetime.now().strftime('%d-%m %H:%M')}"
+    runner = ScalpelRunner(host_results_path)
     runner.run_tool_test()
 
-    runner = JediRunner()
+    runner = JediRunner(host_results_path)
     runner.run_tool_test()
 
-    runner = PyrightRunner()
+    runner = PyrightRunner(host_results_path)
     runner.run_tool_test()
 
-    runner = PytypeRunner()
+    runner = PytypeRunner(host_results_path)
     runner.run_tool_test()
 
-    runner = PyreRunner()
+    runner = PyreRunner(host_results_path)
     runner.run_tool_test()
 
-    runner = HityperRunner()
+    runner = HityperRunner(host_results_path)
     runner.run_tool_test()
 
 
