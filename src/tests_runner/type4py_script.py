@@ -27,6 +27,8 @@ def type4py(file):
     response = requests.post("https://type4py.com/api/predict?tc=0", code, verify=False)
     data = response.json()
 
+    mod_var_ln = ""
+
     def variables_analysis(variables, function=None, class_name=None):
         for var, var_type in variables.items():
             var_ln = mod_var_ln.get(var)
@@ -67,7 +69,8 @@ def type4py(file):
             params_p = func["params_p"]
             params_p.pop("args")
             params_p.pop("kwargs")
-            params_p.pop("self")
+            if params_p.get("self"):
+                params_p.pop("self")
             for param, param_type in params_p.items():
                 output_data = {
                     "file": "main.py",
@@ -81,7 +84,9 @@ def type4py(file):
                 output.append(output_data)
             # Function variables
             variables = func["variables_p"]
-            variables_analysis(variables, func, class_name)
+            nonlocal mod_var_ln
+            mod_var_ln = func["fn_var_ln"]
+            variables_analysis(variables, name, class_name)
 
     if data.get("error") is not None:
         print("Error:", data["error"])
@@ -98,6 +103,7 @@ def type4py(file):
 
         # For global data
         functions = data["response"]["funcs"]
+        functions_analysis(functions)
         variables = data["response"]["variables_p"]
         mod_var_ln = data["response"]["mod_var_ln"]
         variables_analysis(variables)
