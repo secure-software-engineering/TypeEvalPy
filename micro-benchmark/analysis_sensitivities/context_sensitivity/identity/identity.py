@@ -3,7 +3,7 @@
 
 
 def identity(x):
-    return type(x)
+    return x
 
 
 result1 = identity(5)

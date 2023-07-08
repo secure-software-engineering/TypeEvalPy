@@ -27,11 +27,11 @@ def type4py(file):
     response = requests.post("https://type4py.com/api/predict?tc=0", code, verify=False)
     data = response.json()
 
-    mod_var_ln = ""
+    var_ln = ""
 
     def variables_analysis(variables, function=None, class_name=None):
         for var, var_type in variables.items():
-            var_ln = mod_var_ln.get(var)
+            var_ln = var_ln.get(var)
             if var_ln:
                 # Variable declaration
                 output_data = {
@@ -84,8 +84,8 @@ def type4py(file):
                 output.append(output_data)
             # Function variables
             variables = func["variables_p"]
-            nonlocal mod_var_ln
-            mod_var_ln = func["fn_var_ln"]
+            nonlocal var_ln
+            var_ln = func["fn_var_ln"]
             variables_analysis(variables, name, class_name)
 
     if data.get("error") is not None:
@@ -97,15 +97,15 @@ def type4py(file):
             functions = class_obj["funcs"]
             variables = class_obj["variables_p"]
             class_name = class_obj["name"]
-            # mod_var_ln = data["response"]["mod_var_ln"]
             functions_analysis(functions, class_name)  # class functions
+            var_ln = class_obj["cls_var_ln"]
             variables_analysis(variables, None, class_name)  # class variables
 
         # For global data
         functions = data["response"]["funcs"]
         functions_analysis(functions)
         variables = data["response"]["variables_p"]
-        mod_var_ln = data["response"]["mod_var_ln"]
+        var_ln = data["response"]["mod_var_ln"]
         variables_analysis(variables)
 
         return output
