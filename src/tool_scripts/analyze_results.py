@@ -2,7 +2,9 @@ import json
 import logging
 import os
 from pathlib import Path
+from statistics import mean
 
+import analysis_utils as utils
 from tabulate import tabulate
 
 # Create a logger
@@ -36,12 +38,15 @@ def compare_json_files(expected, out):
     total_matches = 0
     success_rate = 0
     partial_matches = 0
+    marked_as_any = 0
+    mismatch = 0
     missing_matches_list = []
     partial_matches_list = []
+    out_fact_mismatch_list = []
 
     for fact_expected in data_expected:
         out_fact_matched = False
-        out_fact_partially_matched = None
+        out_fact_mismatch = None
         for fact_out in data_out:
             # Get full matches
             if fact_expected == fact_out:
@@ -58,11 +63,18 @@ def compare_json_files(expected, out):
             ):
                 for _type in fact_expected.get("type", []):
                     if _type in fact_out.get("type", []):
-                        out_fact_partially_matched = fact_out.get("type", [])
                         partial_matches += 1
                         partial_matches_list.append(fact_expected)
                         break
 
+                if "any" in fact_out.get("type", []):
+                    marked_as_any += 1
+                else:
+                    mismatch += 1
+                    # logger.info("Total mismatch?")
+
+                out_fact_mismatch_list.append(fact_expected)
+                out_fact_mismatch = fact_out.get("type", [])
             # TODO: Add other cases here
             # elif all(
             #     [fact_expected[x] == fact_out[x] for x in fact_expected.keys() if x not in ["type",]
@@ -75,10 +87,9 @@ def compare_json_files(expected, out):
                 pass
 
         if not out_fact_matched:
-            if out_fact_partially_matched:
-                fact_expected["out_type"] = out_fact_partially_matched
-            else:
-                fact_expected["out_type"] = []
+            fact_expected["out_type"] = []
+            if out_fact_mismatch:
+                fact_expected["out_type"] = out_fact_mismatch
 
             missing_matches_list.append(fact_expected)
 
@@ -90,65 +101,10 @@ def compare_json_files(expected, out):
         "missing_matches": missing_matches_list,
         "partial_matches": partial_matches,
         "partial_matches_list": partial_matches_list,
+        "marked_as_any": marked_as_any,
     }
 
     return results_dict
-
-
-def equal_sound(out, expected):
-    """
-    No False Negatives in the output.
-    i.e., all facts in the ground truth should be contained in the output
-    """
-    with open(out) as f:
-        data_out = json.load(f)
-    with open(expected) as f:
-        data_expected = json.load(f)
-
-    data_out = sorted(data_out, key=lambda x: x["line_number"])
-    data_expected = sorted(data_expected, key=lambda x: x["line_number"])
-
-    for fact_expected in data_expected:
-        fact_expected_exists = False
-        for fact_out in data_out:
-            if fact_out == fact_expected:
-                fact_expected_exists = True
-                break
-
-        if not fact_expected_exists:
-            # A false negative is found
-            return 0
-
-    # No false negatives
-    return 1
-
-
-def equal_complete(out, expected):
-    """
-    No False Positives in the output.
-    i.e., all facts in the output should be contained in the ground truth
-    """
-    with open(out) as f:
-        data_out = json.load(f)
-    with open(expected) as f:
-        data_expected = json.load(f)
-
-    data_out = sorted(data_out, key=lambda x: x["line_number"])
-    data_expected = sorted(data_expected, key=lambda x: x["line_number"])
-
-    for fact_out in data_out:
-        fact_out_exists = False
-        for fact_expected in data_expected:
-            if fact_out == fact_expected:
-                fact_out_exists = True
-                break
-
-        if not fact_out_exists:
-            # A false positive is found
-            return 0
-
-    # No false positives
-    return 1
 
 
 def format_missing_matches(all_missing_matches):
@@ -157,8 +113,8 @@ def format_missing_matches(all_missing_matches):
         "Line Number",
         "Function",
         "Parameter/Variable",
-        "Type",
-        "Out Type",
+        "Actual Type",
+        "Predicted Type",
     ]
     rows = []
 
@@ -212,6 +168,8 @@ def process_cat_dir(cat_dir):
     complete_passed = 0
     sound_passed = 0
     file_count = 0
+    cat_precision_results = {}
+    cat_recall_results = {}
     for root, dirs, files in os.walk(cat_dir):
         # logger.info(files)
         test_files = [x.split(".py")[0] for x in files if x.endswith(".py")]
@@ -224,10 +182,25 @@ def process_cat_dir(cat_dir):
                         os.path.join(root, f"{test}_result.json")
                     )
                     results = compare_json_files(expected=gt_file, out=result_file)
-                    complete_passed += equal_complete(expected=gt_file, out=result_file)
-                    sound_passed += equal_sound(expected=gt_file, out=result_file)
-                    logger.debug("Missing Matches:")
-                    logger.debug(json.dumps(results["missing_matches"], indent=4))
+                    complete_passed += utils.equal_complete(
+                        expected=gt_file, out=result_file
+                    )
+                    sound_passed += utils.equal_sound(expected=gt_file, out=result_file)
+
+                    cat_precision = utils.measure_precision(
+                        expected=gt_file, out=result_file
+                    )
+                    cat_recall = utils.measure_recall(expected=gt_file, out=result_file)
+
+                    cat_precision_results[
+                        f"{os.path.basename(os.path.dirname(gt_file))}:{test}"
+                    ] = cat_precision
+                    cat_recall_results[
+                        f"{os.path.basename(os.path.dirname(gt_file))}:{test}"
+                    ] = cat_recall
+
+                    # logger.debug("Missing Matches:")
+                    # logger.debug(json.dumps(results["missing_matches"], indent=4))
 
                     dir_path = os.path.relpath(os.path.dirname(gt_file), cat_dir)
                     file_name = dir_path + "/" + os.path.basename(gt_file)
@@ -248,6 +221,8 @@ def process_cat_dir(cat_dir):
         "complete_passed": complete_passed,
         "sound_passed": sound_passed,
         "file_count": file_count,
+        "cat_precision_results": cat_precision_results,
+        "cat_recall_results": cat_recall_results,
     }
     return results_dict
 
@@ -256,12 +231,29 @@ def iterate_cats(test_suite_dir):
     all_cats_data = []
     all_cat_sound_complete = []
     max_cat_length = 15
-    header_format = "{:<15}{:<15}{:<15}"
-    row_format = "{:<15}{:<15}{:<15}"
+    header_format = "{:<15}{:<15}{:<15}{:<15}\t{:<15}"
+    row_format = "{:<15}{:<15}{:<15}{:<15}\t{:<15}"
 
-    print("-" * 50)
-    print(header_format.format("Category", "Complete", "Sound"))
-    print("-" * 50)
+    print("-" * 100)
+    print(
+        header_format.format(
+            "Category",
+            "Complete",
+            "Sound",
+            "Precision T|Ex|Pa|Ex%|Pa%",
+            "Recall T|Ex|Pa|Ex%|Pa%",
+        )
+    )
+    print("-" * 100)
+
+    p_overall_total_facts = 0
+    p_overall_total_caught = 0
+    p_overall_total_caught_partial = 0
+
+    r_overall_total_facts = 0
+    r_overall_total_caught = 0
+    r_overall_total_caught_partial = 0
+
     for cat in sorted(os.listdir(test_suite_dir)):
         cat_dir = os.path.join(test_suite_dir, cat)
         if os.path.isdir(cat_dir):
@@ -279,11 +271,89 @@ def iterate_cats(test_suite_dir):
                 "file_count": results["file_count"],
             }
             all_cat_sound_complete.append(cat_sound_complete)
+
+            # Calculate Precision values
+            p_total_facts = 0
+            p_total_caught = 0
+            p_total_atleast_partial = 0
+
+            list_precision_total = []
+            list_precision_partial = []
+
+            for _cat_stats, _precision_stats in results[
+                "cat_precision_results"
+            ].items():
+                p_total_facts += _precision_stats["num_all"]
+                p_total_caught += _precision_stats["num_caught_exact"]
+                # Total atleast partial means both exact and partial matches
+                p_total_atleast_partial += (
+                    _precision_stats["num_caught_exact"]
+                    + _precision_stats["num_caught_partial"]
+                )
+
+                if not float(_precision_stats["num_all"]) == 0:
+                    list_precision_total.append(
+                        float(_precision_stats["num_caught_exact"])
+                        / float(_precision_stats["num_all"])
+                    )
+
+                    list_precision_partial.append(
+                        float(
+                            _precision_stats["num_caught_exact"]
+                            + _precision_stats["num_caught_partial"]
+                        )
+                        / float(_precision_stats["num_all"])
+                    )
+
+            # Calculate Precision values
+            r_total_facts = 0
+            r_total_caught = 0
+            r_total_atleast_partial = 0
+
+            list_recall_total = []
+            list_recall_partial = []
+
+            for _cat_stats, _recall_stats in results["cat_recall_results"].items():
+                r_total_facts += _recall_stats["num_all"]
+                r_total_caught += _recall_stats["num_caught_exact"]
+                # Total atleast partial means both exact and partial matches
+                r_total_atleast_partial += (
+                    _recall_stats["num_caught_exact"]
+                    + _recall_stats["num_caught_partial"]
+                )
+
+                if not float(_recall_stats["num_all"]) == 0:
+                    list_recall_total.append(
+                        float(_recall_stats["num_caught_exact"])
+                        / float(_recall_stats["num_all"])
+                    )
+
+                    list_recall_partial.append(
+                        float(
+                            _recall_stats["num_caught_exact"]
+                            + _recall_stats["num_caught_partial"]
+                        )
+                        / float(_recall_stats["num_all"])
+                    )
+
+            p_overall_total_facts += p_total_facts
+            p_overall_total_caught += p_total_caught
+            p_overall_total_caught_partial += p_total_atleast_partial
+
+            r_overall_total_facts += r_total_facts
+            r_overall_total_caught += r_total_caught
+            r_overall_total_caught_partial += r_total_atleast_partial
             print(
                 row_format.format(
                     cat[:max_cat_length],
                     f"[{results['complete_passed']}/{results['file_count']}]",
                     f"[{results['sound_passed']}/{results['file_count']}]",
+                    (
+                        f"{p_total_facts:3d}|{p_total_caught:3d}|{p_total_atleast_partial:3d}|{mean(list_precision_total) if list_precision_total else 0:.2f}|{mean(list_precision_partial) if list_precision_partial else 0:.2f}"
+                    ),
+                    (
+                        f"{r_total_facts:3d}|{r_total_caught:3d}|{r_total_atleast_partial:3d}|{mean(list_recall_total) if list_recall_total else 0:.2f}|{mean(list_recall_partial) if list_recall_partial else 0:.2f}"
+                    ),
                 )
             )
             if results["all_missing_matches"]:
@@ -291,7 +361,7 @@ def iterate_cats(test_suite_dir):
             else:
                 print("No missing matches.")
 
-    print("-" * 50)
+    print("-" * 100)
     total_complete_passed = sum(cat["complete"] for cat in all_cat_sound_complete)
     total_sound_passed = sum(cat["sound"] for cat in all_cat_sound_complete)
     total_file_count = sum(cat["file_count"] for cat in all_cat_sound_complete)
@@ -300,6 +370,8 @@ def iterate_cats(test_suite_dir):
             "Total",
             f"[{total_complete_passed}/{total_file_count}]",
             f"[{total_sound_passed}/{total_file_count}]",
+            f"{p_overall_total_facts:4d}|{p_overall_total_caught:4d}|{p_overall_total_caught_partial:4d}|{float(p_overall_total_caught)/float(p_overall_total_facts):.2f}|{float(p_overall_total_caught_partial)/float(p_overall_total_facts):.2f}",
+            f"{r_overall_total_facts:4d}|{r_overall_total_caught:4d}|{r_overall_total_caught_partial:4d}|{float(r_overall_total_caught)/float(r_overall_total_facts):.2f}|{float(r_overall_total_caught_partial)/float(r_overall_total_facts):.2f}",
         )
     )
 
@@ -308,7 +380,7 @@ def iterate_cats(test_suite_dir):
 
 
 if __name__ == "__main__":
-    results_dir = Path("../results_03-07 21:18")
+    results_dir = Path("../results_10-07 10:14")
 
     for item in results_dir.glob("*"):
         if item.is_file():
