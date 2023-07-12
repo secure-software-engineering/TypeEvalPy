@@ -88,7 +88,7 @@
     {
         "file": "main.py",
         "line_number": 18,
-        "function": "lambda3",
+        "function": "lambda",
         "variable": "x",
         "type": [
             "int"
@@ -97,7 +97,7 @@
     {
         "file": "main.py",
         "line_number": 18,
-        "function": "lambda2",
+        "function": "lambda",
         "variable": "x",
         "type": [
             "int"
@@ -106,7 +106,7 @@
     {
         "file": "main.py",
         "line_number": 18,
-        "function": "lambda1",
+        "function": "lambda",
         "variable": "x",
         "type": [
             "int"

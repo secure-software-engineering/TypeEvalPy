@@ -4,7 +4,7 @@
         "line_number": 4,
         "function": "func",
         "type": [
-            "lambda"
+            "callable"
         ]
     },
     {
@@ -21,7 +21,7 @@
         "line_number": 8,
         "variable": "f",
         "type": [
-            "lambda"
+            "callable"
         ]
     },
     {

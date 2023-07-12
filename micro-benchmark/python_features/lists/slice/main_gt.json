@@ -33,10 +33,50 @@
     },
     {
         "file": "main.py",
+        "line_number": 16,
+        "variable": "ls[0]",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 16,
+        "variable": "ls[1]",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 16,
+        "variable": "ls[2]",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
         "line_number": 18,
         "variable": "ls2",
         "type": [
             "list"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 18,
+        "variable": "ls2[0]",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 18,
+        "variable": "ls2[1]",
+        "type": [
+            "callable"
         ]
     },
     {

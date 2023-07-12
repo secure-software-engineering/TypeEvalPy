@@ -10,7 +10,7 @@
     {
         "file": "main.py",
         "line_number": 5,
-        "function": "lambda1",
+        "function": "lambda",
         "variable": "x",
         "type": [
             "int"
@@ -24,7 +24,6 @@
             "callable"
         ]
     },
-
     {
         "file": "main.py",
         "line_number": 9,

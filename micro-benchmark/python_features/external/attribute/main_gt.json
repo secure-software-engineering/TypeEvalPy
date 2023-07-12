@@ -4,7 +4,7 @@
         "line_number": 9,
         "variable": "a",
         "type": [
-            "Cls"
+            "typeevalpy_external_module.ext.Cls"
         ]
     },
     {

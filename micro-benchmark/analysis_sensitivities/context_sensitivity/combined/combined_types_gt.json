@@ -36,5 +36,50 @@
         "type": [
             "str"
         ]
+    },
+    {
+        "file": "combined_types.py",
+        "line_number": 13,
+        "variable": "result1",
+        "function": "my_function",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "combined_types.py",
+        "line_number": 14,
+        "variable": "result2",
+        "function": "my_function",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "combined_types.py",
+        "line_number": 16,
+        "variable": "result3",
+        "function": "my_function",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "combined_types.py",
+        "line_number": 17,
+        "variable": "result4",
+        "function": "my_function",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "combined_types.py",
+        "line_number": 18,
+        "variable": "result5",
+        "function": "my_function",
+        "type": [
+            "int"
+        ]
     }
 ]

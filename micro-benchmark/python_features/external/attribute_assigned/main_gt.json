@@ -21,7 +21,7 @@
         "line_number": 11,
         "variable": "a",
         "type": [
-            "Cls"
+            "typeevalpy_external_module.ext.Cls"
         ]
     },
     {

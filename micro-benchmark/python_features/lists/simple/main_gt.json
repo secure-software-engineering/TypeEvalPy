@@ -33,6 +33,30 @@
     },
     {
         "file": "main.py",
+        "line_number": 16,
+        "variable": "a[0]",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 16,
+        "variable": "a[1]",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 16,
+        "variable": "a[2]",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
         "line_number": 18,
         "variable": "c",
         "type": [

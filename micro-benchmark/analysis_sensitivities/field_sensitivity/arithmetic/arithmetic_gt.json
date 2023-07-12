@@ -4,77 +4,103 @@
         "line_number": 8,
         "function": "ArithmeticOperation.__init__",
         "parameter": "a",
-        "type": ["int"]
+        "type": [
+            "int"
+        ]
     },
     {
         "file": "arithmetic.py",
         "line_number": 8,
         "function": "ArithmeticOperation.__init__",
         "parameter": "b",
-        "type": ["int"]
+        "type": [
+            "int"
+        ]
     },
     {
         "file": "arithmetic.py",
         "line_number": 9,
         "function": "ArithmeticOperation.__init__",
         "variable": "ArithmeticOperation.a",
-        "type": ["int"]
+        "type": [
+            "int"
+        ]
     },
     {
         "file": "arithmetic.py",
         "line_number": 10,
         "function": "ArithmeticOperation.__init__",
         "variable": "ArithmeticOperation.b",
-        "type": ["int"]
+        "type": [
+            "int"
+        ]
     },
     {
         "file": "arithmetic.py",
         "line_number": 11,
         "function": "ArithmeticOperation.__init__",
         "variable": "ArithmeticOperation.result",
-        "type": ["None"]
+        "type": [
+            "Nonetype"
+        ]
     },
     {
         "file": "arithmetic.py",
         "line_number": 13,
         "function": "ArithmeticOperation.compute",
-        "type": ["str", "int"]
+        "type": [
+            "str",
+            "int"
+        ]
     },
     {
         "file": "arithmetic.py",
         "line_number": 14,
         "function": "ArithmeticOperation.compute",
         "variable": "ArithmeticOperation.result",
-        "type": ["str", "int"]
+        "type": [
+            "str",
+            "int"
+        ]
     },
     {
         "file": "arithmetic.py",
         "line_number": 18,
         "variable": "arith_op",
-        "type": ["ArithmeticOperation"]
+        "type": [
+            "ArithmeticOperation"
+        ]
     },
     {
         "file": "arithmetic.py",
         "line_number": 19,
         "variable": "result1",
-        "type": ["int"]
+        "type": [
+            "int"
+        ]
     },
     {
         "file": "arithmetic.py",
         "line_number": 21,
         "variable": "arith_op.a",
-        "type": ["str"]
+        "type": [
+            "str"
+        ]
     },
     {
         "file": "arithmetic.py",
         "line_number": 22,
         "variable": "arith_op.b",
-        "type": ["str"]
+        "type": [
+            "str"
+        ]
     },
     {
         "file": "arithmetic.py",
         "line_number": 23,
         "variable": "result2",
-        "type": ["str"]
+        "type": [
+            "str"
+        ]
     }
 ]
