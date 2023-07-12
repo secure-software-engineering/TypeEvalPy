@@ -9,13 +9,21 @@ def list_json_files(folder_path):
     return python_files
 
 
+def translate_content(file_path):
+    with open(file_path) as f:
+        data = json.load(f)
+
+    # Do translation
+    return data
+
+
 def main_translator(args):
     json_files = list_json_files(args.bechmark_path)
     error_count = 0
     for file in json_files:
         try:
             # Run the inference here and gather results in /tmp/results
-            pass
+            translated = translate_content(file)
 
         except Exception as e:
             print(f"Command returned non-zero exit status: {e} for file: {file}")

@@ -3,6 +3,7 @@ import logging
 from pathlib import Path
 from sys import stdout
 
+import translator
 import utils
 
 # Create a logger
@@ -36,8 +37,14 @@ def main_runner(args):
     error_count = 0
     for file in python_files:
         try:
-            # Run the inference here and gather results in /tmp/results
+            # TODO: Run the inference here and gather results in /tmp/results
             inferred = process_file(file)
+
+            # TODO: Translate the results into TypeEvalPy format
+            result_file_path = "<path to file>"
+            translated = translator.translate_content(result_file_path)
+
+            # TODO: Save translated file to the same folder /tmp/results
 
         except Exception as e:
             logger.info(f"Command returned non-zero exit status: {e} for file: {file}")
