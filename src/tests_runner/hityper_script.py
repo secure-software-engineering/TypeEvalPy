@@ -83,11 +83,10 @@ def format_json(main_gt_file, hityper_file, final_gt_file):
 
 root_directory = "/tmp/micro-benchmark/python_features"
 
-# Run `pytype' in the root directory for node installation
 
 python_files = list_python_files(root_directory)
 error_count = 0
-# Run `pytype` for all files
+# Run `hityper` for all files
 for file_path in python_files:
     print(file_path)
     dir_path, file_name = os.path.split(file_path)
