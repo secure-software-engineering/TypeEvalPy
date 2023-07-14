@@ -1,7 +1,7 @@
 [
     {
         "file": "main.py",
-        "line_number": 7,
+        "line_number": 4,
         "function": "func",
         "type": [
             "str",
@@ -10,7 +10,7 @@
     },
     {
         "file": "main.py",
-        "line_number": 7,
+        "line_number": 4,
         "parameter": "x",
         "function": "func",
         "type": [
@@ -19,7 +19,7 @@
     },
     {
         "file": "main.py",
-        "line_number": 14,
+        "line_number": 11,
         "variable": "a",
         "type": [
             "int"
@@ -27,7 +27,7 @@
     },
     {
         "file": "main.py",
-        "line_number": 15,
+        "line_number": 12,
         "variable": "b",
         "type": [
             "str"

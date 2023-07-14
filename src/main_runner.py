@@ -74,7 +74,7 @@ class TypeEvalPyRunner:
         )
         return image
 
-    def _spawn_docker_instance(self):
+    def spawn_docker_instance(self):
         logger.info("Creating container")
         container = self.docker_client.containers.run(
             self.dockerfile_name,
@@ -88,7 +88,7 @@ class TypeEvalPyRunner:
         logger.info("#####################################################")
         logger.info(f"Running : {self.tool_name}")
         self._build_docker_image()
-        container = self._spawn_docker_instance()
+        container = self.spawn_docker_instance()
 
         file_handler = FileHandler()
         src = "../micro-benchmark"
@@ -163,25 +163,48 @@ class HityperRunner(TypeEvalPyRunner):
         self._run_test_in_session()
 
 
+class Type4pyRunner(TypeEvalPyRunner):
+    def __init__(self, host_results_path):
+        super().__init__("type4py", "./target_tools/type4py", host_results_path)
+
+    def run_tool_test(self):
+        self._run_test_in_session()
+
+    def spawn_docker_instance(self):
+        logger.info("Creating container")
+        container = self.docker_client.containers.run(
+            self.dockerfile_name,
+            detach=True,
+            stdin_open=True,
+            tty=True,
+            ports={"5010": 5001},
+        )
+        time.sleep(5)  # wait fot server to start
+        return container
+
+
 def main():
     host_results_path = f"./results_{datetime.now().strftime('%d-%m %H:%M')}"
+    runner = Type4pyRunner(host_results_path)
+    runner.run_tool_test()
+
     runner = ScalpelRunner(host_results_path)
     runner.run_tool_test()
 
-    runner = JediRunner(host_results_path)
-    runner.run_tool_test()
+    # runner = JediRunner(host_results_path)
+    # runner.run_tool_test()
 
-    runner = PyrightRunner(host_results_path)
-    runner.run_tool_test()
+    # runner = PyrightRunner(host_results_path)
+    # runner.run_tool_test()
 
-    runner = PytypeRunner(host_results_path)
-    runner.run_tool_test()
+    # runner = PytypeRunner(host_results_path)
+    # runner.run_tool_test()
 
-    runner = PyreRunner(host_results_path)
-    runner.run_tool_test()
+    # runner = PyreRunner(host_results_path)
+    # runner.run_tool_test()
 
-    runner = HityperRunner(host_results_path)
-    runner.run_tool_test()
+    # runner = HityperRunner(host_results_path)
+    # runner.run_tool_test()
 
 
 if __name__ == "__main__":

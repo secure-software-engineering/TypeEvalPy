@@ -31,8 +31,8 @@ def compare_json_files(expected, out):
     with open(out) as f:
         data_out = json.load(f)
 
-    data_expected = sorted(data_expected, key=lambda x: x["line_number"])
-    data_out = sorted(data_out, key=lambda x: x["line_number"])
+    data_expected = utils.sort_facts(data_expected)
+    data_out = utils.sort_facts(data_out)
 
     total_entries = len(data_expected)
     total_matches = 0
@@ -230,12 +230,12 @@ def process_cat_dir(cat_dir):
 def iterate_cats(test_suite_dir):
     all_cats_data = []
     all_cat_sound_complete = []
-    max_cat_length = 15
-    header_format = "{:<15}{:<15}{:<15}{:<15}\t{:<15}"
-    row_format = "{:<15}{:<15}{:<15}{:<15}\t{:<15}"
+    max_cat_length = 20
+    header_format = "{:<25}{:<15}{:<15}{:<15}\t{:<15}"
+    row_format = "{:<25}{:<15}{:<15}{:<15}\t{:<15}"
 
-    print("-" * 100)
-    print(
+    logger.info("-" * 100)
+    logger.info(
         header_format.format(
             "Category",
             "Complete",
@@ -244,7 +244,7 @@ def iterate_cats(test_suite_dir):
             "Recall T|Ex|Pa|Ex%|Pa%",
         )
     )
-    print("-" * 100)
+    logger.info("-" * 100)
 
     p_overall_total_facts = 0
     p_overall_total_caught = 0
@@ -257,7 +257,7 @@ def iterate_cats(test_suite_dir):
     for cat in sorted(os.listdir(test_suite_dir)):
         cat_dir = os.path.join(test_suite_dir, cat)
         if os.path.isdir(cat_dir):
-            # print("Iterating category {}...".format(cat))
+            # logger.info("Iterating category {}...".format(cat))
             results = process_cat_dir(cat_dir)
 
             cat_data = {
@@ -343,7 +343,7 @@ def iterate_cats(test_suite_dir):
             r_overall_total_facts += r_total_facts
             r_overall_total_caught += r_total_caught
             r_overall_total_caught_partial += r_total_atleast_partial
-            print(
+            logger.info(
                 row_format.format(
                     cat[:max_cat_length],
                     f"[{results['complete_passed']}/{results['file_count']}]",
@@ -352,26 +352,26 @@ def iterate_cats(test_suite_dir):
                         f"{p_total_facts:3d}|{p_total_caught:3d}|{p_total_atleast_partial:3d}|{mean(list_precision_total) if list_precision_total else 0:.2f}|{mean(list_precision_partial) if list_precision_partial else 0:.2f}"
                     ),
                     (
-                        f"{r_total_facts:3d}|{r_total_caught:3d}|{r_total_atleast_partial:3d}|{mean(list_recall_total) if list_recall_total else 0:.2f}|{mean(list_recall_partial) if list_recall_partial else 0:.2f}"
+                        f"\t{r_total_facts:3d}|{r_total_caught:3d}|{r_total_atleast_partial:3d}|{mean(list_recall_total) if list_recall_total else 0:.2f}|{mean(list_recall_partial) if list_recall_partial else 0:.2f}"
                     ),
                 )
             )
             if results["all_missing_matches"]:
                 pass
             else:
-                print("No missing matches.")
+                logger.info("No missing matches.")
 
-    print("-" * 100)
+    logger.info("-" * 100)
     total_complete_passed = sum(cat["complete"] for cat in all_cat_sound_complete)
     total_sound_passed = sum(cat["sound"] for cat in all_cat_sound_complete)
     total_file_count = sum(cat["file_count"] for cat in all_cat_sound_complete)
-    print(
+    logger.info(
         row_format.format(
             "Total",
             f"[{total_complete_passed}/{total_file_count}]",
             f"[{total_sound_passed}/{total_file_count}]",
             f"{p_overall_total_facts:4d}|{p_overall_total_caught:4d}|{p_overall_total_caught_partial:4d}|{float(p_overall_total_caught)/float(p_overall_total_facts):.2f}|{float(p_overall_total_caught_partial)/float(p_overall_total_facts):.2f}",
-            f"{r_overall_total_facts:4d}|{r_overall_total_caught:4d}|{r_overall_total_caught_partial:4d}|{float(r_overall_total_caught)/float(r_overall_total_facts):.2f}|{float(r_overall_total_caught_partial)/float(r_overall_total_facts):.2f}",
+            f"\t{r_overall_total_facts:4d}|{r_overall_total_caught:4d}|{r_overall_total_caught_partial:4d}|{float(r_overall_total_caught)/float(r_overall_total_facts):.2f}|{float(r_overall_total_caught_partial)/float(r_overall_total_facts):.2f}",
         )
     )
 
@@ -380,7 +380,18 @@ def iterate_cats(test_suite_dir):
 
 
 if __name__ == "__main__":
-    results_dir = Path("../results_10-07 10:14")
+    # results_dir = Path("../results_13-07 22:50")
+    results_dir = None
+    if results_dir is None:
+        dir_path = Path("../")
+        directories = [
+            f
+            for f in dir_path.iterdir()
+            if f.is_dir() and f.name.startswith("results_")
+        ]
+        directories.sort(key=lambda x: x.stat().st_mtime, reverse=True)
+        # Get the latest directory
+        results_dir = directories[0] if directories else None
 
     for item in results_dir.glob("*"):
         if item.is_file():
@@ -388,7 +399,12 @@ if __name__ == "__main__":
             pass
         elif item.is_dir():
             logger.info(f"Analyzing tool: {item.name}")
+
             logger.info(f"Analyzing Python Features")
             iterate_cats(item / "micro-benchmark/python_features")
-            # logger.info(f"Analyzing Sensitivities")
-            # iterate_cats(item / "micro-benchmark/analysis_sensitivities")
+
+            logger.info(f"Analyzing Sensitivities")
+            iterate_cats(item / "micro-benchmark/analysis_sensitivities")
+
+    # Move logs
+    os.rename("results_analysis.log", f"{str(results_dir)}/results_analysis.log")

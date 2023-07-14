@@ -1,10 +1,7 @@
 # Returning multiple types from a function using type hinting.
 
 
-from typing import Union
-
-
-def func(x: int) -> Union[int, str]:
+def func(x):
     if x > 0:
         return x
     else:

@@ -1,8 +1,11 @@
 import json
 
 
-def scalpel_translator(data):
-    pass
+def sort_facts(data):
+    data = sorted(data, key=lambda x: x["line_number"])
+    for fact in data:
+        fact["type"].sort()
+    return data
 
 
 def measure_precision(out, expected):
@@ -11,8 +14,8 @@ def measure_precision(out, expected):
     with open(expected) as f:
         data_expected = json.load(f)
 
-    data_out = sorted(data_out, key=lambda x: x["line_number"])
-    data_expected = sorted(data_expected, key=lambda x: x["line_number"])
+    data_out = sort_facts(data_out)
+    data_expected = sort_facts(data_expected)
 
     results = {
         "num_all": len(data_out),
@@ -46,8 +49,8 @@ def measure_recall(out, expected):
     with open(expected) as f:
         data_expected = json.load(f)
 
-    data_out = sorted(data_out, key=lambda x: x["line_number"])
-    data_expected = sorted(data_expected, key=lambda x: x["line_number"])
+    data_out = sort_facts(data_out)
+    data_expected = sort_facts(data_expected)
 
     results = {
         "num_all": len(data_expected),
@@ -83,8 +86,8 @@ def equal_sound(out, expected):
     with open(expected) as f:
         data_expected = json.load(f)
 
-    data_out = sorted(data_out, key=lambda x: x["line_number"])
-    data_expected = sorted(data_expected, key=lambda x: x["line_number"])
+    data_out = sort_facts(data_out)
+    data_expected = sort_facts(data_expected)
 
     for fact_expected in data_expected:
         fact_expected_exists = False
@@ -111,8 +114,8 @@ def equal_complete(out, expected):
     with open(expected) as f:
         data_expected = json.load(f)
 
-    data_out = sorted(data_out, key=lambda x: x["line_number"])
-    data_expected = sorted(data_expected, key=lambda x: x["line_number"])
+    data_out = sort_facts(data_out)
+    data_expected = sort_facts(data_expected)
 
     for fact_out in data_out:
         fact_out_exists = False
