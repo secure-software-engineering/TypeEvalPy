@@ -12,7 +12,7 @@
     {
         "file": "identity.py",
         "line_number": 9,
-        "variables": "Identity.value",
+        "variable": "Identity.value",
         "function": "Identity.__init__",
         "type": [
             "int",
@@ -32,7 +32,7 @@
     {
         "file": "identity.py",
         "line_number": 20,
-        "variables": "id1",
+        "variable": "id1",
         "type": [
             "Identity"
         ]
@@ -40,7 +40,7 @@
     {
         "file": "identity.py",
         "line_number": 21,
-        "variables": "result",
+        "variable": "result",
         "type": [
             "int"
         ]
@@ -48,7 +48,7 @@
     {
         "file": "identity.py",
         "line_number": 23,
-        "variables": "id2",
+        "variable": "id2",
         "type": [
             "Identity"
         ]
@@ -56,7 +56,7 @@
     {
         "file": "identity.py",
         "line_number": 24,
-        "variables": "result",
+        "variable": "result",
         "type": [
             "str"
         ]
@@ -64,7 +64,7 @@
     {
         "file": "identity.py",
         "line_number": 26,
-        "variables": "id2.value",
+        "variable": "id2.value",
         "type": [
             "float"
         ]
@@ -72,7 +72,7 @@
     {
         "file": "identity.py",
         "line_number": 27,
-        "variables": "result",
+        "variable": "result",
         "type": [
             "float"
         ]
