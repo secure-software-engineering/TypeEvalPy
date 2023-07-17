@@ -103,7 +103,7 @@ def categorize_facts(data):
     return type_categories
 
 
-def check_match(expected, out, partial_match=False):
+def check_match(expected, out, partial_match=False, top_n=1, is_ml=False):
     if not all(
         [x in expected for x in out.keys() if x not in ["type", "all_type_preds"]]
     ):
@@ -133,30 +133,43 @@ def check_match(expected, out, partial_match=False):
             return False
 
     # check if type match
-    _type = out.get("type")
+    if is_ml:
+        # _type = out.get("type")
+        _type = []
+        if out.get("all_type_preds"):
+            _type = [x[0] for x in out.get("all_type_preds")]
+    else:
+        _type = out.get("type")
+
+    type_formatted = []
     if _type:
-        type_formatted = []
         for _t in _type:
             if _t.startswith("Union["):
                 types_split = [
                     x.replace(" ", "").lower()
                     for x in _t.split("Union[")[1].split("]")[0].split(",")
                 ]
-                type_formatted.extend(types_split)
+                type_formatted.append(types_split)
             else:
-                type_formatted.append(_t.split("[")[0].lower())
+                type_formatted.append([_t.split("[")[0].lower()])
 
     if partial_match:
         # check if atleast one exists
         matched = False
-        for _t in type_formatted:
-            if _t in expected["type"]:
-                matched = True
+        for _t_list in type_formatted[:top_n]:
+            for _t in _t_list:
+                if _t in expected["type"]:
+                    matched = True
 
         if not matched:
             return False
     else:
-        if sorted(expected.get("type")) != sorted(type_formatted):
+        matched = False
+        for _t_list in type_formatted[:top_n]:
+            if sorted(expected.get("type")) == sorted(_t_list):
+                matched = True
+
+        if not matched:
             return False
 
     return True
@@ -178,6 +191,15 @@ def measure_precision(out, expected, tool_name=None):
         "num_all": len(data_out),
         "num_caught_exact": 0,
         "num_caught_partial": 0,
+    }
+
+    results_only_cat = {
+        k: {
+            "num_all": len(data_out_categories[k]),
+            "num_caught_exact": 0,
+            "num_caught_partial": 0,
+        }
+        for k in TYPE_CATEGORIES
     }
 
     results_cat = {
@@ -204,14 +226,20 @@ def measure_precision(out, expected, tool_name=None):
                 for fact_out in _cat_facts:
                     for fact_expected in data_expected:
                         # Check exact matches
-                        if check_match(expected=fact_expected, out=fact_out):
+                        if check_match(
+                            expected=fact_expected, out=fact_out, top_n=_n, is_ml=True
+                        ):
                             if _n == 1:
                                 # Only if top-1 for "results" list
                                 results["num_caught_exact"] += 1
                             results_cat[_n][_cat]["num_caught_exact"] += 1
                         # Check partial matches
                         elif check_match(
-                            expected=fact_expected, out=fact_out, partial_match=True
+                            expected=fact_expected,
+                            out=fact_out,
+                            partial_match=True,
+                            top_n=_n,
+                            is_ml=True,
                         ):
                             for _type in fact_expected.get("type", []):
                                 if _type in fact_out.get("type", []):
@@ -225,23 +253,17 @@ def measure_precision(out, expected, tool_name=None):
             for fact_out in _cat_facts:
                 for fact_expected in data_expected:
                     # Check exact matches
-                    if fact_out == fact_expected:
+                    if check_match(expected=fact_expected, out=fact_out):
                         results["num_caught_exact"] += 1
-                        results_cat[_cat]["num_caught_exact"] += 1
+                        results_only_cat[_cat]["num_caught_exact"] += 1
                     # Check partial matches
-                    elif (fact_expected.keys() == fact_out.keys()) and all(
-                        [
-                            fact_expected.get(x) == fact_out.get(x)
-                            for x in fact_expected.keys()
-                            if x != "type"
-                        ]
+                    elif check_match(
+                        expected=fact_expected, out=fact_out, partial_match=True
                     ):
-                        for _type in fact_expected.get("type", []):
-                            if _type in fact_out.get("type", []):
-                                results["num_caught_partial"] += 1
-                                results_cat[_cat]["num_caught_partial"] += 1
+                        results["num_caught_partial"] += 1
+                        results_only_cat[_cat]["num_caught_partial"] += 1
 
-    return results, results_cat
+    return results, results_cat, results_only_cat
 
 
 def measure_recall(out, expected, tool_name=None):
@@ -260,6 +282,15 @@ def measure_recall(out, expected, tool_name=None):
         "num_all": len(data_expected),
         "num_caught_exact": 0,
         "num_caught_partial": 0,
+    }
+
+    results_only_cat = {
+        k: {
+            "num_all": len(data_out_categories[k]),
+            "num_caught_exact": 0,
+            "num_caught_partial": 0,
+        }
+        for k in TYPE_CATEGORIES
     }
 
     results_cat = {
@@ -286,7 +317,9 @@ def measure_recall(out, expected, tool_name=None):
                 for fact_expected in _cat_facts:
                     for fact_out in data_out:
                         # Check exact matches
-                        if check_match(expected=fact_expected, out=fact_out):
+                        if check_match(
+                            expected=fact_expected, out=fact_out, top_n=_n, is_ml=True
+                        ):
                             if _n == 1:
                                 # Only if top-1 for "results" list
                                 results["num_caught_exact"] += 1
@@ -294,7 +327,11 @@ def measure_recall(out, expected, tool_name=None):
 
                         # Check partial matches
                         elif check_match(
-                            expected=fact_expected, out=fact_out, partial_match=True
+                            expected=fact_expected,
+                            out=fact_out,
+                            partial_match=True,
+                            top_n=_n,
+                            is_ml=True,
                         ):
                             if _n == 1:
                                 # Only if top-1 for "results" list
@@ -308,16 +345,16 @@ def measure_recall(out, expected, tool_name=None):
                     # Check exact matches
                     if check_match(expected=fact_expected, out=fact_out):
                         results["num_caught_exact"] += 1
-                        results_cat[_cat]["num_caught_exact"] += 1
+                        results_only_cat[_cat]["num_caught_exact"] += 1
 
                     # Check partial matches
                     elif check_match(
                         expected=fact_expected, out=fact_out, partial_match=True
                     ):
                         results["num_caught_partial"] += 1
-                        results_cat[_cat]["num_caught_partial"] += 1
+                        results_only_cat[_cat]["num_caught_partial"] += 1
 
-    return results, results_cat
+    return results, results_cat, results_only_cat
 
 
 def equal_sound(out, expected):

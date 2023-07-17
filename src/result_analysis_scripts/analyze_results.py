@@ -190,11 +190,15 @@ def process_cat_dir(cat_dir, tool_name=None):
                     )
                     sound_passed += utils.equal_sound(expected=gt_file, out=result_file)
 
-                    cat_precision, cat_precision_grouped = utils.measure_precision(
-                        expected=gt_file, out=result_file, tool_name=tool_name
+                    cat_precision, cat_precision_grouped, only_cat_precision_grouped = (
+                        utils.measure_precision(
+                            expected=gt_file, out=result_file, tool_name=tool_name
+                        )
                     )
-                    cat_recall, cat_recall_grouped = utils.measure_recall(
-                        expected=gt_file, out=result_file, tool_name=tool_name
+                    cat_recall, cat_recall_grouped, only_cat_recall_grouped = (
+                        utils.measure_recall(
+                            expected=gt_file, out=result_file, tool_name=tool_name
+                        )
                     )
 
                     cat_precision_results[
@@ -531,8 +535,8 @@ def generate_top_n_performance(test_suite_dir, tool_name=None):
 
 
 if __name__ == "__main__":
-    results_dir = Path("./results_analysis_tests")
-    # results_dir = None
+    # results_dir = Path("./results_analysis_tests")
+    results_dir = None
     if results_dir is None:
         dir_path = Path("../")
         directories = [
