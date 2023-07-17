@@ -1,0 +1,45 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "function": "param_func",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "function": "param_func",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "function": "arithmetic_op",
+        "type": [
+            "int",
+            "str",
+            "float"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 7,
+        "function": "arithmetic_op",
+        "parameter": "a",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "variable": "result",
+        "type": [
+            "str"
+        ]
+    }
+]

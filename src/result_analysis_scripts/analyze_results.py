@@ -163,13 +163,16 @@ def display_all_cats_data(all_cats_data):
     logger.debug(tabulate(rows, headers=headers, tablefmt="grid"))
 
 
-def process_cat_dir(cat_dir):
+def process_cat_dir(cat_dir, tool_name=None):
     all_missing_matches = {}
     complete_passed = 0
     sound_passed = 0
     file_count = 0
     cat_precision_results = {}
     cat_recall_results = {}
+    cat_precision_results_grouped = {}
+    cat_recall_results_grouped = {}
+
     for root, dirs, files in os.walk(cat_dir):
         # logger.info(files)
         test_files = [x.split(".py")[0] for x in files if x.endswith(".py")]
@@ -187,10 +190,12 @@ def process_cat_dir(cat_dir):
                     )
                     sound_passed += utils.equal_sound(expected=gt_file, out=result_file)
 
-                    cat_precision = utils.measure_precision(
-                        expected=gt_file, out=result_file
+                    cat_precision, cat_precision_grouped = utils.measure_precision(
+                        expected=gt_file, out=result_file, tool_name=tool_name
                     )
-                    cat_recall = utils.measure_recall(expected=gt_file, out=result_file)
+                    cat_recall, cat_recall_grouped = utils.measure_recall(
+                        expected=gt_file, out=result_file, tool_name=tool_name
+                    )
 
                     cat_precision_results[
                         f"{os.path.basename(os.path.dirname(gt_file))}:{test}"
@@ -198,6 +203,13 @@ def process_cat_dir(cat_dir):
                     cat_recall_results[
                         f"{os.path.basename(os.path.dirname(gt_file))}:{test}"
                     ] = cat_recall
+
+                    cat_precision_results_grouped[
+                        f"{os.path.basename(os.path.dirname(gt_file))}:{test}"
+                    ] = cat_precision_grouped
+                    cat_recall_results_grouped[
+                        f"{os.path.basename(os.path.dirname(gt_file))}:{test}"
+                    ] = cat_recall_grouped
 
                     # logger.debug("Missing Matches:")
                     # logger.debug(json.dumps(results["missing_matches"], indent=4))
@@ -223,11 +235,13 @@ def process_cat_dir(cat_dir):
         "file_count": file_count,
         "cat_precision_results": cat_precision_results,
         "cat_recall_results": cat_recall_results,
+        "cat_precision_results_grouped": cat_precision_results_grouped,
+        "cat_recall_results_grouped": cat_recall_results_grouped,
     }
     return results_dict
 
 
-def iterate_cats(test_suite_dir):
+def iterate_cats(test_suite_dir, tool_name=None):
     all_cats_data = []
     all_cat_sound_complete = []
     max_cat_length = 20
@@ -258,7 +272,7 @@ def iterate_cats(test_suite_dir):
         cat_dir = os.path.join(test_suite_dir, cat)
         if os.path.isdir(cat_dir):
             # logger.info("Iterating category {}...".format(cat))
-            results = process_cat_dir(cat_dir)
+            results = process_cat_dir(cat_dir, tool_name=tool_name)
 
             cat_data = {
                 "Category": cat,
@@ -379,9 +393,146 @@ def iterate_cats(test_suite_dir):
     display_all_cats_data(all_cats_data)
 
 
+def generate_top_n_performance(test_suite_dir, tool_name=None):
+    all_cats_data = {}
+    all_cat_sound_complete = []
+
+    results_cat = {
+        k_n: {
+            k: {
+                "p_overall_total_facts": 0,
+                "p_overall_total_caught": 0,
+                "p_overall_total_caught_partial": 0,
+                "r_overall_total_facts": 0,
+                "r_overall_total_caught": 0,
+                "r_overall_total_caught_partial": 0,
+            }
+            for k in utils.TYPE_CATEGORIES
+        }
+        for k_n in utils.TOP_N
+    }
+
+    for _k in utils.TOP_N:
+        results_cat[_k]["totals"] = {}
+        results_cat[_k]["totals"]["p_total_facts"] = 0
+        results_cat[_k]["totals"]["p_total_facts_caught"] = 0
+        results_cat[_k]["totals"]["p_total_facts_partial"] = 0
+
+    for cat in sorted(os.listdir(test_suite_dir)):
+        cat_dir = os.path.join(test_suite_dir, cat)
+        if os.path.isdir(cat_dir):
+            # logger.info("Iterating category {}...".format(cat))
+            results = process_cat_dir(cat_dir, tool_name=tool_name)
+
+            cat_sound_complete = {
+                "complete": results["complete_passed"],
+                "sound": results["sound_passed"],
+                "file_count": results["file_count"],
+            }
+            all_cat_sound_complete.append(cat_sound_complete)
+            all_cats_data[cat] = results
+
+    # Get total precision values
+    for _cat, _results in all_cats_data.items():
+        for _cat_results in _results["cat_precision_results_grouped"].values():
+            for _top_n, _i_results in _cat_results.items():
+                for _type_cat in utils.TYPE_CATEGORIES:
+                    results_cat[_top_n][_type_cat][
+                        "p_overall_total_facts"
+                    ] += _i_results[_type_cat]["num_all"]
+                    results_cat[_top_n][_type_cat][
+                        "p_overall_total_caught"
+                    ] += _i_results[_type_cat]["num_caught_exact"]
+                    results_cat[_top_n][_type_cat][
+                        "p_overall_total_caught_partial"
+                    ] += _i_results[_type_cat]["num_caught_partial"]
+
+    # Get total recall values
+    for _cat, _results in all_cats_data.items():
+        for _cat_results in _results["cat_recall_results_grouped"].values():
+            for _top_n, _i_results in _cat_results.items():
+                for _type_cat in utils.TYPE_CATEGORIES:
+                    results_cat[_top_n][_type_cat][
+                        "r_overall_total_facts"
+                    ] += _i_results[_type_cat]["num_all"]
+                    results_cat[_top_n][_type_cat][
+                        "r_overall_total_caught"
+                    ] += _i_results[_type_cat]["num_caught_exact"]
+                    results_cat[_top_n][_type_cat][
+                        "r_overall_total_caught_partial"
+                    ] += _i_results[_type_cat]["num_caught_partial"]
+
+    # Get totals of type categories
+    for _top_n, _stats in results_cat.items():
+        results_cat[_top_n]["totals"]["p_total_facts"] = sum(
+            [_stats[_cat]["p_overall_total_facts"] for _cat in utils.TYPE_CATEGORIES]
+        )
+        results_cat[_top_n]["totals"]["p_total_facts_caught"] = sum(
+            [_stats[_cat]["p_overall_total_caught"] for _cat in utils.TYPE_CATEGORIES]
+        )
+        results_cat[_top_n]["totals"]["p_total_facts_partial"] = sum(
+            [
+                _stats[_cat]["p_overall_total_caught_partial"]
+                for _cat in utils.TYPE_CATEGORIES
+            ]
+        )
+        results_cat[_top_n]["totals"]["r_total_facts"] = sum(
+            [_stats[_cat]["r_overall_total_facts"] for _cat in utils.TYPE_CATEGORIES]
+        )
+        results_cat[_top_n]["totals"]["r_total_facts_caught"] = sum(
+            [_stats[_cat]["r_overall_total_caught"] for _cat in utils.TYPE_CATEGORIES]
+        )
+        results_cat[_top_n]["totals"]["r_total_facts_partial"] = sum(
+            [
+                _stats[_cat]["r_overall_total_caught_partial"]
+                for _cat in utils.TYPE_CATEGORIES
+            ]
+        )
+
+        # Calculate p,r values for all categories
+        for _cat in utils.TYPE_CATEGORIES:
+            results_cat[_top_n][_cat]["precision_perc"] = float(
+                results_cat[_top_n][_cat]["p_overall_total_caught"]
+            ) / float(results_cat[_top_n][_cat]["p_overall_total_facts"])
+
+            results_cat[_top_n][_cat]["recall_perc"] = float(
+                results_cat[_top_n][_cat]["r_overall_total_caught"]
+            ) / float(results_cat[_top_n][_cat]["r_overall_total_facts"])
+
+            results_cat[_top_n][_cat]["precision_partial_perc"] = float(
+                results_cat[_top_n][_cat]["p_overall_total_caught_partial"]
+                + results_cat[_top_n][_cat]["p_overall_total_caught"]
+            ) / float(results_cat[_top_n][_cat]["p_overall_total_facts"])
+
+            results_cat[_top_n][_cat]["recall_partial_perc"] = float(
+                results_cat[_top_n][_cat]["r_overall_total_caught_partial"]
+                + results_cat[_top_n][_cat]["r_overall_total_caught_partial"]
+            ) / float(results_cat[_top_n][_cat]["r_overall_total_facts"])
+
+        results_cat[_top_n]["totals"]["precision_perc"] = float(
+            results_cat[_top_n]["totals"]["p_total_facts_caught"]
+        ) / float(results_cat[_top_n]["totals"]["p_total_facts"])
+
+        results_cat[_top_n]["totals"]["recall_perc"] = float(
+            results_cat[_top_n]["totals"]["r_total_facts_caught"]
+        ) / float(results_cat[_top_n]["totals"]["r_total_facts"])
+
+        results_cat[_top_n]["totals"]["precision_partial_perc"] = float(
+            results_cat[_top_n]["totals"]["p_total_facts_partial"]
+            + results_cat[_top_n]["totals"]["p_total_facts_caught"]
+        ) / float(results_cat[_top_n]["totals"]["p_total_facts"])
+
+        results_cat[_top_n]["totals"]["recall_partial_perc"] = float(
+            results_cat[_top_n]["totals"]["r_total_facts_partial"]
+            + results_cat[_top_n]["totals"]["r_total_facts_caught"]
+        ) / float(results_cat[_top_n]["totals"]["r_total_facts"])
+
+    utils.create_top_n_table(results_cat, tool_name)
+
+
 if __name__ == "__main__":
-    # results_dir = Path("../results_13-07 22:50")
-    results_dir = None
+    results_dir = Path("./results_analysis_tests")
+    # results_dir = None
     if results_dir is None:
         dir_path = Path("../")
         directories = [
@@ -401,10 +552,17 @@ if __name__ == "__main__":
             logger.info(f"Analyzing tool: {item.name}")
 
             logger.info(f"Analyzing Python Features")
-            iterate_cats(item / "micro-benchmark/python_features")
+
+            if item.name in utils.ML_TOOLS:
+                generate_top_n_performance(
+                    item / "micro-benchmark/python_features", tool_name=item.name
+                )
+            iterate_cats(item / "micro-benchmark/python_features", tool_name=item.name)
 
             logger.info(f"Analyzing Sensitivities")
-            iterate_cats(item / "micro-benchmark/analysis_sensitivities")
+            iterate_cats(
+                item / "micro-benchmark/analysis_sensitivities", tool_name=item.name
+            )
 
     # Move logs
     os.rename("results_analysis.log", f"{str(results_dir)}/results_analysis.log")

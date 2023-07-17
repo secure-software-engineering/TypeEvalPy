@@ -1,0 +1,183 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "function": "param_func",
+        "type": [
+            "str"
+        ],
+        "all_type_preds": [
+            [
+                "str",
+                0.30680423058339196
+            ],
+            [
+                "Callable[[str], str]",
+                0.10874255980008377
+            ],
+            [
+                "IO[Any]",
+                0.10786627643294905
+            ],
+            [
+                "bool",
+                0.09598369466928243
+            ],
+            [
+                "type",
+                0.09167542608494615
+            ]
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "function": "param_func",
+        "type": [
+            "random"
+        ],
+        "all_type_preds": [
+            [
+                "random",
+                0.30680423058339196
+            ],
+            [
+                "random",
+                0.10874255980008377
+            ],
+            [
+                "random",
+                0.10786627643294905
+            ],
+            [
+                "bool",
+                0.09598369466928243
+            ],
+            [
+                "type",
+                0.09167542608494615
+            ]
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "function": "param_func",
+        "type": [
+            "Callable[[str], str]"
+        ],
+        "all_type_preds": [
+            [
+                "str",
+                0.30680423058339196
+            ],
+            [
+                "Callable[[str], str]",
+                0.10874255980008377
+            ],
+            [
+                "IO[Any]",
+                0.10786627643294905
+            ],
+            [
+                "bool",
+                0.09598369466928243
+            ],
+            [
+                "type",
+                0.09167542608494615
+            ]
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "function": "arithmetic_op",
+        "type": [
+            "Union[int, str, float]"
+        ],
+        "all_type_preds": [
+            [
+                "Union[int, str, float]",
+                0.30680423058339196
+            ],
+            [
+                "Callable[[str], str]",
+                0.10874255980008377
+            ],
+            [
+                "IO[Any]",
+                0.10786627643294905
+            ],
+            [
+                "bool",
+                0.09598369466928243
+            ],
+            [
+                "type",
+                0.09167542608494615
+            ]
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 7,
+        "function": "arithmetic_op",
+        "parameter": "a",
+        "type": [
+            "str"
+        ],
+        "all_type_preds": [
+            [
+                "str",
+                0.30680423058339196
+            ],
+            [
+                "Callable[[str], str]",
+                0.10874255980008377
+            ],
+            [
+                "IO[Any]",
+                0.10786627643294905
+            ],
+            [
+                "bool",
+                0.09598369466928243
+            ],
+            [
+                "type",
+                0.09167542608494615
+            ]
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "variable": "result",
+        "type": [
+            "str"
+        ],
+        "all_type_preds": [
+            [
+                "str",
+                0.30680423058339196
+            ],
+            [
+                "Callable[[str], str]",
+                0.10874255980008377
+            ],
+            [
+                "IO[Any]",
+                0.10786627643294905
+            ],
+            [
+                "bool",
+                0.09598369466928243
+            ],
+            [
+                "type",
+                0.09167542608494615
+            ]
+        ]
+    }
+]

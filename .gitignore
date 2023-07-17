@@ -167,3 +167,4 @@ src/*/*.tar
 evaluation/type-inference-micro-benchmark
 src/results_*
 micro-benchmark/**/*.py
+src/result_analysis_scripts/*.csv
