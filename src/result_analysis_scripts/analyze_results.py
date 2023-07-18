@@ -4,6 +4,7 @@ import os
 from pathlib import Path
 from statistics import mean
 
+import analysis_tables
 import analysis_utils as utils
 from tabulate import tabulate
 
@@ -397,9 +398,32 @@ def iterate_cats(test_suite_dir, tool_name=None):
     display_all_cats_data(all_cats_data)
 
 
+def generate_sound_complete_data(test_suite_dir, tool_name=None):
+    cat_sound_complete = {}
+    cat_sound_totals = {"s": 0, "c": 0, "t": 0}
+
+    for cat in sorted(os.listdir(test_suite_dir)):
+        cat_dir = os.path.join(test_suite_dir, cat)
+        if os.path.isdir(cat_dir):
+            # logger.info("Iterating category {}...".format(cat))
+            results = process_cat_dir(cat_dir, tool_name=tool_name)
+            cat_sound_complete[cat] = {
+                "complete": results["complete_passed"],
+                "sound": results["sound_passed"],
+                "file_count": results["file_count"],
+            }
+
+            cat_sound_totals["s"] += results["sound_passed"]
+            cat_sound_totals["c"] += results["complete_passed"]
+            cat_sound_totals["t"] += results["file_count"]
+
+    return cat_sound_complete, cat_sound_totals
+
+
 def generate_top_n_performance(test_suite_dir, tool_name=None):
     all_cats_data = {}
     all_cat_sound_complete = []
+    cat_sound_complete = {}
 
     results_cat = {
         k_n: {
@@ -427,12 +451,12 @@ def generate_top_n_performance(test_suite_dir, tool_name=None):
         if os.path.isdir(cat_dir):
             # logger.info("Iterating category {}...".format(cat))
             results = process_cat_dir(cat_dir, tool_name=tool_name)
-
-            cat_sound_complete = {
+            cat_sound_complete[cat] = {
                 "complete": results["complete_passed"],
                 "sound": results["sound_passed"],
                 "file_count": results["file_count"],
             }
+
             all_cat_sound_complete.append(cat_sound_complete)
             all_cats_data[cat] = results
 
@@ -531,7 +555,7 @@ def generate_top_n_performance(test_suite_dir, tool_name=None):
             + results_cat[_top_n]["totals"]["r_total_facts_caught"]
         ) / float(results_cat[_top_n]["totals"]["r_total_facts"])
 
-    utils.create_top_n_table(results_cat, tool_name)
+    analysis_tables.create_top_n_table(results_cat, tool_name)
 
 
 if __name__ == "__main__":
@@ -548,12 +572,15 @@ if __name__ == "__main__":
         # Get the latest directory
         results_dir = directories[0] if directories else None
 
+    tools_results = {}
+
     for item in results_dir.glob("*"):
         if item.is_file():
             # ignore
             pass
         elif item.is_dir():
             logger.info(f"Analyzing tool: {item.name}")
+            tools_results[item.name] = {}
 
             logger.info(f"Analyzing Python Features")
 
@@ -563,10 +590,20 @@ if __name__ == "__main__":
                 )
             iterate_cats(item / "micro-benchmark/python_features", tool_name=item.name)
 
+            (
+                tools_results[item.name]["sound_complete_data"],
+                tools_results[item.name]["sound_complete_total_data"],
+            ) = generate_sound_complete_data(
+                item / "micro-benchmark/python_features", tool_name=item.name
+            )
+
             logger.info(f"Analyzing Sensitivities")
             iterate_cats(
                 item / "micro-benchmark/analysis_sensitivities", tool_name=item.name
             )
+
+    # Create sound complete table
+    analysis_tables.create_sound_complete_table(tools_results)
 
     # Move logs
     os.rename("results_analysis.log", f"{str(results_dir)}/results_analysis.log")

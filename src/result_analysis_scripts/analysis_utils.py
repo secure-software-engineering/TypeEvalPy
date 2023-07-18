@@ -8,67 +8,6 @@ TOP_N = [1, 3, 5]
 TYPE_CATEGORIES = ["function_returns", "function_parameters", "local_variables"]
 
 
-def create_top_n_table(stats, tool_name):
-    header_format = "{:<15}{:<15}{:<15}{:<15}{:<15}{:<15}"
-    row_format = "{:<15}{:<15}{:<15}{:<15}{:<15}{:<15}"
-
-    with open(f"top_n_table_{tool_name}.csv", "w", newline="") as csvfile:
-        fieldnames = [
-            "Type Category",
-            "Top-n Predictions",
-            "Exact Match P.",
-            "Exact Match R.",
-            "Partial Match P.",
-            "Partial Match R.",
-        ]
-        writer = csv.writer(
-            csvfile,
-            delimiter=",",
-            quotechar="|",
-            quoting=csv.QUOTE_MINIMAL,
-        )
-
-        cat_based_dict = {
-            k_cat: {
-                k: {
-                    "exact_p": 0.0,
-                    "exact_r": 0.0,
-                    "partial_p": 0.0,
-                    "partial_r": 0.0,
-                }
-                for k in TOP_N
-            }
-            for k_cat in TYPE_CATEGORIES + ["totals"]
-        }
-
-        for _top_n, _top_n_values in stats.items():
-            for _cat, _cat_values in _top_n_values.items():
-                cat_based_dict[_cat][_top_n]["exact_p"] = _cat_values["precision_perc"]
-                cat_based_dict[_cat][_top_n]["exact_r"] = _cat_values["recall_perc"]
-                cat_based_dict[_cat][_top_n]["partial_p"] = _cat_values[
-                    "precision_partial_perc"
-                ]
-                cat_based_dict[_cat][_top_n]["partial_r"] = _cat_values[
-                    "recall_partial_perc"
-                ]
-
-        writer.writerow(fieldnames)
-        for _cat, _cat_values in cat_based_dict.items():
-            for _top_n, _top_n_values in _cat_values.items():
-                writer.writerow(
-                    [
-                        _cat,
-                        f"Top-{_top_n}",
-                        f"{_top_n_values['exact_p']:.2f}",
-                        f"{_top_n_values['exact_r']:.2f}",
-                        f"{_top_n_values['partial_p']:.2f}",
-                        f"{_top_n_values['partial_r']:.2f}",
-                    ]
-                )
-
-    stats
-
-
 def sort_facts(data):
     data = sorted(data, key=lambda x: x["line_number"])
     for fact in data:
