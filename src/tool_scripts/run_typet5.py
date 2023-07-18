@@ -14,9 +14,15 @@ from typet5.function_decoding import (
     AccuracyMetric,
 )
 from typet5.static_analysis import PythonProject
+from pathlib import Path
 
 
-os.chdir(proj_root())
+def benchmark_root() -> Path:
+    return Path("/tmp/micro-benchmark")
+
+
+print(benchmark_root())
+os.chdir(benchmark_root())
 
 # download or load the model
 wrapper = ModelWrapper.load_from_hub("MrVPlusOne/TypeT5-v7")
@@ -35,7 +41,7 @@ decode_order = DecodingOrders.DoubleTraversal()
 async def main():
     # Use case 1: Run TypeT5 on a given project, taking advantage of existing user
     # annotations and only make predictions for missing types.
-    project = PythonProject.parse_from_root(proj_root() / "data/ex_repo")
+    project = PythonProject.parse_from_root(benchmark_root() / "python_features/args")
     rollout = await rctx.run_on_project(project, pre_args, decode_order)
 
     # Use case 2: Run TypeT5 on a test project where all user annotations will be treated as
