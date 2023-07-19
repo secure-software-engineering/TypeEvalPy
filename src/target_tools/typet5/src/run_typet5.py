@@ -13,7 +13,7 @@ from typet5.function_decoding import (
     DecodingOrders,
     AccuracyMetric,
 )
-from typet5.static_analysis import PythonProject
+from typet5.static_analysis import PythonProject, reorder_signature_map
 from pathlib import Path
 
 
@@ -49,9 +49,19 @@ print("model loaded")
 # set up the rollout parameters
 rctx = RolloutCtx(model=wrapper)
 pre_args = PreprocessArgs()
-# we use the double-traversal decoding order, where the model can make corrections
-# to its previous predictions in the second pass
+# Double-traversal decoding order, where the model can make corrections # to its previous predictions in the second pass
 decode_order = DecodingOrders.DoubleTraversal()
+
+
+def write_predictions_to_file(project_root, sig_map):
+    for path, sig in sig_map.items():
+        parts = str(path).split("/")
+        folder_path = project_root
+        for part in parts[:-1]:
+            part = part.replace(".", "/")
+            folder_path /= f"{part}.txt"
+        with open(folder_path, "a") as file:
+            file.write(f"{parts[1]}:{str(sig)}\n")
 
 
 async def main():
@@ -60,12 +70,13 @@ async def main():
         print(f"Parsing project: {subfolder}")
         project = PythonProject.parse_from_root(benchmark_root() / subfolder)
         eval_r = await rctx.evaluate_on_projects([project], pre_args, decode_order)
-        eval_r.print_predictions()
 
-        """metrics = AccuracyMetric.default_metrics(wrapper.common_type_names)
-        for metric in metrics:
-            accs = eval_r.error_analysis(None, metric).accuracies
-            pretty_print_dict({metric.name: accs})"""
+        output_dir = benchmark_root() / subfolder
+        sig_map = reorder_signature_map(
+            eval_r.predictions[0].predicted_sigmap, eval_r.label_maps[0]
+        )
+        write_predictions_to_file(output_dir, sig_map)
+        print(f"Predictions written to: {output_dir}")
 
 
 asyncio.run(main())
