@@ -1,1 +1,6 @@
 pyright==1.1.311
+fastapi
+uvicorn
+icecream
+sansio_lsp_client
+pytest

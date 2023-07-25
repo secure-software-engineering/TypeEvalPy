@@ -9,7 +9,7 @@ TYPE_CATEGORIES = ["function_returns", "function_parameters", "local_variables"]
 
 
 def sort_facts(data):
-    data = sorted(data, key=lambda x: x["line_number"])
+    data = sorted(data, key=lambda x: int(x["line_number"]))
     for fact in data:
         fact["type"].sort()
     return data
@@ -44,7 +44,11 @@ def categorize_facts(data):
 
 def check_match(expected, out, partial_match=False, top_n=1, is_ml=False):
     if not all(
-        [x in expected for x in out.keys() if x not in ["type", "all_type_preds"]]
+        [
+            x in expected
+            for x in out.keys()
+            if x not in ["type", "all_type_preds", "col_offset"]
+        ]
     ):
         return False
 

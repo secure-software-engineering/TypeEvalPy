@@ -1,5 +1,4 @@
 import argparse
-import json
 import logging
 from pathlib import Path
 from sys import stdout
@@ -11,7 +10,7 @@ import utils
 logger = logging.getLogger("runner")
 logger.setLevel(logging.DEBUG)
 
-file_handler = logging.FileHandler("/tmp/<tool_name>_log.log")
+file_handler = logging.FileHandler("/tmp/pyright_log.log")
 file_handler.setLevel(logging.DEBUG)
 
 console_handler = logging.StreamHandler(stdout)
@@ -29,6 +28,10 @@ def list_python_files(folder_path):
 
 
 def process_file(file_path):
+    with open(file_path, "r") as f:
+        code = f.read()
+
+    utils.parse_python_code(code)
     # Process file here and return results
     pass
 
@@ -38,7 +41,6 @@ def main_runner(args):
     error_count = 0
     for file in python_files:
         try:
-            logger.info(file)
             # TODO: Run the inference here and gather results in /tmp/results
             inferred = process_file(file)
 
@@ -47,11 +49,6 @@ def main_runner(args):
             translated = translator.translate_content(result_file_path)
 
             # TODO: Save translated file to the same folder /tmp/results
-            json_file_path = str(file).replace(".py", "_result.json")
-
-            with open(json_file_path, "w") as json_file:
-                inferred_serializable = []
-                json.dump(inferred_serializable, json_file, sort_keys=True, indent=4)
 
         except Exception as e:
             logger.info(f"Command returned non-zero exit status: {e} for file: {file}")
@@ -75,5 +72,5 @@ if __name__ == "__main__":
         main_runner(args)
     else:
         print("Python is not running inside a Docker container")
-        file_path = ""
+        file_path = "/mnt/Projects/PhD/Research/Student-Thesis/4_type_inference_benchmark(Sam)/git_sources/master-thesis-of-samkutty/.scrapy/micro-benchmark/python_features/classes/base_class_calls_child/main.py"
         process_file(file_path)

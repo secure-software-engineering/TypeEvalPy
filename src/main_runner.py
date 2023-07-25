@@ -163,6 +163,14 @@ class HityperRunner(TypeEvalPyRunner):
         self._run_test_in_session()
 
 
+class HeaderGenRunner(TypeEvalPyRunner):
+    def __init__(self, host_results_path):
+        super().__init__("headergen", "./target_tools/headergen", host_results_path)
+
+    def run_tool_test(self):
+        self._run_test_in_session()
+
+
 class Type4pyRunner(TypeEvalPyRunner):
     def __init__(self, host_results_path):
         super().__init__("type4py", "./target_tools/type4py", host_results_path)
@@ -185,8 +193,12 @@ class Type4pyRunner(TypeEvalPyRunner):
 
 def main():
     host_results_path = f"./results_{datetime.now().strftime('%d-%m %H:%M')}"
-    runner = Type4pyRunner(host_results_path)
+
+    runner = HeaderGenRunner(host_results_path)
     runner.run_tool_test()
+
+    # runner = Type4pyRunner(host_results_path)
+    # runner.run_tool_test()
 
     runner = ScalpelRunner(host_results_path)
     runner.run_tool_test()

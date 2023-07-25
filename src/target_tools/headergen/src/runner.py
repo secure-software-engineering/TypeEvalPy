@@ -6,6 +6,7 @@ from sys import stdout
 
 import translator
 import utils
+from headergen import headergen
 
 # Create a logger
 logger = logging.getLogger("runner")
@@ -29,8 +30,8 @@ def list_python_files(folder_path):
 
 
 def process_file(file_path):
-    # Process file here and return results
-    pass
+    analysis_meta = headergen.start_headergen(file_path, "/tmp", debug_mode=True)
+    return analysis_meta
 
 
 def main_runner(args):
@@ -39,18 +40,15 @@ def main_runner(args):
     for file in python_files:
         try:
             logger.info(file)
+
             # TODO: Run the inference here and gather results in /tmp/results
             inferred = process_file(file)
-
-            # TODO: Translate the results into TypeEvalPy format
-            result_file_path = "<path to file>"
-            translated = translator.translate_content(result_file_path)
 
             # TODO: Save translated file to the same folder /tmp/results
             json_file_path = str(file).replace(".py", "_result.json")
 
             with open(json_file_path, "w") as json_file:
-                inferred_serializable = []
+                inferred_serializable = inferred["analysis_info"]["types_formatted"]
                 json.dump(inferred_serializable, json_file, sort_keys=True, indent=4)
 
         except Exception as e:
