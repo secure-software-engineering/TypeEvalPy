@@ -15,10 +15,13 @@ RUN apt-get update \
     && apt-get -y install jq
 
 COPY requirements.txt /app/requirements.txt
-COPY jedi_type_inference.py /tmp/jedi_type_inference.py
 
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
+
+COPY src /tmp/src
+# Custom patch to fix simple errors
+COPY patches/jedi_type_inference.py /tmp/src/jedi_type_inference.py
 
 # Run the application
 CMD ["bash"]

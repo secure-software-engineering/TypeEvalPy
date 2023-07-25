@@ -144,7 +144,7 @@ def main_runner(args):
 
             file_data = {"file": file, "data": gt_file_path}
             type_info = process_file(file_data)
-            json_filepath = str(file).replace(".py", "_pyre.json")
+            json_filepath = str(file).replace(".py", "_result.json")
             utils.generate_json_file(json_filepath, type_info)
             print("Output written to", json_filepath)
 
