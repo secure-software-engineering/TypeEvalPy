@@ -22,5 +22,7 @@ WORKDIR /app/HiTyper
 RUN pip install --upgrade pip
 RUN pip install .
 
+COPY src /tmp/src
+
 # Set the default command to run when the container starts
 CMD ["bash"]

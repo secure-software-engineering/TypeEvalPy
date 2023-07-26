@@ -1,19 +1,19 @@
+import argparse
 import json
 import os
-import subprocess
+from pathlib import Path
 
 
-def list_python_files(folder_path):
-    python_files = []
-    for root, _, files in os.walk(folder_path):
-        for file in files:
-            if file.endswith(".py"):
-                python_files.append(os.path.join(root, file))
+def list_json_files(folder_path):
+    python_files = sorted(Path(folder_path).rglob("*.json"))
     return python_files
 
 
-def format_json(main_gt_file, hityper_file, final_gt_file):
-    # Iterate over the hityper output and format it according to the main_gt structure
+def translate_content(file_path):
+    dir_path, file_name = os.path.split(file_path)
+    hityper_file = dir_path + "/._" + file_name.replace(".py", "_INFERREDTYPES.json")
+    main_gt_file = str(file_path).replace(".py", "_gt.json")
+
     with open(main_gt_file, "r") as main_gt_file:
         main_gt = json.load(main_gt_file)
 
@@ -76,30 +76,31 @@ def format_json(main_gt_file, hityper_file, final_gt_file):
                             "type": item["type"],
                         }
                         formatted_output.append(formatted_item)
-    # Write the formatted output to main_gt.json
-    with open(final_gt_file, "w") as output_file:
-        json.dump(formatted_output, output_file, indent=4)
+    return formatted_output
 
 
-root_directory = "/tmp/micro-benchmark/python_features"
+def main_translator(args):
+    json_files = list_json_files(args.bechmark_path)
+    error_count = 0
+    for file in json_files:
+        try:
+            # Run the inference here and gather results in /tmp/results
+            translated = translate_content(file)
+
+        except Exception as e:
+            print(f"Command returned non-zero exit status: {e} for file: {file}")
+            error_count += 1
+
+    print(f"Runner finished with errors:{error_count}")
 
 
-python_files = list_python_files(root_directory)
-error_count = 0
-# Run `hityper` for all files
-for file_path in python_files:
-    print(file_path)
-    dir_path, file_name = os.path.split(file_path)
-    hitype_cmd = f"hityper infer -s ./{file_name} -p ."
-    try:
-        subprocess.run(hitype_cmd, shell=True, cwd=dir_path, check=True)
-        hityper_file = (
-            dir_path + "/._" + file_name.replace(".py", "_INFERREDTYPES.json")
-        )
-        main_gt_file = dir_path + "/" + file_name.replace(".py", "_gt.json")
-        final_gt_file = dir_path + "/" + file_name.replace(".py", "_hityper.json")
-        format_json(main_gt_file, hityper_file, final_gt_file)
-    except Exception as e:
-        print(f"Command returned non-zero exit status: {e}")
-        error_count += 1
-print("Error count", error_count)
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--bechmark_path",
+        help="Specify the benchmark path",
+        default="/tmp/micro-benchmark",
+    )
+
+    args = parser.parse_args()
+    main_translator(args)

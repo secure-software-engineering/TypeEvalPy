@@ -1,18 +1,19 @@
 import argparse
+import json
 import logging
+import subprocess
+import os
 from pathlib import Path
 from sys import stdout
 
-import subprocess
 import translator
 import utils
-import json
 
 # Create a logger
 logger = logging.getLogger("runner")
 logger.setLevel(logging.DEBUG)
 
-file_handler = logging.FileHandler("/tmp/pysonar2_log.log")
+file_handler = logging.FileHandler("/tmp/hityper_log.log")
 file_handler.setLevel(logging.DEBUG)
 
 console_handler = logging.StreamHandler(stdout)
@@ -29,29 +30,29 @@ def list_python_files(folder_path):
     return python_files
 
 
-def pysonar2_runner(directory):
-    directory_name = "/app/pysonar2"
-    pysonar2_command = [
-        "java",
-        "-jar",
-        "target/pysonar-2.1.3.jar",
-        f"{directory}",
-        f"{directory}",
-    ]
-    pysonar2_process = subprocess.Popen(pysonar2_command, cwd=directory_name)
-    pysonar2_process.wait()
+def process_file(file_path):
+    dir_path, file_name = os.path.split(file_path)
+    hitype_cmd = f"hityper infer -s ./{file_name} -p ."
+    subprocess.run(hitype_cmd, shell=True, cwd=dir_path, check=True)
 
 
 def main_runner(args):
     python_files = list_python_files(args.bechmark_path)
     error_count = 0
-    pysonar2_runner(args.bechmark_path)
     for file in python_files:
         try:
+            logger.info(file)
+            process_file(file)
+
+            # Translate the results into TypeEvalPy format
             translated = translator.translate_content(file)
-            result_file_path = str(file).replace(".py", "_result.json")
-            with open(result_file_path, "w") as json_file:
-                json.dump(translated, json_file, indent=4)
+
+            # TODO: Save translated file to the same folder /tmp/results
+            json_file_path = str(file).replace(".py", "_result.json")
+
+            with open(json_file_path, "w") as json_file:
+                inferred_serializable = []
+                json.dump(inferred_serializable, json_file, sort_keys=True, indent=4)
 
         except Exception as e:
             logger.info(f"Command returned non-zero exit status: {e} for file: {file}")
@@ -75,3 +76,5 @@ if __name__ == "__main__":
         main_runner(args)
     else:
         print("Python is not running inside a Docker container")
+        file_path = ""
+        process_file(file_path)
