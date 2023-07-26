@@ -27,5 +27,6 @@ RUN pip install --upgrade pip
 RUN pip install -r /app/requirements.txt
 RUN mvn package -DskipTests || true
 
+COPY src /tmp/src
 # Set the default command to run when the container starts
 CMD ["bash"]

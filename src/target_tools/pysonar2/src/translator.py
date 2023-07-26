@@ -1,15 +1,12 @@
-from bs4 import BeautifulSoup
+import argparse
 import json
 import os
-import subprocess
+from pathlib import Path
+from bs4 import BeautifulSoup
 
 
-def list_python_files(folder_path):
-    python_files = []
-    for root, Readme, files in os.walk(os.path.abspath(folder_path)):
-        for file in files:
-            if file.endswith(".py"):
-                python_files.append(os.path.join(root, file))
+def list_json_files(folder_path):
+    python_files = sorted(Path(folder_path).rglob("*.json"))
     return python_files
 
 
@@ -34,11 +31,12 @@ def extract_values(html):
                 "type": type_value,
             }
         )
-    # print(json.dumps(values, indent=4))
     return values
 
 
-def pysonar_results(json_file_path, html_file_path):
+def translate_content(file_path):
+    html_file_path = str(file_path).replace(".py", ".py.html")
+    json_file_path = str(file_path).replace(".py", "_gt.json")
     with open(json_file_path, "r") as json_file:
         expected_results = json.load(json_file)
 
@@ -67,31 +65,28 @@ def pysonar_results(json_file_path, html_file_path):
     return results
 
 
-current_directory = os.getcwd()
-print("Current directory:", current_directory)
-folder_path = "/tmp/micro-benchmark/python_features"
-directory_name = "/app/pysonar2"
-pysonar2_command = [
-    "java",
-    "-jar",
-    "target/pysonar-2.1.3.jar",
-    "/tmp/micro-benchmark/python_features/",
-    "/tmp/micro-benchmark/python_features/",
-]
-pysonar2_process = subprocess.Popen(pysonar2_command, cwd=directory_name)
-pysonar2_process.wait()
-python_files = list_python_files(folder_path)
+def main_translator(args):
+    json_files = list_json_files(args.bechmark_path)
+    error_count = 0
+    for file in json_files:
+        try:
+            # Run the inference here and gather results in /tmp/results
+            translated = translate_content(file)
 
-for file in python_files:
-    try:
-        print(file)
-        html_file_path = file.replace(".py", ".py.html")
-        json_file_path = file.replace(".py", "_gt.json")
-        result_file_path = file.replace(".py", "_pysonar2.json")
-        result = pysonar_results(json_file_path, html_file_path)
-        with open(result_file_path, "w") as json_file:
-            json.dump(result, json_file, indent=4)
+        except Exception as e:
+            print(f"Command returned non-zero exit status: {e} for file: {file}")
+            error_count += 1
 
-            # print(json.dumps(output, indent=4))
-    except Exception as e:
-        print(e)
+    print(f"Runner finished with errors:{error_count}")
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--bechmark_path",
+        help="Specify the benchmark path",
+        default="/tmp/micro-benchmark",
+    )
+
+    args = parser.parse_args()
+    main_translator(args)
