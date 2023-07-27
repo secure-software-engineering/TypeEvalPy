@@ -28,8 +28,19 @@ def list_python_files(folder_path):
 
 
 def process_file(file_path):
-    with open(file_path, "r") as f:
-        code = f.read()
+    # TODO: get list of queries lineno, col_offset from the ground truth
+    # TODO: Send request for file
+    # http://localhost:8088/?file_path=/tmp/micro-benchmark/python_features/args/assigned_call/main.py&lineno=3&col_offset=4&func_name=main
+
+    # _url = "http://0.0.0.0:8088/?file_path={file_path}&lineno={lineno}&col_offset={col_offset}&func_name={func_name}"
+    # x = requests.get(
+    #     _url.format(
+    #         file_path=filename,
+    #         lineno=node.lineno - 1,
+    #         col_offset=node.end_col_offset - 1,
+    #         func_name=func_name,
+    #     )
+    # )
 
     utils.parse_python_code(code)
     # Process file here and return results

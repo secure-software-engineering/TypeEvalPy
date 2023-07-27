@@ -143,6 +143,7 @@ class PyrightRunner(TypeEvalPyRunner):
         super().__init__("pyright", "./target_tools/pyright", host_results_path)
 
     def run_tool_test(self):
+        # TODO: start the python_client
         self._run_test_in_session("/tmp/typings")
 
 
@@ -222,8 +223,8 @@ class Type4pyRunner(TypeEvalPyRunner):
 def main():
     host_results_path = f"./results_{datetime.now().strftime('%d-%m %H:%M')}"
 
-    runner = HeaderGenRunner(host_results_path, debug=1)
-    runner.run_tool_test()
+    # runner = HeaderGenRunner(host_results_path, debug=1)
+    # runner.run_tool_test()
 
     # runner = Type4pyRunner(host_results_path)
     # runner.run_tool_test()

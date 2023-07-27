@@ -41,7 +41,7 @@ class PyrightClient:
             set_workspace_folders=False,
         )
 
-        self.tserver.wait_for_message_of_type(lsp.Initialized)
+        self.tserver.wait_for_message_of_type(lsp.Initialized, timeout=15)
         # self.tserver.wait_for_message_of_type(lsp.RegisterCapabilityRequest).reply()
 
 
@@ -115,31 +115,33 @@ def get_hover(file_path, lineno, col_offset, func_name):
     _pos = doc_pos(file_path.as_uri(), lineno, col_offset)
     client.tserver.lsp_client.hover(_pos)
     hover_msg = client.tserver.wait_for_message_of_type(lsp.Hover, timeout=15)
+    res = None
+    # TODO: do some parsing of the hover message here
 
-    if hover_msg.contents:
-        _type = hover_msg.contents.value
-        try:
-            if _type.startswith("```python\n(type alias)"):
-                _type_str = _type.split(":")[0].split("python\n(type alias) ")[1]
-                if _type_str in TYPE_ALIAS_MAP:
-                    res = [TYPE_ALIAS_MAP[_type_str]]
-                else:
-                    res = []
-            elif _type.startswith("```python\n(class)"):
-                _type_str = _type.split(":")[0].split("python\n(class) ")[1]
-                if _type_str in TYPE_CLASS_MAP:
-                    res = [TYPE_CLASS_MAP[_type_str]]
-                else:
-                    res = []
+    # if hover_msg.contents:
+    #     _type = hover_msg.contents.value
+    #     try:
+    #         if _type.startswith("```python\n(type alias)"):
+    #             _type_str = _type.split(":")[0].split("python\n(type alias) ")[1]
+    #             if _type_str in TYPE_ALIAS_MAP:
+    #                 res = [TYPE_ALIAS_MAP[_type_str]]
+    #             else:
+    #                 res = []
+    #         elif _type.startswith("```python\n(class)"):
+    #             _type_str = _type.split(":")[0].split("python\n(class) ")[1]
+    #             if _type_str in TYPE_CLASS_MAP:
+    #                 res = [TYPE_CLASS_MAP[_type_str]]
+    #             else:
+    #                 res = []
 
-            else:
-                _t = hover_msg.contents.value.split("-> ")[1].split("\n")[0]
-                res = get_type(_t)
+    #         else:
+    #             _t = hover_msg.contents.value.split("-> ")[1].split("\n")[0]
+    #             res = get_type(_t)
 
-        except:
-            res = None
-    else:
-        res = None
+    #     except:
+    #         res = None
+    # else:
+    #     res = None
 
     logging.info(
         f"\nReturning - {func_name} - lineno: {lineno} col_offset: {col_offset}"
@@ -153,4 +155,4 @@ if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8088)
     # uvicorn.run("pyright_client:app", host="0.0.0.0", port=8088, reload=True)
 
-# http://localhost:8088/?file_path=/app/micro-benchmark/python_features/classes/base_class_calls_child/main.py&lineno=5&col_offset=0&func_name=main
+# http://localhost:8088/?file_path=/tmp/micro-benchmark/python_features/args/assigned_call/main.py&lineno=3&col_offset=4&func_name=main
