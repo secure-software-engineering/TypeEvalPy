@@ -56,13 +56,21 @@ class FileHandler:
 
 
 class TypeEvalPyRunner:
-    def __init__(self, tool_name, dockerfile_path, host_results_path):
+    def __init__(
+        self,
+        tool_name,
+        dockerfile_path,
+        host_results_path,
+        dockerfile_name="Dockerfile",
+        volumes={},
+    ):
         self.docker_client = docker.from_env()
         self.tool_name = tool_name
         self.dockerfile_path = dockerfile_path
-        self.dockerfile_name = tool_name
+        self.dockerfile_name = dockerfile_name
         self.test_runner_script_path = f"/tmp/src/runner.py"
         self.host_results_path = host_results_path
+        self.volumes = volumes
 
         if not os.path.exists(self.host_results_path):
             os.makedirs(self.host_results_path)
@@ -70,17 +78,16 @@ class TypeEvalPyRunner:
     def _build_docker_image(self):
         logger.info("Building image")
         image, _ = self.docker_client.images.build(
-            path=self.dockerfile_path, tag=self.dockerfile_name
+            path=self.dockerfile_path,
+            tag=self.tool_name,
+            dockerfile=self.dockerfile_name,
         )
         return image
 
     def spawn_docker_instance(self):
         logger.info("Creating container")
         container = self.docker_client.containers.run(
-            self.dockerfile_name,
-            detach=True,
-            stdin_open=True,
-            tty=True,
+            self.tool_name, detach=True, stdin_open=True, tty=True, volumes=self.volumes
         )
         return container
 
@@ -164,8 +171,21 @@ class HityperRunner(TypeEvalPyRunner):
 
 
 class HeaderGenRunner(TypeEvalPyRunner):
-    def __init__(self, host_results_path):
-        super().__init__("headergen", "./target_tools/headergen", host_results_path)
+    def __init__(self, host_results_path, debug=False):
+        if debug:
+            super().__init__(
+                "headergen_dev",
+                "./target_tools/headergen",
+                host_results_path,
+                volumes={
+                    "/mnt/Projects/PhD/Research/HeaderGen/git_sources/HeaderGen_github/": {
+                        "bind": "/app/HeaderGen",
+                        "mode": "ro",
+                    }
+                },
+            )
+        else:
+            super().__init__("headergen", "./target_tools/headergen", host_results_path)
 
     def run_tool_test(self):
         self._run_test_in_session()
@@ -194,7 +214,7 @@ class Type4pyRunner(TypeEvalPyRunner):
 def main():
     host_results_path = f"./results_{datetime.now().strftime('%d-%m %H:%M')}"
 
-    runner = HeaderGenRunner(host_results_path)
+    runner = HeaderGenRunner(host_results_path, debug=1)
     runner.run_tool_test()
 
     # runner = Type4pyRunner(host_results_path)
@@ -217,6 +237,8 @@ def main():
 
     # runner = HityperRunner(host_results_path)
     # runner.run_tool_test()
+
+    os.rename("main_runner.log", f"{str(host_results_path)}/main_runner.log")
 
 
 if __name__ == "__main__":

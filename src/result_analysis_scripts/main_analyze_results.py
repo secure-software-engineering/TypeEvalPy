@@ -15,12 +15,18 @@ logger.setLevel(logging.DEBUG)
 file_handler = logging.FileHandler("results_analysis.log")
 file_handler.setLevel(logging.DEBUG)
 
+file_handler_info = logging.FileHandler("results_analysis_info.log")
+file_handler_info.setLevel(logging.INFO)
+
 console_handler = logging.StreamHandler()
 console_handler.setLevel(logging.INFO)
 formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 file_handler.setFormatter(formatter)
+file_handler_info.setFormatter(formatter)
+
 console_handler.setFormatter(formatter)
 logger.addHandler(file_handler)
+logger.addHandler(file_handler_info)
 logger.addHandler(console_handler)
 
 logger.info("Result Analysis Started\n")
@@ -50,29 +56,16 @@ def compare_json_files(expected, out):
         out_fact_mismatch = None
         for fact_out in data_out:
             # Get full matches
-            if fact_expected == fact_out:
+            if utils.check_match(expected=fact_expected, out=fact_out):
                 total_matches += 1
                 out_fact_matched = True
                 break
             # Check if everything else matches except "type"
-            elif (fact_expected.keys() == fact_out.keys()) and all(
-                [
-                    fact_expected.get(x) == fact_out.get(x)
-                    for x in fact_expected.keys()
-                    if x != "type"
-                ]
+            elif utils.check_match(
+                expected=fact_expected, out=fact_out, partial_match=True
             ):
-                for _type in fact_expected.get("type", []):
-                    if _type in fact_out.get("type", []):
-                        partial_matches += 1
-                        partial_matches_list.append(fact_expected)
-                        break
-
-                if "any" in fact_out.get("type", []):
-                    marked_as_any += 1
-                else:
-                    mismatch += 1
-                    # logger.info("Total mismatch?")
+                partial_matches += 1
+                partial_matches_list.append(fact_expected)
 
                 out_fact_mismatch_list.append(fact_expected)
                 out_fact_mismatch = fact_out.get("type", [])
@@ -175,8 +168,8 @@ def process_cat_dir(cat_dir, tool_name=None):
     cat_recall_results_grouped = {}
 
     for root, dirs, files in os.walk(cat_dir):
-        # logger.info(files)
         test_files = [x.split(".py")[0] for x in files if x.endswith(".py")]
+        logger.debug(root)
         for test in test_files:
             if f"{test}_gt.json" in files:
                 file_count += 1
@@ -216,8 +209,8 @@ def process_cat_dir(cat_dir, tool_name=None):
                         f"{os.path.basename(os.path.dirname(gt_file))}:{test}"
                     ] = cat_recall_grouped
 
-                    # logger.debug("Missing Matches:")
-                    # logger.debug(json.dumps(results["missing_matches"], indent=4))
+                    logger.debug("Missing Matches:")
+                    logger.debug(json.dumps(results["missing_matches"], indent=4))
 
                     dir_path = os.path.relpath(os.path.dirname(gt_file), cat_dir)
                     file_name = dir_path + "/" + os.path.basename(gt_file)
@@ -559,8 +552,8 @@ def generate_top_n_performance(test_suite_dir, tool_name=None):
 
 
 if __name__ == "__main__":
-    # results_dir = Path("./results_analysis_tests")
     results_dir = None
+    # results_dir = Path("./results_26-07 22:49")
     if results_dir is None:
         dir_path = Path("../")
         directories = [
@@ -607,3 +600,6 @@ if __name__ == "__main__":
 
     # Move logs
     os.rename("results_analysis.log", f"{str(results_dir)}/results_analysis.log")
+    os.rename(
+        "results_analysis_info.log", f"{str(results_dir)}/results_analysis_info.log"
+    )

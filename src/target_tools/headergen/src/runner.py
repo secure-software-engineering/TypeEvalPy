@@ -30,7 +30,7 @@ def list_python_files(folder_path):
 
 
 def process_file(file_path):
-    analysis_meta = headergen.start_headergen(file_path, "/tmp", debug_mode=True)
+    analysis_meta = headergen.get_analysis_output(file_path, "/tmp")
     return analysis_meta
 
 
@@ -48,7 +48,7 @@ def main_runner(args):
             json_file_path = str(file).replace(".py", "_result.json")
 
             with open(json_file_path, "w") as json_file:
-                inferred_serializable = inferred["analysis_info"]["types_formatted"]
+                inferred_serializable = inferred["types_formatted"]
                 json.dump(inferred_serializable, json_file, sort_keys=True, indent=4)
 
         except Exception as e:
