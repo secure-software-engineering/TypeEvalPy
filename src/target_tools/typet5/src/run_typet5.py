@@ -53,29 +53,15 @@ pre_args = PreprocessArgs()
 decode_order = DecodingOrders.DoubleTraversal()
 
 
-def write_predictions_to_file(project_root, sig_map):
-    for path, sig in sig_map.items():
-        parts = str(path).split("/")
-        folder_path = project_root
-        for part in parts[:-1]:
-            part = part.replace(".", "/")
-            folder_path /= f"{part}.txt"
-        with open(folder_path, "a") as file:
-            file.write(f"{parts[1]}:{str(sig)}\n")
-
-
 async def main():
     subfolders = get_subfolders(benchmark_root())
     for subfolder in subfolders:
         print(f"Parsing project: {subfolder}")
         project = PythonProject.parse_from_root(benchmark_root() / subfolder)
         eval_r = await rctx.evaluate_on_projects([project], pre_args, decode_order)
-
+        eval_r.print_predictions()
         output_dir = benchmark_root() / subfolder
-        sig_map = reorder_signature_map(
-            eval_r.predictions[0].predicted_sigmap, eval_r.label_maps[0]
-        )
-        write_predictions_to_file(output_dir, sig_map)
+        eval_r.print_predictions(True)
         print(f"Predictions written to: {output_dir}")
 
 
