@@ -191,6 +191,14 @@ class HeaderGenRunner(TypeEvalPyRunner):
         self._run_test_in_session()
 
 
+class PySonar2Runner(TypeEvalPyRunner):
+    def __init__(self, host_results_path):
+        super().__init__("pysonar2", "./target_tools/pysonar2", host_results_path)
+
+    def run_tool_test(self):
+        self._run_test_in_session()
+
+
 class Type4pyRunner(TypeEvalPyRunner):
     def __init__(self, host_results_path):
         super().__init__("type4py", "./target_tools/type4py", host_results_path)
@@ -220,8 +228,14 @@ def main():
     # runner = Type4pyRunner(host_results_path)
     # runner.run_tool_test()
 
-    runner = ScalpelRunner(host_results_path)
-    runner.run_tool_test()
+    # runner = Type4pyRunner(host_results_path)
+    # runner.run_tool_test()
+
+    # runner = ScalpelRunner(host_results_path)
+    # runner.run_tool_test()
+
+    # runner = PySonar2Runner(host_results_path)
+    # runner.run_tool_test()
 
     # runner = JediRunner(host_results_path)
     # runner.run_tool_test()
