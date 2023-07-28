@@ -9,6 +9,51 @@ def list_txt_files(folder_path):
     return txt_files
 
 
+def extract_params(param_str):
+    params = []
+    current_param = ""
+    brackets_count = 0
+
+    for char in param_str:
+        if char == "," and brackets_count == 0:
+            params.append(current_param.strip())
+            current_param = ""
+        else:
+            current_param += char
+            if char == "[":
+                brackets_count += 1
+            elif char == "]":
+                brackets_count -= 1
+            elif char == "(":
+                brackets_count += 1
+            elif char == ")":
+                brackets_count -= 1
+
+    params.append(current_param.strip())
+    return params
+
+
+def extract_param_name_type(param_str):
+    param_name = ""
+    param_type = ""
+    colon_found = False
+    brackets_count = 0
+
+    for char in param_str:
+        if char == ":" and not colon_found and brackets_count == 0:
+            colon_found = True
+        elif colon_found:
+            param_type += char
+            if char == "[":
+                brackets_count += 1
+            elif char == "]":
+                brackets_count -= 1
+        else:
+            param_name += char
+
+    return param_name.strip(), param_type.strip()
+
+
 def translate_content(file_path):
     result_list = []
     with open(file_path, "r") as file:
@@ -24,10 +69,16 @@ def translate_content(file_path):
             function_name = function_info[0]
             return_type = function_info[1]
             if ":(" in function_name and ")" in function_name:
+                print("here")
                 params_str = function_name.split(":(")[1].split(")")[0]
-                params = [param.strip() for param in params_str.split(",")]
+                print("here2")
+                params = extract_params(params_str)
+                print("here3")
                 for param in params:
-                    param_name, param_type = param.split(":")
+                    print(param)
+                    param_name, param_type = extract_param_name_type(param)
+                    if not param_name:
+                        continue
                     result_list.append(
                         {
                             "file": str(file_name),
