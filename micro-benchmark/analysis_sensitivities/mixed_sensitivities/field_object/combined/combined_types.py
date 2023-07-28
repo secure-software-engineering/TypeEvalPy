@@ -10,7 +10,7 @@ class CombinedTypes:
         if my_bool:
             self.x = 5
         else:
-            self.x = "Hello World!"
+            self.x = "Hello World"
 
     def get_value(self):
         if isinstance(self.x, int):

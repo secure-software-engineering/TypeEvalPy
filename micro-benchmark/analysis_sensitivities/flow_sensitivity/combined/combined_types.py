@@ -6,7 +6,7 @@ value = None
 if my_bool:
     value = 5
 else:
-    value = "Hello world!"
+    value = "Hello world"
 
 result = value
 
@@ -15,6 +15,6 @@ value = None
 if my_bool:
     value = 5
 else:
-    value = "Hello world!"
+    value = "Hello world"
 
 result = value

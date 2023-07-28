@@ -21,5 +21,5 @@ class Identity:
 id1 = Identity(5)
 result1 = id1.get_value()
 
-id1.nested.value = "Hello world!"
+id1.nested.value = "Hello world"
 result2 = id1.get_value()

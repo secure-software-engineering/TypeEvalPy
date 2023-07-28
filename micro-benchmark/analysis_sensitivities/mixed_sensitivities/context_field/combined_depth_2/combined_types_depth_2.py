@@ -8,7 +8,7 @@ def my_function(my_bool):
     if my_bool:
         x = 5
     else:
-        x = "Hello World!"
+        x = "Hello World"
     return x
 
 

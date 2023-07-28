@@ -22,5 +22,5 @@ y2 = 2.0
 result2 = arithmetic_op(x2, y2)
 
 x3 = "Hello"
-y3 = "World!"
+y3 = "World"
 result3 = arithmetic_op(x3, y3)

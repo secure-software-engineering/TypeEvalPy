@@ -6,7 +6,7 @@ def my_function(my_bool):
     if my_bool:
         return 5
     else:
-        return "Hello World!"
+        return "Hello World"
 
 
 def operation(my_bool):

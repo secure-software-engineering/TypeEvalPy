@@ -11,7 +11,7 @@ class CombinedTypesOperation:
         if self.my_bool:
             self.result = 5
         else:
-            self.result = "Hello World!"
+            self.result = "Hello World"
         return self.result
 
 

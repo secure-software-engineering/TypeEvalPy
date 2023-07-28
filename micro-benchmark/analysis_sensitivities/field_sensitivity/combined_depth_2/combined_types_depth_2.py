@@ -15,7 +15,7 @@ class CombinedTypes:
             if self.my_bool:
                 x = 5
             else:
-                x = "Hello World!"
+                x = "Hello World"
             return x
 
     def my_function(self):

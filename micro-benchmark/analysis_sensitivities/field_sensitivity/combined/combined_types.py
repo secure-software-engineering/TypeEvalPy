@@ -10,7 +10,7 @@ class CombinedTypes:
         if self.value:
             x = 5
         else:
-            x = "Hello World!"
+            x = "Hello World"
         return x
 
 
