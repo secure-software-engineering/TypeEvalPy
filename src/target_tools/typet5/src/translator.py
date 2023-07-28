@@ -23,11 +23,25 @@ def translate_content(file_path):
             function_info = attribute_info.split("->")
             function_name = function_info[0]
             return_type = function_info[1]
+            if ":(" in function_name and ")" in function_name:
+                params_str = function_name.split(":(")[1].split(")")[0]
+                params = [param.strip() for param in params_str.split(",")]
+                for param in params:
+                    param_name, param_type = param.split(":")
+                    result_list.append(
+                        {
+                            "file": str(file_name),
+                            "line_number": location,
+                            "function": function_name.split(":(")[0],
+                            "parameter": param_name,
+                            "type": [param_type],
+                        }
+                    )
             result_list.append(
                 {
                     "file": str(file_name),
                     "line_number": location,
-                    "function": function_name,
+                    "function": function_name.split(":(")[0],
                     "type": [return_type],
                 }
             )
