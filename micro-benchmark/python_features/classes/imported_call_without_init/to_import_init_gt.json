@@ -2,6 +2,7 @@
     {
         "file": "to_import_init.py",
         "line_number": 3,
+        "col_offset": 9,
         "function": "MyClass.func",
         "type": [
             "str"

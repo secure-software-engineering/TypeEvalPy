@@ -2,6 +2,7 @@
     {
         "file": "main.py",
         "line_number": 4,
+        "col_offset": 5,
         "function": "add_one",
         "type": [
             "int"
@@ -10,6 +11,7 @@
     {
         "file": "main.py",
         "line_number": 4,
+        "col_offset": 13,
         "parameter": "x",
         "function": "add_one",
         "type": [
@@ -19,6 +21,7 @@
     {
         "file": "main.py",
         "line_number": 8,
+        "col_offset": 5,
         "function": "double",
         "type": [
             "int"
@@ -27,6 +30,7 @@
     {
         "file": "main.py",
         "line_number": 8,
+        "col_offset": 12,
         "parameter": "x",
         "function": "double",
         "type": [
@@ -36,6 +40,7 @@
     {
         "file": "main.py",
         "line_number": 12,
+        "col_offset": 1,
         "variable": "result",
         "type": [
             "int"

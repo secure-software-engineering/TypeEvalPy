@@ -17,4 +17,4 @@ def func(a, b):
     return a + b
 
 
-c = func("Hello", "world!")
+c = func("Hello", "world")

@@ -2,6 +2,7 @@
     {
         "file": "main.py",
         "line_number": 4,
+        "col_offset": 5,
         "function": "my_decorator",
         "type": [
             "NewClass"
@@ -10,6 +11,7 @@
     {
         "file": "main.py",
         "line_number": 4,
+        "col_offset": 18,
         "function": "my_decorator",
         "parameter": "cls",
         "type": [
@@ -19,6 +21,7 @@
     {
         "file": "main.py",
         "line_number": 6,
+        "col_offset": 13,
         "function": "NewClass.my_method",
         "type": [
             "str"
@@ -27,6 +30,7 @@
     {
         "file": "main.py",
         "line_number": 14,
+        "col_offset": 9,
         "function": "MyClass.my_method",
         "type": [
             "int"
@@ -35,6 +39,7 @@
     {
         "file": "main.py",
         "line_number": 18,
+        "col_offset": 1,
         "variable": "a",
         "type": [
             "my_decorator.NewClass"
@@ -43,6 +48,7 @@
     {
         "file": "main.py",
         "line_number": 19,
+        "col_offset": 1,
         "variable": "b",
         "type": [
             "str"

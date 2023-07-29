@@ -2,6 +2,7 @@
     {
         "file": "main.py",
         "line_number": 6,
+        "col_offset": 1,
         "variable": "a",
         "type": [
             "callable"
@@ -10,6 +11,7 @@
     {
         "file": "main.py",
         "line_number": 7,
+        "col_offset": 1,
         "variable": "b",
         "type": [
             "str"

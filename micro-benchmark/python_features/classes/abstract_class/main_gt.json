@@ -2,6 +2,7 @@
     {
         "file": "main.py",
         "line_number": 6,
+        "col_offset": 9,
         "function": "Shape.area",
         "type": [
             "Nonetype"
@@ -10,6 +11,7 @@
     {
         "file": "main.py",
         "line_number": 11,
+        "col_offset": 24,
         "parameter": "width",
         "function": "__init__",
         "type": [
@@ -19,6 +21,7 @@
     {
         "file": "main.py",
         "line_number": 11,
+        "col_offset": 31,
         "parameter": "height",
         "function": "__init__",
         "type": [
@@ -28,6 +31,7 @@
     {
         "file": "main.py",
         "line_number": 12,
+        "col_offset": 9,
         "variable": "Shape.width",
         "function": "__init__",
         "type": [
@@ -37,6 +41,7 @@
     {
         "file": "main.py",
         "line_number": 13,
+        "col_offset": 9,
         "variable": "Shape.height",
         "function": "__init__",
         "type": [
@@ -46,6 +51,7 @@
     {
         "file": "main.py",
         "line_number": 15,
+        "col_offset": 5,
         "function": "Rectangle.area",
         "type": [
             "int"
@@ -54,6 +60,7 @@
     {
         "file": "main.py",
         "line_number": 19,
+        "col_offset": 1,
         "variable": "a",
         "type": [
             "Rectangle"
@@ -62,6 +69,7 @@
     {
         "file": "main.py",
         "line_number": 20,
+        "col_offset": 1,
         "variable": "b",
         "type": [
             "int"

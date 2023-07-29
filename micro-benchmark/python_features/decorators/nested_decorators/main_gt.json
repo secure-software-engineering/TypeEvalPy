@@ -2,6 +2,7 @@
     {
         "file": "main.py",
         "line_number": 4,
+        "col_offset": 5,
         "function": "dec1",
         "type": [
             "callable"
@@ -10,6 +11,7 @@
     {
         "file": "main.py",
         "line_number": 4,
+        "col_offset": 10,
         "parameter": "f",
         "function": "dec1",
         "type": [
@@ -19,6 +21,7 @@
     {
         "file": "main.py",
         "line_number": 5,
+        "col_offset": 9,
         "function": "inner",
         "type": [
             "int"
@@ -27,6 +30,7 @@
     {
         "file": "main.py",
         "line_number": 11,
+        "col_offset": 5,
         "function": "dec2",
         "type": [
             "callable"
@@ -35,6 +39,7 @@
     {
         "file": "main.py",
         "line_number": 11,
+        "col_offset": 10,
         "parameter": "f",
         "function": "dec",
         "type": [
@@ -44,6 +49,7 @@
     {
         "file": "main.py",
         "line_number": 12,
+        "col_offset": 9,
         "function": "inner",
         "type": [
             "int"
@@ -52,16 +58,16 @@
     {
         "file": "main.py",
         "line_number": 20,
+        "col_offset": 5,
         "function": "func",
         "type": [
             "int"
         ]
     },
-
-
     {
         "file": "main.py",
         "line_number": 24,
+        "col_offset": 1,
         "variable": "a",
         "type": [
             "int"

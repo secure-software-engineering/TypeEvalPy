@@ -2,6 +2,7 @@
     {
         "file": "main.py",
         "line_number": 8,
+        "col_offset": 9,
         "function": "MyClass.func1",
         "type": [
             "int"
@@ -10,6 +11,7 @@
     {
         "file": "main.py",
         "line_number": 11,
+        "col_offset": 9,
         "function": "MyClass.func2",
         "type": [
             "float"
@@ -18,6 +20,7 @@
     {
         "file": "main.py",
         "line_number": 14,
+        "col_offset": 9,
         "function": "MyClass.func3",
         "type": [
             "str"
@@ -26,6 +29,7 @@
     {
         "file": "main.py",
         "line_number": 23,
+        "col_offset": 1,
         "variable": "a",
         "type": [
             "MyClass"
@@ -34,6 +38,7 @@
     {
         "file": "main.py",
         "line_number": 23,
+        "col_offset": 4,
         "variable": "b",
         "type": [
             "MyClass2"
@@ -42,6 +47,7 @@
     {
         "file": "main.py",
         "line_number": 25,
+        "col_offset": 1,
         "variable": "c",
         "type": [
             "callable"
@@ -50,6 +56,7 @@
     {
         "file": "main.py",
         "line_number": 25,
+        "col_offset": 5,
         "variable": "d",
         "type": [
             "callable"
@@ -58,6 +65,7 @@
     {
         "file": "main.py",
         "line_number": 25,
+        "col_offset": 8,
         "variable": "e",
         "type": [
             "callable"
@@ -66,6 +74,7 @@
     {
         "file": "main.py",
         "line_number": 27,
+        "col_offset": 1,
         "variable": "f",
         "type": [
             "int"
@@ -74,6 +83,7 @@
     {
         "file": "main.py",
         "line_number": 28,
+        "col_offset": 1,
         "variable": "g",
         "type": [
             "float"
@@ -82,6 +92,7 @@
     {
         "file": "main.py",
         "line_number": 29,
+        "col_offset": 1,
         "variable": "h",
         "type": [
             "str"

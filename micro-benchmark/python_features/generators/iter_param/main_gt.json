@@ -2,6 +2,7 @@
     {
         "file": "main.py",
         "line_number": 4,
+        "col_offset": 5,
         "function": "func",
         "type": [
             "list"
@@ -10,6 +11,7 @@
     {
         "file": "main.py",
         "line_number": 4,
+        "col_offset": 10,
         "parameter": "c",
         "function": "func",
         "type": [
@@ -19,6 +21,7 @@
     {
         "file": "main.py",
         "line_number": 5,
+        "col_offset": 26,
         "variable": "i",
         "function": "func",
         "type": [
@@ -28,6 +31,7 @@
     {
         "file": "main.py",
         "line_number": 5,
+        "col_offset": 5,
         "variable": "output_list",
         "function": "func",
         "type": [
@@ -37,6 +41,7 @@
     {
         "file": "main.py",
         "line_number": 10,
+        "col_offset": 24,
         "parameter": "max",
         "function": "Cls.__init__",
         "type": [
@@ -46,6 +51,7 @@
     {
         "file": "main.py",
         "line_number": 11,
+        "col_offset": 9,
         "variable": "Cls.max",
         "function": "Cls.__init__",
         "type": [
@@ -55,6 +61,7 @@
     {
         "file": "main.py",
         "line_number": 13,
+        "col_offset": 9,
         "function": "Cls.__iter__",
         "type": [
             "Cls"
@@ -63,6 +70,7 @@
     {
         "file": "main.py",
         "line_number": 14,
+        "col_offset": 9,
         "variable": "Cls.n",
         "function": "Cls.__iter__",
         "type": [
@@ -72,6 +80,7 @@
     {
         "file": "main.py",
         "line_number": 17,
+        "col_offset": 9,
         "function": "Cls.__next__",
         "type": [
             "int"
@@ -80,6 +89,7 @@
     {
         "file": "main.py",
         "line_number": 21,
+        "col_offset": 9,
         "variable": "result",
         "function": "Cls.__next__",
         "type": [
@@ -89,6 +99,7 @@
     {
         "file": "main.py",
         "line_number": 22,
+        "col_offset": 9,
         "variable": "Cls.n",
         "function": "Cls.__next__",
         "type": [
@@ -98,6 +109,7 @@
     {
         "file": "main.py",
         "line_number": 26,
+        "col_offset": 1,
         "variable": "a",
         "type": [
             "list"

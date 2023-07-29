@@ -2,6 +2,7 @@
     {
         "file": "main.py",
         "line_number": 5,
+        "col_offset": 5,
         "function": "multiply",
         "type": [
             "int"
@@ -10,6 +11,7 @@
     {
         "file": "main.py",
         "line_number": 5,
+        "col_offset": 14,
         "function": "multiply",
         "parameter": "x",
         "type": [
@@ -19,6 +21,7 @@
     {
         "file": "main.py",
         "line_number": 5,
+        "col_offset": 17,
         "function": "multiply",
         "parameter": "y",
         "type": [
@@ -28,6 +31,7 @@
     {
         "file": "main.py",
         "line_number": 9,
+        "col_offset": 1,
         "variable": "numbers",
         "type": [
             "list"
@@ -36,6 +40,7 @@
     {
         "file": "main.py",
         "line_number": 9,
+        "col_offset": 1,
         "variable": "numbers[0]",
         "type": [
             "int"
@@ -44,6 +49,7 @@
     {
         "file": "main.py",
         "line_number": 9,
+        "col_offset": 1,
         "variable": "numbers[1]",
         "type": [
             "int"
@@ -52,6 +58,7 @@
     {
         "file": "main.py",
         "line_number": 10,
+        "col_offset": 1,
         "variable": "product",
         "type": [
             "int"

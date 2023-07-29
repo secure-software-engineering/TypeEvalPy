@@ -2,6 +2,7 @@
     {
         "file": "main.py",
         "line_number": 5,
+        "col_offset": 24,
         "parameter": "n",
         "function": "func.__init__",
         "type": [
@@ -11,6 +12,7 @@
     {
         "file": "main.py",
         "line_number": 6,
+        "col_offset": 9,
         "parameter": "func.n",
         "function": "func.__init__",
         "type": [
@@ -20,6 +22,7 @@
     {
         "file": "main.py",
         "line_number": 7,
+        "col_offset": 9,
         "parameter": "func.num",
         "function": "func.__init__",
         "type": [
@@ -29,6 +32,7 @@
     {
         "file": "main.py",
         "line_number": 9,
+        "col_offset": 9,
         "function": "func.__iter__",
         "type": [
             "func"
@@ -37,6 +41,7 @@
     {
         "file": "main.py",
         "line_number": 12,
+        "col_offset": 9,
         "function": "func.__next__",
         "type": [
             "int",
@@ -46,7 +51,8 @@
     {
         "file": "main.py",
         "line_number": 14,
-        "variable":"cur",
+        "col_offset": 13,
+        "variable": "cur",
         "function": "func.__next__",
         "type": [
             "int"
@@ -55,7 +61,8 @@
     {
         "file": "main.py",
         "line_number": 14,
-        "variable":"func.num",
+        "col_offset": 18,
+        "variable": "func.num",
         "function": "func.__next__",
         "type": [
             "int"
@@ -64,6 +71,7 @@
     {
         "file": "main.py",
         "line_number": 20,
+        "col_offset": 1,
         "variable": "output_list",
         "type": [
             "list"
@@ -72,6 +80,7 @@
     {
         "file": "main.py",
         "line_number": 20,
+        "col_offset": 22,
         "variable": "i",
         "type": [
             "int"

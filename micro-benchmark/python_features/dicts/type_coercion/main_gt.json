@@ -2,6 +2,7 @@
     {
         "file": "main.py",
         "line_number": 4,
+        "col_offset": 5,
         "function": "func1",
         "type": [
             "str"
@@ -10,6 +11,7 @@
     {
         "file": "main.py",
         "line_number": 8,
+        "col_offset": 5,
         "function": "func2",
         "type": [
             "int"
@@ -18,6 +20,7 @@
     {
         "file": "main.py",
         "line_number": 12,
+        "col_offset": 1,
         "variable": "d",
         "type": [
             "dict"
@@ -26,6 +29,7 @@
     {
         "file": "main.py",
         "line_number": 12,
+        "col_offset": 5,
         "variable": "d[1]",
         "type": [
             "callable"
@@ -34,6 +38,7 @@
     {
         "file": "main.py",
         "line_number": 12,
+        "col_offset": 1,
         "variable": "d['1']",
         "type": [
             "callable"
@@ -42,6 +47,7 @@
     {
         "file": "main.py",
         "line_number": 14,
+        "col_offset": 1,
         "variable": "e",
         "type": [
             "str"
@@ -50,6 +56,7 @@
     {
         "file": "main.py",
         "line_number": 15,
+        "col_offset": 1,
         "variable": "f",
         "type": [
             "int"

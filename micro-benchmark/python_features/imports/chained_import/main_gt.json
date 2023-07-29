@@ -2,6 +2,7 @@
     {
         "file": "main.py",
         "line_number": 5,
+        "col_offset": 5,
         "variable": "a",
         "type": [
             "str"

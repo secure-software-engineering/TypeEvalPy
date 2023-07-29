@@ -2,6 +2,7 @@
     {
         "file": "main.py",
         "line_number": 2,
+        "col_offset": 5,
         "function": "func",
         "type": [
             "int",
@@ -12,6 +13,7 @@
     {
         "file": "main.py",
         "line_number": 2,
+        "col_offset": 10,
         "function": "func",
         "parameter": "x",
         "type": [
@@ -23,6 +25,7 @@
     {
         "file": "main.py",
         "line_number": 6,
+        "col_offset": 1,
         "variable": "res",
         "type": [
             "map"
@@ -31,6 +34,7 @@
     {
         "file": "main.py",
         "line_number": 8,
+        "col_offset": 1,
         "variable": "x",
         "type": [
             "int"
@@ -39,6 +43,7 @@
     {
         "file": "main.py",
         "line_number": 8,
+        "col_offset": 4,
         "variable": "y",
         "type": [
             "str"
@@ -47,6 +52,7 @@
     {
         "file": "main.py",
         "line_number": 8,
+        "col_offset": 7,
         "variable": "z",
         "type": [
             "float"

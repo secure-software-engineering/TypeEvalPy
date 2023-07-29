@@ -2,6 +2,7 @@
     {
         "file": "main.py",
         "line_number": 5,
+        "col_offset": 9,
         "function": "A.func",
         "type": [
             "str"
@@ -10,6 +11,7 @@
     {
         "file": "main.py",
         "line_number": 10,
+        "col_offset": 24,
         "parameter": "a",
         "function": "B.__init__",
         "type": [
@@ -19,6 +21,7 @@
     {
         "file": "main.py",
         "line_number": 11,
+        "col_offset": 9,
         "variable": "B.a",
         "function": "B.__init__",
         "type": [
@@ -28,6 +31,7 @@
     {
         "file": "main.py",
         "line_number": 13,
+        "col_offset": 9,
         "function": "B.func",
         "type": [
             "str"
@@ -36,6 +40,7 @@
     {
         "file": "main.py",
         "line_number": 17,
+        "col_offset": 1,
         "variable": "a",
         "type": [
             "A"
@@ -44,6 +49,7 @@
     {
         "file": "main.py",
         "line_number": 18,
+        "col_offset": 1,
         "variable": "b",
         "type": [
             "B"
@@ -52,10 +58,10 @@
     {
         "file": "main.py",
         "line_number": 19,
+        "col_offset": 1,
         "variable": "c",
         "type": [
             "str"
         ]
     }
-
 ]
