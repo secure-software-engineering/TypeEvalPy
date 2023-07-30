@@ -5,6 +5,7 @@ from sys import stdout
 
 import translator
 import utils
+import json
 
 # Create a logger
 logger = logging.getLogger("runner")
@@ -41,6 +42,33 @@ def process_file(file_path):
     #         func_name=func_name,
     #     )
     # )
+    json_filepath = str(file_path).replace(".py", "_gt.json")
+    base_url = "http://localhost:8088/"
+    params = {
+        "file_path": str(file_path),
+        "lineno": 0,
+        "col_offset": 0,
+        "func_name": "",
+    }
+    with open(json_filepath, "r") as file:
+        data = json.load(file)
+    for entry in data:
+        if "line_number" in entry:
+            params["lineno"] = entry["line_number"] - 1
+        if "col_offset" in entry:
+            params["col_offset"] = entry["col_offset"] - 1
+        if "function" in entry:
+            params["func_name"] = entry["function"]
+        print(params)
+        url = (
+            base_url + "?" + "&".join(f"{key}={value}" for key, value in params.items())
+        )
+        print("Complete URL:", url)
+    # url = "http://localhost:8088/?file_path=/tmp/micro-benchmark/python_features/classes/call/main.py&lineno=6&col_offset=0&func_name=main"
+
+    # response = requests.get(url)
+    # hover_result = response.json()
+    # print(hover_result)
 
     utils.parse_python_code(code)
     # Process file here and return results

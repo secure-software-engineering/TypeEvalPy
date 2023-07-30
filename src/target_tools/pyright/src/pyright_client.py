@@ -2,6 +2,10 @@ import logging
 import pathlib
 import subprocess
 import sys
+import requests
+import threading
+import json
+import time
 
 import pyright_langservers as pyright_lsp
 import sansio_lsp_client as lsp
@@ -118,30 +122,32 @@ def get_hover(file_path, lineno, col_offset, func_name):
     res = None
     # TODO: do some parsing of the hover message here
 
-    # if hover_msg.contents:
-    #     _type = hover_msg.contents.value
-    #     try:
-    #         if _type.startswith("```python\n(type alias)"):
-    #             _type_str = _type.split(":")[0].split("python\n(type alias) ")[1]
-    #             if _type_str in TYPE_ALIAS_MAP:
-    #                 res = [TYPE_ALIAS_MAP[_type_str]]
-    #             else:
-    #                 res = []
-    #         elif _type.startswith("```python\n(class)"):
-    #             _type_str = _type.split(":")[0].split("python\n(class) ")[1]
-    #             if _type_str in TYPE_CLASS_MAP:
-    #                 res = [TYPE_CLASS_MAP[_type_str]]
-    #             else:
-    #                 res = []
+    if hover_msg.contents:
+        print("here")
+        _type = hover_msg.contents.value
+        print(_type)
+        try:
+            if _type.startswith("```python\n(type alias)"):
+                _type_str = _type.split(":")[0].split("python\n(type alias) ")[1]
+                if _type_str in TYPE_ALIAS_MAP:
+                    res = [TYPE_ALIAS_MAP[_type_str]]
+                else:
+                    res = []
+            elif _type.startswith("```python\n(class)"):
+                _type_str = _type.split(":")[0].split("python\n(class) ")[1]
+                if _type_str in TYPE_CLASS_MAP:
+                    res = [TYPE_CLASS_MAP[_type_str]]
+                else:
+                    res = []
 
-    #         else:
-    #             _t = hover_msg.contents.value.split("-> ")[1].split("\n")[0]
-    #             res = get_type(_t)
+            else:
+                _t = hover_msg.contents.value.split("-> ")[1].split("\n")[0]
+                res = get_type(_t)
 
-    #     except:
-    #         res = None
-    # else:
-    #     res = None
+        except:
+            res = None
+    else:
+        res = None
 
     logging.info(
         f"\nReturning - {func_name} - lineno: {lineno} col_offset: {col_offset}"
@@ -150,9 +156,45 @@ def get_hover(file_path, lineno, col_offset, func_name):
     return {"data": res, "hover_msg": hover_msg}
 
 
+def send_requests():
+    # http://localhost:8088/?file_path=/tmp/micro-benchmark/python_features/args/assigned_call/main.py&lineno=3&col_offset=4&func_name=main
+
+    # Specify the URL with parameters
+    base_url = "http://localhost:8088/"
+    params = {
+        "file_path": "/tmp/micro-benchmark/python_features/args/assigned_call/main.py",
+        "lineno": 3,
+        "col_offset": 4,
+        "func_name": "main",
+    }
+    with open(
+        "/tmp/micro-benchmark/python_features/args/assigned_call/main_gt.json", "r"
+    ) as file:
+        data = json.load(file)
+    for entry in data:
+        if "line_number" in entry:
+            params["lineno"] = entry["line_number"]
+        if "col_offset" in entry:
+            params["col_offset"] = entry["col_offset"]
+        if "function" in entry:
+            params["func_name"] = entry["function"]
+        print(params)
+    url = base_url + "?" + "&".join(f"{key}={value}" for key, value in params.items())
+    url = "http://localhost:8088/?file_path=/tmp/micro-benchmark/python_features/classes/call/main.py&lineno=6&col_offset=0&func_name=main"
+    # Print the complete URL
+    print("Complete URL:", url)
+
+    response = requests.get(url)
+    hover_result = response.json()
+    print(hover_result)
+
+
 # hover_msg
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8088)
-    # uvicorn.run("pyright_client:app", host="0.0.0.0", port=8088, reload=True)
-
-# http://localhost:8088/?file_path=/tmp/micro-benchmark/python_features/args/assigned_call/main.py&lineno=3&col_offset=4&func_name=main
+    server_thread = threading.Thread(
+        target=uvicorn.run, args=(app,), kwargs={"host": "0.0.0.0", "port": 8088}
+    )
+    server_thread.start()
+    time.sleep(10)
+    send_requests()
+    server_thread.join()

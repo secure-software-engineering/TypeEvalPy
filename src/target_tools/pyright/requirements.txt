@@ -4,3 +4,5 @@ uvicorn
 icecream
 sansio_lsp_client
 pytest
+httpx
+requests
