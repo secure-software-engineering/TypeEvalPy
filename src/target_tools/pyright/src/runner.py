@@ -30,20 +30,9 @@ def list_python_files(folder_path):
 
 
 def process_file(file_path):
-    # TODO: get list of queries lineno, col_offset from the ground truth
-    # TODO: Send request for file
-    # http://localhost:8088/?file_path=/tmp/micro-benchmark/python_features/args/assigned_call/main.py&lineno=3&col_offset=4&func_name=main
-
-    # _url = "http://0.0.0.0:8088/?file_path={file_path}&lineno={lineno}&col_offset={col_offset}&func_name={func_name}"
-    # x = requests.get(
-    #     _url.format(
-    #         file_path=filename,
-    #         lineno=node.lineno - 1,
-    #         col_offset=node.end_col_offset - 1,
-    #         func_name=func_name,
-    #     )
-    # )
     json_filepath = str(file_path).replace(".py", "_gt.json")
+    result_filepath = str(file_path).replace(".py", "_result.json")
+    file_result = []
     base_url = "http://localhost:8088/"
     params = {
         "file_path": str(file_path),
@@ -60,17 +49,18 @@ def process_file(file_path):
             params["col_offset"] = entry["col_offset"] - 1
         if "function" in entry:
             params["func_name"] = entry["function"]
-        print(params)
         url = (
             base_url + "?" + "&".join(f"{key}={value}" for key, value in params.items())
         )
-        print("Complete URL:", url)
+        print("Checking in URL:", url)
 
         response = requests.get(url)
         hover_result = response.json()
-        print(hover_result)
+        file_result.append(hover_result)
 
-    utils.parse_python_code(code)
+    utils.generate_json_file(result_filepath, file_result)
+
+    # utils.parse_python_code(code)
     # Process file here and return results
     pass
 
@@ -81,11 +71,12 @@ def main_runner(args):
     for file in python_files:
         try:
             # TODO: Run the inference here and gather results in /tmp/results
+            print("\n Type checking for file :", file)
             inferred = process_file(file)
 
             # TODO: Translate the results into TypeEvalPy format
-            result_file_path = "<path to file>"
-            translated = translator.translate_content(result_file_path)
+            # result_file_path = "<path to file>"
+            # translated = translator.translate_content(result_file_path)
 
             # TODO: Save translated file to the same folder /tmp/results
 
@@ -104,7 +95,7 @@ if __name__ == "__main__":
         parser.add_argument(
             "--bechmark_path",
             help="Specify the benchmark path",
-            default="/tmp/micro-benchmark",
+            default="/tmp/micro-benchmark/python_features/args/",
         )
 
         args = parser.parse_args()

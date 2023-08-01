@@ -6,7 +6,8 @@ import requests
 import threading
 import json
 import time
-
+import re
+import os
 import pyright_langservers as pyright_lsp
 import sansio_lsp_client as lsp
 import uvicorn
@@ -121,7 +122,7 @@ def get_data_type(value):
     elif isinstance(value, float):
         return "float"
     else:
-        return "nill"
+        return value
 
 
 @app.get("/")
@@ -133,6 +134,7 @@ def get_hover(file_path, lineno, col_offset, func_name):
     _pos = doc_pos(file_path.as_uri(), lineno, col_offset)
     client.tserver.lsp_client.hover(_pos)
     hover_msg = client.tserver.wait_for_message_of_type(lsp.Hover, timeout=15)
+    directory_name, file_path = os.path.split(file_path)
     res = None
     # TODO: do some parsing of the hover message here
     if hover_msg.contents:
@@ -144,32 +146,39 @@ def get_hover(file_path, lineno, col_offset, func_name):
             "col_offset": int(col_offset) + 1,
         }
         if func_name:
-            result["function"] = "func_name"
+            result["function"] = func_name
         try:
-            # if _type.startswith("```python\n(type alias)"):
-            #    _type_str = _type.split(":")[0].split("python\n(type alias) ")[1]
-            #    if _type_str in TYPE_ALIAS_MAP:
-            #        res = [TYPE_ALIAS_MAP[_type_str]]
-            #    else:
-            #        res = []
-            # elif _type.startswith("```python\n(class)"):
-            #    _type_str = _type.split(":")[0].split("python\n(class) ")[1]
-            #    if _type_str in TYPE_CLASS_MAP:
-            #        res = [TYPE_CLASS_MAP[_type_str]]
-            #    else:
-            #        res = []
-
             if _type.startswith("```python\n(function)"):
                 _type_name = _type.split("-> ")[0].split("python\n(function) ")[1]
-                _type_value = _type.split("-> ")[1].strip().strip("`\n")
+                _type_value = _type.split("-> ")[-1].strip().strip("`\n")
                 result["type"] = f"[{_type_value}]"
             elif _type.startswith("```python\n(variable)"):
-                _type_name = _type.split(":")[0].split("python\n(variable) ")[1]
-                """if _type_str in TYPE_CLASS_MAP:
-                    res = [TYPE_CLASS_MAP[_type_str]]
-                else:"""
-                _type_value = _type.split(":")[1].strip().strip("`\n")
+                if "->" in _type:
+                    _type_name = (
+                        _type.split("-> ")[0]
+                        .split("python\n(variable) def ")[1]
+                        .strip()
+                        .split("(")[0]
+                    )
+                    _type_value = _type.split("-> ")[-1].strip().strip("`\n")
+                else:
+                    _type_name = _type.split(":")[0].split("python\n(variable) ")[1]
+                    _type_value = _type.split(":")[1].strip().strip("`\n")
                 result["variable"] = _type_name
+                result["type"] = f"[{_type_value}]"
+            elif _type.startswith("```python\n(parameter)"):
+                if "->" in _type:
+                    _type_name = (
+                        _type.split("-> ")[0]
+                        .split("python\n(parameter) def ")[1]
+                        .strip()
+                        .split("(")[0]
+                    )
+                    _type_value = _type.split("-> ")[-1].strip().strip("`\n")
+                else:
+                    _type_name = _type.split(":")[0].split("python\n(parameter) ")[1]
+                    _type_value = _type.split(":")[1].strip().strip("`\n")
+                result["parameter"] = _type_name
                 result["type"] = f"[{_type_value}]"
             else:
                 _t = hover_msg.contents.value.split("-> ")[1].split("\n")[0]
@@ -189,49 +198,9 @@ def get_hover(file_path, lineno, col_offset, func_name):
         f"\nReturning - {func_name} - lineno: {lineno} col_offset: {col_offset}"
     )
     logging.info({"data": res, "hover_msg": hover_msg})
-    return {"data": res, "hover_msg": hover_msg}
-
-
-def send_requests():
-    # http://localhost:8088/?file_path=/tmp/micro-benchmark/python_features/args/assigned_call/main.py&lineno=3&col_offset=4&func_name=main
-
-    # Specify the URL with parameters
-    base_url = "http://localhost:8088/"
-    params = {
-        "file_path": "/tmp/micro-benchmark/python_features/args/assigned_call/main.py",
-        "lineno": 3,
-        "col_offset": 4,
-        "func_name": "main",
-    }
-    with open(
-        "/tmp/micro-benchmark/python_features/args/assigned_call/main_gt.json", "r"
-    ) as file:
-        data = json.load(file)
-    for entry in data:
-        if "line_number" in entry:
-            params["lineno"] = entry["line_number"]
-        if "col_offset" in entry:
-            params["col_offset"] = entry["col_offset"]
-        if "function" in entry:
-            params["func_name"] = entry["function"]
-        print(params)
-    url = base_url + "?" + "&".join(f"{key}={value}" for key, value in params.items())
-    url = "http://localhost:8088/?file_path=/tmp/micro-benchmark/python_features/args/assigned_call/main.py&lineno=3&col_offset=4&func_name=main"
-    # url = "http://localhost:8088/?file_path=/tmp/micro-benchmark/python_features/classes/call/main.py&lineno=6&col_offset=0&func_name=main"
-    # Print the complete URL
-    print("Complete URL:", url)
-
-    response = requests.get(url)
-    hover_result = response.json()
-    print(hover_result)
+    return result
 
 
 # hover_msg
 if __name__ == "__main__":
-    server_thread = threading.Thread(
-        target=uvicorn.run, args=(app,), kwargs={"host": "0.0.0.0", "port": 8088}
-    )
-    server_thread.start()
-    time.sleep(5)
-    send_requests()
-    server_thread.join()
+    uvicorn.run(app, host="0.0.0.0", port=8088)
