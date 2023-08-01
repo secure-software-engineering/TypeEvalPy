@@ -6,6 +6,7 @@ from sys import stdout
 import translator
 import utils
 import json
+import requests
 
 # Create a logger
 logger = logging.getLogger("runner")
@@ -64,11 +65,10 @@ def process_file(file_path):
             base_url + "?" + "&".join(f"{key}={value}" for key, value in params.items())
         )
         print("Complete URL:", url)
-    # url = "http://localhost:8088/?file_path=/tmp/micro-benchmark/python_features/classes/call/main.py&lineno=6&col_offset=0&func_name=main"
 
-    # response = requests.get(url)
-    # hover_result = response.json()
-    # print(hover_result)
+        response = requests.get(url)
+        hover_result = response.json()
+        print(hover_result)
 
     utils.parse_python_code(code)
     # Process file here and return results

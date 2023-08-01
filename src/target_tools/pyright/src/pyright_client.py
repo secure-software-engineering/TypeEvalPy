@@ -29,6 +29,9 @@ SERVER_COMMANDS = {
         "--stdio",
     ],
 }
+DATATYPE_MAP = {}
+TYPE_ALIAS_MAP = {}
+TYPE_CLASS_MAP = {}
 
 
 class PyrightClient:
@@ -110,6 +113,17 @@ def get_type(str_type):
     return res
 
 
+def get_data_type(value):
+    if isinstance(value, str):
+        return "str"
+    elif isinstance(value, int):
+        return "int"
+    elif isinstance(value, float):
+        return "float"
+    else:
+        return "nill"
+
+
 @app.get("/")
 def get_hover(file_path, lineno, col_offset, func_name):
     print(file_path)
@@ -121,34 +135,56 @@ def get_hover(file_path, lineno, col_offset, func_name):
     hover_msg = client.tserver.wait_for_message_of_type(lsp.Hover, timeout=15)
     res = None
     # TODO: do some parsing of the hover message here
-
     if hover_msg.contents:
-        print("here")
         _type = hover_msg.contents.value
         print(_type)
+        result = {
+            "file": str(file_path),
+            "line_number": int(lineno) + 1,
+            "col_offset": int(col_offset) + 1,
+        }
+        if func_name:
+            result["function"] = "func_name"
         try:
-            if _type.startswith("```python\n(type alias)"):
-                _type_str = _type.split(":")[0].split("python\n(type alias) ")[1]
-                if _type_str in TYPE_ALIAS_MAP:
-                    res = [TYPE_ALIAS_MAP[_type_str]]
-                else:
-                    res = []
-            elif _type.startswith("```python\n(class)"):
-                _type_str = _type.split(":")[0].split("python\n(class) ")[1]
-                if _type_str in TYPE_CLASS_MAP:
-                    res = [TYPE_CLASS_MAP[_type_str]]
-                else:
-                    res = []
+            # if _type.startswith("```python\n(type alias)"):
+            #    _type_str = _type.split(":")[0].split("python\n(type alias) ")[1]
+            #    if _type_str in TYPE_ALIAS_MAP:
+            #        res = [TYPE_ALIAS_MAP[_type_str]]
+            #    else:
+            #        res = []
+            # elif _type.startswith("```python\n(class)"):
+            #    _type_str = _type.split(":")[0].split("python\n(class) ")[1]
+            #    if _type_str in TYPE_CLASS_MAP:
+            #        res = [TYPE_CLASS_MAP[_type_str]]
+            #    else:
+            #        res = []
 
+            if _type.startswith("```python\n(function)"):
+                _type_name = _type.split("-> ")[0].split("python\n(function) ")[1]
+                _type_value = _type.split("-> ")[1].strip().strip("`\n")
+                result["type"] = f"[{_type_value}]"
+            elif _type.startswith("```python\n(variable)"):
+                _type_name = _type.split(":")[0].split("python\n(variable) ")[1]
+                """if _type_str in TYPE_CLASS_MAP:
+                    res = [TYPE_CLASS_MAP[_type_str]]
+                else:"""
+                _type_value = _type.split(":")[1].strip().strip("`\n")
+                result["variable"] = _type_name
+                result["type"] = f"[{_type_value}]"
             else:
                 _t = hover_msg.contents.value.split("-> ")[1].split("\n")[0]
                 res = get_type(_t)
-
-        except:
+            if result["type"] and "Literal" in result["type"]:
+                type_value = result["type"].split("Literal[")[1].split("]")[0]
+                type_value = eval(type_value)
+                result["type"] = get_data_type(type_value)
+                # res = get_type(_t)
+            print(result)
+        except Exception as e:
+            print(e)
             res = None
     else:
         res = None
-
     logging.info(
         f"\nReturning - {func_name} - lineno: {lineno} col_offset: {col_offset}"
     )
@@ -180,7 +216,8 @@ def send_requests():
             params["func_name"] = entry["function"]
         print(params)
     url = base_url + "?" + "&".join(f"{key}={value}" for key, value in params.items())
-    url = "http://localhost:8088/?file_path=/tmp/micro-benchmark/python_features/classes/call/main.py&lineno=6&col_offset=0&func_name=main"
+    url = "http://localhost:8088/?file_path=/tmp/micro-benchmark/python_features/args/assigned_call/main.py&lineno=3&col_offset=4&func_name=main"
+    # url = "http://localhost:8088/?file_path=/tmp/micro-benchmark/python_features/classes/call/main.py&lineno=6&col_offset=0&func_name=main"
     # Print the complete URL
     print("Complete URL:", url)
 
@@ -195,6 +232,6 @@ if __name__ == "__main__":
         target=uvicorn.run, args=(app,), kwargs={"host": "0.0.0.0", "port": 8088}
     )
     server_thread.start()
-    time.sleep(10)
+    time.sleep(5)
     send_requests()
     server_thread.join()
