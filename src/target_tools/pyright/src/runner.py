@@ -37,15 +37,13 @@ def process_file(file_path):
     result_filepath = str(file_path).replace(".py", "_result.json")
     file_result = []
     base_url = "http://localhost:8088/"
-    params = {
-        "file_path": str(file_path),
-        "lineno": 0,
-        "col_offset": 0,
-        "func_name": "",
-    }
     with open(json_filepath, "r") as file:
         data = json.load(file)
     for entry in data:
+        params = {
+            "file_path": str(file_path),
+            "func_name": "",
+        }
         if "line_number" in entry:
             params["lineno"] = entry["line_number"] - 1
         if "col_offset" in entry:
@@ -68,8 +66,12 @@ def process_file(file_path):
     pass
 
 
+stop_event = threading.Event()
+
+
 def run_pyright_client():
-    subprocess.run(["python", "/tmp/src/pyright_client.py"], check=True)
+    while not stop_event.is_set():
+        subprocess.run(["python", "/tmp/src/pyright_client.py"], check=True)
 
 
 def main_runner(args):
@@ -85,7 +87,12 @@ def main_runner(args):
         except Exception as e:
             logger.info(f"Command returned non-zero exit status: {e} for file: {file}")
             error_count += 1
-    server_thread.join()
+    server_thread.join(
+        timeout=5
+    )  # Wait for the thread to finish or timeout after 5 seconds
+    if server_thread.is_alive():
+        server_thread._stop()
+        server_thread.join()
     logger.info(f"Runner finished with errors:{error_count}")
 
 
@@ -97,7 +104,7 @@ if __name__ == "__main__":
         parser.add_argument(
             "--bechmark_path",
             help="Specify the benchmark path",
-            default="/tmp/micro-benchmark/",
+            default="/tmp/micro-benchmark/python_features/args",
         )
 
         args = parser.parse_args()
