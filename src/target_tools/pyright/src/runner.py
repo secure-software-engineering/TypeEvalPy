@@ -3,7 +3,7 @@ import logging
 from pathlib import Path
 from sys import stdout
 import subprocess
-import threading
+import multiprocessing
 import time
 
 import translator
@@ -66,34 +66,40 @@ def process_file(file_path):
     pass
 
 
-stop_event = threading.Event()
+MAX_RETRY_COUNT = 3
 
 
 def run_pyright_client():
-    while not stop_event.is_set():
-        subprocess.run(["python", "/tmp/src/pyright_client.py"], check=True)
+    retry_count = 0
+    while retry_count < MAX_RETRY_COUNT:
+        try:
+            subprocess.run(["python", "/tmp/src/pyright_client.py"], check=True)
+        except Exception as e:
+            logger.info(f"Attempt {retry_count+1} failed: {e}")
+            retry_count += 1
+
+
+def process_file_wrapper(file):
+    error_count = 0
+    try:
+        print("\n Type checking for file:", file)
+        inferred = process_file(file)
+    except Exception as e:
+        logger.info(f"Command returned non-zero exit status: {e} for file: {file}")
+        error_count += 1
+    return error_count
 
 
 def main_runner(args):
     python_files = list_python_files(args.bechmark_path)
-    server_thread = threading.Thread(target=run_pyright_client)
-    server_thread.start()
-    time.sleep(10)
-    error_count = 0
-    for file in python_files:
-        try:
-            print("\n Type checking for file :", file)
-            inferred = process_file(file)
-        except Exception as e:
-            logger.info(f"Command returned non-zero exit status: {e} for file: {file}")
-            error_count += 1
-    server_thread.join(
-        timeout=5
-    )  # Wait for the thread to finish or timeout after 5 seconds
-    if server_thread.is_alive():
-        server_thread._stop()
-        server_thread.join()
-    logger.info(f"Runner finished with errors:{error_count}")
+    with multiprocessing.Pool(processes=multiprocessing.cpu_count()) as pool:
+        server_process = multiprocessing.Process(target=run_pyright_client)
+        server_process.start()
+        time.sleep(30)
+        error_count = pool.map(process_file_wrapper, python_files)
+        server_process.terminate()
+        server_process.join()
+    logger.info(f"Runner finished with errors:{sum(error_count)}")
 
 
 if __name__ == "__main__":
