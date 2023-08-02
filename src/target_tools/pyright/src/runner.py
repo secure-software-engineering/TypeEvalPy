@@ -2,6 +2,9 @@ import argparse
 import logging
 from pathlib import Path
 from sys import stdout
+import subprocess
+import threading
+import time
 
 import translator
 import utils
@@ -65,25 +68,24 @@ def process_file(file_path):
     pass
 
 
+def run_pyright_client():
+    subprocess.run(["python", "/tmp/src/pyright_client.py"], check=True)
+
+
 def main_runner(args):
     python_files = list_python_files(args.bechmark_path)
+    server_thread = threading.Thread(target=run_pyright_client)
+    server_thread.start()
+    time.sleep(10)
     error_count = 0
     for file in python_files:
         try:
-            # TODO: Run the inference here and gather results in /tmp/results
             print("\n Type checking for file :", file)
             inferred = process_file(file)
-
-            # TODO: Translate the results into TypeEvalPy format
-            # result_file_path = "<path to file>"
-            # translated = translator.translate_content(result_file_path)
-
-            # TODO: Save translated file to the same folder /tmp/results
-
         except Exception as e:
             logger.info(f"Command returned non-zero exit status: {e} for file: {file}")
             error_count += 1
-
+    server_thread.join()
     logger.info(f"Runner finished with errors:{error_count}")
 
 
@@ -95,7 +97,7 @@ if __name__ == "__main__":
         parser.add_argument(
             "--bechmark_path",
             help="Specify the benchmark path",
-            default="/tmp/micro-benchmark/python_features/args/",
+            default="/tmp/micro-benchmark/",
         )
 
         args = parser.parse_args()

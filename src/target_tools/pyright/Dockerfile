@@ -32,5 +32,5 @@ COPY requirements.txt /app/requirements.txt
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-# Run the application
-CMD ["bash"]
+# Start pyright_client.py in the background
+CMD ["bash", "-c", "python /tmp/src/pyright_client.py & bash"]

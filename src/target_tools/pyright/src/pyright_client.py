@@ -127,7 +127,6 @@ def get_data_type(value):
 
 @app.get("/")
 def get_hover(file_path, lineno, col_offset, func_name):
-    print(file_path)
     open_file(file_path)
     file_path = pathlib.Path(file_path)
 
@@ -139,7 +138,6 @@ def get_hover(file_path, lineno, col_offset, func_name):
     # TODO: do some parsing of the hover message here
     if hover_msg.contents:
         _type = hover_msg.contents.value
-        print(_type)
         result = {
             "file": str(file_path),
             "line_number": int(lineno) + 1,
@@ -188,7 +186,6 @@ def get_hover(file_path, lineno, col_offset, func_name):
                 type_value = eval(type_value)
                 result["type"] = get_data_type(type_value)
                 # res = get_type(_t)
-            print(result)
         except Exception as e:
             print(e)
             res = None

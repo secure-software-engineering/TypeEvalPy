@@ -143,8 +143,7 @@ class PyrightRunner(TypeEvalPyRunner):
         super().__init__("pyright", "./target_tools/pyright", host_results_path)
 
     def run_tool_test(self):
-        # TODO: start the python_client
-        self._run_test_in_session("/tmp/typings")
+        self._run_test_in_session()
 
 
 class PytypeRunner(TypeEvalPyRunner):
@@ -241,8 +240,8 @@ def main():
     # runner = JediRunner(host_results_path)
     # runner.run_tool_test()
 
-    # runner = PyrightRunner(host_results_path)
-    # runner.run_tool_test()
+    runner = PyrightRunner(host_results_path)
+    runner.run_tool_test()
 
     # runner = PytypeRunner(host_results_path)
     # runner.run_tool_test()
