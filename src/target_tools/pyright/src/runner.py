@@ -33,34 +33,39 @@ def list_python_files(folder_path):
 
 
 def process_file(file_path):
-    json_filepath = str(file_path).replace(".py", "_gt.json")
-    result_filepath = str(file_path).replace(".py", "_result.json")
-    file_result = []
-    base_url = "http://localhost:8088/"
-    with open(json_filepath, "r") as file:
-        data = json.load(file)
-    for entry in data:
-        params = {
-            "file_path": str(file_path),
-            "func_name": "",
-        }
-        if "line_number" in entry:
-            params["lineno"] = entry["line_number"] - 1
-        if "col_offset" in entry:
-            params["col_offset"] = entry["col_offset"] - 1
-        if "function" in entry:
-            params["func_name"] = entry["function"]
-        url = (
-            base_url + "?" + "&".join(f"{key}={value}" for key, value in params.items())
-        )
-        print("Checking in URL:", url)
+    try:
+        json_filepath = str(file_path).replace(".py", "_gt.json")
+        result_filepath = str(file_path).replace(".py", "_result.json")
+        file_result = []
+        base_url = "http://localhost:8088/"
+        with open(json_filepath, "r") as file:
+            data = json.load(file)
+        for entry in data:
+            params = {
+                "file_path": str(file_path),
+                "func_name": "",
+            }
+            if "line_number" in entry:
+                params["lineno"] = entry["line_number"] - 1
+            if "col_offset" in entry:
+                params["col_offset"] = entry["col_offset"] - 1
+            if "function" in entry:
+                params["func_name"] = entry["function"]
+            url = (
+                base_url
+                + "?"
+                + "&".join(f"{key}={value}" for key, value in params.items())
+            )
+            print("Checking in URL:", url)
 
-        response = requests.get(url)
-        hover_result = response.json()
-        file_result.append(hover_result)
+            response = requests.get(url)
+            hover_result = response.json()
+            file_result.append(hover_result)
 
-    utils.generate_json_file(result_filepath, file_result)
-
+        utils.generate_json_file(result_filepath, file_result)
+    except Exception as e:
+        logger.info(f"{file_path} failed: {e}")
+        raise
     # utils.parse_python_code(code)
     # Process file here and return results
     pass
@@ -79,14 +84,15 @@ def run_pyright_client():
             retry_count += 1
 
 
-def process_file_wrapper(file):
+def process_file_wrapper(python_files):
     error_count = 0
-    try:
-        print("\n Type checking for file:", file)
-        inferred = process_file(file)
-    except Exception as e:
-        logger.info(f"Command returned non-zero exit status: {e} for file: {file}")
-        error_count += 1
+    for file in python_files:
+        try:
+            print("\n Type checking for file:", file)
+            inferred = process_file(file)
+        except Exception as e:
+            logger.info(f"Command returned non-zero exit status: {e} for file: {file}")
+            error_count += 1
     return error_count
 
 
@@ -96,10 +102,10 @@ def main_runner(args):
         server_process = multiprocessing.Process(target=run_pyright_client)
         server_process.start()
         time.sleep(30)
-        error_count = pool.map(process_file_wrapper, python_files)
+        error_count = process_file_wrapper(python_files)
         server_process.terminate()
         server_process.join()
-    logger.info(f"Runner finished with errors:{sum(error_count)}")
+    logger.info(f"Runner finished with errors:{error_count}")
 
 
 if __name__ == "__main__":

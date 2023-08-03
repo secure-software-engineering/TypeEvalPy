@@ -150,7 +150,7 @@ def get_hover(file_path, lineno, col_offset, func_name):
             if _type.startswith("```python\n(function)"):
                 _type_name = _type.split("-> ")[0].split("python\n(function) ")[1]
                 _type_value = _type.split("-> ")[-1].strip().strip("`\n")
-                result["type"] = result["type"].append(f"{_type_value}")
+                result["type"].append(f"{_type_value}")
             elif _type.startswith("```python\n(variable)"):
                 if "->" in _type:
                     _type_name = (
@@ -164,7 +164,7 @@ def get_hover(file_path, lineno, col_offset, func_name):
                     _type_name = _type.split(":")[0].split("python\n(variable) ")[1]
                     _type_value = _type.split(":")[1].strip().strip("`\n")
                 result["variable"] = _type_name
-                result["type"] = result["type"].append(f"{_type_value}")
+                result["type"].append(f"{_type_value}")
             elif _type.startswith("```python\n(parameter)"):
                 if "->" in _type:
                     _type_name = (
@@ -178,14 +178,14 @@ def get_hover(file_path, lineno, col_offset, func_name):
                     _type_name = _type.split(":")[0].split("python\n(parameter) ")[1]
                     _type_value = _type.split(":")[1].strip().strip("`\n")
                 result["parameter"] = _type_name
-                result["type"] = result["type"].append(f"{_type_value}")
+                result["type"].append(f"{_type_value}")
             else:
                 _t = hover_msg.contents.value.split("-> ")[1].split("\n")[0]
                 res = get_type(_t)
-            if result["type"] and "Literal" in result["type"]:
-                type_value = result["type"].split("Literal[")[1].split("]")[0]
+            if result["type"] and "Literal" in result["type"][0]:
+                type_value = result["type"][0].split("Literal[")[1].split("]")[0]
                 type_value = eval(type_value)
-                result["type"] = result["type"].append(get_data_type(type_value))
+                result["type"][0] = f"{get_data_type(type_value)}"
                 # res = get_type(_t)
         except Exception as e:
             print(e)
