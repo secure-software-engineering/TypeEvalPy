@@ -2,7 +2,7 @@ import csv
 import json
 
 ML_TOOLS = ["type4py"]
-STANDARD_TOOLS = ["scalpel"]
+STANDARD_TOOLS = ["scalpel", "pyre", "pytype", "jedi", "pyright"]
 TOP_N = [1, 3, 5]
 
 TYPE_CATEGORIES = ["function_returns", "function_parameters", "local_variables"]
@@ -87,14 +87,15 @@ def check_match(expected, out, partial_match=False, top_n=1, is_ml=False):
     type_formatted = []
     if _type:
         for _t in _type:
-            if _t.startswith("Union["):
-                types_split = [
-                    x.replace(" ", "").lower()
-                    for x in _t.split("Union[")[1].split("]")[0].split(",")
-                ]
-                type_formatted.append(types_split)
-            else:
-                type_formatted.append([_t.split("[")[0].lower()])
+            if _t:
+                if _t.startswith("Union["):
+                    types_split = [
+                        x.replace(" ", "").lower()
+                        for x in _t.split("Union[")[1].split("]")[0].split(",")
+                    ]
+                    type_formatted.append(types_split)
+                else:
+                    type_formatted.append([_t.split("[")[0].lower()])
 
     if partial_match:
         # check if atleast one exists

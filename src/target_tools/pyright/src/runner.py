@@ -110,7 +110,7 @@ if __name__ == "__main__":
         parser.add_argument(
             "--bechmark_path",
             help="Specify the benchmark path",
-            default="/tmp/micro-benchmark/python_features/args",
+            default="/tmp/micro-benchmark/",
         )
 
         args = parser.parse_args()
