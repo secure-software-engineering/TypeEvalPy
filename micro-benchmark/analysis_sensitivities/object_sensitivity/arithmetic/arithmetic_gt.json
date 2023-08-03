@@ -3,7 +3,7 @@
         "file": "arithmetic.py",
         "line_number": 7,
         "parameter": "a",
-        "function": "__init__",
+        "function": "ArithmeticOperation.__init__",
         "type": [
             "any"
         ]
@@ -12,7 +12,7 @@
         "file": "arithmetic.py",
         "line_number": 7,
         "parameter": "b",
-        "function": "__init__",
+        "function": "ArithmeticOperation.__init__",
         "type": [
             "any"
         ]
@@ -20,8 +20,8 @@
     {
         "file": "arithmetic.py",
         "line_number": 7,
-        "parameter": "a",
-        "function": "__init__",
+        "variable": "a",
+        "function": "ArithmeticOperation.__init__",
         "type": [
             "any"
         ]
@@ -29,8 +29,8 @@
     {
         "file": "arithmetic.py",
         "line_number": 7,
-        "parameter": "b",
-        "function": "__init__",
+        "variable": "b",
+        "function": "ArithmeticOperation.__init__",
         "type": [
             "any"
         ]
