@@ -20,7 +20,7 @@ file_handler_info.setLevel(logging.INFO)
 
 console_handler = logging.StreamHandler()
 console_handler.setLevel(logging.INFO)
-formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+formatter = logging.Formatter("%(levelname)s - %(message)s")
 file_handler.setFormatter(formatter)
 file_handler_info.setFormatter(formatter)
 
@@ -169,8 +169,21 @@ def process_cat_dir(cat_dir, tool_name=None):
 
     for root, dirs, files in os.walk(cat_dir):
         test_files = [x.split(".py")[0] for x in files if x.endswith(".py")]
-        logger.debug(root)
+        logger.debug(
+            "\n\n ################ ----------------------- ################# \n\n"
+        )
+        logger.debug(root.split("/")[-3:])
+
+        if (
+            root
+            == "../results_28-07"
+            " 10:46/headergen_dev/micro-benchmark/python_features/classes/imported_attr_access"
+        ):
+            # Debug point
+            pass
+
         for test in test_files:
+            logger.debug(f"File: {test}")
             if f"{test}_gt.json" in files:
                 file_count += 1
                 if f"{test}_result.json" in files:
@@ -209,8 +222,8 @@ def process_cat_dir(cat_dir, tool_name=None):
                         f"{os.path.basename(os.path.dirname(gt_file))}:{test}"
                     ] = cat_recall_grouped
 
-                    logger.debug("Missing Matches:")
-                    logger.debug(json.dumps(results["missing_matches"], indent=4))
+                    # logger.debug("Missing Matches:")
+                    # logger.debug(json.dumps(results["missing_matches"], indent=4))
 
                     dir_path = os.path.relpath(os.path.dirname(gt_file), cat_dir)
                     file_name = dir_path + "/" + os.path.basename(gt_file)
@@ -553,7 +566,7 @@ def generate_top_n_performance(test_suite_dir, tool_name=None):
 
 if __name__ == "__main__":
     results_dir = None
-    # results_dir = Path("./results_26-07 22:49")
+    # results_dir = Path("../results_31-07 10:13")
     if results_dir is None:
         dir_path = Path("../")
         directories = [
@@ -603,3 +616,9 @@ if __name__ == "__main__":
     os.rename(
         "results_analysis_info.log", f"{str(results_dir)}/results_analysis_info.log"
     )
+
+    os.rename(
+        "tools_sound_complete_data.csv",
+        f"{str(results_dir)}/tools_sound_complete_data.csv",
+    )
+    # os.rename("top_n_table_type4py.csv", f"{str(results_dir)}/top_n_table_type4py.csv")

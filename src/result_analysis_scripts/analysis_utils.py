@@ -1,5 +1,8 @@
 import csv
 import json
+import logging
+
+logger = logging.getLogger("Result Analysis")
 
 ML_TOOLS = ["type4py"]
 STANDARD_TOOLS = ["scalpel", "pyre", "pytype", "jedi", "pyright"]
@@ -75,27 +78,34 @@ def check_match(expected, out, partial_match=False, top_n=1, is_ml=False):
         if expected.get("variable") != out.get("variable"):
             return False
 
+    # logger.debug("Other facts match: checking for types")
+
     # check if type match
     if is_ml:
         # _type = out.get("type")
-        _type = []
+        _types = []
         if out.get("all_type_preds"):
-            _type = [x[0] for x in out.get("all_type_preds")]
+            _types = [x[0] for x in out.get("all_type_preds")]
     else:
-        _type = out.get("type")
+        _types = [list(set(out.get("type")))]
 
     type_formatted = []
-    if _type:
-        for _t in _type:
-            if _t:
+    if _types:
+        for _type in _types:
+            i_type_list = []
+            for _t in _type:
                 if _t.startswith("Union["):
                     types_split = [
                         x.replace(" ", "").lower()
                         for x in _t.split("Union[")[1].split("]")[0].split(",")
                     ]
-                    type_formatted.append(types_split)
+                    i_type_list.extend(types_split)
                 else:
-                    type_formatted.append([_t.split("[")[0].lower()])
+                    # TODO: Maybe no translation should be done here
+                    i_type_list.append(_t.split("[")[0])
+                    # i_type_list.append(_t.split("[")[0].lower())
+
+            type_formatted.append(list(set(i_type_list)))
 
     if partial_match:
         # check if atleast one exists
@@ -104,17 +114,28 @@ def check_match(expected, out, partial_match=False, top_n=1, is_ml=False):
             for _t in _t_list:
                 if _t in expected["type"]:
                     matched = True
-
-        if not matched:
-            return False
     else:
         matched = False
         for _t_list in type_formatted[:top_n]:
             if sorted(expected.get("type")) == sorted(_t_list):
                 matched = True
 
-        if not matched:
-            return False
+    if not matched:
+        # print only full mismatch
+        if partial_match:
+            logger.debug(
+                f"\n\n##### Type mismatch! #####\nPartial mactching: {partial_match}"
+            )
+
+            logger.debug("Ground Truth:")
+            logger.debug(json.dumps(expected, indent=4))
+
+            logger.debug("Output:")
+            logger.debug(json.dumps(out, indent=4))
+
+            logger.debug("####################\n\n")
+
+        return False
 
     return True
 
@@ -285,11 +306,13 @@ def measure_recall(out, expected, tool_name=None):
     else:
         for _cat, _cat_facts in data_expected_categories.items():
             for fact_expected in _cat_facts:
+                expected_found = False
                 for fact_out in data_out:
                     # Check exact matches
                     if check_match(expected=fact_expected, out=fact_out):
                         results["num_caught_exact"] += 1
                         results_only_cat[_cat]["num_caught_exact"] += 1
+                        expected_found = True
 
                     # Check partial matches
                     elif check_match(
@@ -297,6 +320,15 @@ def measure_recall(out, expected, tool_name=None):
                     ):
                         results["num_caught_partial"] += 1
                         results_only_cat[_cat]["num_caught_partial"] += 1
+                        expected_found = True
+
+                if not expected_found:
+                    logger.debug(f"~~~~~~ Type Not Found! ~~~~~~")
+
+                    logger.debug("Expected:")
+                    logger.debug(json.dumps(fact_expected, indent=4))
+
+                    logger.debug("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
     return results, results_cat, results_only_cat
 

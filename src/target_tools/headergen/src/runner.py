@@ -36,6 +36,7 @@ def process_file(file_path):
 
 def main_runner(args):
     python_files = list_python_files(args.bechmark_path)
+    files_analyzed = 0
     error_count = 0
     for file in python_files:
         try:
@@ -54,6 +55,9 @@ def main_runner(args):
         except Exception as e:
             logger.info(f"Command returned non-zero exit status: {e} for file: {file}")
             error_count += 1
+
+        files_analyzed += 1
+        logger.info(f"Progress: {files_analyzed}/{len(python_files)}")
 
     logger.info(f"Runner finished with errors:{error_count}")
 
