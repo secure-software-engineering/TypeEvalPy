@@ -60,8 +60,8 @@ def process_file(file_path):
 
             response = requests.get(url)
             hover_result = response.json()
-            file_result.append(hover_result)
-
+            if hover_result["type"]:
+                file_result.append(hover_result)
         utils.generate_json_file(result_filepath, file_result)
     except Exception as e:
         logger.info(f"{file_path} failed: {e}")
@@ -103,6 +103,7 @@ def main_runner(args):
         server_process.start()
         time.sleep(30)
         error_count = process_file_wrapper(python_files)
+        translator.main_translator(args)
         server_process.terminate()
         server_process.join()
     logger.info(f"Runner finished with errors:{error_count}")

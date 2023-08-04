@@ -4,32 +4,53 @@ import os
 from pathlib import Path
 
 
-def list_json_files(folder_path):
-    python_files = sorted(Path(folder_path).rglob("*.json"))
-    return python_files
+def check_result_files(directory):
+    total_errors = 0
+    for root, dirs, files in os.walk(directory):
+        for file in files:
+            if file.endswith("_result.json"):
+                file_path = os.path.join(root, file)
+                with open(file_path, "r") as json_file:
+                    data = json.load(json_file)
+
+                errors_in_file = remove_invalid_entries(data, file_path)
+                total_errors += errors_in_file
+
+                with open(file_path, "w") as json_file:
+                    json.dump(data, json_file, indent=2)
+    return total_errors
 
 
-def translate_content(file_path):
-    with open(file_path) as f:
-        data = json.load(f)
+def remove_invalid_entries(data, file_path):
+    errors_in_file = 0
+    updated_data = []
+    for entry in data:
+        if is_valid_entry(entry):
+            updated_data.append(entry)
+        else:
+            errors_in_file += 1
+            print(f"Removed entry from {file_path}: {entry}")
 
-    # Do translation
-    return data
+    data[:] = updated_data
+    return errors_in_file
+
+
+def is_valid_entry(entry):
+    has_parameter = "parameter" in entry
+    has_function = "function" in entry
+    has_type = "type" in entry
+    has_variable = "variable" in entry
+    if has_type and not (has_function or has_variable):
+        return False
+
+    elif has_parameter and not has_function:
+        return False
+    return True
 
 
 def main_translator(args):
-    json_files = list_json_files(args.bechmark_path)
-    error_count = 0
-    for file in json_files:
-        try:
-            # Run the inference here and gather results in /tmp/results
-            translated = translate_content(file)
-
-        except Exception as e:
-            print(f"Command returned non-zero exit status: {e} for file: {file}")
-            error_count += 1
-
-    print(f"Runner finished with errors:{error_count}")
+    error_count = check_result_files(args.bechmark_path)
+    print(f"Translator found errors and fixed :{error_count}")
 
 
 if __name__ == "__main__":
