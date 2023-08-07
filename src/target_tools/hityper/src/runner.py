@@ -47,12 +47,9 @@ def main_runner(args):
             # Translate the results into TypeEvalPy format
             translated = translator.translate_content(file)
 
-            # TODO: Save translated file to the same folder /tmp/results
             json_file_path = str(file).replace(".py", "_result.json")
-
             with open(json_file_path, "w") as json_file:
-                inferred_serializable = []
-                json.dump(inferred_serializable, json_file, sort_keys=True, indent=4)
+                json.dump(translated, json_file, sort_keys=True, indent=4)
 
         except Exception as e:
             logger.info(f"Command returned non-zero exit status: {e} for file: {file}")

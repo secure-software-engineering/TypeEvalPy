@@ -86,13 +86,18 @@ def run_pyright_client():
 
 def process_file_wrapper(python_files):
     error_count = 0
+    error_list = []
     for file in python_files:
         try:
             print("\n Type checking for file:", file)
             inferred = process_file(file)
         except Exception as e:
             logger.info(f"Command returned non-zero exit status: {e} for file: {file}")
+            error_list.append(file)
             error_count += 1
+    print("Error files")
+    for file in error_list:
+        print(file)
     return error_count
 
 
