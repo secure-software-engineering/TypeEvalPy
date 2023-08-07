@@ -169,3 +169,4 @@ src/results_*
 micro-benchmark/**/*.py
 src/result_analysis_scripts/*.csv
 src/results/
+src/backup/

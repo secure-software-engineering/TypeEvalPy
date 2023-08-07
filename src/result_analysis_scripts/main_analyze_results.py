@@ -54,13 +54,14 @@ def compare_json_files(expected, out):
     for fact_expected in data_expected:
         out_fact_matched = False
         out_fact_mismatch = None
+        entry_match = False
         for fact_out in data_out:
             # Get full matches
             if utils.check_match(expected=fact_expected, out=fact_out):
                 total_matches += 1
                 out_fact_matched = True
                 break
-            # Check if everything else matches except "type"
+            # Check for partial match
             elif utils.check_match(
                 expected=fact_expected, out=fact_out, partial_match=True
             ):
@@ -69,6 +70,7 @@ def compare_json_files(expected, out):
 
                 out_fact_mismatch_list.append(fact_expected)
                 out_fact_mismatch = fact_out.get("type", [])
+                break
             # TODO: Add other cases here
             # elif all(
             #     [fact_expected[x] == fact_out[x] for x in fact_expected.keys() if x not in ["type",]
@@ -76,6 +78,13 @@ def compare_json_files(expected, out):
             #     for _type in fact_expected.get("type", []):
             #         if _type in fact_out.get("type", []):
             #             partial_matches += 1
+            elif all(
+                x in fact_out and fact_out[x] == fact_expected[x]
+                for x in fact_expected.keys()
+                if x not in ["type", "col_offset"]
+            ):
+                entry_match = True
+                break
             else:
                 # logger.debug("No Matches")
                 pass
@@ -84,7 +93,8 @@ def compare_json_files(expected, out):
             fact_expected["out_type"] = []
             if out_fact_mismatch:
                 fact_expected["out_type"] = out_fact_mismatch
-
+            elif entry_match:
+                fact_expected["out_type"] = fact_out["type"]
             missing_matches_list.append(fact_expected)
 
     if total_matches:
@@ -566,7 +576,7 @@ def generate_top_n_performance(test_suite_dir, tool_name=None):
 
 if __name__ == "__main__":
     results_dir = None
-    # results_dir = Path("../results_31-07 10:13")
+    results_dir = Path("../results_07-08 02:18")
     if results_dir is None:
         dir_path = Path("../")
         directories = [
