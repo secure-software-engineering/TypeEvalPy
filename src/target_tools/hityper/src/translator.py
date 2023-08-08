@@ -1,6 +1,7 @@
 import argparse
 import json
 import os
+import re
 from pathlib import Path
 
 
@@ -20,6 +21,15 @@ def translate_content(file_path):
     with open(hityper_file, "r") as hityper_file:
         hityper = json.load(hityper_file)
     formatted_output = []
+
+    def convert_type(type_str):
+        type_str = re.sub(r"typing\.", "", type_str)  # Remove "typing."
+        type_str = re.sub(r"Text", r"str", type_str)  # Convert "Text" to "str"
+        return type_str
+
+    def convert_typing(type_list):
+        return [convert_type(item) for item in type_list]
+
     for key, value in hityper.items():
         function_name, class_name = key.split("@")  # Get the identifier from the key
         if class_name == "global":
@@ -27,6 +37,8 @@ def translate_content(file_path):
         else:
             function_name = f"{class_name}.{function_name}"
         for item in value:
+            if not item["type"]:
+                continue
             for gt_item in main_gt:
                 formatted_item = {}
                 if item["category"] == "local" and "variable" in gt_item:
@@ -36,7 +48,7 @@ def translate_content(file_path):
                                 "file": gt_item["file"],
                                 "line_number": gt_item["line_number"],
                                 "variable": gt_item["variable"],
-                                "type": item["type"],
+                                "type": convert_typing(item["type"]),
                             }
                             formatted_output.append(formatted_item)
                     elif "function" in gt_item and gt_item["function"] == function_name:
@@ -46,7 +58,7 @@ def translate_content(file_path):
                                 "line_number": gt_item["line_number"],
                                 "function": gt_item["function"],
                                 "variable": gt_item["variable"],
-                                "type": item["type"],
+                                "type": convert_typing(item["type"]),
                             }
                             formatted_output.append(formatted_item)
                 elif item["category"] == "arg" and "parameter" in gt_item:
@@ -60,7 +72,7 @@ def translate_content(file_path):
                             "line_number": gt_item["line_number"],
                             "function": gt_item["function"],
                             "parameter": gt_item["parameter"],
-                            "type": item["type"],
+                            "type": convert_typing(item["type"]),
                         }
                         formatted_output.append(formatted_item)
                 elif item["category"] == "return":
@@ -73,7 +85,7 @@ def translate_content(file_path):
                             "file": gt_item["file"],
                             "line_number": gt_item["line_number"],
                             "function": gt_item["function"],
-                            "type": item["type"],
+                            "type": convert_typing(item["type"]),
                         }
                         formatted_output.append(formatted_item)
     return formatted_output
