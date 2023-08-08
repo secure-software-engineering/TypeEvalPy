@@ -48,7 +48,7 @@ def process_file(file_path):
 
     if data.get("error") is not None:
         logger.error(data["error"])
-        output = []
+        raise Exception
     else:
         output = data
 

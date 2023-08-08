@@ -209,7 +209,7 @@ class Type4pyRunner(TypeEvalPyRunner):
     def spawn_docker_instance(self):
         logger.info("Creating container")
         container = self.docker_client.containers.run(
-            self.dockerfile_name,
+            self.tool_name,
             detach=True,
             stdin_open=True,
             tty=True,
