@@ -45,6 +45,26 @@ def categorize_facts(data):
     return type_categories
 
 
+def format_type(_types):
+    type_formatted = []
+    if _types:
+        for _type in _types:
+            i_type_list = []
+            for _t in _type:
+                if _t.startswith("Union["):
+                    types_split = [
+                        x.replace(" ", "").lower()
+                        for x in _t.split("Union[")[1].split("]")[0].split(",")
+                    ]
+                    i_type_list.extend(types_split)
+                else:
+                    # TODO: Maybe no translation should be done here
+                    # i_type_list.append(_t.lower())
+                    i_type_list.append(_t.split("[")[0].lower())
+            type_formatted.append(list(set(i_type_list)))
+    return type_formatted
+
+
 def check_match(expected, out, partial_match=False, top_n=1, is_ml=False):
     if not all(
         [
@@ -89,36 +109,20 @@ def check_match(expected, out, partial_match=False, top_n=1, is_ml=False):
     else:
         _types = [list(set(out.get("type")))]
 
-    type_formatted = []
-    if _types:
-        for _type in _types:
-            i_type_list = []
-            for _t in _type:
-                if _t.startswith("Union["):
-                    types_split = [
-                        x.replace(" ", "").lower()
-                        for x in _t.split("Union[")[1].split("]")[0].split(",")
-                    ]
-                    i_type_list.extend(types_split)
-                else:
-                    # TODO: Maybe no translation should be done here
-                    i_type_list.append(_t.split("[")[0])
-                    # i_type_list.append(_t.split("[")[0].lower())
-
-            type_formatted.append(list(set(i_type_list)))
+    type_formatted = format_type(_types)
+    expected_type_formatted = format_type([list(set(expected.get("type")))])
 
     if partial_match:
         # check if atleast one exists
         matched = False
         for _t_list in type_formatted[:top_n]:
             for _t in _t_list:
-                if _t in expected["type"]:
+                if any(_t in t for t in expected_type_formatted):
                     matched = True
     else:
         matched = False
-        for _t_list in type_formatted[:top_n]:
-            if sorted(expected.get("type")) == sorted(_t_list):
-                matched = True
+        if sorted(expected_type_formatted) == type_formatted[:top_n]:
+            matched = True
 
     if not matched:
         # print only full mismatch
