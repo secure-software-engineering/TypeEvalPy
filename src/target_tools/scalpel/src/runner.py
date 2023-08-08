@@ -40,7 +40,7 @@ def main_runner(args):
     error_count = 0
     for file in python_files:
         try:
-            logger.info(file)
+            # logger.debug(file)
             inferred = process_file(file)
             json_file_path = str(file).replace(".py", "_result.json")
 

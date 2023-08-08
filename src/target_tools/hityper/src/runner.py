@@ -33,7 +33,14 @@ def list_python_files(folder_path):
 def process_file(file_path):
     dir_path, file_name = os.path.split(file_path)
     hitype_cmd = f"hityper infer -s ./{file_name} -p ."
-    subprocess.run(hitype_cmd, shell=True, cwd=dir_path, check=True)
+    subprocess.run(
+        hitype_cmd,
+        shell=True,
+        cwd=dir_path,
+        check=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+    )
 
 
 def main_runner(args):
@@ -42,7 +49,7 @@ def main_runner(args):
     error_list = []
     for file in python_files:
         try:
-            logger.info(file)
+            # logger.debug(file)
             process_file(file)
 
             # Translate the results into TypeEvalPy format
@@ -59,8 +66,8 @@ def main_runner(args):
 
     logger.info(f"Runner finished with errors:{error_count}")
     logger.info("Error files")
-    for file in error_list:
-        print(file)
+    # for file in error_list:
+    #    print("\n", file)
 
 
 if __name__ == "__main__":

@@ -89,7 +89,9 @@ async def process_tool(args):
             eval_r.print_predictions(True)
             logger.info(f"Predictions written to: {output_dir}")
         except Exception as e:
-            logger.info(f"Command returned non-zero exit status: {e} for file: {file}")
+            logger.info(
+                f"Command returned non-zero exit status: {e} for subfolder: {subfolder}"
+            )
             error_count += 1
     logger.info(f"Runner finished with errors:{error_count}")
 
