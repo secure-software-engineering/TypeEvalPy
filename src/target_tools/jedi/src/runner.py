@@ -41,6 +41,8 @@ def main_runner(args):
         try:
             logger.info(file)
             inferred = process_file(file)
+            if not inferred:
+                raise Exception
             json_file_path = str(file).replace(".py", "_result.json")
 
             with open(json_file_path, "w") as json_file:

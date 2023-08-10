@@ -225,22 +225,22 @@ def main():
     # runner = HeaderGenRunner(host_results_path, debug=1)
     # runner.run_tool_test()
 
-    # runner = Type4pyRunner(host_results_path)
-    # runner.run_tool_test()
-
-    # runner = Type4pyRunner(host_results_path)
+    # runner = PyrightRunner(host_results_path)
     # runner.run_tool_test()
 
     runner = ScalpelRunner(host_results_path)
     runner.run_tool_test()
 
-    # runner = PySonar2Runner(host_results_path)
+    # runner = Type4pyRunner(host_results_path)
+    # runner.run_tool_test()
+
+    # runner = HityperRunner(host_results_path)
     # runner.run_tool_test()
 
     # runner = JediRunner(host_results_path)
     # runner.run_tool_test()
 
-    # runner = PyrightRunner(host_results_path)
+    # runner = PySonar2Runner(host_results_path)
     # runner.run_tool_test()
 
     # runner = PytypeRunner(host_results_path)
@@ -248,9 +248,6 @@ def main():
 
     # runner = PyreRunner(host_results_path)
     # runner.run_tool_test()
-
-    runner = HityperRunner(host_results_path)
-    runner.run_tool_test()
 
     os.rename("main_runner.log", f"{str(host_results_path)}/main_runner.log")
 
