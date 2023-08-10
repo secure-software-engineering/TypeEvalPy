@@ -61,7 +61,7 @@
         "line_number": 32,
         "function": "func4",
         "type": [
-            "Set[int]"
+            "set"
         ]
     },
     {
@@ -69,7 +69,7 @@
         "line_number": 36,
         "variable": "d",
         "type": [
-            "Set[int]"
+            "set"
         ]
     },
     {
@@ -77,7 +77,7 @@
         "line_number": 40,
         "function": "func5",
         "type": [
-            "List[int]"
+            "list"
         ]
     },
     {
@@ -94,7 +94,7 @@
         "line_number": 44,
         "variable": "e",
         "type": [
-            "List[int]"
+            "list"
         ]
     }
 ]
