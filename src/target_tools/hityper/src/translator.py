@@ -25,6 +25,7 @@ def translate_content(file_path):
     def convert_type(type_str):
         type_str = re.sub(r"typing\.", "", type_str)  # Remove "typing."
         type_str = re.sub(r"Text", r"str", type_str)  # Convert "Text" to "str"
+        type_str = re.sub(r"None", r"Nonetype", type_str)  # Convert None to Nonetype
         return type_str
 
     def convert_typing(type_list):
