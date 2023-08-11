@@ -121,6 +121,10 @@ def format_missing_matches(all_missing_matches):
         "Predicted Type",
     ]
     rows = []
+    sum_functions = 0
+    sum_params_variables = 0
+    sum_empty_out_types = 0
+    sum_non_empty_out_types = 0
 
     for file_name, missing_matches in all_missing_matches.items():
         merged_cell = file_name
@@ -141,35 +145,30 @@ def format_missing_matches(all_missing_matches):
                     out_types,
                 ]
             )
+            if function:
+                if not param_variable:
+                    sum_functions += 1
+
+            if param_variable:
+                sum_params_variables += 1
+
+            if not out_types:
+                sum_empty_out_types += 1
+            else:
+                sum_non_empty_out_types += 1
 
     missing_matches_table = tabulate(rows, headers=headers, tablefmt="grid")
-    # Calculate total errors
-    sum_functions = 0
-    sum_params_variables = 0
-    sum_empty_out_types = 0
-    sum_non_empty_out_types = 0
-
-    for row in rows:
-        function = row[2]
-        param_variable = row[3]
-        out_types = row[5]
-
-        if function:
-            if not param_variable:
-                sum_functions += 1
-
-        if param_variable:
-            sum_params_variables += 1
-
-        if not out_types:
-            sum_empty_out_types += 1
-        else:
-            sum_non_empty_out_types += 1
 
     total_missing_entries = sum(
         len(matches) for matches in all_missing_matches.values()
     )
-
+    analysis_data = [
+        total_missing_entries,
+        sum_functions,
+        sum_params_variables,
+        sum_empty_out_types,
+        sum_non_empty_out_types,
+    ]
     formatted_output = (
         "\nMissing matches:\n{}\nTotal error entries: {}\nErrors in function return"
         " type: {}\nErrors in param/variables: {}\nMissing entries: {}\nMismatch"
@@ -182,21 +181,34 @@ def format_missing_matches(all_missing_matches):
             sum_non_empty_out_types,
         )
     )
-    return formatted_output
+    return formatted_output, analysis_data
 
 
 def display_all_cats_data(all_cats_data):
-    headers = ["Category", "Missing Matches"]
-    rows = []
+    missing_headers = ["Category", "Missing Matches"]
+    missing_rows = []
+    analysis_data_headers = [
+        "Category",
+        "Total error entries",
+        "Function return",
+        "Param/variables",
+        "Missing entries",
+        "Mismatch",
+    ]
+    missing_analysis_rows = []
 
     for cat_data in all_cats_data:
         category = cat_data["Category"]
         missing_matches = cat_data["Missing Matches"]
         # logger.debug(f"~~~~~~ Category : {category} ~~~~~~")
-        rows.append([category, format_missing_matches(missing_matches)])
-
+        formatted_output, analysis_data = format_missing_matches(missing_matches)
+        missing_rows.append([category, formatted_output])
+        missing_analysis_rows.append([category, *analysis_data])
     logger.debug("\nAll Categories Data:")
-    logger.debug(tabulate(rows, headers=headers, tablefmt="grid"))
+    logger.debug(
+        tabulate(missing_analysis_rows, headers=analysis_data_headers, tablefmt="grid")
+    )
+    logger.debug(tabulate(missing_rows, headers=missing_headers, tablefmt="grid"))
 
 
 def process_cat_dir(cat_dir, tool_name=None):
