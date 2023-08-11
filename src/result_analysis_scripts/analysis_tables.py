@@ -4,6 +4,26 @@ import json
 import analysis_utils as utils
 
 
+def error_result_table(stats):
+    return
+    with open(f"tools_error_result_data.csv", "w", newline="") as csvfile:
+        fieldnames = [
+            "Micro-benchmark Category",
+        ]
+        for x in list(stats.keys()):
+            fieldnames.extend(list(f"{x}"))
+
+        writer = csv.writer(
+            csvfile,
+            delimiter=",",
+            quotechar="|",
+            quoting=csv.QUOTE_MINIMAL,
+        )
+        writer.writerow(fieldnames)
+        for _tool, _tool_values in stats.items():
+            print(_tool_values)
+
+
 def create_sound_complete_table(stats):
     with open(f"tools_sound_complete_data.csv", "w", newline="") as csvfile:
         fieldnames = [

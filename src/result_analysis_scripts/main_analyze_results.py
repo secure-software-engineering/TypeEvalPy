@@ -209,6 +209,9 @@ def display_all_cats_data(all_cats_data):
         tabulate(missing_analysis_rows, headers=analysis_data_headers, tablefmt="grid")
     )
     logger.debug(tabulate(missing_rows, headers=missing_headers, tablefmt="grid"))
+    return tabulate(
+        missing_analysis_rows, headers=analysis_data_headers, tablefmt="grid"
+    )
 
 
 def process_cat_dir(cat_dir, tool_name=None):
@@ -455,7 +458,7 @@ def iterate_cats(test_suite_dir, tool_name=None):
     )
 
     # Display all_missing_matches and cat values as one table
-    display_all_cats_data(all_cats_data)
+    return display_all_cats_data(all_cats_data)
 
 
 def generate_sound_complete_data(test_suite_dir, tool_name=None):
@@ -648,7 +651,10 @@ if __name__ == "__main__":
                 generate_top_n_performance(
                     item / "micro-benchmark/python_features", tool_name=item.name
                 )
-            iterate_cats(item / "micro-benchmark/python_features", tool_name=item.name)
+            tools_results[item.name]["error_result_data"] = iterate_cats(
+                item / "micro-benchmark/python_features", tool_name=item.name
+            )
+            # print(tools_results[item.name]["error_result_data"])
 
             (
                 tools_results[item.name]["sound_complete_data"],
@@ -663,6 +669,7 @@ if __name__ == "__main__":
             # )
 
     # Create sound complete table
+    analysis_tables.error_result_table(tools_results)
     analysis_tables.create_sound_complete_table(tools_results)
 
     # Move logs
@@ -670,7 +677,10 @@ if __name__ == "__main__":
     os.rename(
         "results_analysis_info.log", f"{str(results_dir)}/results_analysis_info.log"
     )
-
+    """os.rename(
+        "tools_error_result_data.csv",
+        f"{str(results_dir)}/tools_error_result_data.csv",
+    )"""
     os.rename(
         "tools_sound_complete_data.csv",
         f"{str(results_dir)}/tools_sound_complete_data.csv",
