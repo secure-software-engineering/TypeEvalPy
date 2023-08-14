@@ -209,9 +209,7 @@ def display_all_cats_data(all_cats_data):
         tabulate(missing_analysis_rows, headers=analysis_data_headers, tablefmt="grid")
     )
     logger.debug(tabulate(missing_rows, headers=missing_headers, tablefmt="grid"))
-    return tabulate(
-        missing_analysis_rows, headers=analysis_data_headers, tablefmt="grid"
-    )
+    return missing_analysis_rows
 
 
 def process_cat_dir(cat_dir, tool_name=None):
@@ -677,10 +675,10 @@ if __name__ == "__main__":
     os.rename(
         "results_analysis_info.log", f"{str(results_dir)}/results_analysis_info.log"
     )
-    """os.rename(
+    os.rename(
         "tools_error_result_data.csv",
         f"{str(results_dir)}/tools_error_result_data.csv",
-    )"""
+    )
     os.rename(
         "tools_sound_complete_data.csv",
         f"{str(results_dir)}/tools_sound_complete_data.csv",

@@ -5,13 +5,14 @@ import analysis_utils as utils
 
 
 def error_result_table(stats):
-    return
     with open(f"tools_error_result_data.csv", "w", newline="") as csvfile:
         fieldnames = [
             "Micro-benchmark Category",
         ]
         for x in list(stats.keys()):
-            fieldnames.extend(list(f"{x}"))
+            fieldnames.extend(
+                list((f"{x}_total", f"{x}_fn", f"{x}_var", f"{x}_miss", f"{x}_diff"))
+            )
 
         writer = csv.writer(
             csvfile,
@@ -20,8 +21,17 @@ def error_result_table(stats):
             quoting=csv.QUOTE_MINIMAL,
         )
         writer.writerow(fieldnames)
+        cat_based_dict = {}
         for _tool, _tool_values in stats.items():
-            print(_tool_values)
+            for value in _tool_values["error_result_data"]:
+                category = value[0]
+                if category not in cat_based_dict:
+                    cat_based_dict[category] = []
+                cat_based_dict[category].extend(value[1:])
+        for category, values in cat_based_dict.items():
+            row = [category]
+            row.extend(values)
+            writer.writerow(row)
 
 
 def create_sound_complete_table(stats):
