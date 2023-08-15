@@ -34,6 +34,7 @@ def list_python_files(folder_path):
 
 def process_file(file_path):
     try:
+        error_count = 0
         json_filepath = str(file_path).replace(".py", "_gt.json")
         result_filepath = str(file_path).replace(".py", "_result.json")
         file_result = []
@@ -57,18 +58,19 @@ def process_file(file_path):
                 + "&".join(f"{key}={value}" for key, value in params.items())
             )
             # logger.debug("Checking in URL:", url)
-
-            response = requests.get(url)
-            hover_result = response.json()
-            if hover_result["type"]:
-                file_result.append(hover_result)
+            try:
+                response = requests.get(url)
+                hover_result = response.json()
+                if hover_result["type"]:
+                    file_result.append(hover_result)
+            except Exception as e:
+                logger.info(f"{file_path} failed: {e}")
+                error_count = 1
         utils.generate_json_file(result_filepath, file_result)
+        return error_count
     except Exception as e:
         logger.info(f"{file_path} failed: {e}")
         raise
-    # utils.parse_python_code(code)
-    # Process file here and return results
-    pass
 
 
 MAX_RETRY_COUNT = 3
@@ -90,7 +92,7 @@ def process_file_wrapper(python_files):
     for file in python_files:
         try:
             # logger.debug("\n Type checking for file:", file)
-            inferred = process_file(file)
+            error_count += process_file(file)
         except Exception as e:
             logger.info(f"Command returned non-zero exit status: {e} for file: {file}")
             error_list.append(file)
