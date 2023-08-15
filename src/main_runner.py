@@ -91,20 +91,27 @@ class TypeEvalPyRunner:
         )
         return container
 
+    def setup_benchmark_external_library(self):
+        _, response = self.container.exec_run(
+            f"pip install typeevalpy-external-module", stream=True
+        )
+
     def _run_test_in_session(self, result_path="/tmp/micro-benchmark"):
         logger.info("#####################################################")
         logger.info(f"Running : {self.tool_name}")
         self._build_docker_image()
-        container = self.spawn_docker_instance()
+        self.container = self.spawn_docker_instance()
 
         file_handler = FileHandler()
         src = "../micro-benchmark"
         dst = "/tmp"
-        file_handler.copy_files_to_container(container, src, dst)
+        file_handler.copy_files_to_container(self.container, src, dst)
+
+        self.setup_benchmark_external_library()
 
         logger.info("Type inferring...")
         start_time = time.time()
-        _, response = container.exec_run(
+        _, response = self.container.exec_run(
             f"python {self.test_runner_script_path}", stream=True
         )
         for line in response:
@@ -115,11 +122,11 @@ class TypeEvalPyRunner:
         logger.info(f"Execution time: {execution_time} seconds")
 
         file_handler.copy_files_from_container(
-            container, result_path, f"{self.host_results_path}/{self.tool_name}"
+            self.container, result_path, f"{self.host_results_path}/{self.tool_name}"
         )
 
-        container.stop()
-        container.remove()
+        self.container.stop()
+        self.container.remove()
 
     def run_tool_test(self):
         self._run_test_in_session()
@@ -200,7 +207,7 @@ def main():
     host_results_path = f"../.results/results_{datetime.now().strftime('%d-%m %H:%M')}"
 
     runner_classes = [
-        (HeaderGenRunner, {"debug": False}),
+        (HeaderGenRunner, {"debug": True}),
         # PyrightRunner,
         # ScalpelRunner,
         # Type4pyRunner,

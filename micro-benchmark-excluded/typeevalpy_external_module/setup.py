@@ -2,10 +2,8 @@ import setuptools
 
 setuptools.setup(
     name="typeevalpy_external_module",
-    version="1.2",
-    description=(
-        "External module for PyCG micro-benchmark with support for type inference"
-    ),
+    version="1.0.0",
+    description="External module for TypeEvalPy micro-benchmark for type inference",
     author="",
     author_email="",
     license="GPL-3.0",
