@@ -162,6 +162,7 @@ class HeaderGenRunner(TypeEvalPyRunner):
                 "headergen_dev",
                 "./target_tools/headergen",
                 host_results_path,
+                dockerfile_name="Dockerfile.dev",
                 volumes={
                     "/mnt/Projects/PhD/Research/HeaderGen/git_sources/HeaderGen_github/": {
                         "bind": "/app/HeaderGen",
@@ -196,7 +197,7 @@ class Type4pyRunner(TypeEvalPyRunner):
 
 
 def main():
-    host_results_path = f"./results_{datetime.now().strftime('%d-%m %H:%M')}"
+    host_results_path = f"../.results/results_{datetime.now().strftime('%d-%m %H:%M')}"
 
     runner_classes = [
         (HeaderGenRunner, {"debug": False}),

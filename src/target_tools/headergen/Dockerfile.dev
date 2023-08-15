@@ -1,0 +1,37 @@
+# Pull the Python base image
+FROM python:3.9-slim-bullseye
+
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+# Set work directory
+WORKDIR /app
+
+# Install dependencies
+RUN apt-get update \
+    && apt-get -y install git gcc
+
+# Clone the repository
+RUN git clone --recursive https://github.com/ashwinprasadme/HeaderGen.git
+RUN cd HeaderGen \
+    && git submodule update --init --recursive \
+    && git pull --recurse-submodules
+
+WORKDIR /app/HeaderGen
+
+# COPY requirements.txt /app/requirements.txt
+
+RUN pip install --upgrade pip
+RUN pip install -r requirements.txt
+RUN pip install -e .
+
+COPY src /tmp/src
+
+# Create headergen cache
+RUN python -m nltk.downloader stopwords
+RUN python /tmp/src/start_headergen_cache.py
+
+
+# Keep the container alive
+CMD ["bash"]
