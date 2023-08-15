@@ -80,4 +80,4 @@ for json_file in json_files:
 print(f"Total Python files: {len(python_files)}")
 print(f"Total annotations: {total_annotations}")
 print(f"Total types in annotations: {total_types}")
-print(f"Total col_offset in annotations: {total_col}/{total_types}")
+print(f"Total col_offset in annotations: {total_col}/{total_annotations}")

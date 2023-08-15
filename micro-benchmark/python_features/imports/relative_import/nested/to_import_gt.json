@@ -2,6 +2,7 @@
     {
         "file": "to_import.py",
         "line_number": 3,
+        "col_offset": 1,        
         "variable": "func",
         "type": [
             "callable"

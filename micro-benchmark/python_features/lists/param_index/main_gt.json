@@ -2,6 +2,7 @@
     {
         "file": "main.py",
         "line_number": 4,
+        "col_offset": 5,        
         "function": "func2",
         "type": [
             "int"
@@ -10,6 +11,7 @@
     {
         "file": "main.py",
         "line_number": 8,
+        "col_offset": 5,        
         "function": "func1",
         "type": [
             "any"
@@ -18,6 +20,7 @@
     {
         "file": "main.py",
         "line_number": 8,
+        "col_offset": 11,        
         "parameter": "key",
         "function": "func1",
         "type": [
@@ -27,6 +30,7 @@
     {
         "file": "main.py",
         "line_number": 12,
+        "col_offset": 1,        
         "variable": "ls",
         "type": [
             "list"
@@ -35,6 +39,7 @@
     {
         "file": "main.py",
         "line_number": 14,
+        "col_offset": 1,        
         "variable": "a",
         "type": [
             "int"

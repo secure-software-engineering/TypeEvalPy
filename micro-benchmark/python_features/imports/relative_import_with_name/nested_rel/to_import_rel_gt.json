@@ -2,6 +2,7 @@
     {
         "file": "to_import_rel.py",
         "line_number": 4,
+        "col_offset": 5,        
         "function": "func1",
         "type": [
             "str"

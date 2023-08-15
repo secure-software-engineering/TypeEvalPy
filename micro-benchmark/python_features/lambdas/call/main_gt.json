@@ -2,6 +2,7 @@
     {
         "file": "main.py",
         "line_number": 4,
+        "col_offset": 1,        
         "variable": "x",
         "type": [
             "callable"
@@ -10,6 +11,7 @@
     {
         "file": "main.py",
         "line_number": 4,
+        "col_offset": 12,        
         "function": "lambda",
         "variable": "x",
         "type": [
@@ -19,6 +21,7 @@
     {
         "file": "main.py",
         "line_number": 6,
+        "col_offset": 1,        
         "variable": "a",
         "type": [
             "int"

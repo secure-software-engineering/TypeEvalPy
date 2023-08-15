@@ -2,6 +2,7 @@
     {
         "file": "ext.py",
         "line_number": 2,
+        "col_offset": 1,        
         "variable": "key",
         "type": [
             "int"
