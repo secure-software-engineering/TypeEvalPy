@@ -12,25 +12,15 @@ WORKDIR /app
 RUN apt-get update \
     && apt-get -y install git gcc
 
-# Clone the repository
-RUN git clone --recursive https://github.com/ashwinprasadme/HeaderGen.git
-RUN cd HeaderGen \
-    && git submodule update --init --recursive \
-    && git pull --recurse-submodules \
-    && git checkout MLFunctionClassifier
 
-WORKDIR /app/HeaderGen
-
-# COPY requirements.txt /app/requirements.txt
+COPY requirements.txt /app/requirements.txt
 
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
-RUN pip install -e .
 
 COPY src /tmp/src
 
 # Create headergen cache
-RUN python -m nltk.downloader stopwords
 RUN python /tmp/src/start_headergen_cache.py
 
 

@@ -24,7 +24,7 @@ logger.addHandler(console_handler)
 
 
 class FileHandler:
-    def _copy_files_to_container(self, container, src, dst):
+    def copy_files_to_container(self, container, src, dst):
         # Create tar of micro-bench folder
         temp_path = "/tmp/temp.tar"
         with tarfile.open(temp_path, "w:gz") as tar:
@@ -35,7 +35,7 @@ class FileHandler:
             data = file.read()
             container.put_archive(dst, data)
 
-    def _copy_files_from_container(self, container, src, dst):
+    def copy_files_from_container(self, container, src, dst):
         stream, _ = container.get_archive(src)
         stream_bytes = b"".join(stream)
         stream_bytes_io = BytesIO(stream_bytes)
@@ -44,7 +44,7 @@ class FileHandler:
         tar.extractall(path=dst)
         tar.close()
 
-    def _list_python_files(self, directory):
+    def list_python_files(self, directory):
         python_files = []
         for root, _, files in os.walk(directory):
             for file in files:
@@ -100,7 +100,7 @@ class TypeEvalPyRunner:
         file_handler = FileHandler()
         src = "../micro-benchmark"
         dst = "/tmp"
-        file_handler._copy_files_to_container(container, src, dst)
+        file_handler.copy_files_to_container(container, src, dst)
 
         logger.info("Type inferring...")
         start_time = time.time()
@@ -114,60 +114,45 @@ class TypeEvalPyRunner:
         execution_time = end_time - start_time
         logger.info(f"Execution time: {execution_time} seconds")
 
-        file_handler._copy_files_from_container(
+        file_handler.copy_files_from_container(
             container, result_path, f"{self.host_results_path}/{self.tool_name}"
         )
 
         container.stop()
         container.remove()
 
+    def run_tool_test(self):
+        self._run_test_in_session()
+
 
 class ScalpelRunner(TypeEvalPyRunner):
     def __init__(self, host_results_path):
         super().__init__("scalpel", "./target_tools/scalpel", host_results_path)
-
-    def run_tool_test(self):
-        self._run_test_in_session()
 
 
 class PyreRunner(TypeEvalPyRunner):
     def __init__(self, host_results_path):
         super().__init__("pyre", "./target_tools/pyre", host_results_path)
 
-    def run_tool_test(self):
-        self._run_test_in_session()
-
 
 class PyrightRunner(TypeEvalPyRunner):
     def __init__(self, host_results_path):
         super().__init__("pyright", "./target_tools/pyright", host_results_path)
-
-    def run_tool_test(self):
-        self._run_test_in_session()
 
 
 class PytypeRunner(TypeEvalPyRunner):
     def __init__(self, host_results_path):
         super().__init__("pytype", "./target_tools/pytype", host_results_path)
 
-    def run_tool_test(self):
-        self._run_test_in_session()
-
 
 class JediRunner(TypeEvalPyRunner):
     def __init__(self, host_results_path):
         super().__init__("jedi", "./target_tools/jedi", host_results_path)
 
-    def run_tool_test(self):
-        self._run_test_in_session()
-
 
 class HityperRunner(TypeEvalPyRunner):
     def __init__(self, host_results_path):
         super().__init__("hityper", "./target_tools/hityper", host_results_path)
-
-    def run_tool_test(self):
-        self._run_test_in_session()
 
 
 class HeaderGenRunner(TypeEvalPyRunner):
@@ -187,24 +172,15 @@ class HeaderGenRunner(TypeEvalPyRunner):
         else:
             super().__init__("headergen", "./target_tools/headergen", host_results_path)
 
-    def run_tool_test(self):
-        self._run_test_in_session()
-
 
 class PySonar2Runner(TypeEvalPyRunner):
     def __init__(self, host_results_path):
         super().__init__("pysonar2", "./target_tools/pysonar2", host_results_path)
 
-    def run_tool_test(self):
-        self._run_test_in_session()
-
 
 class Type4pyRunner(TypeEvalPyRunner):
     def __init__(self, host_results_path):
         super().__init__("type4py", "./target_tools/type4py", host_results_path)
-
-    def run_tool_test(self):
-        self._run_test_in_session()
 
     def spawn_docker_instance(self):
         logger.info("Creating container")
@@ -222,32 +198,25 @@ class Type4pyRunner(TypeEvalPyRunner):
 def main():
     host_results_path = f"./results_{datetime.now().strftime('%d-%m %H:%M')}"
 
-    # runner = HeaderGenRunner(host_results_path, debug=1)
-    # runner.run_tool_test()
+    runner_classes = [
+        (HeaderGenRunner, {"debug": False}),
+        # PyrightRunner,
+        # ScalpelRunner,
+        # Type4pyRunner,
+        # HityperRunner,
+        # JediRunner,
+        # PySonar2Runner,
+        # PytypeRunner,
+        # PyreRunner,
+    ]
 
-    runner = PyrightRunner(host_results_path)
-    runner.run_tool_test()
-
-    runner = ScalpelRunner(host_results_path)
-    runner.run_tool_test()
-
-    runner = Type4pyRunner(host_results_path)
-    runner.run_tool_test()
-
-    runner = HityperRunner(host_results_path)
-    runner.run_tool_test()
-
-    # runner = JediRunner(host_results_path)
-    # runner.run_tool_test()
-
-    # runner = PySonar2Runner(host_results_path)
-    # runner.run_tool_test()
-
-    # runner = PytypeRunner(host_results_path)
-    # runner.run_tool_test()
-
-    # runner = PyreRunner(host_results_path)
-    # runner.run_tool_test()
+    for Runner in runner_classes:
+        if isinstance(Runner, tuple):
+            runner_class, kwargs = Runner
+            runner_instance = runner_class(host_results_path, **kwargs)
+        else:
+            runner_instance = Runner(host_results_path)
+        runner_instance.run_tool_test()
 
     os.rename("main_runner.log", f"{str(host_results_path)}/main_runner.log")
 
