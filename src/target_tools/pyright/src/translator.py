@@ -1,6 +1,7 @@
 import argparse
 import json
 import os
+import re
 from pathlib import Path
 
 
@@ -13,7 +14,7 @@ def check_result_files(directory):
                 with open(file_path, "r") as json_file:
                     data = json.load(json_file)
 
-                errors_in_file = remove_invalid_entries(data, file_path)
+                data, errors_in_file = remove_invalid_entries(data, file_path)
                 total_errors += errors_in_file
 
                 with open(file_path, "w") as json_file:
@@ -26,13 +27,20 @@ def remove_invalid_entries(data, file_path):
     updated_data = []
     for entry in data:
         if is_valid_entry(entry):
+            entry = format_none(entry)
             updated_data.append(entry)
         else:
             errors_in_file += 1
             print(f"Removed entry from {file_path}: {entry}")
 
     data[:] = updated_data
-    return errors_in_file
+    return data, errors_in_file
+
+
+def format_none(entry):
+    for i in range(len(entry["type"])):
+        entry["type"][i] = re.sub(r"\bNone\b", "Nonetype", entry["type"][i])
+    return entry
 
 
 def is_valid_entry(entry):
