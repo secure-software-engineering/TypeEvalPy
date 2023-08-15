@@ -60,7 +60,7 @@ def main_runner(args):
     error_count = 0
     for file in python_files:
         try:
-            logger.info(file)
+            # logger.debug(file)
             inferred = process_file(file)
 
             translated = translator.translate_content(inferred)

@@ -225,17 +225,17 @@ def main():
     # runner = HeaderGenRunner(host_results_path, debug=1)
     # runner.run_tool_test()
 
-    # runner = PyrightRunner(host_results_path)
-    # runner.run_tool_test()
+    runner = PyrightRunner(host_results_path)
+    runner.run_tool_test()
 
     runner = ScalpelRunner(host_results_path)
     runner.run_tool_test()
 
-    # runner = Type4pyRunner(host_results_path)
-    # runner.run_tool_test()
+    runner = Type4pyRunner(host_results_path)
+    runner.run_tool_test()
 
-    # runner = HityperRunner(host_results_path)
-    # runner.run_tool_test()
+    runner = HityperRunner(host_results_path)
+    runner.run_tool_test()
 
     # runner = JediRunner(host_results_path)
     # runner.run_tool_test()

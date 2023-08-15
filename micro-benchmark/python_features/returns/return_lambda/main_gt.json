@@ -2,6 +2,7 @@
     {
         "file": "main.py",
         "line_number": 4,
+        "col_offset": 5,        
         "function": "func",
         "type": [
             "callable"
@@ -10,6 +11,7 @@
     {
         "file": "main.py",
         "line_number": 5,
+        "col_offset": 19,        
         "function": "func",
         "variable": "x",
         "type": [
@@ -20,6 +22,7 @@
         "file": "main.py",
         "line_number": 8,
         "variable": "f",
+        "col_offset": 1,        
         "type": [
             "callable"
         ]
@@ -27,6 +30,7 @@
     {
         "file": "main.py",
         "line_number": 9,
+        "col_offset": 1,        
         "variable": "a",
         "type": [
             "int"
@@ -35,6 +39,7 @@
     {
         "file": "main.py",
         "line_number": 10,
+        "col_offset": 1,        
         "variable": "b",
         "type": [
             "float"

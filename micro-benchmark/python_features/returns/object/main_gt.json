@@ -2,6 +2,7 @@
     {
         "file": "main.py",
         "line_number": 5,
+        "col_offset": 24,                
         "parameter": "name",
         "function": "__init__",
         "type": [
@@ -11,6 +12,7 @@
     {
         "file": "main.py",
         "line_number": 5,
+        "col_offset": 30,                
         "parameter": "age",
         "function": "__init__",
         "type": [
@@ -20,6 +22,7 @@
     {
         "file": "main.py",
         "line_number": 6,
+        "col_offset": 9,                
         "variable": "Person.name",
         "function": "__init__",
         "type": [
@@ -29,6 +32,7 @@
     {
         "file": "main.py",
         "line_number": 7,
+        "col_offset": 9,                
         "parameter": "Person.age",
         "function": "__init__",
         "type": [
@@ -38,6 +42,7 @@
     {
         "file": "main.py",
         "line_number": 10,
+        "col_offset": 5,                
         "function": "func",
         "type": [
             "Person"
@@ -46,6 +51,7 @@
     {
         "file": "main.py",
         "line_number": 14,
+        "col_offset": 1,                
         "variable": "p",
         "type": [
             "Person"

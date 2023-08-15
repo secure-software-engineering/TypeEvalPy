@@ -2,6 +2,7 @@
     {
         "file": "to_import2.py",
         "line_number": 2,
+        "col_offset": 5,        
         "function": "return_func",
         "type": [
             "str"

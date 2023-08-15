@@ -56,7 +56,7 @@ def process_file(file_path):
                 + "?"
                 + "&".join(f"{key}={value}" for key, value in params.items())
             )
-            print("Checking in URL:", url)
+            # logger.debug("Checking in URL:", url)
 
             response = requests.get(url)
             hover_result = response.json()
@@ -89,15 +89,15 @@ def process_file_wrapper(python_files):
     error_list = []
     for file in python_files:
         try:
-            print("\n Type checking for file:", file)
+            # logger.debug("\n Type checking for file:", file)
             inferred = process_file(file)
         except Exception as e:
             logger.info(f"Command returned non-zero exit status: {e} for file: {file}")
             error_list.append(file)
             error_count += 1
-    print("Error files")
-    for file in error_list:
-        print(file)
+    # logger.debug("Error files")
+    # for file in error_list:
+    #    logger.debug(file)
     return error_count
 
 
