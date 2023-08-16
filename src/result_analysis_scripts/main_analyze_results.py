@@ -122,7 +122,8 @@ def format_missing_matches(all_missing_matches):
     ]
     rows = []
     sum_functions = 0
-    sum_params_variables = 0
+    sum_params = 0
+    sum_variables = 0
     sum_empty_out_types = 0
     sum_non_empty_out_types = 0
 
@@ -132,7 +133,8 @@ def format_missing_matches(all_missing_matches):
         for i, entry in enumerate(missing_matches):
             line_number = entry.get("line_number", "")
             function = entry.get("function", "")
-            param_variable = entry.get("parameter", entry.get("variable", ""))
+            param = entry.get("parameter", "")
+            variable = entry.get("variable", "")
             types = ", ".join(entry.get("type", []))
             out_types = ", ".join(entry.get("out_type", []))
             rows.append(
@@ -140,17 +142,21 @@ def format_missing_matches(all_missing_matches):
                     merged_cell if i == 0 else "",
                     line_number,
                     function,
-                    param_variable,
+                    param,
+                    variable,
                     types,
                     out_types,
                 ]
             )
             if function:
-                if not param_variable:
+                if not param and not variable:
                     sum_functions += 1
 
-            if param_variable:
-                sum_params_variables += 1
+            if param:
+                sum_params += 1
+
+            if variable:
+                sum_variables += 1
 
             if not out_types:
                 sum_empty_out_types += 1
@@ -165,18 +171,20 @@ def format_missing_matches(all_missing_matches):
     analysis_data = [
         total_missing_entries,
         sum_functions,
-        sum_params_variables,
+        sum_params,
+        sum_variables,
         sum_empty_out_types,
         sum_non_empty_out_types,
     ]
     formatted_output = (
         "\nMissing matches:\n{}\nTotal error entries: {}\nErrors in function return"
-        " type: {}\nErrors in param/variables: {}\nMissing entries: {}\nMismatch"
-        " entries: {}".format(
+        " type: {}\nErrors in param: {}\n/Errors in variables:{}\nMissing entries:"
+        " {}\nMismatch entries: {}".format(
             missing_matches_table,
             total_missing_entries,
             sum_functions,
-            sum_params_variables,
+            sum_params,
+            sum_variables,
             sum_empty_out_types,
             sum_non_empty_out_types,
         )
@@ -191,7 +199,8 @@ def display_all_cats_data(all_cats_data):
         "Category",
         "Total error entries",
         "Function return",
-        "Param/variables",
+        "Param",
+        "variables",
         "Missing entries",
         "Mismatch",
     ]
@@ -652,6 +661,10 @@ if __name__ == "__main__":
             tools_results[item.name]["error_result_data"] = iterate_cats(
                 item / "micro-benchmark/python_features", tool_name=item.name
             )
+            tools_results[item.name]["total_benchmark_data"] = utils.benchmark_count(
+                item / "micro-benchmark/python_features"
+            )
+            # print(tools_results[item.name]["total_benchmark_data"])
             # print(tools_results[item.name]["error_result_data"])
 
             (
