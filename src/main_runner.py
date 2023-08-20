@@ -161,6 +161,18 @@ class HityperRunner(TypeEvalPyRunner):
     def __init__(self, host_results_path):
         super().__init__("hityper", "./target_tools/hityper", host_results_path)
 
+    def spawn_docker_instance(self):
+        logger.info("Creating container")
+        container = self.docker_client.containers.run(
+            self.tool_name,
+            detach=True,
+            stdin_open=True,
+            tty=True,
+            ports={"5010": 5001},
+        )
+        time.sleep(5)  # wait fot server to start
+        return container
+
 
 class HeaderGenRunner(TypeEvalPyRunner):
     def __init__(self, host_results_path, debug=False):

@@ -4,7 +4,7 @@ import json
 import analysis_utils as utils
 
 
-def error_result_table(stats):
+def error_result_table(stats, total_stats=True):
     with open(f"tools_error_result_data.csv", "w", newline="") as csvfile:
         fieldnames = [
             "Micro-benchmark Category",
@@ -38,43 +38,45 @@ def error_result_table(stats):
                     cat_based_dict[category] = []
                 cat_based_dict[category].extend(value[1:])
 
-        tool_count = 0
-        for _tool, _tool_values in stats.items():
-            for value in _tool_values["total_benchmark_data"]:
-                category = value[0]
-                if category not in cat_based_dict:
-                    cat_based_dict[category] = []
-                """cat_based_dict[category][
-                    4 + tool_count
-                ] = (  # Total missing errors/ Total errors
-                    f"{cat_based_dict[category][4+ tool_count]}/{cat_based_dict[category][0+ tool_count]}"
-                )
-                cat_based_dict[category][
-                    5 + tool_count
-                ] = (  # Total mismatch errors/ Total errors
-                    f"{cat_based_dict[category][5+ tool_count]}/{cat_based_dict[category][0+ tool_count]}"
-                )"""
-                cat_based_dict[category][
-                    0 + tool_count
-                ] = (  # Total errors/ Total annotations
-                    f"{cat_based_dict[category][0+ tool_count]}/{value[1]}"
-                )
-                cat_based_dict[category][
-                    1 + tool_count
-                ] = (  # Total function errors/ Total function annotations
-                    f"{cat_based_dict[category][1+ tool_count]}/{value[2]}"
-                )
-                cat_based_dict[category][
-                    2 + tool_count
-                ] = (  # Total parameter errors/ Total parameter annotations
-                    f"{cat_based_dict[category][2+ tool_count]}/{value[3]}"
-                )
-                cat_based_dict[category][
-                    3 + tool_count
-                ] = (  # Total variable errors/ Total variable annotations
-                    f"{cat_based_dict[category][3+ tool_count]}/{value[4]}"
-                )
-            tool_count += 6
+        # For printing total benchmark data
+        if total_stats:
+            tool_count = 0
+            for _tool, _tool_values in stats.items():
+                for value in _tool_values["total_benchmark_data"]:
+                    category = value[0]
+                    if category not in cat_based_dict:
+                        cat_based_dict[category] = []
+                    """cat_based_dict[category][
+                        4 + tool_count
+                    ] = (  # Total missing errors/ Total errors
+                        f"{cat_based_dict[category][4+ tool_count]}/{cat_based_dict[category][0+ tool_count]}"
+                    )
+                    cat_based_dict[category][
+                        5 + tool_count
+                    ] = (  # Total mismatch errors/ Total errors
+                        f"{cat_based_dict[category][5+ tool_count]}/{cat_based_dict[category][0+ tool_count]}"
+                    )"""
+                    cat_based_dict[category][
+                        0 + tool_count
+                    ] = (  # Total errors/ Total annotations
+                        f"{cat_based_dict[category][0+ tool_count]}/{value[1]}"
+                    )
+                    cat_based_dict[category][
+                        1 + tool_count
+                    ] = (  # Total function errors/ Total function annotations
+                        f"{cat_based_dict[category][1+ tool_count]}/{value[2]}"
+                    )
+                    cat_based_dict[category][
+                        2 + tool_count
+                    ] = (  # Total parameter errors/ Total parameter annotations
+                        f"{cat_based_dict[category][2+ tool_count]}/{value[3]}"
+                    )
+                    cat_based_dict[category][
+                        3 + tool_count
+                    ] = (  # Total variable errors/ Total variable annotations
+                        f"{cat_based_dict[category][3+ tool_count]}/{value[4]}"
+                    )
+                tool_count += 6
 
         for category, values in cat_based_dict.items():
             row = [category]
