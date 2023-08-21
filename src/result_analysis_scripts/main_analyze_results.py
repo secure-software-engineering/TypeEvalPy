@@ -589,41 +589,65 @@ def generate_top_n_performance(test_suite_dir, tool_name=None):
 
         # Calculate p,r values for all categories
         for _cat in utils.TYPE_CATEGORIES:
-            results_cat[_top_n][_cat]["precision_perc"] = float(
-                results_cat[_top_n][_cat]["p_overall_total_caught"]
-            ) / float(results_cat[_top_n][_cat]["p_overall_total_facts"])
+            if results_cat[_top_n][_cat]["p_overall_total_facts"] != 0:
+                results_cat[_top_n][_cat]["precision_perc"] = float(
+                    results_cat[_top_n][_cat]["p_overall_total_caught"]
+                ) / float(results_cat[_top_n][_cat]["p_overall_total_facts"])
+            else:
+                results_cat[_top_n][_cat]["precision_perc"] = 0.0
 
-            results_cat[_top_n][_cat]["recall_perc"] = float(
-                results_cat[_top_n][_cat]["r_overall_total_caught"]
-            ) / float(results_cat[_top_n][_cat]["r_overall_total_facts"])
+            if results_cat[_top_n][_cat]["r_overall_total_facts"] != 0:
+                results_cat[_top_n][_cat]["recall_perc"] = float(
+                    results_cat[_top_n][_cat]["r_overall_total_caught"]
+                ) / float(results_cat[_top_n][_cat]["r_overall_total_facts"])
+            else:
+                results_cat[_top_n][_cat]["recall_perc"] = 0.0
 
-            results_cat[_top_n][_cat]["precision_partial_perc"] = float(
-                results_cat[_top_n][_cat]["p_overall_total_caught_partial"]
-                + results_cat[_top_n][_cat]["p_overall_total_caught"]
-            ) / float(results_cat[_top_n][_cat]["p_overall_total_facts"])
+            if results_cat[_top_n][_cat]["p_overall_total_facts"] != 0:
+                results_cat[_top_n][_cat]["precision_partial_perc"] = float(
+                    results_cat[_top_n][_cat]["p_overall_total_caught_partial"]
+                    + results_cat[_top_n][_cat]["p_overall_total_caught"]
+                ) / float(results_cat[_top_n][_cat]["p_overall_total_facts"])
+            else:
+                results_cat[_top_n][_cat]["precision_partial_perc"] = 0.0
 
-            results_cat[_top_n][_cat]["recall_partial_perc"] = float(
-                results_cat[_top_n][_cat]["r_overall_total_caught_partial"]
-                + results_cat[_top_n][_cat]["r_overall_total_caught_partial"]
-            ) / float(results_cat[_top_n][_cat]["r_overall_total_facts"])
+            if results_cat[_top_n][_cat]["r_overall_total_facts"] != 0:
+                results_cat[_top_n][_cat]["recall_partial_perc"] = float(
+                    results_cat[_top_n][_cat]["r_overall_total_caught_partial"]
+                    + results_cat[_top_n][_cat]["r_overall_total_caught_partial"]
+                ) / float(results_cat[_top_n][_cat]["r_overall_total_facts"])
+            else:
+                results_cat[_top_n][_cat]["recall_partial_perc"] = 0.0
 
+    if results_cat[_top_n]["totals"]["p_total_facts"] != 0:
         results_cat[_top_n]["totals"]["precision_perc"] = float(
             results_cat[_top_n]["totals"]["p_total_facts_caught"]
         ) / float(results_cat[_top_n]["totals"]["p_total_facts"])
+    else:
+        results_cat[_top_n]["totals"]["precision_perc"] = 0.0
 
+    if results_cat[_top_n]["totals"]["r_total_facts"] != 0:
         results_cat[_top_n]["totals"]["recall_perc"] = float(
             results_cat[_top_n]["totals"]["r_total_facts_caught"]
         ) / float(results_cat[_top_n]["totals"]["r_total_facts"])
+    else:
+        results_cat[_top_n]["totals"]["recall_perc"] = 0.0
 
+    if results_cat[_top_n]["totals"]["p_total_facts"] != 0:
         results_cat[_top_n]["totals"]["precision_partial_perc"] = float(
             results_cat[_top_n]["totals"]["p_total_facts_partial"]
             + results_cat[_top_n]["totals"]["p_total_facts_caught"]
         ) / float(results_cat[_top_n]["totals"]["p_total_facts"])
+    else:
+        results_cat[_top_n]["totals"]["precision_partial_perc"] = 0.0
 
+    if results_cat[_top_n]["totals"]["r_total_facts"] != 0:
         results_cat[_top_n]["totals"]["recall_partial_perc"] = float(
             results_cat[_top_n]["totals"]["r_total_facts_partial"]
             + results_cat[_top_n]["totals"]["r_total_facts_caught"]
         ) / float(results_cat[_top_n]["totals"]["r_total_facts"])
+    else:
+        results_cat[_top_n]["totals"]["recall_partial_perc"] = 0.0
 
     analysis_tables.create_top_n_table(results_cat, tool_name)
 

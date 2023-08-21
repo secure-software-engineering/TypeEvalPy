@@ -136,8 +136,10 @@ def check_match(expected, out, partial_match=False, top_n=1, is_ml=False):
                     matched = True
     else:
         matched = False
-        if sorted(expected_type_formatted) == type_formatted[:top_n]:
-            matched = True
+        # if sorted(expected_type_formatted) == type_formatted[:top_n]:
+        for _t_list in type_formatted[:top_n]:
+            if sorted(expected_type_formatted) == [_t_list]:
+                matched = True
 
     if not matched:
         # print only full mismatch

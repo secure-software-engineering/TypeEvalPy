@@ -163,14 +163,31 @@ def create_top_n_table(stats, tool_name):
 
         for _top_n, _top_n_values in stats.items():
             for _cat, _cat_values in _top_n_values.items():
-                cat_based_dict[_cat][_top_n]["exact_p"] = _cat_values["precision_perc"]
-                cat_based_dict[_cat][_top_n]["exact_r"] = _cat_values["recall_perc"]
-                cat_based_dict[_cat][_top_n]["partial_p"] = _cat_values[
-                    "precision_partial_perc"
-                ]
-                cat_based_dict[_cat][_top_n]["partial_r"] = _cat_values[
-                    "recall_partial_perc"
-                ]
+                exact_p = (
+                    _cat_values["precision_perc"]
+                    if _cat_values.get("p_overall_total_facts")
+                    else 0.0
+                )
+                exact_r = (
+                    _cat_values["recall_perc"]
+                    if _cat_values.get("r_overall_total_facts")
+                    else 0.0
+                )
+                partial_p = (
+                    _cat_values["precision_partial_perc"]
+                    if _cat_values.get("p_overall_total_facts")
+                    else 0.0
+                )
+                partial_r = (
+                    _cat_values["recall_partial_perc"]
+                    if _cat_values.get("r_overall_total_facts")
+                    else 0.0
+                )
+
+                cat_based_dict[_cat][_top_n]["exact_p"] = exact_p
+                cat_based_dict[_cat][_top_n]["exact_r"] = exact_r
+                cat_based_dict[_cat][_top_n]["partial_p"] = partial_p
+                cat_based_dict[_cat][_top_n]["partial_r"] = partial_r
 
         writer.writerow(fieldnames)
         for _cat, _cat_values in cat_based_dict.items():
