@@ -47,22 +47,34 @@ def categorize_facts(data):
     return type_categories
 
 
-def format_type(_types):
+def format_type(_types, is_ml=False):
     type_formatted = []
     if _types:
         for _type in _types:
             i_type_list = []
-            for _t in _type:
-                if _t.startswith("Union["):
+            if is_ml:
+                if _type.startswith("Union["):
                     types_split = [
                         x.replace(" ", "").lower()
-                        for x in _t.split("Union[")[1].split("]")[0].split(",")
+                        for x in _type.split("Union[")[1].split("]")[0].split(",")
                     ]
                     i_type_list.extend(types_split)
                 else:
                     # TODO: Maybe no translation should be done here
-                    # i_type_list.append(_t.lower())
-                    i_type_list.append(_t.split("[")[0].lower())
+                    i_type_list.append(_type.lower())
+                    # i_type_list.append(_t.split("[")[0].lower())
+            else:
+                for _t in _type:
+                    if _t.startswith("Union["):
+                        types_split = [
+                            x.replace(" ", "").lower()
+                            for x in _t.split("Union[")[1].split("]")[0].split(",")
+                        ]
+                        i_type_list.extend(types_split)
+                    else:
+                        # TODO: Maybe no translation should be done here
+                        i_type_list.append(_t.lower())
+                        # i_type_list.append(_t.split("[")[0].lower())
             type_formatted.append(list(set(i_type_list)))
     return type_formatted
 
@@ -101,19 +113,20 @@ def check_match(expected, out, partial_match=False, top_n=1, is_ml=False):
             return False
 
     # logger.debug("Other facts match: checking for types")
-
+    type_formatted = []
     # check if type match
     if is_ml:
         # _type = out.get("type")
         _types = []
         if out.get("all_type_preds"):
             _types = [x[0] for x in out.get("all_type_preds")]
+            type_formatted = format_type(_types, True)
     else:
         _types = [list(set(out.get("type")))]
+        type_formatted = format_type(_types)
 
-    type_formatted = format_type(_types)
     expected_type_formatted = format_type([list(set(expected.get("type")))])
-
+    # print(type_formatted)
     if partial_match:
         # check if atleast one exists
         matched = False
