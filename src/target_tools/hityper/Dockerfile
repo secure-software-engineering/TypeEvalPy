@@ -20,7 +20,5 @@ WORKDIR /app/HiTyper
 # Install Python dependencies
 RUN pip install .
 
-WORKDIR /app
+WORKDIR /type4py/type4py/server
 
-# Set the default command to run when the container starts
-CMD ["bash"]

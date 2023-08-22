@@ -28,9 +28,6 @@ def translate_content(file_path):
         type_str = re.sub(r"None", r"Nonetype", type_str)  # Convert None to Nonetype
         return type_str
 
-    def convert_typing(type_list):
-        return [convert_type(item) for item in type_list]
-
     for key, value in hityper.items():
         function_name, class_name = key.split("@")  # Get the identifier from the key
         if class_name == "global":
@@ -49,7 +46,11 @@ def translate_content(file_path):
                                 "file": gt_item["file"],
                                 "line_number": gt_item["line_number"],
                                 "variable": gt_item["variable"],
-                                "type": convert_typing(item["type"]),
+                                "type": [convert_type(item["type"][0])],
+                                "all_type_preds": [
+                                    convert_type(type_item)
+                                    for type_item in item["type"]
+                                ],
                             }
                             formatted_output.append(formatted_item)
                     elif "function" in gt_item and gt_item["function"] == function_name:
@@ -59,7 +60,11 @@ def translate_content(file_path):
                                 "line_number": gt_item["line_number"],
                                 "function": gt_item["function"],
                                 "variable": gt_item["variable"],
-                                "type": convert_typing(item["type"]),
+                                "type": [convert_type(item["type"][0])],
+                                "all_type_preds": [
+                                    convert_type(type_item)
+                                    for type_item in item["type"]
+                                ],
                             }
                             formatted_output.append(formatted_item)
                 elif item["category"] == "arg" and "parameter" in gt_item:
@@ -73,7 +78,10 @@ def translate_content(file_path):
                             "line_number": gt_item["line_number"],
                             "function": gt_item["function"],
                             "parameter": gt_item["parameter"],
-                            "type": convert_typing(item["type"]),
+                            "type": [convert_type(item["type"][0])],
+                            "all_type_preds": [
+                                convert_type(type_item) for type_item in item["type"]
+                            ],
                         }
                         formatted_output.append(formatted_item)
                 elif item["category"] == "return":
@@ -86,7 +94,10 @@ def translate_content(file_path):
                             "file": gt_item["file"],
                             "line_number": gt_item["line_number"],
                             "function": gt_item["function"],
-                            "type": convert_typing(item["type"]),
+                            "type": [convert_type(item["type"][0])],
+                            "all_type_preds": [
+                                convert_type(type_item) for type_item in item["type"]
+                            ],
                         }
                         formatted_output.append(formatted_item)
     return formatted_output

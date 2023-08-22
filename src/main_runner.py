@@ -126,6 +126,7 @@ class TypeEvalPyRunner:
         )
 
         self.container.stop()
+        time.sleep(5)
         self.container.remove()
 
     def run_tool_test(self):
@@ -236,6 +237,7 @@ def main():
             runner_instance = runner_class(host_results_path, **kwargs)
         else:
             runner_instance = Runner(host_results_path)
+
         runner_instance.run_tool_test()
 
     os.rename("main_runner.log", f"{str(host_results_path)}/main_runner.log")

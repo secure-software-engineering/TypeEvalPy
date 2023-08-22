@@ -720,4 +720,8 @@ if __name__ == "__main__":
         "tools_sound_complete_data.csv",
         f"{str(results_dir)}/tools_sound_complete_data.csv",
     )
-    # os.rename("top_n_table_type4py.csv", f"{str(results_dir)}/top_n_table_type4py.csv")
+    for tool in list(tools_results.keys()):
+        if tool in utils.ML_TOOLS:
+            os.rename(
+                f"top_n_table_{tool}.csv", f"{str(results_dir)}/top_n_table_{tool}.csv"
+            )
