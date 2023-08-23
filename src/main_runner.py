@@ -162,6 +162,11 @@ class HityperRunner(TypeEvalPyRunner):
     def __init__(self, host_results_path):
         super().__init__("hityper", "./target_tools/hityper", host_results_path)
 
+
+class HityperDLRunner(TypeEvalPyRunner):
+    def __init__(self, host_results_path):
+        super().__init__("hityperdl", "./target_tools/hityperdl", host_results_path)
+
     def spawn_docker_instance(self):
         logger.info("Creating container")
         container = self.docker_client.containers.run(
@@ -220,11 +225,12 @@ def main():
     host_results_path = f"../.results/results_{datetime.now().strftime('%d-%m %H:%M')}"
 
     runner_classes = [
-        (HeaderGenRunner, {"debug": True}),
-        # PyrightRunner,
-        # ScalpelRunner,
-        # Type4pyRunner,
-        # HityperRunner,
+        (HeaderGenRunner, {"debug": False}),
+        PyrightRunner,
+        ScalpelRunner,
+        HityperRunner,
+        Type4pyRunner,
+        HityperDLRunner,  # For the top n predictions from DL model(Type4py) used by HiTyper
         # JediRunner,
         # PySonar2Runner,
         # PytypeRunner,

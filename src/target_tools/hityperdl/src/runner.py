@@ -32,7 +32,7 @@ def list_python_files(folder_path):
 
 def process_file(file_path):
     dir_path, file_name = os.path.split(file_path)
-    hitype_cmd = f"hityper infer -s ./{file_name} -p ."
+    hitype_cmd = f"hityper infer -s ./{file_name} -p . -n 5 -t"
     subprocess.run(
         hitype_cmd,
         shell=True,
