@@ -165,22 +165,22 @@ def create_top_n_table(stats, tool_name):
             for _cat, _cat_values in _top_n_values.items():
                 exact_p = (
                     _cat_values["precision_perc"]
-                    if _cat_values.get("p_overall_total_facts")
+                    if _cat_values.get("precision_perc")
                     else 0.0
                 )
                 exact_r = (
                     _cat_values["recall_perc"]
-                    if _cat_values.get("r_overall_total_facts")
+                    if _cat_values.get("recall_perc")
                     else 0.0
                 )
                 partial_p = (
                     _cat_values["precision_partial_perc"]
-                    if _cat_values.get("p_overall_total_facts")
+                    if _cat_values.get("precision_partial_perc")
                     else 0.0
                 )
                 partial_r = (
                     _cat_values["recall_partial_perc"]
-                    if _cat_values.get("r_overall_total_facts")
+                    if _cat_values.get("recall_partial_perc")
                     else 0.0
                 )
 

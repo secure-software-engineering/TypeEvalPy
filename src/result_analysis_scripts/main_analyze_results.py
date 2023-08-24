@@ -614,41 +614,40 @@ def generate_top_n_performance(test_suite_dir, tool_name=None):
             if results_cat[_top_n][_cat]["r_overall_total_facts"] != 0:
                 results_cat[_top_n][_cat]["recall_partial_perc"] = float(
                     results_cat[_top_n][_cat]["r_overall_total_caught_partial"]
-                    + results_cat[_top_n][_cat]["r_overall_total_caught_partial"]
+                    + results_cat[_top_n][_cat]["r_overall_total_caught"]
                 ) / float(results_cat[_top_n][_cat]["r_overall_total_facts"])
             else:
                 results_cat[_top_n][_cat]["recall_partial_perc"] = 0.0
 
-    if results_cat[_top_n]["totals"]["p_total_facts"] != 0:
-        results_cat[_top_n]["totals"]["precision_perc"] = float(
-            results_cat[_top_n]["totals"]["p_total_facts_caught"]
-        ) / float(results_cat[_top_n]["totals"]["p_total_facts"])
-    else:
-        results_cat[_top_n]["totals"]["precision_perc"] = 0.0
+        if results_cat[_top_n]["totals"]["p_total_facts"] != 0:
+            results_cat[_top_n]["totals"]["precision_perc"] = float(
+                results_cat[_top_n]["totals"]["p_total_facts_caught"]
+            ) / float(results_cat[_top_n]["totals"]["p_total_facts"])
+        else:
+            results_cat[_top_n]["totals"]["precision_perc"] = 0.0
 
-    if results_cat[_top_n]["totals"]["r_total_facts"] != 0:
-        results_cat[_top_n]["totals"]["recall_perc"] = float(
-            results_cat[_top_n]["totals"]["r_total_facts_caught"]
-        ) / float(results_cat[_top_n]["totals"]["r_total_facts"])
-    else:
-        results_cat[_top_n]["totals"]["recall_perc"] = 0.0
+        if results_cat[_top_n]["totals"]["r_total_facts"] != 0:
+            results_cat[_top_n]["totals"]["recall_perc"] = float(
+                results_cat[_top_n]["totals"]["r_total_facts_caught"]
+            ) / float(results_cat[_top_n]["totals"]["r_total_facts"])
+        else:
+            results_cat[_top_n]["totals"]["recall_perc"] = 0.0
 
-    if results_cat[_top_n]["totals"]["p_total_facts"] != 0:
-        results_cat[_top_n]["totals"]["precision_partial_perc"] = float(
-            results_cat[_top_n]["totals"]["p_total_facts_partial"]
-            + results_cat[_top_n]["totals"]["p_total_facts_caught"]
-        ) / float(results_cat[_top_n]["totals"]["p_total_facts"])
-    else:
-        results_cat[_top_n]["totals"]["precision_partial_perc"] = 0.0
+        if results_cat[_top_n]["totals"]["p_total_facts"] != 0:
+            results_cat[_top_n]["totals"]["precision_partial_perc"] = float(
+                results_cat[_top_n]["totals"]["p_total_facts_partial"]
+                + results_cat[_top_n]["totals"]["p_total_facts_caught"]
+            ) / float(results_cat[_top_n]["totals"]["p_total_facts"])
+        else:
+            results_cat[_top_n]["totals"]["precision_partial_perc"] = 0.0
 
-    if results_cat[_top_n]["totals"]["r_total_facts"] != 0:
-        results_cat[_top_n]["totals"]["recall_partial_perc"] = float(
-            results_cat[_top_n]["totals"]["r_total_facts_partial"]
-            + results_cat[_top_n]["totals"]["r_total_facts_caught"]
-        ) / float(results_cat[_top_n]["totals"]["r_total_facts"])
-    else:
-        results_cat[_top_n]["totals"]["recall_partial_perc"] = 0.0
-
+        if results_cat[_top_n]["totals"]["r_total_facts"] != 0:
+            results_cat[_top_n]["totals"]["recall_partial_perc"] = float(
+                results_cat[_top_n]["totals"]["r_total_facts_partial"]
+                + results_cat[_top_n]["totals"]["r_total_facts_caught"]
+            ) / float(results_cat[_top_n]["totals"]["r_total_facts"])
+        else:
+            results_cat[_top_n]["totals"]["recall_partial_perc"] = 0.0
     analysis_tables.create_top_n_table(results_cat, tool_name)
 
 
@@ -704,7 +703,7 @@ if __name__ == "__main__":
             # )
 
     # Create sound complete table
-    analysis_tables.error_result_table(tools_results)
+    analysis_tables.error_result_table(tools_results, False)
     analysis_tables.create_sound_complete_table(tools_results)
 
     # Move logs
