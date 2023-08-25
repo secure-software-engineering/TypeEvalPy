@@ -250,8 +250,8 @@ def process_cat_dir(cat_dir, tool_name=None):
             logger.debug(f"File: {test}")
             if f"{test}_gt.json" in files:
                 file_count += 1
+                gt_file = os.path.abspath(os.path.join(root, f"{test}_gt.json"))
                 if f"{test}_result.json" in files:
-                    gt_file = os.path.abspath(os.path.join(root, f"{test}_gt.json"))
                     result_file = os.path.abspath(
                         os.path.join(root, f"{test}_result.json")
                     )
@@ -300,6 +300,18 @@ def process_cat_dir(cat_dir, tool_name=None):
 
                 else:
                     logger.debug(f"result file not {test}")
+                    with open(gt_file) as f:
+                        data_expected = json.load(f)
+                    data_expected = utils.sort_facts(data_expected)
+                    num_all = len(data_expected)
+                    cat_recall = {
+                        "num_all": num_all,
+                        "num_caught_exact": 0,
+                        "num_caught_partial": 0,
+                    }
+                    cat_recall_results[
+                        f"{os.path.basename(os.path.dirname(gt_file))}:{test}"
+                    ] = cat_recall
             else:
                 logger.debug(f"gt file not found {test}")
 
