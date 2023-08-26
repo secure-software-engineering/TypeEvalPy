@@ -251,6 +251,8 @@ def process_cat_dir(cat_dir, tool_name=None):
             if f"{test}_gt.json" in files:
                 file_count += 1
                 gt_file = os.path.abspath(os.path.join(root, f"{test}_gt.json"))
+                dir_path = os.path.relpath(os.path.dirname(gt_file), cat_dir)
+                file_name = dir_path + "/" + os.path.basename(gt_file)
                 if f"{test}_result.json" in files:
                     result_file = os.path.abspath(
                         os.path.join(root, f"{test}_result.json")
@@ -289,8 +291,6 @@ def process_cat_dir(cat_dir, tool_name=None):
                     # logger.debug("Missing Matches:")
                     # logger.debug(json.dumps(results["missing_matches"], indent=4))
 
-                    dir_path = os.path.relpath(os.path.dirname(gt_file), cat_dir)
-                    file_name = dir_path + "/" + os.path.basename(gt_file)
                     if file_name in all_missing_matches:
                         all_missing_matches[file_name].extend(
                             results["missing_matches"]
@@ -312,9 +312,9 @@ def process_cat_dir(cat_dir, tool_name=None):
                     cat_recall_results[
                         f"{os.path.basename(os.path.dirname(gt_file))}:{test}"
                     ] = cat_recall
+                    all_missing_matches[file_name] = data_expected
             else:
                 logger.debug(f"gt file not found {test}")
-
     results_dict = {
         "all_missing_matches": all_missing_matches,
         "complete_passed": complete_passed,
