@@ -370,10 +370,9 @@ def equal_sound(out, expected):
     for fact_expected in data_expected:
         fact_expected_exists = False
         for fact_out in data_out:
-            if fact_out == fact_expected:
+            if check_match(expected=fact_expected, out=fact_out):
                 fact_expected_exists = True
                 break
-
         if not fact_expected_exists:
             # A false negative is found
             return 0
@@ -398,7 +397,7 @@ def equal_complete(out, expected):
     for fact_out in data_out:
         fact_out_exists = False
         for fact_expected in data_expected:
-            if fact_out == fact_expected:
+            if check_match(expected=fact_expected, out=fact_out):
                 fact_out_exists = True
                 break
 
