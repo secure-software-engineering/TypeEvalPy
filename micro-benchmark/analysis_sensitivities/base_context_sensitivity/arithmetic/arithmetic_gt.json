@@ -1,47 +1,29 @@
 [
     {
         "file": "main.py",
-        "line_number": 6,
-        "function": "arithmetic_op",
-        "type": ["int", "str", "float"]
-    },
-    {
-        "file": "main.py",
-        "line_number": 6,
-        "function": "arithmetic_op",
-        "parameter": "a",
-        "type": ["int", "str", "float"]
-    },
-    {
-        "file": "main.py",
-        "line_number": 6,
-        "function": "arithmetic_op",
-        "parameter": "b",
-        "type": ["int", "str", "float"]
-    },
-    {
-        "file": "main.py",
-        "line_number": 7,
-        "variable": "result",
-        "function": "arithmetic_op",
-        "type": ["int", "str", "float"]
-    },
-    {
-        "file": "main.py",
         "line_number": 11,
+        "col_offset": 1,
         "variable": "result1",
-        "type": ["int"]
+        "type": [
+            "int"
+        ]
     },
     {
         "file": "main.py",
         "line_number": 12,
+        "col_offset": 1,
         "variable": "result2",
-        "type": ["float"]
+        "type": [
+            "float"
+        ]
     },
     {
         "file": "main.py",
         "line_number": 13,
+        "col_offset": 1,
         "variable": "result3",
-        "type": ["str"]
+        "type": [
+            "str"
+        ]
     }
 ]

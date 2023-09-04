@@ -1,52 +1,8 @@
 [
     {
         "file": "identity.py",
-        "line_number": 5,
-        "parameter": "x",
-        "function": "IdentityOperation.__init__",
-        "type": [
-            "int",
-            "str"
-        ]
-    },
-    {
-        "file": "identity.py",
-        "line_number": 6,
-        "variable": "IdentityOperation.value",
-        "function": "IdentityOperation.__init__",
-        "type": [
-            "int",
-            "str"
-        ]
-    },
-    {
-        "file": "identity.py",
-        "line_number": 8,
-        "function": "IdentityOperation.identity",
-        "type": [
-            "int",
-            "str"
-        ]
-    },
-    {
-        "file": "identity.py",
-        "line_number": 12,
-        "variable": "identity_op1",
-        "type": [
-            "IdentityOperation"
-        ]
-    },
-    {
-        "file": "identity.py",
-        "line_number": 13,
-        "variable": "identity_op2",
-        "type": [
-            "IdentityOperation"
-        ]
-    },
-    {
-        "file": "identity.py",
         "line_number": 15,
+        "col_offset": 1,
         "variable": "result1",
         "type": [
             "int"
@@ -55,6 +11,7 @@
     {
         "file": "identity.py",
         "line_number": 16,
+        "col_offset": 1,
         "variable": "result2",
         "type": [
             "str"
@@ -62,15 +19,8 @@
     },
     {
         "file": "identity.py",
-        "line_number": 18,
-        "variable": "identity_op1.value",
-        "type": [
-            "str"
-        ]
-    },
-    {
-        "file": "identity.py",
         "line_number": 19,
+        "col_offset": 1,
         "variable": "result3",
         "type": [
             "str"

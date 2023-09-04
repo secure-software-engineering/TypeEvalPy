@@ -1,38 +1,38 @@
 [
     {
-        "file": "identity.py",
-        "line_number": 5,
-        "parameter": "x",
-        "function": "identity",
+        "file": "main.py",
+        "line_number": 9,
+        "col_offset": 1,
+        "variable": "result1",
         "type": [
-            "str",
-            "int",
-            "float",
-            "list"
+            "int"
         ]
     },
     {
         "file": "main.py",
-        "line_number": 9,
-        "variable": "result1",
-        "type": ["int"]
-    },
-    {
-        "file": "main.py",
         "line_number": 10,
+        "col_offset": 1,
         "variable": "result2",
-        "type": ["float"]
+        "type": [
+            "float"
+        ]
     },
     {
         "file": "main.py",
         "line_number": 11,
+        "col_offset": 1,
         "variable": "result3",
-        "type": ["str"]
+        "type": [
+            "str"
+        ]
     },
     {
         "file": "main.py",
         "line_number": 12,
+        "col_offset": 1,
         "variable": "result4",
-        "type": ["list"]
+        "type": [
+            "list"
+        ]
     }
 ]

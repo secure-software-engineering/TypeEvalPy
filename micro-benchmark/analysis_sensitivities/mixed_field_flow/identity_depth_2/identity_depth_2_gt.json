@@ -1,64 +1,8 @@
 [
     {
         "file": "identity_depth_2.py",
-        "line_number": 6,
-        "parameter": "x",
-        "function": "Identity.__init__",
-        "type": [
-            "int",
-            "str"
-        ]
-    },
-    {
-        "file": "identity_depth_2.py",
-        "line_number": 7,
-        "variable": "Identity.nested",
-        "function": "Identity.__init__",
-        "type": [
-            "Identity.Nested"
-        ]
-    },
-    {
-        "file": "identity_depth_2.py",
-        "line_number": 10,
-        "parameter": "y",
-        "function": "Identity.Nested.__init__",
-        "type": [
-            "int",
-            "str"
-        ]
-    },
-    {
-        "file": "identity_depth_2.py",
-        "line_number": 11,
-        "variable": "Identity.Nested.value",
-        "function": "Identity.Nested.__init__",
-        "type": [
-            "int",
-            "str"
-        ]
-    },
-    {
-        "file": "identity_depth_2.py",
-        "line_number": 13,
-        "function": "Identity.get_value",
-        "type": [
-            "int",
-            "str",
-            "Nonetype"
-        ]
-    },
-    {
-        "file": "identity_depth_2.py",
-        "line_number": 22,
-        "variable": "id1",
-        "type": [
-            "Identity"
-        ]
-    },
-    {
-        "file": "identity_depth_2.py",
         "line_number": 23,
+        "col_offset": 1,
         "variable": "result",
         "type": [
             "int"
@@ -66,15 +10,8 @@
     },
     {
         "file": "identity_depth_2.py",
-        "line_number": 25,
-        "variable": "id2",
-        "type": [
-            "str"
-        ]
-    },
-    {
-        "file": "identity_depth_2.py",
         "line_number": 26,
+        "col_offset": 1,
         "variable": "result",
         "type": [
             "str"
@@ -82,15 +19,8 @@
     },
     {
         "file": "identity_depth_2.py",
-        "line_number": 28,
-        "variable": "id2.nested.value",
-        "type": [
-            "float"
-        ]
-    },
-    {
-        "file": "identity_depth_2.py",
         "line_number": 29,
+        "col_offset": 1,
         "variable": "result",
         "type": [
             "Nonetype"

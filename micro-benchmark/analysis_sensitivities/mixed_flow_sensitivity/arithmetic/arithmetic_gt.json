@@ -1,95 +1,8 @@
 [
     {
         "file": "arithmetic.py",
-        "line_number": 5,
-        "variable": "a",
-        "type": [
-            "int"
-        ]
-    },
-    {
-        "file": "arithmetic.py",
-        "line_number": 6,
-        "variable": "b",
-        "type": [
-            "int"
-        ]
-    },
-    {
-        "file": "arithmetic.py",
-        "line_number": 7,
-        "variable": "value",
-        "type": [
-            "int"
-        ]
-    },
-    {
-        "file": "arithmetic.py",
-        "line_number": 10,
-        "variable": "result",
-        "type": [
-            "int"
-        ]
-    },
-    {
-        "file": "arithmetic.py",
-        "line_number": 12,
-        "variable": "result",
-        "type": [
-            "str"
-        ]
-    },
-    {
-        "file": "arithmetic.py",
         "line_number": 14,
-        "variable": "result",
-        "type": [
-            "str"
-        ]
-    },
-    {
-        "file": "arithmetic.py",
-        "line_number": 16,
-        "variable": "a",
-        "type": [
-            "float"
-        ]
-    },
-    {
-        "file": "arithmetic.py",
-        "line_number": 17,
-        "variable": "b",
-        "type": [
-            "float"
-        ]
-    },
-    {
-        "file": "arithmetic.py",
-        "line_number": 18,
-        "variable": "value",
-        "type": [
-            "float"
-        ]
-    },
-    {
-        "file": "arithmetic.py",
-        "line_number": 19,
-        "variable": "result",
-        "type": [
-            "Nonetype"
-        ]
-    },
-    {
-        "file": "arithmetic.py",
-        "line_number": 21,
-        "variable": "result",
-        "type": [
-            "float"
-        ]
-    },
-    {
-        "file": "arithmetic.py",
-        "line_number": 23,
+        "col_offset": 1,
         "variable": "result",
         "type": [
             "str"
@@ -98,6 +11,7 @@
     {
         "file": "arithmetic.py",
         "line_number": 25,
+        "col_offset": 1,
         "variable": "result",
         "type": [
             "float"

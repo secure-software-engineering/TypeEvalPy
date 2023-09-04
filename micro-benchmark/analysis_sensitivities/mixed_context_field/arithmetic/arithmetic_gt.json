@@ -1,102 +1,8 @@
 [
     {
         "file": "arithmetic.py",
-        "line_number": 5,
-        "function": "arithmetic_op",
-        "type": [
-            "int",
-            "str"
-        ]
-    },
-    {
-        "file": "arithmetic.py",
-        "line_number": 5,
-        "parameter": "a",
-        "function": "arithmetic_op",
-        "type": [
-            "int",
-            "str"
-        ]
-    },
-    {
-        "file": "arithmetic.py",
-        "line_number": 5,
-        "parameter": "b",
-        "function": "arithmetic_op",
-        "type": [
-            "int",
-            "str"
-        ]
-    },
-    {
-        "file": "arithmetic.py",
-        "line_number": 6,
-        "variable": "result",
-        "function": "arithmetic_op",
-        "type": [
-            "int",
-            "str"
-        ]
-    },
-    {
-        "file": "arithmetic.py",
-        "line_number": 11,
-        "parameter": "a",
-        "function": "ValueStore.__init__",
-        "type": [
-            "int",
-            "str"
-        ]
-    },
-    {
-        "file": "arithmetic.py",
-        "line_number": 11,
-        "parameter": "b",
-        "function": "ValueStore.__init__",
-        "type": [
-            "int",
-            "str"
-        ]
-    },
-    {
-        "file": "arithmetic.py",
-        "line_number": 12,
-        "variable": "ValueStore.a",
-        "function": "ValueStore.__init__",
-        "type": [
-            "int",
-            "str"
-        ]
-    },
-    {
-        "file": "arithmetic.py",
-        "line_number": 13,
-        "variable": "ValueStore.b",
-        "function": "ValueStore.__init__",
-        "type": [
-            "int",
-            "str"
-        ]
-    },
-    {
-        "file": "arithmetic.py",
-        "line_number": 16,
-        "variable": "op1",
-        "type": [
-            "ValueStore"
-        ]
-    },
-    {
-        "file": "arithmetic.py",
-        "line_number": 17,
-        "variable": "op2",
-        "type": [
-            "ValueStore"
-        ]
-    },
-    {
-        "file": "arithmetic.py",
         "line_number": 19,
+        "col_offset": 1,
         "variable": "result1",
         "type": [
             "int"
@@ -105,6 +11,7 @@
     {
         "file": "arithmetic.py",
         "line_number": 20,
+        "col_offset": 1,
         "variable": "result2",
         "type": [
             "str"

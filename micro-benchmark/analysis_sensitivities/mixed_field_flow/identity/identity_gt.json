@@ -1,45 +1,8 @@
 [
     {
         "file": "identity.py",
-        "line_number": 8,
-        "parameter": "x",
-        "function": "Identity.__init__",
-        "type": [
-            "int",
-            "str"
-        ]
-    },
-    {
-        "file": "identity.py",
-        "line_number": 9,
-        "variable": "Identity.value",
-        "function": "Identity.__init__",
-        "type": [
-            "int",
-            "str"
-        ]
-    },
-    {
-        "file": "identity.py",
-        "line_number": 11,
-        "function": "Identity.get_value",
-        "type": [
-            "int",
-            "str",
-            "Nonetype"
-        ]
-    },
-    {
-        "file": "identity.py",
-        "line_number": 20,
-        "variable": "id1",
-        "type": [
-            "Identity"
-        ]
-    },
-    {
-        "file": "identity.py",
         "line_number": 21,
+        "col_offset": 1,
         "variable": "result",
         "type": [
             "int"
@@ -47,15 +10,8 @@
     },
     {
         "file": "identity.py",
-        "line_number": 23,
-        "variable": "id2",
-        "type": [
-            "Identity"
-        ]
-    },
-    {
-        "file": "identity.py",
         "line_number": 24,
+        "col_offset": 1,
         "variable": "result",
         "type": [
             "str"
@@ -63,15 +19,8 @@
     },
     {
         "file": "identity.py",
-        "line_number": 26,
-        "variable": "id2.value",
-        "type": [
-            "float"
-        ]
-    },
-    {
-        "file": "identity.py",
         "line_number": 27,
+        "col_offset": 1,
         "variable": "result",
         "type": [
             "float"

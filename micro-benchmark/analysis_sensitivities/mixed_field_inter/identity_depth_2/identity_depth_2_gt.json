@@ -1,69 +1,8 @@
 [
     {
         "file": "identity_depth_2.py",
-        "line_number": 7,
-        "parameter": "x",
-        "function": "Identity.__init__",
-        "type": [
-            "int"
-        ]
-    },
-    {
-        "file": "identity_depth_2.py",
-        "line_number": 8,
-        "variable": "Identity.nested",
-        "function": "Identity.__init__",
-        "type": [
-            "Identity.Nested"
-        ]
-    },
-    {
-        "file": "identity_depth_2.py",
-        "line_number": 11,
-        "function": "Identity.Nested.__init__",
-        "parameter": "y",
-        "type": [
-            "int"
-        ]
-    },
-    {
-        "file": "identity_depth_2.py",
-        "line_number": 12,
-        "variable": "Identity.Nested.value",
-        "function": "Identity.Nested.__init__",
-        "type": [
-            "int"
-        ]
-    },
-    {
-        "file": "identity_depth_2.py",
-        "line_number": 14,
-        "function": "Identity.Nested.operation",
-        "type": [
-            "int",
-            "str"
-        ]
-    },
-    {
-        "file": "identity_depth_2.py",
-        "line_number": 17,
-        "function": "Identity.get_value",
-        "type": [
-            "int",
-            "str"
-        ]
-    },
-    {
-        "file": "identity_depth_2.py",
-        "line_number": 21,
-        "variable": "id1",
-        "type": [
-            "Identity"
-        ]
-    },
-    {
-        "file": "identity_depth_2.py",
         "line_number": 22,
+        "col_offset": 1,
         "variable": "result1",
         "type": [
             "int"
@@ -71,15 +10,8 @@
     },
     {
         "file": "identity_depth_2.py",
-        "line_number": 24,
-        "variable": "id1.nested.value",
-        "type": [
-            "str"
-        ]
-    },
-    {
-        "file": "identity_depth_2.py",
         "line_number": 25,
+        "col_offset": 1,
         "variable": "result2",
         "type": [
             "str"

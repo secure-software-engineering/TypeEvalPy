@@ -1,107 +1,8 @@
 [
     {
         "file": "identity_depth_2.py",
-        "line_number": 6,
-        "parameter": "x",
-        "function": "Identity.__init__",
-        "type": [
-            "int",
-            "str"
-        ]
-    },
-    {
-        "file": "identity_depth_2.py",
-        "line_number": 7,
-        "variable": "Identity.value",
-        "function": "Identity.__init__",
-        "type": [
-            "int",
-            "str"
-        ]
-    },
-    {
-        "file": "identity_depth_2.py",
-        "line_number": 9,
-        "function": "Identity.get_value",
-        "type": [
-            "int",
-            "str"
-        ]
-    },
-    {
-        "file": "identity_depth_2.py",
-        "line_number": 14,
-        "parameter": "a",
-        "function": "ValueStore.__init__",
-        "type": [
-            "int",
-            "str"
-        ]
-    },
-    {
-        "file": "identity_depth_2.py",
-        "line_number": 15,
-        "variable": "ValueStore.a",
-        "function": "ValueStore.__init__",
-        "type": [
-            "ValueStore.Nested"
-        ]
-    },
-    {
-        "file": "identity_depth_2.py",
-        "line_number": 18,
-        "parameter": "b",
-        "function": "ValueStore.Nested.__init__",
-        "type": [
-            "int",
-            "str"
-        ]
-    },
-    {
-        "file": "identity_depth_2.py",
-        "line_number": 19,
-        "variable": "ValueStore.Nested.b",
-        "function": "ValueStore.Nested.__init__",
-        "type": [
-            "int",
-            "str"
-        ]
-    },
-    {
-        "file": "identity_depth_2.py",
-        "line_number": 22,
-        "variable": "op1",
-        "type": [
-            "ValueStore"
-        ]
-    },
-    {
-        "file": "identity_depth_2.py",
-        "line_number": 23,
-        "variable": "op2",
-        "type": [
-            "ValueStore"
-        ]
-    },
-    {
-        "file": "identity_depth_2.py",
-        "line_number": 25,
-        "variable": "id1",
-        "type": [
-            "Identity"
-        ]
-    },
-    {
-        "file": "identity_depth_2.py",
-        "line_number": 26,
-        "variable": "id2",
-        "type": [
-            "Identity"
-        ]
-    },
-    {
-        "file": "identity_depth_2.py",
         "line_number": 28,
+        "col_offset": 1,
         "variable": "result1",
         "type": [
             "int"
@@ -110,6 +11,7 @@
     {
         "file": "identity_depth_2.py",
         "line_number": 29,
+        "col_offset": 1,
         "variable": "result2",
         "type": [
             "str"

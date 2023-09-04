@@ -1,141 +1,8 @@
 [
     {
         "file": "arithmetic_depth_2.py",
-        "line_number": 7,
-        "parameter": "a",
-        "function": "ArithmeticOperation.__init__",
-        "type": [
-            "int"
-        ]
-    },
-    {
-        "file": "arithmetic_depth_2.py",
-        "line_number": 7,
-        "parameter": "b",
-        "function": "ArithmeticOperation.__init__",
-        "type": [
-            "int"
-        ]
-    },
-    {
-        "file": "arithmetic_depth_2.py",
-        "line_number": 8,
-        "variable": "ArithmeticOperation.a",
-        "function": "ArithmeticOperation.__init__",
-        "type": [
-            "int"
-        ]
-    },
-    {
-        "file": "arithmetic_depth_2.py",
-        "line_number": 9,
-        "variable": "ArithmeticOperation.result",
-        "function": "ArithmeticOperation.__init__",
-        "type": [
-            "Nonetype"
-        ]
-    },
-    {
-        "file": "arithmetic_depth_2.py",
-        "line_number": 10,
-        "variable": "ArithmeticOperation.nested",
-        "function": "ArithmeticOperation.__init__",
-        "type": [
-            "ArithmeticOperation.Nested"
-        ]
-    },
-    {
-        "file": "arithmetic_depth_2.py",
-        "line_number": 13,
-        "parameter": "b",
-        "function": "ArithmeticOperation.Nested.__init__",
-        "type": [
-            "int"
-        ]
-    },
-    {
-        "file": "arithmetic_depth_2.py",
-        "line_number": 14,
-        "variable": "ArithmeticOperation.Nested.b",
-        "function": "ArithmeticOperation.Nested.__init__",
-        "type": [
-            "int"
-        ]
-    },
-    {
-        "file": "arithmetic_depth_2.py",
-        "line_number": 16,
-        "function": "ArithmeticOperation.compute",
-        "type": [
-            "str",
-            "Nonetype"
-        ]
-    },
-    {
-        "file": "arithmetic_depth_2.py",
-        "line_number": 17,
-        "function": "ArithmeticOperation.compute",
-        "variable": "ArithmeticOperation.b",
-        "type": [
-            "int"
-        ]
-    },
-    {
-        "file": "arithmetic_depth_2.py",
-        "line_number": 19,
-        "function": "ArithmeticOperation.compute",
-        "variable": "ArithmeticOperation.result",
-        "type": [
-            "int"
-        ]
-    },
-    {
-        "file": "arithmetic_depth_2.py",
-        "line_number": 21,
-        "function": "ArithmeticOperation.compute",
-        "variable": "ArithmeticOperation.result",
-        "type": [
-            "int"
-        ]
-    },
-    {
-        "file": "arithmetic_depth_2.py",
-        "line_number": 23,
-        "function": "ArithmeticOperation.compute",
-        "variable": "ArithmeticOperation.result",
-        "type": [
-            "int"
-        ]
-    },
-    {
-        "file": "arithmetic_depth_2.py",
-        "line_number": 26,
-        "function": "ArithmeticOperation.compute",
-        "variable": "ArithmeticOperation.result",
-        "type": [
-            "Nonetype"
-        ]
-    },
-    {
-        "file": "arithmetic_depth_2.py",
-        "line_number": 28,
-        "function": "ArithmeticOperation.compute",
-        "variable": "ArithmeticOperation.result",
-        "type": [
-            "str"
-        ]
-    },
-    {
-        "file": "arithmetic_depth_2.py",
-        "line_number": 33,
-        "variable": "arith_op",
-        "type": [
-            "ArithmeticOperation"
-        ]
-    },
-    {
-        "file": "arithmetic_depth_2.py",
         "line_number": 34,
+        "col_offset": 1,
         "variable": "result",
         "type": [
             "str"
@@ -143,23 +10,8 @@
     },
     {
         "file": "arithmetic_depth_2.py",
-        "line_number": 36,
-        "variable": "arith_op.a",
-        "type": [
-            "int"
-        ]
-    },
-    {
-        "file": "arithmetic_depth_2.py",
-        "line_number": 37,
-        "variable": "arith_op.nested.b",
-        "type": [
-            "int"
-        ]
-    },
-    {
-        "file": "arithmetic_depth_2.py",
         "line_number": 38,
+        "col_offset": 1,
         "variable": "result",
         "type": [
             "Nonetype"
