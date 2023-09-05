@@ -480,6 +480,61 @@ def iterate_cats(test_suite_dir, tool_name=None):
     return display_all_cats_data(all_cats_data)
 
 
+def iterate_cats_sensitivities(test_suite_dir, tool_name=None):
+    all_cats_data = []
+    all_cat_sound_complete = []
+    max_cat_length = 20
+    header_format = "{:<25}{:<15}"
+    row_format = "{:<25}{:<15}"
+
+    logger.info("-" * 100)
+    logger.info(header_format.format("Category", "Sound"))
+    logger.info("-" * 100)
+
+    for cat in sorted(os.listdir(test_suite_dir)):
+        cat_dir = os.path.join(test_suite_dir, cat)
+        if os.path.isdir(cat_dir):
+            # logger.info("Iterating category {}...".format(cat))
+            results = process_cat_dir(cat_dir, tool_name=tool_name)
+
+            cat_data = {
+                "Category": cat,
+                "Missing Matches": results["all_missing_matches"],
+            }
+            all_cats_data.append(cat_data)
+            cat_sound_complete = {
+                "complete": results["complete_passed"],
+                "sound": results["sound_passed"],
+                "file_count": results["file_count"],
+            }
+            all_cat_sound_complete.append(cat_sound_complete)
+
+            logger.info(
+                row_format.format(
+                    cat[:max_cat_length],
+                    f"[{results['sound_passed']}/{results['file_count']}]",
+                )
+            )
+            if results["all_missing_matches"]:
+                pass
+            else:
+                logger.info("No missing matches.")
+
+    logger.info("-" * 100)
+    total_complete_passed = sum(cat["complete"] for cat in all_cat_sound_complete)
+    total_sound_passed = sum(cat["sound"] for cat in all_cat_sound_complete)
+    total_file_count = sum(cat["file_count"] for cat in all_cat_sound_complete)
+    logger.info(
+        row_format.format(
+            "Total",
+            f"[{total_sound_passed}/{total_file_count}]",
+        )
+    )
+
+    # Display all_missing_matches and cat values as one table
+    return display_all_cats_data(all_cats_data)
+
+
 def generate_sound_complete_data(test_suite_dir, tool_name=None):
     cat_sound_complete = {}
     cat_sound_totals = {"s": 0, "c": 0, "t": 0}
@@ -709,10 +764,11 @@ if __name__ == "__main__":
                 item / "micro-benchmark/python_features", tool_name=item.name
             )
 
+            logger.info(f"")
             logger.info(f"Analyzing Sensitivities")
-            # iterate_cats(
-            #    item / "micro-benchmark/analysis_sensitivities", tool_name=item.name
-            # )
+            iterate_cats_sensitivities(
+                item / "micro-benchmark/analysis_sensitivities", tool_name=item.name
+            )
 
     # Create sound complete table
     analysis_tables.error_result_table(tools_results, False)
