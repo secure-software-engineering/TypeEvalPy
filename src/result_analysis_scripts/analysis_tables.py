@@ -210,19 +210,32 @@ def create_exact_top_n_table(exact_results_cat, tool_name):
     with open(csv_file, mode="w", newline="") as file:
         writer = csv.writer(file)
         writer.writerow(
-            ["PYTHON Feature", "TOPN", "Category", "TOTAL_FACTS", "TOTAL_CAUGHT"]
+            ["PYTHON Feature", "TOPN", "CATEGORY", "TOTAL_FACTS", "TOTAL_CAUGHT"]
         )
 
-        # Loop through the stored data and write it to the CSV file
         for feature_type, topn_data in exact_results_cat.items():
             for topn, categories in topn_data.items():
+                first_row = True
                 for category_data in categories:
-                    writer.writerow(
-                        [
-                            feature_type,
-                            topn,
-                            category_data["Category"],
-                            category_data["Total_Facts"],
-                            category_data["Total_Caught"],
-                        ]
-                    )
+                    category = category_data["Category"]
+                    total_facts = category_data["Total_Facts"]
+                    total_caught = category_data["Total_Caught"]
+
+                    # First row of each group
+                    if first_row:
+                        writer.writerow(
+                            [feature_type, topn, category, total_facts, total_caught]
+                        )
+                        first_row = False
+                    else:
+                        writer.writerow(["", "", category, total_facts, total_caught])
+
+                total_facts_group = sum(
+                    category_data["Total_Facts"] for category_data in categories
+                )
+                total_caught_group = sum(
+                    category_data["Total_Caught"] for category_data in categories
+                )
+                writer.writerow(
+                    ["", "", "totals", total_facts_group, total_caught_group]
+                )

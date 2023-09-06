@@ -781,7 +781,7 @@ def generate_top_n_performance(test_suite_dir, tool_name=None):
 
 if __name__ == "__main__":
     results_dir = None
-    results_dir = Path("../../.results/results_05-09 20:35")
+    # results_dir = Path("../../.results/results_<>")
     if results_dir is None:
         dir_path = Path("../../.results")
         directories = [
