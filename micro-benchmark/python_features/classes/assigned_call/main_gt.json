@@ -23,7 +23,7 @@
         "col_offset": 1,
         "variable": "b",
         "type": [
-            "str"
+            "callable"
         ]
     }
 ]
