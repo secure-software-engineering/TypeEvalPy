@@ -11,6 +11,26 @@ STANDARD_TOOLS = ["scalpel", "pyre", "hityper", "pytype", "jedi", "pyright"]
 TOP_N = [1, 3, 5]
 
 TYPE_CATEGORIES = ["function_returns", "function_parameters", "local_variables"]
+PYTHON_FEATURES_CATEGORIES = [
+    "args",
+    "assignments",
+    "builtins",
+    "classes",
+    "decorators",
+    "dicts",
+    "direct_calls",
+    "dynamic",
+    "exceptions",
+    "external",
+    "functions",
+    "generators",
+    "imports",
+    "kwargs",
+    "lambdas",
+    "lists",
+    "mro",
+    "returns",
+]
 
 
 def sort_facts(data):

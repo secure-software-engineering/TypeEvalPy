@@ -627,6 +627,33 @@ def generate_top_n_performance(test_suite_dir, tool_name=None):
                         "r_overall_total_caught_partial"
                     ] += _i_results[_type_cat]["num_caught_partial"]
 
+    exact_results_cat = {
+        k_n: {
+            k: {
+                "r_overall_total_facts": 0,
+                "r_overall_total_caught": 0,
+                "r_overall_total_caught_partial": 0,
+            }
+            for k in utils.PYTHON_FEATURES_CATEGORIES
+        }
+        for k_n in utils.TOP_N
+    }
+
+    for _cat, _results in all_cats_data.items():
+        for cat, _cat_results in _results["cat_recall_results_grouped"].items():
+            for _top_n, _i_results in _cat_results.items():
+                for _type_cat in utils.TYPE_CATEGORIES:
+                    exact_results_cat[_top_n][_cat][
+                        "r_overall_total_facts"
+                    ] += _i_results[_type_cat]["num_all"]
+                    exact_results_cat[_top_n][_cat][
+                        "r_overall_total_caught"
+                    ] += _i_results[_type_cat]["num_caught_exact"]
+                    exact_results_cat[_top_n][_cat][
+                        "r_overall_total_caught_partial"
+                    ] += _i_results[_type_cat]["num_caught_partial"]
+    analysis_tables.create_exact_top_n_table(exact_results_cat, tool_name)
+
     # Get totals of type categories
     for _top_n, _stats in results_cat.items():
         results_cat[_top_n]["totals"]["p_total_facts"] = sum(
@@ -720,7 +747,7 @@ def generate_top_n_performance(test_suite_dir, tool_name=None):
 
 if __name__ == "__main__":
     results_dir = None
-    # results_dir = Path("../../.results/<>")
+    # results_dir = Path("../../.results/results_05-09 13:08")
     if results_dir is None:
         dir_path = Path("../../.results")
         directories = [
@@ -791,4 +818,8 @@ if __name__ == "__main__":
         if tool in utils.ML_TOOLS:
             os.rename(
                 f"top_n_table_{tool}.csv", f"{str(results_dir)}/top_n_table_{tool}.csv"
+            )
+            os.rename(
+                f"top_n_exact_match_table_{tool}.csv",
+                f"{str(results_dir)}/top_n_exact_match_table_{tool}.csv",
             )

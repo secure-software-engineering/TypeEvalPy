@@ -202,3 +202,47 @@ def create_top_n_table(stats, tool_name):
                         f"{_top_n_values['partial_r']:.2f}",
                     ]
                 )
+
+
+def create_exact_top_n_table(exact_results_cat, tool_name):
+    csv_file = f"top_n_exact_match_table_{tool_name}.csv"
+    headers = [
+        "Category",
+        "Topn",
+        "total_facts",
+        "total_caught",
+        # "total_caught_partial",
+    ]
+
+    with open(csv_file, mode="w", newline="") as file:
+        writer = csv.writer(file)
+        writer.writerow(headers)
+        for category, values in exact_results_cat[1].items():
+            writer.writerow(
+                [
+                    category,
+                    "top1",
+                    values["r_overall_total_facts"],
+                    values["r_overall_total_caught"],
+                    # values["r_overall_total_caught_partial"],
+                ]
+            )
+            writer.writerow(
+                [
+                    "",
+                    "top3",
+                    exact_results_cat[3][category]["r_overall_total_facts"],
+                    exact_results_cat[3][category]["r_overall_total_caught"],
+                    # exact_results_cat[3][category]["r_overall_total_caught_partial"],
+                ]
+            )
+            writer.writerow(
+                [
+                    "",
+                    "top5",
+                    exact_results_cat[5][category]["r_overall_total_facts"],
+                    exact_results_cat[5][category]["r_overall_total_caught"],
+                    # exact_results_cat[5][category]["r_overall_total_caught_partial"],
+                ]
+            )
+            writer.writerow([])
