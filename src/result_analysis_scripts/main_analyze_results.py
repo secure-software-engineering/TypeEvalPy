@@ -627,12 +627,16 @@ def generate_top_n_performance(test_suite_dir, tool_name=None):
                         "r_overall_total_caught_partial"
                     ] += _i_results[_type_cat]["num_caught_partial"]
 
+    # Get exact match results
     exact_results_cat = {
         k_n: {
             k: {
-                "r_overall_total_facts": 0,
-                "r_overall_total_caught": 0,
-                "r_overall_total_caught_partial": 0,
+                t: {
+                    "r_overall_total_facts": 0,
+                    "r_overall_total_caught": 0,
+                    "r_overall_total_caught_partial": 0,
+                }
+                for t in utils.TYPE_CATEGORIES
             }
             for k in utils.PYTHON_FEATURES_CATEGORIES
         }
@@ -643,16 +647,46 @@ def generate_top_n_performance(test_suite_dir, tool_name=None):
         for cat, _cat_results in _results["cat_recall_results_grouped"].items():
             for _top_n, _i_results in _cat_results.items():
                 for _type_cat in utils.TYPE_CATEGORIES:
-                    exact_results_cat[_top_n][_cat][
+                    exact_results_cat[_top_n][_cat][_type_cat][
                         "r_overall_total_facts"
                     ] += _i_results[_type_cat]["num_all"]
-                    exact_results_cat[_top_n][_cat][
+                    exact_results_cat[_top_n][_cat][_type_cat][
                         "r_overall_total_caught"
                     ] += _i_results[_type_cat]["num_caught_exact"]
-                    exact_results_cat[_top_n][_cat][
+                    exact_results_cat[_top_n][_cat][_type_cat][
                         "r_overall_total_caught_partial"
                     ] += _i_results[_type_cat]["num_caught_partial"]
-    analysis_tables.create_exact_top_n_table(exact_results_cat, tool_name)
+    totals = {
+        "function_returns": {"TOTAL_FACTS": 0, "TOTAL_CAUGHT": 0},
+        "function_parameters": {"TOTAL_FACTS": 0, "TOTAL_CAUGHT": 0},
+        "local_variables": {"TOTAL_FACTS": 0, "TOTAL_CAUGHT": 0},
+    }
+
+    # Loop through the data and calculate totals
+    for key, value in exact_results_cat.items():
+        for feature_type, feature_data in value.items():
+            for category, stats in feature_data.items():
+                totals[category]["TOTAL_FACTS"] += stats["r_overall_total_facts"]
+                totals[category]["TOTAL_CAUGHT"] += stats["r_overall_total_caught"]
+
+    formatted_data = {}
+
+    # Create the formatted table with grouping
+    for key, value in exact_results_cat.items():
+        for feature_type, feature_data in value.items():
+            for category, stats in feature_data.items():
+                if feature_type not in formatted_data:
+                    formatted_data[feature_type] = {}
+                if key not in formatted_data[feature_type]:
+                    formatted_data[feature_type][key] = []
+                formatted_data[feature_type][key].append(
+                    {
+                        "Category": category,
+                        "Total_Facts": stats["r_overall_total_facts"],
+                        "Total_Caught": stats["r_overall_total_caught"],
+                    }
+                )
+    analysis_tables.create_exact_top_n_table(formatted_data, tool_name)
 
     # Get totals of type categories
     for _top_n, _stats in results_cat.items():
@@ -747,7 +781,7 @@ def generate_top_n_performance(test_suite_dir, tool_name=None):
 
 if __name__ == "__main__":
     results_dir = None
-    # results_dir = Path("../../.results/results_05-09 13:08")
+    results_dir = Path("../../.results/results_05-09 20:35")
     if results_dir is None:
         dir_path = Path("../../.results")
         directories = [
