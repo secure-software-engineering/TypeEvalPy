@@ -1,6 +1,6 @@
 [
     {
-        "file": "main.py",
+        "file": "arithmetic.py",
         "line_number": 11,
         "col_offset": 1,
         "variable": "result1",
@@ -9,7 +9,7 @@
         ]
     },
     {
-        "file": "main.py",
+        "file": "arithmetic.py",
         "line_number": 12,
         "col_offset": 1,
         "variable": "result2",
@@ -18,7 +18,7 @@
         ]
     },
     {
-        "file": "main.py",
+        "file": "arithmetic.py",
         "line_number": 13,
         "col_offset": 1,
         "variable": "result3",
