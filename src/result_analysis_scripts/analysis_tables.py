@@ -239,3 +239,26 @@ def create_exact_top_n_table(exact_results_cat, tool_name):
                 writer.writerow(
                     ["", "", "totals", total_facts_group, total_caught_group]
                 )
+
+
+def exact_match_table(stats):
+    with open(f"tools_exact_match_data.csv", "w", newline="") as csvfile:
+        fieldnames = ["Micro-benchmark Category", "Total_facts"]
+        for x in list(stats.keys()):
+            fieldnames.extend(list((f"{x}_exact",)))
+
+        writer = csv.writer(
+            csvfile,
+            delimiter=",",
+            quotechar="|",
+            quoting=csv.QUOTE_MINIMAL,
+        )
+        writer.writerow(fieldnames)
+        tool_names = list(stats.keys())
+        categories = list(stats[tool_names[0]]["exact_match"].keys())
+        for category in categories:
+            row = [category]
+            row.extend([stats[tool_names[0]]["exact_match"][category]["total_facts"]])
+            for tool in tool_names:
+                row.extend([stats[tool]["exact_match"][category]["total_caught"]])
+            writer.writerow(row)

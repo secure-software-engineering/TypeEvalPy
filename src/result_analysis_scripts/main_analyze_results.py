@@ -355,6 +355,13 @@ def iterate_cats(test_suite_dir, tool_name=None):
     r_overall_total_caught = 0
     r_overall_total_caught_partial = 0
 
+    exact_match = {
+        k: {
+            "total_facts": 0,
+            "total_caught": 0,
+        }
+        for k in utils.PYTHON_FEATURES_CATEGORIES
+    }
     for cat in sorted(os.listdir(test_suite_dir)):
         cat_dir = os.path.join(test_suite_dir, cat)
         if os.path.isdir(cat_dir):
@@ -406,7 +413,7 @@ def iterate_cats(test_suite_dir, tool_name=None):
                         / float(_precision_stats["num_all"])
                     )
 
-            # Calculate Precision values
+            # Calculate Recall values
             r_total_facts = 0
             r_total_caught = 0
             r_total_atleast_partial = 0
@@ -436,7 +443,8 @@ def iterate_cats(test_suite_dir, tool_name=None):
                         )
                         / float(_recall_stats["num_all"])
                     )
-
+            exact_match[cat]["total_facts"] = r_total_facts
+            exact_match[cat]["total_caught"] = r_total_caught
             p_overall_total_facts += p_total_facts
             p_overall_total_caught += p_total_caught
             p_overall_total_caught_partial += p_total_atleast_partial
@@ -477,7 +485,7 @@ def iterate_cats(test_suite_dir, tool_name=None):
     )
 
     # Display all_missing_matches and cat values as one table
-    return display_all_cats_data(all_cats_data)
+    return display_all_cats_data(all_cats_data), exact_match
 
 
 def iterate_cats_sensitivities(test_suite_dir, tool_name=None):
@@ -809,7 +817,10 @@ if __name__ == "__main__":
                 generate_top_n_performance(
                     item / "micro-benchmark/python_features", tool_name=item.name
                 )
-            tools_results[item.name]["error_result_data"] = iterate_cats(
+            (
+                tools_results[item.name]["error_result_data"],
+                tools_results[item.name]["exact_match"],
+            ) = iterate_cats(
                 item / "micro-benchmark/python_features", tool_name=item.name
             )
             tools_results[item.name]["total_benchmark_data"] = utils.benchmark_count(
@@ -830,10 +841,11 @@ if __name__ == "__main__":
             iterate_cats_sensitivities(
                 item / "micro-benchmark/analysis_sensitivities", tool_name=item.name
             )
-
-    # Create sound complete table
     analysis_tables.error_result_table(tools_results, False)
-    analysis_tables.create_sound_complete_table(tools_results)
+    analysis_tables.exact_match_table(tools_results)
+    analysis_tables.create_sound_complete_table(
+        tools_results
+    )  # Create sound complete table
 
     # Move logs
     os.rename("results_analysis.log", f"{str(results_dir)}/results_analysis.log")
@@ -847,6 +859,10 @@ if __name__ == "__main__":
     os.rename(
         "tools_sound_complete_data.csv",
         f"{str(results_dir)}/tools_sound_complete_data.csv",
+    )
+    os.rename(
+        "tools_exact_match_data.csv",
+        f"{str(results_dir)}/tools_exact_match_data.csv",
     )
     for tool in list(tools_results.keys()):
         if tool in utils.ML_TOOLS:
