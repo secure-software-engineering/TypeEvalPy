@@ -494,6 +494,13 @@ def iterate_cats_sensitivities(test_suite_dir, tool_name=None):
     max_cat_length = 20
     header_format = "{:<25}{:<15}"
     row_format = "{:<25}{:<15}"
+    sound_match = {
+        k: {
+            "sound_passed": 0,
+            "file_count": 0,
+        }
+        for k in utils.SENSITIVITIES_CATEGORIES
+    }
 
     logger.info("-" * 100)
     logger.info(header_format.format("Category", "Sound"))
@@ -523,6 +530,8 @@ def iterate_cats_sensitivities(test_suite_dir, tool_name=None):
                     f"[{results['sound_passed']}/{results['file_count']}]",
                 )
             )
+            sound_match[cat]["sound_passed"] = results["sound_passed"]
+            sound_match[cat]["file_count"] = results["file_count"]
             if results["all_missing_matches"]:
                 pass
             else:
@@ -538,9 +547,12 @@ def iterate_cats_sensitivities(test_suite_dir, tool_name=None):
             f"[{total_sound_passed}/{total_file_count}]",
         )
     )
-
+    sound_match["Total"] = {
+        "sound_passed": total_sound_passed,
+        "file_count": total_file_count,
+    }
     # Display all_missing_matches and cat values as one table
-    return display_all_cats_data(all_cats_data)
+    return display_all_cats_data(all_cats_data), sound_match
 
 
 def generate_sound_complete_data(test_suite_dir, tool_name=None):
@@ -838,9 +850,14 @@ if __name__ == "__main__":
 
             logger.info(f"")
             logger.info(f"Analyzing Sensitivities")
-            iterate_cats_sensitivities(
+            (
+                tools_results[item.name]["sensitivity_error_result_data"],
+                tools_results[item.name]["sensitivity_sound_data"],
+            ) = iterate_cats_sensitivities(
                 item / "micro-benchmark/analysis_sensitivities", tool_name=item.name
             )
+
+    analysis_tables.analysis_sensitivities_table(tools_results)
     analysis_tables.error_result_table(tools_results, False)
     analysis_tables.exact_match_table(tools_results)
     analysis_tables.create_sound_complete_table(
@@ -863,6 +880,10 @@ if __name__ == "__main__":
     os.rename(
         "tools_exact_match_data.csv",
         f"{str(results_dir)}/tools_exact_match_data.csv",
+    )
+    os.rename(
+        "tools_sensitivities_data.csv",
+        f"{str(results_dir)}/tools_sensitivities_data.csv",
     )
     for tool in list(tools_results.keys()):
         if tool in utils.ML_TOOLS:

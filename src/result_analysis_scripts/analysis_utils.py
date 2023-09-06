@@ -31,6 +31,15 @@ PYTHON_FEATURES_CATEGORIES = [
     "mro",
     "returns",
 ]
+SENSITIVITIES_CATEGORIES = [
+    "context_sensitivity",
+    "field_sensitivity",
+    "flow_sensitivity",
+    "inter_procedural",
+    "intra_procedural",
+    "object_sensitivity",
+    "path_sensitivity",
+]
 
 
 def sort_facts(data):

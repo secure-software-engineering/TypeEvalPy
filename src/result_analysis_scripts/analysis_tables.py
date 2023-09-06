@@ -262,3 +262,33 @@ def exact_match_table(stats):
             for tool in tool_names:
                 row.extend([stats[tool]["exact_match"][category]["total_caught"]])
             writer.writerow(row)
+
+
+def analysis_sensitivities_table(stats):
+    with open(f"tools_sensitivities_data.csv", "w", newline="") as csvfile:
+        fieldnames = [
+            "Category",
+            "Total Files",
+        ]
+        for x in list(stats.keys()):
+            fieldnames.extend(list((f"{x}_sound",)))
+
+        writer = csv.writer(
+            csvfile,
+            delimiter=",",
+            quotechar="|",
+            quoting=csv.QUOTE_MINIMAL,
+        )
+        writer.writerow(fieldnames)
+        tool_names = list(stats.keys())
+        categories = list(stats[tool_names[0]]["sensitivity_sound_data"].keys())
+        for category in categories:
+            row = [category]
+            row.extend(
+                [stats[tool_names[0]]["sensitivity_sound_data"][category]["file_count"]]
+            )
+            for tool in tool_names:
+                row.extend(
+                    [stats[tool]["sensitivity_sound_data"][category]["sound_passed"]]
+                )
+            writer.writerow(row)
