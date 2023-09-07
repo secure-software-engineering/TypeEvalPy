@@ -7,6 +7,8 @@ from io import BytesIO
 
 import docker
 
+from result_analyzer.main_analyze_results import run_results_analyzer
+
 # Create a logger
 logger = logging.getLogger("Main Runner")
 logger.setLevel(logging.DEBUG)
@@ -245,6 +247,8 @@ def main():
             runner_instance = Runner(host_results_path)
 
         runner_instance.run_tool_test()
+
+    run_results_analyzer()
 
     os.rename("main_runner.log", f"{str(host_results_path)}/main_runner.log")
 

@@ -3,10 +3,14 @@ import logging
 import os
 from pathlib import Path
 from statistics import mean
+from subprocess import run
 
-import analysis_tables
-import analysis_utils as utils
 from tabulate import tabulate
+
+import result_analyzer.analysis_tables as analysis_tables
+import result_analyzer.analysis_utils as utils
+
+SCRIPT_DIR = os.path.abspath(os.path.dirname(__file__))
 
 # Create a logger
 logger = logging.getLogger("Result Analysis")
@@ -799,11 +803,11 @@ def generate_top_n_performance(test_suite_dir, tool_name=None):
     analysis_tables.create_top_n_table(results_cat, tool_name)
 
 
-if __name__ == "__main__":
+def run_results_analyzer():
     results_dir = None
     # results_dir = Path("../../.results/results_<>")
     if results_dir is None:
-        dir_path = Path("../../.results")
+        dir_path = Path(SCRIPT_DIR) / "../../.results"
         directories = [
             f
             for f in dir_path.iterdir()
@@ -894,3 +898,7 @@ if __name__ == "__main__":
                 f"top_n_exact_match_table_{tool}.csv",
                 f"{str(results_dir)}/top_n_exact_match_table_{tool}.csv",
             )
+
+
+if __name__ == "__main__":
+    run_results_analyzer()

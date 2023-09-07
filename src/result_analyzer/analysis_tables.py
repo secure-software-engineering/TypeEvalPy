@@ -1,7 +1,7 @@
 import csv
 import json
 
-import analysis_utils as utils
+import result_analyzer.analysis_utils as utils
 
 
 def error_result_table(stats, total_stats=True):
