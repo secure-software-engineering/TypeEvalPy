@@ -14,6 +14,8 @@ WORKDIR /app
 # Clone the repository
 RUN git clone https://github.com/JohnnyPeng18/HiTyper.git
 COPY patches/config.py /app/HiTyper/hityper/config.py
+COPY patches/__main__.py /app/HiTyper/hityper/__main__.py
+
 # Navigate into the cloned repository
 WORKDIR /app/HiTyper
 
@@ -21,4 +23,3 @@ WORKDIR /app/HiTyper
 RUN pip install .
 
 WORKDIR /type4py/type4py/server
-

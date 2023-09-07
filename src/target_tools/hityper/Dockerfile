@@ -14,6 +14,7 @@ RUN apt-get update \
 
 # Clone the repository
 RUN git clone https://github.com/JohnnyPeng18/HiTyper.git
+COPY patches/__main__.py /app/HiTyper/hityper/__main__.py
 
 # Navigate into the cloned repository
 WORKDIR /app/HiTyper

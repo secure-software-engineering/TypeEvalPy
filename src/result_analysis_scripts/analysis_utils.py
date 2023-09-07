@@ -34,6 +34,8 @@ PYTHON_FEATURES_CATEGORIES = [
 SENSITIVITIES_CATEGORIES = [
     "context_sensitivity",
     "field_sensitivity",
+    "field_sensitivity_depth_2",
+    "field_sensitivity_depth_3",
     "flow_sensitivity",
     "inter_procedural",
     "intra_procedural",

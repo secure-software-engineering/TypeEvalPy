@@ -491,9 +491,9 @@ def iterate_cats(test_suite_dir, tool_name=None):
 def iterate_cats_sensitivities(test_suite_dir, tool_name=None):
     all_cats_data = []
     all_cat_sound_complete = []
-    max_cat_length = 20
-    header_format = "{:<25}{:<15}"
-    row_format = "{:<25}{:<15}"
+    max_cat_length = 25
+    header_format = "{:<30}{:<15}"
+    row_format = "{:<30}{:<15}"
     sound_match = {
         k: {
             "sound_passed": 0,
