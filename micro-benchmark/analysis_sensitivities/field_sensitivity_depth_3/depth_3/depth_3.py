@@ -1,23 +1,24 @@
 # Program for field sensitivity analysis in depth 3
 
 
-class A:
-    def __init__(self, b):
-        self.b = b
+class ArithmeticOperation:
+    def __init__(self, a, b):
+        self.a = a
+        self.result = None
+        self.nested = self.Nested(b)
+
+    class Nested:
+        def __init__(self, b):
+            self.nested2 = self.Nested2(b)
+
+        class Nested2:
+            def __init__(self, c):
+                self.c = c
+
+    def compute(self):
+        self.result = self.a + self.nested.nested2.c
+        return self.result
 
 
-class B:
-    def __init__(self, c):
-        self.c = c
-
-
-class C:
-    def __init__(self, value):
-        self.value = value
-
-    def get_value(self):
-        return self.value
-
-
-a = A(B(C(42)))
-result1 = a.b.c.get_value()
+arith_op = ArithmeticOperation(5, 4)
+result1 = arith_op.compute()
