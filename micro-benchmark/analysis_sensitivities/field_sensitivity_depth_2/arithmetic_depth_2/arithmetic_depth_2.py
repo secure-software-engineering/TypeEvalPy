@@ -19,7 +19,3 @@ class ArithmeticOperation:
 
 arith_op = ArithmeticOperation(5, 4)
 result1 = arith_op.compute()
-
-arith_op.a = "Hello"
-arith_op.nested.b = "World"
-result2 = arith_op.compute()

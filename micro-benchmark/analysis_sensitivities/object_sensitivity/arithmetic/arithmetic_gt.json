@@ -14,7 +14,7 @@
         "col_offset": 1,
         "variable": "result2",
         "type": [
-            "int"
+            "str"
         ]
     }
 ]

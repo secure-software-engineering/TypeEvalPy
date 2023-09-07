@@ -17,7 +17,3 @@ class ArithmeticOperation:
 
 arith_op = ArithmeticOperation(5, 10)
 result1 = arith_op.compute()
-
-arith_op.a = "Hello"
-arith_op.b = "world"
-result2 = arith_op.compute()

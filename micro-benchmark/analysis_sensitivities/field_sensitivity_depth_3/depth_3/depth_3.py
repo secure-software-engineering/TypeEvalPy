@@ -21,6 +21,3 @@ class C:
 
 a = A(B(C(42)))
 result1 = a.b.c.get_value()
-
-a.b.c.value = "hello world"
-result2 = a.b.c.get_value()

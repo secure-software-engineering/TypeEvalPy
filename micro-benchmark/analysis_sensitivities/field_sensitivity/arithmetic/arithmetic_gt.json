@@ -7,14 +7,5 @@
         "type": [
             "int"
         ]
-    },
-    {
-        "file": "arithmetic.py",
-        "line_number": 23,
-        "col_offset": 1,
-        "variable": "result2",
-        "type": [
-            "str"
-        ]
     }
 ]
