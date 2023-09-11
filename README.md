@@ -33,10 +33,20 @@ TypeEvalPy is a robust benchmarking framework designed to evaluate the accuracy 
 
 2. **Execute the Analyzer**
 
-   Run the following command to start the benchmarking process:
+   Run the following command to start the benchmarking process on all tools:
 
    ```bash
    python main_runner.py
    ```
+
+   or
+
+   Run analysis on specific tools
+
+   ```
+   python main_runner.py --runners headergen hityperdl
+   ```
+
+   Available options: headergen, pyright, scalpel, jedi, hityper, type4py, hityperdl
 
    The results will be generated in the `.results` folder within the root directory of the repository. Each results folder will have a timestamp, allowing you to easily track and compare different runs.

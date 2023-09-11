@@ -2,6 +2,7 @@ import logging
 import os
 import tarfile
 import time
+from argparse import ArgumentParser
 from datetime import datetime
 from io import BytesIO
 
@@ -139,22 +140,22 @@ class TypeEvalPyRunner:
 
 
 class ScalpelRunner(TypeEvalPyRunner):
-    def __init__(self, host_results_path):
+    def __init__(self, host_results_path, debug=False):
         super().__init__("scalpel", "./target_tools/scalpel", host_results_path)
 
 
 class PyreRunner(TypeEvalPyRunner):
-    def __init__(self, host_results_path):
+    def __init__(self, host_results_path, debug=False):
         super().__init__("pyre", "./target_tools/pyre", host_results_path)
 
 
 class PyrightRunner(TypeEvalPyRunner):
-    def __init__(self, host_results_path):
+    def __init__(self, host_results_path, debug=False):
         super().__init__("pyright", "./target_tools/pyright", host_results_path)
 
 
 class PytypeRunner(TypeEvalPyRunner):
-    def __init__(self, host_results_path):
+    def __init__(self, host_results_path, debug=False):
         super().__init__("pytype", "./target_tools/pytype", host_results_path)
 
 
@@ -178,12 +179,12 @@ class JediRunner(TypeEvalPyRunner):
 
 
 class HityperRunner(TypeEvalPyRunner):
-    def __init__(self, host_results_path):
+    def __init__(self, host_results_path, debug=False):
         super().__init__("hityper", "./target_tools/hityper", host_results_path)
 
 
 class HityperDLRunner(TypeEvalPyRunner):
-    def __init__(self, host_results_path):
+    def __init__(self, host_results_path, debug=False):
         super().__init__("hityperdl", "./target_tools/hityperdl", host_results_path)
 
     def spawn_docker_instance(self):
@@ -219,12 +220,12 @@ class HeaderGenRunner(TypeEvalPyRunner):
 
 
 class PySonar2Runner(TypeEvalPyRunner):
-    def __init__(self, host_results_path):
+    def __init__(self, host_results_path, debug=False):
         super().__init__("pysonar2", "./target_tools/pysonar2", host_results_path)
 
 
 class Type4pyRunner(TypeEvalPyRunner):
-    def __init__(self, host_results_path):
+    def __init__(self, host_results_path, debug=False):
         super().__init__("type4py", "./target_tools/type4py", host_results_path)
 
     def spawn_docker_instance(self):
@@ -240,30 +241,76 @@ class Type4pyRunner(TypeEvalPyRunner):
         return container
 
 
+def get_args():
+    parser = ArgumentParser(description="Run various type evaluation tools.")
+    parser.add_argument(
+        "--runners",
+        nargs="+",
+        default=[
+            "headergen",
+            "pyright",
+            "scalpel",
+            "jedi",
+            "hityper",
+            "type4py",
+            "hityperdl",
+        ],
+        help=(
+            "List of runners to execute. Choices are:"
+            "headergen, pyright, scalpel, jedi, hityper, type4py, hityperdl"
+        ),
+    )
+    parser.add_argument(
+        "--debug", action="store_true", help="Execute runners in debug mode."
+    )
+    return parser.parse_args()
+
+
 def main():
+    args = get_args()
     host_results_path = f"../results/results_{datetime.now().strftime('%d-%m %H:%M')}"
 
-    runner_classes = [
-        (HeaderGenRunner, {"debug": False}),
-        PyrightRunner,
-        ScalpelRunner,
-        HityperRunner,
-        Type4pyRunner,
-        HityperDLRunner,  # For the top n predictions from DL model(Type4py) used by HiTyper
-        (JediRunner, {"debug": False}),
+    available_runners = {
+        "headergen": (
+            HeaderGenRunner,
+            {"debug": args.debug},
+        ),
+        "pyright": (
+            PyrightRunner,
+            {"debug": False},
+        ),
+        "scalpel": (
+            ScalpelRunner,
+            {"debug": False},
+        ),
+        "hityper": (
+            HityperRunner,
+            {"debug": False},
+        ),
+        "type4py": (
+            Type4pyRunner,
+            {"debug": False},
+        ),
+        "hityperdl": (
+            HityperDLRunner,
+            {"debug": False},
+        ),
+        "jedi": (
+            JediRunner,
+            {"debug": args.debug},
+        ),
         # PySonar2Runner,
         # PytypeRunner,
         # PyreRunner,
-    ]
+    }
 
-    for Runner in runner_classes:
-        if isinstance(Runner, tuple):
-            runner_class, kwargs = Runner
-            runner_instance = runner_class(host_results_path, **kwargs)
+    for runner_name in args.runners:
+        if runner_name in available_runners:
+            Runner, kwargs = available_runners[runner_name]
+            runner_instance = Runner(host_results_path, **kwargs)
+            runner_instance.run_tool_test()
         else:
-            runner_instance = Runner(host_results_path)
-
-        runner_instance.run_tool_test()
+            logger.error(f"Unknown runner: {runner_name}")
 
     run_results_analyzer()
 
