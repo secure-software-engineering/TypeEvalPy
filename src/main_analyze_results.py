@@ -7,8 +7,8 @@ from subprocess import run
 
 from tabulate import tabulate
 
-import result_analyzer.analysis_tables as analysis_tables
-import result_analyzer.analysis_utils as utils
+from result_analyzer import analysis_tables as analysis_tables
+from result_analyzer import analysis_utils as utils
 
 SCRIPT_DIR = os.path.abspath(os.path.dirname(__file__))
 
@@ -225,7 +225,7 @@ def display_all_cats_data(all_cats_data):
     return missing_analysis_rows
 
 
-def process_cat_dir(cat_dir, tool_name=None):
+def process_cat_dir(cat_dir, tool_name=None, print_mismatch=False):
     all_missing_matches = {}
     complete_passed = 0
     sound_passed = 0
@@ -269,7 +269,10 @@ def process_cat_dir(cat_dir, tool_name=None):
 
                     cat_precision, cat_precision_grouped, only_cat_precision_grouped = (
                         utils.measure_precision(
-                            expected=gt_file, out=result_file, tool_name=tool_name
+                            expected=gt_file,
+                            out=result_file,
+                            tool_name=tool_name,
+                            print_mismatch=print_mismatch,
                         )
                     )
                     cat_recall, cat_recall_grouped, only_cat_recall_grouped = (
@@ -370,7 +373,7 @@ def iterate_cats(test_suite_dir, tool_name=None):
         cat_dir = os.path.join(test_suite_dir, cat)
         if os.path.isdir(cat_dir):
             # logger.info("Iterating category {}...".format(cat))
-            results = process_cat_dir(cat_dir, tool_name=tool_name)
+            results = process_cat_dir(cat_dir, tool_name=tool_name, print_mismatch=True)
 
             cat_data = {
                 "Category": cat,
@@ -514,7 +517,7 @@ def iterate_cats_sensitivities(test_suite_dir, tool_name=None):
         cat_dir = os.path.join(test_suite_dir, cat)
         if os.path.isdir(cat_dir):
             # logger.info("Iterating category {}...".format(cat))
-            results = process_cat_dir(cat_dir, tool_name=tool_name)
+            results = process_cat_dir(cat_dir, tool_name=tool_name, print_mismatch=True)
 
             cat_data = {
                 "Category": cat,
@@ -807,7 +810,7 @@ def run_results_analyzer():
     results_dir = None
     # results_dir = Path("../../results/results_<>")
     if results_dir is None:
-        dir_path = Path(SCRIPT_DIR) / "../../results"
+        dir_path = Path(SCRIPT_DIR) / "../results"
         directories = [
             f
             for f in dir_path.iterdir()
@@ -890,6 +893,10 @@ def run_results_analyzer():
         f"{str(results_dir)}/tools_sensitivities_data.csv",
     )
     for tool in list(tools_results.keys()):
+        os.rename(
+            f"{tool}_mismatches_reasons.csv",
+            f"{str(results_dir)}/{tool}_mismatches_reasons.csv",
+        )
         if tool in utils.ML_TOOLS:
             os.rename(
                 f"top_n_table_{tool}.csv", f"{str(results_dir)}/top_n_table_{tool}.csv"

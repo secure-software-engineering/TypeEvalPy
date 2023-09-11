@@ -7,5 +7,5 @@ class A:
             pass
 
 
-a = A.B
-raise A.B
+a = A.B()
+raise a

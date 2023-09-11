@@ -5,7 +5,7 @@
         "col_offset": 1,
         "variable": "a",
         "type": [
-            "to_import_call.MyClass"
+            "to_import_init.MyClass"
         ]
     },
     {

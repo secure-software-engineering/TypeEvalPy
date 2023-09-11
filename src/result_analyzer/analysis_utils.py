@@ -110,7 +110,15 @@ def format_type(_types, is_ml=False):
     return type_formatted
 
 
-def check_match(expected, out, partial_match=False, top_n=1, is_ml=False):
+def check_match(
+    expected,
+    out,
+    partial_match=False,
+    top_n=1,
+    is_ml=False,
+    print_mismatch=False,
+    metadata={},
+):
     if not all(
         [
             x in expected
@@ -174,10 +182,23 @@ def check_match(expected, out, partial_match=False, top_n=1, is_ml=False):
 
     if not matched:
         # print only full mismatch
-        if partial_match:
+        if print_mismatch:
             logger.debug(
                 f"\n\n##### Type mismatch! #####\nPartial mactching: {partial_match}"
             )
+
+            with open(f"{metadata['tool_name']}_mismatches_reasons.csv", "a") as f:
+                f.write(
+                    ";".join(
+                        [
+                            metadata["cat"],
+                            metadata["type_category"],
+                            json.dumps(expected),
+                            json.dumps(out),
+                        ]
+                    )
+                )
+                f.write("\n")
 
             logger.debug("Ground Truth:")
             logger.debug(json.dumps(expected, indent=4))
@@ -192,7 +213,7 @@ def check_match(expected, out, partial_match=False, top_n=1, is_ml=False):
     return True
 
 
-def measure_precision(out, expected, tool_name=None):
+def measure_precision(out, expected, tool_name=None, print_mismatch=False):
     with open(out) as f:
         data_out = json.load(f)
     with open(expected) as f:
@@ -244,7 +265,18 @@ def measure_precision(out, expected, tool_name=None):
                     for fact_expected in data_expected:
                         # Check exact matches
                         if check_match(
-                            expected=fact_expected, out=fact_out, top_n=_n, is_ml=True
+                            expected=fact_expected,
+                            out=fact_out,
+                            top_n=_n,
+                            is_ml=True,
+                            print_mismatch=(
+                                True if (_n == 1 and print_mismatch) else False
+                            ),
+                            metadata={
+                                "tool_name": tool_name,
+                                "type_category": _cat,
+                                "cat": " -> ".join(expected.split("/")[-4:]),
+                            },
                         ):
                             if _n == 1:
                                 # Only if top-1 for "results" list
@@ -270,12 +302,23 @@ def measure_precision(out, expected, tool_name=None):
             for fact_out in _cat_facts:
                 for fact_expected in data_expected:
                     # Check exact matches
-                    if check_match(expected=fact_expected, out=fact_out):
+                    if check_match(
+                        expected=fact_expected,
+                        out=fact_out,
+                        print_mismatch=print_mismatch,
+                        metadata={
+                            "tool_name": tool_name,
+                            "type_category": _cat,
+                            "cat": " -> ".join(expected.split("/")[-4:]),
+                        },
+                    ):
                         results["num_caught_exact"] += 1
                         results_only_cat[_cat]["num_caught_exact"] += 1
                     # Check partial matches
                     elif check_match(
-                        expected=fact_expected, out=fact_out, partial_match=True
+                        expected=fact_expected,
+                        out=fact_out,
+                        partial_match=True,
                     ):
                         results["num_caught_partial"] += 1
                         results_only_cat[_cat]["num_caught_partial"] += 1

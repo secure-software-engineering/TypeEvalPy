@@ -2,43 +2,43 @@
     {
         "file": "main.py",
         "line_number": 5,
-        "col_offset": 5,        
+        "col_offset": 5,
         "function": "func",
         "type": [
-            "Tuple[int]"
+            "tuple"
         ]
     },
     {
         "file": "main.py",
         "line_number": 9,
-        "col_offset": 1,        
+        "col_offset": 1,
         "variable": "a",
         "type": [
-            "Tuple[int]"
+            "tuple"
         ]
     },
     {
         "file": "main.py",
         "line_number": 13,
-        "col_offset": 5,        
+        "col_offset": 5,
         "function": "func1",
         "type": [
-            "Dict[str, int]"
+            "dict"
         ]
     },
     {
         "file": "main.py",
         "line_number": 17,
-        "col_offset": 1,        
+        "col_offset": 1,
         "variable": "b",
         "type": [
-            "Dict[str, int]"
+            "dict"
         ]
     },
     {
         "file": "main.py",
         "line_number": 23,
-        "col_offset": 5,        
+        "col_offset": 5,
         "function": "func3",
         "type": [
             "Point"
@@ -47,7 +47,7 @@
     {
         "file": "main.py",
         "line_number": 24,
-        "col_offset": 5,        
+        "col_offset": 5,
         "function": "func3",
         "variable": "Point",
         "type": [
@@ -57,7 +57,7 @@
     {
         "file": "main.py",
         "line_number": 28,
-        "col_offset": 1,        
+        "col_offset": 1,
         "variable": "c",
         "type": [
             "Point"
@@ -66,7 +66,7 @@
     {
         "file": "main.py",
         "line_number": 32,
-        "col_offset": 5,        
+        "col_offset": 5,
         "function": "func4",
         "type": [
             "set"
@@ -75,7 +75,7 @@
     {
         "file": "main.py",
         "line_number": 36,
-        "col_offset": 1,        
+        "col_offset": 1,
         "variable": "d",
         "type": [
             "set"
@@ -84,7 +84,7 @@
     {
         "file": "main.py",
         "line_number": 40,
-        "col_offset": 5,        
+        "col_offset": 5,
         "function": "func5",
         "type": [
             "list"
@@ -93,7 +93,7 @@
     {
         "file": "main.py",
         "line_number": 41,
-        "col_offset": 22,        
+        "col_offset": 22,
         "function": "func5",
         "variable": "x",
         "type": [
@@ -103,7 +103,7 @@
     {
         "file": "main.py",
         "line_number": 44,
-        "col_offset": 1,        
+        "col_offset": 1,
         "variable": "e",
         "type": [
             "list"

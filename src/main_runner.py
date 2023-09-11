@@ -8,7 +8,7 @@ from io import BytesIO
 
 import docker
 
-from result_analyzer.main_analyze_results import run_results_analyzer
+from main_analyze_results import run_results_analyzer
 
 # Create a logger
 logger = logging.getLogger("Main Runner")
@@ -163,7 +163,7 @@ class JediRunner(TypeEvalPyRunner):
     def __init__(self, host_results_path, debug=False):
         if debug:
             super().__init__(
-                "jedi_dev",
+                "jedi",
                 "./target_tools/jedi",
                 host_results_path,
                 dockerfile_name="Dockerfile",
@@ -204,7 +204,7 @@ class HeaderGenRunner(TypeEvalPyRunner):
     def __init__(self, host_results_path, debug=False):
         if debug:
             super().__init__(
-                "headergen_dev",
+                "headergen",
                 "./target_tools/headergen",
                 host_results_path,
                 dockerfile_name="Dockerfile.dev",

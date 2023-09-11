@@ -30,18 +30,27 @@ class TypeInferenceJedi:
         else:
             self.leaves = [Path(entry_point)]
 
+    def check_ending(self, s):
+        return bool(re.search(r"\([a-zA-Z, ]*\)$", s))
+
     def transform_type_string(self, s: str) -> str:
         if "[" in s:
             # Use regular expression to replace content inside square brackets with empty string
             s = re.sub(r"\[.*\]", "", s)
             # Convert the first letter to lower-case
             s = s[0].lower() + s[1:]
+        if s == "None":
+            s = "Nonetype"
         return s
 
-    def parse_type_hint(self, type_hint):
+    def parse_type_hint(self, type_hint, name):
         # TODO: Replace this with a more sane version from the internals of Jedi
         _type = set()
-        if type_hint:
+        if type_hint == f"{name}()":
+            pass
+        elif type_hint and type_hint.startswith("<lambda>"):
+            _type.add("callable")
+        elif type_hint:
             try:
                 _t = type_hint.split(" -> ")[-1]
                 if "Union" in _t:
@@ -53,9 +62,10 @@ class TypeInferenceJedi:
                     )
                     for _l_t in _list_of_types:
                         _type.add(_l_t)
-                elif _t.endswith("()"):
+                elif self.check_ending(_t):
                     _type.add("callable")
                 else:
+                    _t = _t.replace(")", "").replace("(", "")
                     _type.add(_t)
             except Exception as e:
                 print("Unable to parse type hint")
@@ -69,7 +79,9 @@ class TypeInferenceJedi:
         _try_type_hint = None
 
         try:
-            _try_type_hint = self.parse_type_hint(jedi_obj.get_type_hint())
+            _try_type_hint = self.parse_type_hint(
+                jedi_obj.get_type_hint(), jedi_obj.name
+            )
         except Exception as e:
             print("Unable to fetch type hint from Jedi")
 
@@ -77,7 +89,7 @@ class TypeInferenceJedi:
             _type = _try_type_hint
         else:
             for _name in jedi_obj.execute():
-                _type = self.parse_type_hint(_name.get_type_hint())
+                _type = self.parse_type_hint(_name.get_type_hint(), _name.name)
 
                 if not _type:
                     # Find builtin types
@@ -89,8 +101,11 @@ class TypeInferenceJedi:
 
     def get_function_name(self, jedi_obj):
         try:
-            parts = jedi_obj.full_name.split(".", 1)
-            func_name = parts[-1] if len(parts) > 1 else jedi_obj.full_name
+            if jedi_obj.name == "<lambda>":
+                func_name = "lambda"
+            else:
+                parts = jedi_obj.full_name.split(".", 1)
+                func_name = parts[-1] if len(parts) > 1 else jedi_obj.full_name
         except Exception as e:
             print("full_name not found in jedi_obj?")
             func_name = jedi_obj.name
@@ -137,9 +152,11 @@ class TypeInferenceJedi:
                             _info = {
                                 "file": node.name,
                                 "line_number": pos["line"],
-                                "function": self.get_function_name(inferred),
-                                "type": _type if _type else {"any"},
                             }
+                            if inferred.name != "<lambda>":
+                                _info["function"] = self.get_function_name(inferred)
+                            _info["type"] = _type if _type else {"any"}
+
                             variable_name = var.split(":")[0].strip()
                             if variable_name != self.get_function_name(inferred):
                                 _info["variable"] = variable_name
@@ -151,9 +168,11 @@ class TypeInferenceJedi:
                                 _type = inferred.get_type_hint()
                                 if _type == inferred.name:
                                     if not inferred.full_name.startswith(
-                                        (self.entry_point.stem, "builtins")
+                                        (self.entry_point.stem, "builtins", "typing")
                                     ):
                                         _type = inferred.full_name
+                                    else:
+                                        _type = _type.lower()
 
                                 _type = self.transform_type_string(_type)
                             except Exception as e:
@@ -226,7 +245,7 @@ class TypeInferenceJedi:
 
 if __name__ == "__main__":
     file_path = Path(
-        "/mnt/Projects/PhD/Research/Student-Thesis/4_type_inference_benchmark(Sam)/git_sources/master-thesis-of-samkutty/micro-benchmark/python_features/direct_calls/single_argument/main.py"
+        "/mnt/Projects/PhD/Research/Student-Thesis/4_type_inference_benchmark(Sam)/git_sources/master-thesis-of-samkutty/.scrapy/test.py"
     )
     inferer = TypeInferenceJedi(name=file_path, entry_point=file_path)
     inferer.infer_types()

@@ -6,5 +6,5 @@ class A(Exception):
         pass
 
 
-a = A
+a = A()
 raise a
