@@ -1,8 +1,10 @@
-from cmath import exp
 import os
-import jedi
-from typing import List
+import re
+from cmath import exp
 from pathlib import Path
+from typing import List
+
+import jedi
 
 
 class TypeInferenceJedi:
@@ -28,6 +30,14 @@ class TypeInferenceJedi:
         else:
             self.leaves = [Path(entry_point)]
 
+    def transform_type_string(self, s: str) -> str:
+        if "[" in s:
+            # Use regular expression to replace content inside square brackets with empty string
+            s = re.sub(r"\[.*\]", "", s)
+            # Convert the first letter to lower-case
+            s = s[0].lower() + s[1:]
+        return s
+
     def parse_type_hint(self, type_hint):
         # TODO: Replace this with a more sane version from the internals of Jedi
         _type = set()
@@ -51,6 +61,7 @@ class TypeInferenceJedi:
                 print("Unable to parse type hint")
                 pass
 
+        _type = set([self.transform_type_string(s) for s in _type])
         return _type
 
     def find_types_by_execute(self, jedi_obj):
@@ -62,7 +73,7 @@ class TypeInferenceJedi:
         except Exception as e:
             print("Unable to fetch type hint from Jedi")
 
-        if _try_type_hint:
+        if _try_type_hint and not next(iter(_try_type_hint)).startswith(jedi_obj.name):
             _type = _try_type_hint
         else:
             for _name in jedi_obj.execute():
@@ -73,13 +84,13 @@ class TypeInferenceJedi:
                     if _name.module_name == "builtins":
                         _type.add(_name.name)
 
+        _type = set([self.transform_type_string(s) for s in _type])
         return _type
 
     def get_function_name(self, jedi_obj):
         try:
-            func_name = ".".join(
-                jedi_obj.full_name.replace(jedi_obj.module_name, "").split(".")[1:]
-            )
+            parts = jedi_obj.full_name.split(".", 1)
+            func_name = parts[-1] if len(parts) > 1 else jedi_obj.full_name
         except Exception as e:
             print("full_name not found in jedi_obj?")
             func_name = jedi_obj.name
@@ -138,6 +149,13 @@ class TypeInferenceJedi:
                         elif inferred.type == "instance":
                             try:
                                 _type = inferred.get_type_hint()
+                                if _type == inferred.name:
+                                    if not inferred.full_name.startswith(
+                                        (self.entry_point.stem, "builtins")
+                                    ):
+                                        _type = inferred.full_name
+
+                                _type = self.transform_type_string(_type)
                             except Exception as e:
                                 print("Unable to fetch type hint from Jedi")
                                 _type = None
@@ -153,10 +171,14 @@ class TypeInferenceJedi:
                                 "variable": var.split(":")[0],
                                 "type": {_type},
                             }
-                            if self.get_function_name(pos["jedi_obj"].parent()):
-                                _info["function"] = self.get_function_name(
-                                    pos["jedi_obj"].parent()
-                                )
+                            if (
+                                not pos["jedi_obj"].parent().name
+                                == pos["jedi_obj"].parent().module_name
+                            ):
+                                if self.get_function_name(pos["jedi_obj"].parent()):
+                                    _info["function"] = self.get_function_name(
+                                        pos["jedi_obj"].parent()
+                                    )
                             if _type:
                                 output_inferred.append(_info)
 
@@ -200,3 +222,13 @@ class TypeInferenceJedi:
         Get the inferred type information in a list of dictionaries
         """
         return self.output_inferred
+
+
+if __name__ == "__main__":
+    file_path = Path(
+        "/mnt/Projects/PhD/Research/Student-Thesis/4_type_inference_benchmark(Sam)/git_sources/master-thesis-of-samkutty/micro-benchmark/python_features/direct_calls/single_argument/main.py"
+    )
+    inferer = TypeInferenceJedi(name=file_path, entry_point=file_path)
+    inferer.infer_types()
+    inferred = inferer.get_types()
+    print(inferred)

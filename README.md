@@ -8,19 +8,20 @@ TypeEvalPy is a robust benchmarking framework designed to evaluate the accuracy 
 
 1. **Install Dependencies and Set Up Virtual Environment**
 
-   Run the following command to set up your virtual environment, install required packages, and add pre-commit hooks.
+   Run the following commands to set up your virtual environment and activate the virtual environment.
 
    ```bash
-   ./setup.sh -i
+   python3 -m venv .env
    ```
-
-2. **Activate Virtual Environment**
-
-   To activate the virtual environment you've just created, execute:
 
    ```bash
    source .env/bin/activate
    ```
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
 
 ### Run the Benchmark Analysis
 

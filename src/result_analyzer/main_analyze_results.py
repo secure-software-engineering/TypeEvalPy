@@ -805,9 +805,9 @@ def generate_top_n_performance(test_suite_dir, tool_name=None):
 
 def run_results_analyzer():
     results_dir = None
-    # results_dir = Path("../../.results/results_<>")
+    # results_dir = Path("../../results/results_<>")
     if results_dir is None:
-        dir_path = Path(SCRIPT_DIR) / "../../.results"
+        dir_path = Path(SCRIPT_DIR) / "../../results"
         directories = [
             f
             for f in dir_path.iterdir()

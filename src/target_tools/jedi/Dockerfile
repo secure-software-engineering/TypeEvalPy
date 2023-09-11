@@ -20,8 +20,6 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 COPY src /tmp/src
-# Custom patch to fix simple errors
-COPY patches/jedi_type_inference.py /tmp/src/jedi_type_inference.py
 
 # Run the application
 CMD ["bash"]

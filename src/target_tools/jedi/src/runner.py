@@ -1,10 +1,11 @@
 import argparse
+import json
 import logging
 from pathlib import Path
 from sys import stdout
-from jedi_type_inference import TypeInferenceJedi
-import json
+
 import utils
+from jedi_type_inference import TypeInferenceJedi
 
 # Create a logger
 logger = logging.getLogger("runner")
@@ -61,7 +62,8 @@ def main_runner(args):
 
 if __name__ == "__main__":
     is_running_in_docker = utils.is_running_in_docker()
-    if is_running_in_docker:
+    run_all = True
+    if is_running_in_docker and run_all:
         print("Python is running inside a Docker container")
         parser = argparse.ArgumentParser()
         parser.add_argument(
@@ -74,5 +76,5 @@ if __name__ == "__main__":
         main_runner(args)
     else:
         print("Python is not running inside a Docker container")
-        file_path = ""
+        file_path = "/tmp/micro-benchmark/analysis_sensitivities/intra_procedural/arithmetic/arithmetic.py"
         process_file(file_path)

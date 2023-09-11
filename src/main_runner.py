@@ -24,6 +24,8 @@ console_handler.setFormatter(formatter)
 logger.addHandler(file_handler)
 logger.addHandler(console_handler)
 
+KEEP_CONTAINERS_RUNNING = False
+
 
 class FileHandler:
     def copy_files_to_container(self, container, src, dst):
@@ -127,9 +129,10 @@ class TypeEvalPyRunner:
             self.container, result_path, f"{self.host_results_path}/{self.tool_name}"
         )
 
-        self.container.stop()
-        time.sleep(5)
-        self.container.remove()
+        if not KEEP_CONTAINERS_RUNNING:
+            self.container.stop()
+            time.sleep(5)
+            self.container.remove()
 
     def run_tool_test(self):
         self._run_test_in_session()
@@ -156,8 +159,22 @@ class PytypeRunner(TypeEvalPyRunner):
 
 
 class JediRunner(TypeEvalPyRunner):
-    def __init__(self, host_results_path):
-        super().__init__("jedi", "./target_tools/jedi", host_results_path)
+    def __init__(self, host_results_path, debug=False):
+        if debug:
+            super().__init__(
+                "jedi_dev",
+                "./target_tools/jedi",
+                host_results_path,
+                dockerfile_name="Dockerfile",
+                volumes={
+                    os.path.abspath("./target_tools/jedi/src"): {
+                        "bind": "/tmp/src",
+                        "mode": "rw",
+                    }
+                },
+            )
+        else:
+            super().__init__("jedi", "./target_tools/jedi", host_results_path)
 
 
 class HityperRunner(TypeEvalPyRunner):
@@ -224,7 +241,7 @@ class Type4pyRunner(TypeEvalPyRunner):
 
 
 def main():
-    host_results_path = f"../.results/results_{datetime.now().strftime('%d-%m %H:%M')}"
+    host_results_path = f"../results/results_{datetime.now().strftime('%d-%m %H:%M')}"
 
     runner_classes = [
         (HeaderGenRunner, {"debug": False}),
@@ -233,7 +250,7 @@ def main():
         HityperRunner,
         Type4pyRunner,
         HityperDLRunner,  # For the top n predictions from DL model(Type4py) used by HiTyper
-        # JediRunner,
+        (JediRunner, {"debug": False}),
         # PySonar2Runner,
         # PytypeRunner,
         # PyreRunner,
