@@ -4,6 +4,7 @@ import os
 from pathlib import Path
 from statistics import mean
 from subprocess import run
+from tarfile import SUPPORTED_TYPES
 
 from tabulate import tabulate
 
@@ -11,7 +12,15 @@ from result_analyzer import analysis_tables as analysis_tables
 from result_analyzer import analysis_utils as utils
 
 SCRIPT_DIR = os.path.abspath(os.path.dirname(__file__))
-
+SUPPORTED_TOOLS = [
+    "headergen",
+    "pyright",
+    "scalpel",
+    "jedi",
+    "hityper",
+    "type4py",
+    "hityperdl",
+]
 # Create a logger
 logger = logging.getLogger("Result Analysis")
 logger.setLevel(logging.DEBUG)
@@ -277,7 +286,10 @@ def process_cat_dir(cat_dir, tool_name=None, print_mismatch=False):
                     )
                     cat_recall, cat_recall_grouped, only_cat_recall_grouped = (
                         utils.measure_recall(
-                            expected=gt_file, out=result_file, tool_name=tool_name
+                            expected=gt_file,
+                            out=result_file,
+                            tool_name=tool_name,
+                            print_missed=print_mismatch,
                         )
                     )
 
@@ -823,7 +835,7 @@ def run_results_analyzer():
     tools_results = {}
 
     for item in results_dir.glob("*"):
-        if item.is_file():
+        if item.is_file() or item.name not in SUPPORTED_TOOLS:
             # ignore
             pass
         elif item.is_dir():
@@ -892,11 +904,20 @@ def run_results_analyzer():
         "tools_sensitivities_data.csv",
         f"{str(results_dir)}/tools_sensitivities_data.csv",
     )
+
+    os.makedirs(results_dir / "mismatches", exist_ok=True)
+    os.makedirs(results_dir / "missing", exist_ok=True)
+
     for tool in list(tools_results.keys()):
         os.rename(
             f"{tool}_mismatches_reasons.csv",
-            f"{str(results_dir)}/{tool}_mismatches_reasons.csv",
+            f"{str(results_dir)}/mismatches/{tool}_mismatches_reasons.csv",
         )
+        os.rename(
+            f"{tool}_not_found_reasons.csv",
+            f"{str(results_dir)}/missing/{tool}_not_found_reasons.csv",
+        )
+
         if tool in utils.ML_TOOLS:
             os.rename(
                 f"top_n_table_{tool}.csv", f"{str(results_dir)}/top_n_table_{tool}.csv"

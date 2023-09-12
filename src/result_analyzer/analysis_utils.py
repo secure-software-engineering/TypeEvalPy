@@ -326,7 +326,7 @@ def measure_precision(out, expected, tool_name=None, print_mismatch=False):
     return results, results_cat, results_only_cat
 
 
-def measure_recall(out, expected, tool_name=None):
+def measure_recall(out, expected, tool_name=None, print_missed=False):
     with open(out) as f:
         data_out = json.load(f)
     with open(expected) as f:
@@ -375,6 +375,7 @@ def measure_recall(out, expected, tool_name=None):
         for _n in TOP_N:
             for _cat, _cat_facts in data_expected_categories.items():
                 for fact_expected in _cat_facts:
+                    expected_found = False
                     for fact_out in data_out:
                         # Check exact matches
                         if check_match(
@@ -383,6 +384,7 @@ def measure_recall(out, expected, tool_name=None):
                             if _n == 1:
                                 # Only if top-1 for "results" list
                                 results["num_caught_exact"] += 1
+                                expected_found = True
                             results_cat[_n][_cat]["num_caught_exact"] += 1
 
                         # Check partial matches
@@ -397,6 +399,19 @@ def measure_recall(out, expected, tool_name=None):
                                 # Only if top-1 for "results" list
                                 results["num_caught_partial"] += 1
                             results_cat[_n][_cat]["num_caught_partial"] += 1
+
+                    if not expected_found and print_missed:
+                        with open(f"{tool_name}_not_found_reasons.csv", "a") as f:
+                            f.write(
+                                ";".join(
+                                    [
+                                        " -> ".join(expected.split("/")[-4:]),
+                                        _cat,
+                                        json.dumps(fact_expected),
+                                    ]
+                                )
+                            )
+                            f.write("\n")
 
     else:
         for _cat, _cat_facts in data_expected_categories.items():
@@ -415,10 +430,21 @@ def measure_recall(out, expected, tool_name=None):
                     ):
                         results["num_caught_partial"] += 1
                         results_only_cat[_cat]["num_caught_partial"] += 1
-                        expected_found = True
 
-                if not expected_found:
+                if not expected_found and print_missed:
                     logger.debug(f"~~~~~~ Type Not Found! ~~~~~~")
+
+                    with open(f"{tool_name}_not_found_reasons.csv", "a") as f:
+                        f.write(
+                            ";".join(
+                                [
+                                    " -> ".join(expected.split("/")[-4:]),
+                                    _cat,
+                                    json.dumps(fact_expected),
+                                ]
+                            )
+                        )
+                        f.write("\n")
 
                     logger.debug("Expected:")
                     logger.debug(json.dumps(fact_expected, indent=4))
