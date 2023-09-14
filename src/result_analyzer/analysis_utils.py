@@ -2,6 +2,7 @@ import csv
 import json
 import logging
 import os
+import re
 from pathlib import Path
 
 logger = logging.getLogger("Result Analysis")
@@ -79,12 +80,14 @@ def categorize_facts(data):
 
 
 def format_type(_types, is_ml=False):
+    # TODO: Improve code quality
     type_formatted = []
     if _types:
         for _type in _types:
             i_type_list = []
             if is_ml:
                 if _type.startswith("Union["):
+                    # TODO: Improve code, should not lower() for all. e.g., MyClass
                     types_split = [
                         x.replace(" ", "").lower()
                         for x in _type.split("Union[")[1].split("]")[0].split(",")
@@ -107,7 +110,22 @@ def format_type(_types, is_ml=False):
                         i_type_list.append(_t.lower())
                         # i_type_list.append(_t.split("[")[0].lower())
             type_formatted.append(list(set(i_type_list)))
+
+    for i in range(len(type_formatted)):
+        for j in range(len(type_formatted[i])):
+            type_formatted[i][j] = transform_type_string(type_formatted[i][j])
     return type_formatted
+
+
+def transform_type_string(s: str) -> str:
+    if "[" in s:
+        # Use regular expression to replace content inside square brackets with empty string
+        s = re.sub(r"\[.*\]", "", s)
+        # Convert the first letter to lower-case
+        s = s[0].lower() + s[1:]
+    if s == "None":
+        s = "Nonetype"
+    return s
 
 
 def check_match(
