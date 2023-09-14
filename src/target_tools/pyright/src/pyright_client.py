@@ -1,14 +1,15 @@
+import json
 import logging
+import os
 import pathlib
+import re
 import subprocess
 import sys
-import requests
 import threading
-import json
 import time
-import re
-import os
+
 import pyright_langservers as pyright_lsp
+import requests
 import sansio_lsp_client as lsp
 import uvicorn
 from fastapi import FastAPI
@@ -196,6 +197,10 @@ def get_hover(file_path, lineno, col_offset, func_name):
         f"\nReturning - {func_name} - lineno: {lineno} col_offset: {col_offset}"
     )
     logging.info({"data": res, "hover_msg": hover_msg})
+    if result:
+        if result["type"] == ["Unknown"]:
+            return None
+
     return result
 
 
