@@ -1,3 +1,4 @@
+import ast
 import json
 import logging
 import os
@@ -164,6 +165,8 @@ def get_hover(file_path, lineno, col_offset, func_name):
                 else:
                     _type_name = _type.split(":")[0].split("python\n(variable) ")[1]
                     _type_value = _type.split(":")[1].strip().strip("`\n")
+                    if _type_value == "LiteralString":
+                        _type_value = "str"
                 result["variable"] = _type_name
                 result["type"].append(f"{_type_value}")
             elif _type.startswith("```python\n(parameter)"):
@@ -183,11 +186,21 @@ def get_hover(file_path, lineno, col_offset, func_name):
             else:
                 _t = hover_msg.contents.value.split("-> ")[1].split("\n")[0]
                 res = get_type(_t)
-            if result["type"] and "Literal" in result["type"][0]:
-                type_value = result["type"][0].split("Literal[")[1].split("]")[0]
-                type_value = eval(type_value)
-                result["type"][0] = f"{get_data_type(type_value)}"
-                # res = get_type(_t)
+
+            if result["type"]:
+                for i in range(len(result["type"])):
+                    if "Literal[" in result["type"][i]:
+                        type_value = (
+                            result["type"][i].split("Literal[")[1].split("]")[0]
+                        )
+                        literals = ast.literal_eval(type_value)
+                        if not isinstance(literals, (list, tuple)):
+                            result["type"][i] = str(type(literals).__name__)
+                        else:
+                            result["type"] = [
+                                str(type(item).__name__) for item in literals
+                            ]
+
         except Exception as e:
             print(e)
             res = None
@@ -197,8 +210,9 @@ def get_hover(file_path, lineno, col_offset, func_name):
         f"\nReturning - {func_name} - lineno: {lineno} col_offset: {col_offset}"
     )
     logging.info({"data": res, "hover_msg": hover_msg})
+    # TODO: Hack to get things working. Should parse type better!!
     if result:
-        if result["type"] == ["Unknown"]:
+        if result["type"] in (["Unknown"], ["Unknown)"]):
             return None
 
     return result
