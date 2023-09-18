@@ -242,6 +242,18 @@ def create_exact_top_n_table(exact_results_cat, tool_name):
 
 
 def exact_match_table(stats):
+    # Sort stats based on total_caught
+    stats = {
+        k: v
+        for k, v in sorted(
+            stats.items(),
+            key=lambda item: sum(
+                sub_dict["total_caught"] for sub_dict in item[1]["exact_match"].values()
+            ),
+            reverse=True,
+        )
+    }
+
     with open(f"tools_exact_match_data.csv", "w", newline="") as csvfile:
         fieldnames = ["Category", "Total facts"]
         for x in list(stats.keys()):
