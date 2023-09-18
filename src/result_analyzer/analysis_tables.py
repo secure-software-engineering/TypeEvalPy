@@ -293,6 +293,40 @@ def exact_match_table(stats):
         writer.writerow(row)
 
 
+def exact_match_category_table(stats):
+    headers = ["Tool Name"]
+    tool_names = list(stats.keys())
+    categories = list(stats[tool_names[0]]["exact_match_category"].keys())
+    type_categories = list(
+        list(stats[tool_names[0]]["exact_match_category"].values())[0].keys()
+    )
+
+    # Add headers for each combination of category and type_category
+    for category in categories:
+        for type_category in type_categories:
+            header = f"{category}_{type_category}"
+            headers.append(header)
+
+    rows = []
+    # Iterate through tool_names and add the values to the rows
+    for tool_name in tool_names:
+        row_values = [tool_name]
+
+        for category in categories:
+            for type_category in type_categories:
+                value = stats[tool_name]["exact_match_category"][category][
+                    type_category
+                ]["r_overall_total_caught"]
+                row_values.append(str(value))
+
+        rows.append(row_values)
+    with open("tools_exact_match_category_data.csv", "w", newline="") as csv_file:
+        writer = csv.writer(csv_file)
+        writer.writerow(headers)
+        writer.writerows(rows)
+    pass
+
+
 def analysis_sensitivities_table(stats):
     with open(f"tools_sensitivities_data.csv", "w", newline="") as csvfile:
         fieldnames = [

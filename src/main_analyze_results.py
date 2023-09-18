@@ -243,6 +243,7 @@ def process_cat_dir(cat_dir, tool_name=None, print_mismatch=False):
     cat_recall_results = {}
     cat_precision_results_grouped = {}
     cat_recall_results_grouped = {}
+    cat_only_cat_recall_grouped = {}
 
     for root, dirs, files in os.walk(cat_dir):
         test_files = [x.split(".py")[0] for x in files if x.endswith(".py")]
@@ -292,7 +293,6 @@ def process_cat_dir(cat_dir, tool_name=None, print_mismatch=False):
                             print_missed=print_mismatch,
                         )
                     )
-
                     cat_precision_results[
                         f"{os.path.basename(os.path.dirname(gt_file))}:{test}"
                     ] = cat_precision
@@ -306,7 +306,9 @@ def process_cat_dir(cat_dir, tool_name=None, print_mismatch=False):
                     cat_recall_results_grouped[
                         f"{os.path.basename(os.path.dirname(gt_file))}:{test}"
                     ] = cat_recall_grouped
-
+                    cat_only_cat_recall_grouped[
+                        f"{os.path.basename(os.path.dirname(gt_file))}:{test}"
+                    ] = only_cat_recall_grouped
                     # logger.debug("Missing Matches:")
                     # logger.debug(json.dumps(results["missing_matches"], indent=4))
 
@@ -343,6 +345,7 @@ def process_cat_dir(cat_dir, tool_name=None, print_mismatch=False):
         "cat_recall_results": cat_recall_results,
         "cat_precision_results_grouped": cat_precision_results_grouped,
         "cat_recall_results_grouped": cat_recall_results_grouped,
+        "only_cat_recall_grouped": cat_only_cat_recall_grouped,
     }
     return results_dict
 
@@ -350,6 +353,7 @@ def process_cat_dir(cat_dir, tool_name=None, print_mismatch=False):
 def iterate_cats(test_suite_dir, tool_name=None):
     all_cats_data = []
     all_cat_sound_complete = []
+    all_cat_exact = {}
     max_cat_length = 20
     header_format = "{:<25}{:<15}{:<15}{:<15}\t{:<15}"
     row_format = "{:<25}{:<15}{:<15}{:<15}\t{:<15}"
@@ -381,12 +385,13 @@ def iterate_cats(test_suite_dir, tool_name=None):
         }
         for k in utils.PYTHON_FEATURES_CATEGORIES
     }
+
     for cat in sorted(os.listdir(test_suite_dir)):
         cat_dir = os.path.join(test_suite_dir, cat)
         if os.path.isdir(cat_dir):
             # logger.info("Iterating category {}...".format(cat))
             results = process_cat_dir(cat_dir, tool_name=tool_name, print_mismatch=True)
-
+            all_cat_exact[cat] = results
             cat_data = {
                 "Category": cat,
                 "Missing Matches": results["all_missing_matches"],
@@ -489,6 +494,59 @@ def iterate_cats(test_suite_dir, tool_name=None):
             else:
                 logger.info("No missing matches.")
 
+    exact_results_cat = {
+        k_n: {
+            k: {
+                "r_overall_total_facts": 0,
+                "r_overall_total_caught": 0,
+                "r_overall_total_caught_partial": 0,
+            }
+            for k in utils.TYPE_CATEGORIES
+        }
+        for k_n in utils.PYTHON_FEATURES_CATEGORIES
+    }
+    if tool_name in utils.ML_TOOLS:
+        for _cat, _results in all_cat_exact.items():
+            for file_name, _cat_results in _results[
+                "cat_recall_results_grouped"
+            ].items():
+                for _top_n, _i_results in _cat_results.items():
+                    if _top_n != 1:
+                        continue
+                    for _type_cat in utils.TYPE_CATEGORIES:
+                        exact_results_cat[_cat][_type_cat][
+                            "r_overall_total_facts"
+                        ] += _i_results[_type_cat]["num_all"]
+                        exact_results_cat[_cat][_type_cat][
+                            "r_overall_total_caught"
+                        ] += _i_results[_type_cat]["num_caught_exact"]
+                        exact_results_cat[_cat][_type_cat][
+                            "r_overall_total_caught_partial"
+                        ] += _i_results[_type_cat]["num_caught_partial"]
+    else:
+        for _cat, _results in all_cat_exact.items():
+            for file_name, _cat_results in _results["only_cat_recall_grouped"].items():
+                for _type_cat in utils.TYPE_CATEGORIES:
+                    exact_results_cat[_cat][_type_cat][
+                        "r_overall_total_facts"
+                    ] += _cat_results[_type_cat]["num_all"]
+                    exact_results_cat[_cat][_type_cat][
+                        "r_overall_total_caught"
+                    ] += _cat_results[_type_cat]["num_caught_exact"]
+                    exact_results_cat[_cat][_type_cat][
+                        "r_overall_total_caught_partial"
+                    ] += _cat_results[_type_cat]["num_caught_partial"]
+    totals = {
+        "function_returns": {"TOTAL_FACTS": 0, "TOTAL_CAUGHT": 0},
+        "function_parameters": {"TOTAL_FACTS": 0, "TOTAL_CAUGHT": 0},
+        "local_variables": {"TOTAL_FACTS": 0, "TOTAL_CAUGHT": 0},
+    }
+    for category, value in exact_results_cat.items():
+        for feature_type, stats in value.items():
+            totals[feature_type]["TOTAL_FACTS"] += stats["r_overall_total_facts"]
+            totals[feature_type]["TOTAL_CAUGHT"] += stats["r_overall_total_caught"]
+
+    formatted_data = {}
     logger.info("-" * 100)
     total_complete_passed = sum(cat["complete"] for cat in all_cat_sound_complete)
     total_sound_passed = sum(cat["sound"] for cat in all_cat_sound_complete)
@@ -504,7 +562,7 @@ def iterate_cats(test_suite_dir, tool_name=None):
     )
 
     # Display all_missing_matches and cat values as one table
-    return display_all_cats_data(all_cats_data), exact_match
+    return display_all_cats_data(all_cats_data), exact_match, exact_results_cat
 
 
 def iterate_cats_sensitivities(test_suite_dir, tool_name=None):
@@ -820,7 +878,7 @@ def generate_top_n_performance(test_suite_dir, tool_name=None):
 
 def run_results_analyzer():
     results_dir = None
-    # results_dir = Path("../../results/results_<>")
+    results_dir = Path("../results/results_18-09 18:41")
     if results_dir is None:
         dir_path = Path(SCRIPT_DIR) / "../results"
         directories = [
@@ -851,6 +909,7 @@ def run_results_analyzer():
             (
                 tools_results[item.name]["error_result_data"],
                 tools_results[item.name]["exact_match"],
+                tools_results[item.name]["exact_match_category"],
             ) = iterate_cats(
                 item / "micro-benchmark/python_features", tool_name=item.name
             )
@@ -879,6 +938,7 @@ def run_results_analyzer():
     analysis_tables.analysis_sensitivities_table(tools_results)
     analysis_tables.error_result_table(tools_results, False)
     analysis_tables.exact_match_table(tools_results)
+    analysis_tables.exact_match_category_table(tools_results)
     analysis_tables.create_sound_complete_table(
         tools_results
     )  # Create sound complete table
@@ -899,6 +959,10 @@ def run_results_analyzer():
     os.rename(
         "tools_exact_match_data.csv",
         f"{str(results_dir)}/tools_exact_match_data.csv",
+    )
+    os.rename(
+        "tools_exact_match_category_data.csv",
+        f"{str(results_dir)}/tools_exact_match_category_data.csv",
     )
     os.rename(
         "tools_sensitivities_data.csv",
