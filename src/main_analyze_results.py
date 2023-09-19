@@ -996,7 +996,10 @@ def run_results_analyzer():
         "paper_table_1.csv",
         f"{str(results_dir)}/paper_tables/paper_table_1.csv",
     )
-
+    os.rename(
+        "paper_table_2.csv",
+        f"{str(results_dir)}/paper_tables/paper_table_2.csv",
+    )
     for tool in list(tools_results.keys()):
         os.rename(
             f"{tool}_mismatches_reasons.csv",

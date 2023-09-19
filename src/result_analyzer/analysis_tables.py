@@ -345,6 +345,31 @@ def exact_match_category_table(stats):
         writer.writerow(headers)
         writer.writerows(rows)
 
+    # Add headers for each combination of tool and type_category
+    headers = ["Category"]
+    for tool_name in tool_names:
+        for type_category in type_categories:
+            header = f"{tool_name}_{type_category}"
+            headers.append(header)
+
+    rows = []
+    for category in stats[tool_names[0]]["exact_match_category"].keys():
+        row_values = [category]
+
+        for tool_name in tool_names:
+            for type_category in type_categories:
+                value = stats[tool_name]["exact_match_category"][category][
+                    type_category
+                ]["r_overall_total_caught"]
+                row_values.append(str(value))
+
+        rows.append(row_values)
+
+    with open("paper_table_2.csv", "w", newline="") as csv_file:
+        writer = csv.writer(csv_file)
+        writer.writerow(headers)
+        writer.writerows(rows)
+
 
 def analysis_sensitivities_table(stats):
     with open(f"tools_sensitivities_data.csv", "w", newline="") as csvfile:
