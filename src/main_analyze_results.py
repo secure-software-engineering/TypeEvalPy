@@ -962,6 +962,7 @@ def run_results_analyzer():
     )  # Create sound complete table
 
     # Move logs
+    # TODO: Improve generation of logs files
     os.rename("results_analysis.log", f"{str(results_dir)}/results_analysis.log")
     os.rename(
         "results_analysis_info.log", f"{str(results_dir)}/results_analysis_info.log"
@@ -989,6 +990,12 @@ def run_results_analyzer():
 
     os.makedirs(results_dir / "mismatches", exist_ok=True)
     os.makedirs(results_dir / "missing", exist_ok=True)
+    os.makedirs(results_dir / "paper_tables", exist_ok=True)
+
+    os.rename(
+        "paper_table_1.csv",
+        f"{str(results_dir)}/paper_tables/paper_table_1.csv",
+    )
 
     for tool in list(tools_results.keys()):
         os.rename(

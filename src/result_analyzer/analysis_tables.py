@@ -243,16 +243,7 @@ def create_exact_top_n_table(exact_results_cat, tool_name):
 
 def exact_match_table(stats):
     # Sort stats based on total_caught
-    stats = {
-        k: v
-        for k, v in sorted(
-            stats.items(),
-            key=lambda item: sum(
-                sub_dict["total_caught"] for sub_dict in item[1]["exact_match"].values()
-            ),
-            reverse=True,
-        )
-    }
+    stats = utils.sort_stats(stats)
 
     with open(f"tools_exact_match_data.csv", "w", newline="") as csvfile:
         fieldnames = ["Category", "Total facts"]
@@ -294,6 +285,9 @@ def exact_match_table(stats):
 
 
 def exact_match_category_table(stats):
+    # Sort stats based on total_caught
+    stats = utils.sort_stats(stats)
+
     headers = ["Tool Name"]
     tool_names = list(stats.keys())
     categories = list(stats[tool_names[0]]["exact_match_category"].keys())
@@ -308,6 +302,31 @@ def exact_match_category_table(stats):
             headers.append(header)
 
     rows = []
+
+    # Generate Table 1
+    table1_rows = []
+    table1_headers = (
+        ["Tool"] + [type_category for type_category in type_categories] + ["Total"]
+    )
+    for tool_name in tool_names:
+        row_values = [tool_name]
+
+        tool_total = 0
+        for type_category in type_categories:
+            value = stats[tool_name]["exact_match_category"]["totals"][type_category][
+                "r_overall_total_caught"
+            ]
+            tool_total += value
+            row_values.append(str(value))
+
+        row_values.append(str(tool_total))
+        table1_rows.append(row_values)
+
+    with open("paper_table_1.csv", "w", newline="") as csv_file:
+        writer = csv.writer(csv_file)
+        writer.writerow(table1_headers)
+        writer.writerows(table1_rows)
+
     # Iterate through tool_names and add the values to the rows
     for tool_name in tool_names:
         row_values = [tool_name]
@@ -320,11 +339,11 @@ def exact_match_category_table(stats):
                 row_values.append(str(value))
 
         rows.append(row_values)
+
     with open("tools_exact_match_category_data.csv", "w", newline="") as csv_file:
         writer = csv.writer(csv_file)
         writer.writerow(headers)
         writer.writerows(rows)
-    pass
 
 
 def analysis_sensitivities_table(stats):

@@ -45,6 +45,22 @@ SENSITIVITIES_CATEGORIES = [
 ]
 
 
+def sort_stats(stats):
+    # Sort stats based on total_caught
+    stats = {
+        k: v
+        for k, v in sorted(
+            stats.items(),
+            key=lambda item: sum(
+                sub_dict["total_caught"] for sub_dict in item[1]["exact_match"].values()
+            ),
+            reverse=True,
+        )
+    }
+
+    return stats
+
+
 def sort_facts(data):
     data = sorted(data, key=lambda x: int(x["line_number"]))
     for fact in data:
