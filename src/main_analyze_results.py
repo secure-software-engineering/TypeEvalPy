@@ -537,16 +537,34 @@ def iterate_cats(test_suite_dir, tool_name=None):
                         "r_overall_total_caught_partial"
                     ] += _cat_results[_type_cat]["num_caught_partial"]
     totals = {
-        "function_returns": {"TOTAL_FACTS": 0, "TOTAL_CAUGHT": 0},
-        "function_parameters": {"TOTAL_FACTS": 0, "TOTAL_CAUGHT": 0},
-        "local_variables": {"TOTAL_FACTS": 0, "TOTAL_CAUGHT": 0},
+        "function_returns": {
+            "r_overall_total_facts": 0,
+            "r_overall_total_caught": 0,
+            "r_overall_total_caught_partial": 0,
+        },
+        "function_parameters": {
+            "r_overall_total_facts": 0,
+            "r_overall_total_caught": 0,
+            "r_overall_total_caught_partial": 0,
+        },
+        "local_variables": {
+            "r_overall_total_facts": 0,
+            "r_overall_total_caught": 0,
+            "r_overall_total_caught_partial": 0,
+        },
     }
     for category, value in exact_results_cat.items():
         for feature_type, stats in value.items():
-            totals[feature_type]["TOTAL_FACTS"] += stats["r_overall_total_facts"]
-            totals[feature_type]["TOTAL_CAUGHT"] += stats["r_overall_total_caught"]
-
-    formatted_data = {}
+            totals[feature_type]["r_overall_total_facts"] += stats[
+                "r_overall_total_facts"
+            ]
+            totals[feature_type]["r_overall_total_caught"] += stats[
+                "r_overall_total_caught"
+            ]
+            totals[feature_type]["r_overall_total_caught_partial"] += stats[
+                "r_overall_total_caught_partial"
+            ]
+    exact_results_cat["totals"] = totals
     logger.info("-" * 100)
     total_complete_passed = sum(cat["complete"] for cat in all_cat_sound_complete)
     total_sound_passed = sum(cat["sound"] for cat in all_cat_sound_complete)
@@ -878,7 +896,7 @@ def generate_top_n_performance(test_suite_dir, tool_name=None):
 
 def run_results_analyzer():
     results_dir = None
-    results_dir = Path("../results/results_18-09 18:41")
+    # results_dir = Path("../results/results_<>")
     if results_dir is None:
         dir_path = Path(SCRIPT_DIR) / "../results"
         directories = [
