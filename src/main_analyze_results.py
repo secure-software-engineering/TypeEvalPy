@@ -994,10 +994,7 @@ def run_results_analyzer():
     os.makedirs(results_dir / "mismatches", exist_ok=True)
     os.makedirs(results_dir / "missing", exist_ok=True)
     os.makedirs(results_dir / "paper_tables", exist_ok=True)
-    shutil.copy(
-        f"{str(results_dir)}/tools_sound_complete_data.csv",
-        f"{str(results_dir)}/paper_tables/paper_table_4.csv",
-    )
+
     os.rename(
         "paper_table_1.csv",
         f"{str(results_dir)}/paper_tables/paper_table_1.csv",
@@ -1009,6 +1006,14 @@ def run_results_analyzer():
     os.rename(
         "paper_table_3.csv",
         f"{str(results_dir)}/paper_tables/paper_table_3.csv",
+    )
+    shutil.copy(
+        f"{str(results_dir)}/tools_sound_complete_data.csv",
+        f"{str(results_dir)}/paper_tables/paper_table_4.csv",
+    )
+    shutil.copy(
+        f"{str(results_dir)}/tools_sensitivities_data.csv",
+        f"{str(results_dir)}/paper_tables/paper_table_6.csv",
     )
     for tool in list(tools_results.keys()):
         os.rename(
