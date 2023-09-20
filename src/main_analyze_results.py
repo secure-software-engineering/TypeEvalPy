@@ -1,6 +1,7 @@
 import json
 import logging
 import os
+import shutil
 from pathlib import Path
 from statistics import mean
 from subprocess import run
@@ -961,6 +962,8 @@ def run_results_analyzer():
         tools_results
     )  # Create sound complete table
 
+    os.makedirs(results_dir / "analysis_results", exist_ok=True)
+    results_dir = results_dir / "analysis_results"
     # Move logs
     # TODO: Improve generation of logs files
     os.rename("results_analysis.log", f"{str(results_dir)}/results_analysis.log")
@@ -991,7 +994,10 @@ def run_results_analyzer():
     os.makedirs(results_dir / "mismatches", exist_ok=True)
     os.makedirs(results_dir / "missing", exist_ok=True)
     os.makedirs(results_dir / "paper_tables", exist_ok=True)
-
+    shutil.copy(
+        f"{str(results_dir)}/tools_sound_complete_data.csv",
+        f"{str(results_dir)}/paper_tables/paper_table_4.csv",
+    )
     os.rename(
         "paper_table_1.csv",
         f"{str(results_dir)}/paper_tables/paper_table_1.csv",
@@ -999,6 +1005,10 @@ def run_results_analyzer():
     os.rename(
         "paper_table_2.csv",
         f"{str(results_dir)}/paper_tables/paper_table_2.csv",
+    )
+    os.rename(
+        "paper_table_3.csv",
+        f"{str(results_dir)}/paper_tables/paper_table_3.csv",
     )
     for tool in list(tools_results.keys()):
         os.rename(

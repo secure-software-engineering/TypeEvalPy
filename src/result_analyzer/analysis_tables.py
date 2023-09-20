@@ -130,6 +130,22 @@ def create_sound_complete_table(stats):
 
             writer.writerow(_row)
 
+    with open("paper_table_3.csv", "w", newline="") as csvfile:
+        fieldnames = ["Tool_name", "Sound", "Complete"]
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writeheader()
+
+        for tool_name, tool_data in stats.items():
+            sound_value = f"{tool_data['sound_complete_total_data']['s']}/{tool_data['sound_complete_total_data']['t']}"
+            complete_value = f"{tool_data['sound_complete_total_data']['c']}/{tool_data['sound_complete_total_data']['t']}"
+            writer.writerow(
+                {
+                    "Tool_name": tool_name,
+                    "Sound": sound_value,
+                    "Complete": complete_value,
+                }
+            )
+
 
 def create_top_n_table(stats, tool_name):
     with open(f"top_n_table_{tool_name}.csv", "w", newline="") as csvfile:
