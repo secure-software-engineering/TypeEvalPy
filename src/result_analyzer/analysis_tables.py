@@ -387,6 +387,53 @@ def exact_match_category_table(stats):
         writer.writerows(rows)
 
 
+def create_comparison_table(stats, tools):
+    # Sort stats based on total_caught
+    headers = ["Tool Name"]
+    stats = utils.sort_stats(stats)
+    tool_names = [tool for tool in stats.keys() if tool in tools]
+    categories = list(stats[tool_names[0]]["exact_match_category"].keys())
+    type_categories = list(
+        list(stats[tool_names[0]]["exact_match_category"].values())[0].keys()
+    )
+
+    # Add headers for each combination of category and type_category
+    for category in categories:
+        for type_category in type_categories:
+            header = f"{category}_{type_category}"
+            headers.append(header)
+
+    rows = []
+
+    table1_rows = []
+    table1_headers = (
+        ["Tool", "Top_n"]
+        + [type_category for type_category in type_categories]
+        + ["Total"]
+    )
+    for tool_name in tool_names:
+        row_values = [tool_name]
+        if tool_name in utils.ML_TOOLS:
+            pass
+        else:
+            row_values.append("1")
+            tool_total = 0
+            for type_category in type_categories:
+                value = stats[tool_name]["exact_match_category"]["totals"][
+                    type_category
+                ]["r_overall_total_caught"]
+                tool_total += value
+                row_values.append(str(value))
+
+            row_values.append(str(tool_total))
+        table1_rows.append(row_values)
+
+    with open("paper_table_5.csv", "w", newline="") as csv_file:
+        writer = csv.writer(csv_file)
+        writer.writerow(table1_headers)
+        writer.writerows(table1_rows)
+
+
 def analysis_sensitivities_table(stats):
     with open(f"tools_sensitivities_data.csv", "w", newline="") as csvfile:
         fieldnames = [

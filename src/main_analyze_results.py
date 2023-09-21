@@ -893,6 +893,7 @@ def generate_top_n_performance(test_suite_dir, tool_name=None):
         else:
             results_cat[_top_n]["totals"]["recall_partial_perc"] = 0.0
     analysis_tables.create_top_n_table(results_cat, tool_name)
+    return results_cat
 
 
 def run_results_analyzer():
@@ -922,7 +923,7 @@ def run_results_analyzer():
             logger.info(f"Analyzing Python Features")
 
             if item.name in utils.ML_TOOLS:
-                generate_top_n_performance(
+                tools_results[item.name]["top_n_results"] = generate_top_n_performance(
                     item / "micro-benchmark/python_features", tool_name=item.name
                 )
             (
@@ -961,6 +962,8 @@ def run_results_analyzer():
     analysis_tables.create_sound_complete_table(
         tools_results
     )  # Create sound complete table
+    tools_list = utils.ML_TOOLS + utils.STANDARD_TOOLS
+    analysis_tables.create_comparison_table(tools_results, tools_list)
 
     os.makedirs(results_dir / "analysis_results", exist_ok=True)
     results_dir = results_dir / "analysis_results"
@@ -1010,6 +1013,10 @@ def run_results_analyzer():
     shutil.copy(
         f"{str(results_dir)}/tools_sound_complete_data.csv",
         f"{str(results_dir)}/paper_tables/paper_table_4.csv",
+    )
+    os.rename(
+        "paper_table_5.csv",
+        f"{str(results_dir)}/paper_tables/paper_table_5.csv",
     )
     shutil.copy(
         f"{str(results_dir)}/tools_sensitivities_data.csv",
