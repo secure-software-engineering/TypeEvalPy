@@ -412,10 +412,20 @@ def create_comparison_table(stats, tools):
         + ["Total"]
     )
     for tool_name in tool_names:
-        row_values = [tool_name]
         if tool_name in utils.ML_TOOLS:
-            pass
+            for n in utils.TOP_N:
+                tool_total = 0
+                row_values = [tool_name]
+                row_values.append(n)
+                top_n = stats[tool_name]["top_n_results"].get(n, {})
+                for type_category in type_categories:
+                    value = top_n.get(type_category, 0)["r_overall_total_caught"]
+                    tool_total += value
+                    row_values.append(str(value))
+                row_values.append(str(tool_total))
+                table1_rows.append(row_values)
         else:
+            row_values = [tool_name]
             row_values.append("1")
             tool_total = 0
             for type_category in type_categories:
@@ -424,9 +434,8 @@ def create_comparison_table(stats, tools):
                 ]["r_overall_total_caught"]
                 tool_total += value
                 row_values.append(str(value))
-
             row_values.append(str(tool_total))
-        table1_rows.append(row_values)
+            table1_rows.append(row_values)
 
     with open("paper_table_5.csv", "w", newline="") as csv_file:
         writer = csv.writer(csv_file)
