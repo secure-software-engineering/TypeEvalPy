@@ -85,6 +85,8 @@ def error_result_table(stats, total_stats=True):
 
 
 def create_sound_complete_table(stats):
+    stats = utils.sort_stats(stats)
+
     with open(f"tools_sound_complete_data.csv", "w", newline="") as csvfile:
         fieldnames = [
             "Micro-benchmark Category",
@@ -389,6 +391,8 @@ def exact_match_category_table(stats):
 
 def create_comparison_table(stats, tools):
     # Sort stats based on total_caught
+    stats = utils.sort_stats(stats)
+
     headers = ["Tool Name"]
     stats = utils.sort_stats(stats)
     tool_names = [tool for tool in stats.keys() if tool in tools]
@@ -444,6 +448,8 @@ def create_comparison_table(stats, tools):
 
 
 def analysis_sensitivities_table(stats):
+    stats = utils.sort_stats(stats)
+
     with open(f"tools_sensitivities_data.csv", "w", newline="") as csvfile:
         fieldnames = [
             "Category",
