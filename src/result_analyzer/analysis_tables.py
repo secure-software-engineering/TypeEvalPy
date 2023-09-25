@@ -364,16 +364,36 @@ def exact_match_category_table(stats):
         writer.writerows(rows)
 
     # Add headers for each combination of tool and type_category
-    headers = ["Category"]
+    headers = [
+        "Category",
+        "Total_function_returns",
+        "Total_function_parameters",
+        "Total_local_variables",
+    ]
     for tool_name in tool_names:
         for type_category in type_categories:
             header = f"{tool_name}_{type_category}"
             headers.append(header)
 
     rows = []
+    total_result = utils.benchmark_count("../micro-benchmark/python_features")
+    total_functions = 0
+    total_params = 0
+    total_variables = 0
     for category in stats[tool_names[0]]["exact_match_category"].keys():
         row_values = [category]
+        for item in total_result:
+            cat, _a, _functions, _params, _variables = item
 
+            if cat == category:
+                row_values.extend([_functions, _params, _variables])
+                total_functions += _functions
+                total_params += _params
+                total_variables += _variables
+
+        # Append totals row
+        if category == "totals":
+            row_values.extend([total_functions, total_params, total_variables])
         for tool_name in tool_names:
             for type_category in type_categories:
                 value = stats[tool_name]["exact_match_category"][category][

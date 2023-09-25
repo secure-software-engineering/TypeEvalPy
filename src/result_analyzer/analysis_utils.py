@@ -8,7 +8,13 @@ from pathlib import Path
 logger = logging.getLogger("Result Analysis")
 
 ML_TOOLS = ["type4py", "hityperdl"]
-STANDARD_TOOLS = ["scalpel", "pyre", "hityper", "pytype", "jedi", "pyright"]
+STANDARD_TOOLS = [
+    "scalpel",
+    "hityper",
+    "jedi",
+    "pyright",
+    "headergen",
+]
 TOP_N = [1, 3, 5]
 
 TYPE_CATEGORIES = ["function_returns", "function_parameters", "local_variables"]
