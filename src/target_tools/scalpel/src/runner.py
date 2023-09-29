@@ -50,7 +50,9 @@ def main_runner(args):
                     for d in inferred
                 ]
                 inferred_serializable.sort(key=lambda x: x["line_number"])
-                json.dump(inferred_serializable, json_file, indent=4)
+                json.dump(
+                    utils.keep_unique_dicts(inferred_serializable), json_file, indent=4
+                )
         except Exception as e:
             logger.info(f"Command returned non-zero exit status: {e} for file: {file}")
             error_count += 1
