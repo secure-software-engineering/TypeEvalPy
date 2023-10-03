@@ -68,6 +68,7 @@ class TypeEvalPyRunner:
         host_results_path,
         dockerfile_name="Dockerfile",
         volumes={},
+        nocache=False,
     ):
         self.docker_client = docker.from_env()
         self.tool_name = tool_name
@@ -76,6 +77,7 @@ class TypeEvalPyRunner:
         self.test_runner_script_path = f"/tmp/src/runner.py"
         self.host_results_path = host_results_path
         self.volumes = volumes
+        self.nocache = nocache
 
         if not os.path.exists(self.host_results_path):
             os.makedirs(self.host_results_path)
@@ -86,6 +88,7 @@ class TypeEvalPyRunner:
             path=self.dockerfile_path,
             tag=self.tool_name,
             dockerfile=self.dockerfile_name,
+            nocache=self.nocache,
         )
         return image
 
@@ -140,27 +143,35 @@ class TypeEvalPyRunner:
 
 
 class ScalpelRunner(TypeEvalPyRunner):
-    def __init__(self, host_results_path, debug=False):
-        super().__init__("scalpel", "./target_tools/scalpel", host_results_path)
+    def __init__(self, host_results_path, debug=False, nocache=False):
+        super().__init__(
+            "scalpel", "./target_tools/scalpel", host_results_path, nocache=nocache
+        )
 
 
 class PyreRunner(TypeEvalPyRunner):
-    def __init__(self, host_results_path, debug=False):
-        super().__init__("pyre", "./target_tools/pyre", host_results_path)
+    def __init__(self, host_results_path, debug=False, nocache=False):
+        super().__init__(
+            "pyre", "./target_tools/pyre", host_results_path, nocache=nocache
+        )
 
 
 class PyrightRunner(TypeEvalPyRunner):
-    def __init__(self, host_results_path, debug=False):
-        super().__init__("pyright", "./target_tools/pyright", host_results_path)
+    def __init__(self, host_results_path, debug=False, nocache=False):
+        super().__init__(
+            "pyright", "./target_tools/pyright", host_results_path, nocache=nocache
+        )
 
 
 class PytypeRunner(TypeEvalPyRunner):
-    def __init__(self, host_results_path, debug=False):
-        super().__init__("pytype", "./target_tools/pytype", host_results_path)
+    def __init__(self, host_results_path, debug=False, nocache=False):
+        super().__init__(
+            "pytype", "./target_tools/pytype", host_results_path, nocache=nocache
+        )
 
 
 class JediRunner(TypeEvalPyRunner):
-    def __init__(self, host_results_path, debug=False):
+    def __init__(self, host_results_path, debug=False, nocache=False):
         if debug:
             super().__init__(
                 "jedi",
@@ -173,19 +184,26 @@ class JediRunner(TypeEvalPyRunner):
                         "mode": "rw",
                     }
                 },
+                nocache=nocache,
             )
         else:
-            super().__init__("jedi", "./target_tools/jedi", host_results_path)
+            super().__init__(
+                "jedi", "./target_tools/jedi", host_results_path, nocache=nocache
+            )
 
 
 class HityperRunner(TypeEvalPyRunner):
-    def __init__(self, host_results_path, debug=False):
-        super().__init__("hityper", "./target_tools/hityper", host_results_path)
+    def __init__(self, host_results_path, debug=False, nocache=False):
+        super().__init__(
+            "hityper", "./target_tools/hityper", host_results_path, nocache=nocache
+        )
 
 
 class HityperDLRunner(TypeEvalPyRunner):
-    def __init__(self, host_results_path, debug=False):
-        super().__init__("hityperdl", "./target_tools/hityperdl", host_results_path)
+    def __init__(self, host_results_path, debug=False, nocache=False):
+        super().__init__(
+            "hityperdl", "./target_tools/hityperdl", host_results_path, nocache=nocache
+        )
 
     def spawn_docker_instance(self):
         logger.info("Creating container")
@@ -201,7 +219,7 @@ class HityperDLRunner(TypeEvalPyRunner):
 
 
 class HeaderGenRunner(TypeEvalPyRunner):
-    def __init__(self, host_results_path, debug=False):
+    def __init__(self, host_results_path, debug=False, nocache=False):
         if debug:
             super().__init__(
                 "headergen",
@@ -216,17 +234,26 @@ class HeaderGenRunner(TypeEvalPyRunner):
                 },
             )
         else:
-            super().__init__("headergen", "./target_tools/headergen", host_results_path)
+            super().__init__(
+                "headergen",
+                "./target_tools/headergen",
+                host_results_path,
+                nocache=nocache,
+            )
 
 
 class PySonar2Runner(TypeEvalPyRunner):
-    def __init__(self, host_results_path, debug=False):
-        super().__init__("pysonar2", "./target_tools/pysonar2", host_results_path)
+    def __init__(self, host_results_path, debug=False, nocache=False):
+        super().__init__(
+            "pysonar2", "./target_tools/pysonar2", host_results_path, nocache=nocache
+        )
 
 
 class Type4pyRunner(TypeEvalPyRunner):
-    def __init__(self, host_results_path, debug=False):
-        super().__init__("type4py", "./target_tools/type4py", host_results_path)
+    def __init__(self, host_results_path, debug=False, nocache=False):
+        super().__init__(
+            "type4py", "./target_tools/type4py", host_results_path, nocache=nocache
+        )
 
     def spawn_docker_instance(self):
         logger.info("Creating container")
@@ -263,6 +290,10 @@ def get_args():
     parser.add_argument(
         "--debug", action="store_true", help="Execute runners in debug mode."
     )
+    parser.add_argument(
+        "--nocache", action="store_true", help="Do not use docker image cache."
+    )
+
     return parser.parse_args()
 
 
@@ -273,31 +304,31 @@ def main():
     available_runners = {
         "headergen": (
             HeaderGenRunner,
-            {"debug": args.debug},
+            {"debug": args.debug, "nocache": args.nocache},
         ),
         "pyright": (
             PyrightRunner,
-            {"debug": False},
+            {"debug": False, "nocache": args.nocache},
         ),
         "scalpel": (
             ScalpelRunner,
-            {"debug": False},
+            {"debug": False, "nocache": args.nocache},
         ),
         "hityper": (
             HityperRunner,
-            {"debug": False},
+            {"debug": False, "nocache": args.nocache},
         ),
         "type4py": (
             Type4pyRunner,
-            {"debug": False},
+            {"debug": False, "nocache": args.nocache},
         ),
         "hityperdl": (
             HityperDLRunner,
-            {"debug": False},
+            {"debug": False, "nocache": args.nocache},
         ),
         "jedi": (
             JediRunner,
-            {"debug": args.debug},
+            {"debug": args.debug, "nocache": args.nocache},
         ),
         # PySonar2Runner,
         # PytypeRunner,
