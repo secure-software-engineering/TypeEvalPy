@@ -1,7 +1,7 @@
 # TypeEvalPy: A Comprehensive Type Inference Micro-benchmarking Framework for Python
 
 <p align="center">
-<img src="TypeEvalPy.png" width="400" align="center">
+<img src="TypeEvalPy.jpg" width="90%" align="center">
 </p>
 
 TypeEvalPy is a robust benchmarking framework designed to evaluate the accuracy of type inference tools for Python.
