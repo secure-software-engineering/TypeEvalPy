@@ -1,3 +1,0 @@
-pip install docker
-python-scalpel==1.0b0
-pyre-check==0.9.18
