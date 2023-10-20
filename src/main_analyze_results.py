@@ -969,27 +969,27 @@ def run_results_analyzer():
     results_dir = results_dir / "analysis_results"
     # Move logs
     # TODO: Improve generation of logs files
-    os.rename("results_analysis.log", f"{str(results_dir)}/results_analysis.log")
-    os.rename(
+    shutil.move("results_analysis.log", f"{str(results_dir)}/results_analysis.log")
+    shutil.move(
         "results_analysis_info.log", f"{str(results_dir)}/results_analysis_info.log"
     )
-    os.rename(
+    shutil.move(
         "tools_error_result_data.csv",
         f"{str(results_dir)}/tools_error_result_data.csv",
     )
-    os.rename(
+    shutil.move(
         "tools_sound_complete_data.csv",
         f"{str(results_dir)}/tools_sound_complete_data.csv",
     )
-    os.rename(
+    shutil.move(
         "tools_exact_match_data.csv",
         f"{str(results_dir)}/tools_exact_match_data.csv",
     )
-    os.rename(
+    shutil.move(
         "tools_exact_match_category_data.csv",
         f"{str(results_dir)}/tools_exact_match_category_data.csv",
     )
-    os.rename(
+    shutil.move(
         "tools_sensitivities_data.csv",
         f"{str(results_dir)}/tools_sensitivities_data.csv",
     )
@@ -998,15 +998,15 @@ def run_results_analyzer():
     os.makedirs(results_dir / "missing", exist_ok=True)
     os.makedirs(results_dir / "paper_tables", exist_ok=True)
 
-    os.rename(
+    shutil.move(
         "paper_table_1.csv",
         f"{str(results_dir)}/paper_tables/paper_table_1.csv",
     )
-    os.rename(
+    shutil.move(
         "paper_table_2.csv",
         f"{str(results_dir)}/paper_tables/paper_table_2.csv",
     )
-    os.rename(
+    shutil.move(
         "paper_table_3.csv",
         f"{str(results_dir)}/paper_tables/paper_table_3.csv",
     )
@@ -1014,7 +1014,7 @@ def run_results_analyzer():
         f"{str(results_dir)}/tools_sound_complete_data.csv",
         f"{str(results_dir)}/paper_tables/paper_table_4.csv",
     )
-    os.rename(
+    shutil.move(
         "paper_table_5.csv",
         f"{str(results_dir)}/paper_tables/paper_table_5.csv",
     )
@@ -1023,20 +1023,20 @@ def run_results_analyzer():
         f"{str(results_dir)}/paper_tables/paper_table_6.csv",
     )
     for tool in list(tools_results.keys()):
-        os.rename(
+        shutil.move(
             f"{tool}_mismatches_reasons.csv",
             f"{str(results_dir)}/mismatches/{tool}_mismatches_reasons.csv",
         )
-        os.rename(
+        shutil.move(
             f"{tool}_not_found_reasons.csv",
             f"{str(results_dir)}/missing/{tool}_not_found_reasons.csv",
         )
 
         if tool in utils.ML_TOOLS:
-            os.rename(
+            shutil.move(
                 f"top_n_table_{tool}.csv", f"{str(results_dir)}/top_n_table_{tool}.csv"
             )
-            os.rename(
+            shutil.move(
                 f"top_n_exact_match_table_{tool}.csv",
                 f"{str(results_dir)}/top_n_exact_match_table_{tool}.csv",
             )

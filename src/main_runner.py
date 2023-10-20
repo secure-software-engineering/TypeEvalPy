@@ -1,5 +1,6 @@
 import logging
 import os
+import shutil
 import tarfile
 import time
 from argparse import ArgumentParser
@@ -299,7 +300,9 @@ def get_args():
 
 def main():
     args = get_args()
-    host_results_path = f"../results/results_{datetime.now().strftime('%d-%m %H:%M')}"
+    host_results_path = (
+        f"../results/results_{datetime.now().strftime('%d-%m-%y %H:%M')}"
+    )
 
     available_runners = {
         "headergen": (
@@ -345,7 +348,7 @@ def main():
 
     run_results_analyzer()
 
-    os.rename("main_runner.log", f"{str(host_results_path)}/main_runner.log")
+    shutil.move("main_runner.log", f"{str(host_results_path)}/main_runner.log")
 
 
 if __name__ == "__main__":

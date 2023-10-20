@@ -5,12 +5,12 @@ SCRIPT_DIR = os.path.abspath(os.path.dirname(__file__))
 ROOT_DIR = os.path.dirname(os.path.dirname(SCRIPT_DIR))
 
 
-def csv_to_markdown_table_multiline(csv_str, tool_mapping, header_mapping):
+def csv_to_markdown_table_ranked(csv_str, tool_mapping, header_mapping):
     # Split the csv string into lines
     lines = csv_str.strip().split("\n")
 
     # Extract headers and data
-    headers = lines[0].split(",")
+    headers = ["Rank"] + lines[0].split(",")
     data = [line.split(",") for line in lines[1:]]
 
     # Map headers
@@ -22,13 +22,14 @@ def csv_to_markdown_table_multiline(csv_str, tool_mapping, header_mapping):
         tool = row[0]
         if tool not in grouped_data:
             grouped_data[tool] = []
-        grouped_data[tool].append(row[1:])
+        grouped_data[tool].append(row)
 
     # Create the markdown table
     table = []
     table.append("| " + " | ".join(headers_display) + " |")
     table.append("|" + "----|" * len(headers_display))
 
+    rank = 1
     for tool, rows in grouped_data.items():
         # Map tool name and hyperlink
         tool_display = tool_mapping.get(tool, {}).get("name", tool)
@@ -36,14 +37,19 @@ def csv_to_markdown_table_multiline(csv_str, tool_mapping, header_mapping):
         if tool_url:
             tool_display = f"**[{tool_display}]({tool_url})**"
 
-        multiline_rows = list(zip(*rows))
+        multiline_rows = list(zip(*[row[1:] for row in rows]))
         multiline_rows_display = [
             "<br>".join(map(str, column)) for column in multiline_rows
         ]
 
         table.append(
-            "| " + tool_display + " | " + " | ".join(multiline_rows_display) + " |"
+            f"| {rank} | "
+            + tool_display
+            + " | "
+            + " | ".join(multiline_rows_display)
+            + " |"
         )
+        rank += 1
 
     return "\n".join(table)
 
@@ -54,17 +60,25 @@ def create_readme_with_table(
     csv_str,
     tool_mapping,
     header_mapping,
+    results_dir,
     output_md_file="README.md",
 ):
     # Generate the table from the CSV string
-    table = csv_to_markdown_table_multiline(csv_str, tool_mapping, header_mapping)
+    table = csv_to_markdown_table_ranked(csv_str, tool_mapping, header_mapping)
+
+    auto_gen_info = (
+        "\n\n*<sub>(Auto-generated based on the the analysis run on"
+        f" {results_dir.name.split('_')[1]})</sub>*"
+    )
+
+    table_text = table + auto_gen_info
 
     # Read the content of the input markdown file
     with open(input_md_file, "r") as file:
         content = file.read()
 
     # Replace the placeholder text with the table
-    content = content.replace(placeholder_text, table)
+    content = content.replace(placeholder_text, table_text)
 
     # Write the updated content to the output markdown file
     with open(f"{ROOT_DIR}/{output_md_file}", "w") as file:
@@ -117,5 +131,10 @@ header_mapping = {
 
 
 create_readme_with_table(
-    "README_template.md", "[INSERT_TABLE_HERE]", csv_str, tool_mapping, header_mapping
+    "README_template.md",
+    "[INSERT_TABLE_HERE]",
+    csv_str,
+    tool_mapping,
+    header_mapping,
+    results_dir,
 )
