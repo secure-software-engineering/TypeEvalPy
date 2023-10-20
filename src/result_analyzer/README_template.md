@@ -19,15 +19,7 @@
 
 Below is a comparison showcasing exact matches across different tools, coupled with `top_n` predictions for our ML-based tools.
 
-| 🛠️ Tool | Top-n | Function Return Type | Function Parameter Type | Local Variable Type | Total |
-|----|----|----|----|----|----|
-| **[HeaderGen](https://github.com/ashwinprasadme/headergen)** | 1 | 186 | 56 | 321 | 563 |
-| **[Jedi](https://github.com/davidhalter/jedi)** | 1 | 122 | 0 | 293 | 415 |
-| **[Pyright](https://github.com/microsoft/pyright)** | 1 | 100 | 8 | 297 | 405 |
-| **[HiTyper](https://github.com/JohnnyPeng18/HiTyper)** | 1<br>3<br>5 | 163<br>173<br>175 | 27<br>37<br>37 | 179<br>225<br>229 | 369<br>435<br>441 |
-| **[HiTyper (static)](https://github.com/JohnnyPeng18/HiTyper)** | 1 | 141 | 7 | 102 | 250 |
-| **[Scalpel](https://github.com/SMAT-Lab/Scalpel/issues)** | 1 | 155 | 32 | 6 | 193 |
-| **[Type4Py](https://github.com/saltudelft/type4py)** | 1<br>3<br>5 | 39<br>103<br>109 | 19<br>31<br>31 | 99<br>167<br>174 | 157<br>301<br>314 |
+[INSERT_TABLE_HERE]
 
 ---
 
