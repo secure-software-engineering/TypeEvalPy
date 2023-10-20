@@ -1,1 +1,1 @@
-headergen==1.2.2
+headergen==1.2.4

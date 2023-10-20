@@ -1,0 +1,11 @@
+Tool,Top_n,function_returns,function_parameters,local_variables,Total
+jedi,1,122,0,293,415
+pyright,1,100,8,297,405
+hityperdl,1,163,27,179,369
+hityperdl,3,173,37,225,435
+hityperdl,5,175,37,229,441
+hityper,1,141,7,102,250
+scalpel,1,155,36,6,197
+type4py,1,39,19,99,157
+type4py,3,103,31,167,301
+type4py,5,109,31,174,314

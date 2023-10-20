@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Multi CSV Tables</title>
+    <!-- Including Bootstrap CSS for styling -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Additional Styling */
+        .container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="tablesContainer"></div>
+    <script>
+        async function loadCSV(filePath, title) {
+            const response = await fetch(filePath);
+            const csv = await response.text();
+            const rows = csv.split('\n');
+
+            // Creating a div for each table
+            const tableDiv = document.createElement('div');
+            tableDiv.className = 'mb-5'; // margin-bottom: 5rem;
+            document.getElementById('tablesContainer').appendChild(tableDiv);
+
+            // Adding custom title for the table
+            const tableTitle = document.createElement('h3');
+            tableTitle.textContent = title;
+            tableDiv.appendChild(tableTitle);
+
+            // Creating Table and Table Header with Bootstrap classes
+            const table = document.createElement('table');
+            table.className = 'table table-hover'; // Adding Bootstrap classes for styling
+            const headerRow = document.createElement('tr');
+            const header = rows[0].split(',');
+            header.forEach((col, index) => {
+                const th = document.createElement('th');
+                th.textContent = col;
+                th.className = 'pointer'; // Adding Bootstrap class for styling
+                th.onclick = () => sortTable(table, index);
+                headerRow.appendChild(th);
+            });
+            table.appendChild(headerRow);
+
+            // Creating Table Body
+            for (let i = 1; i < rows.length; i++) {
+                if (rows[i].trim() === '') continue;
+                const cols = rows[i].split(',');
+                const tr = document.createElement('tr');
+                cols.forEach(col => {
+                    const td = document.createElement('td');
+                    td.textContent = col;
+                    tr.appendChild(td);
+                });
+                table.appendChild(tr);
+            }
+
+            // Appending Table to the div
+            tableDiv.appendChild(table);
+        }
+
+        function sortTable(table, colIndex) {
+            const tbody = table.tBodies[0];
+            const rows = Array.from(tbody.querySelectorAll('tr'));
+            const sortedRows = rows.sort((a, b) => {
+                const colA = a.querySelector(`td:nth-child(${colIndex + 1})`).textContent.trim();
+                const colB = b.querySelector(`td:nth-child(${colIndex + 1})`).textContent.trim();
+
+                if (!isNaN(colA) && !isNaN(colB)) return colA - colB;
+                return colA.localeCompare(colB);
+            });
+
+            while (tbody.firstChild) {
+                tbody.removeChild(tbody.firstChild);
+            }
+            sortedRows.forEach(row => tbody.appendChild(row));
+        }
+
+        const csvFiles = [
+            { path: "paper_tables/paper_table_1.csv", title: 'Table 1 Title' },
+            { path: "paper_tables/paper_table_2.csv", title: 'Table 2 Title' },
+            { path: "paper_tables/paper_table_3.csv", title: 'Table 3 Title' },
+            { path: "paper_tables/paper_table_4.csv", title: 'Table 4 Title' },
+            { path: "paper_tables/paper_table_5.csv", title: 'Table 5 Title' },
+            { path: "paper_tables/paper_table_6.csv", title: 'Table 6 Title' },
+        ];
+        csvFiles.forEach(file => loadCSV(file.path, file.title));
+    </script>
+    <!-- Including Bootstrap JS and Popper.js for additional features (optional) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

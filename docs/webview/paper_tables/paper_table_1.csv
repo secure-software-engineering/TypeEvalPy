@@ -1,0 +1,8 @@
+Tool,function_returns,function_parameters,local_variables,Total
+headergen,185,56,291,532
+jedi,122,0,293,415
+pyright,100,8,297,405
+hityperdl,163,27,179,369
+hityper,141,7,102,250
+scalpel,155,36,6,197
+type4py,39,19,99,157

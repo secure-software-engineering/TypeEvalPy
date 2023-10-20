@@ -1,0 +1,11 @@
+Category,Total Files,headergen_sound,jedi_sound,pyright_sound,hityperdl_sound,hityper_sound,scalpel_sound,type4py_sound
+context_sensitivity,1,0,1,1,0,0,0,0
+field_sensitivity,1,1,1,0,0,0,0,0
+field_sensitivity_depth_2,1,1,1,0,0,0,0,0
+field_sensitivity_depth_3,1,1,1,0,0,0,0,0
+flow_sensitivity,1,1,1,1,0,0,0,0
+inter_procedural,1,1,1,0,0,0,0,0
+intra_procedural,1,1,1,1,1,1,0,0
+object_sensitivity,1,0,1,0,0,0,0,0
+path_sensitivity,1,0,1,1,0,0,0,0
+Total,9,6,9,4,1,1,0,0
