@@ -1,12 +1,12 @@
-# TypeEvalPy: A Micro-benchmarking Framework for Python Type Inference Tools
-
 <p align="center">
+<img src="TypeEvalPy.jpg" width="75%" align="center">
 <br>
-<img src="TypeEvalPy.jpg" width="60%" align="center">
-<br>
+
+<h3 align="center"> A Micro-benchmarking Framework for Python Type Inference Tools </h3>
 </p>
 
-## 📌 **Key Features**:
+## 📌 **Features**:
+
 
 - 📜 Contains **154 code snippets** to test and benchmark.
 - 🏷 Offers **845 type annotations** across a diverse set of Python functionalities.
@@ -15,7 +15,6 @@
 - 🔄 Efficiently transforms inferred types into a **standardized format**.
 - 📊 Automatically produces **meaningful metrics** for in-depth assessment and comparison.
 
----
 
 ## 🛠️ Supported Tools
 
@@ -37,14 +36,9 @@ Below is a comparison showcasing exact matches across different tools, coupled w
 | Rank | 🛠️ Tool | Top-n | Function Return Type | Function Parameter Type | Local Variable Type | Total |
 |----|----|----|----|----|----|----|
 | 1 | **[HeaderGen](https://github.com/ashwinprasadme/headergen)** | 1 | 186 | 56 | 322 | 564 |
-| 2 | **[Jedi](https://github.com/davidhalter/jedi)** | 1 | 122 | 0 | 293 | 415 |
-| 3 | **[Pyright](https://github.com/microsoft/pyright)** | 1 | 100 | 8 | 297 | 405 |
-| 4 | **[HiTyper](https://github.com/JohnnyPeng18/HiTyper)** | 1<br>3<br>5 | 163<br>173<br>175 | 27<br>37<br>37 | 179<br>225<br>229 | 369<br>435<br>441 |
-| 5 | **[HiTyper (static)](https://github.com/JohnnyPeng18/HiTyper)** | 1 | 141 | 7 | 102 | 250 |
-| 6 | **[Scalpel](https://github.com/SMAT-Lab/Scalpel/issues)** | 1 | 155 | 32 | 6 | 193 |
-| 7 | **[Type4Py](https://github.com/saltudelft/type4py)** | 1<br>3<br>5 | 39<br>103<br>109 | 19<br>31<br>31 | 99<br>167<br>174 | 157<br>301<br>314 |
+| 2 | **[Scalpel](https://github.com/SMAT-Lab/Scalpel/issues)** | 1 | 155 | 32 | 6 | 193 |
 
-*<sub>(Auto-generated based on the the analysis run on 20-10-23 14:51)</sub>*
+*<sub>(Auto-generated based on the the analysis run on 20-10-23 16:26)</sub>*
 
 ---
 ## :whale: Running with Docker
