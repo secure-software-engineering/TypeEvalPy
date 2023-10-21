@@ -1,12 +1,12 @@
-# TypeEvalPy: A Micro-benchmarking Framework for Python Type Inference Tools
-
 <p align="center">
+<img src="TypeEvalPy.jpg" width="75%" align="center">
 <br>
-<img src="TypeEvalPy.jpg" width="60%" align="center">
-<br>
+
+<h3 align="center"> A Micro-benchmarking Framework for Python Type Inference Tools </h3>
 </p>
 
-## 📌 **Key Features**:
+## 📌 **Features**:
+
 
 - 📜 Contains **154 code snippets** to test and benchmark.
 - 🏷 Offers **845 type annotations** across a diverse set of Python functionalities.
@@ -15,7 +15,6 @@
 - 🔄 Efficiently transforms inferred types into a **standardized format**.
 - 📊 Automatically produces **meaningful metrics** for in-depth assessment and comparison.
 
----
 
 ## 🛠️ Supported Tools
 
