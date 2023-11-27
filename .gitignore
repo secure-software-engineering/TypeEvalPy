@@ -172,3 +172,4 @@ src/results/
 src/backup/
 .results
 results
+.scrapy/*
