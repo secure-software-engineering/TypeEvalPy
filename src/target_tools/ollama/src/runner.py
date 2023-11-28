@@ -3,6 +3,7 @@ import json
 import logging
 import re
 import traceback
+import sys
 from pathlib import Path
 from sys import stdout
 from typing import List, Optional
@@ -28,6 +29,15 @@ class TypeEvalPySchema(BaseModel):
     variable: Optional[str] = None
 
 
+PROMPTS_MAP = {
+    "1": prompts.typeevalpy_prompt_1,
+    "2": prompts.typeevalpy_prompt_2,
+    "3": prompts.typeevalpy_prompt_1_template,
+    "4": prompts.typeevalpy_prompt_2_template,
+    "json_based_1": prompts.json_based_1,
+    "questions_based_1": prompts.questions_based_1,
+}
+
 # Create a logger
 logger = logging.getLogger("runner")
 logger.setLevel(logging.DEBUG)
@@ -49,33 +59,56 @@ def list_python_files(folder_path):
     return python_files
 
 
-def process_file(file_path, llm, openai_llm):
+def get_prompt(prompt_id, code_path, json_filepath):
+    # with open(json_filepath, "r") as file:
+    #     data = json.load(file)
+    with open(code_path, "r") as file:
+        code = file.read()
+
+    if prompt_id == "questions_based_1":
+        questions_from_json = utils.generate_questions_from_json(json_filepath)
+
+        prompt = PromptTemplate(
+            template=PROMPTS_MAP[prompt_id],
+            input_variables=["code", "questions"],
+        )
+
+        prompt_data = {
+            "code": code,
+            "questions": "\nResult:\n".join(questions_from_json),
+        }
+    elif prompt_id == "json_based_1":
+        parser = PydanticOutputParser(pydantic_object=TypeEvalPySchema)
+
+        prompt = PromptTemplate(
+            template=PROMPTS_MAP[prompt_id],
+            input_variables=["code"],
+            partial_variables={"format_instructions": parser.get_format_instructions()},
+        )
+
+        prompt_data = {
+            "code": code,
+        }
+    else:
+        print("ERROR! Prompt not found!")
+        sys.exit(-1)
+
+    _input = prompt.format_prompt(**prompt_data)
+
+    return _input.to_string()
+
+
+def process_file(file_path, llm, openai_llm, prompt_id):
     try:
         error_count = 0
         json_filepath = str(file_path).replace(".py", "_gt.json")
         result_filepath = str(file_path).replace(".py", f"_{llm.model}_result.json")
-        with open(json_filepath, "r") as file:
-            data = json.load(file)
-
-        with open(file_path, "r") as file:
-            code = file.read()
 
         try:
-            parser = PydanticOutputParser(pydantic_object=TypeEvalPySchema)
-
-            prompt = PromptTemplate(
-                template=prompts.typeevalpy_prompt_1_template,
-                input_variables=["code"],
-                partial_variables={
-                    "format_instructions": parser.get_format_instructions()
-                },
-            )
-
-            _input = prompt.format_prompt(code=code)
-
-            output = llm.invoke(_input.to_string())
+            output = llm.invoke(get_prompt(prompt_id, file_path, json_filepath))
 
             # TODO: Include this in langchain pipeline
+            output = re.sub(r"```json", "", output)
             output = re.sub(r"```", "", output)
 
             # response = llm.invoke(file_prompt)
@@ -106,16 +139,18 @@ def main_runner(args):
     )
 
     for model in args.ollama_models:
+        # TODO: Add gpt as model here
         llm = Ollama(
             model=model,
             callback_manager=CallbackManager([StreamingStdOutCallbackHandler()]),
+            temperature=0.0,
         )
         llm.base_url = args.ollama_url
 
         for file in python_files:
             try:
                 logger.info(file)
-                inferred = process_file(file, llm, openai_llm)
+                inferred = process_file(file, llm, openai_llm, args.prompt_id)
 
                 # TODO: Process JSON results per llm model to be compatible with TypeEvalPy
 
@@ -140,6 +175,8 @@ if __name__ == "__main__":
     parser.add_argument(
         "--ollama_url", help="Specify the ollama server url", required=True
     )
+
+    parser.add_argument("--prompt_id", help="Specify the prompt ID", required=True)
 
     parser.add_argument(
         "--ollama_models",

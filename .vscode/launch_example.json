@@ -1,0 +1,29 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "./TypeEvalPy_LLM/src/target_tools/ollama/src/runner.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                "--bechmark_path",
+                "./TypeEvalPy_LLM/.scrapy/test",
+                "--ollama_models",
+                "codellama:34b-instruct",
+                "codellama:34b-python",
+                "--openai_key",
+                "",
+                "--ollama_url",
+                "",
+                "--prompt_id",
+                "json_based_1"
+            ]
+        }
+    ]
+}
