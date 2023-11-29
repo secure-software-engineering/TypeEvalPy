@@ -1,0 +1,7 @@
+ollama:
+  openai_key: "<API_KEY>"
+  ollama_url: "localhost:11434"
+  prompt_id: "json_based_1"
+  ollama_models:
+    - "codellama:34b-instruct"
+    - "codellama:34b-python"

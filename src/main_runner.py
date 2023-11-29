@@ -8,6 +8,7 @@ from datetime import datetime
 from io import BytesIO
 
 import docker
+import yaml
 
 from main_analyze_results import run_results_analyzer
 
@@ -27,6 +28,15 @@ logger.addHandler(file_handler)
 logger.addHandler(console_handler)
 
 KEEP_CONTAINERS_RUNNING = False
+
+# Get config
+CONFIG_FILE = "config.yaml"
+
+if os.path.exists(CONFIG_FILE):
+    with open(CONFIG_FILE, "r") as file:
+        config = yaml.safe_load(file)
+else:
+    config = {}
 
 
 class FileHandler:
@@ -76,6 +86,7 @@ class TypeEvalPyRunner:
         self.dockerfile_path = dockerfile_path
         self.dockerfile_name = dockerfile_name
         self.test_runner_script_path = f"/tmp/src/runner.py"
+        self.benchmark_path = "/tmp/micro-benchmark"
         self.host_results_path = host_results_path
         self.volumes = volumes
         self.nocache = nocache
@@ -105,7 +116,21 @@ class TypeEvalPyRunner:
             f"pip install typeevalpy-external-module", stream=True
         )
 
-    def _run_test_in_session(self, result_path="/tmp/micro-benchmark"):
+    def run_test_in_session(self):
+        _, response = self.container.exec_run(
+            f"python {self.test_runner_script_path}", stream=True
+        )
+        for line in response:
+            logger.info(line)
+
+    def copy_results_from_container(self):
+        file_handler.copy_files_from_container(
+            self.container,
+            self.benchmark_path,
+            f"{self.host_results_path}/{self.tool_name}",
+        )
+
+    def run_tool_test(self):
         logger.info("#####################################################")
         logger.info(f"Running : {self.tool_name}")
         self._build_docker_image()
@@ -120,27 +145,19 @@ class TypeEvalPyRunner:
 
         logger.info("Type inferring...")
         start_time = time.time()
-        _, response = self.container.exec_run(
-            f"python {self.test_runner_script_path}", stream=True
-        )
-        for line in response:
-            logger.info(line)
+
+        self.run_test_in_session()
 
         end_time = time.time()
         execution_time = end_time - start_time
         logger.info(f"Execution time: {execution_time} seconds")
 
-        file_handler.copy_files_from_container(
-            self.container, result_path, f"{self.host_results_path}/{self.tool_name}"
-        )
+        self.copy_results_from_container()
 
         if not KEEP_CONTAINERS_RUNNING:
             self.container.stop()
             time.sleep(5)
             self.container.remove()
-
-    def run_tool_test(self):
-        self._run_test_in_session()
 
 
 class ScalpelRunner(TypeEvalPyRunner):
@@ -269,6 +286,40 @@ class Type4pyRunner(TypeEvalPyRunner):
         return container
 
 
+class OllamaRunner(TypeEvalPyRunner):
+    def __init__(self, host_results_path, config, debug=False, nocache=False):
+        super().__init__(
+            "ollama", "./target_tools/ollama", host_results_path, nocache=nocache
+        )
+
+    def run_test_in_session(self):
+        command_to_run = [
+            "python",
+            self.test_runner_script_path,
+            "--bechmark_path",
+            self.benchmark_path,
+            "--openai_key",
+            config["ollama"]["openai_key"],
+            "--ollama_url",
+            config["ollama"]["ollama_url"],
+            "--prompt_id",
+            config["ollama"]["prompt_id"],
+            "--ollama_models",
+        ]
+        command_to_run.extend(config["ollama"]["ollama_models"])
+
+        _, response = self.container.exec_run(" ".join(command_to_run), stream=True)
+        for line in response:
+            logger.info(line)
+
+    def copy_results_from_container(self):
+        file_handler.copy_files_from_container(
+            self.container,
+            self.benchmark_path,
+            f"{self.host_results_path}/{self.tool_name}",
+        )
+
+
 def get_args():
     parser = ArgumentParser(description="Run various type evaluation tools.")
     parser.add_argument(
@@ -332,6 +383,10 @@ def main():
         "jedi": (
             JediRunner,
             {"debug": args.debug, "nocache": args.nocache},
+        ),
+        "ollama": (
+            OllamaRunner,
+            {"debug": args.debug, "nocache": args.nocache, "config": config},
         ),
         # PySonar2Runner,
         # PytypeRunner,

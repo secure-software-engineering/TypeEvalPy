@@ -1,6 +1,29 @@
-import os
 import json
+import os
+import shutil
 import sys
+
+
+def copy_folder(src, dst):
+    """
+    Copies a folder from the source (src) to the destination (dst).
+
+    :param src: Source folder path
+    :param dst: Destination folder path
+    """
+    # Check if the source directory exists
+    if not os.path.exists(src):
+        print(f"Source folder {src} does not exist.")
+        return
+
+    # Check if the destination directory exists, if so, remove it
+    if os.path.exists(dst):
+        shutil.rmtree(dst)
+        print(f"Existing folder at {dst} has been removed.")
+
+    # Copy the folder
+    shutil.copytree(src, dst, dirs_exist_ok=True)
+    print(f"Folder copied from {src} to {dst}")
 
 
 def is_running_in_docker():
