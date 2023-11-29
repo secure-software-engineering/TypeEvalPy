@@ -174,3 +174,4 @@ src/backup/
 results
 .scrapy/*
 .vscode/launch.json
+src/config.yaml

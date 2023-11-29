@@ -2,8 +2,9 @@ import argparse
 import json
 import logging
 import re
-import traceback
+import shutil
 import sys
+import traceback
 from pathlib import Path
 from sys import stdout
 from typing import List, Optional
@@ -18,6 +19,7 @@ from langchain.prompts import PromptTemplate
 from langchain.pydantic_v1 import BaseModel
 
 AUTOFIX_WITH_OPENAI = False
+ENABLE_STREAMING = False
 
 
 class TypeEvalPySchema(BaseModel):
@@ -30,11 +32,8 @@ class TypeEvalPySchema(BaseModel):
 
 
 PROMPTS_MAP = {
-    "1": prompts.typeevalpy_prompt_1,
-    "2": prompts.typeevalpy_prompt_2,
-    "3": prompts.typeevalpy_prompt_1_template,
-    "4": prompts.typeevalpy_prompt_2_template,
     "json_based_1": prompts.json_based_1,
+    "json_based_2": prompts.json_based_2,
     "questions_based_1": prompts.questions_based_1,
 }
 
@@ -77,18 +76,16 @@ def get_prompt(prompt_id, code_path, json_filepath):
             "code": code,
             "questions": "\nResult:\n".join(questions_from_json),
         }
-    elif prompt_id == "json_based_1":
+    elif prompt_id in ["json_based_1", "json_based_2"]:
         parser = PydanticOutputParser(pydantic_object=TypeEvalPySchema)
 
         prompt = PromptTemplate(
             template=PROMPTS_MAP[prompt_id],
-            input_variables=["code"],
+            input_variables=["code", "filename"],
             partial_variables={"format_instructions": parser.get_format_instructions()},
         )
 
-        prompt_data = {
-            "code": code,
-        }
+        prompt_data = {"code": code, "filename": Path(code_path).name}
     else:
         print("ERROR! Prompt not found!")
         sys.exit(-1)
@@ -102,7 +99,7 @@ def process_file(file_path, llm, openai_llm, prompt_id):
     try:
         error_count = 0
         json_filepath = str(file_path).replace(".py", "_gt.json")
-        result_filepath = str(file_path).replace(".py", f"_{llm.model}_result.json")
+        result_filepath = str(file_path).replace(".py", f"_result.json")
 
         try:
             output = llm.invoke(get_prompt(prompt_id, file_path, json_filepath))
@@ -116,6 +113,7 @@ def process_file(file_path, llm, openai_llm, prompt_id):
                 new_parser = OutputFixingParser.from_llm(parser=parser, llm=openai_llm)
                 output = new_parser.parse(output)
 
+            logger.info(output)
             utils.generate_json_file(result_filepath, output)
 
         except Exception as e:
@@ -130,7 +128,6 @@ def process_file(file_path, llm, openai_llm, prompt_id):
 
 
 def main_runner(args):
-    python_files = list_python_files(args.bechmark_path)
     error_count = 0
     model_name = "text-davinci-003"
     temperature = 0.0
@@ -139,10 +136,24 @@ def main_runner(args):
     )
 
     for model in args.ollama_models:
+        files_analyzed = 0
+
+        # Create result folder for model specific results
+        bechmark_path = Path(args.bechmark_path)
+        results_src = bechmark_path
+        results_dst = bechmark_path.parent / model / bechmark_path.name
+        utils.copy_folder(results_src, results_dst)
+
+        python_files = list_python_files(results_dst)
+
         # TODO: Add gpt as model here
         llm = Ollama(
             model=model,
-            callback_manager=CallbackManager([StreamingStdOutCallbackHandler()]),
+            callback_manager=(
+                CallbackManager([StreamingStdOutCallbackHandler()])
+                if ENABLE_STREAMING
+                else None
+            ),
             temperature=0.0,
         )
         llm.base_url = args.ollama_url
@@ -152,13 +163,16 @@ def main_runner(args):
                 logger.info(file)
                 inferred = process_file(file, llm, openai_llm, args.prompt_id)
 
-                # TODO: Process JSON results per llm model to be compatible with TypeEvalPy
-
             except Exception as e:
                 logger.info(
                     f"Command returned non-zero exit status: {e} for file: {file}"
                 )
                 error_count += 1
+
+            files_analyzed += 1
+            logger.info(
+                f"Progress: {files_analyzed}/{len(python_files)} Errors: {error_count}"
+            )
 
     logger.info(f"Runner finished with errors:{error_count}")
 
