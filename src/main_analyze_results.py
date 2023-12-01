@@ -913,7 +913,7 @@ def run_results_analyzer():
     tools_results = {}
 
     for item in results_dir.glob("*"):
-        if item.is_file() or item.name not in SUPPORTED_TOOLS:
+        if item.is_file():
             # ignore
             pass
         elif item.is_dir():
@@ -963,7 +963,9 @@ def run_results_analyzer():
         tools_results
     )  # Create sound complete table
     tools_list = utils.ML_TOOLS + utils.STANDARD_TOOLS
-    analysis_tables.create_comparison_table(tools_results, tools_list)
+
+    if len(tools_results) > 1:
+        analysis_tables.create_comparison_table(tools_results, tools_list)
 
     os.makedirs(results_dir / "analysis_results", exist_ok=True)
     results_dir = results_dir / "analysis_results"
