@@ -16,15 +16,15 @@ from main_analyze_results import run_results_analyzer
 logger = logging.getLogger("Main Runner")
 logger.setLevel(logging.DEBUG)
 
-file_handler = logging.FileHandler("main_runner.log")
-file_handler.setLevel(logging.DEBUG)
+log_file_handler = logging.FileHandler("main_runner.log")
+log_file_handler.setLevel(logging.DEBUG)
 
 console_handler = logging.StreamHandler()
 console_handler.setLevel(logging.DEBUG)
 formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
-file_handler.setFormatter(formatter)
+log_file_handler.setFormatter(formatter)
 console_handler.setFormatter(formatter)
-logger.addHandler(file_handler)
+logger.addHandler(log_file_handler)
 logger.addHandler(console_handler)
 
 KEEP_CONTAINERS_RUNNING = False
@@ -91,6 +91,8 @@ class TypeEvalPyRunner:
         self.volumes = volumes
         self.nocache = nocache
 
+        self.file_handler = FileHandler()
+
         if not os.path.exists(self.host_results_path):
             os.makedirs(self.host_results_path)
 
@@ -124,7 +126,7 @@ class TypeEvalPyRunner:
             logger.info(line)
 
     def copy_results_from_container(self):
-        file_handler.copy_files_from_container(
+        self.file_handler.copy_files_from_container(
             self.container,
             self.benchmark_path,
             f"{self.host_results_path}/{self.tool_name}",
@@ -136,10 +138,9 @@ class TypeEvalPyRunner:
         self._build_docker_image()
         self.container = self.spawn_docker_instance()
 
-        file_handler = FileHandler()
         src = "../micro-benchmark"
         dst = "/tmp"
-        file_handler.copy_files_to_container(self.container, src, dst)
+        self.file_handler.copy_files_to_container(self.container, src, dst)
 
         self.setup_benchmark_external_library()
 
@@ -291,6 +292,7 @@ class OllamaRunner(TypeEvalPyRunner):
         super().__init__(
             "ollama", "./target_tools/ollama", host_results_path, nocache=nocache
         )
+        self.config = config
 
     def run_test_in_session(self):
         command_to_run = [
@@ -299,25 +301,27 @@ class OllamaRunner(TypeEvalPyRunner):
             "--bechmark_path",
             self.benchmark_path,
             "--openai_key",
-            config["ollama"]["openai_key"],
+            self.config["ollama"]["openai_key"],
             "--ollama_url",
-            config["ollama"]["ollama_url"],
+            self.config["ollama"]["ollama_url"],
             "--prompt_id",
-            config["ollama"]["prompt_id"],
+            self.config["ollama"]["prompt_id"],
             "--ollama_models",
         ]
-        command_to_run.extend(config["ollama"]["ollama_models"])
+        command_to_run.extend(self.config["ollama"]["ollama_models"])
 
         _, response = self.container.exec_run(" ".join(command_to_run), stream=True)
         for line in response:
             logger.info(line)
 
     def copy_results_from_container(self):
-        file_handler.copy_files_from_container(
-            self.container,
-            self.benchmark_path,
-            f"{self.host_results_path}/{self.tool_name}",
-        )
+        for model in self.config["ollama"]["ollama_models"]:
+            model_results_path = f"/tmp/{model}/micro-benchmark"
+            self.file_handler.copy_files_from_container(
+                self.container,
+                model_results_path,
+                f"{self.host_results_path}/{model}",
+            )
 
 
 def get_args():

@@ -67,10 +67,13 @@ def sort_stats(stats):
     return stats
 
 
+# TODO: Use translator to avoid fixing this here
 def sort_facts(data):
     data = sorted(data, key=lambda x: int(x["line_number"]))
     for fact in data:
-        fact["type"].sort()
+        if "type" in fact:
+            if isinstance(fact["type"], list):
+                fact["type"].sort()
     return data
 
 

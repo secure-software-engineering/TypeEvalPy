@@ -43,12 +43,16 @@ def generate_json_file(filename, type_info):
     # Generate JSON file with type information
     try:
         type_info = json.loads(type_info)
+        is_valid_json = True
     except Exception as e:
+        is_valid_json = False
         print("Not a valid JSON")
 
     json_data = json.dumps(type_info, indent=4)
     with open(filename, "w") as file:
         file.write(json_data)
+
+    return is_valid_json
 
 
 def generate_questions_from_json(json_file):

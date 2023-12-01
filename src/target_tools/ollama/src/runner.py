@@ -13,6 +13,7 @@ import prompts
 import utils
 from langchain.callbacks.manager import CallbackManager
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
+from langchain.chat_models import ChatOpenAI
 from langchain.llms import Ollama, OpenAI
 from langchain.output_parsers import OutputFixingParser, PydanticOutputParser
 from langchain.prompts import PromptTemplate
@@ -104,24 +105,27 @@ def process_file(file_path, llm, openai_llm, prompt_id):
         try:
             output = llm.invoke(get_prompt(prompt_id, file_path, json_filepath))
 
+            if isinstance(llm, ChatOpenAI):
+                output = output.content
+
             # TODO: Include this in langchain pipeline
             output = re.sub(r"```json", "", output)
             output = re.sub(r"```", "", output)
 
-            # response = llm.invoke(file_prompt)
             if AUTOFIX_WITH_OPENAI:
                 new_parser = OutputFixingParser.from_llm(parser=parser, llm=openai_llm)
                 output = new_parser.parse(output)
 
             logger.info(output)
-            utils.generate_json_file(result_filepath, output)
+            is_valid_json = utils.generate_json_file(result_filepath, output)
+            if not is_valid_json:
+                logger.info(f"{file_path} failed: Not a valid JSON")
+                raise
 
         except Exception as e:
             traceback.print_exc()
             logger.info(f"{file_path} failed: {e}")
-            error_count = 1
 
-        return error_count
     except Exception as e:
         logger.info(f"{file_path} failed: {e}")
         raise
@@ -146,22 +150,30 @@ def main_runner(args):
 
         python_files = list_python_files(results_dst)
 
-        # TODO: Add gpt as model here
-        llm = Ollama(
-            model=model,
-            callback_manager=(
-                CallbackManager([StreamingStdOutCallbackHandler()])
-                if ENABLE_STREAMING
-                else None
-            ),
-            temperature=0.0,
-        )
-        llm.base_url = args.ollama_url
+        if model.startswith("gpt-"):
+            # OpenAI models
+            llm = ChatOpenAI(
+                model_name=model,
+                temperature=temperature,
+                openai_api_key=args.openai_key,
+            )
+
+        else:
+            llm = Ollama(
+                model=model,
+                callback_manager=(
+                    CallbackManager([StreamingStdOutCallbackHandler()])
+                    if ENABLE_STREAMING
+                    else None
+                ),
+                temperature=temperature,
+            )
+            llm.base_url = args.ollama_url
 
         for file in python_files:
             try:
                 logger.info(file)
-                inferred = process_file(file, llm, openai_llm, args.prompt_id)
+                process_file(file, llm, openai_llm, args.prompt_id)
 
             except Exception as e:
                 logger.info(
@@ -178,7 +190,6 @@ def main_runner(args):
 
 
 if __name__ == "__main__":
-    print("Python is running inside a Docker container")
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--bechmark_path",
