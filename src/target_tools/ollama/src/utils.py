@@ -3,6 +3,23 @@ import os
 import shutil
 import sys
 
+import requests
+
+
+def is_ollama_online(server_url):
+    try:
+        res = requests.get(server_url)
+        # Check if the request was successful
+        if res.status_code == 200:
+            # Check the content of the response
+            if res.text == "Ollama is running":
+                return True
+        return False
+    except requests.exceptions.RequestException as e:
+        # Handle any exceptions that occur during the request
+        print(f"An error occurred: {e}")
+        return False
+
 
 def copy_folder(src, dst):
     """
