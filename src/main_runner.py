@@ -1,6 +1,7 @@
 import logging
 import os
 import shutil
+import sys
 import tarfile
 import time
 from argparse import ArgumentParser
@@ -404,6 +405,7 @@ def main():
             runner_instance.run_tool_test()
         else:
             logger.error(f"Unknown runner: {runner_name}")
+            sys.exit(-1)
 
     run_results_analyzer()
 

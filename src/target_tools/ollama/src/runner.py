@@ -4,6 +4,7 @@ import logging
 import re
 import shutil
 import sys
+import time
 import traceback
 from pathlib import Path
 from sys import stdout
@@ -169,10 +170,16 @@ def main_runner(args):
                 temperature=temperature,
             )
             llm.base_url = args.ollama_url
+            if utils.is_ollama_online(llm.base_url):
+                print("Ollama is online!")
+            else:
+                print("Ollama server is not online!!!")
+                sys.exit(-1)
 
         for file in python_files:
             try:
                 logger.info(file)
+                logger.info(model)
                 process_file(file, llm, openai_llm, args.prompt_id)
 
             except Exception as e:
