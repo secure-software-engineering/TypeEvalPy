@@ -6,6 +6,10 @@ import sys
 import requests
 
 
+class JsonException(Exception):
+    pass
+
+
 def is_ollama_online(server_url):
     try:
         res = requests.get(server_url)

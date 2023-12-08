@@ -22,6 +22,7 @@ from langchain.pydantic_v1 import BaseModel
 
 AUTOFIX_WITH_OPENAI = False
 ENABLE_STREAMING = False
+REQUEST_TIMEOUT = 300
 
 
 class TypeEvalPySchema(BaseModel):
@@ -89,7 +90,7 @@ def get_prompt(prompt_id, code_path, json_filepath):
 
         prompt_data = {"code": code, "filename": Path(code_path).name}
     else:
-        print("ERROR! Prompt not found!")
+        logger.error("ERROR! Prompt not found!")
         sys.exit(-1)
 
     _input = prompt.format_prompt(**prompt_data)
@@ -99,41 +100,38 @@ def get_prompt(prompt_id, code_path, json_filepath):
 
 def process_file(file_path, llm, openai_llm, prompt_id):
     try:
-        error_count = 0
         json_filepath = str(file_path).replace(".py", "_gt.json")
         result_filepath = str(file_path).replace(".py", f"_result.json")
 
-        try:
-            output = llm.invoke(get_prompt(prompt_id, file_path, json_filepath))
+        output = llm.invoke(get_prompt(prompt_id, file_path, json_filepath))
 
-            if isinstance(llm, ChatOpenAI):
-                output = output.content
+        if isinstance(llm, ChatOpenAI):
+            output = output.content
 
-            # TODO: Include this in langchain pipeline
-            output = re.sub(r"```json", "", output)
-            output = re.sub(r"```", "", output)
+        # TODO: Include this in langchain pipeline
+        output = re.sub(r"```json", "", output)
+        output = re.sub(r"```", "", output)
 
-            if AUTOFIX_WITH_OPENAI:
-                new_parser = OutputFixingParser.from_llm(parser=parser, llm=openai_llm)
-                output = new_parser.parse(output)
-
-            logger.info(output)
-            is_valid_json = utils.generate_json_file(result_filepath, output)
-            if not is_valid_json:
-                logger.info(f"{file_path} failed: Not a valid JSON")
-                raise
-
-        except Exception as e:
-            traceback.print_exc()
-            logger.info(f"{file_path} failed: {e}")
+        if AUTOFIX_WITH_OPENAI:
+            new_parser = OutputFixingParser.from_llm(parser=parser, llm=openai_llm)
+            output = new_parser.parse(output)
 
     except Exception as e:
-        logger.info(f"{file_path} failed: {e}")
+        # traceback.print_exc()
+        logger.error(f"{file_path} failed: {e}")
         raise
+
+    logger.info(output)
+
+    is_valid_json = utils.generate_json_file(result_filepath, output)
+    if not is_valid_json:
+        logger.info(f"{file_path} failed: Not a valid JSON")
+        raise utils.JsonException("json")
 
 
 def main_runner(args):
     error_count = 0
+    json_count = 0
     model_name = "text-davinci-003"
     temperature = 0.0
     openai_llm = OpenAI(
@@ -168,14 +166,16 @@ def main_runner(args):
                     else None
                 ),
                 temperature=temperature,
+                timeout=REQUEST_TIMEOUT,
             )
             llm.base_url = args.ollama_url
             if utils.is_ollama_online(llm.base_url):
-                print("Ollama is online!")
+                logger.info("Ollama is online!")
             else:
-                print("Ollama server is not online!!!")
+                logger.error("Ollama server is not online!!!")
                 sys.exit(-1)
 
+        prompt_start_time = time.time()
         for file in python_files:
             try:
                 logger.info(file)
@@ -187,13 +187,19 @@ def main_runner(args):
                     f"Command returned non-zero exit status: {e} for file: {file}"
                 )
                 error_count += 1
+                if isinstance(e, utils.JsonException):
+                    json_count += 1
 
             files_analyzed += 1
             logger.info(
-                f"Progress: {files_analyzed}/{len(python_files)} Errors: {error_count}"
+                f"Progress: {files_analyzed}/{len(python_files)} | Errors/JSON:"
+                f" {error_count}/{json_count} | PromptTime:"
+                f" {time.time()-prompt_start_time}"
             )
 
-    logger.info(f"Runner finished with errors:{error_count}")
+    logger.info(
+        f"Runner finished with errors: {error_count} | JSON errors: {json_count}"
+    )
 
 
 if __name__ == "__main__":
