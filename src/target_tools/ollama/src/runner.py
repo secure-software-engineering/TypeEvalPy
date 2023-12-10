@@ -2,6 +2,7 @@ import argparse
 import json
 import logging
 import multiprocessing
+import os
 import re
 import shutil
 import sys
@@ -12,6 +13,7 @@ from sys import stdout
 from typing import List, Optional
 
 import prompts
+import translator
 import utils
 from langchain.callbacks.manager import CallbackManager
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
@@ -22,8 +24,9 @@ from langchain.prompts import PromptTemplate
 from langchain.pydantic_v1 import BaseModel
 
 AUTOFIX_WITH_OPENAI = False
-ENABLE_STREAMING = False
+ENABLE_STREAMING = True
 REQUEST_TIMEOUT = 60
+USE_MULTIPROCESSING_FOR_TERMINATION = True
 
 
 class TypeEvalPySchema(BaseModel):
@@ -39,6 +42,7 @@ PROMPTS_MAP = {
     "json_based_1": prompts.json_based_1,
     "json_based_2": prompts.json_based_2,
     "questions_based_1": prompts.questions_based_1,
+    "questions_based_2": prompts.questions_based_2,
 }
 
 # Create a logger
@@ -76,17 +80,20 @@ def get_prompt(prompt_id, code_path, json_filepath):
     with open(code_path, "r") as file:
         code = file.read()
 
-    if prompt_id == "questions_based_1":
+    if prompt_id in ["questions_based_1", "questions_based_2"]:
         questions_from_json = utils.generate_questions_from_json(json_filepath)
 
         prompt = PromptTemplate(
             template=PROMPTS_MAP[prompt_id],
-            input_variables=["code", "questions"],
+            input_variables=["code", "questions", "answers"],
         )
 
         prompt_data = {
             "code": code,
-            "questions": "\nResult:\n".join(questions_from_json),
+            "questions": "\n".join(questions_from_json),
+            "answers": "\n".join(
+                [f"{x}." for x in range(1, len(questions_from_json) + 1)]
+            ),
         }
     elif prompt_id in ["json_based_1", "json_based_2"]:
         parser = PydanticOutputParser(pydantic_object=TypeEvalPySchema)
@@ -112,32 +119,35 @@ def process_file(file_path, llm, openai_llm, prompt_id):
         json_filepath = str(file_path).replace(".py", "_gt.json")
         result_filepath = str(file_path).replace(".py", f"_result.json")
 
-        # Queue for communication between processes
-        queue = multiprocessing.Queue()
+        if USE_MULTIPROCESSING_FOR_TERMINATION:
+            # Queue for communication between processes
+            queue = multiprocessing.Queue()
 
-        # Create a process for llm.invoke
-        process = multiprocessing.Process(
-            target=invoke_llm,
-            args=(llm, get_prompt(prompt_id, file_path, json_filepath), queue),
-        )
-        process.start()
+            # Create a process for llm.invoke
+            process = multiprocessing.Process(
+                target=invoke_llm,
+                args=(llm, get_prompt(prompt_id, file_path, json_filepath), queue),
+            )
+            process.start()
 
-        # Wait for the process to finish with a timeout (e.g., 60 seconds)
-        process.join(timeout=REQUEST_TIMEOUT)
+            # Wait for the process to finish with a timeout (e.g., 60 seconds)
+            process.join(timeout=REQUEST_TIMEOUT)
 
-        if process.is_alive():
-            logger.info(f"Timeout occurred for {file_path}")
-            process.terminate()  # Terminate the process if it's still running
-            process.join()
-            logger.info(f"{file_path} failed: Not a valid JSON")
-            raise utils.TimeoutException("json")
+            if process.is_alive():
+                logger.info(f"Timeout occurred for {file_path}")
+                process.terminate()  # Terminate the process if it's still running
+                process.join()
+                logger.info(f"{file_path} failed: Not a valid JSON")
+                raise utils.TimeoutException("json")
 
-        result = queue.get_nowait()
+            result = queue.get_nowait()
 
-        if isinstance(result, Exception):
-            raise result
+            if isinstance(result, Exception):
+                raise result
 
-        output = result
+            output = result
+        else:
+            output = llm.invoke(get_prompt(prompt_id, file_path, json_filepath))
 
         if isinstance(llm, ChatOpenAI):
             output = output.content
@@ -157,7 +167,13 @@ def process_file(file_path, llm, openai_llm, prompt_id):
 
     logger.info(output)
 
-    is_valid_json = utils.generate_json_file(result_filepath, output)
+    if prompt_id == "questions_based_2":
+        answers_json = utils.generate_json_from_answers(json_filepath, output)
+        translated_json = translator.translate_content(answers_json)
+    else:
+        translated_json = translator.translate_content(output)
+
+    is_valid_json = utils.generate_json_file(result_filepath, translated_json)
     if not is_valid_json:
         logger.info(f"{file_path} failed: Not a valid JSON")
         raise utils.JsonException("json")
@@ -184,33 +200,37 @@ def main_runner(args):
 
         python_files = list_python_files(results_dst)
 
-        if model.startswith("gpt-"):
-            # OpenAI models
-            llm = ChatOpenAI(
-                model_name=model,
-                temperature=temperature,
-                openai_api_key=args.openai_key,
-            )
-
-        else:
-            llm = Ollama(
-                model=model,
-                callback_manager=(
-                    CallbackManager([StreamingStdOutCallbackHandler()])
-                    if ENABLE_STREAMING
-                    else None
-                ),
-                temperature=temperature,
-                timeout=REQUEST_TIMEOUT,
-            )
-            llm.base_url = args.ollama_url
-            if utils.is_ollama_online(llm.base_url):
+        if not model.startswith("gpt-"):
+            if utils.is_ollama_online(args.ollama_url):
                 logger.info("Ollama is online!")
             else:
                 logger.error("Ollama server is not online!!!")
                 sys.exit(-1)
 
         for file in python_files:
+            # Recreating llm object each iteration since we might force terminate in thread
+            # Maybe there is another better way to do this
+            if model.startswith("gpt-"):
+                # OpenAI models
+                llm = ChatOpenAI(
+                    model_name=model,
+                    temperature=temperature,
+                    openai_api_key=args.openai_key,
+                )
+
+            else:
+                llm = Ollama(
+                    model=model,
+                    callback_manager=(
+                        CallbackManager([StreamingStdOutCallbackHandler()])
+                        if ENABLE_STREAMING
+                        else None
+                    ),
+                    temperature=temperature,
+                    timeout=REQUEST_TIMEOUT,
+                )
+                llm.base_url = args.ollama_url
+
             prompt_start_time = time.time()
             try:
                 logger.info(file)
@@ -229,9 +249,9 @@ def main_runner(args):
 
             files_analyzed += 1
             logger.info(
-                f"Progress: {files_analyzed}/{len(python_files)} | Errors/JSON:"
-                f" {error_count}/{json_count} | PromptTime:"
-                f" {time.time()-prompt_start_time}"
+                f"Progress: {files_analyzed}/{len(python_files)} | Total Errors / JSON"
+                f" Errors / Timeouts: {error_count},{json_count},{timeout_count} |"
+                f" PromptTime: {time.time()-prompt_start_time}"
             )
 
     logger.info(
