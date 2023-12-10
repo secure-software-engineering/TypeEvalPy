@@ -1,0 +1,26 @@
+[
+    {
+        "file": " main.py ",
+        "line_number": 1,
+        "function": "TestClass.func",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": " main.py ",
+        "line_number": 6,
+        "variable": "test",
+        "type": [
+            "TestClass"
+        ]
+    },
+    {
+        "file": " main.py ",
+        "line_number": 7,
+        "variable": "result",
+        "type": [
+            "str"
+        ]
+    }
+]
