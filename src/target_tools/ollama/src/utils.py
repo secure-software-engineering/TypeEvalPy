@@ -1,5 +1,6 @@
 import json
 import os
+import re
 import shutil
 import sys
 
@@ -80,6 +81,31 @@ def generate_json_file(filename, type_info):
     return is_valid_json
 
 
+def generate_json_from_answers(gt_json_file, answers):
+    try:
+        with open(gt_json_file, "r") as file:
+            gt_data = json.load(file)
+
+        pattern = re.compile(r"^\s*(\d+)\.\s+(.+)\s*$", re.MULTILINE)
+        parsed_answers = pattern.findall(answers)
+
+        if len(gt_data) != len(parsed_answers):
+            return False
+
+        answers_json_data = []
+        for fact in range(len(gt_data)):
+            _result = gt_data[fact]
+            _result.pop("type")
+            _result["type"] = [x.strip() for x in parsed_answers[fact][1].split(",")]
+            answers_json_data.append(_result)
+
+        return answers_json_data
+    except Exception as e:
+        print("Error generating json from questions")
+        print(e)
+        return False
+
+
 def generate_questions_from_json(json_file):
     # Read and parse the JSON file
     with open(json_file, "r") as file:
@@ -98,26 +124,26 @@ def generate_questions_from_json(json_file):
             question = (
                 "What is the return type of the function"
                 f" '{entry['function']}' at line {line_number}, column"
-                f" {col_offset}?"
+                f" {col_offset}? Reply in one word."
             )
         # Function Parameter type
         elif "parameter" in entry:
             question = (
                 f"What is the type of the parameter '{entry['parameter']}' at line"
                 f" {line_number}, column {col_offset}, within the function"
-                f" '{entry['function']}'?"
+                f" '{entry['function']}'? Reply in one word."
             )
         # Variable in a function type
         elif "variable" in entry and "function" not in entry:
             question = (
                 f"What is the type of the variable '{entry['variable']}' at line"
-                f" {line_number}, column {col_offset}?"
+                f" {line_number}, column {col_offset}? Reply in one word."
             )
         elif "variable" in entry and "function" in entry:
             question = (
                 f"What is the type of the variable '{entry['variable']}' at line"
                 f" {line_number}, column {col_offset}, within the function"
-                f" '{entry['function']}'?"
+                f" '{entry['function']}'? Reply in one word."
             )
         else:
             print("ERROR! Type could not be converted to types")
@@ -127,4 +153,5 @@ def generate_questions_from_json(json_file):
         print("ERROR! Type questions length does not match json length")
         sys.exit(-1)
 
+    questions = [f"{x}. {y}" for x, y in zip(range(1, len(questions) + 1), questions)]
     return questions
