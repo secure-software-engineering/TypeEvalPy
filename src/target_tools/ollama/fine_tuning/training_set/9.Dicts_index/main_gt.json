@@ -1,0 +1,29 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "col_offset": 1,
+        "variable": "dict1",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "col_offset": 1,
+        "variable": "dict1['a']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "col_offset": 1,
+        "variable": "dict1['b']",
+        "type": [
+            "int"
+        ]
+    }
+]

@@ -1,0 +1,47 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 1,
+        "function": "add",
+        "type": [
+            "int",
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 1,
+        "function": "func",
+        "parameter": "a",
+        "type": [
+            "int",
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 1,
+        "function": "func",
+        "parameter": "b",
+        "type": [
+            "int",
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "variable": "result1",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "variable": "result2",
+        "type": [
+            "str"
+        ]
+    }
+]

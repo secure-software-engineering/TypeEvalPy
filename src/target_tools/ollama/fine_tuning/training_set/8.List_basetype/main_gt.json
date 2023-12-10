@@ -1,0 +1,10 @@
+[
+    {
+        "file": " main.py ",
+        "line_number": 1,
+        "variable": "a",
+        "type": [
+            "list"
+        ]
+    }
+]

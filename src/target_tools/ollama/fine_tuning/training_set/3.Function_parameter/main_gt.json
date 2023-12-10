@@ -1,0 +1,19 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 1,
+        "function": "func",
+        "type": [
+            "Nonetype"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 1,
+        "function": "func",
+        "parameter": "a",
+        "type": [
+            "int"
+        ]
+    }
+]
