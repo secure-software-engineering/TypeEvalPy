@@ -10,6 +10,10 @@ class JsonException(Exception):
     pass
 
 
+class TimeoutException(Exception):
+    pass
+
+
 def is_ollama_online(server_url):
     try:
         res = requests.get(server_url)
