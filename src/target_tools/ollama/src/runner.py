@@ -1,6 +1,7 @@
 import argparse
 import json
 import logging
+import multiprocessing
 import re
 import shutil
 import sys
@@ -22,7 +23,7 @@ from langchain.pydantic_v1 import BaseModel
 
 AUTOFIX_WITH_OPENAI = False
 ENABLE_STREAMING = False
-REQUEST_TIMEOUT = 300
+REQUEST_TIMEOUT = 60
 
 
 class TypeEvalPySchema(BaseModel):
@@ -54,6 +55,14 @@ file_handler.setFormatter(formatter)
 console_handler.setFormatter(formatter)
 logger.addHandler(file_handler)
 logger.addHandler(console_handler)
+
+
+def invoke_llm(llm, prompt, queue):
+    try:
+        output = llm.invoke(prompt)
+        queue.put(output)
+    except Exception as e:
+        queue.put(e)
 
 
 def list_python_files(folder_path):
@@ -103,7 +112,32 @@ def process_file(file_path, llm, openai_llm, prompt_id):
         json_filepath = str(file_path).replace(".py", "_gt.json")
         result_filepath = str(file_path).replace(".py", f"_result.json")
 
-        output = llm.invoke(get_prompt(prompt_id, file_path, json_filepath))
+        # Queue for communication between processes
+        queue = multiprocessing.Queue()
+
+        # Create a process for llm.invoke
+        process = multiprocessing.Process(
+            target=invoke_llm,
+            args=(llm, get_prompt(prompt_id, file_path, json_filepath), queue),
+        )
+        process.start()
+
+        # Wait for the process to finish with a timeout (e.g., 60 seconds)
+        process.join(timeout=REQUEST_TIMEOUT)
+
+        if process.is_alive():
+            logger.info(f"Timeout occurred for {file_path}")
+            process.terminate()  # Terminate the process if it's still running
+            process.join()
+            logger.info(f"{file_path} failed: Not a valid JSON")
+            raise utils.TimeoutException("json")
+
+        result = queue.get_nowait()
+
+        if isinstance(result, Exception):
+            raise result
+
+        output = result
 
         if isinstance(llm, ChatOpenAI):
             output = output.content
@@ -131,6 +165,7 @@ def process_file(file_path, llm, openai_llm, prompt_id):
 
 def main_runner(args):
     error_count = 0
+    timeout_count = 0
     json_count = 0
     model_name = "text-davinci-003"
     temperature = 0.0
@@ -189,6 +224,8 @@ def main_runner(args):
                 error_count += 1
                 if isinstance(e, utils.JsonException):
                     json_count += 1
+                elif isinstance(e, utils.TimeoutException):
+                    timeout_count += 1
 
             files_analyzed += 1
             logger.info(
