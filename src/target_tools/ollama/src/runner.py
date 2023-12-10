@@ -175,8 +175,8 @@ def main_runner(args):
                 logger.error("Ollama server is not online!!!")
                 sys.exit(-1)
 
-        prompt_start_time = time.time()
         for file in python_files:
+            prompt_start_time = time.time()
             try:
                 logger.info(file)
                 logger.info(model)
