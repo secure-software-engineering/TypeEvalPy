@@ -965,8 +965,7 @@ def run_results_analyzer(args):
     )  # Create sound complete table
     tools_list = utils.ML_TOOLS + utils.STANDARD_TOOLS
 
-    if len(tools_results) > 1:
-        analysis_tables.create_comparison_table(tools_results)
+    analysis_tables.create_comparison_table(tools_results)
 
     os.makedirs(results_dir / "analysis_results", exist_ok=True)
     results_dir = results_dir / "analysis_results"
