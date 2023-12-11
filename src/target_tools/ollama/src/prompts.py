@@ -501,10 +501,11 @@ questions_based_2 = """
 
 **Format for Answers**:
 - Provide your answer next to each question number, using only one word.
-- Example:
+- Strictly do not include additional explanations or commentary.
+- Example Answer:
     1. int
     2. float
-    3. str
+    3. int, float
 
 **Your Answers**:
 {answers}
