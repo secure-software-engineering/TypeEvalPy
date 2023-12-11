@@ -509,3 +509,50 @@ questions_based_2 = """
 **Your Answers**:
 {answers}
 """
+
+questions_based_3 = """
+## Task Description
+
+**Objective**: Examine and identify the data types of various elements such as function parameters, local variables, and function return types in the given Python code.
+
+**Instructions**:
+1. For each question below, provide a concise, one-word answer indicating the data type.
+2. For arguments and variables inside a function, list every data type they take according to the inputs in the current program context as a comma separated list.
+3. Do not include additional explanations or commentary in your answers.
+4. Example of Python code, questions, and answers are given below. These examples are to be used as training data.
+
+**Format for Answers**:
+- Provide your answer next to each question number, using only one word.
+- Example:
+    1. int
+    2. float
+    3. str
+
+**Example Python Code**:
+```python
+a = 1
+b = 1.0
+c = "hello"
+```
+
+**Example Questions**:
+1. What is the type of the variable 'a' at line 1, column 1? Reply in one word.
+2. What is the type of the variable 'b' at line 2, column 1? Reply in one word.
+3. What is the type of the variable 'c' at line 3, column 1? Reply in one word.
+
+**Example Answers**:
+1. int
+2. float
+3. str
+
+**Python Code**:
+```python
+{code}
+```
+
+**Questions**:
+{questions}
+
+**Answers**:
+{answers}
+"""
