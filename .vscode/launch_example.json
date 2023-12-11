@@ -5,15 +5,15 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: Current File",
+            "name": "Ollama Runner",
             "type": "python",
             "request": "launch",
-            "program": "./TypeEvalPy_LLM/src/target_tools/ollama/src/runner.py",
+            "program": "./src/target_tools/ollama/src/runner.py",
             "console": "integratedTerminal",
             "justMyCode": true,
             "args": [
                 "--bechmark_path",
-                "./TypeEvalPy_LLM/.scrapy/test",
+                "./micro-benchmark",
                 "--ollama_models",
                 "codellama:34b-instruct",
                 "codellama:34b-python",
@@ -22,7 +22,9 @@
                 "--ollama_url",
                 "",
                 "--prompt_id",
-                "json_based_1"
+                "questions_based_2",
+                "--results_dir",
+                ""
             ]
         }
     ]

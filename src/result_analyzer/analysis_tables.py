@@ -409,13 +409,13 @@ def exact_match_category_table(stats):
         writer.writerows(rows)
 
 
-def create_comparison_table(stats, tools):
+def create_comparison_table(stats):
     # Sort stats based on total_caught
     stats = utils.sort_stats(stats)
 
     headers = ["Tool Name"]
     stats = utils.sort_stats(stats)
-    tool_names = [tool for tool in stats.keys() if tool in tools]
+    tool_names = [tool for tool in stats.keys()]
     categories = list(stats[tool_names[0]]["exact_match_category"].keys())
     type_categories = list(
         list(stats[tool_names[0]]["exact_match_category"].values())[0].keys()

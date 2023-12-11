@@ -180,9 +180,6 @@ def process_file(file_path, llm, openai_llm, prompt_id):
 
 
 def main_runner(args):
-    error_count = 0
-    timeout_count = 0
-    json_count = 0
     model_name = "text-davinci-003"
     temperature = 0.0
     openai_llm = OpenAI(
@@ -190,12 +187,20 @@ def main_runner(args):
     )
 
     for model in args.ollama_models:
+        error_count = 0
+        timeout_count = 0
+        json_count = 0
         files_analyzed = 0
 
         # Create result folder for model specific results
         bechmark_path = Path(args.bechmark_path)
         results_src = bechmark_path
-        results_dst = bechmark_path.parent / model / bechmark_path.name
+        if args.results_dir is None:
+            results_dst = bechmark_path.parent / model / bechmark_path.name
+        else:
+            results_dst = Path(args.results_dir) / model / bechmark_path.name
+            os.makedirs(results_dst, exist_ok=True)
+
         utils.copy_folder(results_src, results_dst)
 
         python_files = list_python_files(results_dst)
@@ -265,6 +270,12 @@ if __name__ == "__main__":
         "--bechmark_path",
         help="Specify the benchmark path",
         default="/tmp/micro-benchmark",
+    )
+
+    parser.add_argument(
+        "--results_dir",
+        help="Specify the benchmark path",
+        default=None,
     )
 
     parser.add_argument(

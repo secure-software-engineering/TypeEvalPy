@@ -1,3 +1,4 @@
+import argparse
 import json
 import logging
 import os
@@ -896,10 +897,8 @@ def generate_top_n_performance(test_suite_dir, tool_name=None):
     return results_cat
 
 
-def run_results_analyzer():
-    results_dir = None
-    # results_dir = Path("../results/results_<>")
-    if results_dir is None:
+def run_results_analyzer(args):
+    if args.results_dir is None:
         dir_path = Path(SCRIPT_DIR) / "../results"
         directories = [
             f
@@ -909,11 +908,13 @@ def run_results_analyzer():
         directories.sort(key=lambda x: x.stat().st_mtime, reverse=True)
         # Get the latest directory
         results_dir = directories[0] if directories else None
+    else:
+        results_dir = Path(args.results_dir)
 
     tools_results = {}
 
     for item in results_dir.glob("*"):
-        if item.is_file():
+        if item.is_file() or item.name == "analysis_results":
             # ignore
             pass
         elif item.is_dir():
@@ -965,7 +966,7 @@ def run_results_analyzer():
     tools_list = utils.ML_TOOLS + utils.STANDARD_TOOLS
 
     if len(tools_results) > 1:
-        analysis_tables.create_comparison_table(tools_results, tools_list)
+        analysis_tables.create_comparison_table(tools_results)
 
     os.makedirs(results_dir / "analysis_results", exist_ok=True)
     results_dir = results_dir / "analysis_results"
@@ -1045,4 +1046,12 @@ def run_results_analyzer():
 
 
 if __name__ == "__main__":
-    run_results_analyzer()
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--results_dir",
+        help="Specify the results path",
+        default=None,
+    )
+    args = parser.parse_args()
+
+    run_results_analyzer(args)
