@@ -43,6 +43,7 @@ PROMPTS_MAP = {
     "json_based_2": prompts.json_based_2,
     "questions_based_1": prompts.questions_based_1,
     "questions_based_2": prompts.questions_based_2,
+    "questions_based_3": prompts.questions_based_3,
 }
 
 # Create a logger
@@ -80,7 +81,7 @@ def get_prompt(prompt_id, code_path, json_filepath):
     with open(code_path, "r") as file:
         code = file.read()
 
-    if prompt_id in ["questions_based_1", "questions_based_2"]:
+    if prompt_id in ["questions_based_1", "questions_based_2", "questions_based_3"]:
         questions_from_json = utils.generate_questions_from_json(json_filepath)
 
         prompt = PromptTemplate(
