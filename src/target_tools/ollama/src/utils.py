@@ -68,11 +68,14 @@ def is_running_in_docker():
 def generate_json_file(filename, type_info):
     # Generate JSON file with type information
     try:
-        type_info = json.loads(type_info)
+        if isinstance(type_info, list):
+            pass
+        else:
+            type_info = json.loads(type_info)
         is_valid_json = True
     except Exception as e:
         is_valid_json = False
-        print("Not a valid JSON")
+        print(f"Not a valid JSON: {e}")
 
     json_data = json.dumps(type_info, indent=4)
     with open(filename, "w") as file:
