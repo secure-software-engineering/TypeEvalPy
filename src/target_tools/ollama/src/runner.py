@@ -168,7 +168,8 @@ def process_file(file_path, llm, openai_llm, prompt_id):
 
     logger.info(output)
 
-    if prompt_id == "questions_based_2":
+    # TODO: Improve the way this is done. Some plugin based design.
+    if prompt_id in ["questions_based_2", "questions_based_3"]:
         answers_json = utils.generate_json_from_answers(json_filepath, output)
         translated_json = translator.translate_content(answers_json)
     else:
@@ -255,9 +256,9 @@ def main_runner(args):
 
             files_analyzed += 1
             logger.info(
-                f"Progress: {files_analyzed}/{len(python_files)} | Total Errors / JSON"
-                f" Errors / Timeouts: {error_count},{json_count},{timeout_count} |"
-                f" PromptTime: {time.time()-prompt_start_time}"
+                f"\n\nProgress: {files_analyzed}/{len(python_files)} | Total Errors /"
+                f" JSON Errors / Timeouts: {error_count},{json_count},{timeout_count} |"
+                f" PromptTime: {time.time()-prompt_start_time}\n\n"
             )
 
     logger.info(
