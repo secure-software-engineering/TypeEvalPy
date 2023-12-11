@@ -50,7 +50,7 @@ PROMPTS_MAP = {
 logger = logging.getLogger("runner")
 logger.setLevel(logging.DEBUG)
 
-file_handler = logging.FileHandler("/tmp/ollama_log.log")
+file_handler = logging.FileHandler("/tmp/ollama_log.log", filemode="w")
 file_handler.setLevel(logging.DEBUG)
 
 console_handler = logging.StreamHandler(stdout)
