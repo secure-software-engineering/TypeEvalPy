@@ -50,7 +50,7 @@ PROMPTS_MAP = {
 logger = logging.getLogger("runner")
 logger.setLevel(logging.DEBUG)
 
-file_handler = logging.FileHandler("/tmp/ollama_log.log", filemode="w")
+file_handler = logging.FileHandler("/tmp/ollama_log.log", mode="w")
 file_handler.setLevel(logging.DEBUG)
 
 console_handler = logging.StreamHandler(stdout)
@@ -187,7 +187,7 @@ def main_runner(args):
     openai_llm = OpenAI(
         model_name=model_name, temperature=temperature, openai_api_key=args.openai_key
     )
-
+    runner_start_time = time.time()
     for model in args.ollama_models:
         error_count = 0
         timeout_count = 0
@@ -261,8 +261,15 @@ def main_runner(args):
                 f" PromptTime: {time.time()-prompt_start_time}\n\n"
             )
 
+        logger.info(
+            f"Model {model} finished in {time.time()-runner_start_time:.2f} seconds"
+        )
+        logger.info("Running translator")
+        translator.main_translator(results_dst)
+
     logger.info(
-        f"Runner finished with errors: {error_count} | JSON errors: {json_count}"
+        f"Runner finished in {time.time()-runner_start_time:.2f} seconds, with errors:"
+        f" {error_count} | JSON errors: {json_count}"
     )
 
 

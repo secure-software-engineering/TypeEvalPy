@@ -88,11 +88,10 @@ def list_json_files(folder_path):
     return python_files
 
 
-def main_translator(args):
-    json_files = list_json_files(args.bechmark_path)
+def main_translator(benchmark_path):
+    json_files = list_json_files(benchmark_path)
     error_count = 0
     for file in json_files:
-        print(f"Processing: {file}")
         try:
             with open(file) as f:
                 data = json.load(f)
@@ -108,16 +107,14 @@ def main_translator(args):
             print(f"Command returned non-zero exit status: {e} for file: {file}")
             error_count += 1
 
-    print(f"Runner finished with errors:{error_count}")
+    print(f"Translator finished with errors:{error_count}")
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--bechmark_path",
-        help="Specify the benchmark path",
-        default=None,
+        "--benchmark_path", help="Specify the benchmark path", required=True
     )
 
     args = parser.parse_args()
-    main_translator(args)
+    main_translator(args.benchmark_path)
