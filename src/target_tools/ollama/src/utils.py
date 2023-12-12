@@ -127,26 +127,26 @@ def generate_questions_from_json(json_file):
             question = (
                 "What is the return type of the function"
                 f" '{entry['function']}' at line {line_number}, column"
-                f" {col_offset}? Reply in one word."
+                f" {col_offset}?"
             )
         # Function Parameter type
         elif "parameter" in entry:
             question = (
                 f"What is the type of the parameter '{entry['parameter']}' at line"
                 f" {line_number}, column {col_offset}, within the function"
-                f" '{entry['function']}'? Reply in one word."
+                f" '{entry['function']}'?"
             )
         # Variable in a function type
         elif "variable" in entry and "function" not in entry:
             question = (
                 f"What is the type of the variable '{entry['variable']}' at line"
-                f" {line_number}, column {col_offset}? Reply in one word."
+                f" {line_number}, column {col_offset}?"
             )
         elif "variable" in entry and "function" in entry:
             question = (
                 f"What is the type of the variable '{entry['variable']}' at line"
                 f" {line_number}, column {col_offset}, within the function"
-                f" '{entry['function']}'? Reply in one word."
+                f" '{entry['function']}'?"
             )
         else:
             print("ERROR! Type could not be converted to types")
