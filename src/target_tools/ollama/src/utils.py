@@ -109,6 +109,20 @@ def generate_json_from_answers(gt_json_file, answers):
         return False
 
 
+def generate_answers_for_fine_tuning(json_file):
+    # Read and parse the JSON file
+    with open(json_file, "r") as file:
+        data = json.load(file)
+
+    counter = 1
+    answers = []
+    for fact in data:
+        answers.append(f"{counter}. {', '.join(fact['type'])}")
+        counter += 1
+
+    return "\n".join(answers)
+
+
 def generate_questions_from_json(json_file):
     # Read and parse the JSON file
     with open(json_file, "r") as file:

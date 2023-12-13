@@ -481,6 +481,11 @@ Your Answers:
 {answers}
 """
 
+questions_based_2_system = (
+    "You will examine and identify the data types of various elements such as function"
+    " parameters, local variables, and function return types in the given Python code."
+)
+
 questions_based_2 = """
 ## Task Description
 

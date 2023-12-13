@@ -3,47 +3,38 @@
         "file": "main.py",
         "line_number": 1,
         "col_offset": 5,
-        "function": "outer",
+        "variable": "func",
         "type": [
-            "str"
+            "str",
+            "tuple"
         ]
     },
     {
         "file": "main.py",
         "line_number": 2,
         "col_offset": 5,
-        "function": "outer",
         "variable": "x",
         "type": [
-            "int"
+            "str",
+            "tuple"
         ]
     },
     {
         "file": "main.py",
-        "line_number": 4,
-        "col_offset": 9,
-        "function": "inner",
-        "type": [
-            "str"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 5,
-        "col_offset": 9,
-        "function": "inner",
-        "variable": "y",
-        "type": [
-            "str"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 11,
+        "line_number": 6,
         "col_offset": 1,
         "variable": "result1",
         "type": [
             "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 7,
+        "col_offset": 1,
+        "variable": "result2",
+        "type": [
+            "tuple"
         ]
     }
 ]

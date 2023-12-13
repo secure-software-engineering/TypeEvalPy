@@ -2,6 +2,7 @@
     {
         "file": "main.py",
         "line_number": 1,
+        "col_offset": 5,
         "function": "func",
         "type": [
             "Nonetype"
@@ -10,6 +11,7 @@
     {
         "file": "main.py",
         "line_number": 1,
+        "col_offset": 10,
         "function": "func",
         "parameter": "a",
         "type": [
