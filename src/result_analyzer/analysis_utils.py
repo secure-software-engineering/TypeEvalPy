@@ -305,33 +305,44 @@ def measure_precision(out, expected, tool_name=None, print_mismatch=False):
         for _n in TOP_N:
             for _cat, _cat_facts in data_out_categories.items():
                 for fact_out in _cat_facts:
+                    found_exact = False
+                    found_partial = False
                     for fact_expected in data_expected:
                         # Check exact matches
-                        if check_match(
-                            expected=fact_expected,
-                            out=fact_out,
-                            top_n=_n,
-                            is_ml=True,
-                            print_mismatch=(
-                                True if (_n == 1 and print_mismatch) else False
-                            ),
-                            metadata={
-                                "tool_name": tool_name,
-                                "type_category": _cat,
-                                "cat": " -> ".join(expected.split("/")[-4:]),
-                            },
+                        if (
+                            check_match(
+                                expected=fact_expected,
+                                out=fact_out,
+                                top_n=_n,
+                                is_ml=True,
+                                print_mismatch=(
+                                    True if (_n == 1 and print_mismatch) else False
+                                ),
+                                metadata={
+                                    "tool_name": tool_name,
+                                    "type_category": _cat,
+                                    "cat": " -> ".join(expected.split("/")[-4:]),
+                                },
+                            )
+                            and not found_exact
                         ):
                             if _n == 1:
                                 # Only if top-1 for "results" list
                                 results["num_caught_exact"] += 1
                             results_cat[_n][_cat]["num_caught_exact"] += 1
+                            found_exact = True
+
                         # Check partial matches
-                        elif check_match(
-                            expected=fact_expected,
-                            out=fact_out,
-                            partial_match=True,
-                            top_n=_n,
-                            is_ml=True,
+                        elif (
+                            check_match(
+                                expected=fact_expected,
+                                out=fact_out,
+                                partial_match=True,
+                                top_n=_n,
+                                is_ml=True,
+                            )
+                            and not found_exact
+                            and not found_partial
                         ):
                             for _type in fact_expected.get("type", []):
                                 if _type in fact_out.get("type", []):
@@ -339,32 +350,44 @@ def measure_precision(out, expected, tool_name=None, print_mismatch=False):
                                         # Only if top-1 for "results" list
                                         results["num_caught_partial"] += 1
                                     results_cat[_n][_cat]["num_caught_partial"] += 1
+                                    found_partial = True
 
     else:
         for _cat, _cat_facts in data_out_categories.items():
             for fact_out in _cat_facts:
+                found_exact = False
+                found_partial = False
                 for fact_expected in data_expected:
                     # Check exact matches
-                    if check_match(
-                        expected=fact_expected,
-                        out=fact_out,
-                        print_mismatch=print_mismatch,
-                        metadata={
-                            "tool_name": tool_name,
-                            "type_category": _cat,
-                            "cat": " -> ".join(expected.split("/")[-4:]),
-                        },
+                    if (
+                        check_match(
+                            expected=fact_expected,
+                            out=fact_out,
+                            print_mismatch=print_mismatch,
+                            metadata={
+                                "tool_name": tool_name,
+                                "type_category": _cat,
+                                "cat": " -> ".join(expected.split("/")[-4:]),
+                            },
+                        )
+                        and not found_exact
                     ):
                         results["num_caught_exact"] += 1
                         results_only_cat[_cat]["num_caught_exact"] += 1
+                        found_exact = True
                     # Check partial matches
-                    elif check_match(
-                        expected=fact_expected,
-                        out=fact_out,
-                        partial_match=True,
+                    elif (
+                        check_match(
+                            expected=fact_expected,
+                            out=fact_out,
+                            partial_match=True,
+                        )
+                        and not found_partial
+                        and not found_exact
                     ):
                         results["num_caught_partial"] += 1
                         results_only_cat[_cat]["num_caught_partial"] += 1
+                        found_partial = True
 
     return results, results_cat, results_only_cat
 
@@ -418,30 +441,44 @@ def measure_recall(out, expected, tool_name=None, print_missed=False):
         for _n in TOP_N:
             for _cat, _cat_facts in data_expected_categories.items():
                 for fact_expected in _cat_facts:
+                    found_exact = False
+                    found_partial = False
                     expected_found = False
                     for fact_out in data_out:
                         # Check exact matches
-                        if check_match(
-                            expected=fact_expected, out=fact_out, top_n=_n, is_ml=True
+                        if (
+                            check_match(
+                                expected=fact_expected,
+                                out=fact_out,
+                                top_n=_n,
+                                is_ml=True,
+                            )
+                            and not found_exact
                         ):
                             if _n == 1:
                                 # Only if top-1 for "results" list
                                 results["num_caught_exact"] += 1
                                 expected_found = True
+                            found_exact = True
                             results_cat[_n][_cat]["num_caught_exact"] += 1
 
                         # Check partial matches
-                        elif check_match(
-                            expected=fact_expected,
-                            out=fact_out,
-                            partial_match=True,
-                            top_n=_n,
-                            is_ml=True,
+                        elif (
+                            check_match(
+                                expected=fact_expected,
+                                out=fact_out,
+                                partial_match=True,
+                                top_n=_n,
+                                is_ml=True,
+                            )
+                            and not found_partial
+                            and not found_exact
                         ):
                             if _n == 1:
                                 # Only if top-1 for "results" list
                                 results["num_caught_partial"] += 1
                             results_cat[_n][_cat]["num_caught_partial"] += 1
+                            found_partial = True
 
                     if not expected_found and print_missed:
                         with open(f"{tool_name}_not_found_reasons.csv", "a") as f:
@@ -460,19 +497,29 @@ def measure_recall(out, expected, tool_name=None, print_missed=False):
         for _cat, _cat_facts in data_expected_categories.items():
             for fact_expected in _cat_facts:
                 expected_found = False
+                found_exact = False
+                found_partial = False
                 for fact_out in data_out:
                     # Check exact matches
-                    if check_match(expected=fact_expected, out=fact_out):
+                    if (
+                        check_match(expected=fact_expected, out=fact_out)
+                        and not found_exact
+                    ):
                         results["num_caught_exact"] += 1
                         results_only_cat[_cat]["num_caught_exact"] += 1
                         expected_found = True
-
+                        found_exact = True
                     # Check partial matches
-                    elif check_match(
-                        expected=fact_expected, out=fact_out, partial_match=True
+                    elif (
+                        check_match(
+                            expected=fact_expected, out=fact_out, partial_match=True
+                        )
+                        and not found_exact
+                        and not found_partial
                     ):
                         results["num_caught_partial"] += 1
                         results_only_cat[_cat]["num_caught_partial"] += 1
+                        found_partial = True
 
                 if not expected_found and print_missed:
                     logger.debug(f"~~~~~~ Type Not Found! ~~~~~~")
