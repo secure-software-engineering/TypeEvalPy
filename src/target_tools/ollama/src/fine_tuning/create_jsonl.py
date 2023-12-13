@@ -1,5 +1,5 @@
-import os
 import json
+import os
 
 
 def process_file(file_path):
@@ -55,6 +55,7 @@ def process_folder(folder_path, output_file):
                 )
 
 
-folder_path = "training_set"
-output_file = "output.jsonl"
-process_folder(folder_path, output_file)
+if __name__ == "__main__":
+    folder_path = "training_set"
+    output_file = "output.jsonl"
+    process_folder(folder_path, output_file)

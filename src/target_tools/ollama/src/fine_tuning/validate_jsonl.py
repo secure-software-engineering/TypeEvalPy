@@ -1,7 +1,8 @@
 import json
-import tiktoken  # for token counting
-import numpy as np
 from collections import defaultdict
+
+import numpy as np
+import tiktoken  # for token counting
 
 data_path = "output.jsonl"
 

@@ -4,14 +4,22 @@
         "line_number": 1,
         "function": "func",
         "type": [
-            "Nonetype"
+            "int"
         ]
     },
     {
         "file": "main.py",
         "line_number": 1,
         "function": "func",
-        "parameter": "a",
+        "variable": "x",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "variable": "result1",
         "type": [
             "int"
         ]
