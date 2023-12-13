@@ -256,8 +256,7 @@ def process_cat_dir(cat_dir, tool_name=None, print_mismatch=False):
 
         if (
             root
-            == "../results_28-07"
-            " 10:46/headergen_dev/micro-benchmark/python_features/classes/imported_attr_access"
+            == "/mnt/Projects/PhD/Research/TypeEvalPy/git_sources/TypeEvalPy_LLM/.scrapy/test_results/gpt4/micro-benchmark/python_features/lambdas/composition"
         ):
             # Debug point
             pass
@@ -327,14 +326,18 @@ def process_cat_dir(cat_dir, tool_name=None, print_mismatch=False):
                         data_expected = json.load(f)
                     data_expected = utils.sort_facts(data_expected)
                     num_all = len(data_expected)
-                    cat_recall = {
+                    empty_results = {
                         "num_all": num_all,
                         "num_caught_exact": 0,
                         "num_caught_partial": 0,
                     }
                     cat_recall_results[
                         f"{os.path.basename(os.path.dirname(gt_file))}:{test}"
-                    ] = cat_recall
+                    ] = empty_results
+                    cat_precision_results[
+                        f"{os.path.basename(os.path.dirname(gt_file))}:{test}"
+                    ] = empty_results
+
                     all_missing_matches[file_name] = data_expected
             else:
                 logger.debug(f"gt file not found {test}")
@@ -913,7 +916,7 @@ def run_results_analyzer(args):
 
     tools_results = {}
 
-    for item in results_dir.glob("*"):
+    for item in sorted(results_dir.glob("*")):
         if item.is_file() or item.name == "analysis_results":
             # ignore
             pass
