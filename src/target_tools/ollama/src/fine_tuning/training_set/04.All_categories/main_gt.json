@@ -2,26 +2,29 @@
     {
         "file": "main.py",
         "line_number": 1,
+        "col_offset": 5,
         "function": "func",
         "type": [
-            "int"
+            "str"
         ]
     },
     {
         "file": "main.py",
         "line_number": 1,
+        "col_offset": 10,
         "function": "func",
-        "variable": "x",
+        "parameter": "a",
         "type": [
             "int"
         ]
     },
     {
         "file": "main.py",
-        "line_number": 6,
-        "variable": "result1",
+        "line_number": 5,
+        "col_offset": 1,
+        "variable": "result",
         "type": [
-            "int"
+            "str"
         ]
     }
 ]

@@ -4,7 +4,7 @@ from collections import defaultdict
 import numpy as np
 import tiktoken  # for token counting
 
-data_path = "output.jsonl"
+data_path = "/mnt/Projects/PhD/Research/TypeEvalPy/git_sources/TypeEvalPy_LLM/src/target_tools/ollama/src/fine_tuning/output.jsonl"
 
 # Load the dataset
 with open(data_path, "r", encoding="utf-8") as f:
