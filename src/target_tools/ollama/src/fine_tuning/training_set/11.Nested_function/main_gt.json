@@ -2,44 +2,41 @@
     {
         "file": "main.py",
         "line_number": 1,
-        "function": "add",
+        "function": "outer",
         "type": [
-            "int",
             "str"
         ]
     },
     {
         "file": "main.py",
-        "line_number": 1,
-        "function": "func",
-        "parameter": "a",
-        "type": [
-            "int",
-            "str"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 1,
-        "function": "func",
-        "parameter": "b",
-        "type": [
-            "int",
-            "str"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 5,
-        "variable": "result1",
+        "line_number": 2,
+        "function": "outer",
+        "variable": "x",
         "type": [
             "int"
         ]
     },
     {
         "file": "main.py",
-        "line_number": 6,
-        "variable": "result2",
+        "line_number": 4,
+        "function": "inner",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "function": "inner",
+        "variable": "y",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 11,
+        "variable": "result1",
         "type": [
             "str"
         ]
