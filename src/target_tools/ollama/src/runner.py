@@ -75,7 +75,7 @@ def list_python_files(folder_path):
     return python_files
 
 
-def get_prompt(prompt_id, code_path, json_filepath):
+def get_prompt(prompt_id, code_path, json_filepath, answers_placeholders=True):
     # with open(json_filepath, "r") as file:
     #     data = json.load(file)
     with open(code_path, "r") as file:
@@ -92,8 +92,10 @@ def get_prompt(prompt_id, code_path, json_filepath):
         prompt_data = {
             "code": code,
             "questions": "\n".join(questions_from_json),
-            "answers": "\n".join(
-                [f"{x}." for x in range(1, len(questions_from_json) + 1)]
+            "answers": (
+                "\n".join([f"{x}." for x in range(1, len(questions_from_json) + 1)])
+                if answers_placeholders
+                else ""
             ),
         }
     elif prompt_id in ["json_based_1", "json_based_2"]:
@@ -207,7 +209,7 @@ def main_runner(args):
 
         python_files = list_python_files(results_dst)
 
-        if not model.startswith("gpt-"):
+        if not model.startswith(("gpt-", "ft:gpt-")):
             if utils.is_ollama_online(args.ollama_url):
                 logger.info("Ollama is online!")
             else:
@@ -217,7 +219,7 @@ def main_runner(args):
         for file in python_files:
             # Recreating llm object each iteration since we might force terminate in thread
             # Maybe there is another better way to do this
-            if model.startswith("gpt-"):
+            if model.startswith(("gpt-", "ft:gpt-")):
                 # OpenAI models
                 llm = ChatOpenAI(
                     model_name=model,

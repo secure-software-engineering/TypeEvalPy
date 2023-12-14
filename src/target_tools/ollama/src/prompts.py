@@ -512,8 +512,7 @@ questions_based_2 = """
     3. str
 
 **Your Answers**:
-{answers}
-"""
+{answers}"""
 
 questions_based_3 = """
 ## Task Description

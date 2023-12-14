@@ -13,7 +13,7 @@ def process_file(file_path):
         return f.read()
 
 
-def generate_jsonl(folder_path, output_file, prompt_id):
+def generate_jsonl_gpt(folder_path, output_file, prompt_id):
     messages_list = []
     system_prompt = eval(f"prompts.{prompt_id}_system")
 
@@ -62,15 +62,51 @@ def generate_jsonl(folder_path, output_file, prompt_id):
             output.write("\n")
 
 
+def generate_jsonl_llama(folder_path, output_file, prompt_id):
+    messages_list = []
+
+    # Find all subdirectories in the root folder
+    subdirectories = [
+        os.path.join(folder_path, d)
+        for d in os.listdir(folder_path)
+        if os.path.isdir(os.path.join(folder_path, d))
+    ]
+
+    # Traverse all files in each sample
+    for finetuning_sample in sorted(subdirectories):
+        print(f"Processing {finetuning_sample}...")
+        for root, _, files in os.walk(finetuning_sample):
+            code_file = os.path.join(root, files[0])
+            gt_file = os.path.join(root, files[1])
+
+            full_text = get_prompt(
+                prompt_id, code_file, gt_file, answers_placeholders=False
+            ) + utils.generate_answers_for_fine_tuning(gt_file)
+
+            full_message = {
+                "text": full_text,
+            }
+
+            messages_list.append(json.dumps(full_message, separators=(",", ":")))
+
+    # Write messages to the output file
+    with open(output_file, "w") as output:
+        for _m in messages_list:
+            output.write(_m)
+            output.write("\n")
+
+
 # fine_tuning.generate_jsonl(folder_path, output_file, system_prompt, main_prompt)
 if __name__ == "__main__":
     SCRIPT_DIR = Path(os.path.abspath(os.path.dirname(__file__)))
 
     # Create fine tuning dataset
     folder_path = SCRIPT_DIR / "fine_tuning" / "training_set"
-    output_file = SCRIPT_DIR / "fine_tuning" / "output.jsonl"
+    output_file_gpt = SCRIPT_DIR / "fine_tuning" / "finetuning_set_gpt_v2.jsonl"
+    output_file_llama = SCRIPT_DIR / "fine_tuning" / "finetuning_set_llama_v2.jsonl"
 
     # Prepare prompts
     prompt_id = "questions_based_2"
 
-    generate_jsonl(folder_path, output_file, prompt_id)
+    generate_jsonl_gpt(folder_path, output_file_gpt, prompt_id)
+    generate_jsonl_llama(folder_path, output_file_llama, prompt_id)
