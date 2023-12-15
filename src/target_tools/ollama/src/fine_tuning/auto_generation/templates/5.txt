@@ -1,3 +1,16 @@
+# Name: function_variables
+# Type: Simple
+# Data Types: int, str, float, bool, list, dict
+# Python Code Template
+def func():
+    x = <value>
+    return x
+
+
+result1 = func()
+
+# JSON Template
+
 [
     {
         "file": "main.py",
@@ -5,36 +18,26 @@
         "col_offset": 5,
         "function": "func",
         "type": [
-            "str"
+            "<value>"
         ]
     },
     {
         "file": "main.py",
         "line_number": 1,
-        "col_offset": 10,
-        "function": "func",
-        "parameter": "a",
-        "type": [
-            "int"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 2,
-        "col_offset": 10,
+        "col_offset": 5,
         "function": "func",
         "variable": "x",
         "type": [
-            "int"
+            "<value>"
         ]
     },
     {
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "result",
+        "variable": "result1",
         "type": [
-            "str"
+            "<value>"
         ]
     }
 ]
