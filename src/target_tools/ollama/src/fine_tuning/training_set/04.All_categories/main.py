@@ -1,4 +1,5 @@
 def func(a):
+    x = a
     return "Hello from func"
 
 
