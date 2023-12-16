@@ -1,0 +1,30 @@
+# Name: callable_type
+# Type: Simple
+# Data Types: int, str, float, bool, list, dict
+# Python Code Template
+def func():
+    return <value>
+
+
+a = func
+# JSON Template
+[
+    {
+        "file": "main.py",
+        "line_number": 1,
+        "col_offset": 5,
+        "function": "func",
+        "type": [
+            "<value>"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "col_offset": 1,
+        "variable": "a",
+        "type": [
+            "callable"
+        ]
+    }
+]
