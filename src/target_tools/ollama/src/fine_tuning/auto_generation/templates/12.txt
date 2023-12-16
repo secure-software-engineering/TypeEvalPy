@@ -1,6 +1,6 @@
 # Name: union_types_2
 # Type: Complex
-# Data Types: int, str, float, bool, list, dict
+# Data Types: int, str, float, bool, list, dict, tuple
 # Python Code Template
 def func(a):
     x = a
