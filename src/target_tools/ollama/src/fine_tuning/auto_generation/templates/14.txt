@@ -1,67 +1,24 @@
-# Name: decorators
+# Name: exceptions
 # Type: Simple
-# Data Types: int, str, float, bool, list, dict
+# Data Types: exception
 # Python Code Template
-def thisisadec(x):
-    def inner_func():
-        return <value>
-
-    return inner_func
+class SimpleException(<value>):
+    def __init__(self):
+        pass
 
 
-@thisisadec
-def justafunc():
-    pass
+se = SimpleException()
+raise se
 
-
-x = justafunc()
 # JSON Template
 [
     {
         "file": "main.py",
-        "line_number": 4,
-        "col_offset": 5,
-        "function": "thisisadec",
-        "type": [
-            "callable"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 4,
-        "col_offset": 9,
-        "parameter": "x",
-        "function": "thisisadec",
-        "type": [
-            "callable"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 5,
-        "col_offset": 9,
-        "function": "inner_func",
-        "type": [
-            "<value>"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 12,
-        "col_offset": 5,
-        "function": "justafunc",
-        "type": [
-            "<value>"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 16,
+        "line_number": 9,
         "col_offset": 1,
-        "variable": "x",
+        "variable": "se",
         "type": [
-            "<value>"
+            "SimpleException"
         ]
     }
 ]
-

@@ -32,6 +32,14 @@ def generate_value_for_type(chosen_type):
         ]
         values = [str(random.randint(1, 100)) for _ in range(3)]
         return "{" + ", ".join(f"{k}: {v}" for k, v in zip(keys, values)) + "}", "dict"
+    elif chosen_type == "tuple":
+        return (
+            "(" + ", ".join(str(random.randint(1, 100)) for _ in range(3)) + ")",
+            "tuple",
+        )
+    elif chosen_type == "exception":
+        exceptions = ["ValueError", "TypeError", "IndexError", "KeyError", "Exception"]
+        return random.choice(exceptions), "exception"
 
 
 def find_placeholders(code_or_json):
@@ -77,11 +85,11 @@ def save_files(code, json_data, output_folder, case_name, type_name, case_number
 
     with open(code_file_path, "w") as file:
         file.write(code)
-    print(f"Saved Python code to {code_file_path}")
+    # print(f"Saved Python code to {code_file_path}")
 
     with open(json_file_path, "w") as file:
         json.dump(json_data, file, indent=4)
-    print(f"Saved JSON ground truth to {json_file_path}")
+    # print(f"Saved JSON ground truth to {json_file_path}")
 
 
 def read_templates(directory):
@@ -112,6 +120,7 @@ shutil.rmtree(output_folder, ignore_errors=True)
 
 case_number = 1
 total_cases = 1
+error_count = 0
 for name, template_type, data_types, code_template, json_template in templates:
     if template_type == "Simple":
         # Handling for simple templates
@@ -120,6 +129,19 @@ for name, template_type, data_types, code_template, json_template in templates:
             replaced_code, json_data = replace_placeholders_and_generate_json(
                 code_template, json_template, data_type_mapping
             )
+            try:
+                result = exec(replaced_code)
+            except Exception as e:
+                if data_type == "exception":
+                    print(
+                        "Skipping errror report as the data_type is exception for"
+                        f" '{name}_{data_type}'"
+                    )
+                else:
+                    print(f"Error executing script '{name}_{data_type}'")
+                    print(f"Error : {e}")
+                    error_count += 1
+                    continue
             save_files(
                 replaced_code,
                 json_data,
@@ -142,6 +164,19 @@ for name, template_type, data_types, code_template, json_template in templates:
             replaced_code, json_data = replace_placeholders_and_generate_json(
                 code_template, json_template, data_type_mapping
             )
+            try:
+                result = exec(replaced_code)
+            except Exception as e:
+                if "exception" in type_name:
+                    print(
+                        "Skipping errror report as the data_type is exception for"
+                        f" '{name}_{type_name}'"
+                    )
+                else:
+                    print(f"Error executing script '{name}_{type_name}'")
+                    print(f"Error : {e}")
+                    error_count += 1
+                    continue
             save_files(
                 replaced_code,
                 json_data,
@@ -153,4 +188,11 @@ for name, template_type, data_types, code_template, json_template in templates:
             total_cases += 1
 
     case_number += 1
-print(f"Genarated {total_cases-1} datasets from {case_number-1} templates")
+
+
+print(f"\nSummary:")
+print(
+    f"Genarated {total_cases-1} datasets from {case_number-1} templates and saved to"
+    f" {output_folder}"
+)
+print(f"Scripts with errors: {error_count}")
