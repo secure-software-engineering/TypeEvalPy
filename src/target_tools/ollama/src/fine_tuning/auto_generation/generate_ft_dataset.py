@@ -116,7 +116,7 @@ for name, template_type, data_types, code_template, json_template in templates:
     if template_type == "Simple":
         # Handling for simple templates
         for data_type in data_types:
-            data_type_mapping = {"value": data_type}
+            data_type_mapping = {"<value>": data_type}
             replaced_code, json_data = replace_placeholders_and_generate_json(
                 code_template, json_template, data_type_mapping
             )
@@ -153,3 +153,4 @@ for name, template_type, data_types, code_template, json_template in templates:
             total_cases += 1
 
     case_number += 1
+print(f"Genarated {total_cases-1} datasets from {case_number-1} templates")

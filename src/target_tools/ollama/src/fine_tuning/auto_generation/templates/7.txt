@@ -1,3 +1,16 @@
+# Name: class
+# Type: Simple
+# Data Types: int, str, float, bool, list, dict
+# Python Code Template
+class TestClass:
+    def func(self):
+        return <value>
+
+
+test = TestClass()
+result = test.func()
+
+# JSON Template
 [
     {
         "file": "main.py",
@@ -5,7 +18,7 @@
         "col_offset": 9,
         "function": "TestClass.func",
         "type": [
-            "str"
+            "<value>"
         ]
     },
     {
@@ -23,7 +36,7 @@
         "col_offset": 1,
         "variable": "result",
         "type": [
-            "str"
+            "<value>"
         ]
     }
 ]

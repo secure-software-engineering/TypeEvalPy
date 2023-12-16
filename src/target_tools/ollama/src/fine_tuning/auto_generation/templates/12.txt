@@ -1,12 +1,26 @@
+# Name: union_types_2
+# Type: Complex
+# Data Types: int, str, float, bool, list, dict
+# Python Code Template
+def func(a):
+    x = a
+    return x
+
+
+result1 = func(<value1>)
+result2 = func(<value2>)
+
+
+# JSON Template
 [
     {
         "file": "main.py",
         "line_number": 1,
         "col_offset": 5,
-        "fucntion": "func",
+        "function": "func",
         "type": [
-            "int",
-            "float"
+            "<value1>",
+            "<value2>"
         ]
     },
     {
@@ -16,8 +30,8 @@
         "fucntion": "func",
         "variable": "x",
         "type": [
-            "int",
-            "float"
+            "<value1>",
+            "<value2>"
         ]
     },
     {
@@ -26,7 +40,7 @@
         "col_offset": 1,
         "variable": "result1",
         "type": [
-            "int"
+            "<value1>"
         ]
     },
     {
@@ -35,7 +49,7 @@
         "col_offset": 1,
         "variable": "result2",
         "type": [
-            "float"
+            "<value2>"
         ]
     }
 ]
