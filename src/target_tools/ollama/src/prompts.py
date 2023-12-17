@@ -560,3 +560,36 @@ c = "hello"
 **Answers**:
 {answers}
 """
+
+questions_based_4_system = (
+    "You will examine and identify the data types of various elements such as function"
+    " parameters, local variables, and function return types in the given Python code."
+)
+
+questions_based_4 = """Below is an instruction that describes a task, paired with an input that provides further context. Write a response that appropriately completes the request.
+
+### Instruction:
+**Objective**: Examine and identify the data types of various elements such as function parameters, local variables, and function return types in the given Python code.
+
+1. For each question below, provide a concise, one-word answer indicating the data type.
+2. For arguments and variables inside a function, list every data type they take within the current program context as a comma separated list.
+3. Do not include additional explanations or commentary in your answers.
+
+### Input:
+**Python Code Provided**:
+```python
+{code}
+```
+
+**Questions**:
+{questions}
+
+**Format for Answers**:
+- Provide your answer next to each question number, using only one word.
+- Example:
+    1. int
+    2. float
+    3. str
+
+### Response:
+{answers}"""

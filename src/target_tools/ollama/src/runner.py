@@ -44,6 +44,7 @@ PROMPTS_MAP = {
     "questions_based_1": prompts.questions_based_1,
     "questions_based_2": prompts.questions_based_2,
     "questions_based_3": prompts.questions_based_3,
+    "questions_based_4": prompts.questions_based_4,
 }
 
 # Create a logger
@@ -81,7 +82,12 @@ def get_prompt(prompt_id, code_path, json_filepath, answers_placeholders=True):
     with open(code_path, "r") as file:
         code = file.read()
 
-    if prompt_id in ["questions_based_1", "questions_based_2", "questions_based_3"]:
+    if prompt_id in [
+        "questions_based_1",
+        "questions_based_2",
+        "questions_based_3",
+        "questions_based_4",
+    ]:
         questions_from_json = utils.generate_questions_from_json(json_filepath)
 
         prompt = PromptTemplate(
@@ -221,11 +227,18 @@ def main_runner(args):
             # Maybe there is another better way to do this
             if model.startswith(("gpt-", "ft:gpt-")):
                 # OpenAI models
-                llm = ChatOpenAI(
-                    model_name=model,
-                    temperature=temperature,
-                    openai_api_key=args.openai_key,
-                )
+                if "instruct" in model:
+                    llm = OpenAI(
+                        model_name=model,
+                        temperature=temperature,
+                        openai_api_key=args.openai_key,
+                    )
+                else:
+                    llm = ChatOpenAI(
+                        model_name=model,
+                        temperature=temperature,
+                        openai_api_key=args.openai_key,
+                    )
 
             else:
                 llm = Ollama(
