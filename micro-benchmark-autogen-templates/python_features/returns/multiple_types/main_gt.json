@@ -1,0 +1,40 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "col_offset": 5,        
+        "function": "func",
+        "type": [
+            "str",
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "parameter": "x",
+        "col_offset": 10,        
+        "function": "func",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 11,
+        "col_offset": 1,        
+        "variable": "a",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 12,
+        "col_offset": 1,        
+        "variable": "b",
+        "type": [
+            "str"
+        ]
+    }
+]

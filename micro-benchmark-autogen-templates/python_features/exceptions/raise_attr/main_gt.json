@@ -1,0 +1,11 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 10,
+        "col_offset": 1,
+        "variable": "a",
+        "type": [
+            "A.B"
+        ]
+    }
+]

@@ -1,0 +1,31 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "col_offset": 1,        
+        "variable": "result",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "col_offset": 18,        
+        "function": "lambda",
+        "variable": "x",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "col_offset": 36,        
+        "function": "lambda",
+        "variable": "x",
+        "type": [
+            "int"
+        ]
+    }
+]

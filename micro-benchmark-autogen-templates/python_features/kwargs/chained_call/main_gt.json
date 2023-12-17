@@ -1,0 +1,54 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "col_offset": 5,        
+        "function": "func3",
+        "type": ["str"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 9,
+        "col_offset": 5,        
+        "function": "func2",
+        "type": ["str"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 9,
+        "col_offset": 11,        
+        "function": "func2",
+        "parameter": "a",
+        "type": ["callable"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "col_offset": 5,        
+        "function": "func1",
+        "type": ["str"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "col_offset": 11,        
+        "function": "func1",
+        "parameter": "a",
+        "type": ["callable"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "col_offset": 14,        
+        "function": "func1",
+        "parameter": "b",
+        "type": ["callable"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 17,
+        "col_offset": 1,        
+        "variable": "c",
+        "type": ["str"]
+    }
+]
