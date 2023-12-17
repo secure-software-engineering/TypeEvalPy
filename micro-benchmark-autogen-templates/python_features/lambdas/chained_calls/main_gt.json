@@ -1,0 +1,128 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "col_offset": 5,        
+        "function": "func3",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "col_offset": 11,        
+        "parameter": "a",
+        "function": "func3",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "col_offset": 5,        
+        "function": "func2",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "col_offset": 11,        
+        "parameter": "a",
+        "function": "func2",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "col_offset": 14,        
+        "parameter": "b",
+        "function": "func2",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "col_offset": 5,        
+        "function": "func1",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "col_offset": 11,        
+        "parameter": "a",
+        "function": "func1",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "col_offset": 14,        
+        "parameter": "b",
+        "function": "func1",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "col_offset": 17,        
+        "parameter": "c",
+        "function": "func1",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 18,
+        "col_offset": 1,        
+        "variable": "d",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 18,
+        "col_offset": 18,        
+        "function": "lambda",
+        "variable": "x",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 18,
+        "col_offset": 35,        
+        "function": "lambda",
+        "variable": "x",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 18,
+        "col_offset": 52,        
+        "function": "lambda",
+        "variable": "x",
+        "type": [
+            "int"
+        ]
+    }
+]

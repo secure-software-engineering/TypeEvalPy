@@ -1,0 +1,11 @@
+[
+    {
+        "file": "arithmetic.py",
+        "line_number": 19,
+        "col_offset": 1,
+        "variable": "result1",
+        "type": [
+            "int"
+        ]
+    }
+]

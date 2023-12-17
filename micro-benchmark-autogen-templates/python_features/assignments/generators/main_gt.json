@@ -1,0 +1,38 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "col_offset": 21,
+        "variable": "i",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "col_offset": 1,
+        "variable": "x",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "col_offset": 4,
+        "variable": "y",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "col_offset": 7,
+        "variable": "z",
+        "type": [
+            "int"
+        ]
+    }
+]

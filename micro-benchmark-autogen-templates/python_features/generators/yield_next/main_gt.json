@@ -1,0 +1,67 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "col_offset": 5,
+        "function": "squares",
+        "type": [
+            "generator"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "col_offset": 5,
+        "variable": "n",
+        "function": "squares",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "col_offset": 9,
+        "variable": "n",
+        "function": "squares",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 11,
+        "col_offset": 1,
+        "variable": "gen",
+        "type": [
+            "generator"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "col_offset": 5,
+        "variable": "i",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 15,
+        "col_offset": 9,
+        "variable": "a",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 17,
+        "col_offset": 9,
+        "variable": "a",
+        "type": [
+            "int"
+        ]
+    }
+]

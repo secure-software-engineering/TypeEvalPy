@@ -1,0 +1,11 @@
+[
+    {
+        "file": "arithmetic_depth_2.py",
+        "line_number": 21,
+        "col_offset": 1,
+        "variable": "result1",
+        "type": [
+            "int"
+        ]
+    }
+]
