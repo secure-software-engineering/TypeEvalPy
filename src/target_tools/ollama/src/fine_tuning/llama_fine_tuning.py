@@ -134,6 +134,7 @@ def load_model(model_name, bnb_config):
         quantization_config=bnb_config,
         device_map="auto", # dispatch efficiently the model on the available ressources
         max_memory = {i: max_memory for i in range(n_gpus)},
+        offload_folder="offload"
     )
     tokenizer = AutoTokenizer.from_pretrained(model_name, use_auth_token=True)
 
@@ -287,12 +288,12 @@ def train(model, tokenizer, dataset, output_dir):
 
 # %%
 models_list = [
-    "codellama/CodeLlama-7b-Python-hf",
-    "codellama/CodeLlama-13b-Python-hf",
-    "codellama/CodeLlama-34b-Python-hf",
     "codellama/CodeLlama-7b-Instruct-hf",
     "codellama/CodeLlama-13b-Instruct-hf",
     "codellama/CodeLlama-34b-Instruct-hf",
+    "codellama/CodeLlama-7b-Python-hf",
+    "codellama/CodeLlama-13b-Python-hf",
+    "codellama/CodeLlama-34b-Python-hf",
     "meta-llama/Llama-2-7b-hf",
     "meta-llama/Llama-2-13b-hf",
     "meta-llama/Llama-2-70b-hf",
@@ -309,8 +310,11 @@ models_list = [
 ]
 # %%
 # Load model from HF with user's token and with bitsandbytes config
-output_dir_str = "/scratch/hpc-prf-hdgen/ashwin/finetuned_models/ft_err_{model_name}"
-output_dir_merged_str = "/scratch/hpc-prf-hdgen/ashwin/finetuned_models/ft_v1_{model_name}_merged"
+
+ft_version = "v3_ag"
+
+output_dir_str = "/scratch/hpc-prf-hdgen/ashwin/finetuned_models/{ft_version}_{model_name}"
+output_dir_merged_str = "/scratch/hpc-prf-hdgen/ashwin/finetuned_models/{ft_version}_{model_name}_merged"
 output_dir_ollama_str = "/scratch/hpc-prf-hdgen/ashwin/finetuned_models/ollama_models"
 llama_cpp_convert_path = "/scratch/hpc-prf-hdgen/ashwin/llama.cpp/convert.py"
 
@@ -331,7 +335,7 @@ for model_name in models_list:
     
         # Start training
         logger.info("Start training")
-        output_dir = output_dir_str.format(model_name=model_name.split("/")[1])
+        output_dir = output_dir_str.format(model_name=model_name.split("/")[1], ft_version=ft_version)
         train(model, tokenizer, dataset, output_dir)
     
         # Save and Merge Model
@@ -339,7 +343,7 @@ for model_name in models_list:
         model = AutoPeftModelForCausalLM.from_pretrained(output_dir, device_map="auto", torch_dtype=torch.bfloat16)
         model = model.merge_and_unload()
     
-        output_merged_dir = output_dir_merged_str.format(model_name=model_name.split("/")[1])
+        output_merged_dir = output_dir_merged_str.format(model_name=model_name.split("/")[1], ft_version=ft_version)
         os.makedirs(output_merged_dir, exist_ok=True)
         model.save_pretrained(output_merged_dir, safe_serialization=True)
     
@@ -350,7 +354,6 @@ for model_name in models_list:
         logger.info(f"Error training: {model_name}")
         logger.info(e)
 
-logger.info(f"DONE! Took{time.time()-start_time}")
 
 import subprocess
 
@@ -361,10 +364,9 @@ def run_system_command(command):
     except subprocess.CalledProcessError as e:
         return "", str(e)
 
-
 for model_name in models_list:
     try:
-        output_merged_dir = output_dir_merged_str.format(model_name=model_name.split("/")[1])
+        output_merged_dir = output_dir_merged_str.format(model_name=model_name.split("/")[1], ft_version=ft_version)
         output_dir_ollama_dir = f"{output_dir_ollama_str}/{model_name.split('/')[1]}.gguf"
         output_dir_ollama_modelfile_str = f"{output_dir_ollama_str}/{model_name.split('/')[1]}.modelfile"
 
@@ -389,5 +391,7 @@ for model_name in models_list:
 logger.info("\n\nConvert the models by running the following.\n")
 for model_name in models_list:
     output_dir_ollama_modelfile_str = f"{output_dir_ollama_str}/{model_name.split('/')[1]}.modelfile"
-    logger.info(f"ollama create example -f {output_dir_ollama_modelfile_str}")
+    logger.info(f"ollama create {model_name.split('/')[1]}_{ft_version} -f {output_dir_ollama_modelfile_str}")
+
+logger.info(f"DONE! Took{time.time()-start_time}")
 

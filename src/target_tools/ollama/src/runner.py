@@ -88,6 +88,8 @@ def get_prompt(prompt_id, code_path, json_filepath, answers_placeholders=True):
         "questions_based_3",
         "questions_based_4",
     ]:
+        if prompt_id == "questions_based_4":
+            answers_placeholders = False
         questions_from_json = utils.generate_questions_from_json(json_filepath)
 
         prompt = PromptTemplate(
@@ -177,7 +179,7 @@ def process_file(file_path, llm, openai_llm, prompt_id):
     logger.info(output)
 
     # TODO: Improve the way this is done. Some plugin based design.
-    if prompt_id in ["questions_based_2", "questions_based_3"]:
+    if prompt_id in ["questions_based_2", "questions_based_3", "questions_based_4"]:
         answers_json = utils.generate_json_from_answers(json_filepath, output)
         translated_json = translator.translate_content(answers_json)
     else:
