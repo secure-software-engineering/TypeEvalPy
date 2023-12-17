@@ -8,6 +8,6 @@ def arithmetic_op(a, b):
     return result
 
 
-result1 = arithmetic_op(5, 10)
-result2 = arithmetic_op(5.2, 10.3)
-result3 = arithmetic_op("Hello", "World")
+result1 = arithmetic_op(<value1>, <value1>)
+result2 = arithmetic_op(<value2>, <value2>)
+result3 = arithmetic_op(<value3>, <value3>)

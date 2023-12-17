@@ -1,29 +1,37 @@
-[
-    {
-        "file": "arithmetic.py",
-        "line_number": 11,
-        "col_offset": 1,
-        "variable": "result1",
-        "type": [
-            "int"
-        ]
-    },
-    {
-        "file": "arithmetic.py",
-        "line_number": 12,
-        "col_offset": 1,
-        "variable": "result2",
-        "type": [
-            "float"
-        ]
-    },
-    {
-        "file": "arithmetic.py",
-        "line_number": 13,
-        "col_offset": 1,
-        "variable": "result3",
-        "type": [
-            "str"
-        ]
-    }
-]
+{
+    "replacement_mode": "simple",
+    "type_replacements": [
+        "int",
+        "float",
+        "list"
+    ],
+    "ground_truth": [
+        {
+            "file": "arithmetic.py",
+            "line_number": 11,
+            "col_offset": 1,
+            "variable": "result1",
+            "type": [
+                "<value1>"
+            ]
+        },
+        {
+            "file": "arithmetic.py",
+            "line_number": 12,
+            "col_offset": 1,
+            "variable": "result2",
+            "type": [
+                "<value2>"
+            ]
+        },
+        {
+            "file": "arithmetic.py",
+            "line_number": 13,
+            "col_offset": 1,
+            "variable": "<value3>",
+            "type": [
+                "str"
+            ]
+        }
+    ]
+}
