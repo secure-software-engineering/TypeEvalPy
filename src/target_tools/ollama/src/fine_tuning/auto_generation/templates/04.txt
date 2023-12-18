@@ -1,0 +1,52 @@
+# Name: all_categories
+# Type: Complex
+# Data Types: int, str, float, bool, list, dict
+# Python Code Template
+def func(a):
+    x = a
+    return <value2>
+
+
+result = func(<value1>)
+
+# JSON Template
+[
+    {
+        "file": "main.py",
+        "line_number": 1,
+        "col_offset": 5,
+        "function": "func",
+        "type": [
+            "<value2>"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 1,
+        "col_offset": 10,
+        "function": "func",
+        "parameter": "a",
+        "type": [
+            "<value1>"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 2,
+        "col_offset": 10,
+        "function": "func",
+        "variable": "x",
+        "type": [
+            "<value1>"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "col_offset": 1,
+        "variable": "result",
+        "type": [
+            "<value2>"
+        ]
+    }
+]

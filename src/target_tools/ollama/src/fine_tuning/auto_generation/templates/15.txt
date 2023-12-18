@@ -1,0 +1,70 @@
+# Name: itertools
+# Type: Complex
+# Data Types: string
+# Python Code Template
+import itertools
+
+x = itertools.cycle(<value1>)
+y = itertools.repeat("hello", 3)
+z = itertools.chain(<value2>, <value3>)
+a = itertools.permutations(<value4>, 2)
+b = itertools.combinations(<value5>, 2)
+c = itertools.product(<value6>, <value7>)
+
+# JSON Template
+[
+    {
+        "file": "main.py",
+        "line_number": 1,
+        "col_offset": 1,
+        "variable": "x",
+        "type": [
+            "itertools.cycle"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 2,
+        "col_offset": 1,
+        "variable": "y",
+        "type": [
+            "itertools.repeat"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 3,
+        "col_offset": 1,
+        "variable": "z",
+        "type": [
+            "itertools.chain"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "col_offset": 1,
+        "variable": "a",
+        "type": [
+            "itertools.permutations"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "col_offset": 1,
+        "variable": "b",
+        "type": [
+            "itertools.combinations"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "col_offset": 1,
+        "variable": "c",
+        "type": [
+            "itertools.product"
+        ]
+    }
+]

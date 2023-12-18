@@ -585,13 +585,5 @@ Below is an instruction that describes a task, paired with an input that provide
 **Questions**:
 {questions}
 
-**Format for Answers**:
-- Provide your answer next to each question number, using only one word.
-- Example:
-    1. int
-    2. float
-    3. str
-
-### Response:
-{answers}
-[/INST]"""
+[/INST]
+"""

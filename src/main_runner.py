@@ -407,7 +407,7 @@ def main():
             logger.error(f"Unknown runner: {runner_name}")
             sys.exit(-1)
 
-    run_results_analyzer()
+    run_results_analyzer(host_results_path)
 
     shutil.move("main_runner.log", f"{str(host_results_path)}/main_runner.log")
 

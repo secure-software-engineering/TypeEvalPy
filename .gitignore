@@ -175,3 +175,4 @@ results
 .scrapy/*
 .vscode/launch.json
 src/config.yaml
+src/target_tools/ollama/src/fine_tuning/auto_generation/generated_dataset/*
