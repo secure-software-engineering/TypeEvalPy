@@ -79,11 +79,9 @@ def generate_jsonl_llama(folder_path, output_file, prompt_id):
             code_file = os.path.join(root, files[0])
             gt_file = os.path.join(root, files[1])
 
-            full_text = (
-                get_prompt(prompt_id, code_file, gt_file, answers_placeholders=True)
-                + "\n"
-                + utils.generate_answers_for_fine_tuning(gt_file)
-            )
+            full_text = get_prompt(
+                prompt_id, code_file, gt_file, answers_placeholders=True
+            ) + utils.generate_answers_for_fine_tuning(gt_file)
 
             full_message = {
                 "text": full_text,
@@ -104,8 +102,8 @@ if __name__ == "__main__":
 
     # Create fine tuning dataset
     folder_path = SCRIPT_DIR / "fine_tuning" / "auto_generation" / "generated_dataset"
-    output_file_gpt = SCRIPT_DIR / "fine_tuning" / "finetuning_autoset_gpt_v4.jsonl"
-    output_file_llama = SCRIPT_DIR / "fine_tuning" / "finetuning_autoset_llama_v4.jsonl"
+    output_file_gpt = SCRIPT_DIR / "fine_tuning" / "finetuning_autoset_gpt_v5.jsonl"
+    output_file_llama = SCRIPT_DIR / "fine_tuning" / "finetuning_autoset_llama_v5.jsonl"
 
     # Prepare prompts
     prompt_id = "questions_based_4"

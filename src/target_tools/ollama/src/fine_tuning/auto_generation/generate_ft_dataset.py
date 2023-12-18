@@ -5,6 +5,8 @@ import random
 import re
 import shutil
 
+SCRIPT_DIR = os.path.abspath(os.path.dirname(__file__))
+
 
 def generate_value_for_type(chosen_type):
     """Generate a random value and its corresponding data type"""
@@ -113,8 +115,8 @@ def read_templates(directory):
 
 
 # Example usage
-output_folder = "/mnt/Projects/PhD/Research/TypeEvalPy/git_sources/TypeEvalPy_LLM/.scrapy/generated_dataset"
-templates = read_templates("./templates")
+output_folder = f"{SCRIPT_DIR}/generated_dataset"
+templates = read_templates(f"{SCRIPT_DIR}/templates")
 
 shutil.rmtree(output_folder, ignore_errors=True)
 

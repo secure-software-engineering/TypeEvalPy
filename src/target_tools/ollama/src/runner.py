@@ -90,7 +90,6 @@ def get_prompt(prompt_id, code_path, json_filepath, answers_placeholders=True):
         "questions_based_1",
         "questions_based_2",
         "questions_based_3",
-        "questions_based_4",
     ]:
         questions_from_json = utils.generate_questions_from_json(json_filepath)
 
@@ -107,6 +106,18 @@ def get_prompt(prompt_id, code_path, json_filepath, answers_placeholders=True):
                 if answers_placeholders
                 else ""
             ),
+        }
+    elif prompt_id in ["questions_based_4"]:
+        questions_from_json = utils.generate_questions_from_json(json_filepath)
+
+        prompt = PromptTemplate(
+            template=PROMPTS_MAP[prompt_id],
+            input_variables=["code", "questions"],
+        )
+
+        prompt_data = {
+            "code": code,
+            "questions": "\n".join(questions_from_json),
         }
     elif prompt_id in ["json_based_1", "json_based_2"]:
         parser = PydanticOutputParser(pydantic_object=TypeEvalPySchema)

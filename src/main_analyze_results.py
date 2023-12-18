@@ -900,8 +900,8 @@ def generate_top_n_performance(test_suite_dir, tool_name=None):
     return results_cat
 
 
-def run_results_analyzer(args):
-    if args.results_dir is None:
+def run_results_analyzer(results_dir):
+    if results_dir is None:
         dir_path = Path(SCRIPT_DIR) / "../results"
         directories = [
             f
@@ -912,7 +912,7 @@ def run_results_analyzer(args):
         # Get the latest directory
         results_dir = directories[0] if directories else None
     else:
-        results_dir = Path(args.results_dir)
+        results_dir = Path(results_dir)
 
     tools_results = {}
 
@@ -1056,4 +1056,4 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
 
-    run_results_analyzer(args)
+    run_results_analyzer(args.results_dir)

@@ -1,0 +1,39 @@
+# Name: itertools
+# Type: Complex
+# Data Types: str, int, dict, list, bool
+# Python Code Template
+code = 'a = <value1>'
+exec(code)
+b = a
+
+
+# JSON Template
+[
+    {
+        "file": "main.py",
+        "line_number": 1,
+        "col_offset": 1,
+        "variable": "code",
+        "type": [
+            "<value1>"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 2,
+        "col_offset": 1,
+        "variable": "a",
+        "type": [
+            "<value1>"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 3,
+        "col_offset": 1,
+        "variable": "b",
+        "type": [
+            "<value1>"
+        ]
+    }
+]
