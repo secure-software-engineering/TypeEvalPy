@@ -81,6 +81,10 @@ def get_prompt(prompt_id, code_path, json_filepath, answers_placeholders=True):
     #     data = json.load(file)
     with open(code_path, "r") as file:
         code = file.read()
+        # Remove comments from code but keep line number structure
+        code = "\n".join(
+            [line if not line.startswith("#") else "#" for line in code.split("\n")]
+        )
 
     if prompt_id in [
         "questions_based_1",
