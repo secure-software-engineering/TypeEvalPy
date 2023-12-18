@@ -88,8 +88,6 @@ def get_prompt(prompt_id, code_path, json_filepath, answers_placeholders=True):
         "questions_based_3",
         "questions_based_4",
     ]:
-        if prompt_id == "questions_based_4":
-            answers_placeholders = False
         questions_from_json = utils.generate_questions_from_json(json_filepath)
 
         prompt = PromptTemplate(
