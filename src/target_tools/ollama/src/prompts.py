@@ -566,7 +566,8 @@ questions_based_4_system = (
     " parameters, local variables, and function return types in the given Python code."
 )
 
-questions_based_4 = """Below is an instruction that describes a task, paired with an input that provides further context. Write a response that appropriately completes the request.
+questions_based_4 = """[INST]
+Below is an instruction that describes a task, paired with an input that provides further context. Write a response that appropriately completes the request.
 
 ### Instruction:
 **Objective**: Examine and identify the data types of various elements such as function parameters, local variables, and function return types in the given Python code.
@@ -592,4 +593,5 @@ questions_based_4 = """Below is an instruction that describes a task, paired wit
     3. str
 
 ### Response:
-{answers}"""
+{answers}
+[/INST]"""
