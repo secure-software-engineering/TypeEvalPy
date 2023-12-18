@@ -68,10 +68,10 @@ def replace_placeholders_and_generate_json(code, json_template_str, data_type_ma
 
     json_template = json.loads(json_template_str)
     for item in json_template:
-        for placeholder, data_type in data_type_mapping.items():
-            if placeholder in item["type"]:
-                item["type"] = [data_type]
-
+        item["type"] = [
+            data_type_mapping.get(placeholder, placeholder)
+            for placeholder in item["type"]
+        ]
     return code, json_template
 
 
