@@ -149,6 +149,7 @@ def process_file(
                 name,
                 data_type,
                 f"{case_number}_{total_cases}",
+                file_path,
             )
             total_cases += 1
     elif template_type == "Complex":

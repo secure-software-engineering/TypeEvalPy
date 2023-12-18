@@ -1,5 +1,5 @@
 {
-    "replacement_mode": "simple",
+    "replacement_mode": "Complex",
     "type_replacements": [
         "int",
         "float",
