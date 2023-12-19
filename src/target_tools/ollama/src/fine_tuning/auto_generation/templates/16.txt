@@ -1,11 +1,15 @@
-# Name: itertools
+# Name: kwargs
 # Type: Complex
 # Data Types: str, int, dict, list, bool
 # Python Code Template
-code = 'a = <value1>'
-exec(code)
-b = a
+def function_with_keyargs(**kwargs):
+    result = []
+    for arg in kwargs.values():
+        result.append(arg)
+    return result
 
+
+c = function_with_keyargs(a=<value1>, b=<value2>, c=<value3>)
 
 # JSON Template
 [
@@ -13,27 +17,36 @@ b = a
         "file": "main.py",
         "line_number": 1,
         "col_offset": 1,
-        "variable": "code",
-        "type": [
-            "<value1>"
-        ]
+        "function": "function_with_keyargs",
+        "type": ["list"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 1,
+        "col_offset": 29,
+        "function": "function_with_keyargs",
+        "parameter": "kwargs",
+        "type": ["dict"]
     },
     {
         "file": "main.py",
         "line_number": 2,
-        "col_offset": 1,
-        "variable": "a",
-        "type": [
-            "<value1>"
-        ]
+        "col_offset": 5,
+        "variable": "result",
+        "type": ["list"]
     },
     {
         "file": "main.py",
         "line_number": 3,
+        "col_offset": 9,
+        "variable": "arg",
+        "type": ["<value1>", "<value2>", "<value3>"]
+    },
+    {
+        "file": "main.py",
+        "line_number": 11,
         "col_offset": 1,
-        "variable": "b",
-        "type": [
-            "<value1>"
-        ]
+        "variable": "c",
+        "type": ["list"]
     }
 ]
