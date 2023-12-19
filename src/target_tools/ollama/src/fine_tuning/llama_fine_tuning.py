@@ -308,10 +308,27 @@ models_list = [
     "microsoft/Orca-2-7b",
     "microsoft/Orca-2-13b",
 ]
+
+# top_10 = [
+#     "codellama/CodeLlama-13b-Instruct-hf",
+#     "codellama/CodeLlama-34b-Instruct-hf",
+#     "codellama/CodeLlama-7b-Instruct-hf",
+#     "Phind/Phind-CodeLlama-34B-v2",
+#     "WizardLM/WizardCoder-Python-13B-V1.0",
+#     "meta-llama/Llama-2-70b-hf",
+#     "codellama/CodeLlama-13b-Python-hf",
+#     "meta-llama/Llama-2-13b-hf",
+# ]
+
+# models_list = top_10
+# models_list = [
+#     "codellama/CodeLlama-7b-Instruct-hf",
+# ]
+
 # %%
 # Load model from HF with user's token and with bitsandbytes config
 
-ft_version = "v3_ag"
+ft_version = "ag_model_inst"
 
 output_dir_str = "/scratch/hpc-prf-hdgen/ashwin/finetuned_models/{ft_version}_{model_name}"
 output_dir_merged_str = "/scratch/hpc-prf-hdgen/ashwin/finetuned_models/{ft_version}_{model_name}_merged"
@@ -367,12 +384,20 @@ def run_system_command(command):
 for model_name in models_list:
     try:
         output_merged_dir = output_dir_merged_str.format(model_name=model_name.split("/")[1], ft_version=ft_version)
-        output_dir_ollama_dir = f"{output_dir_ollama_str}/{model_name.split('/')[1]}.gguf"
-        output_dir_ollama_modelfile_str = f"{output_dir_ollama_str}/{model_name.split('/')[1]}.modelfile"
+        output_dir_ollama_dir = f"{output_dir_ollama_str}/{ft_version}_{model_name.split('/')[1]}.gguf"
+        output_dir_ollama_modelfile_str = f"{output_dir_ollama_str}/{ft_version}_{model_name.split('/')[1]}.modelfile"
 
         with open(output_dir_ollama_modelfile_str, 'w') as file:
             # Writing content to the file
-            file.write(f"FROM ./{model_name.split('/')[1]}.gguf")
+            file.write(f"FROM ./{ft_version}_{model_name.split('/')[1]}.gguf\n")
+
+            file.write(r'TEMPLATE """[INST] {{ if and .First .System }}<<SYS>>{{ .System }}<</SYS>>\n\n')
+            file.write(r'{{ end }}{{ .Prompt }} [/INST] """\n')
+            file.write(r'SYSTEM """"""\n')
+            file.write(r'PARAMETER stop [INST]\n')
+            file.write(r'PARAMETER stop [/INST]\n')
+            file.write(r'PARAMETER stop <<SYS>>\n')
+            file.write(r'PARAMETER stop <</SYS>>\n')
 
         logger.info(f"python3 {llama_cpp_convert_path} {output_merged_dir} --outfile {output_dir_ollama_dir}")
         output, error = run_system_command(f"python3 {llama_cpp_convert_path} {output_merged_dir} --outfile {output_dir_ollama_dir}")
@@ -390,8 +415,8 @@ for model_name in models_list:
 
 logger.info("\n\nConvert the models by running the following.\n")
 for model_name in models_list:
-    output_dir_ollama_modelfile_str = f"{output_dir_ollama_str}/{model_name.split('/')[1]}.modelfile"
-    logger.info(f"ollama create {model_name.split('/')[1]}_{ft_version} -f {output_dir_ollama_modelfile_str}")
+    output_dir_ollama_modelfile_str = f"{output_dir_ollama_str}/{ft_version}_{model_name.split('/')[1]}.modelfile"
+    logger.info(f"ollama create {ft_version}_{model_name.split('/')[1]} -f {output_dir_ollama_modelfile_str}")
 
 logger.info(f"DONE! Took{time.time()-start_time}")
 
