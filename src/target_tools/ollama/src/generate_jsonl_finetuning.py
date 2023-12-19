@@ -102,8 +102,8 @@ if __name__ == "__main__":
 
     # Create fine tuning dataset
     folder_path = SCRIPT_DIR / "fine_tuning" / "auto_generation" / "generated_dataset"
-    output_file_gpt = SCRIPT_DIR / "fine_tuning" / "finetuning_autoset_gpt_v5.jsonl"
-    output_file_llama = SCRIPT_DIR / "fine_tuning" / "finetuning_autoset_llama_v5.jsonl"
+    output_file_gpt = SCRIPT_DIR / "fine_tuning" / "finetuning_autoset_gpt_v7.jsonl"
+    output_file_llama = SCRIPT_DIR / "fine_tuning" / "finetuning_autoset_llama_v7.jsonl"
 
     # Prepare prompts
     prompt_id = "questions_based_4"
