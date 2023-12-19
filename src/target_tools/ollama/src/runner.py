@@ -45,6 +45,7 @@ PROMPTS_MAP = {
     "questions_based_2": prompts.questions_based_2,
     "questions_based_3": prompts.questions_based_3,
     "questions_based_4": prompts.questions_based_4,
+    "questions_based_2_ft": prompts.questions_based_2_ft,
 }
 
 # Create a logger
@@ -90,6 +91,7 @@ def get_prompt(prompt_id, code_path, json_filepath, answers_placeholders=True):
         "questions_based_1",
         "questions_based_2",
         "questions_based_3",
+        "questions_based_2_ft",
     ]:
         questions_from_json = utils.generate_questions_from_json(json_filepath)
 

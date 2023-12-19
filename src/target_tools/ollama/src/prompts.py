@@ -514,6 +514,37 @@ questions_based_2 = """
 **Your Answers**:
 {answers}"""
 
+questions_based_2_ft = """[INST] <<SYS>> You will examine and identify the data types of various elements such as function parameters, local variables, and function return types in the given Python code. <</SYS>>
+
+## Task Description
+
+**Objective**: Examine and identify the data types of various elements such as function parameters, local variables, and function return types in the given Python code.
+
+**Instructions**:
+1. For each question below, provide a concise, one-word answer indicating the data type.
+2. For arguments and variables inside a function, list every data type they take within the current program context as a comma separated list.
+3. Do not include additional explanations or commentary in your answers.
+
+**Python Code Provided**:
+```python
+{code}
+```
+
+**Questions**:
+{questions}
+
+**Format for Answers**:
+- Provide your answer next to each question number, using only one word.
+- Example:
+    1. int
+    2. float
+    3. str
+
+**Your Answers**:
+{answers}
+[/INST] """
+
+
 questions_based_3 = """
 ## Task Description
 
