@@ -106,7 +106,8 @@ if __name__ == "__main__":
     output_file_llama = SCRIPT_DIR / "fine_tuning" / "finetuning_autoset_llama_v7.jsonl"
 
     # Prepare prompts
-    prompt_id = "questions_based_4"
+    prompt_id_gpt = "questions_based_2"
+    prompt_id_llama = "questions_based_2_ft"
 
-    generate_jsonl_gpt(folder_path, output_file_gpt, prompt_id)
-    generate_jsonl_llama(folder_path, output_file_llama, prompt_id)
+    generate_jsonl_gpt(folder_path, output_file_gpt, prompt_id_gpt)
+    generate_jsonl_llama(folder_path, output_file_llama, prompt_id_llama)
