@@ -1,12 +1,12 @@
 # A simple Python program that reuses the same variable name for different types
 
 if True:
-    a = 1
-    b = 2
+    a = <value1>
+    b = <value1>
     temp = a + b
 else:
-    a = 1.0
-    b = 2.0
+    a = <value2>
+    b = <value2>
     temp = a + b
 
 result = a + b
