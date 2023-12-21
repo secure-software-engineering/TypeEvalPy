@@ -3,14 +3,13 @@
 # The given code is interprocedural because it involves calling a separate function ('add') to complete the arithmetic operation.
 
 
-def arithmetic_op(a, b):
-    result = add(a, b)
-    return result
-
-
 def add(a, b):
     result = a + b
     return result
 
 
-result = arithmetic_op(5, 10)
+def arithmetic_op(a, b):
+    result = add(a, b)
+    return result
+
+result = arithmetic_op(<value1>, <value1>)

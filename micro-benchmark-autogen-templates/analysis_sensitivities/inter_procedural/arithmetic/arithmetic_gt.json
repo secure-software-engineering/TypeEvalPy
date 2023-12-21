@@ -1,31 +1,40 @@
-[
-    {
-        "file": "arithmetic.py",
-        "line_number": 7,
-        "col_offset": 5,
-        "variable": "result",
-        "function": "arithmetic_op",
-        "type": [
-            "int"
-        ]
-    },
-    {
-        "file": "arithmetic.py",
-        "line_number": 12,
-        "col_offset": 5,
-        "variable": "result",
-        "function": "add",
-        "type": [
-            "int"
-        ]
-    },
-    {
-        "file": "arithmetic.py",
-        "line_number": 16,
-        "col_offset": 1,
-        "variable": "result",
-        "type": [
-            "int"
-        ]
-    }
-]
+{
+    "replacement_mode": "Complex",
+    "type_replacements": [
+        "int",
+        "float",
+        "str",
+        "list"
+    ],
+    "ground_truth": [
+        {
+            "file": "arithmetic.py",
+            "line_number": 7,
+            "col_offset": 5,
+            "variable": "result",
+            "function": "add",
+            "type": [
+                "<value1>"
+            ]
+        },
+        {
+            "file": "arithmetic.py",
+            "line_number": 12,
+            "col_offset": 5,
+            "variable": "result",
+            "function": "arithmetic_op",
+            "type": [
+                "<value1>"
+            ]
+        },
+        {
+            "file": "arithmetic.py",
+            "line_number": 16,
+            "col_offset": 1,
+            "variable": "result",
+            "type": [
+                "<value1>"
+            ]
+        }
+    ]
+}

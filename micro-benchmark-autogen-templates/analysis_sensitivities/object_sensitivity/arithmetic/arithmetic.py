@@ -14,7 +14,7 @@ class ArithmeticOperation:
         return self.result
 
 
-arith_op1 = ArithmeticOperation(5, 10)
-arith_op2 = ArithmeticOperation("Hello", "World")
+arith_op1 = ArithmeticOperation(<value1>, <value1>)
+arith_op2 = ArithmeticOperation(<value2>, <value2>)
 result1 = arith_op1.compute()
 result2 = arith_op2.compute()
