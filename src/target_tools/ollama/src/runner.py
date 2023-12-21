@@ -52,7 +52,11 @@ PROMPTS_MAP = {
 logger = logging.getLogger("runner")
 logger.setLevel(logging.DEBUG)
 
-file_handler = logging.FileHandler("/tmp/ollama_log.log", mode="w")
+if utils.is_running_in_docker():
+    file_handler = logging.FileHandler("/tmp/ollama_log.log", mode="w")
+else:
+    file_handler = logging.FileHandler("ollama_log.log", mode="w")
+
 file_handler.setLevel(logging.DEBUG)
 
 console_handler = logging.StreamHandler(stdout)
@@ -280,11 +284,16 @@ def main_runner(args):
                 logger.info(
                     f"Command returned non-zero exit status: {e} for file: {file}"
                 )
+                traceback.print_exc()
+
                 error_count += 1
                 if isinstance(e, utils.JsonException):
                     json_count += 1
                 elif isinstance(e, utils.TimeoutException):
                     timeout_count += 1
+                    if timeout_count > 10:
+                        logger.error("Timeout threshold reached!")
+                        break
 
             files_analyzed += 1
             logger.info(

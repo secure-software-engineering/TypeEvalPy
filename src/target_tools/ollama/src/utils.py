@@ -5,7 +5,14 @@ import shutil
 import sys
 
 import requests
+import subprocess
 
+def run_system_command(command):
+    try:
+        result = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, shell=True)
+        return result.stdout, result.stderr
+    except subprocess.CalledProcessError as e:
+        return "", str(e)
 
 class JsonException(Exception):
     pass
