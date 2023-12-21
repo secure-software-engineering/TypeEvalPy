@@ -321,9 +321,9 @@ models_list = [
 # ]
 
 # models_list = top_10
-# models_list = [
-#     "codellama/CodeLlama-7b-Instruct-hf",
-# ]
+models_list = [
+    "codellama/CodeLlama-13b-Instruct-hf",
+]
 
 # %%
 # Load model from HF with user's token and with bitsandbytes config
@@ -391,13 +391,23 @@ for model_name in models_list:
             # Writing content to the file
             file.write(f"FROM ./{ft_version}_{model_name.split('/')[1]}.gguf\n")
 
-            file.write(r'TEMPLATE """[INST] {{ if and .First .System }}<<SYS>>{{ .System }}<</SYS>>\n\n')
-            file.write(r'{{ end }}{{ .Prompt }} [/INST] """\n')
-            file.write(r'SYSTEM """"""\n')
-            file.write(r'PARAMETER stop [INST]\n')
-            file.write(r'PARAMETER stop [/INST]\n')
-            file.write(r'PARAMETER stop <<SYS>>\n')
-            file.write(r'PARAMETER stop <</SYS>>\n')
+            file.write(r'TEMPLATE """[INST] <<SYS>>{{ .System }}<</SYS>>')
+            file.write("\n\n")
+            file.write(r'{{ .Prompt }} [/INST]')
+            file.write("\n")
+            file.write(r'"""')
+            file.write("\n")
+            file.write(r'SYSTEM """You will examine and identify the data types of various elements such as function parameters, local variables, and function return types in the given Python code."""')
+            file.write("\n")
+            file.write(r'PARAMETER rope_frequency_base 1e+06')
+            file.write("\n")
+            file.write(r'PARAMETER stop [INST]')
+            file.write("\n")
+            file.write(r'PARAMETER stop [/INST]')
+            file.write("\n")
+            file.write(r'PARAMETER stop <<SYS>>')
+            file.write("\n")
+            file.write(r'PARAMETER stop <</SYS>>')
 
         logger.info(f"python3 {llama_cpp_convert_path} {output_merged_dir} --outfile {output_dir_ollama_dir}")
         output, error = run_system_command(f"python3 {llama_cpp_convert_path} {output_merged_dir} --outfile {output_dir_ollama_dir}")
