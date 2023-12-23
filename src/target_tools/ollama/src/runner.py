@@ -148,6 +148,7 @@ def process_file(file_path, llm, openai_llm, prompt_id):
     try:
         json_filepath = str(file_path).replace(".py", "_gt.json")
         result_filepath = str(file_path).replace(".py", f"_result.json")
+        result_dump_filepath = str(file_path).replace(".py", f"_result_dump.txt")
 
         if USE_MULTIPROCESSING_FOR_TERMINATION:
             # Queue for communication between processes
@@ -181,6 +182,9 @@ def process_file(file_path, llm, openai_llm, prompt_id):
 
         if isinstance(llm, ChatOpenAI):
             output = output.content
+
+        with open(result_dump_filepath, "w") as file:
+            file.write(output)
 
         # TODO: Include this in langchain pipeline
         output = re.sub(r"```json", "", output)
