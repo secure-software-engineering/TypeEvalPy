@@ -154,6 +154,16 @@ def write_csv(res_file, data):
             ]
         )
 
+    data["total"] = {
+        "total_num_cases": total_num_cases,
+        "total_complete": total_complete,
+        "total_sound": total_sound,
+        "total_exact_matches": total_exact_matches,
+        "total_num_all": total_num_all,
+    }
+
+    return data
+
 
 def iterate_cats(test_suite_dir, ex, results_file, do_test):
     overall_complete = 0
@@ -219,30 +229,75 @@ def iterate_cats(test_suite_dir, ex, results_file, do_test):
         overall_complete += complete_passed
         overall_sound += sound_passed
         all_tests += len(tests)
-    write_csv(results_file, data)
+
+    return write_csv(results_file, data)
 
 
 def do_test_hg(test):
     cs_path = os.path.join(test, "linesCallSite.json")
     results_path = os.path.join(test, "main_result.json")
 
-    with open(results_path) as f:
-        out_cs = json.loads(f.read())
+    try:
+        with open(results_path) as f:
+            out_cs = json.loads(f.read())
+    except Exception as e:
+        print(f"Result file not found! {test}")
+        out_cs = {}
 
-    with open(cs_path) as f:
-        expected_cs = json.loads(f.read())
+    try:
+        with open(cs_path) as f:
+            expected_cs = json.loads(f.read())
+    except Exception as e:
+        print(f"Expected file not found! {test}")
+        expected_cs = {}
 
     return do_sorted(out_cs), do_sorted(expected_cs)
 
 
-def main(test_suite_dir, results_dir):
-    hg_results = os.path.join(results_dir, "headergen_micro_benchmark_eval.csv")
+def write_totals(totals_csv, overall_data):
+    header = [
+        "model",
+        "total_num_cases",
+        "total_complete",
+        "total_sound",
+        "total_exact_matches",
+        "total_num_all",
+    ]
 
-    print("-" * 40)
-    print("Iterating categories for Headergen")
-    print("-" * 40)
-    iterate_cats(test_suite_dir, None, hg_results, do_test_hg)
-    print("\n")
+    with open(totals_csv, "w+") as f:
+        writer = csv.writer(f, delimiter=",")
+        writer.writerow(header)
+
+        for model, data in sorted(
+            overall_data.items(),
+            key=lambda x: x[1]["total_exact_matches"],
+            reverse=True,
+        ):
+            # Extract data for readability
+            num_cases = data["total_num_cases"]
+            complete = data["total_complete"]
+            sound = data["total_sound"]
+            exact_matches = data["total_exact_matches"]
+            num_all = data["total_num_all"]
+
+            # # Write row data
+            writer.writerow([model, num_cases, complete, sound, exact_matches, num_all])
+
+
+def main(test_suite_dir, results_dir):
+    overall_data = {}
+    for model in sorted(get_subdirs(test_suite_dir)):
+        model_test_suite_dir = os.path.join(test_suite_dir, model, "snippets")
+        hg_results = os.path.join(results_dir, f"{model}_micro_benchmark_eval.csv")
+        print("-" * 40)
+        print("Iterating categories for Headergen")
+        print("-" * 40)
+        data = iterate_cats(model_test_suite_dir, None, hg_results, do_test_hg)
+        overall_data[model] = data["total"]
+        print("\n")
+
+    totals_csv = os.path.join(results_dir, f"totals_micro_benchmark_eval.csv")
+    write_totals(totals_csv, overall_data)
 
 
 if __name__ == "__main__":
@@ -251,14 +306,16 @@ if __name__ == "__main__":
         "--test_suite_dir",
         type=str,
         # default="/app/HeaderGen/callsites-jupyternb-micro-benchmark/snippets",
-        default="/mnt/Projects/PhD/Research/TypeEvalPy/git_sources/TypeEvalPy_LLM/.scrapy/trials_cs_line_1_gpt4/gpt-4/snippets",
+        default="/mnt/Projects/PhD/Research/TypeEvalPy/git_sources/TypeEvalPy_LLM/results/callsites/cs_trial_1",
     )
     parser.add_argument(
         "--results_dir",
         type=str,
-        default="/mnt/Projects/PhD/Research/TypeEvalPy/git_sources/TypeEvalPy_LLM/.scrapy/trials_cs_line_1_gpt4",
+        default="/mnt/Projects/PhD/Research/TypeEvalPy/git_sources/TypeEvalPy_LLM/.scrapy/cs_trials_1",
     )
 
     args = parser.parse_args()
+
+    os.makedirs(args.results_dir, exist_ok=True)
 
     main(args.test_suite_dir, args.results_dir)
