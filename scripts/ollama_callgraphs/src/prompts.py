@@ -6,7 +6,9 @@ questions_based_1 = """## Task Description
 1. For each question below, provide a concise answer indicating the function calls.
 2. List every function call as a comma separated list.
 3. Do not include additional explanations or commentary in your answers.
-4. Example of Python code, questions, and answers are given below. This example should be used as training data.
+4. Include both explicit and implicit function calls in your answers. An implicit function call is a function that is called as a result of another operation, such as the __init__ method being called when an object is created.
+5. If a function is called through an alias or a reference, identify and list the actual function that is called after resolving the alias.
+6. Example of Python code, questions, and answers are given below. This example should be used as training data.
 
 **Format for Answers**:
 - Provide your answer next to each question number, using only one word.
