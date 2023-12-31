@@ -1,17 +1,19 @@
 questions_based_1 = """## Task Description
 
-**Objective**: Examine and identify the fully qualified names of function calls in the given Python code.
+**Objective**: Examine and identify the fully qualified names of function calls in the given Python code, including class methods with both the class name and the method name.
 
 **Instructions**:
-1. For each question below, provide a concise answer indicating the fully qualified name of function call in that line.
+1. For each question below, provide a concise answer indicating the fully qualified name of function call in that line, including class name for methods.
 2. List every function call in that line as a comma separated list.
 3. Do not include additional explanations or commentary in your answers.
 4. Example of Python code, questions, and answers are given below. This example should be used as training data.
 
 **Format for Answers**:
 - Provide your answer next to each question number, using only one word.
-- add the line number of the function definition to the answer separated by ":"
-- Example:
+- Add the line number of where the function is defined in the program to the answer separated by ":"
+- Count the line number from 1
+- Make sure to include the question number in your response
+- Example is as follows:
     1. simple.func:1
     2. simple.examplefunc:2
     3. func:5
