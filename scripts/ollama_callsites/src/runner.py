@@ -172,7 +172,7 @@ def process_file(file_path, llm, openai_llm, prompt_id):
 
 def main_runner(args):
     model_name = "text-davinci-003"
-    temperature = 0.0
+    temperature = 0.1
     openai_llm = OpenAI(
         model_name=model_name, temperature=temperature, openai_api_key=args.openai_key
     )
