@@ -2,11 +2,11 @@
 # The 'param_func' function returns a string value.
 # The 'param_func2' function returns an integer value.
 def param_func():
-    return "Hello from param_func"
+    return <value1>
 
 
 def param_func2():
-    return 1
+    return <value2>
 
 
 def func(a=param_func2):

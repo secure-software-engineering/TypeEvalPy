@@ -5,7 +5,7 @@
 
 
 def nested_func():
-    return "Hello from nested_func"
+    return <value>
 
 
 def param_func(a):
