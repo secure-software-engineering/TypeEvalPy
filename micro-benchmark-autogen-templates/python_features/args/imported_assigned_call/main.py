@@ -4,7 +4,7 @@ from to_import import func
 
 
 def param_func():
-    return "Hello from param_func"
+    return <value>
 
 
 a = param_func
