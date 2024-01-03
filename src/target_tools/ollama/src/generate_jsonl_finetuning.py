@@ -101,9 +101,11 @@ if __name__ == "__main__":
     SCRIPT_DIR = Path(os.path.abspath(os.path.dirname(__file__)))
 
     # Create fine tuning dataset
-    folder_path = SCRIPT_DIR / "fine_tuning" / "auto_generation" / "generated_dataset"
-    output_file_gpt = SCRIPT_DIR / "fine_tuning" / "finetuning_autoset_gpt_v7.jsonl"
-    output_file_llama = SCRIPT_DIR / "fine_tuning" / "finetuning_autoset_llama_v7.jsonl"
+    folder_path = SCRIPT_DIR / "fine_tuning" / "training_set"
+    output_file_gpt = SCRIPT_DIR / "fine_tuning" / "finetuning_autoset_gpt_v1.5.jsonl"
+    output_file_llama = (
+        SCRIPT_DIR / "fine_tuning" / "finetuning_autoset_llama_v1.5.jsonl"
+    )
 
     # Prepare prompts
     prompt_id_gpt = "questions_based_2"
