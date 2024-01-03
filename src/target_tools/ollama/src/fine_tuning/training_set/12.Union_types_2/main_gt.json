@@ -3,7 +3,7 @@
         "file": "main.py",
         "line_number": 1,
         "col_offset": 5,
-        "fucntion": "func",
+        "function": "func",
         "type": [
             "int",
             "float"
@@ -13,7 +13,7 @@
         "file": "main.py",
         "line_number": 2,
         "col_offset": 5,
-        "fucntion": "func",
+        "function": "func",
         "variable": "x",
         "type": [
             "int",
