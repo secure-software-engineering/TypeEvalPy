@@ -101,6 +101,7 @@ def get_prompt(prompt_id, code_path, json_filepath, answers_placeholders=True):
 
 
 def process_file(file_path, llm, openai_llm, prompt_id):
+    file_start_time = time.time()
     try:
         code_filepath = os.path.join(file_path, "main.py")
         json_filepath = os.path.join(file_path, "linesCallSite.json")
@@ -151,6 +152,11 @@ def process_file(file_path, llm, openai_llm, prompt_id):
             new_parser = OutputFixingParser.from_llm(parser=parser, llm=openai_llm)
             output = new_parser.parse(output)
 
+        logger.info(
+            f"File processed for model {llm.model_name} finished in:"
+            f" {time.time()-file_start_time:.2f}"
+        )
+
     except Exception as e:
         # traceback.print_exc()
         logger.error(f"{code_filepath} failed: {e}")
@@ -198,10 +204,17 @@ def main_runner(args):
         if not model.startswith(("gpt-", "ft:gpt-")):
             if utils.is_ollama_online(args.ollama_url):
                 logger.info("Ollama is online!")
+                llm = Ollama(
+                    model=model,
+                    timeout=REQUEST_TIMEOUT,
+                )
+                llm.base_url = args.ollama_url
+                llm.invoke("Dummy prompt. limit your response to 1 letter.")
             else:
                 logger.error("Ollama server is not online!!!")
                 sys.exit(-1)
 
+        model_start_time = time.time()
         for cat in sorted(os.listdir(results_dst)):
             if cat in ["context_sensitive", "external", "task_test"]:
                 continue
@@ -274,7 +287,7 @@ def main_runner(args):
                 )
 
         logger.info(
-            f"Model {model} finished in {time.time()-runner_start_time:.2f} seconds"
+            f"Model {model} finished in {time.time()-model_start_time:.2f} seconds"
         )
         logger.info("Running translator")
         translator.main_translator(results_dst)
