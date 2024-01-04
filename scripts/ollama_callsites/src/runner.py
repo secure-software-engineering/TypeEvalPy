@@ -153,8 +153,9 @@ def process_file(file_path, llm, openai_llm, prompt_id):
             output = new_parser.parse(output)
 
         logger.info(
-            f"File processed for model {llm.model} finished in:"
-            f" {time.time()-file_start_time:.2f}"
+            "File processed for model"
+            f" {llm.model if getattr(llm, 'model', False) else llm.model_name} finished"
+            f" in: {time.time()-file_start_time:.2f}"
         )
 
     except Exception as e:
