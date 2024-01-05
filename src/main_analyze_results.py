@@ -482,12 +482,8 @@ def iterate_cats(test_suite_dir, tool_name=None):
                     cat[:max_cat_length],
                     f"[{results['complete_passed']}/{results['file_count']}]",
                     f"[{results['sound_passed']}/{results['file_count']}]",
-                    (
-                        f"{p_total_facts:3d}|{p_total_caught:3d}|{p_total_atleast_partial:3d}|{mean(list_precision_total) if list_precision_total else 0:.2f}|{mean(list_precision_partial) if list_precision_partial else 0:.2f}"
-                    ),
-                    (
-                        f"\t{r_total_facts:3d}|{r_total_caught:3d}|{r_total_atleast_partial:3d}|{mean(list_recall_total) if list_recall_total else 0:.2f}|{mean(list_recall_partial) if list_recall_partial else 0:.2f}"
-                    ),
+                    f"{p_total_facts:3d}|{p_total_caught:3d}|{p_total_atleast_partial:3d}|{mean(list_precision_total) if list_precision_total else 0:.2f}|{mean(list_precision_partial) if list_precision_partial else 0:.2f}",
+                    f"\t{r_total_facts:3d}|{r_total_caught:3d}|{r_total_atleast_partial:3d}|{mean(list_recall_total) if list_recall_total else 0:.2f}|{mean(list_recall_partial) if list_recall_partial else 0:.2f}",
                 )
             )
             if results["all_missing_matches"]:
@@ -917,43 +913,54 @@ def run_results_analyzer():
             # ignore
             pass
         elif item.is_dir():
-            logger.info(f"Analyzing tool: {item.name}")
-            tools_results[item.name] = {}
+            try:
+                logger.info(f"Analyzing tool: {item.name}")
+                tools_results[item.name] = {}
 
-            logger.info(f"Analyzing Python Features")
+                logger.info(f"Analyzing Python Features")
 
-            if item.name in utils.ML_TOOLS:
-                tools_results[item.name]["top_n_results"] = generate_top_n_performance(
+                if item.name in utils.ML_TOOLS:
+                    tools_results[item.name]["top_n_results"] = (
+                        generate_top_n_performance(
+                            item / "micro-benchmark/python_features",
+                            tool_name=item.name,
+                        )
+                    )
+                (
+                    tools_results[item.name]["error_result_data"],
+                    tools_results[item.name]["exact_match"],
+                    tools_results[item.name]["exact_match_category"],
+                ) = iterate_cats(
                     item / "micro-benchmark/python_features", tool_name=item.name
                 )
-            (
-                tools_results[item.name]["error_result_data"],
-                tools_results[item.name]["exact_match"],
-                tools_results[item.name]["exact_match_category"],
-            ) = iterate_cats(
-                item / "micro-benchmark/python_features", tool_name=item.name
-            )
-            tools_results[item.name]["total_benchmark_data"] = utils.benchmark_count(
-                item / "micro-benchmark/python_features"
-            )
-            # print(tools_results[item.name]["total_benchmark_data"])
-            # print(tools_results[item.name]["error_result_data"])
+                tools_results[item.name]["total_benchmark_data"] = (
+                    utils.benchmark_count(item / "micro-benchmark/python_features")
+                )
+                # print(tools_results[item.name]["total_benchmark_data"])
+                # print(tools_results[item.name]["error_result_data"])
 
-            (
-                tools_results[item.name]["sound_complete_data"],
-                tools_results[item.name]["sound_complete_total_data"],
-            ) = generate_sound_complete_data(
-                item / "micro-benchmark/python_features", tool_name=item.name
-            )
+                (
+                    tools_results[item.name]["sound_complete_data"],
+                    tools_results[item.name]["sound_complete_total_data"],
+                ) = generate_sound_complete_data(
+                    item / "micro-benchmark/python_features", tool_name=item.name
+                )
 
-            logger.info(f"")
-            logger.info(f"Analyzing Sensitivities")
-            (
-                tools_results[item.name]["sensitivity_error_result_data"],
-                tools_results[item.name]["sensitivity_sound_data"],
-            ) = iterate_cats_sensitivities(
-                item / "micro-benchmark/analysis_sensitivities", tool_name=item.name
-            )
+                logger.info(f"")
+                logger.info(f"Analyzing Sensitivities")
+                (
+                    tools_results[item.name]["sensitivity_error_result_data"],
+                    tools_results[item.name]["sensitivity_sound_data"],
+                ) = iterate_cats_sensitivities(
+                    item / "micro-benchmark/analysis_sensitivities", tool_name=item.name
+                )
+
+            except Exception as e:
+                logger.error(
+                    f"Result analysis for tool {item.name} failed! Please check if"
+                    " results exist."
+                )
+                tools_results.pop(item.name)
 
     analysis_tables.analysis_sensitivities_table(tools_results)
     analysis_tables.error_result_table(tools_results, False)
