@@ -41,7 +41,7 @@ Below is a comparison showcasing exact matches across different tools, coupled w
 ### 1️⃣ Clone the repo
 
 ```bash
-git clone https://github.com/ashwinprasadme/TypeEvalPy.git
+git clone https://github.com/secure-software-engineering/TypeEvalPy.git
 ```
 
 ### 2️⃣ Build Docker image

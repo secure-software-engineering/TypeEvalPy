@@ -23,6 +23,8 @@ WORKDIR /app/HiTyper
 RUN pip install --upgrade pip
 RUN pip install .
 
+RUN pip install PyCG==0.0.4
+
 COPY src /tmp/src
 
 # Set the default command to run when the container starts
