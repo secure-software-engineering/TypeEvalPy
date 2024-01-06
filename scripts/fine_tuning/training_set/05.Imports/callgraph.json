@@ -3,7 +3,5 @@
         "to_import.import_func"
     ],
     "to_import.import_func": [],
-    "to_import": [
-        "import_func"
-    ]
+    "to_import": []
 }

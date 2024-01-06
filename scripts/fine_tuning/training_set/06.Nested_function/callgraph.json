@@ -3,7 +3,7 @@
         "main.outer"
     ],
     "main.outer": [
-        "main.inner"
+        "main.outer.inner"
     ],
     "main.outer.inner": []
 }

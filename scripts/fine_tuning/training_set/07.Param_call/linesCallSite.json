@@ -1,0 +1,10 @@
+{
+    "13": [
+        "main.first_func:1",
+        "main.param_func2:5",
+        "main.final_func3:9"
+    ],
+    "2": [
+        "main.final_func3:9"
+    ]
+}
