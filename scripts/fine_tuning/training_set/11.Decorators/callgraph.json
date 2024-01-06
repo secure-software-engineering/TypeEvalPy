@@ -1,0 +1,8 @@
+{
+    "main": [
+        "main.simple_dec",
+        "main.simple_func"
+    ],
+    "main.simple_dec": [],
+    "main.simple_func": []
+}
