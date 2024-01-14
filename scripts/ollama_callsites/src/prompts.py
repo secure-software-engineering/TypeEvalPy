@@ -1,3 +1,10 @@
+questions_based_1_system = (
+    "You will examine and identify the fully qualified names of function calls in the"
+    " given Python code. You have to examine the code in detail by resolving the alias"
+    " of variables."
+)
+
+
 questions_based_1 = """## Task Description
 
 **Objective**: Examine and identify the fully qualified names of function calls in the given Python code, including class methods with both the class name and the method name.

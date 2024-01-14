@@ -117,7 +117,7 @@ def generate_answers_for_fine_tuning(json_file):
     counter = 1
     answers = []
     for fact in data:
-        answers.append(f"{counter}. {', '.join(fact['type'])}")
+        answers.append(f"{counter}. {', '.join(data[fact])}")
         counter += 1
 
     return "\n".join(answers)
