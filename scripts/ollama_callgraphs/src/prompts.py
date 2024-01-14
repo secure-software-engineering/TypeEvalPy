@@ -1,3 +1,8 @@
+questions_based_1_system = (
+    "You will examine and identify the function calls in the given Python code. You"
+    " have to examine the code in detail by resolving the alias of variables."
+)
+
 questions_based_1 = """## Task Description
 
 **Objective**: Examine and identify the function calls in the given Python code and answer the questions.

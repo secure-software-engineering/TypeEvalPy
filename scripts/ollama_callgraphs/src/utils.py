@@ -124,10 +124,19 @@ def generate_answers_for_fine_tuning(json_file):
     with open(json_file, "r") as file:
         data = json.load(file)
 
+    questions = generate_questions_from_json(json_file)
+    for i, q in enumerate(questions):
+        if "module" in q:
+            module_q = i + 1
+
     counter = 1
     answers = []
-    for fact in data:
-        answers.append(f"{counter}. {', '.join(fact['type'])}")
+    for fact in sorted(data):
+        if fact == "main":
+            answers.append(f"{counter}. {', '.join(data['main'])}")
+        else:
+            answers.append(f"{counter}. {', '.join(data[fact])}")
+
         counter += 1
 
     return "\n".join(answers)
@@ -139,7 +148,7 @@ def generate_questions_from_json(json_file, file_name="main.py"):
         data = json.load(file)
 
     questions = []
-    for key in data:
+    for key in sorted(data):
         if file_name.split(".")[0] == key:
             question = (
                 f"What are the module level function calls in the file '{file_name}'?"
