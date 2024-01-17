@@ -67,6 +67,24 @@ docker build -t typeevalpy .
 📂 Results will be generated in the `results` folder within the root directory of the repository.
 Each results folder will have a timestamp, allowing you to easily track and compare different runs.
 
+<details>
+  <summary><b>Correlation of CSV Files Generated to Tables in ICSE Paper</b></summary>
+Here is how the auto-generated CSV tables relate to the paper's tables:
+
+- **Table 1** in the paper is derived from three auto-generated CSV tables:
+	- `paper_table_1.csv` - details Exact matches by type category.
+	- `paper_table_2.csv` - lists Exact matches for 18 micro-benchmark categories.
+	- `paper_table_3.csv` - provides Sound and Complete values for tools.
+
+
+- **Table 2** in the paper is based on the following CSV table:
+	- `paper_table_5.csv` - shows Exact matches with top_n values for machine learning tools.
+
+Additionally, there are CSV tables that are *not* included in the paper:
+- `paper_table_4.csv` - containing Sound and Complete values for 18 micro-benchmark categories.
+- `paper_table_6.csv` - featuring Sensitivity analysis.
+</details>
+
 ```bash
 docker run \
       -v /var/run/docker.sock:/var/run/docker.sock \
