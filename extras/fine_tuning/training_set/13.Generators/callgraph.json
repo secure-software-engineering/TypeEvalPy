@@ -1,0 +1,8 @@
+{
+    "main": [
+        "main.generator_func",
+        "main.perform_task"
+    ],
+    "main.generator_func": [],
+    "main.perform_task": []
+}

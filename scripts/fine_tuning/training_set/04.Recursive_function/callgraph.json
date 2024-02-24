@@ -1,8 +1,0 @@
-{
-    "main": [
-        "main.recursive"
-    ],
-    "main.recursive": [
-        "main.recursive"
-    ]
-}
