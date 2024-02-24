@@ -1,9 +1,0 @@
-{
-    "main": [
-        "main.outer"
-    ],
-    "main.outer": [
-        "main.outer.inner"
-    ],
-    "main.outer.inner": []
-}
