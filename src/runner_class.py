@@ -8,18 +8,6 @@ from utils import FileHandler
 
 # Create a logger
 logger = logging.getLogger("Main Runner")
-logger.setLevel(logging.DEBUG)
-
-log_file_handler = logging.FileHandler("main_runner.log")
-log_file_handler.setLevel(logging.DEBUG)
-
-console_handler = logging.StreamHandler()
-console_handler.setLevel(logging.DEBUG)
-formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
-log_file_handler.setFormatter(formatter)
-console_handler.setFormatter(formatter)
-logger.addHandler(log_file_handler)
-logger.addHandler(console_handler)
 
 KEEP_CONTAINERS_RUNNING = False
 
