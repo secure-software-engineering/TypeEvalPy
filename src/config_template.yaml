@@ -1,0 +1,28 @@
+ollama:
+  openai_key: "<API_KEY>"
+  ollama_url: "localhost:11434"
+  prompt_id: "questions_based_2"
+  ollama_models:
+    - codellama:7b-python
+    - codellama:13b-python
+    - codellama:34b-python
+    - codellama:7b-instruct
+    - codellama:13b-instruct
+    - codellama:34b-instruct
+    - llama2:7b
+    - llama2:13b
+    - llama2:70b
+    - vicuna:7b
+    - vicuna:13b
+    - vicuna:33b
+    - phind-codellama:34b-v2
+    - phind-codellama:34b-python
+    - wizardcoder:7b-python
+    - wizardcoder:13b-python
+    - wizardcoder:34b-python
+    - orca2:7b
+    - orca2:13b
+    - gpt-3.5-turbo
+    - gpt-4
+    - gpt-3.5-turbo-1106
+    - gpt-4-1106-preview

@@ -1,0 +1,67 @@
+# Name: nested_function
+# Type: Complex
+# Data Types: int, str, float, bool, list, dict
+# Python Code Template
+def outer():
+    x = <value1>
+
+    def inner():
+        y = <value2>
+        return y
+
+    return inner()
+
+
+result1 = outer()
+
+# JSON Template
+[
+    {
+        "file": "main.py",
+        "line_number": 1,
+        "col_offset": 5,
+        "function": "outer",
+        "type": [
+            "<value2>"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 2,
+        "col_offset": 5,
+        "function": "outer",
+        "variable": "x",
+        "type": [
+            "<value1>"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "col_offset": 9,
+        "function": "inner",
+        "type": [
+            "<value2>"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "col_offset": 9,
+        "function": "inner",
+        "variable": "y",
+        "type": [
+            "<value2>"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 11,
+        "col_offset": 1,
+        "variable": "result1",
+        "type": [
+            "<value2>"
+        ]
+    }
+]
+

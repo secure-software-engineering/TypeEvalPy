@@ -1,3 +1,4 @@
+import argparse
 import json
 import logging
 import os
@@ -255,8 +256,7 @@ def process_cat_dir(cat_dir, tool_name=None, print_mismatch=False):
 
         if (
             root
-            == "../results_28-07"
-            " 10:46/headergen_dev/micro-benchmark/python_features/classes/imported_attr_access"
+            == "/mnt/Projects/PhD/Research/TypeEvalPy/git_sources/TypeEvalPy_LLM/.scrapy/test_results/gpt4/micro-benchmark/python_features/lambdas/composition"
         ):
             # Debug point
             pass
@@ -326,14 +326,18 @@ def process_cat_dir(cat_dir, tool_name=None, print_mismatch=False):
                         data_expected = json.load(f)
                     data_expected = utils.sort_facts(data_expected)
                     num_all = len(data_expected)
-                    cat_recall = {
+                    empty_results = {
                         "num_all": num_all,
                         "num_caught_exact": 0,
                         "num_caught_partial": 0,
                     }
                     cat_recall_results[
                         f"{os.path.basename(os.path.dirname(gt_file))}:{test}"
-                    ] = cat_recall
+                    ] = empty_results
+                    cat_precision_results[
+                        f"{os.path.basename(os.path.dirname(gt_file))}:{test}"
+                    ] = empty_results
+
                     all_missing_matches[file_name] = data_expected
             else:
                 logger.debug(f"gt file not found {test}")
@@ -482,8 +486,12 @@ def iterate_cats(test_suite_dir, tool_name=None):
                     cat[:max_cat_length],
                     f"[{results['complete_passed']}/{results['file_count']}]",
                     f"[{results['sound_passed']}/{results['file_count']}]",
-                    f"{p_total_facts:3d}|{p_total_caught:3d}|{p_total_atleast_partial:3d}|{mean(list_precision_total) if list_precision_total else 0:.2f}|{mean(list_precision_partial) if list_precision_partial else 0:.2f}",
-                    f"\t{r_total_facts:3d}|{r_total_caught:3d}|{r_total_atleast_partial:3d}|{mean(list_recall_total) if list_recall_total else 0:.2f}|{mean(list_recall_partial) if list_recall_partial else 0:.2f}",
+                    (
+                        f"{p_total_facts:3d}|{p_total_caught:3d}|{p_total_atleast_partial:3d}|{mean(list_precision_total) if list_precision_total else 0:.2f}|{mean(list_precision_partial) if list_precision_partial else 0:.2f}"
+                    ),
+                    (
+                        f"\t{r_total_facts:3d}|{r_total_caught:3d}|{r_total_atleast_partial:3d}|{mean(list_recall_total) if list_recall_total else 0:.2f}|{mean(list_recall_partial) if list_recall_partial else 0:.2f}"
+                    ),
                 )
             )
             if results["all_missing_matches"]:
@@ -892,9 +900,7 @@ def generate_top_n_performance(test_suite_dir, tool_name=None):
     return results_cat
 
 
-def run_results_analyzer():
-    results_dir = None
-    # results_dir = Path("../results/results_<>")
+def run_results_analyzer(results_dir):
     if results_dir is None:
         dir_path = Path(SCRIPT_DIR) / "../results"
         directories = [
@@ -905,11 +911,13 @@ def run_results_analyzer():
         directories.sort(key=lambda x: x.stat().st_mtime, reverse=True)
         # Get the latest directory
         results_dir = directories[0] if directories else None
+    else:
+        results_dir = Path(results_dir)
 
     tools_results = {}
 
-    for item in results_dir.glob("*"):
-        if item.is_file() or item.name not in SUPPORTED_TOOLS:
+    for item in sorted(results_dir.glob("*")):
+        if item.is_file() or item.name == "analysis_results":
             # ignore
             pass
         elif item.is_dir():
@@ -970,7 +978,8 @@ def run_results_analyzer():
         tools_results
     )  # Create sound complete table
     tools_list = utils.ML_TOOLS + utils.STANDARD_TOOLS
-    analysis_tables.create_comparison_table(tools_results, tools_list)
+
+    analysis_tables.create_comparison_table(tools_results)
 
     os.makedirs(results_dir / "analysis_results", exist_ok=True)
     results_dir = results_dir / "analysis_results"
@@ -1050,4 +1059,12 @@ def run_results_analyzer():
 
 
 if __name__ == "__main__":
-    run_results_analyzer()
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--results_dir",
+        help="Specify the results path",
+        default=None,
+    )
+    args = parser.parse_args()
+
+    run_results_analyzer(args.results_dir)
