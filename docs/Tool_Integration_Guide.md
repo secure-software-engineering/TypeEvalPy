@@ -71,4 +71,4 @@ This guide provides a structured approach to adding new tools to the TypeEvalPy 
 
 ### Step 5: Make sure the results are translated into TypeEvalPy schema
 
-The output of your tool should match the JSON schema of TypeEvalPy. The pydantic schema is available in the following file: [docs/TypeEvalPy_JSON_schema.py](docs/TypeEvalPy_JSON_schema.py)
+The output of your tool should match the JSON schema of TypeEvalPy. The pydantic schema is available in the following file: [docs/TypeEvalPy_JSON_schema.py](TypeEvalPy_JSON_schema.py)
