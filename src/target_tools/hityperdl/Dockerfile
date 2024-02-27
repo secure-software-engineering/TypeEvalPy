@@ -21,5 +21,6 @@ WORKDIR /app/HiTyper
 
 # Install Python dependencies
 RUN pip install .
+RUN pip install PyCG==0.0.4
 
 WORKDIR /type4py/type4py/server

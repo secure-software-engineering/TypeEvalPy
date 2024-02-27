@@ -18,7 +18,7 @@
 
 | Supported :white_check_mark:                             | In-progress :wrench:                                                 | Planned :bulb:                                        |
 | -------------------------------------------------------- | -------------------------------------------------------------------- | ----------------------------------------------------- |
-| [HeaderGen](https://github.com/ashwinprasadme/headergen) | [Intellij PSI](https://plugins.jetbrains.com/docs/intellij/psi.html) | [MonkeyType](https://github.com/Instagram/MonkeyType) |
+| [HeaderGen](https://github.com/secure-software-engineering/HeaderGen) | [Intellij PSI](https://plugins.jetbrains.com/docs/intellij/psi.html) | [MonkeyType](https://github.com/Instagram/MonkeyType) |
 | [Jedi](https://github.com/davidhalter/jedi)              | [Pyre](https://github.com/facebook/pyre-check)                       | [Pyannotate](https://github.com/dropbox/pyannotate)   |
 | [Pyright](https://github.com/microsoft/pyright)          | [PySonar2](https://github.com/yinwang0/pysonar2)                     |
 | [HiTyper](https://github.com/JohnnyPeng18/HiTyper)       | [Pytype](https://github.com/google/pytype)                           |
@@ -37,7 +37,7 @@ Below is a comparison showcasing exact matches across different tools, coupled w
 
 | Rank | 🛠️ Tool                                                         | Top-n       | Function Return Type | Function Parameter Type | Local Variable Type | Total             |
 | ---- | --------------------------------------------------------------- | ----------- | -------------------- | ----------------------- | ------------------- | ----------------- |
-| 1    | **[HeaderGen](https://github.com/ashwinprasadme/headergen)**    | 1           | 186                  | 56                      | 322                 | 564               |
+| 1    | **[HeaderGen](https://github.com/secure-software-engineering/HeaderGen)**    | 1           | 186                  | 56                      | 322                 | 564               |
 | 2    | **[Jedi](https://github.com/davidhalter/jedi)**                 | 1           | 122                  | 0                       | 293                 | 415               |
 | 3    | **[Pyright](https://github.com/microsoft/pyright)**             | 1           | 100                  | 8                       | 297                 | 405               |
 | 4    | **[HiTyper](https://github.com/JohnnyPeng18/HiTyper)**          | 1<br>3<br>5 | 163<br>173<br>175    | 27<br>37<br>37          | 179<br>225<br>229   | 369<br>435<br>441 |
@@ -64,7 +64,7 @@ Below is a comparison showcasing exact matches for LLMs.
 | 7    | dolphin-mistral                                                                             | 184                  | 76                      | 356                 | 616   |
 | 8    | codebooga                                                                                   | 186                  | 56                      | 354                 | 596   |
 | 9    | llama2:70b                                                                                  | 168                  | 55                      | 342                 | 565   |
-| 10   | **[HeaderGen](https://github.com/ashwinprasadme/headergen)**                                | 186                  | 56                      | 321                 | 563   |
+| 10   | **[HeaderGen](https://github.com/secure-software-engineering/HeaderGen)**                                | 186                  | 56                      | 321                 | 563   |
 | 11   | wizardcoder:13b-python                                                                      | 170                  | 74                      | 317                 | 561   |
 | 12   | llama2:13b                                                                                  | 153                  | 40                      | 283                 | 476   |
 | 13   | mistral:instruct                                                                            | 155                  | 45                      | 250                 | 450   |
@@ -93,7 +93,7 @@ _<sub>(Auto-generated based on the the analysis run on 14 Jan 2024)</sub>_
 ### 1️⃣ Clone the repo
 
 ```bash
-git clone https://github.com/ashwinprasadme/TypeEvalPy.git
+git clone https://github.com/secure-software-engineering/TypeEvalPy.git
 ```
 
 ### 2️⃣ Build Docker image
@@ -159,7 +159,7 @@ docker run \
 1.  **Clone the repo**
 
     ```bash
-    git clone https://github.com/ashwinprasadme/TypeEvalPy.git
+    git clone https://github.com/secure-software-engineering/TypeEvalPy.git
     ```
 
 2.  **Install Dependencies and Set Up Virtual Environment**
