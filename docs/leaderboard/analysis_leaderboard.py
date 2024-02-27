@@ -3,6 +3,7 @@ from pathlib import Path
 
 SCRIPT_DIR = os.path.abspath(os.path.dirname(__file__))
 ROOT_DIR = os.path.dirname(os.path.dirname(SCRIPT_DIR))
+EXPERIMENT_RUN_ON = "14 Jan 2024"
 
 
 def csv_to_markdown_table_ranked(csv_str, tool_mapping, header_mapping):
@@ -68,7 +69,7 @@ def create_readme_with_table(
 
     auto_gen_info = (
         "\n\n*<sub>(Auto-generated based on the the analysis run on"
-        f" {results_dir.name.split('_')[1]})</sub>*"
+        f" {EXPERIMENT_RUN_ON})</sub>*"
     )
 
     table_text = table + auto_gen_info
@@ -81,13 +82,13 @@ def create_readme_with_table(
     content = content.replace(placeholder_text, table_text)
 
     # Write the updated content to the output markdown file
-    with open(f"{ROOT_DIR}/{output_md_file}", "w") as file:
+    with open(f"{SCRIPT_DIR}/{output_md_file}", "w") as file:
         file.write(content)
 
     print(f"{output_md_file} has been created successfully!")
 
 
-results_dir = None
+results_dir = "/mnt/Projects/PhD/Research/TypeEvalPy/git_sources/TypeEvalPy_LLM/results/types_llms"
 # results_dir = Path("../results/results_<>")
 if results_dir is None:
     dir_path = Path(ROOT_DIR) / "results"
@@ -118,6 +119,19 @@ tool_mapping = {
     },
     "scalpel": {"name": "Scalpel", "url": "https://github.com/SMAT-Lab/Scalpel/issues"},
     "type4py": {"name": "Type4Py", "url": "https://github.com/saltudelft/type4py"},
+    "gpt-4": {"name": "GPT-4", "url": "https://openai.com/research/gpt-4"},
+    "gpt-3.5-turbo": {
+        "name": "GPT 3.5 Turbo",
+        "url": "https://platform.openai.com/docs/models/gpt-3-5-turbo",
+    },
+    "codellama:34b-instruct": {
+        "name": "codellama:34b-instruct",
+        "url": "https://huggingface.co/docs/transformers/model_doc/code_llama",
+    },
+    "codellama:13b-instruct": {
+        "name": "codellama:13b-instruct",
+        "url": "https://huggingface.co/docs/transformers/model_doc/code_llama",
+    },
 }
 
 header_mapping = {

@@ -24,7 +24,6 @@ from langchain.prompts import PromptTemplate
 from langchain.pydantic_v1 import BaseModel
 
 AUTOFIX_WITH_OPENAI = False
-ENABLE_STREAMING = True
 REQUEST_TIMEOUT = 60
 USE_MULTIPROCESSING_FOR_TERMINATION = True
 
@@ -285,7 +284,7 @@ def main_runner(args):
                     model=model,
                     callback_manager=(
                         CallbackManager([StreamingStdOutCallbackHandler()])
-                        if ENABLE_STREAMING
+                        if args.enable_streaming
                         else None
                     ),
                     temperature=temperature,
@@ -318,7 +317,7 @@ def main_runner(args):
             logger.info(
                 f"\n\nProgress: {files_analyzed}/{len(python_files)} | Total Errors /"
                 f" JSON Errors / Timeouts: {error_count},{json_count},{timeout_count} |"
-                f" PromptTime: {time.time()-prompt_start_time}\n\n"
+                f" PromptTime: {time.time()-prompt_start_time:.2f}\n\n"
             )
 
         logger.info(
@@ -362,6 +361,13 @@ if __name__ == "__main__":
     )
 
     parser.add_argument("--openai_key", help="Openai API key", required=True)
+
+    parser.add_argument(
+        "--enable_streaming",
+        help="If LLM response should be streamed",
+        type=bool,
+        default=False,
+    )
 
     args = parser.parse_args()
     main_runner(args)
