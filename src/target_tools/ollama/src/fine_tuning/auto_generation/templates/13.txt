@@ -1,0 +1,67 @@
+# Name: decorators
+# Type: Simple
+# Data Types: int, str, float, bool, list, dict
+# Python Code Template
+def thisisadec(x):
+    def inner_func():
+        return <value>
+
+    return inner_func
+
+
+@thisisadec
+def justafunc():
+    pass
+
+
+x = justafunc()
+# JSON Template
+[
+    {
+        "file": "main.py",
+        "line_number": 1,
+        "col_offset": 5,
+        "function": "thisisadec",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 1,
+        "col_offset": 9,
+        "parameter": "x",
+        "function": "thisisadec",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 2,
+        "col_offset": 9,
+        "function": "inner_func",
+        "type": [
+            "<value>"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 9,
+        "col_offset": 5,
+        "function": "justafunc",
+        "type": [
+            "<value>"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "col_offset": 1,
+        "variable": "x",
+        "type": [
+            "<value>"
+        ]
+    }
+]
+

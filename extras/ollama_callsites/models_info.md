@@ -1,0 +1,45 @@
+# Models
+
+- codellama:7b-python
+- codellama:13b-python
+- codellama:34b-python
+- codellama:7b-instruct
+- codellama:13b-instruct
+- codellama:34b-instruct
+- llama2:7b
+- llama2:13b
+- llama2:70b
+- vicuna:7b
+- vicuna:13b
+- vicuna:33b
+- phind-codellama:34b-v2
+- phind-codellama:34b-python
+- wizardcoder:7b-python
+- wizardcoder:13b-python
+- wizardcoder:34b-python
+- orca2:7b
+- orca2:13b
+- gpt-3.5-turbo
+- gpt-4
+
+# HG
+
+- codellama/CodeLlama-7b-Python-hf
+- codellama/CodeLlama-13b-Python-hf
+- codellama/CodeLlama-34b-Python-hf
+- codellama/CodeLlama-7b-Instruct-hf
+- codellama/CodeLlama-13b-Instruct-hf
+- codellama/CodeLlama-34b-Instruct-hf
+- meta-llama/Llama-2-7b-hf
+- meta-llama/Llama-2-13b-hf
+- meta-llama/Llama-2-70b-hf
+- lmsys/vicuna-7b-v1.5
+- lmsys/vicuna-13b-v1.5
+- lmsys/vicuna-33b-v1.3
+- Phind/Phind-CodeLlama-34B-v2
+- Phind/Phind-CodeLlama-34B-Python-v1
+- WizardLM/WizardCoder-Python-7B-V1.0
+- WizardLM/WizardCoder-Python-13B-V1.0
+- WizardLM/WizardCoder-Python-34B-V1.0
+- microsoft/Orca-2-7b
+- microsoft/Orca-2-13b

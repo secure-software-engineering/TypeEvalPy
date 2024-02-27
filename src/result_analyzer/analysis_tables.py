@@ -1,7 +1,11 @@
 import csv
 import json
+import os
+from pathlib import Path
 
 import result_analyzer.analysis_utils as utils
+
+SCRIPT_DIR = os.path.abspath(os.path.dirname(__file__))
 
 
 def error_result_table(stats, total_stats=True):
@@ -376,7 +380,9 @@ def exact_match_category_table(stats):
             headers.append(header)
 
     rows = []
-    total_result = utils.benchmark_count("../micro-benchmark/python_features")
+    micro_bench_path = Path(SCRIPT_DIR) / "../../micro-benchmark/python_features"
+
+    total_result = utils.benchmark_count(micro_bench_path)
     total_functions = 0
     total_params = 0
     total_variables = 0
@@ -409,13 +415,13 @@ def exact_match_category_table(stats):
         writer.writerows(rows)
 
 
-def create_comparison_table(stats, tools):
+def create_comparison_table(stats):
     # Sort stats based on total_caught
     stats = utils.sort_stats(stats)
 
     headers = ["Tool Name"]
     stats = utils.sort_stats(stats)
-    tool_names = [tool for tool in stats.keys() if tool in tools]
+    tool_names = [tool for tool in stats.keys()]
     categories = list(stats[tool_names[0]]["exact_match_category"].keys())
     type_categories = list(
         list(stats[tool_names[0]]["exact_match_category"].values())[0].keys()
