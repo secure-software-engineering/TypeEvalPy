@@ -212,6 +212,8 @@ docker run \
 
 Thank you for your interest in contributing! To add support for a new tool, please utilize the Docker templates provided in our repository. After implementing and testing your tool, please submit a pull request (PR) with a descriptive message. Our maintainers will review your submission, and merge them.
 
+To get started with integrating your tool, please follow the guide here: [docs/Tool_Integration_Guide.md](docs/Tool_Integration_Guide.md)
+
 ---
 
 ### ⭐️ Show Your Support
