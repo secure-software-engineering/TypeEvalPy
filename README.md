@@ -72,18 +72,22 @@ Below is a comparison showcasing exact matches for LLMs.
 | 15   | mistral:v0.2                                                                                | 155                  | 45                      | 248                 | 448   |
 | 16   | vicuna:13b                                                                                  | 153                  | 35                      | 260                 | 448   |
 | 17   | vicuna:33b                                                                                  | 133                  | 29                      | 267                 | 429   |
-| 18   | wizardcoder:7b-python                                                                       | 103                  | 48                      | 254                 | 405   |
-| 19   | llama2:7b                                                                                   | 140                  | 34                      | 216                 | 390   |
-| 20   | **[HiTyper](https://github.com/JohnnyPeng18/HiTyper)**                                      | 163                  | 27                      | 179                 | 369   |
-| 21   | wizardcoder:34b-python                                                                      | 140                  | 43                      | 178                 | 361   |
-| 22   | orca2:7b                                                                                    | 117                  | 27                      | 184                 | 328   |
-| 23   | vicuna:7b                                                                                   | 131                  | 17                      | 172                 | 320   |
-| 24   | orca2:13b                                                                                   | 113                  | 19                      | 166                 | 298   |
-| 25   | tinyllama                                                                                   | 3                    | 0                       | 23                  | 26    |
-| 26   | phind-codellama:34b-python                                                                  | 5                    | 0                       | 15                  | 20    |
-| 27   | codellama:13b-python                                                                        | 0                    | 0                       | 0                   | 0     |
-| 28   | codellama:34b-python                                                                        | 0                    | 0                       | 0                   | 0     |
-| 29   | codellama:7b-python                                                                         | 0                    | 0                       | 0                   | 0     |
+| 18   | **[Jedi](https://github.com/davidhalter/jedi)**                                             | 122                  | 0                       | 293                 | 415   |
+| 19   | **[Pyright](https://github.com/microsoft/pyright)**                                         | 100                  | 8                       | 297                 | 405   |
+| 19   | wizardcoder:7b-python                                                                       | 103                  | 48                      | 254                 | 405   |
+| 20   | llama2:7b                                                                                   | 140                  | 34                      | 216                 | 390   |
+| 21   | **[HiTyper](https://github.com/JohnnyPeng18/HiTyper)**                                      | 163                  | 27                      | 179                 | 369   |
+| 22   | wizardcoder:34b-python                                                                      | 140                  | 43                      | 178                 | 361   |
+| 23   | orca2:7b                                                                                    | 117                  | 27                      | 184                 | 328   |
+| 24   | vicuna:7b                                                                                   | 131                  | 17                      | 172                 | 320   |
+| 25   | orca2:13b                                                                                   | 113                  | 19                      | 166                 | 298   |
+| 26   | **[Scalpel](https://github.com/SMAT-Lab/Scalpel/issues)**                                   | 155                  | 32                      | 6                   | 193   |
+| 27   | **[Type4Py](https://github.com/saltudelft/type4py)**                                        | 39                   | 19                      | 99                  | 157   |
+| 28   | tinyllama                                                                                   | 3                    | 0                       | 23                  | 26    |
+| 29   | phind-codellama:34b-python                                                                  | 5                    | 0                       | 15                  | 20    |
+| 30   | codellama:13b-python                                                                        | 0                    | 0                       | 0                   | 0     |
+| 31   | codellama:34b-python                                                                        | 0                    | 0                       | 0                   | 0     |
+| 32   | codellama:7b-python                                                                         | 0                    | 0                       | 0                   | 0     |
 
 _<sub>(Auto-generated based on the the analysis run on 14 Jan 2024)</sub>_
 
