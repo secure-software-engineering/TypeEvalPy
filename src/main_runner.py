@@ -83,7 +83,7 @@ def get_args():
 def main():
     args = get_args()
     host_results_path = (
-        f"../results/results_{datetime.now().strftime('%d-%m-%y %H:%M')}"
+        f"../results/results_{datetime.now().strftime('%d-%m-%y %H_%M')}"
     )
 
     available_runners = {
