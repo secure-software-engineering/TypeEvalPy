@@ -1,7 +1,7 @@
 ollama:
   openai_key: "<API_KEY>"
   ollama_url: "localhost:11434"
-  prompt_id: "json_based_1"
+  prompt_id: "questions_based_2"
   ollama_models:
     - codellama:7b-python
     - codellama:13b-python

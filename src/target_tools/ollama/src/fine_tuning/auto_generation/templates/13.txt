@@ -19,7 +19,7 @@ x = justafunc()
 [
     {
         "file": "main.py",
-        "line_number": 4,
+        "line_number": 1,
         "col_offset": 5,
         "function": "thisisadec",
         "type": [
@@ -28,7 +28,7 @@ x = justafunc()
     },
     {
         "file": "main.py",
-        "line_number": 4,
+        "line_number": 1,
         "col_offset": 9,
         "parameter": "x",
         "function": "thisisadec",
@@ -38,7 +38,7 @@ x = justafunc()
     },
     {
         "file": "main.py",
-        "line_number": 5,
+        "line_number": 2,
         "col_offset": 9,
         "function": "inner_func",
         "type": [
@@ -47,7 +47,7 @@ x = justafunc()
     },
     {
         "file": "main.py",
-        "line_number": 12,
+        "line_number": 9,
         "col_offset": 5,
         "function": "justafunc",
         "type": [
@@ -56,7 +56,7 @@ x = justafunc()
     },
     {
         "file": "main.py",
-        "line_number": 16,
+        "line_number": 13,
         "col_offset": 1,
         "variable": "x",
         "type": [
