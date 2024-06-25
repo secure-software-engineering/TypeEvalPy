@@ -146,8 +146,9 @@ def transform_type_string(s: str) -> str:
     if "[" in s:
         # Use regular expression to replace content inside square brackets with empty string
         s = re.sub(r"\[.*\]", "", s)
-        # Convert the first letter to lower-case
-        s = s[0].lower() + s[1:]
+        if s != "":
+            # Convert the first letter to lower-case
+            s = s[0].lower() + s[1:]
     if s == "None":
         s = "Nonetype"
     return s

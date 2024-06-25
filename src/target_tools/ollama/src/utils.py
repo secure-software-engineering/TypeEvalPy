@@ -92,8 +92,8 @@ def generate_json_from_answers(gt_json_file, answers):
         pattern = re.compile(r"^\s*(\d+)\.\s+(.+)\s*$", re.MULTILINE)
         parsed_answers = pattern.findall(answers)
 
-        if len(gt_data) != len(parsed_answers):
-            return False
+        # if len(gt_data) != len(parsed_answers):
+        #     return []
 
         answers_json_data = []
         for fact in range(len(gt_data)):
@@ -106,7 +106,7 @@ def generate_json_from_answers(gt_json_file, answers):
     except Exception as e:
         print("Error generating json from questions")
         print(e)
-        return False
+        return []
 
 
 def generate_answers_for_fine_tuning(json_file):

@@ -24,7 +24,6 @@ from langchain.prompts import PromptTemplate
 from langchain.pydantic_v1 import BaseModel
 
 AUTOFIX_WITH_OPENAI = False
-ENABLE_STREAMING = True
 REQUEST_TIMEOUT = 60
 USE_MULTIPROCESSING_FOR_TERMINATION = True
 
@@ -44,13 +43,19 @@ PROMPTS_MAP = {
     "questions_based_1": prompts.questions_based_1,
     "questions_based_2": prompts.questions_based_2,
     "questions_based_3": prompts.questions_based_3,
+    "questions_based_4": prompts.questions_based_4,
+    "questions_based_2_ft": prompts.questions_based_2_ft,
 }
 
 # Create a logger
 logger = logging.getLogger("runner")
 logger.setLevel(logging.DEBUG)
 
-file_handler = logging.FileHandler("/tmp/ollama_log.log", mode="w")
+if utils.is_running_in_docker():
+    file_handler = logging.FileHandler("/tmp/ollama_log.log", mode="w")
+else:
+    file_handler = logging.FileHandler("ollama_log.log", mode="w")
+
 file_handler.setLevel(logging.DEBUG)
 
 console_handler = logging.StreamHandler(stdout)
@@ -80,8 +85,17 @@ def get_prompt(prompt_id, code_path, json_filepath, answers_placeholders=True):
     #     data = json.load(file)
     with open(code_path, "r") as file:
         code = file.read()
+        # Remove comments from code but keep line number structure
+        code = "\n".join(
+            [line if not line.startswith("#") else "#" for line in code.split("\n")]
+        )
 
-    if prompt_id in ["questions_based_1", "questions_based_2", "questions_based_3"]:
+    if prompt_id in [
+        "questions_based_1",
+        "questions_based_2",
+        "questions_based_3",
+        "questions_based_2_ft",
+    ]:
         questions_from_json = utils.generate_questions_from_json(json_filepath)
 
         prompt = PromptTemplate(
@@ -97,6 +111,18 @@ def get_prompt(prompt_id, code_path, json_filepath, answers_placeholders=True):
                 if answers_placeholders
                 else ""
             ),
+        }
+    elif prompt_id in ["questions_based_4"]:
+        questions_from_json = utils.generate_questions_from_json(json_filepath)
+
+        prompt = PromptTemplate(
+            template=PROMPTS_MAP[prompt_id],
+            input_variables=["code", "questions"],
+        )
+
+        prompt_data = {
+            "code": code,
+            "questions": "\n".join(questions_from_json),
         }
     elif prompt_id in ["json_based_1", "json_based_2"]:
         parser = PydanticOutputParser(pydantic_object=TypeEvalPySchema)
@@ -118,9 +144,11 @@ def get_prompt(prompt_id, code_path, json_filepath, answers_placeholders=True):
 
 
 def process_file(file_path, llm, openai_llm, prompt_id):
+    file_start_time = time.time()
     try:
         json_filepath = str(file_path).replace(".py", "_gt.json")
         result_filepath = str(file_path).replace(".py", f"_result.json")
+        result_dump_filepath = str(file_path).replace(".py", f"_result_dump.txt")
 
         if USE_MULTIPROCESSING_FOR_TERMINATION:
             # Queue for communication between processes
@@ -155,6 +183,9 @@ def process_file(file_path, llm, openai_llm, prompt_id):
         if isinstance(llm, ChatOpenAI):
             output = output.content
 
+        with open(result_dump_filepath, "w") as file:
+            file.write(output)
+
         # TODO: Include this in langchain pipeline
         output = re.sub(r"```json", "", output)
         output = re.sub(r"```", "", output)
@@ -162,6 +193,12 @@ def process_file(file_path, llm, openai_llm, prompt_id):
         if AUTOFIX_WITH_OPENAI:
             new_parser = OutputFixingParser.from_llm(parser=parser, llm=openai_llm)
             output = new_parser.parse(output)
+
+        logger.info(
+            "File processed for model"
+            f" {llm.model if getattr(llm, 'model', False) else llm.model_name} finished"
+            f" in: {time.time()-file_start_time:.2f}"
+        )
 
     except Exception as e:
         # traceback.print_exc()
@@ -171,7 +208,7 @@ def process_file(file_path, llm, openai_llm, prompt_id):
     logger.info(output)
 
     # TODO: Improve the way this is done. Some plugin based design.
-    if prompt_id in ["questions_based_2", "questions_based_3"]:
+    if prompt_id in ["questions_based_2", "questions_based_3", "questions_based_4"]:
         answers_json = utils.generate_json_from_answers(json_filepath, output)
         translated_json = translator.translate_content(answers_json)
     else:
@@ -212,27 +249,42 @@ def main_runner(args):
         if not model.startswith(("gpt-", "ft:gpt-")):
             if utils.is_ollama_online(args.ollama_url):
                 logger.info("Ollama is online!")
+                # Pre-start ollama model server to make sure the total time is not influenced by the startup
+                llm = Ollama(
+                    model=model,
+                    timeout=REQUEST_TIMEOUT,
+                )
+                llm.base_url = args.ollama_url
+                llm.invoke("Dummy prompt. limit your response to 1 letter.")
             else:
                 logger.error("Ollama server is not online!!!")
                 sys.exit(-1)
 
+        model_start_time = time.time()
         for file in python_files:
             # Recreating llm object each iteration since we might force terminate in thread
             # Maybe there is another better way to do this
             if model.startswith(("gpt-", "ft:gpt-")):
                 # OpenAI models
-                llm = ChatOpenAI(
-                    model_name=model,
-                    temperature=temperature,
-                    openai_api_key=args.openai_key,
-                )
+                if "instruct" in model:
+                    llm = OpenAI(
+                        model_name=model,
+                        temperature=temperature,
+                        openai_api_key=args.openai_key,
+                    )
+                else:
+                    llm = ChatOpenAI(
+                        model_name=model,
+                        temperature=temperature,
+                        openai_api_key=args.openai_key,
+                    )
 
             else:
                 llm = Ollama(
                     model=model,
                     callback_manager=(
                         CallbackManager([StreamingStdOutCallbackHandler()])
-                        if ENABLE_STREAMING
+                        if args.enable_streaming
                         else None
                     ),
                     temperature=temperature,
@@ -250,21 +302,26 @@ def main_runner(args):
                 logger.info(
                     f"Command returned non-zero exit status: {e} for file: {file}"
                 )
+                traceback.print_exc()
+
                 error_count += 1
                 if isinstance(e, utils.JsonException):
                     json_count += 1
                 elif isinstance(e, utils.TimeoutException):
                     timeout_count += 1
+                    if timeout_count > 10:
+                        logger.error("Timeout threshold reached!")
+                        break
 
             files_analyzed += 1
             logger.info(
                 f"\n\nProgress: {files_analyzed}/{len(python_files)} | Total Errors /"
                 f" JSON Errors / Timeouts: {error_count},{json_count},{timeout_count} |"
-                f" PromptTime: {time.time()-prompt_start_time}\n\n"
+                f" PromptTime: {time.time()-prompt_start_time:.2f}\n\n"
             )
 
         logger.info(
-            f"Model {model} finished in {time.time()-runner_start_time:.2f} seconds"
+            f"Model {model} finished in {time.time()-model_start_time:.2f} seconds"
         )
         logger.info("Running translator")
         translator.main_translator(results_dst)
@@ -304,6 +361,13 @@ if __name__ == "__main__":
     )
 
     parser.add_argument("--openai_key", help="Openai API key", required=True)
+
+    parser.add_argument(
+        "--enable_streaming",
+        help="If LLM response should be streamed",
+        type=bool,
+        default=False,
+    )
 
     args = parser.parse_args()
     main_runner(args)
