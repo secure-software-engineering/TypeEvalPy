@@ -6,5 +6,5 @@ def multiply(x, y):
     return x * y
 
 
-numbers = [1, 2]
+numbers = [<value1>, <value1>]
 product = reduce(multiply, numbers)

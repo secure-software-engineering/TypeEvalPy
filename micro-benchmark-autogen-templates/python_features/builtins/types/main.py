@@ -1,5 +1,5 @@
 # Calling of builtin functions of types.
 
-a = " ".join(["1", "2", "3"])
+a = " ".join([<value1>, <value1>, <value1>])
 
 b = "a b".split(" ")

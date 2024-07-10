@@ -1,49 +1,60 @@
-[
-    {
-        "file": "main.py",
-        "line_number": 2,
-        "col_offset": 5,
-        "function": "func",
-        "type": [
-            "int",
-            "str"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 2,
-        "col_offset": 10,
-        "function": "func",
-        "parameter": "value",
-        "type": [
-            "str"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 12,
-        "col_offset": 1,
-        "variable": "a",
-        "type": [
-            "int"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 13,
-        "col_offset": 1,
-        "variable": "b",
-        "type": [
-            "str"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 14,
-        "col_offset": 1,
-        "variable": "c",
-        "type": [
-            "str"
-        ]
-    }
-]
+{
+    "replacement_mode": "Complex",
+    "type_replacements": [
+        "int",
+        "float",
+        "str"
+    ],
+    "ground_truth": [
+        {
+            "file": "main.py",
+            "line_number": 2,
+            "col_offset": 5,
+            "function": "func",
+            "type": [
+                "<value4>",
+                "<value5>",
+                "<value6>"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 2,
+            "col_offset": 10,
+            "function": "func",
+            "parameter": "value",
+            "type": [
+                "<value1>",
+                "<value2>",
+                "<value3>"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 12,
+            "col_offset": 1,
+            "variable": "a",
+            "type": [
+                "<value4>"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 13,
+            "col_offset": 1,
+            "variable": "b",
+            "type": [
+                "<value5>"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 14,
+            "col_offset": 1,
+            "variable": "c",
+            "type": [
+                "<value6>"
+            ]
+        }
+    ]
+}
