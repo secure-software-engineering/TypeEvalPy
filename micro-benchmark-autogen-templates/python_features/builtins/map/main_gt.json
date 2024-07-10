@@ -1,61 +1,70 @@
-[
-    {
-        "file": "main.py",
-        "line_number": 2,
-        "col_offset": 5,
-        "function": "func",
-        "type": [
-            "int",
-            "str",
-            "float"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 2,
-        "col_offset": 10,
-        "function": "func",
-        "parameter": "x",
-        "type": [
-            "int",
-            "str",
-            "float"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 6,
-        "col_offset": 1,
-        "variable": "res",
-        "type": [
-            "map"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 8,
-        "col_offset": 1,
-        "variable": "x",
-        "type": [
-            "int"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 8,
-        "col_offset": 4,
-        "variable": "y",
-        "type": [
-            "str"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 8,
-        "col_offset": 7,
-        "variable": "z",
-        "type": [
-            "float"
-        ]
-    }
-]
+{
+    "replacement_mode": "Complex",
+    "type_replacements": [
+        "int",
+        "float",
+        "str",
+        "bool"
+    ],
+    "ground_truth": [
+        {
+            "file": "main.py",
+            "line_number": 2,
+            "col_offset": 5,
+            "function": "func",
+            "type": [
+                "<value1>",
+                "<value2>",
+                "<value3>"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 2,
+            "col_offset": 10,
+            "function": "func",
+            "parameter": "x",
+            "type": [
+                "<value1>",
+                "<value2>",
+                "<value3>"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 6,
+            "col_offset": 1,
+            "variable": "res",
+            "type": [
+                "map"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 8,
+            "col_offset": 1,
+            "variable": "x",
+            "type": [
+                "<value1>"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 8,
+            "col_offset": 4,
+            "variable": "y",
+            "type": [
+                "<value2>"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 8,
+            "col_offset": 7,
+            "variable": "z",
+            "type": [
+                "<value3>"
+            ]
+        }
+    ]
+}

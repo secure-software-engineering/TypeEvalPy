@@ -1,92 +1,101 @@
-[
-    {
-        "file": "main.py",
-        "line_number": 3,
-        "col_offset": 1,
-        "variable": "my_list",
-        "type": [
-            "list"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 3,
-        "col_offset": 1,
-        "variable": "my_list[0]",
-        "type": [
-            "int"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 3,
-        "col_offset": 1,
-        "variable": "my_list[1]",
-        "type": [
-            "int"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 5,
-        "col_offset": 1,
-        "variable": "length",
-        "type": [
-            "int"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 7,
-        "col_offset": 1,
-        "variable": "total",
-        "type": [
-            "int"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 9,
-        "col_offset": 1,
-        "variable": "largest",
-        "type": [
-            "int"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 11,
-        "col_offset": 1,
-        "variable": "smallest",
-        "type": [
-            "int"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 13,
-        "col_offset": 1,
-        "variable": "sorted_list",
-        "type": [
-            "list"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 15,
-        "col_offset": 1,
-        "variable": "any_list",
-        "type": [
-            "bool"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 17,
-        "col_offset": 1,
-        "variable": "all_list",
-        "type": [
-            "bool"
-        ]
-    }
-]
+{
+    "replacement_mode": "Complex",
+    "type_replacements": [
+        "int",
+        "str",
+        "bool",
+        "float"
+    ],
+    "ground_truth": [
+        {
+            "file": "main.py",
+            "line_number": 3,
+            "col_offset": 1,
+            "variable": "my_list",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 3,
+            "col_offset": 1,
+            "variable": "my_list[0]",
+            "type": [
+                "<value1>"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 3,
+            "col_offset": 1,
+            "variable": "my_list[1]",
+            "type": [
+                "<value1>"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 5,
+            "col_offset": 1,
+            "variable": "length",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 7,
+            "col_offset": 1,
+            "variable": "total",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 9,
+            "col_offset": 1,
+            "variable": "largest",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 11,
+            "col_offset": 1,
+            "variable": "smallest",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 13,
+            "col_offset": 1,
+            "variable": "sorted_list",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 15,
+            "col_offset": 1,
+            "variable": "any_list",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 17,
+            "col_offset": 1,
+            "variable": "all_list",
+            "type": [
+                "bool"
+            ]
+        }
+    ]
+}
