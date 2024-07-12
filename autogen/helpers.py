@@ -69,23 +69,64 @@ def generate_data_type_permutations(placeholders, data_types):
         # Otherwise, use permutations
         return itertools.permutations(data_types, len(placeholders))
 
+def get_additional_facts(data_type, item, value):
+    # Hard coded based on generate_value_for_type generation
+    facts = []
+    if data_type in ["list", "tuple", "set"]:
+        for i in range(3):
+            item_new = item.copy()
+            item_new["type"] = ["int"]
+            item_new["variable"] = f"{item['variable']}[{i}]"
+            facts.append(item_new)
+    elif data_type == "dict":
+        for k in eval(value).keys():
+            item_new = item.copy()
+            item_new["type"] = ["int"]
+            item_new["variable"] = f"{item['variable']}['{k}']"
+            facts.append(item_new)
+
+    return facts
+
+
+def is_variable_fact(item):
+    # TODO: parameter type is not supported yet, although it is a variable fact
+    return True if "variable" in item else False
 
 def replace_placeholders_and_generate_json(code, json_template_str, data_type_mapping):
     """Replace placeholders with values for their respective types and update JSON"""
+    placeholder_values = {}
     for placeholder, data_type in data_type_mapping.items():
         value, _ = generate_value_for_type(data_type)
+        placeholder_values[placeholder] = value
         code = code.replace(placeholder, str(value))
 
     json_template = json.loads(json_template_str)
+    additional_facts = []
+    seen_additional_facts = set()
+
     for item in json_template["ground_truth"]:
         for placeholder, data_type in data_type_mapping.items():
             if placeholder in item["type"]:
                 for i in range(len(item["type"])):
                     if item["type"][i] == placeholder:
+                        if is_variable_fact(item) and f"{item['variable']}_{item['line_number']}_{item['col_offset']}" not in seen_additional_facts:
+                            seen_additional_facts.add(f"{item['variable']}_{item['line_number']}_{item['col_offset']}")
+                            if data_type in ["list", "set", "dict", "tuple"]:
+                                additional_facts.append(get_additional_facts(data_type, item, placeholder_values[placeholder]))
+
                         item["type"][i] = data_type
+
 
         # make type an unique list
         item["type"] = list(set(item["type"]))
+
+
+    # merge additional facts with json_template["ground_truth"]
+    for facts in additional_facts:
+        json_template["ground_truth"] += facts
+
+    # Sort json by line_number
+    json_template["ground_truth"] = sorted(json_template["ground_truth"], key=lambda x: x["line_number"])
 
     return code, json_template
 
