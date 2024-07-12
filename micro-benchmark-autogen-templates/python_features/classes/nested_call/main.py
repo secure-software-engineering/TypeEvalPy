@@ -2,7 +2,7 @@
 class MyClass:
     def func(self):
         def nested():
-            return "Hello from nested function"
+            return <value1>
 
         return nested()
 
