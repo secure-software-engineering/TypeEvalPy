@@ -1,38 +1,50 @@
-[
-    {
-        "file": "main.py",
-        "line_number": 8,
-        "col_offset": 9,
-        "function": "MyClass.func1",
-        "type": [
-            "str"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 11,
-        "col_offset": 9,
-        "function": "MyClass.func2",
-        "type": [
-            "str"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 15,
-        "col_offset": 1,
-        "variable": "a",
-        "type": [
-            "MyClass"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 16,
-        "col_offset": 1,
-        "variable": "b",
-        "type": [
-            "str"
-        ]
-    }
-]
+{
+    "replacement_mode": "Complex",
+    "type_replacements": [
+        "int",
+        "float",
+        "str",
+        "bool",
+        "list",
+        "dict",
+        "tuple"
+    ],
+    "ground_truth": [
+        {
+            "file": "main.py",
+            "line_number": 8,
+            "col_offset": 9,
+            "function": "MyClass.func1",
+            "type": [
+                "<value1>"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 11,
+            "col_offset": 9,
+            "function": "MyClass.func2",
+            "type": [
+                "<value1>"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 15,
+            "col_offset": 1,
+            "variable": "a",
+            "type": [
+                "MyClass"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 16,
+            "col_offset": 1,
+            "variable": "b",
+            "type": [
+                "<value1>"
+            ]
+        }
+    ]
+}

@@ -6,7 +6,7 @@ class MyClass:
         self.func1()
 
     def func1(self):
-        return "Hello from func1"
+        return <value1>
 
     def func2(self):
         return self.func1()

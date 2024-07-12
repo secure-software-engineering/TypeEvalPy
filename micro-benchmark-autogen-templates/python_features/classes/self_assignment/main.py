@@ -9,7 +9,7 @@ class A:
         return self.smth()
 
     def func2(self):
-        return "Hello from func2"
+        return <value1>
 
 
 a = A()
