@@ -2,11 +2,11 @@
 
 
 def outer():
-    x = 1
+    x = <value1>
 
     def inner():
         nonlocal x
-        x += 1
+        x += <value1>
         return x
 
     return inner()

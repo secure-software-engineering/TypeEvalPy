@@ -9,5 +9,5 @@ def square(x):
     return x * x
 
 
-a = square(add(2, 3))
-b = square(add(2.1, 3.2))
+a = square(add(<value1>, <value1>))
+b = square(add(<value2>, <value2>))
