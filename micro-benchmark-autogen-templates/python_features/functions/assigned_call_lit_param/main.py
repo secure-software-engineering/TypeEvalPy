@@ -6,5 +6,5 @@ def func(x):
 
 
 x = func
-a = x(1)
-b = x("y")
+a = x(<value1>)
+b = x(<value2>)
