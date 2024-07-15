@@ -2,7 +2,7 @@
 
 
 def return_func():
-    return "Hello from return_func"
+    return <value1>
 
 
 def func():

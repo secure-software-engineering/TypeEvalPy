@@ -2,11 +2,11 @@
 
 
 def func1():
-    return 42
+    return <value2>
 
 
 def func2():
-    return "Hello from func2"
+    return <value1>
 
 
 d = {"a": func1}

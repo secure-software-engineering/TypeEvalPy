@@ -3,7 +3,7 @@
 
 def return_func():
     def nested_return_func():
-        return "Hello from nested_return_func"
+        return <value1>
 
     return nested_return_func
 

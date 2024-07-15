@@ -3,7 +3,7 @@
 
 def dec(f):
     def wrapper():
-        return "Hello from dec"
+        return <value1>
 
     return wrapper
 

@@ -2,11 +2,11 @@
 
 
 def add_one(x):
-    return x + 1
+    return x + x
 
 
 def double(x):
-    return x * 2
+    return x * x
 
 
-result = double(add_one(5))
+result = double(add_one(<value1>))

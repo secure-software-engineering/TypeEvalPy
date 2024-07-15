@@ -3,7 +3,7 @@
 
 def dec(f):
     def inner():
-        return "Hello from inner"
+        return <value1>
 
     return inner
 

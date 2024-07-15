@@ -6,11 +6,11 @@ def func():
         return modified_inner
 
     def modified_inner():
-        return 42
+        return <value1>
 
     @dec
     def inner():
-        return "Hello from inner"
+        return <value2>
 
     return inner()
 
