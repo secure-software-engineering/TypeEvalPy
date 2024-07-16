@@ -2,7 +2,7 @@
 
 
 def func():
-    return True
+    return <value1>
 
 
 a = [a for a in range(10) if func()]

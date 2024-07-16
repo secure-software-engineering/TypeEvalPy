@@ -4,17 +4,17 @@
 class func:
     def __init__(self, n):
         self.n = n
-        self.num = 0
+        self.num = <value1>
 
     def __iter__(self):
         return self
 
     def __next__(self):
         if self.num < self.n:
-            cur, self.num = self.num, self.num + 1
+            cur, self.num = self.num, self.num + <value1>
             return cur
         else:
             raise StopIteration()
 
 
-output_list = [i for i in func(100)]
+output_list = [i for i in func(<value1>)]
