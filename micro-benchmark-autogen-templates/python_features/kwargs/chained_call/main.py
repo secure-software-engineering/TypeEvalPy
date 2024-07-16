@@ -3,7 +3,7 @@
 
 
 def func3():
-    return "Hello from func3"
+    return <value1>
 
 
 def func2(a=func3):

@@ -1,57 +1,69 @@
-[
-    {
-        "file": "main.py",
-        "line_number": 4,
-        "col_offset": 5,        
-        "function": "func1",
-        "type": [
-            "int"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 8,
-        "col_offset": 5,        
-        "function": "func2",
-        "type": [
-            "str"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 12,
-        "col_offset": 1,        
-        "variable": "x",
-        "type": [
-            "callable"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 12,
-        "col_offset": 12,        
-        "function": "lambda",
-        "variable": "x",
-        "type": [
-            "callable"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 14,
-        "col_offset": 1,        
-        "variable": "a",
-        "type": [
-            "int"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 16,
-        "col_offset": 1,        
-        "variable": "b",
-        "type": [
-            "str"
-        ]
-    }
-]
+{
+    "replacement_mode": "Complex",
+    "type_replacements": [
+        "int",
+        "float",
+        "str",
+        "bool",
+        "list",
+        "dict",
+        "tuple"
+    ],
+    "ground_truth": [
+        {
+            "file": "main.py",
+            "line_number": 4,
+            "col_offset": 5,
+            "function": "func1",
+            "type": [
+                "<value1>"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 8,
+            "col_offset": 5,
+            "function": "func2",
+            "type": [
+                "<value2>"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 12,
+            "col_offset": 1,
+            "variable": "x",
+            "type": [
+                "callable"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 12,
+            "col_offset": 12,
+            "function": "lambda",
+            "variable": "x",
+            "type": [
+                "callable"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 14,
+            "col_offset": 1,
+            "variable": "a",
+            "type": [
+                "<value1>"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 16,
+            "col_offset": 1,
+            "variable": "b",
+            "type": [
+                "<value2>"
+            ]
+        }
+    ]
+}

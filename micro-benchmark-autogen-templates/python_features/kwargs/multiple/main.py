@@ -8,4 +8,4 @@ def concatenate(**kwargs):
     return result
 
 
-c = concatenate(a="Hello", b="World", c="!")
+c = concatenate(a=<value1>, b=<value1>, c=<value1>)
