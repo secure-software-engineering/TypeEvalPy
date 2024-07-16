@@ -14,7 +14,7 @@ def func2():
 
 
 def func3():
-    return "<value>"
+    return <value1>
 
 
 b = func(func2())

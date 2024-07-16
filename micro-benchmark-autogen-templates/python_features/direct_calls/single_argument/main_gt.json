@@ -2,10 +2,7 @@
     "replacement_mode": "Complex",
     "type_replacements": [
         "int",
-        "float",
-        "str",
-        "list",
-        "tuple"
+        "float"
     ],
     "ground_truth": [
         {

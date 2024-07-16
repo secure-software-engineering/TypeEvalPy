@@ -1,6 +1,6 @@
 # A builtin function of list are called.
 
-my_list = [<value1>, <value2>]
+my_list = [<value1>, <value1>]
 
 length = len(my_list)
 

@@ -1,10 +1,13 @@
 {
-    "replacement_mode": "Simple",
+    "replacement_mode": "Complex",
     "type_replacements": [
         "int",
         "float",
         "str",
-        "list"
+        "bool",
+        "list",
+        "dict",
+        "tuple"
     ],
     "ground_truth": [
         {
@@ -13,7 +16,7 @@
             "col_offset": 5,
             "function": "param_func",
             "type": [
-                "<value>"
+                "<value1>"
             ]
         },
         {
@@ -22,7 +25,7 @@
             "col_offset": 5,
             "function": "func",
             "type": [
-                "<value>"
+                "<value1>"
             ]
         },
         {
@@ -41,7 +44,7 @@
             "col_offset": 1,
             "variable": "b",
             "type": [
-                "<value>"
+                "<value1>"
             ]
         }
     ]

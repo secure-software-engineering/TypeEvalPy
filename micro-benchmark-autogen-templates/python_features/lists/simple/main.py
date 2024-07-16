@@ -24,7 +24,7 @@ def func4():
     return <value4>
 
 
-b = []
+b = ["Hello"]
 b[0] = func4
 
 f = b[0]()

@@ -4,6 +4,8 @@ import os
 import random
 import re
 import shutil
+import subprocess
+import sys
 
 from pathlib import Path
 
@@ -19,7 +21,7 @@ def generate_value_for_type(chosen_type):
         return round(random.uniform(1, 100), 2), "float"
     elif chosen_type == "str":
         return (
-            '"' + "".join(random.choices("abcdefghijklmnopqrstuvwxyz", k=5)) + '"',
+            '\'' + "".join(random.choices("abcdefghijklmnopqrstuvwxyz", k=5)) + '\'',
             "str",
         )
     elif chosen_type == "bool":
@@ -36,7 +38,7 @@ def generate_value_for_type(chosen_type):
         )
     elif chosen_type == "dict":
         keys = [
-            '"' + "".join(random.choices("abcdefghijklmnopqrstuvwxyz", k=5)) + '"'
+            '\'' + "".join(random.choices("abcdefghijklmnopqrstuvwxyz", k=5)) + '\''
             for _ in range(3)
         ]
         values = [str(random.randint(1, 100)) for _ in range(3)]
@@ -69,6 +71,7 @@ def generate_data_type_permutations(placeholders, data_types):
         # Otherwise, use permutations
         return itertools.permutations(data_types, len(placeholders))
 
+
 def get_additional_facts(data_type, item, value):
     # Hard coded based on generate_value_for_type generation
     facts = []
@@ -92,6 +95,7 @@ def is_variable_fact(item):
     # TODO: parameter type is not supported yet, although it is a variable fact
     return True if "variable" in item else False
 
+
 def replace_placeholders_and_generate_json(code, json_template_str, data_type_mapping):
     """Replace placeholders with values for their respective types and update JSON"""
     placeholder_values = {}
@@ -109,24 +113,34 @@ def replace_placeholders_and_generate_json(code, json_template_str, data_type_ma
             if placeholder in item["type"]:
                 for i in range(len(item["type"])):
                     if item["type"][i] == placeholder:
-                        if is_variable_fact(item) and f"{item['variable']}_{item['line_number']}_{item['col_offset']}" not in seen_additional_facts:
-                            seen_additional_facts.add(f"{item['variable']}_{item['line_number']}_{item['col_offset']}")
+                        if (
+                            is_variable_fact(item)
+                            and f"{item['variable']}_{item['line_number']}_{item['col_offset']}"
+                            not in seen_additional_facts
+                        ):
+                            seen_additional_facts.add(
+                                f"{item['variable']}_{item['line_number']}_{item['col_offset']}"
+                            )
                             if data_type in ["list", "set", "dict", "tuple"]:
-                                additional_facts.append(get_additional_facts(data_type, item, placeholder_values[placeholder]))
+                                additional_facts.append(
+                                    get_additional_facts(
+                                        data_type, item, placeholder_values[placeholder]
+                                    )
+                                )
 
                         item["type"][i] = data_type
 
-
         # make type an unique list
         item["type"] = list(set(item["type"]))
-
 
     # merge additional facts with json_template["ground_truth"]
     for facts in additional_facts:
         json_template["ground_truth"] += facts
 
     # Sort json by line_number
-    json_template["ground_truth"] = sorted(json_template["ground_truth"], key=lambda x: x["line_number"])
+    json_template["ground_truth"] = sorted(
+        json_template["ground_truth"], key=lambda x: x["line_number"]
+    )
 
     return code, json_template
 
@@ -135,7 +149,7 @@ def save_files(
     code, json_data, output_folder, case_name, type_name, case_number, file_path
 ):
     """Modified to include case name in the folder path"""
-    case_folder = output_folder + file_path + "_" + type_name
+    case_folder = output_folder + file_path + "_" + case_number + "_" + type_name
     os.makedirs(case_folder, exist_ok=True)
 
     code_file_path = os.path.join(case_folder, f"{case_name}.py")
@@ -169,6 +183,24 @@ def read_template(file_path):
 
     return name, replacement_mode, data_types, code_template, json_template
 
+def run_python_script(script):
+    try:
+        # Run the script using the Python interpreter
+        result = subprocess.run(
+            [sys.executable, "-c", script],
+            text=True,
+            capture_output=True
+        )
+        
+        # Check if the script ran successfully
+        if result.returncode != 0:
+            print("Script failed to execute" + result.stderr)
+            return False
+        return True
+    except Exception as e:
+        print("Script failed to execute" + result.stderr)
+        return False
+
 
 def process_file(
     name,
@@ -199,8 +231,8 @@ def process_file(
                         f" '{name}_{data_type}'"
                     )
                 else:
-                    print(f"Error executing script '{name}_{data_type}'")
-                    print(f"Error : {e}")
+                    print(f"\tError executing script '{name}_{data_type}'")
+                    print(f"\tError : {e}\n")
                     error_count += 1
                     continue
             save_files(
@@ -227,7 +259,11 @@ def process_file(
                 code_template, json_template, data_type_mapping
             )
             try:
-                result = exec(replaced_code)
+                # result = exec(replaced_code)
+                result = run_python_script(replaced_code)
+                if not result:
+                    raise Exception("Script failed to execute")
+
             except Exception as e:
                 if "exception" in type_name:
                     print(
@@ -235,10 +271,22 @@ def process_file(
                         f" '{name}_{type_name}'"
                     )
                 else:
-                    print(f"Error executing script '{name}_{type_name}'")
-                    print(f"Error : {e}")
+                    print(f"\tError executing script '{name}_{type_name}'")
+                    print(f"\tError : {e}\n")
+                    # Save error files separately
+                    save_files(
+                        replaced_code,
+                        json_data,
+                        str(Path(output_folder).parent / "error"),
+                        name,
+                        type_name,
+                        f"{case_number}_{total_cases}",
+                        file_path,
+                    )
+
                     error_count += 1
                     continue
+
             save_files(
                 replaced_code,
                 json_data,

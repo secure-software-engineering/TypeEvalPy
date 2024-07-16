@@ -2,11 +2,11 @@
 def func(value):
     match value:
         case <value1>:
-            return <value4>
+            return <value2>
         case <value2>:
-            return <value5>
+            return <value1>
         case _:
-            return <value6>
+            return "default"
 
 
 a = func(<value1>)

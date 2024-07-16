@@ -2,8 +2,6 @@
     "replacement_mode": "Complex",
     "type_replacements": [
         "int",
-        "str",
-        "bool",
         "float"
     ],
     "ground_truth": [
