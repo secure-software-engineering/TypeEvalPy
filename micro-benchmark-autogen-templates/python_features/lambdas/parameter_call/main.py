@@ -2,9 +2,9 @@
 
 
 def func(a):
-    return a(1)
+    return a(<value1>)
 
 
-y = lambda x: x + 1
+y = lambda x: x + <value1>
 
 b = func(y)

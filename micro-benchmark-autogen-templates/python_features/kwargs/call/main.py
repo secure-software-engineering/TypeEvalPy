@@ -2,7 +2,7 @@
 
 
 def func1():
-    return "Hello from func1"
+    return <value1>
 
 
 def func(a):
