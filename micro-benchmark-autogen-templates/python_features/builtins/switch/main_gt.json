@@ -3,7 +3,11 @@
     "type_replacements": [
         "int",
         "float",
-        "str"
+        "str",
+        "bool",
+        "list",
+        "dict",
+        "tuple"
     ],
     "ground_truth": [
         {
@@ -12,9 +16,9 @@
             "col_offset": 5,
             "function": "func",
             "type": [
-                "<value4>",
-                "<value5>",
-                "<value6>"
+                "<value1>",
+                "<value2>",
+                "str"
             ]
         },
         {
@@ -35,7 +39,7 @@
             "col_offset": 1,
             "variable": "a",
             "type": [
-                "<value4>"
+                "<value2>"
             ]
         },
         {
@@ -44,7 +48,7 @@
             "col_offset": 1,
             "variable": "b",
             "type": [
-                "<value5>"
+                "<value1>"
             ]
         },
         {
@@ -53,7 +57,7 @@
             "col_offset": 1,
             "variable": "c",
             "type": [
-                "<value6>"
+                "str"
             ]
         }
     ]

@@ -3,11 +3,7 @@
     "type_replacements": [
         "int",
         "float",
-        "str",
-        "bool",
-        "list",
-        "dict",
-        "tuple"
+        "str"
     ],
     "ground_truth": [
         {

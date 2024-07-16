@@ -2,7 +2,7 @@
 
 
 def concatenate(**kwargs):
-    result = ""
+    result = <value1>
     for arg in kwargs.values():
         result += arg
     return result
