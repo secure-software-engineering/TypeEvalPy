@@ -6,5 +6,5 @@ def func():
 
 
 f = func()
-a = f(4)
-b = f(4.4)
+a = f(<value1>)
+b = f(<value2>)

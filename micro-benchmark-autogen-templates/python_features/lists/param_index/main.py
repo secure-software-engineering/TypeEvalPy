@@ -2,7 +2,7 @@
 
 
 def func2():
-    return 42
+    return <value1>
 
 
 def func1(key):

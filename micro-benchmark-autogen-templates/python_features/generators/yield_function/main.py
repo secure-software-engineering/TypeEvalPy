@@ -2,14 +2,14 @@
 
 
 def func2():
-    return 5
+    return <value1>
 
 
 def func1(n):
-    num = 0
+    num = <value1>
     while num < n:
         yield func2
-        num += 1
+        num += <value1>
 
 
 for i in func1(10):

@@ -1,3 +1,3 @@
 # Unpacking a list into individual variables.
-a = [1, 2.0, "hello"]
+a = [<value1>, <value2>, <value3>]
 b, c, d = a

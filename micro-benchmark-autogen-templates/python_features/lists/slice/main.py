@@ -2,15 +2,15 @@
 
 
 def func1():
-    return 42
+    return <value1>
 
 
 def func2():
-    return 42.5
+    return <value2>
 
 
 def func3():
-    return "Hello from func3"
+    return <value3>
 
 
 ls = [func1, func2, func3]

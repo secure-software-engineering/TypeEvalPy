@@ -2,22 +2,22 @@
 
 
 class Cls:
-    def __init__(self, max=0):
+    def __init__(self, max=<value1>):
         self.max = max
 
     def __iter__(self):
-        self.n = 0
+        self.n = <value1>
         return self
 
     def __next__(self):
         if self.n > self.max:
             raise StopIteration
 
-        result = 2**self.n
-        self.n += 1
+        result = <value1>**self.n
+        self.n += <value1>
         return result
 
 
-c = Cls(10)
+c = Cls(<value1>)
 
 output_list = [i for i in c]

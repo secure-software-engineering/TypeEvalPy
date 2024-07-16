@@ -2,14 +2,14 @@
 
 
 def func():
-    return 1 + 1
+    return <value1> + <value1>
 
 
 a = func()
 
 
 def func2():
-    return 1
+    return <value1>
 
 
 def func3():
@@ -24,7 +24,7 @@ b = func4()()
 
 
 def func5():
-    return func2() + 1
+    return func2() + <value1>
 
 
 c = func5()

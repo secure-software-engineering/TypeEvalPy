@@ -8,5 +8,5 @@ def func(x):
         return "Invalid input"
 
 
-a = func(5)
-b = func(-5)
+a = func(<value1>)
+b = func(-<value1>)

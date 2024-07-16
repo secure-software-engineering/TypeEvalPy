@@ -2,7 +2,7 @@
 
 
 def func(a):
-    return a + 1
+    return a + <value1>
 
 
 ls = [func(a) for a in range(10)]
