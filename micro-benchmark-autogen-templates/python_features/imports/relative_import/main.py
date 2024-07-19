@@ -6,7 +6,7 @@ import nested.to_import
 
 
 def func():
-    return "Hello from main module"
+    return <value1>
 
 
 a = nested.to_import.func()

@@ -1,2 +1,2 @@
 def func():
-    return "Hello from func"
+    return <value1>

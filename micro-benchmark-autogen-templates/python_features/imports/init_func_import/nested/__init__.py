@@ -2,4 +2,4 @@ from .mod import func2
 
 
 def func():
-    return 42
+    return <value1>

@@ -1,20 +1,36 @@
-[
-    {
-        "file": "main.py",
-        "line_number": 8,
-        "col_offset": 1,        
-        "variable": "a",
-        "type": [
-            "int"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 9,
-        "col_offset": 1,        
-        "variable": "b",
-        "type": [
-            "float"
-        ]
-    }
-]
+{
+    "replacement_mode": "Imports",
+    "imports": [
+        "to_import_sub/__init__.py",
+        "to_import_sub/to_import_sub.py"
+    ],
+    "type_replacements": [
+        "int",
+        "float",
+        "str",
+        "bool",
+        "list",
+        "dict",
+        "tuple"
+    ],
+    "ground_truth": [
+        {
+            "file": "main.py",
+            "line_number": 8,
+            "col_offset": 1,
+            "variable": "a",
+            "type": [
+                "<value2>"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 9,
+            "col_offset": 1,
+            "variable": "b",
+            "type": [
+                "<value1>"
+            ]
+        }
+    ]
+}
