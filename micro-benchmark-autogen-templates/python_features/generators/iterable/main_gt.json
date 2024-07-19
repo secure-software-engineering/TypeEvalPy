@@ -1,8 +1,7 @@
 {
     "replacement_mode": "Complex",
     "type_replacements": [
-        "int",
-        "float"
+        "int"
     ],
     "ground_truth": [
         {
@@ -12,7 +11,7 @@
             "parameter": "n",
             "function": "func.__init__",
             "type": [
-                "<value1>"
+                "int"
             ]
         },
         {
@@ -22,7 +21,7 @@
             "parameter": "func.n",
             "function": "func.__init__",
             "type": [
-                "<value1>"
+                "int"
             ]
         },
         {
@@ -32,7 +31,7 @@
             "parameter": "func.num",
             "function": "func.__init__",
             "type": [
-                "<value1>"
+                "int"
             ]
         },
         {
@@ -50,7 +49,7 @@
             "col_offset": 9,
             "function": "func.__next__",
             "type": [
-                "<value1>",
+                "int",
                 "Nonetype"
             ]
         },
@@ -61,7 +60,7 @@
             "variable": "cur",
             "function": "func.__next__",
             "type": [
-                "<value1>"
+                "int"
             ]
         },
         {
@@ -71,7 +70,7 @@
             "variable": "func.num",
             "function": "func.__next__",
             "type": [
-                "<value1>"
+                "int"
             ]
         },
         {
@@ -86,10 +85,37 @@
         {
             "file": "main.py",
             "line_number": 20,
+            "col_offset": 1,
+            "variable": "output_list[0]",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 20,
+            "col_offset": 1,
+            "variable": "output_list[1]",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 20,
+            "col_offset": 1,
+            "variable": "output_list[2]",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 20,
             "col_offset": 22,
             "variable": "i",
             "type": [
-                "<value1>"
+                "int"
             ]
         }
     ]

@@ -21,7 +21,7 @@ def generate_value_for_type(chosen_type):
         return round(random.uniform(1, 100), 2), "float"
     elif chosen_type == "str":
         return (
-            '\'' + "".join(random.choices("abcdefghijklmnopqrstuvwxyz", k=5)) + '\'',
+            "'" + "".join(random.choices("abcdefghijklmnopqrstuvwxyz", k=5)) + "'",
             "str",
         )
     elif chosen_type == "bool":
@@ -38,7 +38,7 @@ def generate_value_for_type(chosen_type):
         )
     elif chosen_type == "dict":
         keys = [
-            '\'' + "".join(random.choices("abcdefghijklmnopqrstuvwxyz", k=5)) + '\''
+            "'" + "".join(random.choices("abcdefghijklmnopqrstuvwxyz", k=5)) + "'"
             for _ in range(3)
         ]
         values = [str(random.randint(1, 100)) for _ in range(3)]
@@ -146,10 +146,19 @@ def replace_placeholders_and_generate_json(code, json_template_str, data_type_ma
 
 
 def save_files(
-    code, json_data, output_folder, case_name, type_name, case_number, file_path
+    code,
+    json_data,
+    output_folder,
+    case_name,
+    type_name,
+    case_number,
+    file_path,
+    imported_file_path=None,
 ):
     """Modified to include case name in the folder path"""
     case_folder = output_folder + file_path + "_" + case_number + "_" + type_name
+    if imported_file_path:
+        case_folder = os.path.join(case_folder, Path(imported_file_path).parent)
     os.makedirs(case_folder, exist_ok=True)
 
     code_file_path = os.path.join(case_folder, f"{case_name}.py")
@@ -159,9 +168,12 @@ def save_files(
         file.write(code)
     # print(f"Saved Python code to {code_file_path}")
 
-    with open(json_file_path, "w") as file:
-        json.dump(json_data, file, indent=4)
+    if json_data:
+        with open(json_file_path, "w") as file:
+            json.dump(json_data, file, indent=4)
     # print(f"Saved JSON ground truth to {json_file_path}")
+
+    return code_file_path, json_file_path
 
 
 def read_template(file_path):
@@ -181,17 +193,42 @@ def read_template(file_path):
     code_template = code_content
     json_template = content_str
 
-    return name, replacement_mode, data_types, code_template, json_template
+    # return as a dict
+    return {
+        "name": name,
+        "replacement_mode": replacement_mode,
+        "data_types": data_types,
+        "code_template": code_template,
+        "json_template": json_template,
+    }
+
+    # return name, replacement_mode, data_types, code_template, json_template
+
 
 def run_python_script(script):
     try:
         # Run the script using the Python interpreter
         result = subprocess.run(
-            [sys.executable, "-c", script],
-            text=True,
-            capture_output=True
+            [sys.executable, "-c", script], text=True, capture_output=True
         )
-        
+
+        # Check if the script ran successfully
+        if result.returncode != 0:
+            print("Script failed to execute" + result.stderr)
+            return False
+        return True
+    except Exception as e:
+        print("Script failed to execute" + result.stderr)
+        return False
+
+
+def run_python_script_from_path(script_path):
+    try:
+        # Run the script using the location of the script_path, cd to the script's parent directory
+        result = subprocess.run(
+            [sys.executable, script_path], text=True, capture_output=True
+        )
+
         # Check if the script ran successfully
         if result.returncode != 0:
             print("Script failed to execute" + result.stderr)
@@ -204,7 +241,6 @@ def run_python_script(script):
 
 def process_file(
     name,
-    template_type,
     data_types,
     code_template,
     json_template,
@@ -215,87 +251,159 @@ def process_file(
     case_number = 1
     total_cases = 1
     error_count = 0
-    if template_type == "Simple":
-        # Handling for simple templates
-        for data_type in data_types:
-            data_type_mapping = {"<value>": data_type}
-            replaced_code, json_data = replace_placeholders_and_generate_json(
-                code_template, json_template, data_type_mapping
+
+    # Handling for complex templates
+    placeholders = find_placeholders(code_template + json_template)
+    for data_type_combo in generate_data_type_permutations(placeholders, data_types):
+        data_type_mapping = {ph: dt for ph, dt in zip(placeholders, data_type_combo)}
+        type_name = "_".join(data_type_combo)
+        replaced_code, json_data = replace_placeholders_and_generate_json(
+            code_template, json_template, data_type_mapping
+        )
+        try:
+            # result = exec(replaced_code)
+            result = run_python_script(replaced_code)
+            if not result:
+                raise Exception("Script failed to execute")
+
+        except Exception as e:
+            if "exception" in type_name:
+                print(
+                    "Skipping errror report as the data_type is exception for"
+                    f" '{name}_{type_name}'"
+                )
+            else:
+                print(f"\tError executing script '{name}_{type_name}'")
+                print(f"\tError : {e}\n")
+                # Save error files separately
+                save_files(
+                    replaced_code,
+                    json_data,
+                    str(Path(output_folder).parent / "error"),
+                    name,
+                    type_name,
+                    f"{case_number}_{total_cases}",
+                    file_path,
+                )
+
+                error_count += 1
+                continue
+
+        save_files(
+            replaced_code,
+            json_data,
+            output_folder,
+            name,
+            type_name,
+            f"{case_number}_{total_cases}",
+            file_path,
+        )
+        total_cases += 1
+
+    case_number += 1
+
+
+def process_import_case(
+    name,
+    data_types,
+    code_template,
+    json_template,
+    file_path,
+    file_parent,
+    output_folder,
+):
+    print(f"Processing file {file_path}")
+
+    #  Load json_template
+
+    template_data = json.loads(json_template)
+
+    case_number = 1
+    total_cases = 1
+    error_count = 0
+    # all code merged to find placeholders
+    all_code = code_template
+    for imported_python_file in template_data["imports"]:
+        # Load the imported python file
+        imported_python_file_path = os.path.join(file_parent, imported_python_file)
+        with open(imported_python_file_path, "r") as file:
+            all_code += file.read()
+
+    # Handling for imported templates
+    placeholders = find_placeholders(all_code + json_template)
+    for data_type_combo in generate_data_type_permutations(placeholders, data_types):
+        data_type_mapping = {ph: dt for ph, dt in zip(placeholders, data_type_combo)}
+        type_name = "_".join(data_type_combo)
+
+        for imported_python_file in template_data["imports"]:
+            # Load the imported python file
+            imported_python_file_path = os.path.join(file_parent, imported_python_file)
+            with open(imported_python_file_path, "r") as file:
+                imported_code_template = file.read()
+
+            replaced_code, _ = replace_placeholders_and_generate_json(
+                imported_code_template, json_template, data_type_mapping
             )
-            try:
-                result = exec(replaced_code)
-            except Exception as e:
-                if data_type == "exception":
-                    print(
-                        "Skipping errror report as the data_type is exception for"
-                        f" '{name}_{data_type}'"
-                    )
-                else:
-                    print(f"\tError executing script '{name}_{data_type}'")
-                    print(f"\tError : {e}\n")
-                    error_count += 1
-                    continue
+
             save_files(
                 replaced_code,
-                json_data,
+                None,
                 output_folder,
-                name,
-                data_type,
-                f"{case_number}_{total_cases}",
-                file_path,
-            )
-            total_cases += 1
-    elif template_type == "Complex":
-        # Handling for complex templates
-        placeholders = find_placeholders(code_template + json_template)
-        for data_type_combo in generate_data_type_permutations(
-            placeholders, data_types
-        ):
-            data_type_mapping = {
-                ph: dt for ph, dt in zip(placeholders, data_type_combo)
-            }
-            type_name = "_".join(data_type_combo)
-            replaced_code, json_data = replace_placeholders_and_generate_json(
-                code_template, json_template, data_type_mapping
-            )
-            try:
-                # result = exec(replaced_code)
-                result = run_python_script(replaced_code)
-                if not result:
-                    raise Exception("Script failed to execute")
-
-            except Exception as e:
-                if "exception" in type_name:
-                    print(
-                        "Skipping errror report as the data_type is exception for"
-                        f" '{name}_{type_name}'"
-                    )
-                else:
-                    print(f"\tError executing script '{name}_{type_name}'")
-                    print(f"\tError : {e}\n")
-                    # Save error files separately
-                    save_files(
-                        replaced_code,
-                        json_data,
-                        str(Path(output_folder).parent / "error"),
-                        name,
-                        type_name,
-                        f"{case_number}_{total_cases}",
-                        file_path,
-                    )
-
-                    error_count += 1
-                    continue
-
-            save_files(
-                replaced_code,
-                json_data,
-                output_folder,
-                name,
+                Path(imported_python_file_path).stem,
                 type_name,
                 f"{case_number}_{total_cases}",
                 file_path,
+                imported_file_path=imported_python_file,
             )
-            total_cases += 1
 
-    case_number += 1
+        # Save main file and test file
+        replaced_code, json_data = replace_placeholders_and_generate_json(
+            code_template, json_template, data_type_mapping
+        )
+
+        code_file_path, json_file_path = save_files(
+            replaced_code,
+            json_data,
+            output_folder,
+            name,
+            type_name,
+            f"{case_number}_{total_cases}",
+            file_path,
+        )
+
+        try:
+            # result = exec(replaced_code)
+            result = run_python_script_from_path(code_file_path)
+            if not result:
+                raise Exception("Script failed to execute")
+
+        except Exception as e:
+            if "exception" in type_name:
+                print(
+                    "Skipping errror report as the data_type is exception for"
+                    f" '{name}_{type_name}'"
+                )
+            else:
+                print(f"\tError executing script '{name}_{type_name}'")
+                print(f"\tError : {e}\n")
+                # remove created folder if error
+                shutil.rmtree(
+                    os.path.join(output_folder, name + "_" + type_name),
+                    ignore_errors=True,
+                )
+
+                # Save error files separately
+                save_files(
+                    replaced_code,
+                    json_data,
+                    str(Path(output_folder).parent / "error"),
+                    name,
+                    type_name,
+                    f"{case_number}_{total_cases}",
+                    file_path,
+                )
+
+                error_count += 1
+                continue
+
+        total_cases += 1

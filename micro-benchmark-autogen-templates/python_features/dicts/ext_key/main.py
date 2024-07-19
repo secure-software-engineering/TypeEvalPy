@@ -5,7 +5,7 @@ from ext import key
 
 
 def func():
-    return "Hello from func"
+    return <value1>
 
 
 d = {"a": func}

@@ -4,7 +4,7 @@
 class func:
     def __init__(self, n):
         self.n = n
-        self.num = <value1>
+        self.num = 0
 
     def __iter__(self):
         return self
@@ -17,4 +17,4 @@ class func:
             raise StopIteration()
 
 
-output_list = [i for i in func(<value1>)]
+output_list = [i for i in func(3)]
