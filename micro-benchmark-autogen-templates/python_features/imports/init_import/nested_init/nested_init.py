@@ -1,6 +1,6 @@
 class Smth:
     def func(self):
-        return "Hello from func"
+        return <value1>
 
 
 smth = Smth()

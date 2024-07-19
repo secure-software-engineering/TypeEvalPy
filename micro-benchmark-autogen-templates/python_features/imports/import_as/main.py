@@ -5,7 +5,7 @@ import to_import as as_to_import
 
 
 def func():
-    return "Hello from main module"
+    return <value1>
 
 
 a = func()

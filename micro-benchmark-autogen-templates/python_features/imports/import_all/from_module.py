@@ -1,6 +1,6 @@
 def func1():
-    return 42
+    return <value1>
 
 
 def func2():
-    return "Hello from func2"
+    return <value2>
