@@ -30,7 +30,7 @@
             "parameter": "n",
             "function": "func1",
             "type": [
-                "<value1>"
+                "int"
             ]
         },
         {
@@ -40,7 +40,7 @@
             "variable": "num",
             "function": "func1",
             "type": [
-                "<value1>"
+                "int"
             ]
         },
         {
@@ -50,7 +50,7 @@
             "variable": "num",
             "function": "func1",
             "type": [
-                "<value1>"
+                "int"
             ]
         },
         {

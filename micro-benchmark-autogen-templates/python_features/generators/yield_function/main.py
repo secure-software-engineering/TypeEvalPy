@@ -6,10 +6,10 @@ def func2():
 
 
 def func1(n):
-    num = <value1>
+    num = 0
     while num < n:
         yield func2
-        num += <value1>
+        num += 1
 
 
 for i in func1(10):

@@ -2,10 +2,10 @@
 
 
 def squares():
-    n = <value1>
+    n = 1
     while True:
-        yield n**<value1>
-        n += <value1>
+        yield <value1>
+        n += 1
 
 
 gen = squares()

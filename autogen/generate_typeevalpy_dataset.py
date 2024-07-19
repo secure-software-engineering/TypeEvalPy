@@ -1,4 +1,4 @@
-from helpers import read_template, process_file
+from helpers import read_template, process_file, process_import_case
 import os
 import shutil
 from pathlib import Path
@@ -32,9 +32,25 @@ for file in tqdm.tqdm(python_files, desc="Processing files"):
             continue
 
         template_data = read_template(file)
-        process_file(
-            *template_data, str(file.parent).replace(benchmark_dir, ""), output_folder
-        )
+        if template_data["replacement_mode"] == "Imports":
+            process_import_case(
+                name=template_data["name"],
+                data_types=template_data["data_types"],
+                code_template=template_data["code_template"],
+                json_template=template_data["json_template"],
+                file_path=str(file.parent).replace(benchmark_dir, ""),
+                file_parent=str(file.parent),
+                output_folder=output_folder,
+            )
+        else:
+            process_file(
+                name=template_data["name"],
+                data_types=template_data["data_types"],
+                code_template=template_data["code_template"],
+                json_template=template_data["json_template"],
+                file_path=str(file.parent).replace(benchmark_dir, ""),
+                output_folder=output_folder,
+            )
 
     except Exception as e:
         print(e)

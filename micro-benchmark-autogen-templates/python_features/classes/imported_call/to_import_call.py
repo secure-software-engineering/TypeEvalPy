@@ -4,4 +4,4 @@ class MyClass:
         pass
 
     def func(self):
-        return "Hello from func in MyClass of to_import_call module"
+        return <value1>

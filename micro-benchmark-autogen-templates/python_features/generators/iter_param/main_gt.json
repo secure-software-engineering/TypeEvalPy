@@ -2,7 +2,9 @@
     "replacement_mode": "Complex",
     "type_replacements": [
         "int",
-        "float"
+        "float",
+        "str",
+        "bool"
     ],
     "ground_truth": [
         {
@@ -31,7 +33,7 @@
             "variable": "i",
             "function": "func",
             "type": [
-                "<value1>"
+                "int"
             ]
         },
         {
@@ -46,12 +48,42 @@
         },
         {
             "file": "main.py",
+            "line_number": 5,
+            "col_offset": 5,
+            "variable": "output_list[0]",
+            "function": "func",
+            "type": [
+                "<value1>"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 5,
+            "col_offset": 5,
+            "variable": "output_list[1]",
+            "function": "func",
+            "type": [
+                "<value1>"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 5,
+            "col_offset": 5,
+            "variable": "output_list[2]",
+            "function": "func",
+            "type": [
+                "<value1>"
+            ]
+        },
+        {
+            "file": "main.py",
             "line_number": 10,
             "col_offset": 24,
             "parameter": "max",
             "function": "Cls.__init__",
             "type": [
-                "<value1>"
+                "int"
             ]
         },
         {
@@ -61,7 +93,7 @@
             "variable": "Cls.max",
             "function": "Cls.__init__",
             "type": [
-                "<value1>"
+                "int"
             ]
         },
         {
@@ -80,7 +112,7 @@
             "variable": "Cls.n",
             "function": "Cls.__iter__",
             "type": [
-                "<value1>"
+                "int"
             ]
         },
         {
@@ -109,7 +141,7 @@
             "variable": "Cls.n",
             "function": "Cls.__next__",
             "type": [
-                "<value1>"
+                "int"
             ]
         },
         {
@@ -119,6 +151,33 @@
             "variable": "a",
             "type": [
                 "list"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 26,
+            "col_offset": 1,
+            "variable": "a[0]",
+            "type": [
+                "<value1>"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 26,
+            "col_offset": 1,
+            "variable": "a[1]",
+            "type": [
+                "<value1>"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 26,
+            "col_offset": 1,
+            "variable": "a[2]",
+            "type": [
+                "<value1>"
             ]
         }
     ]
