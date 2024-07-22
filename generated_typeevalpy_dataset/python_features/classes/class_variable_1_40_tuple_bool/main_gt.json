@@ -1,0 +1,115 @@
+{
+    "replacement_mode": "Complex",
+    "type_replacements": [
+        "int",
+        "float",
+        "str",
+        "bool",
+        "list",
+        "dict",
+        "tuple"
+    ],
+    "ground_truth": [
+        {
+            "file": "main.py",
+            "line_number": 3,
+            "col_offset": 5,
+            "variable": "MyClass.class_var",
+            "type": [
+                "tuple"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 3,
+            "col_offset": 5,
+            "variable": "MyClass.class_var[0]",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 3,
+            "col_offset": 5,
+            "variable": "MyClass.class_var[1]",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 3,
+            "col_offset": 5,
+            "variable": "MyClass.class_var[2]",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 5,
+            "col_offset": 24,
+            "parameter": "instance_var",
+            "function": "__init__",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 6,
+            "col_offset": 9,
+            "variable": "MyClass.instance_var",
+            "function": "__init__",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 9,
+            "col_offset": 1,
+            "variable": "a",
+            "type": [
+                "MyClass"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 10,
+            "col_offset": 1,
+            "variable": "b",
+            "type": [
+                "tuple"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 10,
+            "col_offset": 1,
+            "variable": "b[0]",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 10,
+            "col_offset": 1,
+            "variable": "b[1]",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 10,
+            "col_offset": 1,
+            "variable": "b[2]",
+            "type": [
+                "int"
+            ]
+        }
+    ]
+}

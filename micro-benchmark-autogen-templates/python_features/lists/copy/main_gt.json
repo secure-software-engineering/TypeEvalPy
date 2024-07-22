@@ -1,0 +1,26 @@
+{
+    "replacement_mode": "Complex",
+    "type_replacements": [
+        "list"
+    ],
+    "ground_truth": [
+        {
+            "file": "main.py",
+            "line_number": 2,
+            "col_offset": 1,
+            "variable": "my_list",
+            "type": [
+                "<value1>"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 3,
+            "col_offset": 1,
+            "variable": "copy_of_my_list",
+            "type": [
+                "<value1>"
+            ]
+        }
+    ]
+}

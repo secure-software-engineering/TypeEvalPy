@@ -1,0 +1,20 @@
+{
+    "replacement_mode": "Complex",
+    "type_replacements": [
+        "int",
+        "float",
+        "str",
+        "list"
+    ],
+    "ground_truth": [
+        {
+            "file": "arithmetic.py",
+            "line_number": 19,
+            "col_offset": 1,
+            "variable": "result1",
+            "type": [
+                "<value1>"
+            ]
+        }
+    ]
+}

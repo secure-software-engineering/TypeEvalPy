@@ -1,0 +1,53 @@
+{
+    "replacement_mode": "Imports",
+    "imports": [
+        "ext.py"
+    ],
+    "type_replacements": [
+        "int",
+        "float",
+        "str",
+        "bool",
+        "list",
+        "dict",
+        "tuple"
+    ],
+    "ground_truth": [
+        {
+            "file": "main.py",
+            "line_number": 7,
+            "col_offset": 5,
+            "function": "func",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 11,
+            "col_offset": 1,
+            "variable": "d",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 11,
+            "col_offset": 1,
+            "variable": "d['a']",
+            "type": [
+                "callable"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 13,
+            "col_offset": 1,
+            "variable": "e",
+            "type": [
+                "str"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,84 @@
+{
+    "replacement_mode": "Complex",
+    "type_replacements": [
+        "int",
+        "float"
+    ],
+    "ground_truth": [
+        {
+            "file": "main.py",
+            "line_number": 4,
+            "col_offset": 5,
+            "function": "func2",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 8,
+            "col_offset": 5,
+            "function": "func1",
+            "type": [
+                "generator"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 8,
+            "col_offset": 11,
+            "parameter": "n",
+            "function": "func1",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 9,
+            "col_offset": 5,
+            "variable": "num",
+            "function": "func1",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 12,
+            "col_offset": 9,
+            "variable": "num",
+            "function": "func1",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 15,
+            "col_offset": 5,
+            "variable": "i",
+            "type": [
+                "callable"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 17,
+            "col_offset": 9,
+            "variable": "a",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 19,
+            "col_offset": 9,
+            "variable": "a",
+            "type": [
+                "int"
+            ]
+        }
+    ]
+}

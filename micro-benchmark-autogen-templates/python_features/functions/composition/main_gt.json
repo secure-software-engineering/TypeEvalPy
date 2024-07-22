@@ -1,0 +1,80 @@
+{
+    "replacement_mode": "Complex",
+    "type_replacements": [
+        "int",
+        "float"
+    ],
+    "ground_truth": [
+        {
+            "file": "main.py",
+            "line_number": 4,
+            "col_offset": 5,
+            "function": "add",
+            "type": [
+                "<value1>",
+                "<value2>"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 4,
+            "col_offset": 9,
+            "parameter": "x",
+            "function": "add",
+            "type": [
+                "<value1>",
+                "<value2>"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 4,
+            "col_offset": 12,
+            "parameter": "y",
+            "function": "add",
+            "type": [
+                "<value1>",
+                "<value2>"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 8,
+            "col_offset": 5,
+            "function": "square",
+            "type": [
+                "<value1>",
+                "<value2>"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 8,
+            "col_offset": 12,
+            "parameter": "x",
+            "function": "square",
+            "type": [
+                "<value1>",
+                "<value2>"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 12,
+            "col_offset": 1,
+            "variable": "a",
+            "type": [
+                "<value1>"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 13,
+            "col_offset": 1,
+            "variable": "b",
+            "type": [
+                "<value2>"
+            ]
+        }
+    ]
+}

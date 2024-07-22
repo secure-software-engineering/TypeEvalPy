@@ -1,0 +1,30 @@
+{
+    "replacement_mode": "Imports",
+    "imports": [
+        "to_import.py"
+    ],
+    "type_replacements": [
+        "int",
+        "str"
+    ],
+    "ground_truth": [
+        {
+            "file": "main.py",
+            "line_number": 5,
+            "col_offset": 1,
+            "variable": "a",
+            "type": [
+                "to_import.A"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 6,
+            "col_offset": 1,
+            "variable": "b",
+            "type": [
+                "str"
+            ]
+        }
+    ]
+}

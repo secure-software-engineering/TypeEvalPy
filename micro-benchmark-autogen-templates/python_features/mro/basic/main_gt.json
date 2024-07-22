@@ -1,0 +1,41 @@
+{
+    "replacement_mode": "Complex",
+    "type_replacements": [
+        "int",
+        "float",
+        "str",
+        "bool",
+        "list",
+        "dict",
+        "tuple"
+    ],
+    "ground_truth": [
+        {
+            "file": "main.py",
+            "line_number": 5,
+            "col_offset": 9,
+            "function": "A.func",
+            "type": [
+                "<value1>"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 13,
+            "variable": "b",
+            "col_offset": 1,
+            "type": [
+                "B"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 14,
+            "variable": "c",
+            "col_offset": 1,
+            "type": [
+                "<value1>"
+            ]
+        }
+    ]
+}
