@@ -1,0 +1,97 @@
+{
+    "replacement_mode": "Complex",
+    "type_replacements": [
+        "int",
+        "float",
+        "str",
+        "bool",
+        "list",
+        "dict",
+        "tuple"
+    ],
+    "ground_truth": [
+        {
+            "file": "main.py",
+            "line_number": 4,
+            "col_offset": 5,
+            "function": "func2",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 8,
+            "col_offset": 5,
+            "function": "func1",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 9,
+            "col_offset": 5,
+            "variable": "d",
+            "function": "func1",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 9,
+            "col_offset": 5,
+            "variable": "d['a']",
+            "function": "func1",
+            "type": [
+                "callable"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 13,
+            "col_offset": 1,
+            "variable": "b",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 14,
+            "col_offset": 1,
+            "variable": "c",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 14,
+            "col_offset": 1,
+            "variable": "c[0]",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 14,
+            "col_offset": 1,
+            "variable": "c[1]",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 14,
+            "col_offset": 1,
+            "variable": "c[2]",
+            "type": [
+                "int"
+            ]
+        }
+    ]
+}

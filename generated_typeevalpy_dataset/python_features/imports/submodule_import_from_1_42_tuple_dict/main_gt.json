@@ -1,0 +1,90 @@
+{
+    "replacement_mode": "Imports",
+    "imports": [
+        "from_module_sub/__init__.py",
+        "from_module_sub/nested_module_sub.py"
+    ],
+    "type_replacements": [
+        "int",
+        "float",
+        "str",
+        "bool",
+        "list",
+        "dict",
+        "tuple"
+    ],
+    "ground_truth": [
+        {
+            "file": "main.py",
+            "line_number": 6,
+            "col_offset": 1,
+            "variable": "a",
+            "type": [
+                "tuple"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 6,
+            "col_offset": 1,
+            "variable": "a[0]",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 6,
+            "col_offset": 1,
+            "variable": "a[1]",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 6,
+            "col_offset": 1,
+            "variable": "a[2]",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 7,
+            "col_offset": 1,
+            "variable": "b",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 7,
+            "col_offset": 1,
+            "variable": "b['svmrt']",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 7,
+            "col_offset": 1,
+            "variable": "b['pdtup']",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 7,
+            "col_offset": 1,
+            "variable": "b['pkhbu']",
+            "type": [
+                "int"
+            ]
+        }
+    ]
+}

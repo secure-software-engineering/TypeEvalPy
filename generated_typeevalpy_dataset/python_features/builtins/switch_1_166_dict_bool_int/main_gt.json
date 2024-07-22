@@ -1,0 +1,91 @@
+{
+    "replacement_mode": "Complex",
+    "type_replacements": [
+        "int",
+        "float",
+        "str",
+        "bool",
+        "list",
+        "dict",
+        "tuple"
+    ],
+    "ground_truth": [
+        {
+            "file": "main.py",
+            "line_number": 2,
+            "col_offset": 5,
+            "function": "func",
+            "type": [
+                "dict",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 2,
+            "col_offset": 10,
+            "function": "func",
+            "parameter": "value",
+            "type": [
+                "dict",
+                "int",
+                "bool"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 12,
+            "col_offset": 1,
+            "variable": "a",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 13,
+            "col_offset": 1,
+            "variable": "b",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 13,
+            "col_offset": 1,
+            "variable": "b['nalen']",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 13,
+            "col_offset": 1,
+            "variable": "b['hdqxj']",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 13,
+            "col_offset": 1,
+            "variable": "b['kqroo']",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 14,
+            "col_offset": 1,
+            "variable": "c",
+            "type": [
+                "str"
+            ]
+        }
+    ]
+}

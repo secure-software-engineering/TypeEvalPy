@@ -1,0 +1,175 @@
+{
+    "replacement_mode": "Complex",
+    "type_replacements": [
+        "int",
+        "float",
+        "str",
+        "bool",
+        "list",
+        "tuple"
+    ],
+    "ground_truth": [
+        {
+            "file": "main.py",
+            "line_number": 4,
+            "col_offset": 5,
+            "function": "dec1",
+            "type": [
+                "callable"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 4,
+            "col_offset": 10,
+            "parameter": "f",
+            "function": "dec1",
+            "type": [
+                "callable"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 5,
+            "col_offset": 9,
+            "function": "wrapper",
+            "type": [
+                "tuple"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 5,
+            "col_offset": 17,
+            "parameter": "a",
+            "function": "wrapper",
+            "type": [
+                "tuple"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 5,
+            "col_offset": 20,
+            "parameter": "b",
+            "function": "wrapper",
+            "type": [
+                "tuple"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 6,
+            "col_offset": 9,
+            "variable": "result",
+            "function": "wrapper",
+            "type": [
+                "tuple"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 6,
+            "col_offset": 9,
+            "variable": "result[0]",
+            "function": "wrapper",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 6,
+            "col_offset": 9,
+            "variable": "result[1]",
+            "function": "wrapper",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 6,
+            "col_offset": 9,
+            "variable": "result[2]",
+            "function": "wrapper",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 12,
+            "col_offset": 1,
+            "variable": "a",
+            "type": [
+                "callable"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 16,
+            "col_offset": 5,
+            "function": "func",
+            "type": [
+                "tuple"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 16,
+            "col_offset": 10,
+            "parameter": "a",
+            "function": "func",
+            "type": [
+                "tuple"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 16,
+            "col_offset": 13,
+            "parameter": "b",
+            "function": "func",
+            "type": [
+                "tuple"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 20,
+            "col_offset": 1,
+            "variable": "c",
+            "type": [
+                "tuple"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 20,
+            "col_offset": 1,
+            "variable": "c[0]",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 20,
+            "col_offset": 1,
+            "variable": "c[1]",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 20,
+            "col_offset": 1,
+            "variable": "c[2]",
+            "type": [
+                "int"
+            ]
+        }
+    ]
+}

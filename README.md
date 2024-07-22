@@ -14,6 +14,12 @@
 - 🔄 Efficiently transforms inferred types into a **standardized format**.
 - 📊 Automatically produces **meaningful metrics** for in-depth assessment and comparison.
 
+### [New] TypeEvalPy Autogen
+- 🤖 **Autogenerates code snippets** and ground truth to scale the benchmark based on the original `TypeEvalPy` benchmark.
+- 📈 The autogen benchmark now contains:
+  - **Python files**: 7121
+  - **Type annotations**: 78373
+
 ## 🛠️ Supported Tools
 
 | Supported :white_check_mark:                                          | In-progress :wrench:                                                 | Planned :bulb:                                        |
@@ -229,6 +235,29 @@ docker run \
 
 </details>
 
+---
+
+## Running TypeEvalPy Autogen
+
+To generate an extended version of the original TypeEvalPy benchmark to include many more Python types, run the following commands:
+
+1.  **Navigate to the `autogen` Directory**
+
+    ```bash
+    cd autogen
+    ```
+
+
+2.  **Execute the Generation Script**
+
+    Run the following command to start the generation process:
+
+    ```bash
+    python generate_typeevalpy_dataset.py
+    ```
+
+This will generate a folder in the repo root with the autogen benchmark with the current date.
+ 
 ---
 
 ### 🤝 Contributing

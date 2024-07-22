@@ -89,6 +89,33 @@
     {
         "file": "main.py",
         "line_number": 23,
+        "col_offset": 1,
+        "variable": "output_list[0]",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 23,
+        "col_offset": 1,
+        "variable": "output_list[1]",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 23,
+        "col_offset": 1,
+        "variable": "output_list[2]",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 23,
         "col_offset": 22,
         "variable": "i",
         "type": [

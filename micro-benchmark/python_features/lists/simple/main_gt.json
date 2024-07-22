@@ -2,7 +2,7 @@
     {
         "file": "main.py",
         "line_number": 4,
-        "col_offset": 5,        
+        "col_offset": 5,
         "function": "func1",
         "type": [
             "int"
@@ -11,7 +11,7 @@
     {
         "file": "main.py",
         "line_number": 8,
-        "col_offset": 5,        
+        "col_offset": 5,
         "function": "func2",
         "type": [
             "float"
@@ -20,7 +20,7 @@
     {
         "file": "main.py",
         "line_number": 12,
-        "col_offset": 5,        
+        "col_offset": 5,
         "function": "func3",
         "type": [
             "str"
@@ -29,7 +29,7 @@
     {
         "file": "main.py",
         "line_number": 16,
-        "col_offset": 1,        
+        "col_offset": 1,
         "variable": "a",
         "type": [
             "list"
@@ -38,7 +38,7 @@
     {
         "file": "main.py",
         "line_number": 16,
-        "col_offset": 1,        
+        "col_offset": 1,
         "variable": "a[0]",
         "type": [
             "callable"
@@ -47,7 +47,7 @@
     {
         "file": "main.py",
         "line_number": 16,
-        "col_offset": 1,        
+        "col_offset": 1,
         "variable": "a[1]",
         "type": [
             "callable"
@@ -56,7 +56,7 @@
     {
         "file": "main.py",
         "line_number": 16,
-        "col_offset": 1,        
+        "col_offset": 1,
         "variable": "a[2]",
         "type": [
             "callable"
@@ -65,7 +65,7 @@
     {
         "file": "main.py",
         "line_number": 18,
-        "col_offset": 1,        
+        "col_offset": 1,
         "variable": "c",
         "type": [
             "int"
@@ -74,7 +74,7 @@
     {
         "file": "main.py",
         "line_number": 19,
-        "col_offset": 1,        
+        "col_offset": 1,
         "variable": "d",
         "type": [
             "float"
@@ -83,7 +83,7 @@
     {
         "file": "main.py",
         "line_number": 20,
-        "col_offset": 1,        
+        "col_offset": 1,
         "variable": "e",
         "type": [
             "str"
@@ -92,7 +92,7 @@
     {
         "file": "main.py",
         "line_number": 23,
-        "col_offset": 5,        
+        "col_offset": 5,
         "function": "func4",
         "type": [
             "bool"
@@ -101,7 +101,7 @@
     {
         "file": "main.py",
         "line_number": 27,
-        "col_offset": 1,        
+        "col_offset": 1,
         "variable": "b",
         "type": [
             "list"
@@ -109,8 +109,17 @@
     },
     {
         "file": "main.py",
+        "line_number": 27,
+        "col_offset": 1,
+        "variable": "b[0]",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
         "line_number": 28,
-        "col_offset": 1,        
+        "col_offset": 1,
         "variable": "b[0]",
         "type": [
             "callable"
@@ -119,7 +128,7 @@
     {
         "file": "main.py",
         "line_number": 30,
-        "col_offset": 1,        
+        "col_offset": 1,
         "variable": "f",
         "type": [
             "bool"

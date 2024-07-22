@@ -1,0 +1,27 @@
+{
+    "replacement_mode": "Imports",
+    "imports": [
+        "to_import/__init__.py",
+        "to_import/to_import.py"
+    ],
+    "type_replacements": [
+        "int",
+        "float",
+        "str",
+        "bool",
+        "list",
+        "dict",
+        "tuple"
+    ],
+    "ground_truth": [
+        {
+            "file": "main.py",
+            "line_number": 6,
+            "col_offset": 1,
+            "variable": "a",
+            "type": [
+                "<value1>"
+            ]
+        }
+    ]
+}

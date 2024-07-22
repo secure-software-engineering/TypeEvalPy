@@ -1,0 +1,77 @@
+{
+    "replacement_mode": "Complex",
+    "type_replacements": [
+        "int",
+        "float",
+        "str",
+        "bool",
+        "list",
+        "dict",
+        "tuple"
+    ],
+    "ground_truth": [
+        {
+            "file": "main.py",
+            "line_number": 5,
+            "col_offset": 9,
+            "function": "A.func",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 13,
+            "col_offset": 9,
+            "function": "B.func",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 21,
+            "col_offset": 1,
+            "variable": "c",
+            "type": [
+                "C"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 22,
+            "col_offset": 1,
+            "variable": "d",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 22,
+            "col_offset": 1,
+            "variable": "d['grjdv']",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 22,
+            "col_offset": 1,
+            "variable": "d['zdlnt']",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 22,
+            "col_offset": 1,
+            "variable": "d['diqlp']",
+            "type": [
+                "int"
+            ]
+        }
+    ]
+}

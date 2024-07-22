@@ -18,6 +18,6 @@ class Cls:
         return result
 
 
-c = Cls(10)
+c = Cls(2)
 
 output_list = [i for i in c]

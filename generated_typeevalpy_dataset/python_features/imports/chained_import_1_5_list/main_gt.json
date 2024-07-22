@@ -1,0 +1,54 @@
+{
+    "replacement_mode": "Imports",
+    "imports": [
+        "chained_import.py",
+        "from_import.py"
+    ],
+    "type_replacements": [
+        "int",
+        "float",
+        "str",
+        "bool",
+        "list",
+        "dict",
+        "tuple"
+    ],
+    "ground_truth": [
+        {
+            "file": "main.py",
+            "line_number": 5,
+            "col_offset": 5,
+            "variable": "a",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 5,
+            "col_offset": 5,
+            "variable": "a[0]",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 5,
+            "col_offset": 5,
+            "variable": "a[1]",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 5,
+            "col_offset": 5,
+            "variable": "a[2]",
+            "type": [
+                "int"
+            ]
+        }
+    ]
+}

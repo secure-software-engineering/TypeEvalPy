@@ -1,0 +1,47 @@
+{
+    "replacement_mode": "Complex",
+    "type_replacements": [
+        "int",
+        "float",
+        "str",
+        "bool"
+    ],
+    "ground_truth": [
+        {
+            "file": "main.py",
+            "line_number": 2,
+            "col_offset": 1,
+            "variable": "a",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 3,
+            "col_offset": 1,
+            "variable": "b",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 3,
+            "col_offset": 4,
+            "variable": "c",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 3,
+            "col_offset": 7,
+            "variable": "d",
+            "type": [
+                "float"
+            ]
+        }
+    ]
+}

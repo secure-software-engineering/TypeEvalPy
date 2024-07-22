@@ -1,0 +1,184 @@
+{
+    "replacement_mode": "Complex",
+    "type_replacements": [
+        "int",
+        "float",
+        "str",
+        "list",
+        "dict",
+        "tuple"
+    ],
+    "ground_truth": [
+        {
+            "file": "main.py",
+            "line_number": 2,
+            "col_offset": 5,
+            "function": "func1",
+            "type": [
+                "tuple"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 6,
+            "col_offset": 5,
+            "function": "func2",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 10,
+            "col_offset": 5,
+            "function": "func3",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 14,
+            "col_offset": 5,
+            "function": "func4",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 18,
+            "col_offset": 1,
+            "variable": "a",
+            "type": [
+                "callable"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 18,
+            "col_offset": 5,
+            "variable": "b",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 18,
+            "col_offset": 8,
+            "variable": "b[0]",
+            "type": [
+                "callable"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 18,
+            "col_offset": 8,
+            "variable": "b[1]",
+            "type": [
+                "callable"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 18,
+            "col_offset": 8,
+            "variable": "c",
+            "type": [
+                "callable"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 20,
+            "col_offset": 1,
+            "variable": "d",
+            "type": [
+                "tuple"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 20,
+            "col_offset": 1,
+            "variable": "d[0]",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 20,
+            "col_offset": 1,
+            "variable": "d[1]",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 20,
+            "col_offset": 1,
+            "variable": "d[2]",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 21,
+            "col_offset": 1,
+            "variable": "e",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 22,
+            "col_offset": 1,
+            "variable": "f",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 23,
+            "col_offset": 1,
+            "variable": "g",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 23,
+            "col_offset": 1,
+            "variable": "g['heano']",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 23,
+            "col_offset": 1,
+            "variable": "g['rplzx']",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 23,
+            "col_offset": 1,
+            "variable": "g['lhnvd']",
+            "type": [
+                "int"
+            ]
+        }
+    ]
+}

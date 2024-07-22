@@ -17,4 +17,4 @@ class func:
             raise StopIteration()
 
 
-output_list = [i for i in func(100)]
+output_list = [i for i in func(3)]

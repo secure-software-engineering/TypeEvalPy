@@ -1,0 +1,95 @@
+{
+    "replacement_mode": "Complex",
+    "type_replacements": [
+        "int",
+        "float",
+        "str",
+        "bool",
+        "list",
+        "dict",
+        "tuple"
+    ],
+    "ground_truth": [
+        {
+            "file": "main.py",
+            "line_number": 5,
+            "col_offset": 13,
+            "variable": "A.B.a",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 7,
+            "col_offset": 13,
+            "function": "A.B.bfunc",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 15,
+            "col_offset": 9,
+            "function": "C.cfunc",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 19,
+            "col_offset": 1,
+            "variable": "c",
+            "type": [
+                "C"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 20,
+            "col_offset": 1,
+            "variable": "d",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 21,
+            "col_offset": 1,
+            "variable": "e",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 21,
+            "col_offset": 1,
+            "variable": "e['jjcur']",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 21,
+            "col_offset": 1,
+            "variable": "e['vjhtq']",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 21,
+            "col_offset": 1,
+            "variable": "e['wujhm']",
+            "type": [
+                "int"
+            ]
+        }
+    ]
+}

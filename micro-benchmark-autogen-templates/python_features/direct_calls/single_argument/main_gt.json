@@ -1,0 +1,56 @@
+{
+    "replacement_mode": "Complex",
+    "type_replacements": [
+        "int",
+        "float"
+    ],
+    "ground_truth": [
+        {
+            "file": "main.py",
+            "line_number": 4,
+            "col_offset": 5,
+            "function": "add_one",
+            "type": [
+                "<value1>"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 4,
+            "col_offset": 13,
+            "parameter": "x",
+            "function": "add_one",
+            "type": [
+                "<value1>"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 8,
+            "col_offset": 5,
+            "function": "double",
+            "type": [
+                "<value1>"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 8,
+            "col_offset": 12,
+            "parameter": "x",
+            "function": "double",
+            "type": [
+                "<value1>"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 12,
+            "col_offset": 1,
+            "variable": "result",
+            "type": [
+                "<value1>"
+            ]
+        }
+    ]
+}

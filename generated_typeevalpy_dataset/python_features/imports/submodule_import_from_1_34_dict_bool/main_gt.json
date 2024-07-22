@@ -1,0 +1,63 @@
+{
+    "replacement_mode": "Imports",
+    "imports": [
+        "from_module_sub/__init__.py",
+        "from_module_sub/nested_module_sub.py"
+    ],
+    "type_replacements": [
+        "int",
+        "float",
+        "str",
+        "bool",
+        "list",
+        "dict",
+        "tuple"
+    ],
+    "ground_truth": [
+        {
+            "file": "main.py",
+            "line_number": 6,
+            "col_offset": 1,
+            "variable": "a",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 6,
+            "col_offset": 1,
+            "variable": "a['mnwwb']",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 6,
+            "col_offset": 1,
+            "variable": "a['lntsq']",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 6,
+            "col_offset": 1,
+            "variable": "a['qduxt']",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 7,
+            "col_offset": 1,
+            "variable": "b",
+            "type": [
+                "bool"
+            ]
+        }
+    ]
+}
