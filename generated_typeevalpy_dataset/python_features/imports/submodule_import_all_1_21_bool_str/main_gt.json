@@ -1,0 +1,36 @@
+{
+    "replacement_mode": "Imports",
+    "imports": [
+        "from_all/__init__.py",
+        "from_all/nested_module.py"
+    ],
+    "type_replacements": [
+        "int",
+        "float",
+        "str",
+        "bool",
+        "list",
+        "dict",
+        "tuple"
+    ],
+    "ground_truth": [
+        {
+            "file": "main.py",
+            "line_number": 6,
+            "col_offset": 1,
+            "variable": "a",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 7,
+            "col_offset": 1,
+            "variable": "b",
+            "type": [
+                "str"
+            ]
+        }
+    ]
+}

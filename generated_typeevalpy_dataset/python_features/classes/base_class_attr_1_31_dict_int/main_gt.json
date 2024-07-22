@@ -1,0 +1,122 @@
+{
+    "replacement_mode": "Complex",
+    "type_replacements": [
+        "int",
+        "float",
+        "str",
+        "bool",
+        "list",
+        "dict",
+        "tuple"
+    ],
+    "ground_truth": [
+        {
+            "file": "main.py",
+            "line_number": 5,
+            "col_offset": 13,
+            "variable": "A.B.a",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 5,
+            "col_offset": 13,
+            "variable": "A.B.a['ksnwr']",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 5,
+            "col_offset": 13,
+            "variable": "A.B.a['plily']",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 5,
+            "col_offset": 13,
+            "variable": "A.B.a['lleua']",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 7,
+            "col_offset": 13,
+            "function": "A.B.bfunc",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 15,
+            "col_offset": 9,
+            "function": "C.cfunc",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 19,
+            "col_offset": 1,
+            "variable": "c",
+            "type": [
+                "C"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 20,
+            "col_offset": 1,
+            "variable": "d",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 20,
+            "col_offset": 1,
+            "variable": "d['ksnwr']",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 20,
+            "col_offset": 1,
+            "variable": "d['plily']",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 20,
+            "col_offset": 1,
+            "variable": "d['lleua']",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 21,
+            "col_offset": 1,
+            "variable": "e",
+            "type": [
+                "int"
+            ]
+        }
+    ]
+}

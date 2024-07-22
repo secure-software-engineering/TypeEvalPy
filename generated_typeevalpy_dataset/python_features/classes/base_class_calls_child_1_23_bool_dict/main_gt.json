@@ -1,0 +1,122 @@
+{
+    "replacement_mode": "Complex",
+    "type_replacements": [
+        "int",
+        "float",
+        "str",
+        "bool",
+        "list",
+        "dict",
+        "tuple"
+    ],
+    "ground_truth": [
+        {
+            "file": "main.py",
+            "line_number": 3,
+            "col_offset": 9,
+            "function": "A.func",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 9,
+            "col_offset": 9,
+            "variable": "B.child",
+            "type": [
+                "callable"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 11,
+            "col_offset": 9,
+            "function": "B.func2",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 17,
+            "col_offset": 9,
+            "variable": "C.child",
+            "type": [
+                "callable"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 19,
+            "col_offset": 9,
+            "function": "C.func2",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 23,
+            "col_offset": 1,
+            "variable": "b",
+            "type": [
+                "B"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 24,
+            "col_offset": 1,
+            "variable": "d",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 26,
+            "col_offset": 1,
+            "variable": "c",
+            "type": [
+                "C"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 27,
+            "col_offset": 1,
+            "variable": "e",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 27,
+            "col_offset": 1,
+            "variable": "e['sozww']",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 27,
+            "col_offset": 1,
+            "variable": "e['qxnsm']",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 27,
+            "col_offset": 1,
+            "variable": "e['kdkoq']",
+            "type": [
+                "int"
+            ]
+        }
+    ]
+}

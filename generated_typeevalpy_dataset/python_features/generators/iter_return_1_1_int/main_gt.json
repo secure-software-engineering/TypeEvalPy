@@ -1,0 +1,126 @@
+{
+    "replacement_mode": "Complex",
+    "type_replacements": [
+        "int",
+        "float",
+        "str",
+        "bool",
+        "list",
+        "dict",
+        "tuple"
+    ],
+    "ground_truth": [
+        {
+            "file": "main.py",
+            "line_number": 4,
+            "col_offset": 5,
+            "function": "func",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 9,
+            "col_offset": 24,
+            "parameter": "max",
+            "function": "Cls.__init__",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 10,
+            "col_offset": 9,
+            "variable": "Cls.max",
+            "function": "Cls.__init__",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 12,
+            "col_offset": 9,
+            "function": "Cls.__iter__",
+            "type": [
+                "Cls"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 13,
+            "col_offset": 9,
+            "function": "Cls.__iter__",
+            "variable": "Cls.n",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 16,
+            "col_offset": 9,
+            "function": "Cls.__next__",
+            "type": [
+                "callable"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 19,
+            "col_offset": 9,
+            "function": "Cls.__next__",
+            "variable": "Cls.n",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 23,
+            "col_offset": 1,
+            "variable": "output_list",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 23,
+            "col_offset": 1,
+            "variable": "output_list[0]",
+            "type": [
+                "callable"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 23,
+            "col_offset": 1,
+            "variable": "output_list[1]",
+            "type": [
+                "callable"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 23,
+            "col_offset": 22,
+            "variable": "i",
+            "type": [
+                "callable"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 24,
+            "col_offset": 1,
+            "variable": "a",
+            "type": [
+                "int"
+            ]
+        }
+    ]
+}

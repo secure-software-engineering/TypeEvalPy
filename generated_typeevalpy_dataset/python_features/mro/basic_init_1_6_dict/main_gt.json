@@ -1,0 +1,108 @@
+{
+    "replacement_mode": "Complex",
+    "type_replacements": [
+        "int",
+        "float",
+        "str",
+        "bool",
+        "list",
+        "dict",
+        "tuple"
+    ],
+    "ground_truth": [
+        {
+            "file": "main.py",
+            "line_number": 7,
+            "col_offset": 9,
+            "function": "A.__init__",
+            "variable": "A.a",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 7,
+            "col_offset": 9,
+            "function": "A.__init__",
+            "variable": "A.a['cbztz']",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 7,
+            "col_offset": 9,
+            "function": "A.__init__",
+            "variable": "A.a['hxbvr']",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 7,
+            "col_offset": 9,
+            "function": "A.__init__",
+            "variable": "A.a['ncjcv']",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 11,
+            "col_offset": 9,
+            "function": "B.func",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 15,
+            "col_offset": 1,
+            "variable": "b",
+            "type": [
+                "B"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 16,
+            "col_offset": 1,
+            "variable": "c",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 16,
+            "col_offset": 1,
+            "variable": "c['cbztz']",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 16,
+            "col_offset": 1,
+            "variable": "c['hxbvr']",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 16,
+            "col_offset": 1,
+            "variable": "c['ncjcv']",
+            "type": [
+                "int"
+            ]
+        }
+    ]
+}

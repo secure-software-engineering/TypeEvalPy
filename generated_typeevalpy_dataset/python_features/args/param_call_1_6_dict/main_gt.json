@@ -1,0 +1,87 @@
+{
+    "replacement_mode": "Complex",
+    "type_replacements": [
+        "int",
+        "float",
+        "str",
+        "bool",
+        "list",
+        "dict",
+        "tuple"
+    ],
+    "ground_truth": [
+        {
+            "file": "main.py",
+            "line_number": 8,
+            "col_offset": 5,
+            "function": "func",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 8,
+            "col_offset": 10,
+            "function": "func",
+            "parameter": "a",
+            "type": [
+                "callable"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 12,
+            "col_offset": 5,
+            "function": "func2",
+            "type": [
+                "callable"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 16,
+            "col_offset": 5,
+            "function": "func3",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 20,
+            "col_offset": 1,
+            "variable": "b",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 20,
+            "col_offset": 1,
+            "variable": "b['ngnfj']",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 20,
+            "col_offset": 1,
+            "variable": "b['kvbrv']",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 20,
+            "col_offset": 1,
+            "variable": "b['kegqn']",
+            "type": [
+                "int"
+            ]
+        }
+    ]
+}
