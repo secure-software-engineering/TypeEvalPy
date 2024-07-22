@@ -1,0 +1,119 @@
+{
+    "replacement_mode": "Complex",
+    "type_replacements": [
+        "int",
+        "float",
+        "str",
+        "bool"
+    ],
+    "ground_truth": [
+        {
+            "file": "main.py",
+            "line_number": 4,
+            "col_offset": 1,
+            "variable": "keys",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 4,
+            "col_offset": 1,
+            "variable": "keys[0]",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 4,
+            "col_offset": 1,
+            "variable": "keys[1]",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 4,
+            "col_offset": 1,
+            "variable": "keys[2]",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 5,
+            "col_offset": 1,
+            "variable": "values",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 5,
+            "col_offset": 1,
+            "variable": "values[0]",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 5,
+            "col_offset": 1,
+            "variable": "values[1]",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 5,
+            "col_offset": 1,
+            "variable": "values[2]",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 6,
+            "col_offset": 1,
+            "variable": "my_dict",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 6,
+            "col_offset": 1,
+            "variable": "my_dict['a']",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 6,
+            "col_offset": 1,
+            "variable": "my_dict['b']",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 6,
+            "col_offset": 1,
+            "variable": "my_dict['c']",
+            "type": [
+                "bool"
+            ]
+        }
+    ]
+}

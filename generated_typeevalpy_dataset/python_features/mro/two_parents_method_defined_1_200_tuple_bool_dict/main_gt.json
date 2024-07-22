@@ -1,0 +1,113 @@
+{
+    "replacement_mode": "Complex",
+    "type_replacements": [
+        "int",
+        "float",
+        "str",
+        "bool",
+        "list",
+        "dict",
+        "tuple"
+    ],
+    "ground_truth": [
+        {
+            "file": "main.py",
+            "line_number": 8,
+            "col_offset": 9,
+            "function": "A.func",
+            "type": [
+                "tuple"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 13,
+            "col_offset": 9,
+            "function": "B.func",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 21,
+            "col_offset": 9,
+            "function": "C.func",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 25,
+            "col_offset": 1,
+            "variable": "C",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 25,
+            "col_offset": 1,
+            "variable": "C['bqxdl']",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 25,
+            "col_offset": 1,
+            "variable": "C['rxcez']",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 25,
+            "col_offset": 1,
+            "variable": "C['reetl']",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 26,
+            "col_offset": 1,
+            "variable": "d",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 26,
+            "col_offset": 1,
+            "variable": "d['bqxdl']",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 26,
+            "col_offset": 1,
+            "variable": "d['rxcez']",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 26,
+            "col_offset": 1,
+            "variable": "d['reetl']",
+            "type": [
+                "int"
+            ]
+        }
+    ]
+}

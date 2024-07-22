@@ -1,0 +1,301 @@
+{
+    "replacement_mode": "Complex",
+    "type_replacements": [
+        "int",
+        "float",
+        "str",
+        "list",
+        "dict",
+        "tuple"
+    ],
+    "ground_truth": [
+        {
+            "file": "main.py",
+            "line_number": 4,
+            "col_offset": 5,
+            "function": "func1",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 8,
+            "col_offset": 5,
+            "function": "func2",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 12,
+            "col_offset": 5,
+            "function": "func3",
+            "type": [
+                "tuple"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 16,
+            "col_offset": 5,
+            "function": "func4",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 20,
+            "col_offset": 5,
+            "function": "func5",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 24,
+            "col_offset": 5,
+            "function": "func6",
+            "type": [
+                "Nonetype"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 28,
+            "col_offset": 1,
+            "variable": "a",
+            "type": [
+                "callable"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 28,
+            "col_offset": 5,
+            "variable": "b",
+            "type": [
+                "callable"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 28,
+            "col_offset": 8,
+            "variable": "c",
+            "type": [
+                "callable"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 29,
+            "col_offset": 1,
+            "variable": "i",
+            "type": [
+                "str"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 30,
+            "col_offset": 1,
+            "variable": "j",
+            "type": [
+                "dict"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 30,
+            "col_offset": 1,
+            "variable": "j['wywvm']",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 30,
+            "col_offset": 1,
+            "variable": "j['sezjq']",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 30,
+            "col_offset": 1,
+            "variable": "j['dmbte']",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 31,
+            "col_offset": 1,
+            "variable": "k",
+            "type": [
+                "tuple"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 31,
+            "col_offset": 1,
+            "variable": "k[0]",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 31,
+            "col_offset": 1,
+            "variable": "k[1]",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 31,
+            "col_offset": 1,
+            "variable": "k[2]",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 33,
+            "col_offset": 1,
+            "function": "a",
+            "type": [
+                "callable"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 33,
+            "col_offset": 5,
+            "variable": "b",
+            "type": [
+                "callable"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 33,
+            "col_offset": 9,
+            "variable": "c",
+            "type": [
+                "callable"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 33,
+            "col_offset": 12,
+            "variable": "d",
+            "type": [
+                "callable"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 35,
+            "col_offset": 1,
+            "variable": "h",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 37,
+            "col_offset": 1,
+            "variable": "f",
+            "type": [
+                "callable"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 37,
+            "col_offset": 5,
+            "variable": "b",
+            "type": [
+                "callable"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 37,
+            "col_offset": 8,
+            "variable": "c",
+            "type": [
+                "callable"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 37,
+            "col_offset": 11,
+            "variable": "e",
+            "type": [
+                "callable"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 39,
+            "col_offset": 1,
+            "variable": "l",
+            "type": [
+                "Nonetype"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 40,
+            "col_offset": 1,
+            "variable": "m",
+            "type": [
+                "list"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 40,
+            "col_offset": 1,
+            "variable": "m[0]",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 40,
+            "col_offset": 1,
+            "variable": "m[1]",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 40,
+            "col_offset": 1,
+            "variable": "m[2]",
+            "type": [
+                "int"
+            ]
+        }
+    ]
+}

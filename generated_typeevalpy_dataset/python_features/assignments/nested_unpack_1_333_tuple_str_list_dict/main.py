@@ -1,0 +1,21 @@
+# example of nested unpacking in Python. The list [(func1, func2), (func3, func4)] contains two tuples, each with two function objects.
+# The outer parentheses in the assignment (a, b), (c, d) = ... are used for nested unpacking.
+
+
+def func1():
+    return (1, 72, 43)
+
+
+def func2():
+    return 'aaafv'
+
+
+def func3():
+    return [33, 99, 37]
+
+
+def func4():
+    return {'sxxdl': 15, 'wdfkh': 31, 'gxizb': 25}
+
+
+(a, b), (c, d) = [(func1, func2), (func3, func4)]

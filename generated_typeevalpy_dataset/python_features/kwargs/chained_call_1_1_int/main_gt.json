@@ -1,0 +1,80 @@
+{
+    "replacement_mode": "Complex",
+    "type_replacements": [
+        "int",
+        "float",
+        "str",
+        "bool",
+        "list",
+        "dict",
+        "tuple"
+    ],
+    "ground_truth": [
+        {
+            "file": "main.py",
+            "line_number": 5,
+            "col_offset": 5,
+            "function": "func3",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 9,
+            "col_offset": 5,
+            "function": "func2",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 9,
+            "col_offset": 11,
+            "function": "func2",
+            "parameter": "a",
+            "type": [
+                "callable"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 13,
+            "col_offset": 5,
+            "function": "func1",
+            "type": [
+                "int"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 13,
+            "col_offset": 11,
+            "function": "func1",
+            "parameter": "a",
+            "type": [
+                "callable"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 13,
+            "col_offset": 14,
+            "function": "func1",
+            "parameter": "b",
+            "type": [
+                "callable"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 17,
+            "col_offset": 1,
+            "variable": "c",
+            "type": [
+                "int"
+            ]
+        }
+    ]
+}

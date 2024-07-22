@@ -1,0 +1,70 @@
+{
+    "replacement_mode": "Complex",
+    "type_replacements": [
+        "int",
+        "float",
+        "str",
+        "bool"
+    ],
+    "ground_truth": [
+        {
+            "file": "main.py",
+            "line_number": 2,
+            "col_offset": 5,
+            "function": "func",
+            "type": [
+                "float",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 2,
+            "col_offset": 10,
+            "function": "func",
+            "parameter": "x",
+            "type": [
+                "float",
+                "str",
+                "bool"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 6,
+            "col_offset": 1,
+            "variable": "res",
+            "type": [
+                "map"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 8,
+            "col_offset": 1,
+            "variable": "x",
+            "type": [
+                "float"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 8,
+            "col_offset": 4,
+            "variable": "y",
+            "type": [
+                "bool"
+            ]
+        },
+        {
+            "file": "main.py",
+            "line_number": 8,
+            "col_offset": 7,
+            "variable": "z",
+            "type": [
+                "str"
+            ]
+        }
+    ]
+}
