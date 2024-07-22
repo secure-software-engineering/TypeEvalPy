@@ -1,7 +1,8 @@
 {
     "replacement_mode": "Imports",
     "imports": [
-        "to_import.py"
+        "nested/mod.py",
+        "nested/__init__.py"
     ],
     "type_replacements": [
         "int",

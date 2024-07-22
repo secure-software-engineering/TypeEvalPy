@@ -6,8 +6,9 @@ from pathlib import Path
 def modify_data(data):
     # Example modification: add a new key-value pair
     new_data = {
-        "replacement_mode": "",
-        "type_replacements": ["int"],
+        "replacement_mode": "Imports",
+        "imports": ["to_import.py"],
+        "type_replacements": ["int", "float", "str", "bool", "list", "dict", "tuple"],
         "ground_truth": data,
     }
     return new_data
@@ -40,5 +41,5 @@ def main(directory_path):
 # Example usage
 if __name__ == "__main__":
     main(
-        "/mnt/Projects/PhD/Research/TypeEvalPy/git_sources/TypeEvalPy_AutoBench/.scrapy/micro-benchmark-autogen-templates copy"
+        "/mnt/Projects/PhD/Research/TypeEvalPy/git_sources/TypeEvalPy_AutoBench/.scrapy/micro-benchmark-autogen-templates"
     )  # Change this
