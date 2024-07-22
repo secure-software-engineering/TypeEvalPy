@@ -1,5 +1,8 @@
 {
-    "replacement_mode": "Complex",
+    "replacement_mode": "Imports",
+    "imports": [
+        "ext.py"
+    ],
     "type_replacements": [
         "int",
         "float",
@@ -16,7 +19,7 @@
             "col_offset": 5,
             "function": "func1",
             "type": [
-                "int"
+                "<value1>"
             ]
         },
         {
@@ -25,7 +28,7 @@
             "col_offset": 5,
             "function": "func2",
             "type": [
-                "str"
+                "<value2>"
             ]
         },
         {
@@ -43,7 +46,7 @@
             "col_offset": 1,
             "variable": "a",
             "type": [
-                "str"
+                "<value2>"
             ]
         }
     ]

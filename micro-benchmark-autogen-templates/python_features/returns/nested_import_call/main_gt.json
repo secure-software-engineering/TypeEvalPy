@@ -1,5 +1,9 @@
 {
-    "replacement_mode": "Complex",
+    "replacement_mode": "Imports",
+    "imports": [
+        "to_import2.py",
+        "to_import_nested.py"
+    ],
     "type_replacements": [
         "int",
         "float",
@@ -25,7 +29,7 @@
             "col_offset": 1,
             "variable": "b",
             "type": [
-                "str"
+                "<value1>"
             ]
         }
     ]
