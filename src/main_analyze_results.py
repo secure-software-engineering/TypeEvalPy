@@ -954,14 +954,17 @@ def run_results_analyzer(results_dir):
                     item / "micro-benchmark/python_features", tool_name=item.name
                 )
 
-                logger.info(f"")
-                logger.info(f"Analyzing Sensitivities")
-                (
-                    tools_results[item.name]["sensitivity_error_result_data"],
-                    tools_results[item.name]["sensitivity_sound_data"],
-                ) = iterate_cats_sensitivities(
-                    item / "micro-benchmark/analysis_sensitivities", tool_name=item.name
-                )
+                # check if analysis_sensitivities exists
+                if (item / "micro-benchmark/analysis_sensitivities").exists():
+
+                    logger.info(f"Analyzing Sensitivities")
+                    (
+                        tools_results[item.name]["sensitivity_error_result_data"],
+                        tools_results[item.name]["sensitivity_sound_data"],
+                    ) = iterate_cats_sensitivities(
+                        item / "micro-benchmark/analysis_sensitivities",
+                        tool_name=item.name,
+                    )
 
             except Exception as e:
                 logger.error(
@@ -1005,14 +1008,22 @@ def run_results_analyzer(results_dir):
         "tools_exact_match_category_data.csv",
         f"{str(results_dir)}/tools_exact_match_category_data.csv",
     )
-    shutil.move(
-        "tools_sensitivities_data.csv",
-        f"{str(results_dir)}/tools_sensitivities_data.csv",
-    )
 
     os.makedirs(results_dir / "mismatches", exist_ok=True)
     os.makedirs(results_dir / "missing", exist_ok=True)
     os.makedirs(results_dir / "paper_tables", exist_ok=True)
+
+    # move if exists
+    if Path("tools_sensitivity_error_result_data.csv").exists():
+        shutil.move(
+            "tools_sensitivities_data.csv",
+            f"{str(results_dir)}/tools_sensitivities_data.csv",
+        )
+
+        shutil.copy(
+            f"{str(results_dir)}/tools_sensitivities_data.csv",
+            f"{str(results_dir)}/paper_tables/paper_table_6.csv",
+        )
 
     shutil.move(
         "paper_table_1.csv",
@@ -1034,10 +1045,7 @@ def run_results_analyzer(results_dir):
         "paper_table_5.csv",
         f"{str(results_dir)}/paper_tables/paper_table_5.csv",
     )
-    shutil.copy(
-        f"{str(results_dir)}/tools_sensitivities_data.csv",
-        f"{str(results_dir)}/paper_tables/paper_table_6.csv",
-    )
+
     for tool in list(tools_results.keys()):
         shutil.move(
             f"{tool}_mismatches_reasons.csv",

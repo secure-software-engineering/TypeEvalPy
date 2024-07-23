@@ -12,7 +12,9 @@ ROOT_DIR = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 current_datetime = datetime.datetime.now()
 formatted_datetime = current_datetime.strftime("%Y-%m-%d_%H-%M-%S")
 
-output_folder = f"{ROOT_DIR}/generated_typeevalpy_dataset_{formatted_datetime}"
+output_folder = (
+    f"{ROOT_DIR}/autogen/data/autogen_typeevalpy_benchmark_{formatted_datetime}"
+)
 error_folder = f"{ROOT_DIR}/.scrapy/error"
 benchmark_dir = f"{ROOT_DIR}/micro-benchmark-autogen-templates"
 shutil.rmtree(output_folder, ignore_errors=True)
@@ -83,9 +85,6 @@ def get_fact_stats(json_files):
     for json_file in json_files:
         with open(json_file, "r") as f:
             data = json.load(f)
-            if "ground_truth" not in data:
-                continue
-            data = data["ground_truth"]
             total_annotations += len(data)
             merged_cell = json_file
             for _t in data:
@@ -159,9 +158,6 @@ total_col = 0
 for json_file in json_files:
     with open(json_file, "r") as f:
         data = json.load(f)
-        if "ground_truth" not in data:
-            continue
-        data = data["ground_truth"]
         total_annotations += len(data)
         for _t in data:
             total_types += len(_t["type"])
