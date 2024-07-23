@@ -170,7 +170,7 @@ def save_files(
 
     if json_data:
         with open(json_file_path, "w") as file:
-            json.dump(json_data, file, indent=4)
+            json.dump(json_data["ground_truth"], file, indent=4)
     # print(f"Saved JSON ground truth to {json_file_path}")
 
     return code_file_path, json_file_path
