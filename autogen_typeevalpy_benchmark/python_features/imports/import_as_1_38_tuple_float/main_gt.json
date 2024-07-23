@@ -1,0 +1,29 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 7,
+        "col_offset": 5,
+        "function": "func",
+        "type": [
+            "tuple"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 11,
+        "col_offset": 1,
+        "variable": "a",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 12,
+        "col_offset": 1,
+        "variable": "b",
+        "type": [
+            "float"
+        ]
+    }
+]

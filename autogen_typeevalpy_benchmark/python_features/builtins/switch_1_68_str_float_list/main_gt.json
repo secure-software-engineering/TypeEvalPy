@@ -1,0 +1,51 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 2,
+        "col_offset": 5,
+        "function": "func",
+        "type": [
+            "str",
+            "float"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 2,
+        "col_offset": 10,
+        "function": "func",
+        "parameter": "value",
+        "type": [
+            "str",
+            "list",
+            "float"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 12,
+        "col_offset": 1,
+        "variable": "a",
+        "type": [
+            "float"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "col_offset": 1,
+        "variable": "b",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 14,
+        "col_offset": 1,
+        "variable": "c",
+        "type": [
+            "str"
+        ]
+    }
+]

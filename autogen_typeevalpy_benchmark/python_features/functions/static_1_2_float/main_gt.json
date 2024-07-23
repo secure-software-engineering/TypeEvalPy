@@ -1,0 +1,40 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "col_offset": 5,
+        "function": "MyClass.my_static_method",
+        "type": [
+            "float"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "col_offset": 26,
+        "parameter": "x",
+        "function": "MyClass.my_static_method",
+        "type": [
+            "float"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "col_offset": 29,
+        "parameter": "y",
+        "function": "MyClass.my_static_method",
+        "type": [
+            "float"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 10,
+        "col_offset": 1,
+        "variable": "result",
+        "type": [
+            "float"
+        ]
+    }
+]

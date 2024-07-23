@@ -1,0 +1,47 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "col_offset": 1,
+        "variable": "a",
+        "type": [
+            "float"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 9,
+        "col_offset": 1,
+        "variable": "b",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 9,
+        "col_offset": 1,
+        "variable": "b['jytfo']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 9,
+        "col_offset": 1,
+        "variable": "b['isbqe']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 9,
+        "col_offset": 1,
+        "variable": "b['sszxt']",
+        "type": [
+            "int"
+        ]
+    }
+]

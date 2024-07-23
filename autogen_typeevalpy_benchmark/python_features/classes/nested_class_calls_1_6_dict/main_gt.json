@@ -1,0 +1,114 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 3,
+        "col_offset": 5,
+        "function": "C.func",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "col_offset": 24,
+        "function": "B.__init__",
+        "parameter": "c",
+        "type": [
+            "C"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 9,
+        "col_offset": 9,
+        "function": "B.__init__",
+        "variable": "B.c",
+        "type": [
+            "C"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 11,
+        "col_offset": 9,
+        "function": "B.func",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 17,
+        "col_offset": 9,
+        "function": "A.__init__",
+        "variable": "A.c",
+        "type": [
+            "C"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 19,
+        "col_offset": 9,
+        "function": "A.func",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 20,
+        "col_offset": 9,
+        "function": "A.func",
+        "variable": "b",
+        "type": [
+            "B"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 24,
+        "col_offset": 1,
+        "variable": "a",
+        "type": [
+            "A"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 25,
+        "col_offset": 1,
+        "variable": "b",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 25,
+        "col_offset": 1,
+        "variable": "b['cukih']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 25,
+        "col_offset": 1,
+        "variable": "b['xiwwi']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 25,
+        "col_offset": 1,
+        "variable": "b['lkxzj']",
+        "type": [
+            "int"
+        ]
+    }
+]

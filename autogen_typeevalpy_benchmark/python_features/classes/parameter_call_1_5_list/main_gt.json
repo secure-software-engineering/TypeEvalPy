@@ -1,0 +1,104 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 3,
+        "col_offset": 9,
+        "function": "MyClass.func3",
+        "type": [
+            "list"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "col_offset": 9,
+        "function": "MyClass.func2",
+        "type": [
+            "list"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "col_offset": 21,
+        "parameter": "a",
+        "function": "MyClass.func2",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 9,
+        "col_offset": 9,
+        "function": "MyClass.func1",
+        "type": [
+            "list"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 9,
+        "col_offset": 21,
+        "parameter": "a",
+        "function": "MyClass.func1",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 9,
+        "col_offset": 24,
+        "parameter": "b",
+        "function": "MyClass.func1",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "col_offset": 1,
+        "variable": "a",
+        "type": [
+            "MyClass"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 14,
+        "col_offset": 1,
+        "variable": "d",
+        "type": [
+            "list"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 14,
+        "col_offset": 1,
+        "variable": "d[0]",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 14,
+        "col_offset": 1,
+        "variable": "d[1]",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 14,
+        "col_offset": 1,
+        "variable": "d[2]",
+        "type": [
+            "int"
+        ]
+    }
+]

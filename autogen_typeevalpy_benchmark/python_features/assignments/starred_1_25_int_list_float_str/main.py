@@ -1,0 +1,22 @@
+# Functions are assigned to variables via starred assignment
+def func1():
+    return 44
+
+
+def func2():
+    return [15, 80, 17]
+
+
+def func3():
+    return 12.51
+
+
+def func4():
+    return 'pbtsx'
+
+a, *b, c = func1, func2, func3, func4
+
+d = a()
+e = b[0]()
+f = b[1]()
+g = c()

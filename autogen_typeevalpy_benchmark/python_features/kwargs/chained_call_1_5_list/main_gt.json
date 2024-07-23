@@ -1,0 +1,95 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "col_offset": 5,
+        "function": "func3",
+        "type": [
+            "list"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 9,
+        "col_offset": 5,
+        "function": "func2",
+        "type": [
+            "list"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 9,
+        "col_offset": 11,
+        "function": "func2",
+        "parameter": "a",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "col_offset": 5,
+        "function": "func1",
+        "type": [
+            "list"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "col_offset": 11,
+        "function": "func1",
+        "parameter": "a",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "col_offset": 14,
+        "function": "func1",
+        "parameter": "b",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 17,
+        "col_offset": 1,
+        "variable": "c",
+        "type": [
+            "list"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 17,
+        "col_offset": 1,
+        "variable": "c[0]",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 17,
+        "col_offset": 1,
+        "variable": "c[1]",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 17,
+        "col_offset": 1,
+        "variable": "c[2]",
+        "type": [
+            "int"
+        ]
+    }
+]

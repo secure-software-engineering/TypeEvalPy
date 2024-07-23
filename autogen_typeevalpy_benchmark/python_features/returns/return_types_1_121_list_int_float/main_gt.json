@@ -1,0 +1,139 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "col_offset": 5,
+        "function": "func",
+        "type": [
+            "list"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 9,
+        "col_offset": 1,
+        "variable": "a",
+        "type": [
+            "list"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 9,
+        "col_offset": 1,
+        "variable": "a[0]",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 9,
+        "col_offset": 1,
+        "variable": "a[1]",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 9,
+        "col_offset": 1,
+        "variable": "a[2]",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "col_offset": 5,
+        "function": "func1",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 17,
+        "col_offset": 1,
+        "variable": "b",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 23,
+        "col_offset": 5,
+        "function": "func3",
+        "type": [
+            "Point"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 24,
+        "col_offset": 5,
+        "function": "func3",
+        "variable": "Point",
+        "type": [
+            "type"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 28,
+        "col_offset": 1,
+        "variable": "c",
+        "type": [
+            "Point"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 32,
+        "col_offset": 5,
+        "function": "func4",
+        "type": [
+            "float"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 36,
+        "col_offset": 1,
+        "variable": "d",
+        "type": [
+            "float"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 40,
+        "col_offset": 5,
+        "function": "func5",
+        "type": [
+            "list"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 41,
+        "col_offset": 22,
+        "function": "func5",
+        "variable": "x",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 44,
+        "col_offset": 1,
+        "variable": "e",
+        "type": [
+            "list"
+        ]
+    }
+]
