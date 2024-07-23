@@ -178,3 +178,6 @@ src/config.yaml
 src/target_tools/ollama/src/fine_tuning/auto_generation/generated_dataset/*
 src/target_tools/ollama/src/fine_tuning/wandb/*
 src/target_tools/ollama/src/fine_tuning/outputs/*
+
+# Ignore autogen files
+autogen/data

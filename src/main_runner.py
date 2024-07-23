@@ -77,6 +77,8 @@ def get_args():
         "--nocache", action="store_true", help="Do not use docker image cache."
     )
 
+    parser.add_argument("--custom_benchmark_dir", default=None, type=str)
+
     return parser.parse_args()
 
 
@@ -89,35 +91,68 @@ def main():
     available_runners = {
         "headergen": (
             HeaderGenRunner,
-            {"debug": args.debug, "nocache": args.nocache},
+            {
+                "debug": args.debug,
+                "nocache": args.nocache,
+                "custom_benchmark_dir": args.custom_benchmark_dir,
+            },
         ),
         "pyright": (
             PyrightRunner,
-            {"debug": False, "nocache": args.nocache},
+            {
+                "debug": False,
+                "nocache": args.nocache,
+                "custom_benchmark_dir": args.custom_benchmark_dir,
+            },
         ),
         "scalpel": (
             ScalpelRunner,
-            {"debug": False, "nocache": args.nocache},
+            {
+                "debug": False,
+                "nocache": args.nocache,
+                "custom_benchmark_dir": args.custom_benchmark_dir,
+            },
         ),
         "hityper": (
             HityperRunner,
-            {"debug": False, "nocache": args.nocache},
+            {
+                "debug": False,
+                "nocache": args.nocache,
+                "custom_benchmark_dir": args.custom_benchmark_dir,
+            },
         ),
         "type4py": (
             Type4pyRunner,
-            {"debug": False, "nocache": args.nocache},
+            {
+                "debug": False,
+                "nocache": args.nocache,
+                "custom_benchmark_dir": args.custom_benchmark_dir,
+            },
         ),
         "hityperdl": (
             HityperDLRunner,
-            {"debug": False, "nocache": args.nocache},
+            {
+                "debug": False,
+                "nocache": args.nocache,
+                "custom_benchmark_dir": args.custom_benchmark_dir,
+            },
         ),
         "jedi": (
             JediRunner,
-            {"debug": args.debug, "nocache": args.nocache},
+            {
+                "debug": args.debug,
+                "nocache": args.nocache,
+                "custom_benchmark_dir": args.custom_benchmark_dir,
+            },
         ),
         "ollama": (
             OllamaRunner,
-            {"debug": args.debug, "nocache": args.nocache, "config": config},
+            {
+                "debug": args.debug,
+                "nocache": args.nocache,
+                "custom_benchmark_dir": args.custom_benchmark_dir,
+                "config": config,
+            },
         ),
         # PySonar2Runner,
         # PytypeRunner,
