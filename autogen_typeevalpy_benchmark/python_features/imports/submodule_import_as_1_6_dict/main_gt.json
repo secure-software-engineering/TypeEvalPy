@@ -1,0 +1,38 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "col_offset": 1,
+        "variable": "a",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "col_offset": 1,
+        "variable": "a['nuvkz']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "col_offset": 1,
+        "variable": "a['lrtuw']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "col_offset": 1,
+        "variable": "a['btdzk']",
+        "type": [
+            "int"
+        ]
+    }
+]

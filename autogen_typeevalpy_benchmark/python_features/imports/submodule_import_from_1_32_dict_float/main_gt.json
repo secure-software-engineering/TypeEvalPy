@@ -1,0 +1,47 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "col_offset": 1,
+        "variable": "a",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "col_offset": 1,
+        "variable": "a['grnbx']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "col_offset": 1,
+        "variable": "a['blemy']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "col_offset": 1,
+        "variable": "a['ygemz']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 7,
+        "col_offset": 1,
+        "variable": "b",
+        "type": [
+            "float"
+        ]
+    }
+]

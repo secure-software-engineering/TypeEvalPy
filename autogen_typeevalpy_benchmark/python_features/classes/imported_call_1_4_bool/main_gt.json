@@ -1,0 +1,20 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "col_offset": 1,
+        "variable": "a",
+        "type": [
+            "to_import_call.MyClass"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "col_offset": 1,
+        "variable": "b",
+        "type": [
+            "bool"
+        ]
+    }
+]

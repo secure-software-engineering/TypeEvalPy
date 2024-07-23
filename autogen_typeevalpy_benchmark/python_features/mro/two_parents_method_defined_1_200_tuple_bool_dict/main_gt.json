@@ -1,0 +1,101 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "col_offset": 9,
+        "function": "A.func",
+        "type": [
+            "tuple"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "col_offset": 9,
+        "function": "B.func",
+        "type": [
+            "bool"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 21,
+        "col_offset": 9,
+        "function": "C.func",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 25,
+        "col_offset": 1,
+        "variable": "C",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 25,
+        "col_offset": 1,
+        "variable": "C['nejmy']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 25,
+        "col_offset": 1,
+        "variable": "C['ayydi']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 25,
+        "col_offset": 1,
+        "variable": "C['dogsc']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 26,
+        "col_offset": 1,
+        "variable": "d",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 26,
+        "col_offset": 1,
+        "variable": "d['nejmy']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 26,
+        "col_offset": 1,
+        "variable": "d['ayydi']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 26,
+        "col_offset": 1,
+        "variable": "d['dogsc']",
+        "type": [
+            "int"
+        ]
+    }
+]

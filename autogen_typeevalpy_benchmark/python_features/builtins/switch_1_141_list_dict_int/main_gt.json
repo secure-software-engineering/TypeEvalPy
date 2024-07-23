@@ -1,0 +1,106 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 2,
+        "col_offset": 5,
+        "function": "func",
+        "type": [
+            "dict",
+            "str",
+            "list"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 2,
+        "col_offset": 10,
+        "function": "func",
+        "parameter": "value",
+        "type": [
+            "dict",
+            "int",
+            "list"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 12,
+        "col_offset": 1,
+        "variable": "a",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 12,
+        "col_offset": 1,
+        "variable": "a['rmizh']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 12,
+        "col_offset": 1,
+        "variable": "a['xzsou']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 12,
+        "col_offset": 1,
+        "variable": "a['edyyq']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "col_offset": 1,
+        "variable": "b",
+        "type": [
+            "list"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "col_offset": 1,
+        "variable": "b[0]",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "col_offset": 1,
+        "variable": "b[1]",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "col_offset": 1,
+        "variable": "b[2]",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 14,
+        "col_offset": 1,
+        "variable": "c",
+        "type": [
+            "str"
+        ]
+    }
+]

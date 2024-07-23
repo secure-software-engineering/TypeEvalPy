@@ -1,0 +1,65 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "col_offset": 5,
+        "function": "func",
+        "type": [
+            "bool"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 10,
+        "col_offset": 1,
+        "variable": "a",
+        "type": [
+            "bool"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 11,
+        "col_offset": 1,
+        "variable": "b",
+        "type": [
+            "float"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 12,
+        "col_offset": 1,
+        "variable": "c",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 12,
+        "col_offset": 1,
+        "variable": "c['mkssk']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 12,
+        "col_offset": 1,
+        "variable": "c['wlldv']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 12,
+        "col_offset": 1,
+        "variable": "c['eraby']",
+        "type": [
+            "int"
+        ]
+    }
+]

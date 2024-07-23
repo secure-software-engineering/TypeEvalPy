@@ -1,0 +1,78 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 2,
+        "col_offset": 5,
+        "function": "func",
+        "type": [
+            "dict",
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 2,
+        "col_offset": 10,
+        "function": "func",
+        "parameter": "value",
+        "type": [
+            "dict",
+            "str",
+            "bool"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 12,
+        "col_offset": 1,
+        "variable": "a",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "col_offset": 1,
+        "variable": "b",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "col_offset": 1,
+        "variable": "b['hwklq']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "col_offset": 1,
+        "variable": "b['usqki']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "col_offset": 1,
+        "variable": "b['pfgpr']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 14,
+        "col_offset": 1,
+        "variable": "c",
+        "type": [
+            "str"
+        ]
+    }
+]

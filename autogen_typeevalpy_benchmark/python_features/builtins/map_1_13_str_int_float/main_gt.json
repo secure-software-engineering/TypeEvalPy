@@ -1,0 +1,61 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 2,
+        "col_offset": 5,
+        "function": "func",
+        "type": [
+            "str",
+            "int",
+            "float"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 2,
+        "col_offset": 10,
+        "function": "func",
+        "parameter": "x",
+        "type": [
+            "str",
+            "int",
+            "float"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "col_offset": 1,
+        "variable": "res",
+        "type": [
+            "map"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "col_offset": 1,
+        "variable": "x",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "col_offset": 4,
+        "variable": "y",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "col_offset": 7,
+        "variable": "z",
+        "type": [
+            "float"
+        ]
+    }
+]

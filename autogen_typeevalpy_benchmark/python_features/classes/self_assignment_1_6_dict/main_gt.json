@@ -1,0 +1,75 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "col_offset": 9,
+        "function": "A.__init__",
+        "variable": "A.smth",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "col_offset": 9,
+        "function": "A.func",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 11,
+        "col_offset": 9,
+        "function": "A.func2",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 15,
+        "col_offset": 1,
+        "variable": "a",
+        "type": [
+            "A"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 16,
+        "col_offset": 1,
+        "variable": "b",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 16,
+        "col_offset": 1,
+        "variable": "b['bxsyl']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 16,
+        "col_offset": 1,
+        "variable": "b['yfkof']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 16,
+        "col_offset": 1,
+        "variable": "b['rnojh']",
+        "type": [
+            "int"
+        ]
+    }
+]

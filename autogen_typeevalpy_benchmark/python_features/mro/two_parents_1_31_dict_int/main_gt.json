@@ -1,0 +1,65 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "col_offset": 9,
+        "function": "A.func",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "col_offset": 9,
+        "function": "B.func",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 21,
+        "col_offset": 1,
+        "variable": "c",
+        "type": [
+            "C"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 22,
+        "col_offset": 1,
+        "variable": "d",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 22,
+        "col_offset": 1,
+        "variable": "d['zuaet']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 22,
+        "col_offset": 1,
+        "variable": "d['anbjq']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 22,
+        "col_offset": 1,
+        "variable": "d['cqpfq']",
+        "type": [
+            "int"
+        ]
+    }
+]

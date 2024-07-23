@@ -1,0 +1,38 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "col_offset": 1,
+        "variable": "code",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "col_offset": 1,
+        "variable": "code_obj",
+        "type": [
+            "code"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "col_offset": 1,
+        "variable": "a",
+        "type": [
+            "float"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 7,
+        "col_offset": 1,
+        "variable": "b",
+        "type": [
+            "float"
+        ]
+    }
+]

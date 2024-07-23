@@ -1,0 +1,20 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "col_offset": 9,
+        "function": "MyClass.func",
+        "type": [
+            "float"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 10,
+        "col_offset": 1,
+        "variable": "a",
+        "type": [
+            "float"
+        ]
+    }
+]

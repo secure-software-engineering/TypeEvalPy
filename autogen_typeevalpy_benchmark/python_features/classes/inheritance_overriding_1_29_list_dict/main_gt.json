@@ -1,0 +1,65 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 3,
+        "col_offset": 5,
+        "function": "MyClass.func",
+        "type": [
+            "list"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "col_offset": 5,
+        "function": "MySubClass.func",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 12,
+        "col_offset": 1,
+        "variable": "a",
+        "type": [
+            "MySubClass"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "col_offset": 1,
+        "variable": "b",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "col_offset": 1,
+        "variable": "b['rvwyw']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "col_offset": 1,
+        "variable": "b['nxexq']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "col_offset": 1,
+        "variable": "b['tuwxs']",
+        "type": [
+            "int"
+        ]
+    }
+]

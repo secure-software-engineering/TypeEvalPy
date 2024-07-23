@@ -1,0 +1,47 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "col_offset": 1,
+        "variable": "a",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "col_offset": 1,
+        "variable": "a['fxaid']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "col_offset": 1,
+        "variable": "a['enqoh']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "col_offset": 1,
+        "variable": "a['zdmow']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 9,
+        "col_offset": 1,
+        "variable": "b",
+        "type": [
+            "float"
+        ]
+    }
+]

@@ -1,0 +1,101 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "col_offset": 9,
+        "function": "A.func",
+        "type": [
+            "float"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "col_offset": 9,
+        "function": "B.func",
+        "type": [
+            "tuple"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 21,
+        "col_offset": 9,
+        "function": "C.func",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 25,
+        "col_offset": 1,
+        "variable": "C",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 25,
+        "col_offset": 1,
+        "variable": "C['mzfla']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 25,
+        "col_offset": 1,
+        "variable": "C['ojuxe']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 25,
+        "col_offset": 1,
+        "variable": "C['buqch']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 26,
+        "col_offset": 1,
+        "variable": "d",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 26,
+        "col_offset": 1,
+        "variable": "d['mzfla']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 26,
+        "col_offset": 1,
+        "variable": "d['ojuxe']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 26,
+        "col_offset": 1,
+        "variable": "d['buqch']",
+        "type": [
+            "int"
+        ]
+    }
+]

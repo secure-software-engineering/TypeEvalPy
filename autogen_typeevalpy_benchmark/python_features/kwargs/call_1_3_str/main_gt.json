@@ -1,0 +1,39 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "col_offset": 5,
+        "function": "func1",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "col_offset": 5,
+        "function": "func",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "col_offset": 10,
+        "function": "func",
+        "parameter": "a",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 12,
+        "col_offset": 1,
+        "variable": "c",
+        "type": [
+            "str"
+        ]
+    }
+]

@@ -1,0 +1,47 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "col_offset": 9,
+        "function": "A.func",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "col_offset": 9,
+        "function": "B.func",
+        "type": [
+            "bool"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 21,
+        "col_offset": 9,
+        "function": "C.func",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 25,
+        "col_offset": 1,
+        "variable": "C",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 26,
+        "col_offset": 1,
+        "variable": "d",
+        "type": [
+            "str"
+        ]
+    }
+]

@@ -1,0 +1,74 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "col_offset": 1,
+        "variable": "a",
+        "type": [
+            "tuple"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "col_offset": 1,
+        "variable": "a[0]",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "col_offset": 1,
+        "variable": "a[1]",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "col_offset": 1,
+        "variable": "a[2]",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 9,
+        "col_offset": 1,
+        "variable": "b",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 9,
+        "col_offset": 1,
+        "variable": "b['xfihd']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 9,
+        "col_offset": 1,
+        "variable": "b['amsgy']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 9,
+        "col_offset": 1,
+        "variable": "b['frdwx']",
+        "type": [
+            "int"
+        ]
+    }
+]

@@ -1,0 +1,101 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "col_offset": 9,
+        "function": "A.func",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "col_offset": 9,
+        "function": "B.func",
+        "type": [
+            "tuple"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 21,
+        "col_offset": 9,
+        "function": "C.func",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 25,
+        "col_offset": 1,
+        "variable": "C",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 25,
+        "col_offset": 1,
+        "variable": "C['dwqlb']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 25,
+        "col_offset": 1,
+        "variable": "C['lxgcr']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 25,
+        "col_offset": 1,
+        "variable": "C['acvgp']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 26,
+        "col_offset": 1,
+        "variable": "d",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 26,
+        "col_offset": 1,
+        "variable": "d['dwqlb']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 26,
+        "col_offset": 1,
+        "variable": "d['lxgcr']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 26,
+        "col_offset": 1,
+        "variable": "d['acvgp']",
+        "type": [
+            "int"
+        ]
+    }
+]

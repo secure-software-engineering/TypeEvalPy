@@ -1,0 +1,101 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "col_offset": 9,
+        "function": "A.func",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "col_offset": 9,
+        "function": "B.func",
+        "type": [
+            "float"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 21,
+        "col_offset": 9,
+        "function": "C.func",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 25,
+        "col_offset": 1,
+        "variable": "C",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 25,
+        "col_offset": 1,
+        "variable": "C['whqzj']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 25,
+        "col_offset": 1,
+        "variable": "C['xvgpm']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 25,
+        "col_offset": 1,
+        "variable": "C['lzwgi']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 26,
+        "col_offset": 1,
+        "variable": "d",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 26,
+        "col_offset": 1,
+        "variable": "d['whqzj']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 26,
+        "col_offset": 1,
+        "variable": "d['xvgpm']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 26,
+        "col_offset": 1,
+        "variable": "d['lzwgi']",
+        "type": [
+            "int"
+        ]
+    }
+]

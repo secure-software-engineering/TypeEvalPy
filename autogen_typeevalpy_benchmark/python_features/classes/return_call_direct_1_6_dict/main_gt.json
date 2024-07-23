@@ -1,0 +1,65 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "col_offset": 9,
+        "function": "MyClass.func2",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "col_offset": 9,
+        "function": "MyClass.func1",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 12,
+        "col_offset": 1,
+        "variable": "a",
+        "type": [
+            "MyClass"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "col_offset": 1,
+        "variable": "b",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "col_offset": 1,
+        "variable": "b['gxjel']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "col_offset": 1,
+        "variable": "b['wxwbc']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "col_offset": 1,
+        "variable": "b['wavxl']",
+        "type": [
+            "int"
+        ]
+    }
+]

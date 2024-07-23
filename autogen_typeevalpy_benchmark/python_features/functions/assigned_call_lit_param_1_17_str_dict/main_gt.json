@@ -1,0 +1,77 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "col_offset": 5,
+        "function": "func",
+        "type": [
+            "dict",
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "col_offset": 10,
+        "parameter": "x",
+        "function": "func",
+        "type": [
+            "dict",
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "col_offset": 1,
+        "variable": "x",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 9,
+        "col_offset": 1,
+        "variable": "a",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 10,
+        "col_offset": 1,
+        "variable": "b",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 10,
+        "col_offset": 1,
+        "variable": "b['giugi']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 10,
+        "col_offset": 1,
+        "variable": "b['mughp']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 10,
+        "col_offset": 1,
+        "variable": "b['regot']",
+        "type": [
+            "int"
+        ]
+    }
+]

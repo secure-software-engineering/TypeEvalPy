@@ -1,0 +1,110 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "col_offset": 13,
+        "variable": "A.B.a",
+        "type": [
+            "list"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "col_offset": 13,
+        "variable": "A.B.a[0]",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "col_offset": 13,
+        "variable": "A.B.a[1]",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "col_offset": 13,
+        "variable": "A.B.a[2]",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 7,
+        "col_offset": 13,
+        "function": "A.B.bfunc",
+        "type": [
+            "float"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 15,
+        "col_offset": 9,
+        "function": "C.cfunc",
+        "type": [
+            "list"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 19,
+        "col_offset": 1,
+        "variable": "c",
+        "type": [
+            "C"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 20,
+        "col_offset": 1,
+        "variable": "d",
+        "type": [
+            "list"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 20,
+        "col_offset": 1,
+        "variable": "d[0]",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 20,
+        "col_offset": 1,
+        "variable": "d[1]",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 20,
+        "col_offset": 1,
+        "variable": "d[2]",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 21,
+        "col_offset": 1,
+        "variable": "e",
+        "type": [
+            "float"
+        ]
+    }
+]

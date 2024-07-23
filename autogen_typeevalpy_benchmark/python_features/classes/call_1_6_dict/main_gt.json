@@ -1,0 +1,56 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 3,
+        "col_offset": 9,
+        "function": "MyClass.func",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 7,
+        "col_offset": 1,
+        "variable": "a",
+        "type": [
+            "MyClass"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "col_offset": 1,
+        "variable": "b",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "col_offset": 1,
+        "variable": "b['qwrhl']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "col_offset": 1,
+        "variable": "b['stxpe']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "col_offset": 1,
+        "variable": "b['pyzkn']",
+        "type": [
+            "int"
+        ]
+    }
+]

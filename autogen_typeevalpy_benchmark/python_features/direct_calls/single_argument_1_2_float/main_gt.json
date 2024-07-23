@@ -1,0 +1,49 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "col_offset": 5,
+        "function": "add_one",
+        "type": [
+            "float"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "col_offset": 13,
+        "parameter": "x",
+        "function": "add_one",
+        "type": [
+            "float"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "col_offset": 5,
+        "function": "double",
+        "type": [
+            "float"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "col_offset": 12,
+        "parameter": "x",
+        "function": "double",
+        "type": [
+            "float"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 12,
+        "col_offset": 1,
+        "variable": "result",
+        "type": [
+            "float"
+        ]
+    }
+]

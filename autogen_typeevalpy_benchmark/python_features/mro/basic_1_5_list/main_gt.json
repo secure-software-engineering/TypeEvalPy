@@ -1,0 +1,56 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "col_offset": 9,
+        "function": "A.func",
+        "type": [
+            "list"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "variable": "b",
+        "col_offset": 1,
+        "type": [
+            "B"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 14,
+        "variable": "c",
+        "col_offset": 1,
+        "type": [
+            "list"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 14,
+        "variable": "c[0]",
+        "col_offset": 1,
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 14,
+        "variable": "c[1]",
+        "col_offset": 1,
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 14,
+        "variable": "c[2]",
+        "col_offset": 1,
+        "type": [
+            "int"
+        ]
+    }
+]

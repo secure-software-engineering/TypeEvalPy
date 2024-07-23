@@ -1,0 +1,139 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "col_offset": 9,
+        "function": "B.funcb",
+        "type": [
+            "Nonetype"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 6,
+        "col_offset": 9,
+        "function": "B.funcb",
+        "variable": "B.smth",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "col_offset": 9,
+        "function": "B.func",
+        "type": [
+            "tuple"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 13,
+        "col_offset": 9,
+        "function": "A.funca",
+        "type": [
+            "Nonetype"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 14,
+        "col_offset": 9,
+        "function": "A.funca",
+        "variable": "A.smth",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 16,
+        "col_offset": 9,
+        "function": "A.func",
+        "type": [
+            "list"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 20,
+        "col_offset": 1,
+        "variable": "a",
+        "type": [
+            "A"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 22,
+        "col_offset": 1,
+        "variable": "b",
+        "type": [
+            "list"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 22,
+        "col_offset": 1,
+        "variable": "b[0]",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 22,
+        "col_offset": 1,
+        "variable": "b[1]",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 22,
+        "col_offset": 1,
+        "variable": "b[2]",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 25,
+        "col_offset": 1,
+        "variable": "b",
+        "type": [
+            "list"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 25,
+        "col_offset": 1,
+        "variable": "b[0]",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 25,
+        "col_offset": 1,
+        "variable": "b[1]",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 25,
+        "col_offset": 1,
+        "variable": "b[2]",
+        "type": [
+            "int"
+        ]
+    }
+]

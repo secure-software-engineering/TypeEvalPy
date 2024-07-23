@@ -1,0 +1,110 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "col_offset": 13,
+        "variable": "A.B.a",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "col_offset": 13,
+        "variable": "A.B.a['ezucm']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "col_offset": 13,
+        "variable": "A.B.a['nmwdy']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "col_offset": 13,
+        "variable": "A.B.a['qaets']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 7,
+        "col_offset": 13,
+        "function": "A.B.bfunc",
+        "type": [
+            "bool"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 15,
+        "col_offset": 9,
+        "function": "C.cfunc",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 19,
+        "col_offset": 1,
+        "variable": "c",
+        "type": [
+            "C"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 20,
+        "col_offset": 1,
+        "variable": "d",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 20,
+        "col_offset": 1,
+        "variable": "d['ezucm']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 20,
+        "col_offset": 1,
+        "variable": "d['nmwdy']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 20,
+        "col_offset": 1,
+        "variable": "d['qaets']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 21,
+        "col_offset": 1,
+        "variable": "e",
+        "type": [
+            "bool"
+        ]
+    }
+]

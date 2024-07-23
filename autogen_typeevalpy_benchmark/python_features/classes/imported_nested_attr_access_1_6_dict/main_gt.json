@@ -1,0 +1,47 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "col_offset": 1,
+        "variable": "a",
+        "type": [
+            "nest.imported.A"
+        ]
+    },
+    {
+        "file": "imported.py",
+        "line_number": 6,
+        "col_offset": 1,
+        "variable": "b",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "imported.py",
+        "line_number": 6,
+        "col_offset": 1,
+        "variable": "b['fioak']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "imported.py",
+        "line_number": 6,
+        "col_offset": 1,
+        "variable": "b['yxqjo']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "imported.py",
+        "line_number": 6,
+        "col_offset": 1,
+        "variable": "b['fbrjy']",
+        "type": [
+            "int"
+        ]
+    }
+]

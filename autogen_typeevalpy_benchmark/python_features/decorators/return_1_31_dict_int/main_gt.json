@@ -1,0 +1,84 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "col_offset": 5,
+        "function": "func1",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "col_offset": 9,
+        "function": "dec",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "col_offset": 13,
+        "parameter": "f",
+        "function": "dec",
+        "type": [
+            "callable"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "col_offset": 9,
+        "function": "inner",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 15,
+        "col_offset": 5,
+        "function": "func2",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 19,
+        "col_offset": 1,
+        "variable": "a",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 19,
+        "col_offset": 1,
+        "variable": "a['rcfnk']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 19,
+        "col_offset": 1,
+        "variable": "a['mqmej']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 19,
+        "col_offset": 1,
+        "variable": "a['crrnd']",
+        "type": [
+            "int"
+        ]
+    }
+]

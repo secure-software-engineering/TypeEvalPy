@@ -1,0 +1,38 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "col_offset": 5,
+        "variable": "a",
+        "type": [
+            "dict"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "col_offset": 5,
+        "variable": "a['zbnhw']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "col_offset": 5,
+        "variable": "a['vwzkr']",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "col_offset": 5,
+        "variable": "a['vdeox']",
+        "type": [
+            "int"
+        ]
+    }
+]
