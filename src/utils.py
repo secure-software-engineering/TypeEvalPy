@@ -8,7 +8,7 @@ class FileHandler:
         # Create tar of micro-bench folder
         temp_path = "/tmp/temp.tar"
         with tarfile.open(temp_path, "w:gz") as tar:
-            base_folder = os.path.basename(src)
+            base_folder = "micro-benchmark"
             tar.add(src, arcname=base_folder)
 
         with open(temp_path, "rb") as file:

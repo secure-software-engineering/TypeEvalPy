@@ -21,6 +21,7 @@ class TypeEvalPyRunner:
         dockerfile_name="Dockerfile",
         volumes={},
         nocache=False,
+        custom_benchmark_dir=None,
     ):
         self.docker_client = docker.from_env()
         self.tool_name = tool_name
@@ -28,6 +29,12 @@ class TypeEvalPyRunner:
         self.dockerfile_name = dockerfile_name
         self.test_runner_script_path = f"/tmp/src/runner.py"
         self.benchmark_path = "/tmp/micro-benchmark"
+
+        if custom_benchmark_dir:
+            self.local_benchmark_path = custom_benchmark_dir
+        else:
+            self.local_benchmark_path = os.path.abspath("../micro-benchmark")
+
         self.host_results_path = host_results_path
         self.volumes = volumes
         self.nocache = nocache
@@ -79,7 +86,7 @@ class TypeEvalPyRunner:
         self._build_docker_image()
         self.container = self.spawn_docker_instance()
 
-        src = "../micro-benchmark"
+        src = self.local_benchmark_path
         dst = "/tmp"
         self.file_handler.copy_files_to_container(self.container, src, dst)
 
@@ -103,35 +110,81 @@ class TypeEvalPyRunner:
 
 
 class ScalpelRunner(TypeEvalPyRunner):
-    def __init__(self, host_results_path, debug=False, nocache=False):
+    def __init__(
+        self,
+        host_results_path,
+        debug=False,
+        nocache=False,
+        custom_benchmark_dir=None,
+    ):
         super().__init__(
-            "scalpel", "./target_tools/scalpel", host_results_path, nocache=nocache
+            "scalpel",
+            "./target_tools/scalpel",
+            host_results_path,
+            nocache=nocache,
+            custom_benchmark_dir=custom_benchmark_dir,
         )
 
 
 class PyreRunner(TypeEvalPyRunner):
-    def __init__(self, host_results_path, debug=False, nocache=False):
+    def __init__(
+        self,
+        host_results_path,
+        debug=False,
+        nocache=False,
+        custom_benchmark_dir=None,
+    ):
         super().__init__(
-            "pyre", "./target_tools/pyre", host_results_path, nocache=nocache
+            "pyre",
+            "./target_tools/pyre",
+            host_results_path,
+            nocache=nocache,
+            custom_benchmark_dir=custom_benchmark_dir,
         )
 
 
 class PyrightRunner(TypeEvalPyRunner):
-    def __init__(self, host_results_path, debug=False, nocache=False):
+    def __init__(
+        self,
+        host_results_path,
+        debug=False,
+        nocache=False,
+        custom_benchmark_dir=None,
+    ):
         super().__init__(
-            "pyright", "./target_tools/pyright", host_results_path, nocache=nocache
+            "pyright",
+            "./target_tools/pyright",
+            host_results_path,
+            nocache=nocache,
+            custom_benchmark_dir=custom_benchmark_dir,
         )
 
 
 class PytypeRunner(TypeEvalPyRunner):
-    def __init__(self, host_results_path, debug=False, nocache=False):
+    def __init__(
+        self,
+        host_results_path,
+        debug=False,
+        nocache=False,
+        custom_benchmark_dir=None,
+    ):
         super().__init__(
-            "pytype", "./target_tools/pytype", host_results_path, nocache=nocache
+            "pytype",
+            "./target_tools/pytype",
+            host_results_path,
+            nocache=nocache,
+            custom_benchmark_dir=custom_benchmark_dir,
         )
 
 
 class JediRunner(TypeEvalPyRunner):
-    def __init__(self, host_results_path, debug=False, nocache=False):
+    def __init__(
+        self,
+        host_results_path,
+        debug=False,
+        nocache=False,
+        custom_benchmark_dir=None,
+    ):
         if debug:
             super().__init__(
                 "jedi",
@@ -145,24 +198,49 @@ class JediRunner(TypeEvalPyRunner):
                     }
                 },
                 nocache=nocache,
+                custom_benchmark_dir=custom_benchmark_dir,
             )
         else:
             super().__init__(
-                "jedi", "./target_tools/jedi", host_results_path, nocache=nocache
+                "jedi",
+                "./target_tools/jedi",
+                host_results_path,
+                nocache=nocache,
+                custom_benchmark_dir=custom_benchmark_dir,
             )
 
 
 class HityperRunner(TypeEvalPyRunner):
-    def __init__(self, host_results_path, debug=False, nocache=False):
+    def __init__(
+        self,
+        host_results_path,
+        debug=False,
+        nocache=False,
+        custom_benchmark_dir=None,
+    ):
         super().__init__(
-            "hityper", "./target_tools/hityper", host_results_path, nocache=nocache
+            "hityper",
+            "./target_tools/hityper",
+            host_results_path,
+            nocache=nocache,
+            custom_benchmark_dir=custom_benchmark_dir,
         )
 
 
 class HityperDLRunner(TypeEvalPyRunner):
-    def __init__(self, host_results_path, debug=False, nocache=False):
+    def __init__(
+        self,
+        host_results_path,
+        debug=False,
+        nocache=False,
+        custom_benchmark_dir=None,
+    ):
         super().__init__(
-            "hityperdl", "./target_tools/hityperdl", host_results_path, nocache=nocache
+            "hityperdl",
+            "./target_tools/hityperdl",
+            host_results_path,
+            nocache=nocache,
+            custom_benchmark_dir=custom_benchmark_dir,
         )
 
     def spawn_docker_instance(self):
@@ -179,7 +257,13 @@ class HityperDLRunner(TypeEvalPyRunner):
 
 
 class HeaderGenRunner(TypeEvalPyRunner):
-    def __init__(self, host_results_path, debug=False, nocache=False):
+    def __init__(
+        self,
+        host_results_path,
+        debug=False,
+        nocache=False,
+        custom_benchmark_dir=None,
+    ):
         if debug:
             super().__init__(
                 "headergen",
@@ -199,20 +283,41 @@ class HeaderGenRunner(TypeEvalPyRunner):
                 "./target_tools/headergen",
                 host_results_path,
                 nocache=nocache,
+                custom_benchmark_dir=custom_benchmark_dir,
             )
 
 
 class PySonar2Runner(TypeEvalPyRunner):
-    def __init__(self, host_results_path, debug=False, nocache=False):
+    def __init__(
+        self,
+        host_results_path,
+        debug=False,
+        nocache=False,
+        custom_benchmark_dir=None,
+    ):
         super().__init__(
-            "pysonar2", "./target_tools/pysonar2", host_results_path, nocache=nocache
+            "pysonar2",
+            "./target_tools/pysonar2",
+            host_results_path,
+            nocache=nocache,
+            custom_benchmark_dir=custom_benchmark_dir,
         )
 
 
 class Type4pyRunner(TypeEvalPyRunner):
-    def __init__(self, host_results_path, debug=False, nocache=False):
+    def __init__(
+        self,
+        host_results_path,
+        debug=False,
+        nocache=False,
+        custom_benchmark_dir=None,
+    ):
         super().__init__(
-            "type4py", "./target_tools/type4py", host_results_path, nocache=nocache
+            "type4py",
+            "./target_tools/type4py",
+            host_results_path,
+            nocache=nocache,
+            custom_benchmark_dir=custom_benchmark_dir,
         )
 
     def spawn_docker_instance(self):
@@ -229,9 +334,20 @@ class Type4pyRunner(TypeEvalPyRunner):
 
 
 class OllamaRunner(TypeEvalPyRunner):
-    def __init__(self, host_results_path, config, debug=False, nocache=False):
+    def __init__(
+        self,
+        host_results_path,
+        config,
+        debug=False,
+        nocache=False,
+        custom_benchmark_dir=None,
+    ):
         super().__init__(
-            "ollama", "./target_tools/ollama", host_results_path, nocache=nocache
+            "ollama",
+            "./target_tools/ollama",
+            host_results_path,
+            nocache=nocache,
+            custom_benchmark_dir=custom_benchmark_dir,
         )
         self.config = config
 
@@ -266,9 +382,20 @@ class OllamaRunner(TypeEvalPyRunner):
 
 
 class OllamaRunner(TypeEvalPyRunner):
-    def __init__(self, host_results_path, config, debug=False, nocache=False):
+    def __init__(
+        self,
+        host_results_path,
+        config,
+        debug=False,
+        nocache=False,
+        custom_benchmark_dir=None,
+    ):
         super().__init__(
-            "ollama", "./target_tools/ollama", host_results_path, nocache=nocache
+            "ollama",
+            "./target_tools/ollama",
+            host_results_path,
+            nocache=nocache,
+            custom_benchmark_dir=custom_benchmark_dir,
         )
         self.config = config
 

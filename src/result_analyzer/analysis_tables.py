@@ -475,6 +475,9 @@ def create_comparison_table(stats):
 
 def analysis_sensitivities_table(stats):
     stats = utils.sort_stats(stats)
+    # check if sensitivity_sound_data is present in the stats
+    if not stats[list(stats.keys())[0]].get("sensitivity_sound_data"):
+        return
 
     with open(f"tools_sensitivities_data.csv", "w", newline="") as csvfile:
         fieldnames = [
