@@ -274,8 +274,9 @@ class HeaderGenRunner(TypeEvalPyRunner):
                     "/mnt/Projects/PhD/Research/HeaderGen/git_sources/HeaderGen_github/": {
                         "bind": "/app/HeaderGen",
                         "mode": "ro",
-                    }
+                    },
                 },
+                custom_benchmark_dir=custom_benchmark_dir,
             )
         else:
             super().__init__(

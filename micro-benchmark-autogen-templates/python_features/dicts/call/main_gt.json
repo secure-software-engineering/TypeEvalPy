@@ -61,7 +61,7 @@
             "col_offset": 1,
             "variable": "d[2]",
             "type": [
-                "<value2>"
+                "int"
             ]
         },
         {
