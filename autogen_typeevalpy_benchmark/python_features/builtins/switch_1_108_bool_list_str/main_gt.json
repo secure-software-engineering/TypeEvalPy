@@ -6,8 +6,8 @@
         "function": "func",
         "type": [
             "str",
-            "list",
-            "bool"
+            "bool",
+            "list"
         ]
     },
     {
@@ -18,8 +18,8 @@
         "parameter": "value",
         "type": [
             "str",
-            "list",
-            "bool"
+            "bool",
+            "list"
         ]
     },
     {

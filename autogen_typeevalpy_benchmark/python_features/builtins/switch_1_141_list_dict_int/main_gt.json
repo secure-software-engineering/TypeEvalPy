@@ -18,8 +18,8 @@
         "parameter": "value",
         "type": [
             "dict",
-            "int",
-            "list"
+            "list",
+            "int"
         ]
     },
     {
@@ -35,7 +35,7 @@
         "file": "main.py",
         "line_number": 12,
         "col_offset": 1,
-        "variable": "a['rmizh']",
+        "variable": "a['ymjvg']",
         "type": [
             "int"
         ]
@@ -44,7 +44,7 @@
         "file": "main.py",
         "line_number": 12,
         "col_offset": 1,
-        "variable": "a['xzsou']",
+        "variable": "a['tmskh']",
         "type": [
             "int"
         ]
@@ -53,7 +53,7 @@
         "file": "main.py",
         "line_number": 12,
         "col_offset": 1,
-        "variable": "a['edyyq']",
+        "variable": "a['kpfcc']",
         "type": [
             "int"
         ]

@@ -2,11 +2,11 @@
 
 
 def func1():
-    return False
+    return True
 
 
 def func2():
-    return 95
+    return 3
 
 
 ls = [[func1], func2]

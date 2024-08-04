@@ -6,11 +6,11 @@ def func1():
 
 
 def func2():
-    return [25, 6, 14]
+    return [81, 24, 98]
 
 
 def func3():
-    return (1, 90, 95)
+    return (45, 42, 18)
 
 
 ls = [func1, func2, func3]

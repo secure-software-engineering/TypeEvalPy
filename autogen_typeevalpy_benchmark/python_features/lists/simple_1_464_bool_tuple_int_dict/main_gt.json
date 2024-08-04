@@ -165,7 +165,7 @@
         "file": "main.py",
         "line_number": 30,
         "col_offset": 1,
-        "variable": "f['unrgp']",
+        "variable": "f['lojem']",
         "type": [
             "int"
         ]
@@ -174,7 +174,7 @@
         "file": "main.py",
         "line_number": 30,
         "col_offset": 1,
-        "variable": "f['cuflc']",
+        "variable": "f['mexvt']",
         "type": [
             "int"
         ]
@@ -183,7 +183,7 @@
         "file": "main.py",
         "line_number": 30,
         "col_offset": 1,
-        "variable": "f['ljqkb']",
+        "variable": "f['eaglo']",
         "type": [
             "int"
         ]

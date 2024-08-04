@@ -1,6 +1,6 @@
 def func1():
-    return 'xcpcr'
+    return 'rjnhm'
 
 
 def func2():
-    return 83.03
+    return 34.29

@@ -2,15 +2,15 @@
 
 
 def func1():
-    return 36.34
+    return 5.26
 
 
 def func2():
-    return 'mqwye'
+    return 'ihtky'
 
 
 def func3():
-    return [26, 49, 8]
+    return [14, 48, 68]
 
 
 ls = [func1, func2, func3]

@@ -2,7 +2,7 @@
 
 
 def return_func():
-    return {'stncj': 84, 'qnffh': 100, 'imxgs': 53}
+    return {'zpoii': 73, 'dacji': 90, 'jezmm': 70}
 
 
 def func():

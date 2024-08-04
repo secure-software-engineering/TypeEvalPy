@@ -1,6 +1,6 @@
 def func1():
-    return 'pytqc'
+    return 'gyhan'
 
 
 def func2():
-    return False
+    return True

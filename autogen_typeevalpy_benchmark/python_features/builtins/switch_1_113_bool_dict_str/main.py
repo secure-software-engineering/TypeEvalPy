@@ -2,13 +2,13 @@
 def func(value):
     match value:
         case False:
-            return {'huiai': 31, 'epuje': 50, 'vvfsq': 1}
-        case {'huiai': 31, 'epuje': 50, 'vvfsq': 1}:
+            return {'oudfv': 26, 'vxxnm': 2, 'jllqf': 71}
+        case {'oudfv': 26, 'vxxnm': 2, 'jllqf': 71}:
             return False
         case _:
             return "default"
 
 
 a = func(False)
-b = func({'huiai': 31, 'epuje': 50, 'vvfsq': 1})
-c = func('opszi')
+b = func({'oudfv': 26, 'vxxnm': 2, 'jllqf': 71})
+c = func('nblap')

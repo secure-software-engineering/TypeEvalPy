@@ -32,7 +32,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 9,
-        "variable": "MyClass.instance_var['zxijy']",
+        "variable": "MyClass.instance_var['tgead']",
         "function": "__init__",
         "type": [
             "int"
@@ -42,7 +42,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 9,
-        "variable": "MyClass.instance_var['nnsfn']",
+        "variable": "MyClass.instance_var['yoodf']",
         "function": "__init__",
         "type": [
             "int"
@@ -52,7 +52,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 9,
-        "variable": "MyClass.instance_var['aevzu']",
+        "variable": "MyClass.instance_var['wcmki']",
         "function": "__init__",
         "type": [
             "int"

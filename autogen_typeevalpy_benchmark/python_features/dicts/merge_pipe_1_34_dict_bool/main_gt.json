@@ -30,7 +30,7 @@
         "file": "main.py",
         "line_number": 4,
         "col_offset": 1,
-        "variable": "dict1['a']['toxjs']",
+        "variable": "dict1['a']['lberx']",
         "type": [
             "int"
         ]
@@ -39,7 +39,7 @@
         "file": "main.py",
         "line_number": 4,
         "col_offset": 1,
-        "variable": "dict1['a']['mutdy']",
+        "variable": "dict1['a']['faqhf']",
         "type": [
             "int"
         ]
@@ -48,7 +48,7 @@
         "file": "main.py",
         "line_number": 4,
         "col_offset": 1,
-        "variable": "dict1['a']['xdyhp']",
+        "variable": "dict1['a']['yrcfz']",
         "type": [
             "int"
         ]
@@ -84,7 +84,7 @@
         "file": "main.py",
         "line_number": 5,
         "col_offset": 1,
-        "variable": "dict2['c']['toxjs']",
+        "variable": "dict2['c']['lberx']",
         "type": [
             "int"
         ]
@@ -93,7 +93,7 @@
         "file": "main.py",
         "line_number": 5,
         "col_offset": 1,
-        "variable": "dict2['c']['mutdy']",
+        "variable": "dict2['c']['faqhf']",
         "type": [
             "int"
         ]
@@ -102,7 +102,7 @@
         "file": "main.py",
         "line_number": 5,
         "col_offset": 1,
-        "variable": "dict2['c']['xdyhp']",
+        "variable": "dict2['c']['yrcfz']",
         "type": [
             "int"
         ]
@@ -156,7 +156,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['a']['toxjs']",
+        "variable": "merged_dict['a']['lberx']",
         "type": [
             "int"
         ]
@@ -165,7 +165,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['a']['mutdy']",
+        "variable": "merged_dict['a']['faqhf']",
         "type": [
             "int"
         ]
@@ -174,7 +174,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['a']['xdyhp']",
+        "variable": "merged_dict['a']['yrcfz']",
         "type": [
             "int"
         ]
@@ -183,7 +183,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['c']['toxjs']",
+        "variable": "merged_dict['c']['lberx']",
         "type": [
             "int"
         ]
@@ -192,7 +192,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['c']['mutdy']",
+        "variable": "merged_dict['c']['faqhf']",
         "type": [
             "int"
         ]
@@ -201,7 +201,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['c']['xdyhp']",
+        "variable": "merged_dict['c']['yrcfz']",
         "type": [
             "int"
         ]

@@ -16,8 +16,8 @@
         "function": "func",
         "parameter": "value",
         "type": [
-            "str",
             "tuple",
+            "str",
             "bool"
         ]
     },

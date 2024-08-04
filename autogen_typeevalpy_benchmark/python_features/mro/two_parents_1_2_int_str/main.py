@@ -3,7 +3,7 @@
 
 class A:
     def func(self):
-        return 45
+        return 98
 
 
 class B:
@@ -11,7 +11,7 @@ class B:
         pass
 
     def func(self):
-        return 'ggtwi'
+        return 'eneak'
 
 
 class C(A, B):

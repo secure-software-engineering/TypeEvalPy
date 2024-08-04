@@ -2,7 +2,7 @@
 
 
 def func1():
-    return {'ahove': 7, 'fejzh': 12, 'ttfoz': 7}
+    return {'jzufg': 8, 'qzwjs': 13, 'syktq': 65}
 
 
 def func2():

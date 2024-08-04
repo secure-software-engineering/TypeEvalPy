@@ -2,23 +2,23 @@
 
 
 def func1():
-    return [2, 37, 15]
+    return [14, 44, 52]
 
 
 def func2():
-    return 8.18
+    return 17.28
 
 
 def func3():
-    return 27
+    return 11
 
 
 def func4():
-    return 'rsomm'
+    return 'rxets'
 
 
 def func5():
-    return (37, 2, 76)
+    return (62, 23, 44)
 
 
 def func6():

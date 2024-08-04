@@ -6,7 +6,7 @@ def func1():
         return inner
 
     def inner():
-        return 37.91
+        return 31.79
 
     return dec
 

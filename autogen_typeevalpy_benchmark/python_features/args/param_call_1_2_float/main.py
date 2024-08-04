@@ -14,7 +14,7 @@ def func2():
 
 
 def func3():
-    return 28.56
+    return 53.24
 
 
 b = func(func2())

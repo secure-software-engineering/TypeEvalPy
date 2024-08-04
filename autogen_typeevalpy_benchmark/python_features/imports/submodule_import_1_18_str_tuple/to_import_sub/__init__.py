@@ -1,2 +1,2 @@
 def func():
-    return 'lkibo'
+    return 'pxttn'

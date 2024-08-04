@@ -2,10 +2,10 @@
 class A:
     class B:
         def __init__(self):
-            self.a = 22
+            self.a = 36
 
         def bfunc(self):
-            return [79, 55, 33]
+            return [45, 75, 38]
 
 
 class C(A.B):

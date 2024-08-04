@@ -2,4 +2,4 @@ import to_import2
 
 
 def func():
-    return {'qbjqd': 84, 'mxtdh': 51, 'dqkjm': 61}
+    return {'jxzwp': 93, 'adovn': 75, 'nppjr': 36}

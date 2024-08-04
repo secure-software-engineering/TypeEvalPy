@@ -1,6 +1,6 @@
 def func1():
-    return 22
+    return 45
 
 
 def func2():
-    return 'fasts'
+    return 'trljb'

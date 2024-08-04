@@ -3,19 +3,19 @@
 
 
 def func1():
-    return 'oyloc'
+    return 'gsxhd'
 
 
 def func2():
-    return (24, 69, 64)
+    return (98, 31, 8)
 
 
 def func3():
-    return [84, 100, 12]
+    return [77, 52, 85]
 
 
 def func4():
-    return 51
+    return 41
 
 
 (a, b), (c, d) = [(func1, func2), (func3, func4)]

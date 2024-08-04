@@ -6,5 +6,5 @@ class MyClass:
         self.instance_var = instance_var
 
 
-a = MyClass({'jrchl': 66, 'uudie': 7, 'ofsrk': 39})
+a = MyClass({'gvfal': 9, 'ncwet': 25, 'myjiw': 52})
 b = a.class_var

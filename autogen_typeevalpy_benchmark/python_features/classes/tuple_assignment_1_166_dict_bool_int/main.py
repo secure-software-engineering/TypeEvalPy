@@ -6,13 +6,13 @@ class MyClass:
         pass
 
     def func1(self):
-        return {'dpspb': 29, 'wrsrs': 20, 'pidea': 54}
+        return {'blhym': 21, 'tskeu': 90, 'vqrxu': 32}
 
     def func2(self):
         return True
 
     def func3(self):
-        return 33
+        return 75
 
 
 class MyClass2:

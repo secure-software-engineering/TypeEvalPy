@@ -2,4 +2,4 @@ from .mod import func2
 
 
 def func():
-    return 36.78
+    return 14.3

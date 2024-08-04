@@ -1,6 +1,6 @@
 # Merging dictionaries using | operator
 
 
-dict1 = {"a": 'mtwvu', "b": {'flfpu': 65, 'gcaro': 28, 'crnwe': 17}}
-dict2 = {"c": 'mtwvu', "d": {'flfpu': 65, 'gcaro': 28, 'crnwe': 17}}
+dict1 = {"a": 'wxeqz', "b": {'adgaj': 10, 'wmbdm': 51, 'nqupo': 98}}
+dict2 = {"c": 'wxeqz', "d": {'adgaj': 10, 'wmbdm': 51, 'nqupo': 98}}
 merged_dict = dict1 | dict2

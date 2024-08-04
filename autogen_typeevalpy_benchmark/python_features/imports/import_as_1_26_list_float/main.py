@@ -5,7 +5,7 @@ import to_import as as_to_import
 
 
 def func():
-    return [26, 45, 15]
+    return [57, 5, 43]
 
 
 a = func()

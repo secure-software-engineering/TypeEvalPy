@@ -6,7 +6,7 @@ def func1():
 
 
 def func2():
-    return 'paejr'
+    return 'rzoho'
 
 
 ls = [[func1], func2]

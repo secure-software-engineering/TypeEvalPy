@@ -2,7 +2,7 @@
 
 
 def func():
-    return [5, 95, 50]
+    return [13, 61, 17]
 
 
 a = eval("func()")

@@ -2,7 +2,7 @@
 class MyClass:
     def func(self):
         def nested():
-            return [74, 1, 68]
+            return [75, 89, 93]
 
         return nested()
 

@@ -1,6 +1,6 @@
 def func1():
-    return [16, 15, 18]
+    return [1, 15, 1]
 
 
 def func2():
-    return False
+    return True

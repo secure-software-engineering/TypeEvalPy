@@ -2,7 +2,7 @@
 
 
 def func():
-    return 92.1
+    return 83.48
 
 
 class Cls:

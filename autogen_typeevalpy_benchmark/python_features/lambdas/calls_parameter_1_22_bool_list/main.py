@@ -6,7 +6,7 @@ def func1():
 
 
 def func2():
-    return [9, 64, 66]
+    return [83, 100, 88]
 
 
 x = lambda x: x()

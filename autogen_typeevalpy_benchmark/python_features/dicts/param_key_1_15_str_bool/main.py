@@ -6,11 +6,11 @@ def func1(key="a"):
 
 
 def func2():
-    return 'wvfjx'
+    return 'fnbqw'
 
 
 def func3():
-    return True
+    return False
 
 
 d = {"a": func2, "b": func3}

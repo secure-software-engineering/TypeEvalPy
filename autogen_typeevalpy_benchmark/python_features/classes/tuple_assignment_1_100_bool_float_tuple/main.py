@@ -9,10 +9,10 @@ class MyClass:
         return True
 
     def func2(self):
-        return 27.02
+        return 53.41
 
     def func3(self):
-        return (25, 16, 7)
+        return (5, 10, 42)
 
 
 class MyClass2:

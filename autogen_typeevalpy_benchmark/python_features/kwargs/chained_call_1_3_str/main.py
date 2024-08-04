@@ -3,7 +3,7 @@
 
 
 def func3():
-    return 'rjhmx'
+    return 'wqiuo'
 
 
 def func2(a=func3):

@@ -2,13 +2,13 @@
 def func(value):
     match value:
         case False:
-            return [89, 5, 76]
-        case [89, 5, 76]:
+            return [90, 67, 50]
+        case [90, 67, 50]:
             return False
         case _:
             return "default"
 
 
 a = func(False)
-b = func([89, 5, 76])
-c = func({'yuisk': 74, 'xxhkt': 72, 'jsorq': 15})
+b = func([90, 67, 50])
+c = func({'youzy': 9, 'iwbxm': 72, 'caeoo': 59})

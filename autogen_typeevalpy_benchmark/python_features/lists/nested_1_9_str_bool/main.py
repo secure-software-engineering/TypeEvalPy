@@ -2,11 +2,11 @@
 
 
 def func1():
-    return 'eoaoc'
+    return 'gniha'
 
 
 def func2():
-    return True
+    return False
 
 
 ls = [[func1], func2]

@@ -30,7 +30,7 @@
         "file": "main.py",
         "line_number": 4,
         "col_offset": 1,
-        "variable": "dict1['a']['rtmto']",
+        "variable": "dict1['a']['wjkao']",
         "type": [
             "int"
         ]
@@ -39,7 +39,7 @@
         "file": "main.py",
         "line_number": 4,
         "col_offset": 1,
-        "variable": "dict1['a']['jgswx']",
+        "variable": "dict1['a']['gzkjg']",
         "type": [
             "int"
         ]
@@ -48,7 +48,7 @@
         "file": "main.py",
         "line_number": 4,
         "col_offset": 1,
-        "variable": "dict1['a']['bgrmb']",
+        "variable": "dict1['a']['neqpp']",
         "type": [
             "int"
         ]
@@ -84,7 +84,7 @@
         "file": "main.py",
         "line_number": 5,
         "col_offset": 1,
-        "variable": "dict2['c']['rtmto']",
+        "variable": "dict2['c']['wjkao']",
         "type": [
             "int"
         ]
@@ -93,7 +93,7 @@
         "file": "main.py",
         "line_number": 5,
         "col_offset": 1,
-        "variable": "dict2['c']['jgswx']",
+        "variable": "dict2['c']['gzkjg']",
         "type": [
             "int"
         ]
@@ -102,7 +102,7 @@
         "file": "main.py",
         "line_number": 5,
         "col_offset": 1,
-        "variable": "dict2['c']['bgrmb']",
+        "variable": "dict2['c']['neqpp']",
         "type": [
             "int"
         ]
@@ -156,7 +156,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['a']['rtmto']",
+        "variable": "merged_dict['a']['wjkao']",
         "type": [
             "int"
         ]
@@ -165,7 +165,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['a']['jgswx']",
+        "variable": "merged_dict['a']['gzkjg']",
         "type": [
             "int"
         ]
@@ -174,7 +174,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['a']['bgrmb']",
+        "variable": "merged_dict['a']['neqpp']",
         "type": [
             "int"
         ]
@@ -183,7 +183,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['c']['rtmto']",
+        "variable": "merged_dict['c']['wjkao']",
         "type": [
             "int"
         ]
@@ -192,7 +192,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['c']['jgswx']",
+        "variable": "merged_dict['c']['gzkjg']",
         "type": [
             "int"
         ]
@@ -201,7 +201,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['c']['bgrmb']",
+        "variable": "merged_dict['c']['neqpp']",
         "type": [
             "int"
         ]

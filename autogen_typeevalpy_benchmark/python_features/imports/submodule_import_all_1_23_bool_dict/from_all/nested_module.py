@@ -3,4 +3,4 @@ def func1():
 
 
 def func2():
-    return {'ergrd': 96, 'htdqy': 15, 'masil': 36}
+    return {'gffll': 56, 'nounu': 69, 'dnyfw': 14}

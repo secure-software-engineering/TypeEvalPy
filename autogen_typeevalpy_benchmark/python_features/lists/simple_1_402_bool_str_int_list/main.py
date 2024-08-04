@@ -6,11 +6,11 @@ def func1():
 
 
 def func2():
-    return 'zntut'
+    return 'dlmhk'
 
 
 def func3():
-    return 96
+    return 63
 
 
 a = [func1, func2, func3]
@@ -21,7 +21,7 @@ e = a[2]()
 
 
 def func4():
-    return [91, 43, 27]
+    return [43, 34, 15]
 
 
 b = ["Hello"]

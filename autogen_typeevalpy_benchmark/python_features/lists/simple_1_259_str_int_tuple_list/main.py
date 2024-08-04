@@ -2,15 +2,15 @@
 
 
 def func1():
-    return 'pdest'
+    return 'toneo'
 
 
 def func2():
-    return 18
+    return 48
 
 
 def func3():
-    return (13, 39, 26)
+    return (54, 37, 97)
 
 
 a = [func1, func2, func3]
@@ -21,7 +21,7 @@ e = a[2]()
 
 
 def func4():
-    return [74, 17, 60]
+    return [93, 30, 22]
 
 
 b = ["Hello"]

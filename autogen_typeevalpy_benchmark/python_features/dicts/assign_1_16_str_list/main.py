@@ -2,11 +2,11 @@
 
 
 def func1():
-    return 'hidud'
+    return 'bpmzi'
 
 
 def func2():
-    return [76, 9, 4]
+    return [99, 49, 66]
 
 
 d = {"a": func1}

@@ -2,15 +2,15 @@
 
 
 def func1():
-    return 'dxsrt'
+    return 'oggcs'
 
 
 def func2():
-    return 95.57
+    return 77.25
 
 
 def func3():
-    return 37
+    return 92
 
 
 a = [func1, func2, func3]
@@ -21,7 +21,7 @@ e = a[2]()
 
 
 def func4():
-    return True
+    return False
 
 
 b = ["Hello"]

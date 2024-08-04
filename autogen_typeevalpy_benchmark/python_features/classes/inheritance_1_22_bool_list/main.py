@@ -6,7 +6,7 @@ class MyClass:
 
 class MySubClass(MyClass):
     def sub_func(self):
-        return [13, 2, 66]
+        return [68, 51, 43]
 
 
 a = MySubClass()

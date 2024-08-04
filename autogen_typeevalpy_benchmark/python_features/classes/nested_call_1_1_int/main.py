@@ -2,7 +2,7 @@
 class MyClass:
     def func(self):
         def nested():
-            return 48
+            return 68
 
         return nested()
 

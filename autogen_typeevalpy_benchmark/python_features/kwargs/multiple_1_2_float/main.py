@@ -2,10 +2,10 @@
 
 
 def concatenate(**kwargs):
-    result = 2.71
+    result = 46.11
     for arg in kwargs.values():
         result += arg
     return result
 
 
-c = concatenate(a=2.71, b=2.71, c=2.71)
+c = concatenate(a=46.11, b=46.11, c=46.11)

@@ -6,5 +6,5 @@ def func(x):
 
 
 x = func
-a = x((43, 13, 3))
-b = x('uteua')
+a = x((24, 21, 47))
+b = x('ewkph')

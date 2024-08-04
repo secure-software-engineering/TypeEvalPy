@@ -4,7 +4,7 @@ from nested import to_import
 
 
 def func():
-    return [23, 92, 18]
+    return [93, 33, 44]
 
 
 a = func()

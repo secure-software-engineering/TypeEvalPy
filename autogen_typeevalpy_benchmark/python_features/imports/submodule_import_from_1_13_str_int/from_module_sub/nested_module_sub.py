@@ -1,6 +1,6 @@
 def func1():
-    return 'radwp'
+    return 'lqemv'
 
 
 def func2():
-    return 55
+    return 7

@@ -2,9 +2,9 @@
 
 
 def func(a):
-    return a(45)
+    return a(81)
 
 
-y = lambda x: x + 45
+y = lambda x: x + 81
 
 b = func(y)

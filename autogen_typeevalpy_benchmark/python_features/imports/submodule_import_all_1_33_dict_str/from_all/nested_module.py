@@ -1,6 +1,6 @@
 def func1():
-    return {'jzllj': 84, 'ddltn': 86, 'ghesu': 83}
+    return {'ppvtc': 98, 'dhkyz': 19, 'emwpj': 51}
 
 
 def func2():
-    return 'edexf'
+    return 'rnamo'

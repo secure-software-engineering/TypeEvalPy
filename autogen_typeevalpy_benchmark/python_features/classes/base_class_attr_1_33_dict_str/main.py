@@ -2,10 +2,10 @@
 class A:
     class B:
         def __init__(self):
-            self.a = {'movnl': 9, 'cqbrr': 97, 'ufnnr': 97}
+            self.a = {'iretu': 11, 'jqlte': 76, 'onntp': 86}
 
         def bfunc(self):
-            return 'ajhht'
+            return 'xsyhp'
 
 
 class C(A.B):

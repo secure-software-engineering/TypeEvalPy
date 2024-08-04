@@ -5,11 +5,11 @@ from ext import key
 
 
 def func1():
-    return 'racgd'
+    return 'pvpal'
 
 
 def func2():
-    return False
+    return True
 
 
 ls = [func1, func2]

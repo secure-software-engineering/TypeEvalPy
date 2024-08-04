@@ -2,15 +2,15 @@
 
 
 def func1():
-    return 'djqku'
+    return 'ilesv'
 
 
 def func2():
-    return [43, 74, 74]
+    return [33, 35, 45]
 
 
 def func3():
-    return 58
+    return 16
 
 
 a = [func1, func2, func3]
@@ -21,7 +21,7 @@ e = a[2]()
 
 
 def func4():
-    return 10.06
+    return 71.5
 
 
 b = ["Hello"]

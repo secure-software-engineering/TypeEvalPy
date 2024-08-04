@@ -4,7 +4,7 @@
 
 class A:
     def __init__(self):
-        self.a = {'elbxp': 34, 'kcrpa': 10, 'sfhin': 52}
+        self.a = {'cevdm': 85, 'ekymr': 58, 'qqwzo': 32}
 
 
 class B(A):

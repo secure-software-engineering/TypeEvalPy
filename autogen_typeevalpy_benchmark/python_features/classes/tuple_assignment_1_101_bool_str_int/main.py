@@ -9,10 +9,10 @@ class MyClass:
         return False
 
     def func2(self):
-        return 'vdiva'
+        return 'vxmqk'
 
     def func3(self):
-        return 27
+        return 91
 
 
 class MyClass2:

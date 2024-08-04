@@ -2,7 +2,7 @@
 class A:
     class B:
         def __init__(self):
-            self.a = 'fmhpl'
+            self.a = 'tisyh'
 
         def bfunc(self):
             return False

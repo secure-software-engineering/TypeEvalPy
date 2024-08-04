@@ -3,7 +3,7 @@
 
 
 def func3():
-    return 30.22
+    return 28.7
 
 
 def func2(a=func3):

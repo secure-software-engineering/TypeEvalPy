@@ -3,7 +3,7 @@
 
 def dec(f):
     def wrapper():
-        return [22, 41, 90]
+        return [36, 89, 7]
 
     return wrapper
 

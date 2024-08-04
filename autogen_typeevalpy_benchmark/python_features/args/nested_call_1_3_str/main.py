@@ -5,7 +5,7 @@
 
 
 def nested_func():
-    return 'sjaoz'
+    return 'whqpd'
 
 
 def param_func(a):

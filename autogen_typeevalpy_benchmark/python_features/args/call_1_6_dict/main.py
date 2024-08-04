@@ -1,7 +1,7 @@
 # A function func is defined which takes as a parameter a function which it later calls.
 # The 'param_func' function returns a string value.
 def param_func():
-    return {'xattr': 14, 'ugpvw': 39, 'mnhuy': 19}
+    return {'vqwps': 27, 'bfhcg': 86, 'chqjj': 35}
 
 
 def func(a):

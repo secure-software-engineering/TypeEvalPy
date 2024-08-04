@@ -12,7 +12,7 @@
         "file": "main.py",
         "line_number": 5,
         "col_offset": 13,
-        "variable": "A.B.a['tzbtv']",
+        "variable": "A.B.a['itaaj']",
         "type": [
             "int"
         ]
@@ -21,7 +21,7 @@
         "file": "main.py",
         "line_number": 5,
         "col_offset": 13,
-        "variable": "A.B.a['lmaig']",
+        "variable": "A.B.a['adual']",
         "type": [
             "int"
         ]
@@ -30,7 +30,7 @@
         "file": "main.py",
         "line_number": 5,
         "col_offset": 13,
-        "variable": "A.B.a['cwglw']",
+        "variable": "A.B.a['sizth']",
         "type": [
             "int"
         ]
@@ -75,7 +75,7 @@
         "file": "main.py",
         "line_number": 20,
         "col_offset": 1,
-        "variable": "d['tzbtv']",
+        "variable": "d['itaaj']",
         "type": [
             "int"
         ]
@@ -84,7 +84,7 @@
         "file": "main.py",
         "line_number": 20,
         "col_offset": 1,
-        "variable": "d['lmaig']",
+        "variable": "d['adual']",
         "type": [
             "int"
         ]
@@ -93,7 +93,7 @@
         "file": "main.py",
         "line_number": 20,
         "col_offset": 1,
-        "variable": "d['cwglw']",
+        "variable": "d['sizth']",
         "type": [
             "int"
         ]

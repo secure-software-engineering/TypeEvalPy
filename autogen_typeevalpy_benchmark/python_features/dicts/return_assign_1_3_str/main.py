@@ -2,7 +2,7 @@
 
 
 def func2():
-    return 'nlipz'
+    return 'ghdju'
 
 
 def func1():

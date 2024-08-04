@@ -2,14 +2,14 @@
 
 
 def func():
-    return 64.2 + 64.2
+    return 71.01 + 71.01
 
 
 a = func()
 
 
 def func2():
-    return 64.2
+    return 71.01
 
 
 def func3():
@@ -24,7 +24,7 @@ b = func4()()
 
 
 def func5():
-    return func2() + 64.2
+    return func2() + 71.01
 
 
 c = func5()

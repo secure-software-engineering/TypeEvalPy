@@ -3,7 +3,7 @@
 
 def return_func():
     def nested_return_func():
-        return True
+        return False
 
     return nested_return_func
 

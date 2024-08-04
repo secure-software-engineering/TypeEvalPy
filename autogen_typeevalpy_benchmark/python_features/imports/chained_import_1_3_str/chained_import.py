@@ -1,2 +1,2 @@
 def func1():
-    return 'ynmui'
+    return 'vxowa'

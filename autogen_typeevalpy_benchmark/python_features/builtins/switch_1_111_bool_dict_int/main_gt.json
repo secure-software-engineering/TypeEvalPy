@@ -18,8 +18,8 @@
         "parameter": "value",
         "type": [
             "dict",
-            "int",
-            "bool"
+            "bool",
+            "int"
         ]
     },
     {
@@ -35,7 +35,7 @@
         "file": "main.py",
         "line_number": 12,
         "col_offset": 1,
-        "variable": "a['uogtm']",
+        "variable": "a['vmwxc']",
         "type": [
             "int"
         ]
@@ -44,7 +44,7 @@
         "file": "main.py",
         "line_number": 12,
         "col_offset": 1,
-        "variable": "a['dnydf']",
+        "variable": "a['dmfyy']",
         "type": [
             "int"
         ]
@@ -53,7 +53,7 @@
         "file": "main.py",
         "line_number": 12,
         "col_offset": 1,
-        "variable": "a['ylzcq']",
+        "variable": "a['tnbze']",
         "type": [
             "int"
         ]

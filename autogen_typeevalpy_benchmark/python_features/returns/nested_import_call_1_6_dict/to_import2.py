@@ -1,3 +1,3 @@
 # This module defines the return_func
 def return_func():
-    return {'fbjxb': 15, 'zempc': 20, 'bkehp': 57}
+    return {'oqddi': 57, 'eqtak': 66, 'shism': 45}

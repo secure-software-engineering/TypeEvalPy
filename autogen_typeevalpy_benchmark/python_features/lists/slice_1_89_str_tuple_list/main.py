@@ -2,15 +2,15 @@
 
 
 def func1():
-    return 'mxfum'
+    return 'dvcew'
 
 
 def func2():
-    return (37, 72, 87)
+    return (99, 55, 13)
 
 
 def func3():
-    return [90, 46, 30]
+    return [98, 83, 58]
 
 
 ls = [func1, func2, func3]

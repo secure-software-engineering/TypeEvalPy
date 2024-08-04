@@ -5,7 +5,7 @@ import to_import as as_to_import
 
 
 def func():
-    return 'gujbk'
+    return 'cjasb'
 
 
 a = func()

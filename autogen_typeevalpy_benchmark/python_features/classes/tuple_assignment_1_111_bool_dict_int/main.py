@@ -9,10 +9,10 @@ class MyClass:
         return False
 
     def func2(self):
-        return {'pizix': 23, 'bjahg': 25, 'ufrjz': 70}
+        return {'zvgvj': 60, 'qjavi': 5, 'gmbwm': 79}
 
     def func3(self):
-        return 22
+        return 75
 
 
 class MyClass2:

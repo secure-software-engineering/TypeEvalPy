@@ -2,11 +2,11 @@
 
 
 def func1():
-    return (81, 46, 56)
+    return (100, 76, 78)
 
 
 def func2():
-    return 'gvcec'
+    return 'kznvy'
 
 
 x = lambda x: x()

@@ -18,8 +18,8 @@
         "parameter": "value",
         "type": [
             "dict",
-            "int",
-            "tuple"
+            "tuple",
+            "int"
         ]
     },
     {
@@ -71,7 +71,7 @@
         "file": "main.py",
         "line_number": 13,
         "col_offset": 1,
-        "variable": "b['jmkkd']",
+        "variable": "b['unucx']",
         "type": [
             "int"
         ]
@@ -80,7 +80,7 @@
         "file": "main.py",
         "line_number": 13,
         "col_offset": 1,
-        "variable": "b['xwzum']",
+        "variable": "b['ishqc']",
         "type": [
             "int"
         ]
@@ -89,7 +89,7 @@
         "file": "main.py",
         "line_number": 13,
         "col_offset": 1,
-        "variable": "b['kkydg']",
+        "variable": "b['zbsoa']",
         "type": [
             "int"
         ]

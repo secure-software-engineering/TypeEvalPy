@@ -3,7 +3,7 @@
 
 class MyClass:
     def func2(self):
-        return {'gxjel': 82, 'wxwbc': 91, 'wavxl': 11}
+        return {'trogf': 95, 'jfcwq': 90, 'sqafy': 16}
 
     def func1(self):
         return self.func2

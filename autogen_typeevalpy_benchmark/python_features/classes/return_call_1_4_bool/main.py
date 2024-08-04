@@ -3,7 +3,7 @@
 
 class MyClass:
     def func2(self):
-        return True
+        return False
 
     def func1(self):
         return self.func2

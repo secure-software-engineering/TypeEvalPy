@@ -6,7 +6,7 @@ class MyClass:
         self.func1()
 
     def func1(self):
-        return {'hsogn': 54, 'feluc': 43, 'pfgts': 46}
+        return {'trmxq': 93, 'wugru': 32, 'itbjs': 88}
 
     def func2(self):
         return self.func1()

@@ -57,7 +57,7 @@
         "file": "main.py",
         "line_number": 4,
         "col_offset": 1,
-        "variable": "dict1['b']['kovut']",
+        "variable": "dict1['b']['khdrk']",
         "type": [
             "int"
         ]
@@ -66,7 +66,7 @@
         "file": "main.py",
         "line_number": 4,
         "col_offset": 1,
-        "variable": "dict1['b']['kirhj']",
+        "variable": "dict1['b']['holnz']",
         "type": [
             "int"
         ]
@@ -75,7 +75,7 @@
         "file": "main.py",
         "line_number": 4,
         "col_offset": 1,
-        "variable": "dict1['b']['flpav']",
+        "variable": "dict1['b']['kwnml']",
         "type": [
             "int"
         ]
@@ -138,7 +138,7 @@
         "file": "main.py",
         "line_number": 5,
         "col_offset": 1,
-        "variable": "dict2['d']['kovut']",
+        "variable": "dict2['d']['khdrk']",
         "type": [
             "int"
         ]
@@ -147,7 +147,7 @@
         "file": "main.py",
         "line_number": 5,
         "col_offset": 1,
-        "variable": "dict2['d']['kirhj']",
+        "variable": "dict2['d']['holnz']",
         "type": [
             "int"
         ]
@@ -156,7 +156,7 @@
         "file": "main.py",
         "line_number": 5,
         "col_offset": 1,
-        "variable": "dict2['d']['flpav']",
+        "variable": "dict2['d']['kwnml']",
         "type": [
             "int"
         ]
@@ -237,7 +237,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['b']['kovut']",
+        "variable": "merged_dict['b']['khdrk']",
         "type": [
             "int"
         ]
@@ -246,7 +246,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['b']['kirhj']",
+        "variable": "merged_dict['b']['holnz']",
         "type": [
             "int"
         ]
@@ -255,7 +255,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['b']['flpav']",
+        "variable": "merged_dict['b']['kwnml']",
         "type": [
             "int"
         ]
@@ -291,7 +291,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['d']['kovut']",
+        "variable": "merged_dict['d']['khdrk']",
         "type": [
             "int"
         ]
@@ -300,7 +300,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['d']['kirhj']",
+        "variable": "merged_dict['d']['holnz']",
         "type": [
             "int"
         ]
@@ -309,7 +309,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['d']['flpav']",
+        "variable": "merged_dict['d']['kwnml']",
         "type": [
             "int"
         ]

@@ -111,7 +111,7 @@
         "file": "main.py",
         "line_number": 31,
         "col_offset": 1,
-        "variable": "k['kjcks']",
+        "variable": "k['cnsnr']",
         "type": [
             "int"
         ]
@@ -120,7 +120,7 @@
         "file": "main.py",
         "line_number": 31,
         "col_offset": 1,
-        "variable": "k['spiva']",
+        "variable": "k['jjmyl']",
         "type": [
             "int"
         ]
@@ -129,7 +129,7 @@
         "file": "main.py",
         "line_number": 31,
         "col_offset": 1,
-        "variable": "k['ucrpe']",
+        "variable": "k['xatcd']",
         "type": [
             "int"
         ]

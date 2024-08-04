@@ -5,7 +5,7 @@ from ext import key
 
 
 def func():
-    return {'khjom': 52, 'bijyv': 76, 'kbplr': 59}
+    return {'rerna': 52, 'efmkq': 2, 'gixmn': 20}
 
 
 d = {"a": func}

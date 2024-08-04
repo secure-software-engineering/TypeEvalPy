@@ -3,7 +3,7 @@
 
 def dec(f):
     def wrapper():
-        return 'ydcrf'
+        return 'ejmfk'
 
     return wrapper
 

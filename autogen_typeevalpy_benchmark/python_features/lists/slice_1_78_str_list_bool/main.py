@@ -2,15 +2,15 @@
 
 
 def func1():
-    return 'iuiko'
+    return 'txkpm'
 
 
 def func2():
-    return [37, 76, 67]
+    return [61, 25, 79]
 
 
 def func3():
-    return True
+    return False
 
 
 ls = [func1, func2, func3]

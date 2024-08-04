@@ -138,7 +138,7 @@
         "file": "main.py",
         "line_number": 30,
         "col_offset": 1,
-        "variable": "f['omfpv']",
+        "variable": "f['rvsbn']",
         "type": [
             "int"
         ]
@@ -147,7 +147,7 @@
         "file": "main.py",
         "line_number": 30,
         "col_offset": 1,
-        "variable": "f['aapfe']",
+        "variable": "f['mynrk']",
         "type": [
             "int"
         ]
@@ -156,7 +156,7 @@
         "file": "main.py",
         "line_number": 30,
         "col_offset": 1,
-        "variable": "f['rumhx']",
+        "variable": "f['irejw']",
         "type": [
             "int"
         ]

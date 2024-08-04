@@ -12,7 +12,7 @@
         "file": "main.py",
         "line_number": 5,
         "col_offset": 13,
-        "variable": "A.B.a['woqbz']",
+        "variable": "A.B.a['bjhew']",
         "type": [
             "int"
         ]
@@ -21,7 +21,7 @@
         "file": "main.py",
         "line_number": 5,
         "col_offset": 13,
-        "variable": "A.B.a['lfixx']",
+        "variable": "A.B.a['wnmjg']",
         "type": [
             "int"
         ]
@@ -30,7 +30,7 @@
         "file": "main.py",
         "line_number": 5,
         "col_offset": 13,
-        "variable": "A.B.a['hngws']",
+        "variable": "A.B.a['xunmm']",
         "type": [
             "int"
         ]
@@ -75,7 +75,7 @@
         "file": "main.py",
         "line_number": 20,
         "col_offset": 1,
-        "variable": "d['woqbz']",
+        "variable": "d['bjhew']",
         "type": [
             "int"
         ]
@@ -84,7 +84,7 @@
         "file": "main.py",
         "line_number": 20,
         "col_offset": 1,
-        "variable": "d['lfixx']",
+        "variable": "d['wnmjg']",
         "type": [
             "int"
         ]
@@ -93,7 +93,7 @@
         "file": "main.py",
         "line_number": 20,
         "col_offset": 1,
-        "variable": "d['hngws']",
+        "variable": "d['xunmm']",
         "type": [
             "int"
         ]

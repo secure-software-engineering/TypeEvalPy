@@ -1,6 +1,6 @@
 def func1():
-    return 'pdeam'
+    return 'jztmj'
 
 
 def func2():
-    return 31
+    return 37

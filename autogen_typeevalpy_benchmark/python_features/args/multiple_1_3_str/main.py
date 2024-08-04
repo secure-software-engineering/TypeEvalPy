@@ -9,7 +9,7 @@ def my_sum(a, b, *arguments):
 
 
 def func(a):
-    return a('leyhd', 'leyhd', 'leyhd')
+    return a('heass', 'heass', 'heass')
 
 
 b = func(my_sum)

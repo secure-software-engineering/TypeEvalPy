@@ -1,18 +1,18 @@
 # Functions are assigned to variables via starred assignment
 def func1():
-    return 'jdkde'
+    return 'anfds'
 
 
 def func2():
-    return 27
+    return 33
 
 
 def func3():
-    return (64, 80, 27)
+    return (67, 76, 98)
 
 
 def func4():
-    return 85.38
+    return 32.94
 
 a, *b, c = func1, func2, func3, func4
 

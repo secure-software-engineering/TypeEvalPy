@@ -6,7 +6,7 @@ def func1():
 
 
 def func2():
-    return 69.84
+    return 53.26
 
 
 ls = [[func1], func2]

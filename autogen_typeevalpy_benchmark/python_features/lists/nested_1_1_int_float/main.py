@@ -2,11 +2,11 @@
 
 
 def func1():
-    return 87
+    return 46
 
 
 def func2():
-    return 31.51
+    return 7.69
 
 
 ls = [[func1], func2]

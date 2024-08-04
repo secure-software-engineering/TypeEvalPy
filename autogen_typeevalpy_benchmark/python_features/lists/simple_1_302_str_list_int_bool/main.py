@@ -2,15 +2,15 @@
 
 
 def func1():
-    return 'aiwmn'
+    return 'pkmqb'
 
 
 def func2():
-    return [91, 70, 86]
+    return [1, 98, 72]
 
 
 def func3():
-    return 90
+    return 25
 
 
 a = [func1, func2, func3]

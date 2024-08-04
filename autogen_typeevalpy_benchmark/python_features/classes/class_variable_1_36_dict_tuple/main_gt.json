@@ -12,7 +12,7 @@
         "file": "main.py",
         "line_number": 3,
         "col_offset": 5,
-        "variable": "MyClass.class_var['iixlk']",
+        "variable": "MyClass.class_var['gpwcn']",
         "type": [
             "int"
         ]
@@ -21,7 +21,7 @@
         "file": "main.py",
         "line_number": 3,
         "col_offset": 5,
-        "variable": "MyClass.class_var['qtszr']",
+        "variable": "MyClass.class_var['hjboe']",
         "type": [
             "int"
         ]
@@ -30,7 +30,7 @@
         "file": "main.py",
         "line_number": 3,
         "col_offset": 5,
-        "variable": "MyClass.class_var['hlnxw']",
+        "variable": "MyClass.class_var['onxgg']",
         "type": [
             "int"
         ]
@@ -107,7 +107,7 @@
         "file": "main.py",
         "line_number": 10,
         "col_offset": 1,
-        "variable": "b['iixlk']",
+        "variable": "b['gpwcn']",
         "type": [
             "int"
         ]
@@ -116,7 +116,7 @@
         "file": "main.py",
         "line_number": 10,
         "col_offset": 1,
-        "variable": "b['qtszr']",
+        "variable": "b['hjboe']",
         "type": [
             "int"
         ]
@@ -125,7 +125,7 @@
         "file": "main.py",
         "line_number": 10,
         "col_offset": 1,
-        "variable": "b['hlnxw']",
+        "variable": "b['onxgg']",
         "type": [
             "int"
         ]

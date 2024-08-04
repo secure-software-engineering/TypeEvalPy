@@ -4,4 +4,4 @@ class MyClass:
         pass
 
     def func(self):
-        return {'sntwm': 80, 'cjxbg': 49, 'bgyka': 97}
+        return {'tlzzn': 74, 'jibtn': 46, 'ipyyd': 10}

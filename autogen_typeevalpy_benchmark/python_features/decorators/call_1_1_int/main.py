@@ -3,7 +3,7 @@
 
 def dec(f):
     def wrapper():
-        return 17
+        return 21
 
     return wrapper
 

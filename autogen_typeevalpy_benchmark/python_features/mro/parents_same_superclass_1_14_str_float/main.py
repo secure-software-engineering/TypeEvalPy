@@ -9,7 +9,7 @@ class A:
         pass
 
     def func(self):
-        return 'ksgie'
+        return 'sfdrf'
 
 
 class B(A):
@@ -18,7 +18,7 @@ class B(A):
 
 class C(A):
     def func(self):
-        return 21.3
+        return 81.93
 
 
 class D(B, C):

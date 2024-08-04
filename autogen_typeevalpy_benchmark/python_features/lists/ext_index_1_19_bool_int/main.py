@@ -5,11 +5,11 @@ from ext import key
 
 
 def func1():
-    return True
+    return False
 
 
 def func2():
-    return 21
+    return 57
 
 
 ls = [func1, func2]

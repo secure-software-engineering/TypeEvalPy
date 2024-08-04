@@ -3,8 +3,8 @@
 
 
 def func1(a):
-    a += 'chekk'
+    a += 'omuue'
     return a
 
 
-b = func1('chekk')
+b = func1('omuue')

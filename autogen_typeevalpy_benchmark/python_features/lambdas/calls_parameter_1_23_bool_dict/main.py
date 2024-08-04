@@ -6,7 +6,7 @@ def func1():
 
 
 def func2():
-    return {'twzdq': 4, 'kuqkx': 4, 'dalsa': 11}
+    return {'ehtfu': 26, 'huiuh': 72, 'nsgln': 89}
 
 
 x = lambda x: x()

@@ -2,7 +2,7 @@
 
 
 def func2():
-    return True
+    return False
 
 
 def func1(d):

@@ -1,6 +1,6 @@
 # This module defines 2 functions where one function calls the other
 def return_func():
-    return 'eyfpb'
+    return 'uvfwn'
 
 
 def func():

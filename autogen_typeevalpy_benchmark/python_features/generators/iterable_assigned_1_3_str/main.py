@@ -13,7 +13,7 @@ class Cls:
         if self.n > self.max:
             raise StopIteration
 
-        result = 'uupcv'
+        result = 'svdlq'
         self.n += 1
         return result
 

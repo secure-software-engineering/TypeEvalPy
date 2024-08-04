@@ -2,7 +2,7 @@
 
 
 def func1():
-    return [92, 84, 14]
+    return [8, 87, 57]
 
 
 def func2():

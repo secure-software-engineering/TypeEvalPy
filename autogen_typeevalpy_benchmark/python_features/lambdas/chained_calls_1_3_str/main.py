@@ -2,17 +2,17 @@
 
 
 def func3(a):
-    return a('gqpkj')
+    return a('rzulo')
 
 
 def func2(a, b):
-    a('gqpkj')
+    a('rzulo')
     return func3(b)
 
 
 def func1(a, b, c):
-    a('gqpkj')
+    a('rzulo')
     return func2(b, c)
 
 
-d = func1(lambda x: x + 'gqpkj', lambda x: x + 'gqpkj', lambda x: x + 'gqpkj')
+d = func1(lambda x: x + 'rzulo', lambda x: x + 'rzulo', lambda x: x + 'rzulo')

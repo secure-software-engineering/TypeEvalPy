@@ -4,7 +4,7 @@ from nested import to_import
 
 
 def func():
-    return {'pbzyu': 69, 'ibbpm': 71, 'vliqy': 28}
+    return {'epelu': 71, 'pkhdd': 57, 'wpygg': 43}
 
 
 a = func()

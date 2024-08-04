@@ -2,13 +2,13 @@
 def func(value):
     match value:
         case False:
-            return 21.91
-        case 21.91:
+            return 60.85
+        case 60.85:
             return False
         case _:
             return "default"
 
 
 a = func(False)
-b = func(21.91)
-c = func({'yndrw': 80, 'slclb': 15, 'olckn': 31})
+b = func(60.85)
+c = func({'tjqvt': 14, 'wessm': 68, 'wrwul': 30})

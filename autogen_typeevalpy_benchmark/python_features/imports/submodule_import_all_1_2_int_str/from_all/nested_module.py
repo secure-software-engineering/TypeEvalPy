@@ -1,6 +1,6 @@
 def func1():
-    return 4
+    return 48
 
 
 def func2():
-    return 'viyir'
+    return 'slcwm'

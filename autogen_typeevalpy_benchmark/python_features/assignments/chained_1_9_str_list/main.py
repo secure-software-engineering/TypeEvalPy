@@ -2,11 +2,11 @@
 
 
 def func1():
-    return 'kydgi'
+    return 'zgulk'
 
 
 def func2():
-    return [66, 100, 50]
+    return [94, 72, 85]
 
 
 a = b = func1

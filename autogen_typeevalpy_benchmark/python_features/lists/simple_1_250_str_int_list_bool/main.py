@@ -2,15 +2,15 @@
 
 
 def func1():
-    return 'rfpvo'
+    return 'bxigs'
 
 
 def func2():
-    return 23
+    return 16
 
 
 def func3():
-    return [51, 80, 31]
+    return [85, 21, 98]
 
 
 a = [func1, func2, func3]

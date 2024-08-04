@@ -21,7 +21,7 @@
         "file": "main.py",
         "line_number": 9,
         "col_offset": 1,
-        "variable": "a['uxway']",
+        "variable": "a['daumk']",
         "type": [
             "int"
         ]
@@ -30,7 +30,7 @@
         "file": "main.py",
         "line_number": 9,
         "col_offset": 1,
-        "variable": "a['mmirt']",
+        "variable": "a['zhgci']",
         "type": [
             "int"
         ]
@@ -39,7 +39,7 @@
         "file": "main.py",
         "line_number": 9,
         "col_offset": 1,
-        "variable": "a['tklvp']",
+        "variable": "a['ccixy']",
         "type": [
             "int"
         ]

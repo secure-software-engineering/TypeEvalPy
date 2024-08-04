@@ -2,23 +2,23 @@
 
 
 def func1():
-    return {'aotex': 65, 'muukv': 94, 'ezfxb': 58}
+    return {'xjffa': 29, 'ejbvx': 44, 'uizcx': 37}
 
 
 def func2():
-    return (47, 97, 91)
+    return (43, 92, 88)
 
 
 def func3():
-    return 11.63
+    return 89.85
 
 
 def func4():
-    return 'nygkx'
+    return 'fknoo'
 
 
 def func5():
-    return 67
+    return 89
 
 
 def func6():

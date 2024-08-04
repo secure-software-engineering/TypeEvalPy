@@ -5,8 +5,8 @@
         "col_offset": 5,
         "function": "func",
         "type": [
-            "dict",
-            "tuple"
+            "tuple",
+            "dict"
         ]
     },
     {
@@ -16,8 +16,8 @@
         "parameter": "x",
         "function": "func",
         "type": [
-            "dict",
-            "tuple"
+            "tuple",
+            "dict"
         ]
     },
     {
@@ -78,7 +78,7 @@
         "file": "main.py",
         "line_number": 10,
         "col_offset": 1,
-        "variable": "b['uqbjw']",
+        "variable": "b['kygmr']",
         "type": [
             "int"
         ]
@@ -87,7 +87,7 @@
         "file": "main.py",
         "line_number": 10,
         "col_offset": 1,
-        "variable": "b['ztbpf']",
+        "variable": "b['anttt']",
         "type": [
             "int"
         ]
@@ -96,7 +96,7 @@
         "file": "main.py",
         "line_number": 10,
         "col_offset": 1,
-        "variable": "b['rdboo']",
+        "variable": "b['chvhu']",
         "type": [
             "int"
         ]

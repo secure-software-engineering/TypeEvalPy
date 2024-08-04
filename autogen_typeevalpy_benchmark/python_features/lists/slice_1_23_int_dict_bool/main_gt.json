@@ -102,7 +102,7 @@
         "file": "main.py",
         "line_number": 20,
         "col_offset": 1,
-        "variable": "c['idmdz']",
+        "variable": "c['nwpvt']",
         "type": [
             "int"
         ]
@@ -111,7 +111,7 @@
         "file": "main.py",
         "line_number": 20,
         "col_offset": 1,
-        "variable": "c['ecpiv']",
+        "variable": "c['xyocs']",
         "type": [
             "int"
         ]
@@ -120,7 +120,7 @@
         "file": "main.py",
         "line_number": 20,
         "col_offset": 1,
-        "variable": "c['anfmm']",
+        "variable": "c['rpgso']",
         "type": [
             "int"
         ]

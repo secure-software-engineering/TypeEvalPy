@@ -1,7 +1,7 @@
 # Method Overriding by imherited class
 class MyClass:
     def func(self):
-        return 27
+        return 53
 
 
 class MySubClass(MyClass):

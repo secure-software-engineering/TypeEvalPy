@@ -2,8 +2,8 @@
 
 
 def func():
-    return lambda x: x + 20.93
+    return lambda x: x + 86.9
 
 
 y = func()
-a = y(20.93)
+a = y(86.9)

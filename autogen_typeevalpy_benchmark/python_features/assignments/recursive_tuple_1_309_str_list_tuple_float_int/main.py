@@ -2,23 +2,23 @@
 
 
 def func1():
-    return 'nysgm'
+    return 'unimq'
 
 
 def func2():
-    return [18, 93, 61]
+    return [57, 78, 27]
 
 
 def func3():
-    return (65, 24, 7)
+    return (48, 19, 91)
 
 
 def func4():
-    return 2.65
+    return 8.66
 
 
 def func5():
-    return 97
+    return 90
 
 
 def func6():

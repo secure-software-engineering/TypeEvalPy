@@ -2,7 +2,7 @@
 
 
 def func():
-    return (17, 93, 83)
+    return (77, 34, 44)
 
 
 d = {}

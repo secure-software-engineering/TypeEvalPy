@@ -10,7 +10,7 @@ def func2():
 
 
 def func3():
-    return [92, 67, 13]
+    return [65, 37, 92]
 
 
 d = {"a": func2, "b": func3}

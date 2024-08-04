@@ -30,7 +30,7 @@
         "file": "main.py",
         "line_number": 4,
         "col_offset": 1,
-        "variable": "dict1['a']['reoty']",
+        "variable": "dict1['a']['jzbck']",
         "type": [
             "int"
         ]
@@ -39,7 +39,7 @@
         "file": "main.py",
         "line_number": 4,
         "col_offset": 1,
-        "variable": "dict1['a']['xyhyq']",
+        "variable": "dict1['a']['lyzpu']",
         "type": [
             "int"
         ]
@@ -48,7 +48,7 @@
         "file": "main.py",
         "line_number": 4,
         "col_offset": 1,
-        "variable": "dict1['a']['nunzj']",
+        "variable": "dict1['a']['rqtsd']",
         "type": [
             "int"
         ]
@@ -111,7 +111,7 @@
         "file": "main.py",
         "line_number": 5,
         "col_offset": 1,
-        "variable": "dict2['c']['reoty']",
+        "variable": "dict2['c']['jzbck']",
         "type": [
             "int"
         ]
@@ -120,7 +120,7 @@
         "file": "main.py",
         "line_number": 5,
         "col_offset": 1,
-        "variable": "dict2['c']['xyhyq']",
+        "variable": "dict2['c']['lyzpu']",
         "type": [
             "int"
         ]
@@ -129,7 +129,7 @@
         "file": "main.py",
         "line_number": 5,
         "col_offset": 1,
-        "variable": "dict2['c']['nunzj']",
+        "variable": "dict2['c']['rqtsd']",
         "type": [
             "int"
         ]
@@ -210,7 +210,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['a']['reoty']",
+        "variable": "merged_dict['a']['jzbck']",
         "type": [
             "int"
         ]
@@ -219,7 +219,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['a']['xyhyq']",
+        "variable": "merged_dict['a']['lyzpu']",
         "type": [
             "int"
         ]
@@ -228,7 +228,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['a']['nunzj']",
+        "variable": "merged_dict['a']['rqtsd']",
         "type": [
             "int"
         ]
@@ -264,7 +264,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['c']['reoty']",
+        "variable": "merged_dict['c']['jzbck']",
         "type": [
             "int"
         ]
@@ -273,7 +273,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['c']['xyhyq']",
+        "variable": "merged_dict['c']['lyzpu']",
         "type": [
             "int"
         ]
@@ -282,7 +282,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['c']['nunzj']",
+        "variable": "merged_dict['c']['rqtsd']",
         "type": [
             "int"
         ]

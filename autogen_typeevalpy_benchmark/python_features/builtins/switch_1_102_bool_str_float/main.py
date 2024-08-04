@@ -2,13 +2,13 @@
 def func(value):
     match value:
         case True:
-            return 'xlhfe'
-        case 'xlhfe':
+            return 'mxhar'
+        case 'mxhar':
             return True
         case _:
             return "default"
 
 
 a = func(True)
-b = func('xlhfe')
-c = func(4.37)
+b = func('mxhar')
+c = func(97.87)

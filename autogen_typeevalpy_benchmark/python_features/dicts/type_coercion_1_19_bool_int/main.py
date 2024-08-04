@@ -6,7 +6,7 @@ def func1():
 
 
 def func2():
-    return 46
+    return 15
 
 
 d = {1: func1, "1": func2}

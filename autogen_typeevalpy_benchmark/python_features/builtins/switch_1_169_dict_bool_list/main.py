@@ -1,14 +1,14 @@
 #  A function is defined with switch statement in it.
 def func(value):
     match value:
-        case {'mdzlc': 96, 'gobea': 6, 'hmdep': 78}:
+        case {'qemej': 53, 'tduui': 70, 'tegys': 92}:
             return True
         case True:
-            return {'mdzlc': 96, 'gobea': 6, 'hmdep': 78}
+            return {'qemej': 53, 'tduui': 70, 'tegys': 92}
         case _:
             return "default"
 
 
-a = func({'mdzlc': 96, 'gobea': 6, 'hmdep': 78})
+a = func({'qemej': 53, 'tduui': 70, 'tegys': 92})
 b = func(True)
-c = func([99, 5, 46])
+c = func([61, 8, 94])

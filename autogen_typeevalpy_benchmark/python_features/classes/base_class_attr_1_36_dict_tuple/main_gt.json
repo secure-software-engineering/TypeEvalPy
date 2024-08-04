@@ -12,7 +12,7 @@
         "file": "main.py",
         "line_number": 5,
         "col_offset": 13,
-        "variable": "A.B.a['kflqp']",
+        "variable": "A.B.a['hlbyr']",
         "type": [
             "int"
         ]
@@ -21,7 +21,7 @@
         "file": "main.py",
         "line_number": 5,
         "col_offset": 13,
-        "variable": "A.B.a['ghqna']",
+        "variable": "A.B.a['fmtyx']",
         "type": [
             "int"
         ]
@@ -30,7 +30,7 @@
         "file": "main.py",
         "line_number": 5,
         "col_offset": 13,
-        "variable": "A.B.a['gzimd']",
+        "variable": "A.B.a['txsbr']",
         "type": [
             "int"
         ]
@@ -75,7 +75,7 @@
         "file": "main.py",
         "line_number": 20,
         "col_offset": 1,
-        "variable": "d['kflqp']",
+        "variable": "d['hlbyr']",
         "type": [
             "int"
         ]
@@ -84,7 +84,7 @@
         "file": "main.py",
         "line_number": 20,
         "col_offset": 1,
-        "variable": "d['ghqna']",
+        "variable": "d['fmtyx']",
         "type": [
             "int"
         ]
@@ -93,7 +93,7 @@
         "file": "main.py",
         "line_number": 20,
         "col_offset": 1,
-        "variable": "d['gzimd']",
+        "variable": "d['txsbr']",
         "type": [
             "int"
         ]

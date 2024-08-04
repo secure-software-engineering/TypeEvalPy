@@ -2,7 +2,7 @@
 
 
 def func():
-    return 'aeixb'
+    return 'pcuvu'
 
 
 class Cls:

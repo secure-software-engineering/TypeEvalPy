@@ -6,11 +6,11 @@ def func1():
 
 
 def func2():
-    return 'dpeaz'
+    return 'nsfcw'
 
 
 def func3():
-    return True
+    return False
 
 
 ls = [func1, func2, func3]

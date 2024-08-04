@@ -17,7 +17,7 @@ class C(A):
         self.child = self.func2
 
     def func2(self):
-        return 'mjvxs'
+        return 'agzav'
 
 
 b = B()

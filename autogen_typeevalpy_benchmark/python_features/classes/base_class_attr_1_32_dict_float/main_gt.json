@@ -12,7 +12,7 @@
         "file": "main.py",
         "line_number": 5,
         "col_offset": 13,
-        "variable": "A.B.a['mewel']",
+        "variable": "A.B.a['cyzyo']",
         "type": [
             "int"
         ]
@@ -21,7 +21,7 @@
         "file": "main.py",
         "line_number": 5,
         "col_offset": 13,
-        "variable": "A.B.a['dcjgl']",
+        "variable": "A.B.a['gzrlw']",
         "type": [
             "int"
         ]
@@ -30,7 +30,7 @@
         "file": "main.py",
         "line_number": 5,
         "col_offset": 13,
-        "variable": "A.B.a['swckv']",
+        "variable": "A.B.a['xlbpb']",
         "type": [
             "int"
         ]
@@ -75,7 +75,7 @@
         "file": "main.py",
         "line_number": 20,
         "col_offset": 1,
-        "variable": "d['mewel']",
+        "variable": "d['cyzyo']",
         "type": [
             "int"
         ]
@@ -84,7 +84,7 @@
         "file": "main.py",
         "line_number": 20,
         "col_offset": 1,
-        "variable": "d['dcjgl']",
+        "variable": "d['gzrlw']",
         "type": [
             "int"
         ]
@@ -93,7 +93,7 @@
         "file": "main.py",
         "line_number": 20,
         "col_offset": 1,
-        "variable": "d['swckv']",
+        "variable": "d['xlbpb']",
         "type": [
             "int"
         ]

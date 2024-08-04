@@ -2,7 +2,7 @@
 
 
 def func1():
-    return 'vzqkj'
+    return 'mmbfx'
 
 
 def func2():
@@ -10,7 +10,7 @@ def func2():
 
 
 def func3():
-    return 15
+    return 27
 
 
 ls = [func1, func2, func3]

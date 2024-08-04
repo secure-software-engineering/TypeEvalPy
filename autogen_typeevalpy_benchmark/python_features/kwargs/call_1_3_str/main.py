@@ -2,7 +2,7 @@
 
 
 def func1():
-    return 'jufpa'
+    return 'jclrj'
 
 
 def func(a):

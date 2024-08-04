@@ -18,8 +18,8 @@
         "parameter": "value",
         "type": [
             "dict",
-            "list",
-            "bool"
+            "bool",
+            "list"
         ]
     },
     {
@@ -35,7 +35,7 @@
         "file": "main.py",
         "line_number": 12,
         "col_offset": 1,
-        "variable": "a['xdwqb']",
+        "variable": "a['maytd']",
         "type": [
             "int"
         ]
@@ -44,7 +44,7 @@
         "file": "main.py",
         "line_number": 12,
         "col_offset": 1,
-        "variable": "a['yyfyd']",
+        "variable": "a['falql']",
         "type": [
             "int"
         ]
@@ -53,7 +53,7 @@
         "file": "main.py",
         "line_number": 12,
         "col_offset": 1,
-        "variable": "a['ntoff']",
+        "variable": "a['qnuir']",
         "type": [
             "int"
         ]

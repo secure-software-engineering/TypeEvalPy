@@ -21,7 +21,7 @@
         "file": "main.py",
         "line_number": 7,
         "col_offset": 1,
-        "variable": "b['armcd']",
+        "variable": "b['fdpnp']",
         "type": [
             "int"
         ]
@@ -30,7 +30,7 @@
         "file": "main.py",
         "line_number": 7,
         "col_offset": 1,
-        "variable": "b['pcmox']",
+        "variable": "b['vpvbj']",
         "type": [
             "int"
         ]
@@ -39,7 +39,7 @@
         "file": "main.py",
         "line_number": 7,
         "col_offset": 1,
-        "variable": "b['raxyn']",
+        "variable": "b['aruzq']",
         "type": [
             "int"
         ]

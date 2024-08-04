@@ -1,6 +1,6 @@
 def func1():
-    return 'lacdj'
+    return 'vgkkj'
 
 
 def func2():
-    return [41, 35, 47]
+    return [90, 24, 77]

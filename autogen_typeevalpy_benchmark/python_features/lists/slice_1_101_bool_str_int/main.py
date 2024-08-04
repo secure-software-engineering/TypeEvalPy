@@ -6,11 +6,11 @@ def func1():
 
 
 def func2():
-    return 'aijyv'
+    return 'npfbn'
 
 
 def func3():
-    return 48
+    return 43
 
 
 ls = [func1, func2, func3]

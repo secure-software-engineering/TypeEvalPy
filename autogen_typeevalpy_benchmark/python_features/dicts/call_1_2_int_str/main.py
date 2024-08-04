@@ -2,11 +2,11 @@
 
 
 def func1():
-    return 46
+    return 61
 
 
 def func2():
-    return 'forrq'
+    return 'fixgv'
 
 
 d = {"a": func1, 1: func2, 2: 3}

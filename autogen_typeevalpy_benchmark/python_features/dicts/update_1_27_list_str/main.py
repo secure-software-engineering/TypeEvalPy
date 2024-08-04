@@ -2,11 +2,11 @@
 
 
 def func1():
-    return 'vdpya'
+    return 'qvclr'
 
 
 def func2():
-    return [83, 2, 83]
+    return [52, 84, 28]
 
 
 d = {"a": func1}

@@ -1,5 +1,5 @@
 def return_func():
-    return {'fbuxk': 49, 'cyvxy': 92, 'iyxgy': 67}
+    return {'ziroe': 25, 'ukisx': 85, 'loauw': 9}
 
 
 def func():

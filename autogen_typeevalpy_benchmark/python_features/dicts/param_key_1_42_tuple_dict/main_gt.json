@@ -5,8 +5,8 @@
         "col_offset": 5,
         "function": "func1",
         "type": [
-            "dict",
-            "tuple"
+            "tuple",
+            "dict"
         ]
     },
     {
@@ -113,7 +113,7 @@
         "file": "main.py",
         "line_number": 19,
         "col_offset": 1,
-        "variable": "f['fumlk']",
+        "variable": "f['ukrhb']",
         "type": [
             "int"
         ]
@@ -122,7 +122,7 @@
         "file": "main.py",
         "line_number": 19,
         "col_offset": 1,
-        "variable": "f['yojpn']",
+        "variable": "f['asfei']",
         "type": [
             "int"
         ]
@@ -131,7 +131,7 @@
         "file": "main.py",
         "line_number": 19,
         "col_offset": 1,
-        "variable": "f['alhtz']",
+        "variable": "f['jzsoc']",
         "type": [
             "int"
         ]

@@ -4,7 +4,7 @@
 class MyClass:
     @staticmethod
     def func():
-        return {'dvouw': 78, 'esfuf': 52, 'izarc': 42}
+        return {'smykz': 29, 'qnunt': 74, 'nlstc': 42}
 
 
 a = MyClass.func()

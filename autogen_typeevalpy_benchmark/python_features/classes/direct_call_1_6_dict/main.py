@@ -6,7 +6,7 @@ class MyClass:
         pass
 
     def func(self):
-        return {'pswnp': 11, 'fmxxy': 56, 'ewxnk': 11}
+        return {'kcfao': 78, 'kcekx': 7, 'naysk': 66}
 
 
 a = MyClass().func()

@@ -18,8 +18,8 @@
         "parameter": "value",
         "type": [
             "tuple",
-            "int",
-            "list"
+            "list",
+            "int"
         ]
     },
     {

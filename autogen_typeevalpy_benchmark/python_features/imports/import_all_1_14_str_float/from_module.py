@@ -1,6 +1,6 @@
 def func1():
-    return 'smgre'
+    return 'stvjz'
 
 
 def func2():
-    return 78.3
+    return 37.71

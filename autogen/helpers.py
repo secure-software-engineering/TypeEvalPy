@@ -6,8 +6,11 @@ import re
 import shutil
 import subprocess
 import sys
+from tqdm import tqdm
 
 from pathlib import Path
+
+random.seed(42)
 
 SCRIPT_DIR = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 
@@ -96,12 +99,11 @@ def is_variable_fact(item):
     return True if "variable" in item else False
 
 
-def replace_placeholders_and_generate_json(code, json_template_str, data_type_mapping):
+def replace_placeholders_and_generate_json(
+    code, json_template_str, data_type_mapping, placeholder_values
+):
     """Replace placeholders with values for their respective types and update JSON"""
-    placeholder_values = {}
-    for placeholder, data_type in data_type_mapping.items():
-        value, _ = generate_value_for_type(data_type)
-        placeholder_values[placeholder] = value
+    for placeholder, value in placeholder_values.items():
         code = code.replace(placeholder, str(value))
 
     json_template = json.loads(json_template_str)
@@ -166,12 +168,12 @@ def save_files(
 
     with open(code_file_path, "w") as file:
         file.write(code)
-    # print(f"Saved Python code to {code_file_path}")
+    # tqdm.write(f"Saved Python code to {code_file_path}")
 
     if json_data:
         with open(json_file_path, "w") as file:
             json.dump(json_data["ground_truth"], file, indent=4)
-    # print(f"Saved JSON ground truth to {json_file_path}")
+    # tqdm.write(f"Saved JSON ground truth to {json_file_path}")
 
     return code_file_path, json_file_path
 
@@ -214,11 +216,11 @@ def run_python_script(script):
 
         # Check if the script ran successfully
         if result.returncode != 0:
-            print("Script failed to execute" + result.stderr)
+            tqdm.write("Script failed to execute" + result.stderr)
             return False
         return True
     except Exception as e:
-        print("Script failed to execute" + result.stderr)
+        tqdm.write("Script failed to execute" + result.stderr)
         return False
 
 
@@ -231,11 +233,11 @@ def run_python_script_from_path(script_path):
 
         # Check if the script ran successfully
         if result.returncode != 0:
-            print("Script failed to execute" + result.stderr)
+            tqdm.write("Script failed to execute" + result.stderr)
             return False
         return True
     except Exception as e:
-        print("Script failed to execute" + result.stderr)
+        tqdm.write("Script failed to execute" + result.stderr)
         return False
 
 
@@ -247,7 +249,7 @@ def process_file(
     file_path,
     output_folder,
 ):
-    print(f"Processing file {file_path}")
+    tqdm.write(f"Processing file {file_path}")
     case_number = 1
     total_cases = 1
     error_count = 0
@@ -257,8 +259,14 @@ def process_file(
     for data_type_combo in generate_data_type_permutations(placeholders, data_types):
         data_type_mapping = {ph: dt for ph, dt in zip(placeholders, data_type_combo)}
         type_name = "_".join(data_type_combo)
+
+        placeholder_values = {}
+        for placeholder, data_type in data_type_mapping.items():
+            value, _ = generate_value_for_type(data_type)
+            placeholder_values[placeholder] = value
+
         replaced_code, json_data = replace_placeholders_and_generate_json(
-            code_template, json_template, data_type_mapping
+            code_template, json_template, data_type_mapping, placeholder_values
         )
         try:
             # result = exec(replaced_code)
@@ -268,13 +276,13 @@ def process_file(
 
         except Exception as e:
             if "exception" in type_name:
-                print(
+                tqdm.write(
                     "Skipping errror report as the data_type is exception for"
                     f" '{name}_{type_name}'"
                 )
             else:
-                print(f"\tError executing script '{name}_{type_name}'")
-                print(f"\tError : {e}\n")
+                tqdm.write(f"\tError executing script '{name}_{type_name}'")
+                tqdm.write(f"\tError : {e}\n")
                 # Save error files separately
                 save_files(
                     replaced_code,
@@ -312,7 +320,7 @@ def process_import_case(
     file_parent,
     output_folder,
 ):
-    print(f"Processing file {file_path}")
+    tqdm.write(f"Processing file {file_path}")
 
     #  Load json_template
 
@@ -335,6 +343,11 @@ def process_import_case(
         data_type_mapping = {ph: dt for ph, dt in zip(placeholders, data_type_combo)}
         type_name = "_".join(data_type_combo)
 
+        placeholder_values = {}
+        for placeholder, data_type in data_type_mapping.items():
+            value, _ = generate_value_for_type(data_type)
+            placeholder_values[placeholder] = value
+
         for imported_python_file in template_data["imports"]:
             # Load the imported python file
             imported_python_file_path = os.path.join(file_parent, imported_python_file)
@@ -342,7 +355,10 @@ def process_import_case(
                 imported_code_template = file.read()
 
             replaced_code, _ = replace_placeholders_and_generate_json(
-                imported_code_template, json_template, data_type_mapping
+                imported_code_template,
+                json_template,
+                data_type_mapping,
+                placeholder_values,
             )
 
             save_files(
@@ -358,7 +374,7 @@ def process_import_case(
 
         # Save main file and test file
         replaced_code, json_data = replace_placeholders_and_generate_json(
-            code_template, json_template, data_type_mapping
+            code_template, json_template, data_type_mapping, placeholder_values
         )
 
         code_file_path, json_file_path = save_files(
@@ -379,13 +395,13 @@ def process_import_case(
 
         except Exception as e:
             if "exception" in type_name:
-                print(
+                tqdm.write(
                     "Skipping errror report as the data_type is exception for"
                     f" '{name}_{type_name}'"
                 )
             else:
-                print(f"\tError executing script '{name}_{type_name}'")
-                print(f"\tError : {e}\n")
+                tqdm.write(f"\tError executing script '{name}_{type_name}'")
+                tqdm.write(f"\tError : {e}\n")
                 # remove created folder if error
                 shutil.rmtree(
                     os.path.join(output_folder, name + "_" + type_name),

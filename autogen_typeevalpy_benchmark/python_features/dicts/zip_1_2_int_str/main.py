@@ -1,6 +1,6 @@
 # Creating dictionaries from lists using the zip() function
 
 
-keys = [43, 43, 43]
-values = ['lzjyv', 'lzjyv', 'lzjyv']
+keys = [34, 34, 34]
+values = ['ighqj', 'ighqj', 'ighqj']
 my_dict = dict(zip(keys, values))

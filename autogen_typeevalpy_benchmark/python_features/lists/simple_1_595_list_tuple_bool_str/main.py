@@ -2,11 +2,11 @@
 
 
 def func1():
-    return [3, 75, 17]
+    return [81, 10, 57]
 
 
 def func2():
-    return (24, 54, 62)
+    return (11, 78, 95)
 
 
 def func3():
@@ -21,7 +21,7 @@ e = a[2]()
 
 
 def func4():
-    return 'wxsib'
+    return 'zjvue'
 
 
 b = ["Hello"]

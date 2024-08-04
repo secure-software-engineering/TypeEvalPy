@@ -1,2 +1,2 @@
 def func():
-    return 'bzyta'
+    return 'gmjvv'

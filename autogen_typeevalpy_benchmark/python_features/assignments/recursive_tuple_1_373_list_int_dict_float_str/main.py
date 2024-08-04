@@ -2,23 +2,23 @@
 
 
 def func1():
-    return [6, 42, 21]
+    return [4, 7, 9]
 
 
 def func2():
-    return 1
+    return 49
 
 
 def func3():
-    return {'ndrah': 62, 'xkhuu': 63, 'oelzw': 32}
+    return {'nphhp': 7, 'wiluw': 94, 'nwyqq': 48}
 
 
 def func4():
-    return 47.52
+    return 22.83
 
 
 def func5():
-    return 'okyuf'
+    return 'hamlh'
 
 
 def func6():

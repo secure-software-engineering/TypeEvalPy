@@ -2,23 +2,23 @@
 
 
 def func1():
-    return 89.95
+    return 53.88
 
 
 def func2():
-    return 'sbmpp'
+    return 'wrtob'
 
 
 def func3():
-    return 14
+    return 99
 
 
 def func4():
-    return (58, 9, 23)
+    return (49, 90, 17)
 
 
 def func5():
-    return [63, 7, 62]
+    return [56, 90, 55]
 
 
 def func6():

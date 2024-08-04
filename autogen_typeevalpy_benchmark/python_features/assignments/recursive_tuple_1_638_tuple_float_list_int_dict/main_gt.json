@@ -264,7 +264,7 @@
         "file": "main.py",
         "line_number": 40,
         "col_offset": 1,
-        "variable": "m['hmodc']",
+        "variable": "m['prdmm']",
         "type": [
             "int"
         ]
@@ -273,7 +273,7 @@
         "file": "main.py",
         "line_number": 40,
         "col_offset": 1,
-        "variable": "m['dtaxv']",
+        "variable": "m['ikazk']",
         "type": [
             "int"
         ]
@@ -282,7 +282,7 @@
         "file": "main.py",
         "line_number": 40,
         "col_offset": 1,
-        "variable": "m['dqdjl']",
+        "variable": "m['vvikl']",
         "type": [
             "int"
         ]

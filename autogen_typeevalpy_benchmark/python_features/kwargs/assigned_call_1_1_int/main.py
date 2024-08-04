@@ -2,7 +2,7 @@
 
 
 def func2():
-    return 28
+    return 5
 
 
 def func(a):

@@ -1,10 +1,10 @@
 # Class Variable is assigned to a variable
 class MyClass:
-    class_var = (92, 20, 78)
+    class_var = (12, 25, 19)
 
     def __init__(self, instance_var):
         self.instance_var = instance_var
 
 
-a = MyClass({'dckhf': 14, 'yklyq': 76, 'vislp': 6})
+a = MyClass({'uubkw': 23, 'knkyf': 27, 'lbrvy': 3})
 b = a.class_var

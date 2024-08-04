@@ -111,7 +111,7 @@
         "file": "main.py",
         "line_number": 19,
         "col_offset": 1,
-        "variable": "d['zudaq']",
+        "variable": "d['fpimd']",
         "type": [
             "int"
         ]
@@ -120,7 +120,7 @@
         "file": "main.py",
         "line_number": 19,
         "col_offset": 1,
-        "variable": "d['isxyj']",
+        "variable": "d['ccfsp']",
         "type": [
             "int"
         ]
@@ -129,7 +129,7 @@
         "file": "main.py",
         "line_number": 19,
         "col_offset": 1,
-        "variable": "d['ffese']",
+        "variable": "d['ueqoe']",
         "type": [
             "int"
         ]

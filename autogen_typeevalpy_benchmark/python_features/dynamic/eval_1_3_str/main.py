@@ -2,7 +2,7 @@
 
 
 def func():
-    return 'uepit'
+    return 'scryf'
 
 
 a = eval("func()")

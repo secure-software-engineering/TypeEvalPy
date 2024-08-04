@@ -1,2 +1,2 @@
 def func():
-    return {'cyeuh': 42, 'cfwht': 100, 'xtbvt': 76}
+    return {'cyffv': 24, 'tlhgg': 45, 'dztrl': 44}

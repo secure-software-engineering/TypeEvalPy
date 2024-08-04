@@ -1,6 +1,6 @@
 # Merging dictionaries using ** operator
 
 
-dict1 = {"a": False, "b": 'oeqmz'}
-dict2 = {"c": False, "d": 'oeqmz'}
+dict1 = {"a": True, "b": 'qvkwc'}
+dict2 = {"c": True, "d": 'qvkwc'}
 merged_dict = {**dict1, **dict2}

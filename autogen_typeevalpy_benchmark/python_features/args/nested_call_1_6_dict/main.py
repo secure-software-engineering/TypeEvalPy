@@ -5,7 +5,7 @@
 
 
 def nested_func():
-    return {'xcusj': 74, 'rkjpt': 2, 'tzvwa': 84}
+    return {'xpmcj': 17, 'zuggo': 17, 'ctvzn': 85}
 
 
 def param_func(a):

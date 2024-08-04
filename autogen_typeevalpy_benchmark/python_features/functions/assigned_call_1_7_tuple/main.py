@@ -2,7 +2,7 @@
 
 
 def func():
-    return (61, 74, 70)
+    return (39, 33, 59)
 
 
 a = func

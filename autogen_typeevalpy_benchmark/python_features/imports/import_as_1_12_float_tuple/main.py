@@ -5,7 +5,7 @@ import to_import as as_to_import
 
 
 def func():
-    return 49.25
+    return 23.17
 
 
 a = func()

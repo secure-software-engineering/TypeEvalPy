@@ -3,7 +3,7 @@
 
 class MyClass:
     def func2(self):
-        return 87.97
+        return 18.03
 
     def func1(self):
         return self.func2

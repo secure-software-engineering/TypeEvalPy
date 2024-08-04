@@ -3,7 +3,7 @@
 
 def dec(f):
     def wrapper():
-        return True
+        return False
 
     return wrapper
 

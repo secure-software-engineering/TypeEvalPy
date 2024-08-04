@@ -2,4 +2,4 @@ import to_import2
 
 
 def func():
-    return (37, 31, 100)
+    return (76, 8, 71)

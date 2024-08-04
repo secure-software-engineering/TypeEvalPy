@@ -6,5 +6,5 @@ def func(x):
 
 
 x = func
-a = x([88, 19, 61])
-b = x('twuyr')
+a = x([38, 6, 93])
+b = x('rzhei')

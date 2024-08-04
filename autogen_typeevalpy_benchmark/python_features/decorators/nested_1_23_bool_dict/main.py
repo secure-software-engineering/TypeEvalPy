@@ -10,7 +10,7 @@ def func():
 
     @dec
     def inner():
-        return {'foero': 95, 'fewkx': 88, 'bnbsb': 7}
+        return {'zezkq': 86, 'brczg': 69, 'fesyo': 68}
 
     return inner()
 

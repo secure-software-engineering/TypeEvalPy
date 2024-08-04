@@ -4,7 +4,7 @@
 class MyClass:
     @staticmethod
     def func():
-        return 22.7
+        return 24.89
 
 
 a = MyClass.func()

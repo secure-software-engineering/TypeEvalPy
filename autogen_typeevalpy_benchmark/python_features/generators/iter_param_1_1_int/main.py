@@ -18,7 +18,7 @@ class Cls:
         if self.n > self.max:
             raise StopIteration
 
-        result = 76
+        result = 17
         self.n += 1
         return result
 

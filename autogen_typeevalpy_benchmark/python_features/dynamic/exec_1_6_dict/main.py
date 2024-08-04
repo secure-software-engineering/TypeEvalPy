@@ -1,6 +1,6 @@
 # Using the exec() function to execute a string .
 
 
-code = "a = {'eajcu': 54, 'qydar': 81, 'qcsov': 17}"
+code = "a = {'ajnpm': 43, 'vegna': 47, 'joxzf': 46}"
 exec(code)
 b = a

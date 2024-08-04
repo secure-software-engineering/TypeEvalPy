@@ -2,15 +2,15 @@
 
 
 def func1():
-    return 'kdkwg'
+    return 'jzvni'
 
 
 def func2():
-    return [87, 67, 89]
+    return [65, 73, 83]
 
 
 def func3():
-    return (32, 71, 88)
+    return (100, 28, 84)
 
 
 a = [func1, func2, func3]

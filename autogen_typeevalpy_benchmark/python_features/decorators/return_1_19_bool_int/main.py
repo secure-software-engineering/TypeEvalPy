@@ -13,7 +13,7 @@ def func1():
 
 @func1()
 def func2():
-    return 5
+    return 94
 
 
 a = func2()

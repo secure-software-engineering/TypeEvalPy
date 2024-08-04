@@ -13,7 +13,7 @@ def func1():
 
 @func1()
 def func2():
-    return {'bkqiw': 71, 'kmsjm': 8, 'depml': 24}
+    return {'oxzsz': 55, 'qrlvp': 67, 'anzyb': 10}
 
 
 a = func2()

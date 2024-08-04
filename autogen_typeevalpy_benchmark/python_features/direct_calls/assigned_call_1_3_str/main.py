@@ -2,7 +2,7 @@
 
 
 def return_func():
-    return 'imsxq'
+    return 'nwsjs'
 
 
 def func():

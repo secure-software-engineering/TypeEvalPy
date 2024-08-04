@@ -165,7 +165,7 @@
         "file": "main.py",
         "line_number": 30,
         "col_offset": 1,
-        "variable": "f['buinh']",
+        "variable": "f['mbcqv']",
         "type": [
             "int"
         ]
@@ -174,7 +174,7 @@
         "file": "main.py",
         "line_number": 30,
         "col_offset": 1,
-        "variable": "f['utcor']",
+        "variable": "f['zekto']",
         "type": [
             "int"
         ]
@@ -183,7 +183,7 @@
         "file": "main.py",
         "line_number": 30,
         "col_offset": 1,
-        "variable": "f['hylua']",
+        "variable": "f['cbjlv']",
         "type": [
             "int"
         ]

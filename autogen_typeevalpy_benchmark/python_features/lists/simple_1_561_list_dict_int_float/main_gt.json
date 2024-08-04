@@ -111,7 +111,7 @@
         "file": "main.py",
         "line_number": 19,
         "col_offset": 1,
-        "variable": "d['swaqi']",
+        "variable": "d['tcomt']",
         "type": [
             "int"
         ]
@@ -120,7 +120,7 @@
         "file": "main.py",
         "line_number": 19,
         "col_offset": 1,
-        "variable": "d['qexqx']",
+        "variable": "d['ejbiu']",
         "type": [
             "int"
         ]
@@ -129,7 +129,7 @@
         "file": "main.py",
         "line_number": 19,
         "col_offset": 1,
-        "variable": "d['tujva']",
+        "variable": "d['xdgej']",
         "type": [
             "int"
         ]

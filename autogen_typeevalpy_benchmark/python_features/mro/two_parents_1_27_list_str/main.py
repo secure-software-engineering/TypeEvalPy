@@ -3,7 +3,7 @@
 
 class A:
     def func(self):
-        return [12, 49, 66]
+        return [33, 86, 61]
 
 
 class B:
@@ -11,7 +11,7 @@ class B:
         pass
 
     def func(self):
-        return 'pqlsq'
+        return 'jswtj'
 
 
 class C(A, B):

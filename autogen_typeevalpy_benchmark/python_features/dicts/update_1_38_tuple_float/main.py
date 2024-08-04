@@ -2,11 +2,11 @@
 
 
 def func1():
-    return 49.36
+    return 46.21
 
 
 def func2():
-    return (89, 95, 88)
+    return (73, 62, 45)
 
 
 d = {"a": func1}

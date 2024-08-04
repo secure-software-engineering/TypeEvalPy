@@ -6,7 +6,7 @@ import nested.to_import
 
 
 def func():
-    return 'tripa'
+    return 'qpdtv'
 
 
 a = nested.to_import.func()

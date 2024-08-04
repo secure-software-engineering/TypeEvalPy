@@ -5,9 +5,9 @@
         "col_offset": 5,
         "function": "func",
         "type": [
-            "float",
             "str",
-            "bool"
+            "bool",
+            "float"
         ]
     },
     {
@@ -17,9 +17,9 @@
         "function": "func",
         "parameter": "value",
         "type": [
-            "float",
             "dict",
-            "bool"
+            "bool",
+            "float"
         ]
     },
     {

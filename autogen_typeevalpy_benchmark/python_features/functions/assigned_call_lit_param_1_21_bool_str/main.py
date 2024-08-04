@@ -7,4 +7,4 @@ def func(x):
 
 x = func
 a = x(True)
-b = x('mixnw')
+b = x('hvros')

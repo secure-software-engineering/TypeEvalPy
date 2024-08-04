@@ -6,7 +6,7 @@ class MyClass:
         self.func1()
 
     def func1(self):
-        return (6, 49, 98)
+        return (76, 23, 68)
 
     def func2(self):
         return self.func1()

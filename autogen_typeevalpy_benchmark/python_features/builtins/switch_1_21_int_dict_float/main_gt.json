@@ -5,9 +5,9 @@
         "col_offset": 5,
         "function": "func",
         "type": [
-            "dict",
+            "int",
             "str",
-            "int"
+            "dict"
         ]
     },
     {
@@ -17,8 +17,8 @@
         "function": "func",
         "parameter": "value",
         "type": [
-            "dict",
             "int",
+            "dict",
             "float"
         ]
     },
@@ -35,7 +35,7 @@
         "file": "main.py",
         "line_number": 12,
         "col_offset": 1,
-        "variable": "a['comct']",
+        "variable": "a['jhyxh']",
         "type": [
             "int"
         ]
@@ -44,7 +44,7 @@
         "file": "main.py",
         "line_number": 12,
         "col_offset": 1,
-        "variable": "a['ypndk']",
+        "variable": "a['zaedf']",
         "type": [
             "int"
         ]
@@ -53,7 +53,7 @@
         "file": "main.py",
         "line_number": 12,
         "col_offset": 1,
-        "variable": "a['mkydf']",
+        "variable": "a['suqsd']",
         "type": [
             "int"
         ]

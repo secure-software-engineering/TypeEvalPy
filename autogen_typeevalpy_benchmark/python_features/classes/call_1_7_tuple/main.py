@@ -1,7 +1,7 @@
 # A class is instantiated and its function is called.
 class MyClass:
     def func(self):
-        return (56, 43, 53)
+        return (2, 6, 4)
 
 
 a = MyClass()

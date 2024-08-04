@@ -50,7 +50,7 @@
         "col_offset": 1,
         "variable": "d[2]",
         "type": [
-            "str"
+            "int"
         ]
     },
     {
@@ -66,7 +66,7 @@
         "file": "main.py",
         "line_number": 14,
         "col_offset": 1,
-        "variable": "e['spfdy']",
+        "variable": "e['lsfgb']",
         "type": [
             "int"
         ]
@@ -75,7 +75,7 @@
         "file": "main.py",
         "line_number": 14,
         "col_offset": 1,
-        "variable": "e['udlqp']",
+        "variable": "e['fbzfb']",
         "type": [
             "int"
         ]
@@ -84,7 +84,7 @@
         "file": "main.py",
         "line_number": 14,
         "col_offset": 1,
-        "variable": "e['jckal']",
+        "variable": "e['irsut']",
         "type": [
             "int"
         ]

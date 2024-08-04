@@ -5,4 +5,4 @@ def recursive_func(x):
     return x * recursive_func(x - 1)
 
 
-a = recursive_func(7)
+a = recursive_func(70)

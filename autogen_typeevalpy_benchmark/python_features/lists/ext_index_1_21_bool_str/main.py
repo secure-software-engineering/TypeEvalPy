@@ -9,7 +9,7 @@ def func1():
 
 
 def func2():
-    return 'wmejc'
+    return 'exbcc'
 
 
 ls = [func1, func2]

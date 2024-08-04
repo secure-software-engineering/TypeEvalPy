@@ -2,4 +2,4 @@ from .mod import func2
 
 
 def func():
-    return {'rpwap': 79, 'haimc': 50, 'zavcg': 3}
+    return {'oealf': 67, 'cbzuk': 59, 'qhjrl': 71}

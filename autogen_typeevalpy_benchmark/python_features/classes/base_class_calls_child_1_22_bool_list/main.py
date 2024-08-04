@@ -17,7 +17,7 @@ class C(A):
         self.child = self.func2
 
     def func2(self):
-        return [13, 66, 38]
+        return [65, 86, 53]
 
 
 b = B()

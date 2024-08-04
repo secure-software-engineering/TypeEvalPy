@@ -6,5 +6,5 @@ def func(x):
 
 
 x = func
-a = x(91)
-b = x('xchtr')
+a = x(59)
+b = x('uakvj')

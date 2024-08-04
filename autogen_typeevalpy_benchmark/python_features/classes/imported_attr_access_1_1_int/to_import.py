@@ -1,4 +1,4 @@
 # This module defines a Class A with an attribute.
 class A:
     def __init__(self):
-        self.b = 96
+        self.b = 37

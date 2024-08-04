@@ -2,7 +2,7 @@
 
 
 def func1():
-    return 'ltkin'
+    return 'xbhnh'
 
 
 def func2():

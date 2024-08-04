@@ -2,7 +2,7 @@ from helpers import read_template, process_file, process_import_case
 import os
 import shutil
 from pathlib import Path
-import tqdm
+from tqdm import tqdm
 import time
 import json
 import datetime
@@ -17,6 +17,7 @@ output_folder = (
 )
 error_folder = f"{ROOT_DIR}/.scrapy/error"
 benchmark_dir = f"{ROOT_DIR}/micro-benchmark-autogen-templates"
+# benchmark_dir = f"{ROOT_DIR}/.scrapy/micro-benchmark-autogen-templates"
 shutil.rmtree(output_folder, ignore_errors=True)
 shutil.rmtree(error_folder, ignore_errors=True)
 
@@ -27,15 +28,15 @@ error_count = 0
 last_folder = ""
 start_time = time.time()
 total_start_time = time.time()
-for file in tqdm.tqdm(python_files, desc="Processing files"):
+for file in tqdm(python_files, desc="Processing files"):
     try:
         # print the folder path if its not the same as the last one
         if str(file.parent.parent.name) != last_folder:
             if last_folder:
-                print(
+                tqdm.write(
                     f"Time taken for {last_folder}: {time.time() - start_time} seconds"
                 )
-            print(
+            tqdm.write(
                 f"##################\nProcessing: {file.parent.parent.name}\n##################"
             )
             last_folder = str(file.parent.parent.name)
@@ -43,8 +44,13 @@ for file in tqdm.tqdm(python_files, desc="Processing files"):
 
         # ignore if not main.py
         if file.name != "main.py":
-            print(f">> Ignoring: {file}")
+            tqdm.write(f">> Ignoring: {file}")
             continue
+
+        # debug point
+
+        if file.parent.name == "parent_import":
+            tqdm.write(f">> Debug point: {file}")
 
         template_data = read_template(file)
         if template_data["replacement_mode"] == "Imports":
@@ -68,7 +74,7 @@ for file in tqdm.tqdm(python_files, desc="Processing files"):
             )
 
     except Exception as e:
-        print(e)
+        tqdm.write(str(e))
         pass
 
 

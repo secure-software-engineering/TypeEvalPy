@@ -10,7 +10,7 @@ def func2():
 
 
 def func3():
-    return {'gynkw': 56, 'vlnsr': 5, 'mcwvr': 90}
+    return {'uwgtu': 98, 'mhcwi': 45, 'jwxdg': 86}
 
 
 d = {"a": func2, "b": func3}

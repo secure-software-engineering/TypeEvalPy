@@ -14,7 +14,7 @@ def func2():
 
 
 def func3():
-    return 'nffvd'
+    return 'pzytr'
 
 
 b = func(func2())

@@ -8,5 +8,5 @@ def func(x):
         return "Invalid input"
 
 
-a = func(27)
-b = func(-27)
+a = func(18)
+b = func(-18)

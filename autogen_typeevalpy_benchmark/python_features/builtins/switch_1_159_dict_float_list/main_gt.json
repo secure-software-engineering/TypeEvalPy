@@ -18,8 +18,8 @@
         "parameter": "value",
         "type": [
             "dict",
-            "list",
-            "float"
+            "float",
+            "list"
         ]
     },
     {
@@ -44,7 +44,7 @@
         "file": "main.py",
         "line_number": 13,
         "col_offset": 1,
-        "variable": "b['locnn']",
+        "variable": "b['fxrcz']",
         "type": [
             "int"
         ]
@@ -53,7 +53,7 @@
         "file": "main.py",
         "line_number": 13,
         "col_offset": 1,
-        "variable": "b['lwjac']",
+        "variable": "b['jgsjm']",
         "type": [
             "int"
         ]
@@ -62,7 +62,7 @@
         "file": "main.py",
         "line_number": 13,
         "col_offset": 1,
-        "variable": "b['lguqj']",
+        "variable": "b['xyuct']",
         "type": [
             "int"
         ]

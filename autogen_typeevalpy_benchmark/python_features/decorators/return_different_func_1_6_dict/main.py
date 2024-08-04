@@ -3,7 +3,7 @@
 
 def dec(f):
     def inner():
-        return {'fsrkb': 7, 'paohz': 5, 'rynxi': 84}
+        return {'tbedu': 50, 'frpui': 35, 'rjfqu': 37}
 
     return inner
 

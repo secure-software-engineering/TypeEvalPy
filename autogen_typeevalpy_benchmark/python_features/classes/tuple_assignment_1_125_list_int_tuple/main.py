@@ -6,13 +6,13 @@ class MyClass:
         pass
 
     def func1(self):
-        return [16, 11, 11]
+        return [46, 61, 95]
 
     def func2(self):
-        return 61
+        return 1
 
     def func3(self):
-        return (34, 3, 53)
+        return (25, 33, 1)
 
 
 class MyClass2:

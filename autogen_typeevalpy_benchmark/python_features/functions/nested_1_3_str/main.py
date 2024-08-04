@@ -2,11 +2,11 @@
 
 
 def outer():
-    x = 'qfkrw'
+    x = 'xeadt'
 
     def inner():
         nonlocal x
-        x += 'qfkrw'
+        x += 'xeadt'
         return x
 
     return inner()

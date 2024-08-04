@@ -9,7 +9,7 @@ class A:
         pass
 
     def func(self):
-        return 83.76
+        return 6.46
 
 
 class B(A):

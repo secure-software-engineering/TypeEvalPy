@@ -2,7 +2,7 @@
 
 
 def return_func():
-    return 'ltaow'
+    return 'ursiu'
 
 
 def func():

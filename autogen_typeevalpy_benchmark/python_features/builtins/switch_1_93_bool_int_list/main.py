@@ -2,13 +2,13 @@
 def func(value):
     match value:
         case True:
-            return 48
-        case 48:
+            return 19
+        case 19:
             return True
         case _:
             return "default"
 
 
 a = func(True)
-b = func(48)
-c = func([89, 1, 3])
+b = func(19)
+c = func([81, 96, 33])

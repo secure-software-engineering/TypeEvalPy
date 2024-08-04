@@ -264,7 +264,7 @@
         "file": "main.py",
         "line_number": 40,
         "col_offset": 1,
-        "variable": "m['lwylx']",
+        "variable": "m['edife']",
         "type": [
             "int"
         ]
@@ -273,7 +273,7 @@
         "file": "main.py",
         "line_number": 40,
         "col_offset": 1,
-        "variable": "m['qakml']",
+        "variable": "m['wehsg']",
         "type": [
             "int"
         ]
@@ -282,7 +282,7 @@
         "file": "main.py",
         "line_number": 40,
         "col_offset": 1,
-        "variable": "m['ixecs']",
+        "variable": "m['mpjql']",
         "type": [
             "int"
         ]

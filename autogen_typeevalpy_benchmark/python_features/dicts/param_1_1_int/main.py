@@ -2,7 +2,7 @@
 
 
 def func2():
-    return 36
+    return 95
 
 
 def func1(d):

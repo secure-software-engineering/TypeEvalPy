@@ -2,7 +2,7 @@
 
 
 def func1():
-    return 45.7
+    return 1.44
 
 
 def func2():

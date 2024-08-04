@@ -11,7 +11,7 @@ a = func()
 
 # return_dict
 def func1():
-    return 40
+    return 95
 
 
 b = func1()
@@ -30,7 +30,7 @@ c = func3()
 
 # return_set
 def func4():
-    return {'fvkrx': 83, 'rpjqz': 8, 'wizzn': 51}
+    return {'ofroa': 38, 'kuobb': 89, 'pjicc': 4}
 
 
 d = func4()

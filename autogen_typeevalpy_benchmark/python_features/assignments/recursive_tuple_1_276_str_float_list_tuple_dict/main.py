@@ -2,23 +2,23 @@
 
 
 def func1():
-    return 'pzpdf'
+    return 'dnmfm'
 
 
 def func2():
-    return 69.33
+    return 95.73
 
 
 def func3():
-    return [68, 53, 68]
+    return [81, 21, 44]
 
 
 def func4():
-    return (43, 78, 32)
+    return (81, 40, 88)
 
 
 def func5():
-    return {'hfeau': 71, 'wchvw': 21, 'nshfi': 78}
+    return {'qppni': 41, 'jrdom': 82, 'ajgyr': 61}
 
 
 def func6():

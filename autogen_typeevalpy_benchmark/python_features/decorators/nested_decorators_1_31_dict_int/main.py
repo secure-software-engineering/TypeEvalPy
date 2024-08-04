@@ -10,7 +10,7 @@ def dec1(f):
 
 def dec2(f):
     def inner():
-        return {'immup': 84, 'hgutp': 76, 'uajtw': 40}
+        return {'nqwuf': 88, 'paxxv': 22, 'jpeoq': 91}
 
     return inner
 
@@ -18,7 +18,7 @@ def dec2(f):
 @dec1
 @dec2
 def func():
-    return 4
+    return 64
 
 
 a = func()

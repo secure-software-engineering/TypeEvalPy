@@ -3,7 +3,7 @@
 
 
 def func3():
-    return (41, 53, 54)
+    return (3, 77, 78)
 
 
 def func2(a=func3):

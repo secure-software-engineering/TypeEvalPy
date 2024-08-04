@@ -2,11 +2,11 @@
 
 
 def outer():
-    x = 61.99
+    x = 20.81
 
     def inner():
         nonlocal x
-        x += 61.99
+        x += 20.81
         return x
 
     return inner()

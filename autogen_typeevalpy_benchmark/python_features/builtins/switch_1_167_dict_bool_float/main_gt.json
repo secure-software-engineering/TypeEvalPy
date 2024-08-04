@@ -17,9 +17,9 @@
         "function": "func",
         "parameter": "value",
         "type": [
-            "float",
             "dict",
-            "bool"
+            "bool",
+            "float"
         ]
     },
     {
@@ -44,7 +44,7 @@
         "file": "main.py",
         "line_number": 13,
         "col_offset": 1,
-        "variable": "b['nvniv']",
+        "variable": "b['kdgll']",
         "type": [
             "int"
         ]
@@ -53,7 +53,7 @@
         "file": "main.py",
         "line_number": 13,
         "col_offset": 1,
-        "variable": "b['qkxxd']",
+        "variable": "b['qpipx']",
         "type": [
             "int"
         ]
@@ -62,7 +62,7 @@
         "file": "main.py",
         "line_number": 13,
         "col_offset": 1,
-        "variable": "b['psunw']",
+        "variable": "b['myrrt']",
         "type": [
             "int"
         ]

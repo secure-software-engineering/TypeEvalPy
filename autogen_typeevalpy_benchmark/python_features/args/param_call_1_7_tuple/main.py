@@ -14,7 +14,7 @@ def func2():
 
 
 def func3():
-    return (10, 8, 44)
+    return (28, 70, 17)
 
 
 b = func(func2())

@@ -3,7 +3,7 @@
 
 class A:
     def func(self):
-        return 'dcetv'
+        return 'adzyc'
 
 
 class B(A):

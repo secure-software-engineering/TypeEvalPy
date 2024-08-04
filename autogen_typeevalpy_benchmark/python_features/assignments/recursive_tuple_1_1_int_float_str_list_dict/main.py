@@ -6,19 +6,19 @@ def func1():
 
 
 def func2():
-    return 41.01
+    return 90.6
 
 
 def func3():
-    return 'bbfym'
+    return 'wgbao'
 
 
 def func4():
-    return [39, 75, 51]
+    return [71, 9, 35]
 
 
 def func5():
-    return {'tdtoe': 19, 'hkjae': 37, 'oypsy': 76}
+    return {'xkmmy': 78, 'jsahe': 92, 'igfxi': 85}
 
 
 def func6():

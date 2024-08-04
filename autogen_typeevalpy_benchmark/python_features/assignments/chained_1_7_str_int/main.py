@@ -2,11 +2,11 @@
 
 
 def func1():
-    return 'wkdrn'
+    return 'qoact'
 
 
 def func2():
-    return 100
+    return 31
 
 
 a = b = func1

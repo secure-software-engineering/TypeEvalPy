@@ -14,7 +14,7 @@ def func2():
 
 
 def func3():
-    return {'nybfj': 55, 'vvqya': 47, 'iybye': 24}
+    return {'jxlgb': 36, 'aopas': 86, 'bbain': 63}
 
 
 b = func(func2())

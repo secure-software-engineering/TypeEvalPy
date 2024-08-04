@@ -2,7 +2,7 @@
 
 
 def func1():
-    return {'uvbjj': 34, 'nqaws': 45, 'dmbif': 5}
+    return {'hdhxa': 79, 'eyzni': 31, 'zfmha': 19}
 
 
 def func2():
@@ -10,7 +10,7 @@ def func2():
 
 
 def func3():
-    return [37, 72, 77]
+    return [3, 68, 41]
 
 
 ls = [func1, func2, func3]

@@ -2,7 +2,7 @@
 class A:
     class B:
         def __init__(self):
-            self.a = 21
+            self.a = 3
 
         def bfunc(self):
             return True

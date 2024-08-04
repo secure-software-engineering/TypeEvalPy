@@ -1,2 +1,2 @@
 def func():
-    return 'nolvn'
+    return 'vhwqo'

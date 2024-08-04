@@ -174,7 +174,7 @@
         "file": "main.py",
         "line_number": 23,
         "col_offset": 1,
-        "variable": "g['bzaoj']",
+        "variable": "g['vpotf']",
         "type": [
             "int"
         ]
@@ -183,7 +183,7 @@
         "file": "main.py",
         "line_number": 23,
         "col_offset": 1,
-        "variable": "g['psiww']",
+        "variable": "g['yqqdm']",
         "type": [
             "int"
         ]
@@ -192,7 +192,7 @@
         "file": "main.py",
         "line_number": 23,
         "col_offset": 1,
-        "variable": "g['xqmvu']",
+        "variable": "g['wyqso']",
         "type": [
             "int"
         ]

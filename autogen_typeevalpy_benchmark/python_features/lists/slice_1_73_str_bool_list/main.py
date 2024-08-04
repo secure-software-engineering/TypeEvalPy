@@ -2,7 +2,7 @@
 
 
 def func1():
-    return 'ypjed'
+    return 'prygr'
 
 
 def func2():
@@ -10,7 +10,7 @@ def func2():
 
 
 def func3():
-    return [21, 22, 77]
+    return [47, 18, 46]
 
 
 ls = [func1, func2, func3]

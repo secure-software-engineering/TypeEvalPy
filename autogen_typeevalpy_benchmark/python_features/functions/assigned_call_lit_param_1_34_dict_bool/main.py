@@ -6,5 +6,5 @@ def func(x):
 
 
 x = func
-a = x({'deoke': 14, 'ggbfj': 77, 'ibqan': 6})
-b = x(True)
+a = x({'rgqut': 83, 'btjte': 65, 'hbkkk': 4})
+b = x(False)

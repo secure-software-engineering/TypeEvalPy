@@ -5,9 +5,9 @@
         "col_offset": 5,
         "function": "func",
         "type": [
-            "dict",
+            "int",
             "str",
-            "int"
+            "dict"
         ]
     },
     {
@@ -17,9 +17,9 @@
         "function": "func",
         "parameter": "value",
         "type": [
-            "dict",
+            "int",
             "str",
-            "int"
+            "dict"
         ]
     },
     {
@@ -35,7 +35,7 @@
         "file": "main.py",
         "line_number": 12,
         "col_offset": 1,
-        "variable": "a['dylsf']",
+        "variable": "a['tghhj']",
         "type": [
             "int"
         ]
@@ -44,7 +44,7 @@
         "file": "main.py",
         "line_number": 12,
         "col_offset": 1,
-        "variable": "a['houku']",
+        "variable": "a['byqiy']",
         "type": [
             "int"
         ]
@@ -53,7 +53,7 @@
         "file": "main.py",
         "line_number": 12,
         "col_offset": 1,
-        "variable": "a['asqht']",
+        "variable": "a['mbrku']",
         "type": [
             "int"
         ]

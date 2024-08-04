@@ -3,4 +3,4 @@ def func1():
 
 
 def func2():
-    return [67, 50, 33]
+    return [97, 79, 99]

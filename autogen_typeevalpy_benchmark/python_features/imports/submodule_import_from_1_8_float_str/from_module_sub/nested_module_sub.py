@@ -1,6 +1,6 @@
 def func1():
-    return 27.39
+    return 58.05
 
 
 def func2():
-    return 'fhqej'
+    return 'yaqob'

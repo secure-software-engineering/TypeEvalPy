@@ -57,7 +57,7 @@
         "file": "main.py",
         "line_number": 4,
         "col_offset": 1,
-        "variable": "dict1['b']['elzsj']",
+        "variable": "dict1['b']['aibxz']",
         "type": [
             "int"
         ]
@@ -66,7 +66,7 @@
         "file": "main.py",
         "line_number": 4,
         "col_offset": 1,
-        "variable": "dict1['b']['qhgpu']",
+        "variable": "dict1['b']['mnqyh']",
         "type": [
             "int"
         ]
@@ -75,7 +75,7 @@
         "file": "main.py",
         "line_number": 4,
         "col_offset": 1,
-        "variable": "dict1['b']['yvjtj']",
+        "variable": "dict1['b']['bkuty']",
         "type": [
             "int"
         ]
@@ -138,7 +138,7 @@
         "file": "main.py",
         "line_number": 5,
         "col_offset": 1,
-        "variable": "dict2['d']['elzsj']",
+        "variable": "dict2['d']['aibxz']",
         "type": [
             "int"
         ]
@@ -147,7 +147,7 @@
         "file": "main.py",
         "line_number": 5,
         "col_offset": 1,
-        "variable": "dict2['d']['qhgpu']",
+        "variable": "dict2['d']['mnqyh']",
         "type": [
             "int"
         ]
@@ -156,7 +156,7 @@
         "file": "main.py",
         "line_number": 5,
         "col_offset": 1,
-        "variable": "dict2['d']['yvjtj']",
+        "variable": "dict2['d']['bkuty']",
         "type": [
             "int"
         ]
@@ -237,7 +237,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['b']['elzsj']",
+        "variable": "merged_dict['b']['aibxz']",
         "type": [
             "int"
         ]
@@ -246,7 +246,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['b']['qhgpu']",
+        "variable": "merged_dict['b']['mnqyh']",
         "type": [
             "int"
         ]
@@ -255,7 +255,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['b']['yvjtj']",
+        "variable": "merged_dict['b']['bkuty']",
         "type": [
             "int"
         ]
@@ -291,7 +291,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['d']['elzsj']",
+        "variable": "merged_dict['d']['aibxz']",
         "type": [
             "int"
         ]
@@ -300,7 +300,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['d']['qhgpu']",
+        "variable": "merged_dict['d']['mnqyh']",
         "type": [
             "int"
         ]
@@ -309,7 +309,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['d']['yvjtj']",
+        "variable": "merged_dict['d']['bkuty']",
         "type": [
             "int"
         ]

@@ -2,11 +2,11 @@
 
 
 def func1():
-    return 'dxeyi'
+    return 'cqpcr'
 
 
 def func2():
-    return 14
+    return 34
 
 
 d = {"a": func1}

@@ -12,7 +12,7 @@
         "file": "main.py",
         "line_number": 3,
         "col_offset": 5,
-        "variable": "MyClass.class_var['xyibh']",
+        "variable": "MyClass.class_var['kczed']",
         "type": [
             "int"
         ]
@@ -21,7 +21,7 @@
         "file": "main.py",
         "line_number": 3,
         "col_offset": 5,
-        "variable": "MyClass.class_var['bfaba']",
+        "variable": "MyClass.class_var['peohu']",
         "type": [
             "int"
         ]
@@ -30,7 +30,7 @@
         "file": "main.py",
         "line_number": 3,
         "col_offset": 5,
-        "variable": "MyClass.class_var['fyick']",
+        "variable": "MyClass.class_var['sezfn']",
         "type": [
             "int"
         ]
@@ -107,7 +107,7 @@
         "file": "main.py",
         "line_number": 10,
         "col_offset": 1,
-        "variable": "b['xyibh']",
+        "variable": "b['kczed']",
         "type": [
             "int"
         ]
@@ -116,7 +116,7 @@
         "file": "main.py",
         "line_number": 10,
         "col_offset": 1,
-        "variable": "b['bfaba']",
+        "variable": "b['peohu']",
         "type": [
             "int"
         ]
@@ -125,7 +125,7 @@
         "file": "main.py",
         "line_number": 10,
         "col_offset": 1,
-        "variable": "b['fyick']",
+        "variable": "b['sezfn']",
         "type": [
             "int"
         ]

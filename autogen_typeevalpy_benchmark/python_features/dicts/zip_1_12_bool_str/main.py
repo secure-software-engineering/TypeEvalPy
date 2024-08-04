@@ -2,5 +2,5 @@
 
 
 keys = [True, True, True]
-values = ['jpcwe', 'jpcwe', 'jpcwe']
+values = ['hqpwx', 'hqpwx', 'hqpwx']
 my_dict = dict(zip(keys, values))

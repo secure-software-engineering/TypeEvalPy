@@ -165,7 +165,7 @@
         "file": "main.py",
         "line_number": 30,
         "col_offset": 1,
-        "variable": "f['ndmsh']",
+        "variable": "f['vbfen']",
         "type": [
             "int"
         ]
@@ -174,7 +174,7 @@
         "file": "main.py",
         "line_number": 30,
         "col_offset": 1,
-        "variable": "f['qbiqz']",
+        "variable": "f['jwxvf']",
         "type": [
             "int"
         ]
@@ -183,7 +183,7 @@
         "file": "main.py",
         "line_number": 30,
         "col_offset": 1,
-        "variable": "f['lqcbs']",
+        "variable": "f['kwryw']",
         "type": [
             "int"
         ]

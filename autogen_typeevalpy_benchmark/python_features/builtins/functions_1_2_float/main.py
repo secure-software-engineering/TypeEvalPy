@@ -1,6 +1,6 @@
 # A builtin function of list are called.
 
-my_list = [81.73, 81.73]
+my_list = [36.95, 36.95]
 
 length = len(my_list)
 
@@ -12,6 +12,6 @@ smallest = min(my_list)
 
 sorted_list = sorted(my_list)
 
-any_list = any([81.73, 81.73])
+any_list = any([36.95, 36.95])
 
-all_list = all([81.73, 81.73])
+all_list = all([36.95, 36.95])

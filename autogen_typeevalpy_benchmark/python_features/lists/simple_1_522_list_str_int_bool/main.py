@@ -2,15 +2,15 @@
 
 
 def func1():
-    return [20, 89, 81]
+    return [45, 13, 81]
 
 
 def func2():
-    return 'kpoyv'
+    return 'ovymr'
 
 
 def func3():
-    return 2
+    return 49
 
 
 a = [func1, func2, func3]

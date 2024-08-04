@@ -16,8 +16,8 @@
         "function": "func",
         "parameter": "value",
         "type": [
-            "bool",
             "str",
+            "bool",
             "float"
         ]
     },

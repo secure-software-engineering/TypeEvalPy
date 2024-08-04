@@ -6,11 +6,11 @@ def func():
         return modified_inner
 
     def modified_inner():
-        return 14.98
+        return 20.05
 
     @dec
     def inner():
-        return 64
+        return 54
 
     return inner()
 

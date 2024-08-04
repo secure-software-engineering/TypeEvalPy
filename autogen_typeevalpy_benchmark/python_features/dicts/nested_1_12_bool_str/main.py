@@ -2,11 +2,11 @@
 
 
 def func1():
-    return False
+    return True
 
 
 def func2():
-    return 'uqwww'
+    return 'raqjm'
 
 
 d = {"a": {"b": func1}}

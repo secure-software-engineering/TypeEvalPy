@@ -66,7 +66,7 @@
         "file": "main.py",
         "line_number": 16,
         "col_offset": 1,
-        "variable": "g['ilagi']",
+        "variable": "g['keard']",
         "type": [
             "int"
         ]
@@ -75,7 +75,7 @@
         "file": "main.py",
         "line_number": 16,
         "col_offset": 1,
-        "variable": "g['qdjee']",
+        "variable": "g['utllf']",
         "type": [
             "int"
         ]
@@ -84,7 +84,7 @@
         "file": "main.py",
         "line_number": 16,
         "col_offset": 1,
-        "variable": "g['yimam']",
+        "variable": "g['ejuol']",
         "type": [
             "int"
         ]

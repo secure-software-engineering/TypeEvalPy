@@ -10,7 +10,7 @@ def dec1(f):
 
 def dec2(f):
     def inner():
-        return (63, 91, 62)
+        return (44, 1, 56)
 
     return inner
 
@@ -18,7 +18,7 @@ def dec2(f):
 @dec1
 @dec2
 def func():
-    return 'zgaco'
+    return 'npuud'
 
 
 a = func()

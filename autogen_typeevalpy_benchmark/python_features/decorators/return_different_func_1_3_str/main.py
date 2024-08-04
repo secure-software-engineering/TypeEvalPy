@@ -3,7 +3,7 @@
 
 def dec(f):
     def inner():
-        return 'pftqk'
+        return 'nwrwg'
 
     return inner
 

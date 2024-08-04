@@ -2,11 +2,11 @@
 
 
 def func1():
-    return 'sbacj'
+    return 'gaohd'
 
 
 def func2():
-    return 19
+    return 99
 
 
 ls = [[func1], func2]

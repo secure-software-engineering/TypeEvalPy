@@ -3,8 +3,8 @@
 import itertools
 
 data = [
-    {"name": 'akarn', "city": 68},
-    {"name": 'akarn', "city": 68},
+    {"name": 'jtesb', "city": 76},
+    {"name": 'jtesb', "city": 76},
 ]
 
 

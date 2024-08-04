@@ -3,6 +3,6 @@ def func(x):
     return x
 
 
-res = map(func, [False, 'yydei', 56])
+res = map(func, [False, 'mpjzy', 86])
 
 x, y, z = res

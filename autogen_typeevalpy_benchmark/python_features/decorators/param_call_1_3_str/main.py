@@ -14,4 +14,4 @@ def func(a, b):
     return a + b
 
 
-c = func('ggcrn', 'ggcrn')
+c = func('vdfyu', 'vdfyu')

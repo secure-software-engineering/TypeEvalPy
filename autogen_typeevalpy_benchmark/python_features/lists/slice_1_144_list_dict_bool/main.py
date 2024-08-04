@@ -2,11 +2,11 @@
 
 
 def func1():
-    return [21, 37, 49]
+    return [57, 31, 95]
 
 
 def func2():
-    return {'fbfnm': 34, 'ypicb': 99, 'fjtpo': 90}
+    return {'fqhmi': 79, 'eoywq': 8, 'xskmv': 25}
 
 
 def func3():

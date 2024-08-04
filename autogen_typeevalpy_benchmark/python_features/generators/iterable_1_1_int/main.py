@@ -11,7 +11,7 @@ class func:
 
     def __next__(self):
         if self.num < self.n:
-            cur, self.num = self.num, self.num + 36
+            cur, self.num = self.num, self.num + 34
             return cur
         else:
             raise StopIteration()

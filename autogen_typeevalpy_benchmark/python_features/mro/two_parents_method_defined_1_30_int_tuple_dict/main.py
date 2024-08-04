@@ -6,12 +6,12 @@ class A:
         pass
 
     def func(self):
-        return 5
+        return 52
 
 
 class B:
     def func(self):
-        return (39, 60, 35)
+        return (79, 78, 17)
 
 
 class C(A, B):
@@ -19,7 +19,7 @@ class C(A, B):
         pass
 
     def func(self):
-        return {'ovxni': 76, 'qdyhf': 24, 'qysps': 60}
+        return {'ylqmd': 90, 'ptasi': 34, 'wbuop': 2}
 
 
 c = C()

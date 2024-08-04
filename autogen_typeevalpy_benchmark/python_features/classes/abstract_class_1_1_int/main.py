@@ -16,5 +16,5 @@ class Rectangle(Shape):
         return self.width * self.height
 
 
-a = Rectangle(43, 43)
+a = Rectangle(95, 95)
 b = a.area()

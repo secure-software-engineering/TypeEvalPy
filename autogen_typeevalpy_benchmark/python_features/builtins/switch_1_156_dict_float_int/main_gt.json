@@ -18,8 +18,8 @@
         "parameter": "value",
         "type": [
             "dict",
-            "int",
-            "float"
+            "float",
+            "int"
         ]
     },
     {
@@ -44,7 +44,7 @@
         "file": "main.py",
         "line_number": 13,
         "col_offset": 1,
-        "variable": "b['jccvh']",
+        "variable": "b['mrers']",
         "type": [
             "int"
         ]
@@ -53,7 +53,7 @@
         "file": "main.py",
         "line_number": 13,
         "col_offset": 1,
-        "variable": "b['cdnns']",
+        "variable": "b['gytmq']",
         "type": [
             "int"
         ]
@@ -62,7 +62,7 @@
         "file": "main.py",
         "line_number": 13,
         "col_offset": 1,
-        "variable": "b['kjbqw']",
+        "variable": "b['flilb']",
         "type": [
             "int"
         ]

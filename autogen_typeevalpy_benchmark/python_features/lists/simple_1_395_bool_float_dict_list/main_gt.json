@@ -93,7 +93,7 @@
         "file": "main.py",
         "line_number": 20,
         "col_offset": 1,
-        "variable": "e['omsht']",
+        "variable": "e['rtisn']",
         "type": [
             "int"
         ]
@@ -102,7 +102,7 @@
         "file": "main.py",
         "line_number": 20,
         "col_offset": 1,
-        "variable": "e['maovf']",
+        "variable": "e['visge']",
         "type": [
             "int"
         ]
@@ -111,7 +111,7 @@
         "file": "main.py",
         "line_number": 20,
         "col_offset": 1,
-        "variable": "e['itxgc']",
+        "variable": "e['vlyft']",
         "type": [
             "int"
         ]

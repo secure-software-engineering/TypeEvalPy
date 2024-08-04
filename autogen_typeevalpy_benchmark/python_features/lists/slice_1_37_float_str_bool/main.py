@@ -2,11 +2,11 @@
 
 
 def func1():
-    return 47.8
+    return 48.85
 
 
 def func2():
-    return 'ibmaj'
+    return 'sufaq'
 
 
 def func3():

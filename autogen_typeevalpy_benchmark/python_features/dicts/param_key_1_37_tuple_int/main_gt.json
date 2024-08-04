@@ -5,8 +5,8 @@
         "col_offset": 5,
         "function": "func1",
         "type": [
-            "int",
-            "tuple"
+            "tuple",
+            "int"
         ]
     },
     {

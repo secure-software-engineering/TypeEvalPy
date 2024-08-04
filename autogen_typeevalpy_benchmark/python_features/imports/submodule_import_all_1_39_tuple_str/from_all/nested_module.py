@@ -1,6 +1,6 @@
 def func1():
-    return (84, 76, 60)
+    return (79, 61, 98)
 
 
 def func2():
-    return 'hfwrk'
+    return 'xlowr'

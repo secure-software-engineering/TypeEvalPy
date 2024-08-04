@@ -1,2 +1,2 @@
 def func():
-    return 58.84
+    return 26.45

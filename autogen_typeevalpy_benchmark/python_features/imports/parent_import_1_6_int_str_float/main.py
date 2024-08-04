@@ -4,7 +4,7 @@ from nested import to_import
 
 
 def func():
-    return 'xkryk'
+    return 'aebyz'
 
 
 a = func()

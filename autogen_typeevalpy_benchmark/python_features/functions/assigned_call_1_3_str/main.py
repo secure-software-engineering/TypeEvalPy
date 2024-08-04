@@ -2,7 +2,7 @@
 
 
 def func():
-    return 'ymffz'
+    return 'buowp'
 
 
 a = func

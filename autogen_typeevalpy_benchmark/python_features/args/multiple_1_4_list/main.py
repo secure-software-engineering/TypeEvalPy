@@ -9,7 +9,7 @@ def my_sum(a, b, *arguments):
 
 
 def func(a):
-    return a([25, 70, 31], [25, 70, 31], [25, 70, 31])
+    return a([65, 98, 23], [65, 98, 23], [65, 98, 23])
 
 
 b = func(my_sum)

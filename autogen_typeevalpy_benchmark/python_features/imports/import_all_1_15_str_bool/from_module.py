@@ -1,6 +1,6 @@
 def func1():
-    return 'bromg'
+    return 'lhupt'
 
 
 def func2():
-    return False
+    return True
