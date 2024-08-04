@@ -210,7 +210,7 @@
         "file": "main.py",
         "line_number": 35,
         "col_offset": 1,
-        "variable": "h['vlhub']",
+        "variable": "h['ehpsn']",
         "type": [
             "int"
         ]
@@ -219,7 +219,7 @@
         "file": "main.py",
         "line_number": 35,
         "col_offset": 1,
-        "variable": "h['syefu']",
+        "variable": "h['yodru']",
         "type": [
             "int"
         ]
@@ -228,7 +228,7 @@
         "file": "main.py",
         "line_number": 35,
         "col_offset": 1,
-        "variable": "h['sumjn']",
+        "variable": "h['bcudi']",
         "type": [
             "int"
         ]

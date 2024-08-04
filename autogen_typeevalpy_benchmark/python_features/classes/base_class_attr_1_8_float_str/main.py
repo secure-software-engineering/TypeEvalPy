@@ -2,10 +2,10 @@
 class A:
     class B:
         def __init__(self):
-            self.a = 10.31
+            self.a = 87.67
 
         def bfunc(self):
-            return 'jrmgi'
+            return 'gvujx'
 
 
 class C(A.B):

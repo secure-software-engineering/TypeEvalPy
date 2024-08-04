@@ -6,5 +6,5 @@ class MyClass:
         self.instance_var = instance_var
 
 
-a = MyClass(51)
+a = MyClass(98)
 b = a.class_var

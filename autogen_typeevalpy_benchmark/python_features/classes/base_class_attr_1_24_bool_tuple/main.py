@@ -5,7 +5,7 @@ class A:
             self.a = True
 
         def bfunc(self):
-            return (23, 54, 80)
+            return (54, 63, 93)
 
 
 class C(A.B):

@@ -1,2 +1,2 @@
 def func2():
-    return 'plakx'
+    return 'gqvzi'

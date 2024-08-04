@@ -18,8 +18,8 @@
         "parameter": "value",
         "type": [
             "tuple",
-            "list",
-            "float"
+            "float",
+            "list"
         ]
     },
     {

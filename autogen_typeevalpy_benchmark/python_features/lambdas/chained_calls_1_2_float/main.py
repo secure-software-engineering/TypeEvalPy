@@ -2,17 +2,17 @@
 
 
 def func3(a):
-    return a(67.71)
+    return a(93.29)
 
 
 def func2(a, b):
-    a(67.71)
+    a(93.29)
     return func3(b)
 
 
 def func1(a, b, c):
-    a(67.71)
+    a(93.29)
     return func2(b, c)
 
 
-d = func1(lambda x: x + 67.71, lambda x: x + 67.71, lambda x: x + 67.71)
+d = func1(lambda x: x + 93.29, lambda x: x + 93.29, lambda x: x + 93.29)

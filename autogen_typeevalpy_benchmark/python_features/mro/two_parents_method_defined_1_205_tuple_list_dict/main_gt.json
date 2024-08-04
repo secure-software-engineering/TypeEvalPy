@@ -39,7 +39,7 @@
         "file": "main.py",
         "line_number": 25,
         "col_offset": 1,
-        "variable": "C['fquvd']",
+        "variable": "C['xtqrr']",
         "type": [
             "int"
         ]
@@ -48,7 +48,7 @@
         "file": "main.py",
         "line_number": 25,
         "col_offset": 1,
-        "variable": "C['suobj']",
+        "variable": "C['ljbdt']",
         "type": [
             "int"
         ]
@@ -57,7 +57,7 @@
         "file": "main.py",
         "line_number": 25,
         "col_offset": 1,
-        "variable": "C['uwtze']",
+        "variable": "C['xifpz']",
         "type": [
             "int"
         ]
@@ -75,7 +75,7 @@
         "file": "main.py",
         "line_number": 26,
         "col_offset": 1,
-        "variable": "d['fquvd']",
+        "variable": "d['xtqrr']",
         "type": [
             "int"
         ]
@@ -84,7 +84,7 @@
         "file": "main.py",
         "line_number": 26,
         "col_offset": 1,
-        "variable": "d['suobj']",
+        "variable": "d['ljbdt']",
         "type": [
             "int"
         ]
@@ -93,7 +93,7 @@
         "file": "main.py",
         "line_number": 26,
         "col_offset": 1,
-        "variable": "d['uwtze']",
+        "variable": "d['xifpz']",
         "type": [
             "int"
         ]

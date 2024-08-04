@@ -5,9 +5,9 @@
         "col_offset": 5,
         "function": "func",
         "type": [
-            "dict",
+            "tuple",
             "str",
-            "tuple"
+            "dict"
         ]
     },
     {
@@ -17,8 +17,8 @@
         "function": "func",
         "parameter": "value",
         "type": [
-            "dict",
             "tuple",
+            "dict",
             "float"
         ]
     },
@@ -35,7 +35,7 @@
         "file": "main.py",
         "line_number": 12,
         "col_offset": 1,
-        "variable": "a['yrqxx']",
+        "variable": "a['epnlg']",
         "type": [
             "int"
         ]
@@ -44,7 +44,7 @@
         "file": "main.py",
         "line_number": 12,
         "col_offset": 1,
-        "variable": "a['rhokx']",
+        "variable": "a['siqqn']",
         "type": [
             "int"
         ]
@@ -53,7 +53,7 @@
         "file": "main.py",
         "line_number": 12,
         "col_offset": 1,
-        "variable": "a['msikw']",
+        "variable": "a['mtodg']",
         "type": [
             "int"
         ]

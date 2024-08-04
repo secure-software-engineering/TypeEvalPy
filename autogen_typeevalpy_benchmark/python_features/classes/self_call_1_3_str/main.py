@@ -6,7 +6,7 @@ class MyClass:
         self.func1()
 
     def func1(self):
-        return 'eqpok'
+        return 'npktm'
 
     def func2(self):
         return self.func1()

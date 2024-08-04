@@ -2,11 +2,11 @@
 
 
 def func1():
-    return False
+    return True
 
 
 def func2():
-    return 81.16
+    return 13.63
 
 
 x = lambda x: x()

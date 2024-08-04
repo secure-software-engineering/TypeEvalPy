@@ -1,6 +1,6 @@
 class Smth:
     def func(self):
-        return {'gsziv': 100, 'ztdbx': 6, 'qamdb': 35}
+        return {'rwoqi': 58, 'patxz': 63, 'eqlgd': 23}
 
 
 smth = Smth()

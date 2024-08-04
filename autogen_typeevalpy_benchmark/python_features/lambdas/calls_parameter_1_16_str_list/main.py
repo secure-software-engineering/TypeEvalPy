@@ -2,11 +2,11 @@
 
 
 def func1():
-    return 'pmsad'
+    return 'nfwpq'
 
 
 def func2():
-    return [17, 69, 76]
+    return [69, 83, 77]
 
 
 x = lambda x: x()

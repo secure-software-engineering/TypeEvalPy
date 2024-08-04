@@ -3,7 +3,7 @@
 
 
 def func3():
-    return {'foieu': 12, 'szxva': 58, 'yskxv': 64}
+    return {'ymplc': 22, 'wbgxn': 26, 'bvidm': 84}
 
 
 def func2(a=func3):

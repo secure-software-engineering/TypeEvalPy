@@ -6,7 +6,7 @@ import nested.to_import
 
 
 def func():
-    return True
+    return False
 
 
 a = nested.to_import.func()

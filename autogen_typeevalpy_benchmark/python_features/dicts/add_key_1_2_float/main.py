@@ -2,7 +2,7 @@
 
 
 def func():
-    return 39.14
+    return 33.44
 
 
 d = {}

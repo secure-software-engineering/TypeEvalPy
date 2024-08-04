@@ -2,7 +2,7 @@
 
 
 def func2():
-    return 'pnnrf'
+    return 'sdepc'
 
 
 def func1(key):

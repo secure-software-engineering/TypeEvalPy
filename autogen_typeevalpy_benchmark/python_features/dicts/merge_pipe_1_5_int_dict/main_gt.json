@@ -30,7 +30,7 @@
         "file": "main.py",
         "line_number": 4,
         "col_offset": 1,
-        "variable": "dict1['b']['zzouv']",
+        "variable": "dict1['b']['hmzhz']",
         "type": [
             "int"
         ]
@@ -39,7 +39,7 @@
         "file": "main.py",
         "line_number": 4,
         "col_offset": 1,
-        "variable": "dict1['b']['fmzsb']",
+        "variable": "dict1['b']['wozgl']",
         "type": [
             "int"
         ]
@@ -48,7 +48,7 @@
         "file": "main.py",
         "line_number": 4,
         "col_offset": 1,
-        "variable": "dict1['b']['muknx']",
+        "variable": "dict1['b']['zxezf']",
         "type": [
             "int"
         ]
@@ -84,7 +84,7 @@
         "file": "main.py",
         "line_number": 5,
         "col_offset": 1,
-        "variable": "dict2['d']['zzouv']",
+        "variable": "dict2['d']['hmzhz']",
         "type": [
             "int"
         ]
@@ -93,7 +93,7 @@
         "file": "main.py",
         "line_number": 5,
         "col_offset": 1,
-        "variable": "dict2['d']['fmzsb']",
+        "variable": "dict2['d']['wozgl']",
         "type": [
             "int"
         ]
@@ -102,7 +102,7 @@
         "file": "main.py",
         "line_number": 5,
         "col_offset": 1,
-        "variable": "dict2['d']['muknx']",
+        "variable": "dict2['d']['zxezf']",
         "type": [
             "int"
         ]
@@ -156,7 +156,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['b']['zzouv']",
+        "variable": "merged_dict['b']['hmzhz']",
         "type": [
             "int"
         ]
@@ -165,7 +165,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['b']['fmzsb']",
+        "variable": "merged_dict['b']['wozgl']",
         "type": [
             "int"
         ]
@@ -174,7 +174,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['b']['muknx']",
+        "variable": "merged_dict['b']['zxezf']",
         "type": [
             "int"
         ]
@@ -183,7 +183,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['d']['zzouv']",
+        "variable": "merged_dict['d']['hmzhz']",
         "type": [
             "int"
         ]
@@ -192,7 +192,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['d']['fmzsb']",
+        "variable": "merged_dict['d']['wozgl']",
         "type": [
             "int"
         ]
@@ -201,7 +201,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['d']['muknx']",
+        "variable": "merged_dict['d']['zxezf']",
         "type": [
             "int"
         ]

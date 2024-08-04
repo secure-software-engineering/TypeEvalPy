@@ -4,7 +4,7 @@
 class MyClass:
     @staticmethod
     def func():
-        return False
+        return True
 
 
 a = MyClass.func()

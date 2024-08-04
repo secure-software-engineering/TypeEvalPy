@@ -12,7 +12,7 @@ def my_decorator(cls):
 @my_decorator
 class MyClass:
     def my_method(self):
-        return {'dcgmx': 32, 'gcnrz': 71, 'tjnxt': 81}
+        return {'oehjn': 48, 'nulif': 8, 'aszji': 15}
 
 
 a = MyClass()

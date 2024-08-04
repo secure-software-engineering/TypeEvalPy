@@ -2,7 +2,7 @@
 
 
 def func():
-    return 44
+    return 13
 
 
 a = eval("func()")

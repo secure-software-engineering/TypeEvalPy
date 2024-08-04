@@ -10,7 +10,7 @@ def dec1(f):
 
 def dec2(f):
     def inner():
-        return (54, 4, 6)
+        return (32, 7, 79)
 
     return inner
 

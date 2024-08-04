@@ -2,7 +2,7 @@
 
 
 def return_func():
-    return 81.7
+    return 9.63
 
 
 def func():

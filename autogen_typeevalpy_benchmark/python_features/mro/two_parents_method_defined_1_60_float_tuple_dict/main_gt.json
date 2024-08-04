@@ -39,7 +39,7 @@
         "file": "main.py",
         "line_number": 25,
         "col_offset": 1,
-        "variable": "C['mzfla']",
+        "variable": "C['jplcv']",
         "type": [
             "int"
         ]
@@ -48,7 +48,7 @@
         "file": "main.py",
         "line_number": 25,
         "col_offset": 1,
-        "variable": "C['ojuxe']",
+        "variable": "C['cnxsh']",
         "type": [
             "int"
         ]
@@ -57,7 +57,7 @@
         "file": "main.py",
         "line_number": 25,
         "col_offset": 1,
-        "variable": "C['buqch']",
+        "variable": "C['nctal']",
         "type": [
             "int"
         ]
@@ -75,7 +75,7 @@
         "file": "main.py",
         "line_number": 26,
         "col_offset": 1,
-        "variable": "d['mzfla']",
+        "variable": "d['jplcv']",
         "type": [
             "int"
         ]
@@ -84,7 +84,7 @@
         "file": "main.py",
         "line_number": 26,
         "col_offset": 1,
-        "variable": "d['ojuxe']",
+        "variable": "d['cnxsh']",
         "type": [
             "int"
         ]
@@ -93,7 +93,7 @@
         "file": "main.py",
         "line_number": 26,
         "col_offset": 1,
-        "variable": "d['buqch']",
+        "variable": "d['nctal']",
         "type": [
             "int"
         ]

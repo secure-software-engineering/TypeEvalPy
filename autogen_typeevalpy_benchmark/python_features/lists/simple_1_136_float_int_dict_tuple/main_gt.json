@@ -93,7 +93,7 @@
         "file": "main.py",
         "line_number": 20,
         "col_offset": 1,
-        "variable": "e['wrwct']",
+        "variable": "e['hanzu']",
         "type": [
             "int"
         ]
@@ -102,7 +102,7 @@
         "file": "main.py",
         "line_number": 20,
         "col_offset": 1,
-        "variable": "e['dfgoi']",
+        "variable": "e['joybi']",
         "type": [
             "int"
         ]
@@ -111,7 +111,7 @@
         "file": "main.py",
         "line_number": 20,
         "col_offset": 1,
-        "variable": "e['xrlyu']",
+        "variable": "e['yceqn']",
         "type": [
             "int"
         ]

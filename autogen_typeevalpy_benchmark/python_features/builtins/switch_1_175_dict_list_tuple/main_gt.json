@@ -17,8 +17,8 @@
         "function": "func",
         "parameter": "value",
         "type": [
-            "tuple",
             "dict",
+            "tuple",
             "list"
         ]
     },
@@ -71,7 +71,7 @@
         "file": "main.py",
         "line_number": 13,
         "col_offset": 1,
-        "variable": "b['yjgxv']",
+        "variable": "b['cumix']",
         "type": [
             "int"
         ]
@@ -80,7 +80,7 @@
         "file": "main.py",
         "line_number": 13,
         "col_offset": 1,
-        "variable": "b['tfxpz']",
+        "variable": "b['sasrr']",
         "type": [
             "int"
         ]
@@ -89,7 +89,7 @@
         "file": "main.py",
         "line_number": 13,
         "col_offset": 1,
-        "variable": "b['ujarb']",
+        "variable": "b['qtcmw']",
         "type": [
             "int"
         ]

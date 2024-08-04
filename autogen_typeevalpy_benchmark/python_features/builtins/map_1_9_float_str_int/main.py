@@ -3,6 +3,6 @@ def func(x):
     return x
 
 
-res = map(func, [21.94, 'ekpnv', 95])
+res = map(func, [3.61, 'pyfvp', 9])
 
 x, y, z = res

@@ -9,7 +9,7 @@ def my_sum(a, b, *arguments):
 
 
 def func(a):
-    return a(83.93, 83.93, 83.93)
+    return a(34.68, 34.68, 34.68)
 
 
 b = func(my_sum)

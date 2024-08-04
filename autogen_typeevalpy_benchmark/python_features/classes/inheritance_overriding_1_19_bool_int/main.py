@@ -6,7 +6,7 @@ class MyClass:
 
 class MySubClass(MyClass):
     def func(self):
-        return 88
+        return 60
 
 
 a = MySubClass()

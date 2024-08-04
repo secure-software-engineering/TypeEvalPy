@@ -21,7 +21,7 @@
         "file": "main.py",
         "line_number": 5,
         "col_offset": 1,
-        "variable": "a['eajcu']",
+        "variable": "a['ajnpm']",
         "type": [
             "int"
         ]
@@ -30,7 +30,7 @@
         "file": "main.py",
         "line_number": 5,
         "col_offset": 1,
-        "variable": "a['qydar']",
+        "variable": "a['vegna']",
         "type": [
             "int"
         ]
@@ -39,7 +39,7 @@
         "file": "main.py",
         "line_number": 5,
         "col_offset": 1,
-        "variable": "a['qcsov']",
+        "variable": "a['joxzf']",
         "type": [
             "int"
         ]
@@ -57,7 +57,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "b['eajcu']",
+        "variable": "b['ajnpm']",
         "type": [
             "int"
         ]
@@ -66,7 +66,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "b['qydar']",
+        "variable": "b['vegna']",
         "type": [
             "int"
         ]
@@ -75,7 +75,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "b['qcsov']",
+        "variable": "b['joxzf']",
         "type": [
             "int"
         ]

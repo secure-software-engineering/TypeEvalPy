@@ -6,5 +6,5 @@ def func(x):
 
 
 x = func
-a = x('cbmrm')
-b = x(19.21)
+a = x('ggbpm')
+b = x(10.49)

@@ -1,18 +1,18 @@
 # Functions are assigned to variables via starred assignment
 def func1():
-    return 36
+    return 25
 
 
 def func2():
-    return 70.35
+    return 45.03
 
 
 def func3():
-    return [6, 65, 77]
+    return [94, 20, 89]
 
 
 def func4():
-    return 'smgnt'
+    return 'bosis'
 
 a, *b, c = func1, func2, func3, func4
 

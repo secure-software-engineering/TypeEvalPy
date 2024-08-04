@@ -1,6 +1,6 @@
 def func1():
-    return 'adkuj'
+    return 'novms'
 
 
 def func2():
-    return (27, 66, 31)
+    return (32, 75, 13)

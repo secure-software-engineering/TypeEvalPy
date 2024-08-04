@@ -102,7 +102,7 @@
         "file": "main.py",
         "line_number": 30,
         "col_offset": 1,
-        "variable": "j['isgkc']",
+        "variable": "j['tinvn']",
         "type": [
             "int"
         ]
@@ -111,7 +111,7 @@
         "file": "main.py",
         "line_number": 30,
         "col_offset": 1,
-        "variable": "j['ndzvz']",
+        "variable": "j['nmpuj']",
         "type": [
             "int"
         ]
@@ -120,7 +120,7 @@
         "file": "main.py",
         "line_number": 30,
         "col_offset": 1,
-        "variable": "j['knwvc']",
+        "variable": "j['ceuog']",
         "type": [
             "int"
         ]

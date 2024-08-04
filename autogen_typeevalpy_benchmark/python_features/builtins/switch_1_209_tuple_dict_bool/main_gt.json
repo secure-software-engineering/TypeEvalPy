@@ -5,9 +5,9 @@
         "col_offset": 5,
         "function": "func",
         "type": [
-            "dict",
+            "tuple",
             "str",
-            "tuple"
+            "dict"
         ]
     },
     {
@@ -17,8 +17,8 @@
         "function": "func",
         "parameter": "value",
         "type": [
-            "dict",
             "tuple",
+            "dict",
             "bool"
         ]
     },
@@ -35,7 +35,7 @@
         "file": "main.py",
         "line_number": 12,
         "col_offset": 1,
-        "variable": "a['pjwhl']",
+        "variable": "a['qvjef']",
         "type": [
             "int"
         ]
@@ -44,7 +44,7 @@
         "file": "main.py",
         "line_number": 12,
         "col_offset": 1,
-        "variable": "a['rixmp']",
+        "variable": "a['bvbgk']",
         "type": [
             "int"
         ]
@@ -53,7 +53,7 @@
         "file": "main.py",
         "line_number": 12,
         "col_offset": 1,
-        "variable": "a['henya']",
+        "variable": "a['ltpca']",
         "type": [
             "int"
         ]

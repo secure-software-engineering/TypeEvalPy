@@ -2,10 +2,10 @@
 class A:
     class B:
         def __init__(self):
-            self.a = 'hsvpx'
+            self.a = 'oixfs'
 
         def bfunc(self):
-            return [70, 89, 31]
+            return [44, 9, 91]
 
 
 class C(A.B):

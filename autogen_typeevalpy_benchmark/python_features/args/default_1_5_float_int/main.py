@@ -2,11 +2,11 @@
 # The 'param_func' function returns a string value.
 # The 'param_func2' function returns an integer value.
 def param_func():
-    return 91.91
+    return 74.75
 
 
 def param_func2():
-    return 89
+    return 69
 
 
 def func(a=param_func2):

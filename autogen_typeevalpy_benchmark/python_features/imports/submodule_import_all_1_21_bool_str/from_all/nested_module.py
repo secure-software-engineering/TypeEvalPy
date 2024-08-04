@@ -1,6 +1,6 @@
 def func1():
-    return False
+    return True
 
 
 def func2():
-    return 'hprvf'
+    return 'pvppr'

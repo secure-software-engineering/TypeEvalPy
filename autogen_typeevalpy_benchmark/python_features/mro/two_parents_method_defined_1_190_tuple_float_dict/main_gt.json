@@ -39,7 +39,7 @@
         "file": "main.py",
         "line_number": 25,
         "col_offset": 1,
-        "variable": "C['dtjhb']",
+        "variable": "C['idhzc']",
         "type": [
             "int"
         ]
@@ -48,7 +48,7 @@
         "file": "main.py",
         "line_number": 25,
         "col_offset": 1,
-        "variable": "C['zglcj']",
+        "variable": "C['vgkqg']",
         "type": [
             "int"
         ]
@@ -57,7 +57,7 @@
         "file": "main.py",
         "line_number": 25,
         "col_offset": 1,
-        "variable": "C['sjrlw']",
+        "variable": "C['nyysf']",
         "type": [
             "int"
         ]
@@ -75,7 +75,7 @@
         "file": "main.py",
         "line_number": 26,
         "col_offset": 1,
-        "variable": "d['dtjhb']",
+        "variable": "d['idhzc']",
         "type": [
             "int"
         ]
@@ -84,7 +84,7 @@
         "file": "main.py",
         "line_number": 26,
         "col_offset": 1,
-        "variable": "d['zglcj']",
+        "variable": "d['vgkqg']",
         "type": [
             "int"
         ]
@@ -93,7 +93,7 @@
         "file": "main.py",
         "line_number": 26,
         "col_offset": 1,
-        "variable": "d['sjrlw']",
+        "variable": "d['nyysf']",
         "type": [
             "int"
         ]

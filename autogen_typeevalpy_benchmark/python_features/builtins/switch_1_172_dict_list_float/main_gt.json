@@ -18,8 +18,8 @@
         "parameter": "value",
         "type": [
             "dict",
-            "list",
-            "float"
+            "float",
+            "list"
         ]
     },
     {
@@ -71,7 +71,7 @@
         "file": "main.py",
         "line_number": 13,
         "col_offset": 1,
-        "variable": "b['rbcbc']",
+        "variable": "b['skcrh']",
         "type": [
             "int"
         ]
@@ -80,7 +80,7 @@
         "file": "main.py",
         "line_number": 13,
         "col_offset": 1,
-        "variable": "b['hzwky']",
+        "variable": "b['wzfrw']",
         "type": [
             "int"
         ]
@@ -89,7 +89,7 @@
         "file": "main.py",
         "line_number": 13,
         "col_offset": 1,
-        "variable": "b['ilfbo']",
+        "variable": "b['oodpe']",
         "type": [
             "int"
         ]

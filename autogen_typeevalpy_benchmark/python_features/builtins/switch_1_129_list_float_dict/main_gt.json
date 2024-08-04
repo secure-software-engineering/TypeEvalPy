@@ -6,8 +6,8 @@
         "function": "func",
         "type": [
             "str",
-            "list",
-            "float"
+            "float",
+            "list"
         ]
     },
     {
@@ -18,8 +18,8 @@
         "parameter": "value",
         "type": [
             "dict",
-            "list",
-            "float"
+            "float",
+            "list"
         ]
     },
     {

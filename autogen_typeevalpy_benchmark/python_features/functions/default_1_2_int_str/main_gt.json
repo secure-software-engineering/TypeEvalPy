@@ -5,8 +5,8 @@
         "col_offset": 5,
         "function": "my_func",
         "type": [
-            "str",
-            "int"
+            "int",
+            "str"
         ]
     },
     {
@@ -16,8 +16,8 @@
         "parameter": "x",
         "function": "my_func",
         "type": [
-            "str",
-            "int"
+            "int",
+            "str"
         ]
     },
     {
@@ -27,8 +27,8 @@
         "parameter": "y",
         "function": "my_func",
         "type": [
-            "str",
-            "int"
+            "int",
+            "str"
         ]
     },
     {

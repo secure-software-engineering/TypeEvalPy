@@ -2,10 +2,10 @@
 
 
 def concatenate(**kwargs):
-    result = 'dlfln'
+    result = 'aiyhi'
     for arg in kwargs.values():
         result += arg
     return result
 
 
-c = concatenate(a='dlfln', b='dlfln', c='dlfln')
+c = concatenate(a='aiyhi', b='aiyhi', c='aiyhi')

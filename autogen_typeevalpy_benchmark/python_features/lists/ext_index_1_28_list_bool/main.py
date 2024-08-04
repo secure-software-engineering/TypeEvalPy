@@ -5,7 +5,7 @@ from ext import key
 
 
 def func1():
-    return [32, 7, 66]
+    return [22, 24, 66]
 
 
 def func2():

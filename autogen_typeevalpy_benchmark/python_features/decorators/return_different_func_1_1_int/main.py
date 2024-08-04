@@ -3,7 +3,7 @@
 
 def dec(f):
     def inner():
-        return 20
+        return 69
 
     return inner
 

@@ -2,15 +2,15 @@
 
 
 def func1():
-    return True
+    return False
 
 
 def func2():
-    return 'mslxk'
+    return 'nrmhz'
 
 
 def func3():
-    return 87.0
+    return 24.05
 
 
 ls = [func1, func2, func3]

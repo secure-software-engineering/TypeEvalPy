@@ -12,7 +12,7 @@
         "file": "main.py",
         "line_number": 3,
         "col_offset": 5,
-        "variable": "MyClass.class_var['dyzos']",
+        "variable": "MyClass.class_var['nqpmt']",
         "type": [
             "int"
         ]
@@ -21,7 +21,7 @@
         "file": "main.py",
         "line_number": 3,
         "col_offset": 5,
-        "variable": "MyClass.class_var['tftcv']",
+        "variable": "MyClass.class_var['msexf']",
         "type": [
             "int"
         ]
@@ -30,7 +30,7 @@
         "file": "main.py",
         "line_number": 3,
         "col_offset": 5,
-        "variable": "MyClass.class_var['meklt']",
+        "variable": "MyClass.class_var['mfoqh']",
         "type": [
             "int"
         ]
@@ -77,7 +77,7 @@
         "file": "main.py",
         "line_number": 10,
         "col_offset": 1,
-        "variable": "b['dyzos']",
+        "variable": "b['nqpmt']",
         "type": [
             "int"
         ]
@@ -86,7 +86,7 @@
         "file": "main.py",
         "line_number": 10,
         "col_offset": 1,
-        "variable": "b['tftcv']",
+        "variable": "b['msexf']",
         "type": [
             "int"
         ]
@@ -95,7 +95,7 @@
         "file": "main.py",
         "line_number": 10,
         "col_offset": 1,
-        "variable": "b['meklt']",
+        "variable": "b['mfoqh']",
         "type": [
             "int"
         ]

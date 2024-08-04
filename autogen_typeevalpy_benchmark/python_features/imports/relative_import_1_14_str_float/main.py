@@ -6,7 +6,7 @@ import nested.to_import
 
 
 def func():
-    return 'bfanq'
+    return 'mvqip'
 
 
 a = nested.to_import.func()

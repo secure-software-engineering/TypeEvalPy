@@ -1,2 +1,2 @@
 def func():
-    return 'hixxo'
+    return 'cdnfn'

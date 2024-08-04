@@ -2,7 +2,7 @@
 # A function `func` is defined which takes as a parameter a variable which has a function 'param_func' assigned to it which it later calls.
 # The 'param_func' function returns a string value.
 def param_func():
-    return 5
+    return 82
 
 
 def func(a):

@@ -1,6 +1,6 @@
 def func1():
-    return 'wcdue'
+    return 'tlias'
 
 
 def func2():
-    return (36, 74, 64)
+    return (86, 6, 36)

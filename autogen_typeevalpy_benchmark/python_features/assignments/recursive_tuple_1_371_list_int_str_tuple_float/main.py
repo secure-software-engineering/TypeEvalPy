@@ -2,23 +2,23 @@
 
 
 def func1():
-    return [21, 94, 2]
+    return [62, 55, 13]
 
 
 def func2():
-    return 62
+    return 87
 
 
 def func3():
-    return 'qfxex'
+    return 'vwtui'
 
 
 def func4():
-    return (1, 84, 37)
+    return (44, 97, 16)
 
 
 def func5():
-    return 70.16
+    return 25.94
 
 
 def func6():

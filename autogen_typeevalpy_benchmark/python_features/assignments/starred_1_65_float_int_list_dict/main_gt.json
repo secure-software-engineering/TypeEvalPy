@@ -147,7 +147,7 @@
         "file": "main.py",
         "line_number": 23,
         "col_offset": 1,
-        "variable": "g['mnivs']",
+        "variable": "g['atphm']",
         "type": [
             "int"
         ]
@@ -156,7 +156,7 @@
         "file": "main.py",
         "line_number": 23,
         "col_offset": 1,
-        "variable": "g['luhfd']",
+        "variable": "g['mbadg']",
         "type": [
             "int"
         ]
@@ -165,7 +165,7 @@
         "file": "main.py",
         "line_number": 23,
         "col_offset": 1,
-        "variable": "g['lxmph']",
+        "variable": "g['suzxl']",
         "type": [
             "int"
         ]

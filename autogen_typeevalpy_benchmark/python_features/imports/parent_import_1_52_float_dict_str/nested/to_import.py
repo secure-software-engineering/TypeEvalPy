@@ -2,4 +2,4 @@ import to_import2
 
 
 def func():
-    return 13.6
+    return 98.06

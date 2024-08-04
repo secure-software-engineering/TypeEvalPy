@@ -9,7 +9,7 @@ class A:
         return self.smth()
 
     def func2(self):
-        return 45.76
+        return 22.95
 
 
 a = A()

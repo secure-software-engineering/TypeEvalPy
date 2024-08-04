@@ -3,7 +3,7 @@
 
 class A:
     def func(self):
-        return {'jupcz': 43, 'vrkjt': 9, 'slkzp': 13}
+        return {'krzul': 31, 'yhwxw': 41, 'zylop': 44}
 
 
 class B:
@@ -11,7 +11,7 @@ class B:
         pass
 
     def func(self):
-        return 2.31
+        return 89.75
 
 
 class C(A, B):

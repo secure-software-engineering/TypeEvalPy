@@ -4,7 +4,7 @@
 def squares():
     n = 1
     while True:
-        yield 24
+        yield 91
         n += 1
 
 

@@ -2,11 +2,11 @@
 
 
 def func1():
-    return 'zctpy'
+    return 'xoulr'
 
 
 def func2():
-    return 94
+    return 46
 
 
 d = {"a": func1, 1: func2, 2: 3}

@@ -2,7 +2,7 @@
 
 
 def func1():
-    return (33, 70, 7)
+    return (3, 60, 14)
 
 
 def func2():
@@ -10,7 +10,7 @@ def func2():
 
 
 def func3():
-    return 23.4
+    return 51.77
 
 
 ls = [func1, func2, func3]

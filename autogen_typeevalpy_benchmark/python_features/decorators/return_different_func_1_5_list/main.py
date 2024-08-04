@@ -3,7 +3,7 @@
 
 def dec(f):
     def inner():
-        return [28, 45, 85]
+        return [70, 75, 71]
 
     return inner
 

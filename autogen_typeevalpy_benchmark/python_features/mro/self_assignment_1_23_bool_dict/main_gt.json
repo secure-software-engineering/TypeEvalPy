@@ -77,7 +77,7 @@
         "file": "main.py",
         "line_number": 22,
         "col_offset": 1,
-        "variable": "b['pmyci']",
+        "variable": "b['rkpnx']",
         "type": [
             "int"
         ]
@@ -86,7 +86,7 @@
         "file": "main.py",
         "line_number": 22,
         "col_offset": 1,
-        "variable": "b['wrsgs']",
+        "variable": "b['ichpg']",
         "type": [
             "int"
         ]
@@ -95,7 +95,7 @@
         "file": "main.py",
         "line_number": 22,
         "col_offset": 1,
-        "variable": "b['hptau']",
+        "variable": "b['fftwq']",
         "type": [
             "int"
         ]
@@ -113,7 +113,7 @@
         "file": "main.py",
         "line_number": 25,
         "col_offset": 1,
-        "variable": "b['pmyci']",
+        "variable": "b['rkpnx']",
         "type": [
             "int"
         ]
@@ -122,7 +122,7 @@
         "file": "main.py",
         "line_number": 25,
         "col_offset": 1,
-        "variable": "b['wrsgs']",
+        "variable": "b['ichpg']",
         "type": [
             "int"
         ]
@@ -131,7 +131,7 @@
         "file": "main.py",
         "line_number": 25,
         "col_offset": 1,
-        "variable": "b['hptau']",
+        "variable": "b['fftwq']",
         "type": [
             "int"
         ]

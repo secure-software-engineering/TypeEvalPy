@@ -6,5 +6,5 @@ def func(x):
 
 
 x = func
-a = x(False)
-b = x(41.28)
+a = x(True)
+b = x(43.5)

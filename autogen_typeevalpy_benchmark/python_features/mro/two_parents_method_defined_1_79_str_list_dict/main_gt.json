@@ -39,7 +39,7 @@
         "file": "main.py",
         "line_number": 25,
         "col_offset": 1,
-        "variable": "C['uyhsr']",
+        "variable": "C['uimwu']",
         "type": [
             "int"
         ]
@@ -48,7 +48,7 @@
         "file": "main.py",
         "line_number": 25,
         "col_offset": 1,
-        "variable": "C['njbye']",
+        "variable": "C['futoa']",
         "type": [
             "int"
         ]
@@ -57,7 +57,7 @@
         "file": "main.py",
         "line_number": 25,
         "col_offset": 1,
-        "variable": "C['zysac']",
+        "variable": "C['wmsab']",
         "type": [
             "int"
         ]
@@ -75,7 +75,7 @@
         "file": "main.py",
         "line_number": 26,
         "col_offset": 1,
-        "variable": "d['uyhsr']",
+        "variable": "d['uimwu']",
         "type": [
             "int"
         ]
@@ -84,7 +84,7 @@
         "file": "main.py",
         "line_number": 26,
         "col_offset": 1,
-        "variable": "d['njbye']",
+        "variable": "d['futoa']",
         "type": [
             "int"
         ]
@@ -93,7 +93,7 @@
         "file": "main.py",
         "line_number": 26,
         "col_offset": 1,
-        "variable": "d['zysac']",
+        "variable": "d['wmsab']",
         "type": [
             "int"
         ]

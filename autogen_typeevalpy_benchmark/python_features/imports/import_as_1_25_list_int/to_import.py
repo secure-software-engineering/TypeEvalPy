@@ -1,2 +1,2 @@
 def func():
-    return 31
+    return 34

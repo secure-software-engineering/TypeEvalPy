@@ -30,7 +30,7 @@
         "file": "main.py",
         "line_number": 4,
         "col_offset": 1,
-        "variable": "dict1['a']['crjyr']",
+        "variable": "dict1['a']['ppxmi']",
         "type": [
             "int"
         ]
@@ -39,7 +39,7 @@
         "file": "main.py",
         "line_number": 4,
         "col_offset": 1,
-        "variable": "dict1['a']['qxkdp']",
+        "variable": "dict1['a']['kwtmy']",
         "type": [
             "int"
         ]
@@ -48,7 +48,7 @@
         "file": "main.py",
         "line_number": 4,
         "col_offset": 1,
-        "variable": "dict1['a']['lcovk']",
+        "variable": "dict1['a']['bqyjw']",
         "type": [
             "int"
         ]
@@ -111,7 +111,7 @@
         "file": "main.py",
         "line_number": 5,
         "col_offset": 1,
-        "variable": "dict2['c']['crjyr']",
+        "variable": "dict2['c']['ppxmi']",
         "type": [
             "int"
         ]
@@ -120,7 +120,7 @@
         "file": "main.py",
         "line_number": 5,
         "col_offset": 1,
-        "variable": "dict2['c']['qxkdp']",
+        "variable": "dict2['c']['kwtmy']",
         "type": [
             "int"
         ]
@@ -129,7 +129,7 @@
         "file": "main.py",
         "line_number": 5,
         "col_offset": 1,
-        "variable": "dict2['c']['lcovk']",
+        "variable": "dict2['c']['bqyjw']",
         "type": [
             "int"
         ]
@@ -210,7 +210,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['a']['crjyr']",
+        "variable": "merged_dict['a']['ppxmi']",
         "type": [
             "int"
         ]
@@ -219,7 +219,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['a']['qxkdp']",
+        "variable": "merged_dict['a']['kwtmy']",
         "type": [
             "int"
         ]
@@ -228,7 +228,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['a']['lcovk']",
+        "variable": "merged_dict['a']['bqyjw']",
         "type": [
             "int"
         ]
@@ -264,7 +264,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['c']['crjyr']",
+        "variable": "merged_dict['c']['ppxmi']",
         "type": [
             "int"
         ]
@@ -273,7 +273,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['c']['qxkdp']",
+        "variable": "merged_dict['c']['kwtmy']",
         "type": [
             "int"
         ]
@@ -282,7 +282,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['c']['lcovk']",
+        "variable": "merged_dict['c']['bqyjw']",
         "type": [
             "int"
         ]

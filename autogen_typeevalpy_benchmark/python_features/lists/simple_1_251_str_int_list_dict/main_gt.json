@@ -165,7 +165,7 @@
         "file": "main.py",
         "line_number": 30,
         "col_offset": 1,
-        "variable": "f['kffnm']",
+        "variable": "f['gaooi']",
         "type": [
             "int"
         ]
@@ -174,7 +174,7 @@
         "file": "main.py",
         "line_number": 30,
         "col_offset": 1,
-        "variable": "f['qleos']",
+        "variable": "f['umlgj']",
         "type": [
             "int"
         ]
@@ -183,7 +183,7 @@
         "file": "main.py",
         "line_number": 30,
         "col_offset": 1,
-        "variable": "f['emuyz']",
+        "variable": "f['rnoyi']",
         "type": [
             "int"
         ]

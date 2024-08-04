@@ -4,4 +4,4 @@ class MyClass:
         pass
 
     def func(self):
-        return 'rmjcm'
+        return 'wrfcs'

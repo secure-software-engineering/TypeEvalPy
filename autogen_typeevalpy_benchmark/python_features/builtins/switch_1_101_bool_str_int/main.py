@@ -2,13 +2,13 @@
 def func(value):
     match value:
         case True:
-            return 'qannl'
-        case 'qannl':
+            return 'fzkrd'
+        case 'fzkrd':
             return True
         case _:
             return "default"
 
 
 a = func(True)
-b = func('qannl')
-c = func(65)
+b = func('fzkrd')
+c = func(50)

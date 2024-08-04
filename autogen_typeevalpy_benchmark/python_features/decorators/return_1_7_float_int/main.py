@@ -6,14 +6,14 @@ def func1():
         return inner
 
     def inner():
-        return 78.48
+        return 86.44
 
     return dec
 
 
 @func1()
 def func2():
-    return 1
+    return 20
 
 
 a = func2()

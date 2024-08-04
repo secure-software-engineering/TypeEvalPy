@@ -6,5 +6,5 @@ def func(x):
 
 
 x = func
-a = x('ckevs')
-b = x([15, 69, 2])
+a = x('qmkpx')
+b = x([90, 67, 36])

@@ -18,7 +18,7 @@ def dec2(f):
 @dec1
 @dec2
 def func():
-    return 61.72
+    return 62.41
 
 
 a = func()

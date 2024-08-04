@@ -2,7 +2,7 @@
 
 
 def func():
-    return [62, 57, 52]
+    return [36, 99, 53]
 
 
 d = {}

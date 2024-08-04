@@ -2,7 +2,7 @@
 
 
 def func():
-    return 59
+    return 10
 
 
 class Cls:

@@ -1,2 +1,2 @@
 def func():
-    return 'nymca'
+    return 'xtymq'

@@ -1,14 +1,14 @@
 #  A function is defined with switch statement in it.
 def func(value):
     match value:
-        case True:
-            return 8.04
-        case 8.04:
-            return True
+        case False:
+            return 56.12
+        case 56.12:
+            return False
         case _:
             return "default"
 
 
-a = func(True)
-b = func(8.04)
-c = func('cpohx')
+a = func(False)
+b = func(56.12)
+c = func('jrgcw')

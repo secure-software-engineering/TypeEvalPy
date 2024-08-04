@@ -2,23 +2,23 @@
 
 
 def func1():
-    return 2.1
+    return 87.52
 
 
 def func2():
-    return (16, 80, 4)
+    return (76, 39, 74)
 
 
 def func3():
-    return 78
+    return 26
 
 
 def func4():
-    return 'jquef'
+    return 'olior'
 
 
 def func5():
-    return [78, 83, 29]
+    return [72, 68, 38]
 
 
 def func6():

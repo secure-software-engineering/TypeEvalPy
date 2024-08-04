@@ -2,7 +2,7 @@
 
 
 def return_func():
-    return {'whdcv': 33, 'gloew': 89, 'gqnlc': 80}
+    return {'bgqap': 40, 'iecgr': 100, 'ohgpz': 62}
 
 
 def func():

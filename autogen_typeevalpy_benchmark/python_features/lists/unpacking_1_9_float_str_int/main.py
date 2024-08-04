@@ -1,3 +1,3 @@
 # Unpacking a list into individual variables.
-a = [43.39, 'sbuwv', 98]
+a = [27.02, 'hqsme', 22]
 b, c, d = a

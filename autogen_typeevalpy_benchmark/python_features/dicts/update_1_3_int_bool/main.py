@@ -2,11 +2,11 @@
 
 
 def func1():
-    return True
+    return False
 
 
 def func2():
-    return 44
+    return 38
 
 
 d = {"a": func1}

@@ -6,7 +6,7 @@ class MyClass:
         pass
 
     def func(self):
-        return True
+        return False
 
 
 a = MyClass().func()

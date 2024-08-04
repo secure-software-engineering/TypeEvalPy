@@ -9,7 +9,7 @@ class A:
         return self.smth()
 
     def func2(self):
-        return 'piaym'
+        return 'wthdf'
 
 
 a = A()

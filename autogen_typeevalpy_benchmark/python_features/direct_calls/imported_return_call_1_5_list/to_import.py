@@ -1,5 +1,5 @@
 def return_func():
-    return [51, 45, 7]
+    return [59, 50, 40]
 
 
 def func():

@@ -6,7 +6,7 @@ class MyClass:
         pass
 
     def func(self):
-        return 15.1
+        return 17.83
 
 
 a = MyClass().func()

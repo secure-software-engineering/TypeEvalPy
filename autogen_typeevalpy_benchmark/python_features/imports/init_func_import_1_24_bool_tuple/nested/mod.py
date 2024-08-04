@@ -1,2 +1,2 @@
 def func2():
-    return (39, 81, 64)
+    return (29, 23, 99)

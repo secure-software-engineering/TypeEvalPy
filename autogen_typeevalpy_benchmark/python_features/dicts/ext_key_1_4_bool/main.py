@@ -5,7 +5,7 @@ from ext import key
 
 
 def func():
-    return False
+    return True
 
 
 d = {"a": func}

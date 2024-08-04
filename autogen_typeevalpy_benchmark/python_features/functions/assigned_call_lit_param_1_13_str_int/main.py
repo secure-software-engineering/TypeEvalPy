@@ -6,5 +6,5 @@ def func(x):
 
 
 x = func
-a = x('inmwl')
-b = x(19)
+a = x('elyer')
+b = x(21)

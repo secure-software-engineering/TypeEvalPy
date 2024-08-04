@@ -138,7 +138,7 @@
         "file": "main.py",
         "line_number": 31,
         "col_offset": 1,
-        "variable": "k['npebg']",
+        "variable": "k['byiop']",
         "type": [
             "int"
         ]
@@ -147,7 +147,7 @@
         "file": "main.py",
         "line_number": 31,
         "col_offset": 1,
-        "variable": "k['ljimc']",
+        "variable": "k['bofas']",
         "type": [
             "int"
         ]
@@ -156,7 +156,7 @@
         "file": "main.py",
         "line_number": 31,
         "col_offset": 1,
-        "variable": "k['kdwvt']",
+        "variable": "k['khgre']",
         "type": [
             "int"
         ]

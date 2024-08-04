@@ -6,11 +6,11 @@ def func():
         return modified_inner
 
     def modified_inner():
-        return 'rfxti'
+        return 'hzdps'
 
     @dec
     def inner():
-        return (92, 26, 67)
+        return (66, 85, 41)
 
     return inner()
 

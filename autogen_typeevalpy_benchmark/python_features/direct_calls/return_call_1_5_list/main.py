@@ -3,7 +3,7 @@
 
 def return_func():
     def nested_return_func():
-        return [51, 7, 1]
+        return [44, 80, 48]
 
     return nested_return_func
 

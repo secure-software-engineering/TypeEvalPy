@@ -147,7 +147,7 @@
         "file": "main.py",
         "line_number": 23,
         "col_offset": 1,
-        "variable": "g['ugmtn']",
+        "variable": "g['xhlms']",
         "type": [
             "int"
         ]
@@ -156,7 +156,7 @@
         "file": "main.py",
         "line_number": 23,
         "col_offset": 1,
-        "variable": "g['fjygr']",
+        "variable": "g['cgtdk']",
         "type": [
             "int"
         ]
@@ -165,7 +165,7 @@
         "file": "main.py",
         "line_number": 23,
         "col_offset": 1,
-        "variable": "g['trtvf']",
+        "variable": "g['cixom']",
         "type": [
             "int"
         ]

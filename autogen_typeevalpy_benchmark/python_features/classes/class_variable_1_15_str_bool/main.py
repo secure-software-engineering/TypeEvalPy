@@ -1,6 +1,6 @@
 # Class Variable is assigned to a variable
 class MyClass:
-    class_var = 'nrahy'
+    class_var = 'zonhr'
 
     def __init__(self, instance_var):
         self.instance_var = instance_var

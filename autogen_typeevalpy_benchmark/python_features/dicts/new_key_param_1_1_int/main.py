@@ -2,7 +2,7 @@
 
 
 def func2():
-    return 11
+    return 59
 
 
 def func(key="a"):

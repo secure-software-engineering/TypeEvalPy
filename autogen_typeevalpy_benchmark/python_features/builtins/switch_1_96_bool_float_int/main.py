@@ -2,13 +2,13 @@
 def func(value):
     match value:
         case False:
-            return 78.31
-        case 78.31:
+            return 94.83
+        case 94.83:
             return False
         case _:
             return "default"
 
 
 a = func(False)
-b = func(78.31)
-c = func(26)
+b = func(94.83)
+c = func(20)

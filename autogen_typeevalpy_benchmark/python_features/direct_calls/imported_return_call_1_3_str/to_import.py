@@ -1,5 +1,5 @@
 def return_func():
-    return 'bbspm'
+    return 'skkts'
 
 
 def func():

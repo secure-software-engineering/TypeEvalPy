@@ -4,15 +4,15 @@ def func1():
 
 
 def func2():
-    return 'lqjub'
+    return 'lzaov'
 
 
 def func3():
-    return [1, 23, 73]
+    return [1, 69, 73]
 
 
 def func4():
-    return (100, 47, 25)
+    return (61, 17, 93)
 
 a, *b, c = func1, func2, func3, func4
 

@@ -9,7 +9,7 @@ class B(A):
         self.child = self.func2
 
     def func2(self):
-        return {'nobmn': 57, 'sjmix': 87, 'iydgi': 87}
+        return {'budwk': 65, 'dwqup': 22, 'nesyg': 1}
 
 
 class C(A):
@@ -17,7 +17,7 @@ class C(A):
         self.child = self.func2
 
     def func2(self):
-        return 63
+        return 92
 
 
 b = B()

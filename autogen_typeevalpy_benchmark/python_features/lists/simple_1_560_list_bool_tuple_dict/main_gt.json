@@ -192,7 +192,7 @@
         "file": "main.py",
         "line_number": 30,
         "col_offset": 1,
-        "variable": "f['quzvo']",
+        "variable": "f['clacu']",
         "type": [
             "int"
         ]
@@ -201,7 +201,7 @@
         "file": "main.py",
         "line_number": 30,
         "col_offset": 1,
-        "variable": "f['ahdon']",
+        "variable": "f['hwcoc']",
         "type": [
             "int"
         ]
@@ -210,7 +210,7 @@
         "file": "main.py",
         "line_number": 30,
         "col_offset": 1,
-        "variable": "f['ebyhg']",
+        "variable": "f['klecp']",
         "type": [
             "int"
         ]

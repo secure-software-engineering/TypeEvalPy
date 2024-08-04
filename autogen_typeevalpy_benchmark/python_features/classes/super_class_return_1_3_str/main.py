@@ -3,7 +3,7 @@
 
 class A:
     def func1(self):
-        return 'sitjr'
+        return 'zpsbs'
 
 
 class B(A):

@@ -5,11 +5,11 @@ from ext import key
 
 
 def func1():
-    return (65, 84, 16)
+    return (95, 96, 62)
 
 
 def func2():
-    return 'acvdf'
+    return 'tvytc'
 
 
 ls = [func1, func2]

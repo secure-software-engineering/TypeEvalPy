@@ -17,8 +17,8 @@
         "parameter": "value",
         "type": [
             "str",
-            "list",
-            "float"
+            "float",
+            "list"
         ]
     },
     {

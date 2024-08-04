@@ -17,8 +17,8 @@
         "function": "func",
         "parameter": "value",
         "type": [
-            "tuple",
             "dict",
+            "tuple",
             "list"
         ]
     },
@@ -35,7 +35,7 @@
         "file": "main.py",
         "line_number": 12,
         "col_offset": 1,
-        "variable": "a['qliic']",
+        "variable": "a['vxccw']",
         "type": [
             "int"
         ]
@@ -44,7 +44,7 @@
         "file": "main.py",
         "line_number": 12,
         "col_offset": 1,
-        "variable": "a['irgsy']",
+        "variable": "a['gajni']",
         "type": [
             "int"
         ]
@@ -53,7 +53,7 @@
         "file": "main.py",
         "line_number": 12,
         "col_offset": 1,
-        "variable": "a['yzxtm']",
+        "variable": "a['nidhd']",
         "type": [
             "int"
         ]

@@ -1,14 +1,14 @@
 # Two variables are assigned a value via a tuple assignment.
 def func1():
-    return [8, 2, 18]
+    return [36, 83, 55]
 
 
 def func2():
-    return 1.59
+    return 27.38
 
 
 def func3():
-    return (58, 78, 56)
+    return (51, 56, 96)
 
 
 a, b = func1, func2

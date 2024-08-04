@@ -1,3 +1,3 @@
 # Unpacking a list into individual variables.
-a = ['mcvzh', 64.69, False]
+a = ['sntpz', 44.21, True]
 b, c, d = a

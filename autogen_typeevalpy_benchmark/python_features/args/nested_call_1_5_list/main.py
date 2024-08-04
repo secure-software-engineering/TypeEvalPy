@@ -5,7 +5,7 @@
 
 
 def nested_func():
-    return [21, 40, 91]
+    return [70, 100, 68]
 
 
 def param_func(a):

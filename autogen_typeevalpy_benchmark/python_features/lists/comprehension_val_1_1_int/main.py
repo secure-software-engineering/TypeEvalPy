@@ -2,7 +2,7 @@
 
 
 def func(a):
-    return a + 31
+    return a + 55
 
 
 ls = [func(a) for a in range(10)]

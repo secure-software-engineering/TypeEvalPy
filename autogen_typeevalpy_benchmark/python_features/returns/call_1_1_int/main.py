@@ -2,7 +2,7 @@
 
 
 def return_func():
-    return 3
+    return 61
 
 
 def func():

@@ -1,5 +1,5 @@
 def func1():
-    return 'jqpsf'
+    return 'jfwyb'
 
 
 def func2():

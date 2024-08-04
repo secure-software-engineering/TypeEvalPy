@@ -2,11 +2,11 @@
 
 
 def func1():
-    return 'ufvea'
+    return 'fdmcu'
 
 
 def func2():
-    return (98, 53, 91)
+    return (3, 40, 23)
 
 
 d = {"a": func1}

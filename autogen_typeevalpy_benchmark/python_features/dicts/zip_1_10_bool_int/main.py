@@ -1,6 +1,6 @@
 # Creating dictionaries from lists using the zip() function
 
 
-keys = [False, False, False]
-values = [66, 66, 66]
+keys = [True, True, True]
+values = [86, 86, 86]
 my_dict = dict(zip(keys, values))

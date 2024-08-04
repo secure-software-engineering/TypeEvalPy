@@ -9,4 +9,4 @@ def double(x):
     return x * x
 
 
-result = double(add_one(34.37))
+result = double(add_one(73.92))

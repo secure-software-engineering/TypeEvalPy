@@ -1,7 +1,7 @@
 # A class method is assigned parameters which are called.
 class MyClass:
     def func3(self):
-        return {'snbre': 12, 'qnkma': 41, 'aamgb': 52}
+        return {'knain': 68, 'oiznj': 46, 'qyvrm': 73}
 
     def func2(self, a):
         return a()

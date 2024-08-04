@@ -3,19 +3,19 @@
 
 
 def func1():
-    return 'rddoi'
+    return 'awwfp'
 
 
 def func2():
-    return 56.14
+    return 19.68
 
 
 def func3():
-    return (77, 59, 14)
+    return (51, 38, 83)
 
 
 def func4():
-    return [100, 41, 61]
+    return [7, 31, 64]
 
 
 (a, b), (c, d) = [(func1, func2), (func3, func4)]

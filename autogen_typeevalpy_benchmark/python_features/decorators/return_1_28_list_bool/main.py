@@ -6,7 +6,7 @@ def func1():
         return inner
 
     def inner():
-        return [60, 11, 5]
+        return [4, 44, 95]
 
     return dec
 

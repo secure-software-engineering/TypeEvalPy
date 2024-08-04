@@ -10,7 +10,7 @@ def func2():
 
 
 def func3():
-    return 54
+    return 81
 
 
 d = {"a": func2, "b": func3}

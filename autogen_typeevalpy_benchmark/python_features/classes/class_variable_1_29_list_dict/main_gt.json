@@ -59,7 +59,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 9,
-        "variable": "MyClass.instance_var['hojvs']",
+        "variable": "MyClass.instance_var['ryobc']",
         "function": "__init__",
         "type": [
             "int"
@@ -69,7 +69,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 9,
-        "variable": "MyClass.instance_var['rhfpb']",
+        "variable": "MyClass.instance_var['nytcc']",
         "function": "__init__",
         "type": [
             "int"
@@ -79,7 +79,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 9,
-        "variable": "MyClass.instance_var['npeux']",
+        "variable": "MyClass.instance_var['tmggw']",
         "function": "__init__",
         "type": [
             "int"

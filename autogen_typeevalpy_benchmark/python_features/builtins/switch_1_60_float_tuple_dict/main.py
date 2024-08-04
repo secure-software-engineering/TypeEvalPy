@@ -1,14 +1,14 @@
 #  A function is defined with switch statement in it.
 def func(value):
     match value:
-        case 35.55:
-            return (98, 90, 59)
-        case (98, 90, 59):
-            return 35.55
+        case 97.28:
+            return (9, 55, 82)
+        case (9, 55, 82):
+            return 97.28
         case _:
             return "default"
 
 
-a = func(35.55)
-b = func((98, 90, 59))
-c = func({'daqtb': 36, 'rcnea': 24, 'sitgc': 46})
+a = func(97.28)
+b = func((9, 55, 82))
+c = func({'onqqe': 64, 'booww': 33, 'fdaei': 28})

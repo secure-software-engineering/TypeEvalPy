@@ -10,7 +10,7 @@ def dec1(f):
 
 def dec2(f):
     def inner():
-        return (19, 38, 100)
+        return (62, 39, 11)
 
     return inner
 
@@ -18,7 +18,7 @@ def dec2(f):
 @dec1
 @dec2
 def func():
-    return 37.43
+    return 76.69
 
 
 a = func()

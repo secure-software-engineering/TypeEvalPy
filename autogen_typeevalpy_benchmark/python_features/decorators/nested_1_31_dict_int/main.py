@@ -6,11 +6,11 @@ def func():
         return modified_inner
 
     def modified_inner():
-        return {'olxuu': 64, 'rssqy': 55, 'metvg': 3}
+        return {'ubpax': 5, 'cbckv': 7, 'piiis': 13}
 
     @dec
     def inner():
-        return 10
+        return 61
 
     return inner()
 

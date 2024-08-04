@@ -2,23 +2,23 @@
 
 
 def func1():
-    return 'unsfx'
+    return 'nxtho'
 
 
 def func2():
-    return 56.54
+    return 51.58
 
 
 def func3():
-    return (31, 49, 60)
+    return (21, 26, 97)
 
 
 def func4():
-    return 23
+    return 78
 
 
 def func5():
-    return [89, 17, 30]
+    return [33, 43, 26]
 
 
 def func6():

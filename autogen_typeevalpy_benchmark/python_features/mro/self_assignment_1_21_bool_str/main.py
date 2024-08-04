@@ -14,7 +14,7 @@ class A(B):
         self.smth = self.func
 
     def func(self):
-        return 'ensie'
+        return 'vpymy'
 
 
 a = A()

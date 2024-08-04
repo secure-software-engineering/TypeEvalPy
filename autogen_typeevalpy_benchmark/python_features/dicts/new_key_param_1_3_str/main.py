@@ -2,7 +2,7 @@
 
 
 def func2():
-    return 'hrwge'
+    return 'sjcor'
 
 
 def func(key="a"):

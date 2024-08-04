@@ -10,7 +10,7 @@ def func():
 
     @dec
     def inner():
-        return 'auhsz'
+        return 'rhgok'
 
     return inner()
 

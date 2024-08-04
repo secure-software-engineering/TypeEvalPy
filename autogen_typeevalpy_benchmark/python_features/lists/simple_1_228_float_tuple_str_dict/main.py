@@ -2,15 +2,15 @@
 
 
 def func1():
-    return 97.15
+    return 40.21
 
 
 def func2():
-    return (2, 38, 82)
+    return (74, 13, 81)
 
 
 def func3():
-    return 'jyjyo'
+    return 'behll'
 
 
 a = [func1, func2, func3]
@@ -21,7 +21,7 @@ e = a[2]()
 
 
 def func4():
-    return {'lixqd': 58, 'otycr': 49, 'mzjuh': 79}
+    return {'kfbfb': 33, 'kbogk': 35, 'bqsyt': 36}
 
 
 b = ["Hello"]

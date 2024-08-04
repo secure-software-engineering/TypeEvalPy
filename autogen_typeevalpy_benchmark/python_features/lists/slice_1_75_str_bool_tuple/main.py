@@ -2,15 +2,15 @@
 
 
 def func1():
-    return 'vggrt'
+    return 'apqxe'
 
 
 def func2():
-    return False
+    return True
 
 
 def func3():
-    return (16, 39, 23)
+    return (12, 61, 61)
 
 
 ls = [func1, func2, func3]

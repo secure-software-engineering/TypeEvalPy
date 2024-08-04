@@ -84,7 +84,7 @@
         "file": "main.py",
         "line_number": 19,
         "col_offset": 1,
-        "variable": "d['oaijd']",
+        "variable": "d['epwsz']",
         "type": [
             "int"
         ]
@@ -93,7 +93,7 @@
         "file": "main.py",
         "line_number": 19,
         "col_offset": 1,
-        "variable": "d['cucns']",
+        "variable": "d['ilfog']",
         "type": [
             "int"
         ]
@@ -102,7 +102,7 @@
         "file": "main.py",
         "line_number": 19,
         "col_offset": 1,
-        "variable": "d['gbqyo']",
+        "variable": "d['pizrf']",
         "type": [
             "int"
         ]

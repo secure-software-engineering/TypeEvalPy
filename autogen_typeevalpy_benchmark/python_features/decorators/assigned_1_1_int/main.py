@@ -17,4 +17,4 @@ def func(a, b):
     return a + b
 
 
-c = func(40, 40)
+c = func(93, 93)

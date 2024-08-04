@@ -2,15 +2,15 @@
 
 
 def func1():
-    return 40
+    return 50
 
 
 def func2():
-    return 'xqgon'
+    return 'lyswc'
 
 
 def func3():
-    return {'gspwy': 16, 'ngefc': 93, 'xgcea': 84}
+    return {'xcpnb': 28, 'xvcwa': 71, 'gvvuw': 96}
 
 
 a = [func1, func2, func3]

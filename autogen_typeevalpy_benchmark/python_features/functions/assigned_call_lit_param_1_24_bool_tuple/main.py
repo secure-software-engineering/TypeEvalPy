@@ -7,4 +7,4 @@ def func(x):
 
 x = func
 a = x(True)
-b = x((39, 65, 92))
+b = x((44, 77, 4))

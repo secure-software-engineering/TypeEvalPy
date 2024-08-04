@@ -5,7 +5,7 @@ from ext import key
 
 
 def func():
-    return [31, 38, 69]
+    return [47, 45, 27]
 
 
 d = {"a": func}

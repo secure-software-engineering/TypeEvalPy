@@ -2,23 +2,23 @@
 
 
 def func1():
-    return 88
+    return 4
 
 
 def func2():
-    return 'rgbvu'
+    return 'pqigc'
 
 
 def func3():
-    return 30.07
+    return 24.6
 
 
 def func4():
-    return [59, 72, 57]
+    return [44, 7, 43]
 
 
 def func5():
-    return (78, 94, 46)
+    return (67, 31, 10)
 
 
 def func6():

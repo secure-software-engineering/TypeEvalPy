@@ -6,11 +6,11 @@ def func1():
 
 
 def func2():
-    return 'uanar'
+    return 'srptf'
 
 
 def func3():
-    return [6, 64, 84]
+    return [10, 15, 17]
 
 
 a = [func1, func2, func3]
@@ -21,7 +21,7 @@ e = a[2]()
 
 
 def func4():
-    return 23
+    return 78
 
 
 b = ["Hello"]

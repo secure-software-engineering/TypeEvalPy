@@ -30,7 +30,7 @@
         "file": "main.py",
         "line_number": 4,
         "col_offset": 1,
-        "variable": "dict1['b']['arxwi']",
+        "variable": "dict1['b']['zewrq']",
         "type": [
             "int"
         ]
@@ -39,7 +39,7 @@
         "file": "main.py",
         "line_number": 4,
         "col_offset": 1,
-        "variable": "dict1['b']['zmlmx']",
+        "variable": "dict1['b']['skopl']",
         "type": [
             "int"
         ]
@@ -48,7 +48,7 @@
         "file": "main.py",
         "line_number": 4,
         "col_offset": 1,
-        "variable": "dict1['b']['jaufm']",
+        "variable": "dict1['b']['uhspg']",
         "type": [
             "int"
         ]
@@ -84,7 +84,7 @@
         "file": "main.py",
         "line_number": 5,
         "col_offset": 1,
-        "variable": "dict2['d']['arxwi']",
+        "variable": "dict2['d']['zewrq']",
         "type": [
             "int"
         ]
@@ -93,7 +93,7 @@
         "file": "main.py",
         "line_number": 5,
         "col_offset": 1,
-        "variable": "dict2['d']['zmlmx']",
+        "variable": "dict2['d']['skopl']",
         "type": [
             "int"
         ]
@@ -102,7 +102,7 @@
         "file": "main.py",
         "line_number": 5,
         "col_offset": 1,
-        "variable": "dict2['d']['jaufm']",
+        "variable": "dict2['d']['uhspg']",
         "type": [
             "int"
         ]
@@ -156,7 +156,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['b']['arxwi']",
+        "variable": "merged_dict['b']['zewrq']",
         "type": [
             "int"
         ]
@@ -165,7 +165,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['b']['zmlmx']",
+        "variable": "merged_dict['b']['skopl']",
         "type": [
             "int"
         ]
@@ -174,7 +174,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['b']['jaufm']",
+        "variable": "merged_dict['b']['uhspg']",
         "type": [
             "int"
         ]
@@ -183,7 +183,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['d']['arxwi']",
+        "variable": "merged_dict['d']['zewrq']",
         "type": [
             "int"
         ]
@@ -192,7 +192,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['d']['zmlmx']",
+        "variable": "merged_dict['d']['skopl']",
         "type": [
             "int"
         ]
@@ -201,7 +201,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['d']['jaufm']",
+        "variable": "merged_dict['d']['uhspg']",
         "type": [
             "int"
         ]

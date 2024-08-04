@@ -5,7 +5,7 @@ import to_import as as_to_import
 
 
 def func():
-    return (92, 85, 25)
+    return (24, 24, 9)
 
 
 a = func()

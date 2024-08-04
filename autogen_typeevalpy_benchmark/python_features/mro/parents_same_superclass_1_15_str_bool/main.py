@@ -9,7 +9,7 @@ class A:
         pass
 
     def func(self):
-        return 'zyhjh'
+        return 'sypwc'
 
 
 class B(A):

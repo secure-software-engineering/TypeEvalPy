@@ -50,33 +50,6 @@
         "col_offset": 1,
         "variable": "d[2]",
         "type": [
-            "dict"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 12,
-        "col_offset": 1,
-        "variable": "d[2]['kajwm']",
-        "type": [
-            "int"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 12,
-        "col_offset": 1,
-        "variable": "d[2]['cbvfl']",
-        "type": [
-            "int"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 12,
-        "col_offset": 1,
-        "variable": "d[2]['yyqqj']",
-        "type": [
             "int"
         ]
     },
@@ -129,7 +102,7 @@
         "file": "main.py",
         "line_number": 15,
         "col_offset": 1,
-        "variable": "f['kajwm']",
+        "variable": "f['ohdrq']",
         "type": [
             "int"
         ]
@@ -138,7 +111,7 @@
         "file": "main.py",
         "line_number": 15,
         "col_offset": 1,
-        "variable": "f['cbvfl']",
+        "variable": "f['tjmpp']",
         "type": [
             "int"
         ]
@@ -147,7 +120,7 @@
         "file": "main.py",
         "line_number": 15,
         "col_offset": 1,
-        "variable": "f['yyqqj']",
+        "variable": "f['mejtf']",
         "type": [
             "int"
         ]

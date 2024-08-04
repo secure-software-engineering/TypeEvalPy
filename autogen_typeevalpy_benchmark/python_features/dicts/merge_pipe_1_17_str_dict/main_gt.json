@@ -30,7 +30,7 @@
         "file": "main.py",
         "line_number": 4,
         "col_offset": 1,
-        "variable": "dict1['b']['flfpu']",
+        "variable": "dict1['b']['adgaj']",
         "type": [
             "int"
         ]
@@ -39,7 +39,7 @@
         "file": "main.py",
         "line_number": 4,
         "col_offset": 1,
-        "variable": "dict1['b']['gcaro']",
+        "variable": "dict1['b']['wmbdm']",
         "type": [
             "int"
         ]
@@ -48,7 +48,7 @@
         "file": "main.py",
         "line_number": 4,
         "col_offset": 1,
-        "variable": "dict1['b']['crnwe']",
+        "variable": "dict1['b']['nqupo']",
         "type": [
             "int"
         ]
@@ -84,7 +84,7 @@
         "file": "main.py",
         "line_number": 5,
         "col_offset": 1,
-        "variable": "dict2['d']['flfpu']",
+        "variable": "dict2['d']['adgaj']",
         "type": [
             "int"
         ]
@@ -93,7 +93,7 @@
         "file": "main.py",
         "line_number": 5,
         "col_offset": 1,
-        "variable": "dict2['d']['gcaro']",
+        "variable": "dict2['d']['wmbdm']",
         "type": [
             "int"
         ]
@@ -102,7 +102,7 @@
         "file": "main.py",
         "line_number": 5,
         "col_offset": 1,
-        "variable": "dict2['d']['crnwe']",
+        "variable": "dict2['d']['nqupo']",
         "type": [
             "int"
         ]
@@ -156,7 +156,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['b']['flfpu']",
+        "variable": "merged_dict['b']['adgaj']",
         "type": [
             "int"
         ]
@@ -165,7 +165,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['b']['gcaro']",
+        "variable": "merged_dict['b']['wmbdm']",
         "type": [
             "int"
         ]
@@ -174,7 +174,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['b']['crnwe']",
+        "variable": "merged_dict['b']['nqupo']",
         "type": [
             "int"
         ]
@@ -183,7 +183,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['d']['flfpu']",
+        "variable": "merged_dict['d']['adgaj']",
         "type": [
             "int"
         ]
@@ -192,7 +192,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['d']['gcaro']",
+        "variable": "merged_dict['d']['wmbdm']",
         "type": [
             "int"
         ]
@@ -201,7 +201,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "merged_dict['d']['crnwe']",
+        "variable": "merged_dict['d']['nqupo']",
         "type": [
             "int"
         ]

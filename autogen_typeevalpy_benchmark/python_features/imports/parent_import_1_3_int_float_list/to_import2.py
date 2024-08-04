@@ -1,2 +1,2 @@
 def func():
-    return [23, 13, 5]
+    return [74, 66, 96]

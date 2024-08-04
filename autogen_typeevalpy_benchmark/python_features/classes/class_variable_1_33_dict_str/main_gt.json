@@ -12,7 +12,7 @@
         "file": "main.py",
         "line_number": 3,
         "col_offset": 5,
-        "variable": "MyClass.class_var['vamre']",
+        "variable": "MyClass.class_var['wimny']",
         "type": [
             "int"
         ]
@@ -21,7 +21,7 @@
         "file": "main.py",
         "line_number": 3,
         "col_offset": 5,
-        "variable": "MyClass.class_var['hxler']",
+        "variable": "MyClass.class_var['dfovf']",
         "type": [
             "int"
         ]
@@ -30,7 +30,7 @@
         "file": "main.py",
         "line_number": 3,
         "col_offset": 5,
-        "variable": "MyClass.class_var['ueyty']",
+        "variable": "MyClass.class_var['ehrwd']",
         "type": [
             "int"
         ]
@@ -77,7 +77,7 @@
         "file": "main.py",
         "line_number": 10,
         "col_offset": 1,
-        "variable": "b['vamre']",
+        "variable": "b['wimny']",
         "type": [
             "int"
         ]
@@ -86,7 +86,7 @@
         "file": "main.py",
         "line_number": 10,
         "col_offset": 1,
-        "variable": "b['hxler']",
+        "variable": "b['dfovf']",
         "type": [
             "int"
         ]
@@ -95,7 +95,7 @@
         "file": "main.py",
         "line_number": 10,
         "col_offset": 1,
-        "variable": "b['ueyty']",
+        "variable": "b['ehrwd']",
         "type": [
             "int"
         ]

@@ -5,8 +5,8 @@
         "col_offset": 5,
         "function": "func",
         "type": [
-            "str",
             "tuple",
+            "str",
             "bool"
         ]
     },
@@ -17,8 +17,8 @@
         "function": "func",
         "parameter": "value",
         "type": [
-            "str",
             "tuple",
+            "str",
             "bool"
         ]
     },

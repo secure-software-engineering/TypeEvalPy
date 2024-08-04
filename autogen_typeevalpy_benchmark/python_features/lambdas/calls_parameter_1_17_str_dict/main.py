@@ -2,11 +2,11 @@
 
 
 def func1():
-    return 'kwqma'
+    return 'iojxo'
 
 
 def func2():
-    return {'utxan': 14, 'lbuas': 81, 'bzypm': 32}
+    return {'ebmwi': 43, 'pqlki': 56, 'evvrq': 26}
 
 
 x = lambda x: x()

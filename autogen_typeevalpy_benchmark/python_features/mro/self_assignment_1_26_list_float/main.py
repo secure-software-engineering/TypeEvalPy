@@ -6,7 +6,7 @@ class B:
         self.smth = self.func
 
     def func(self):
-        return [40, 20, 93]
+        return [74, 88, 59]
 
 
 class A(B):
@@ -14,7 +14,7 @@ class A(B):
         self.smth = self.func
 
     def func(self):
-        return 91.79
+        return 50.08
 
 
 a = A()

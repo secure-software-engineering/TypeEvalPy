@@ -3,7 +3,7 @@
 
 def return_func():
     def nested_return_func():
-        return {'fqqxq': 76, 'chezj': 15, 'zlojr': 93}
+        return {'nzloj': 89, 'wcenf': 31, 'mgwcn': 45}
 
     return nested_return_func
 

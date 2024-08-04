@@ -2,11 +2,11 @@
 
 
 def func1():
-    return [56, 68, 92]
+    return [45, 83, 99]
 
 
 def func2():
-    return {'htyrz': 8, 'seacf': 38, 'gclxr': 63}
+    return {'cpjrt': 78, 'dbhxd': 91, 'sksjz': 45}
 
 
 d = {1: func1, "1": func2}

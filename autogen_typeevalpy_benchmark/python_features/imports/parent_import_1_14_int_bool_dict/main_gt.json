@@ -39,7 +39,7 @@
         "file": "main.py",
         "line_number": 12,
         "col_offset": 1,
-        "variable": "c['ngpos']",
+        "variable": "c['fallh']",
         "type": [
             "int"
         ]
@@ -48,7 +48,7 @@
         "file": "main.py",
         "line_number": 12,
         "col_offset": 1,
-        "variable": "c['mrwrf']",
+        "variable": "c['qlsse']",
         "type": [
             "int"
         ]
@@ -57,7 +57,7 @@
         "file": "main.py",
         "line_number": 12,
         "col_offset": 1,
-        "variable": "c['euojd']",
+        "variable": "c['onylx']",
         "type": [
             "int"
         ]

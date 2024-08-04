@@ -3,7 +3,7 @@
 
 # return_tuple
 def func():
-    return 'yyxzi'
+    return 'cqnrd'
 
 
 a = func()
@@ -11,7 +11,7 @@ a = func()
 
 # return_dict
 def func1():
-    return (87, 76, 71)
+    return (100, 60, 56)
 
 
 b = func1()
@@ -30,7 +30,7 @@ c = func3()
 
 # return_set
 def func4():
-    return 49.51
+    return 99.71
 
 
 d = func4()

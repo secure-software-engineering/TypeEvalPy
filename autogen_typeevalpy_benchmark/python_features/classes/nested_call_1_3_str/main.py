@@ -2,7 +2,7 @@
 class MyClass:
     def func(self):
         def nested():
-            return 'qlexm'
+            return 'kelvq'
 
         return nested()
 

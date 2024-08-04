@@ -6,5 +6,5 @@ class MyClass:
         self.instance_var = instance_var
 
 
-a = MyClass('sgztv')
+a = MyClass('xnzlu')
 b = a.class_var

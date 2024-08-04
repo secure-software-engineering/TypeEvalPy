@@ -1,6 +1,6 @@
 # Using the exec() function to execute a string .
 
 
-code = "a = (58, 53, 45)"
+code = "a = (52, 31, 66)"
 exec(code)
 b = a

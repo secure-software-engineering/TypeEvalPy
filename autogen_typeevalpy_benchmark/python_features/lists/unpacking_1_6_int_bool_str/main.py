@@ -1,3 +1,3 @@
 # Unpacking a list into individual variables.
-a = [26, True, 'eskzd']
+a = [58, True, 'bskan']
 b, c, d = a

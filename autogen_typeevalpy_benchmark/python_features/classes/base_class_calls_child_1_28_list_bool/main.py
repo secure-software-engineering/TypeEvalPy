@@ -9,7 +9,7 @@ class B(A):
         self.child = self.func2
 
     def func2(self):
-        return [88, 10, 35]
+        return [7, 92, 23]
 
 
 class C(A):

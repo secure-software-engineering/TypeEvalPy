@@ -6,7 +6,7 @@ import nested.to_import
 
 
 def func():
-    return 'ufnlr'
+    return 'opeyh'
 
 
 a = nested.to_import.func()

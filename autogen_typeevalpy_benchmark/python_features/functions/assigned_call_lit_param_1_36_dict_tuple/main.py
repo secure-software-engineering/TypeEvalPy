@@ -6,5 +6,5 @@ def func(x):
 
 
 x = func
-a = x({'pmsov': 67, 'dqgnf': 57, 'lgrle': 17})
-b = x((88, 56, 35))
+a = x({'bzhbr': 43, 'xtvmi': 87, 'xsedp': 53})
+b = x((69, 32, 84))

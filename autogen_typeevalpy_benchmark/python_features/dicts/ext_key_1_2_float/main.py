@@ -5,7 +5,7 @@ from ext import key
 
 
 def func():
-    return 97.5
+    return 14.02
 
 
 d = {"a": func}

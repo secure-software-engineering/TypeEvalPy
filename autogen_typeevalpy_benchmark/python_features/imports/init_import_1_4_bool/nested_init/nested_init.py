@@ -1,6 +1,6 @@
 class Smth:
     def func(self):
-        return False
+        return True
 
 
 smth = Smth()

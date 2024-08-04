@@ -6,5 +6,5 @@ def func(x):
 
 
 x = func
-a = x(33.03)
-b = x('nfzaz')
+a = x(8.77)
+b = x('ruvzd')

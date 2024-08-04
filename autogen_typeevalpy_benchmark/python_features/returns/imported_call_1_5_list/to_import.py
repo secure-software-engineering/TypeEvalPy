@@ -1,6 +1,6 @@
 # This module defines 2 functions where one function calls the other
 def return_func():
-    return [99, 35, 95]
+    return [57, 67, 100]
 
 
 def func():

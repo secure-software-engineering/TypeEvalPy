@@ -5,7 +5,7 @@ from ext import key
 
 
 def func():
-    return 'lkcdn'
+    return 'sqvuc'
 
 
 d = {"a": func}

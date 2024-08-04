@@ -6,10 +6,10 @@ class MyClass:
         pass
 
     def func1(self):
-        return 'hbnjp'
+        return 'yxcxf'
 
     def func2(self):
-        return [93, 36, 31]
+        return [81, 70, 38]
 
     def func3(self):
         return False

@@ -1,6 +1,6 @@
 class Smth:
     def func(self):
-        return (64, 58, 12)
+        return (11, 4, 90)
 
 
 smth = Smth()

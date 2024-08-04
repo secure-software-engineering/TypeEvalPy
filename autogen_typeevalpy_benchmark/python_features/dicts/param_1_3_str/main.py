@@ -2,7 +2,7 @@
 
 
 def func2():
-    return 'xtafs'
+    return 'nbxut'
 
 
 def func1(d):

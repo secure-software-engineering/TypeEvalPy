@@ -6,7 +6,7 @@ def func1():
 
 
 def func2():
-    return 'ljujt'
+    return 'jordn'
 
 
 d = {"a": func1}

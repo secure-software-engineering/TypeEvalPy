@@ -11,7 +11,7 @@ class A:
 
 class B:
     def func(self):
-        return 7
+        return 39
 
 
 class C(A, B):
@@ -19,7 +19,7 @@ class C(A, B):
         pass
 
     def func(self):
-        return {'ssqlu': 6, 'fpiwa': 67, 'ummmv': 8}
+        return {'rixhe': 50, 'ibxxz': 4, 'lnfyu': 13}
 
 
 c = C()

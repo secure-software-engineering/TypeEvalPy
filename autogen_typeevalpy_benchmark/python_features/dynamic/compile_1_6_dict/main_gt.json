@@ -30,7 +30,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "a['awfme']",
+        "variable": "a['hfraq']",
         "type": [
             "int"
         ]
@@ -39,7 +39,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "a['ihohg']",
+        "variable": "a['ztzfs']",
         "type": [
             "int"
         ]
@@ -48,7 +48,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
-        "variable": "a['ewdct']",
+        "variable": "a['kbkeu']",
         "type": [
             "int"
         ]
@@ -66,7 +66,7 @@
         "file": "main.py",
         "line_number": 7,
         "col_offset": 1,
-        "variable": "b['awfme']",
+        "variable": "b['hfraq']",
         "type": [
             "int"
         ]
@@ -75,7 +75,7 @@
         "file": "main.py",
         "line_number": 7,
         "col_offset": 1,
-        "variable": "b['ihohg']",
+        "variable": "b['ztzfs']",
         "type": [
             "int"
         ]
@@ -84,7 +84,7 @@
         "file": "main.py",
         "line_number": 7,
         "col_offset": 1,
-        "variable": "b['ewdct']",
+        "variable": "b['kbkeu']",
         "type": [
             "int"
         ]

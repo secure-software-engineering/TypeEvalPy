@@ -2,4 +2,4 @@ from .mod import func2
 
 
 def func():
-    return [6, 41, 12]
+    return [72, 83, 89]

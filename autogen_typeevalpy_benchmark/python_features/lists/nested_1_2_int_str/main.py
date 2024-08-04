@@ -2,11 +2,11 @@
 
 
 def func1():
-    return 88
+    return 90
 
 
 def func2():
-    return 'gqqlq'
+    return 'dgtqm'
 
 
 ls = [[func1], func2]

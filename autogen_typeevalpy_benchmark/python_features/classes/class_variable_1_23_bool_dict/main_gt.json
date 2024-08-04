@@ -32,7 +32,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 9,
-        "variable": "MyClass.instance_var['jrchl']",
+        "variable": "MyClass.instance_var['gvfal']",
         "function": "__init__",
         "type": [
             "int"
@@ -42,7 +42,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 9,
-        "variable": "MyClass.instance_var['uudie']",
+        "variable": "MyClass.instance_var['ncwet']",
         "function": "__init__",
         "type": [
             "int"
@@ -52,7 +52,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 9,
-        "variable": "MyClass.instance_var['ofsrk']",
+        "variable": "MyClass.instance_var['myjiw']",
         "function": "__init__",
         "type": [
             "int"

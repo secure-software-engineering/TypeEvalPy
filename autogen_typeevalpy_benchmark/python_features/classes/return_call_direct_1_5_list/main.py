@@ -3,7 +3,7 @@
 
 class MyClass:
     def func2(self):
-        return [23, 29, 32]
+        return [47, 3, 18]
 
     def func1(self):
         return self.func2

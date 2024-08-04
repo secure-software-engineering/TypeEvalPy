@@ -9,7 +9,7 @@ class A:
         return self.smth()
 
     def func2(self):
-        return {'bxsyl': 56, 'yfkof': 31, 'rnojh': 28}
+        return {'gjtmu': 37, 'lglie': 68, 'cunic': 40}
 
 
 a = A()

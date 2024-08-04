@@ -50,33 +50,6 @@
         "col_offset": 1,
         "variable": "d[2]",
         "type": [
-            "dict"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 12,
-        "col_offset": 1,
-        "variable": "d[2]['wbygt']",
-        "type": [
-            "int"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 12,
-        "col_offset": 1,
-        "variable": "d[2]['ekcmt']",
-        "type": [
-            "int"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 12,
-        "col_offset": 1,
-        "variable": "d[2]['ovlta']",
-        "type": [
             "int"
         ]
     },
@@ -129,7 +102,7 @@
         "file": "main.py",
         "line_number": 15,
         "col_offset": 1,
-        "variable": "f['wbygt']",
+        "variable": "f['uqufo']",
         "type": [
             "int"
         ]
@@ -138,7 +111,7 @@
         "file": "main.py",
         "line_number": 15,
         "col_offset": 1,
-        "variable": "f['ekcmt']",
+        "variable": "f['rkmge']",
         "type": [
             "int"
         ]
@@ -147,7 +120,7 @@
         "file": "main.py",
         "line_number": 15,
         "col_offset": 1,
-        "variable": "f['ovlta']",
+        "variable": "f['mozoc']",
         "type": [
             "int"
         ]

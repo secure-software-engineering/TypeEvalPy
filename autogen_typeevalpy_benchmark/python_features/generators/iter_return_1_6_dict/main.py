@@ -2,7 +2,7 @@
 
 
 def func():
-    return {'vcmng': 1, 'wsdpz': 53, 'umbex': 93}
+    return {'nesqy': 91, 'cudsu': 76, 'enwhb': 33}
 
 
 class Cls:

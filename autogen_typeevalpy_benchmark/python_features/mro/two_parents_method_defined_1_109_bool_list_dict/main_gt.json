@@ -39,7 +39,7 @@
         "file": "main.py",
         "line_number": 25,
         "col_offset": 1,
-        "variable": "C['enail']",
+        "variable": "C['uvyuk']",
         "type": [
             "int"
         ]
@@ -48,7 +48,7 @@
         "file": "main.py",
         "line_number": 25,
         "col_offset": 1,
-        "variable": "C['ggdvr']",
+        "variable": "C['vmeab']",
         "type": [
             "int"
         ]
@@ -57,7 +57,7 @@
         "file": "main.py",
         "line_number": 25,
         "col_offset": 1,
-        "variable": "C['latxn']",
+        "variable": "C['lmoup']",
         "type": [
             "int"
         ]
@@ -75,7 +75,7 @@
         "file": "main.py",
         "line_number": 26,
         "col_offset": 1,
-        "variable": "d['enail']",
+        "variable": "d['uvyuk']",
         "type": [
             "int"
         ]
@@ -84,7 +84,7 @@
         "file": "main.py",
         "line_number": 26,
         "col_offset": 1,
-        "variable": "d['ggdvr']",
+        "variable": "d['vmeab']",
         "type": [
             "int"
         ]
@@ -93,7 +93,7 @@
         "file": "main.py",
         "line_number": 26,
         "col_offset": 1,
-        "variable": "d['latxn']",
+        "variable": "d['lmoup']",
         "type": [
             "int"
         ]

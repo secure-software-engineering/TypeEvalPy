@@ -4,4 +4,4 @@ class MyClass:
         pass
 
     def func(self):
-        return (26, 28, 24)
+        return (98, 14, 82)

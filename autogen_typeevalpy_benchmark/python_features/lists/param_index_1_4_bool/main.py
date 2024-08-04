@@ -2,7 +2,7 @@
 
 
 def func2():
-    return False
+    return True
 
 
 def func1(key):

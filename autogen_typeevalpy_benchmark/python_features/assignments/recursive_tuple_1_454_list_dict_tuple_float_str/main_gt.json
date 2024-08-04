@@ -129,7 +129,7 @@
         "file": "main.py",
         "line_number": 30,
         "col_offset": 1,
-        "variable": "j['pbqty']",
+        "variable": "j['vyskl']",
         "type": [
             "int"
         ]
@@ -138,7 +138,7 @@
         "file": "main.py",
         "line_number": 30,
         "col_offset": 1,
-        "variable": "j['gepzx']",
+        "variable": "j['icyeo']",
         "type": [
             "int"
         ]
@@ -147,7 +147,7 @@
         "file": "main.py",
         "line_number": 30,
         "col_offset": 1,
-        "variable": "j['zszml']",
+        "variable": "j['saayx']",
         "type": [
             "int"
         ]

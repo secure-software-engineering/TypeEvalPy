@@ -85,7 +85,7 @@
         "file": "main.py",
         "line_number": 36,
         "col_offset": 1,
-        "variable": "d['kpawr']",
+        "variable": "d['vemfc']",
         "type": [
             "int"
         ]
@@ -94,7 +94,7 @@
         "file": "main.py",
         "line_number": 36,
         "col_offset": 1,
-        "variable": "d['tsbfg']",
+        "variable": "d['inebh']",
         "type": [
             "int"
         ]
@@ -103,7 +103,7 @@
         "file": "main.py",
         "line_number": 36,
         "col_offset": 1,
-        "variable": "d['ipnvn']",
+        "variable": "d['frctz']",
         "type": [
             "int"
         ]

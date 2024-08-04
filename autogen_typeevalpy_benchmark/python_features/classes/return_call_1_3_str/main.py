@@ -3,7 +3,7 @@
 
 class MyClass:
     def func2(self):
-        return 'tmvag'
+        return 'ljjfj'
 
     def func1(self):
         return self.func2

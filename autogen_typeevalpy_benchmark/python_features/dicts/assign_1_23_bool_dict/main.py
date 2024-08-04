@@ -6,7 +6,7 @@ def func1():
 
 
 def func2():
-    return {'ltpvx': 36, 'zotmv': 65, 'rmqkv': 94}
+    return {'dlwcx': 9, 'cofya': 29, 'xbpvt': 51}
 
 
 d = {"a": func1}

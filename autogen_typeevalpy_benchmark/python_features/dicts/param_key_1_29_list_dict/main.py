@@ -6,11 +6,11 @@ def func1(key="a"):
 
 
 def func2():
-    return [85, 39, 9]
+    return [43, 31, 1]
 
 
 def func3():
-    return {'lrsvn': 39, 'hxoss': 21, 'ljuji': 24}
+    return {'gihiz': 94, 'pgxto': 97, 'rgape': 27}
 
 
 d = {"a": func2, "b": func3}

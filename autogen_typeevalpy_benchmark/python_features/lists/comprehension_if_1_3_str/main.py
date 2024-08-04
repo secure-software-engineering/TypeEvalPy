@@ -2,7 +2,7 @@
 
 
 def func():
-    return 'lrxbq'
+    return 'teszo'
 
 
 a = [a for a in range(10) if func()]

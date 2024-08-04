@@ -11,7 +11,7 @@ a = func()
 
 # return_dict
 def func1():
-    return 43.39
+    return 11.96
 
 
 b = func1()
@@ -30,7 +30,7 @@ c = func3()
 
 # return_set
 def func4():
-    return (83, 45, 62)
+    return (61, 40, 93)
 
 
 d = func4()

@@ -3,8 +3,8 @@
 
 
 def func1(a):
-    a += 32
+    a += 93
     return a
 
 
-b = func1(32)
+b = func1(93)

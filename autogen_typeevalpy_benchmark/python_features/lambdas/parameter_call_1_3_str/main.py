@@ -2,9 +2,9 @@
 
 
 def func(a):
-    return a('alkbc')
+    return a('pijle')
 
 
-y = lambda x: x + 'alkbc'
+y = lambda x: x + 'pijle'
 
 b = func(y)

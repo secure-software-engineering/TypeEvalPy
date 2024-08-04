@@ -6,11 +6,11 @@ def func1():
 
 
 def func2():
-    return {'obykq': 37, 'zbzno': 95, 'ohmdl': 78}
+    return {'elpqm': 38, 'iwyxo': 80, 'dxbsm': 13}
 
 
 def func3():
-    return (80, 4, 91)
+    return (37, 83, 16)
 
 
 ls = [func1, func2, func3]

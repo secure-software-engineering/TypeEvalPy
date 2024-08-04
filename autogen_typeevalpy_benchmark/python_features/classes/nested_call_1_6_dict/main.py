@@ -2,7 +2,7 @@
 class MyClass:
     def func(self):
         def nested():
-            return {'qnsom': 96, 'fpidw': 12, 'gkuoo': 19}
+            return {'ibeap': 54, 'afsgl': 51, 'krmxd': 46}
 
         return nested()
 

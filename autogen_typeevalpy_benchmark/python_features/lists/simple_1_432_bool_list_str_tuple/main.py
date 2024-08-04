@@ -6,11 +6,11 @@ def func1():
 
 
 def func2():
-    return [3, 93, 45]
+    return [82, 53, 99]
 
 
 def func3():
-    return 'epzif'
+    return 'xudtd'
 
 
 a = [func1, func2, func3]
@@ -21,7 +21,7 @@ e = a[2]()
 
 
 def func4():
-    return (22, 9, 84)
+    return (14, 21, 36)
 
 
 b = ["Hello"]

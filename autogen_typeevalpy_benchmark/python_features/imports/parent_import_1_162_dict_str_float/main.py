@@ -4,7 +4,7 @@ from nested import to_import
 
 
 def func():
-    return 'dbymv'
+    return 'rouek'
 
 
 a = func()

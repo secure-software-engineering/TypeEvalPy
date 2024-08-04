@@ -3,7 +3,7 @@
 
 class A:
     def func(self):
-        return False
+        return True
 
 
 class B(A):

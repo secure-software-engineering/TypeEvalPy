@@ -4,15 +4,15 @@ def func1():
 
 
 def func2():
-    return 20.87
+    return 69.02
 
 
 def func3():
-    return (2, 21, 72)
+    return (43, 25, 67)
 
 
 def func4():
-    return 'pzfli'
+    return 'qcnfi'
 
 a, *b, c = func1, func2, func3, func4
 

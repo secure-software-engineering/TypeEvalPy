@@ -3,19 +3,19 @@
 
 
 def func1():
-    return {'ybhov': 19, 'lbzgy': 55, 'fulal': 93}
+    return {'nlvol': 50, 'untwq': 25, 'jqibz': 68}
 
 
 def func2():
-    return 86
+    return 88
 
 
 def func3():
-    return 'upaoe'
+    return 'mopiq'
 
 
 def func4():
-    return (58, 4, 28)
+    return (15, 13, 67)
 
 
 (a, b), (c, d) = [(func1, func2), (func3, func4)]

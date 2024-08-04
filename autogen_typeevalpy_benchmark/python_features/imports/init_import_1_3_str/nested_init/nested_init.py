@@ -1,6 +1,6 @@
 class Smth:
     def func(self):
-        return 'gnsdt'
+        return 'entgp'
 
 
 smth = Smth()

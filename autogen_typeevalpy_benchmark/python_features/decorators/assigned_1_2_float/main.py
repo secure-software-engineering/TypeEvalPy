@@ -17,4 +17,4 @@ def func(a, b):
     return a + b
 
 
-c = func(29.69, 29.69)
+c = func(16.77, 16.77)

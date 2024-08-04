@@ -39,7 +39,7 @@
         "file": "main.py",
         "line_number": 12,
         "col_offset": 1,
-        "variable": "c['zydzl']",
+        "variable": "c['uidmp']",
         "type": [
             "int"
         ]
@@ -48,7 +48,7 @@
         "file": "main.py",
         "line_number": 12,
         "col_offset": 1,
-        "variable": "c['pytzh']",
+        "variable": "c['dmurs']",
         "type": [
             "int"
         ]
@@ -57,7 +57,7 @@
         "file": "main.py",
         "line_number": 12,
         "col_offset": 1,
-        "variable": "c['wsaon']",
+        "variable": "c['meduz']",
         "type": [
             "int"
         ]

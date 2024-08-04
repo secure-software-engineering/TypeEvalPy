@@ -3,19 +3,19 @@
 
 
 def func1():
-    return 'fjxle'
+    return 'vnein'
 
 
 def func2():
-    return (42, 71, 73)
+    return (18, 100, 68)
 
 
 def func3():
-    return 92
+    return 73
 
 
 def func4():
-    return [28, 56, 74]
+    return [4, 23, 25]
 
 
 (a, b), (c, d) = [(func1, func2), (func3, func4)]

@@ -1,6 +1,6 @@
 def func1():
-    return True
+    return False
 
 
 def func2():
-    return {'kpbvr': 20, 'veziz': 84, 'bedzu': 31}
+    return {'vaddk': 75, 'umxui': 7, 'gqecv': 17}

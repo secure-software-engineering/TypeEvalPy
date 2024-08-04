@@ -4,7 +4,7 @@
 
 class A:
     def __init__(self):
-        self.a = (14, 26, 9)
+        self.a = (29, 36, 3)
 
 
 class B(A):

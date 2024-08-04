@@ -2,8 +2,8 @@
 
 
 def func():
-    return lambda x: x + 'csuqe'
+    return lambda x: x + 'hgeco'
 
 
 y = func()
-a = y('csuqe')
+a = y('hgeco')

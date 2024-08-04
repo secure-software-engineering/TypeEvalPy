@@ -1,12 +1,12 @@
 # Calling methods of inherited class
 class MyClass:
     def func(self):
-        return 58
+        return 70
 
 
 class MySubClass(MyClass):
     def sub_func(self):
-        return [19, 69, 4]
+        return [44, 30, 29]
 
 
 a = MySubClass()

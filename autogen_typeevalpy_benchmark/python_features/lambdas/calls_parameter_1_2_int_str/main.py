@@ -2,11 +2,11 @@
 
 
 def func1():
-    return 87
+    return 66
 
 
 def func2():
-    return 'zshdo'
+    return 'cngbe'
 
 
 x = lambda x: x()

@@ -165,7 +165,7 @@
         "file": "main.py",
         "line_number": 30,
         "col_offset": 1,
-        "variable": "f['nlssv']",
+        "variable": "f['djdtc']",
         "type": [
             "int"
         ]
@@ -174,7 +174,7 @@
         "file": "main.py",
         "line_number": 30,
         "col_offset": 1,
-        "variable": "f['atlsu']",
+        "variable": "f['dsmfu']",
         "type": [
             "int"
         ]
@@ -183,7 +183,7 @@
         "file": "main.py",
         "line_number": 30,
         "col_offset": 1,
-        "variable": "f['tgocs']",
+        "variable": "f['cgnlu']",
         "type": [
             "int"
         ]

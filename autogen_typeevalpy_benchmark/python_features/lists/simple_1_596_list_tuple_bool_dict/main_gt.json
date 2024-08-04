@@ -192,7 +192,7 @@
         "file": "main.py",
         "line_number": 30,
         "col_offset": 1,
-        "variable": "f['qgsno']",
+        "variable": "f['bjlwm']",
         "type": [
             "int"
         ]
@@ -201,7 +201,7 @@
         "file": "main.py",
         "line_number": 30,
         "col_offset": 1,
-        "variable": "f['jbdkg']",
+        "variable": "f['utfhm']",
         "type": [
             "int"
         ]
@@ -210,7 +210,7 @@
         "file": "main.py",
         "line_number": 30,
         "col_offset": 1,
-        "variable": "f['mksfx']",
+        "variable": "f['gakgw']",
         "type": [
             "int"
         ]

@@ -1,6 +1,6 @@
 def func1():
-    return [55, 67, 75]
+    return [14, 29, 32]
 
 
 def func2():
-    return 'livzt'
+    return 'axncg'

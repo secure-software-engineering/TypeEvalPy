@@ -2,11 +2,11 @@
 
 
 def func1():
-    return 67
+    return 46
 
 
 def func2():
-    return 94.04
+    return 42.93
 
 
 a = b = func1

@@ -5,7 +5,7 @@ import to_import as as_to_import
 
 
 def func():
-    return {'dnbsr': 1, 'qyenc': 91, 'netob': 67}
+    return {'udetr': 40, 'qosql': 60, 'wkybd': 73}
 
 
 a = func()

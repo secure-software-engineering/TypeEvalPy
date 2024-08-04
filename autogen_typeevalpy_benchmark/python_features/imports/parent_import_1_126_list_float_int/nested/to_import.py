@@ -2,4 +2,4 @@ import to_import2
 
 
 def func():
-    return [97, 98, 73]
+    return [42, 77, 5]

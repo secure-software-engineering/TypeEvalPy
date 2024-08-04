@@ -111,7 +111,7 @@
         "file": "main.py",
         "line_number": 31,
         "col_offset": 1,
-        "variable": "k['rmdho']",
+        "variable": "k['fvasj']",
         "type": [
             "int"
         ]
@@ -120,7 +120,7 @@
         "file": "main.py",
         "line_number": 31,
         "col_offset": 1,
-        "variable": "k['vekqi']",
+        "variable": "k['zccyf']",
         "type": [
             "int"
         ]
@@ -129,7 +129,7 @@
         "file": "main.py",
         "line_number": 31,
         "col_offset": 1,
-        "variable": "k['bjffi']",
+        "variable": "k['nookt']",
         "type": [
             "int"
         ]

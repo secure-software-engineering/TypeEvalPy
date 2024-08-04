@@ -111,7 +111,7 @@
         "file": "main.py",
         "line_number": 19,
         "col_offset": 1,
-        "variable": "d['uaprg']",
+        "variable": "d['mjmid']",
         "type": [
             "int"
         ]
@@ -120,7 +120,7 @@
         "file": "main.py",
         "line_number": 19,
         "col_offset": 1,
-        "variable": "d['ffysx']",
+        "variable": "d['knpxo']",
         "type": [
             "int"
         ]
@@ -129,7 +129,7 @@
         "file": "main.py",
         "line_number": 19,
         "col_offset": 1,
-        "variable": "d['mgxvg']",
+        "variable": "d['qgjxr']",
         "type": [
             "int"
         ]

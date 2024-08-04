@@ -84,7 +84,7 @@
         "file": "main.py",
         "line_number": 19,
         "col_offset": 1,
-        "variable": "d['lltyy']",
+        "variable": "d['itmca']",
         "type": [
             "int"
         ]
@@ -93,7 +93,7 @@
         "file": "main.py",
         "line_number": 19,
         "col_offset": 1,
-        "variable": "d['mhitj']",
+        "variable": "d['ntumv']",
         "type": [
             "int"
         ]
@@ -102,7 +102,7 @@
         "file": "main.py",
         "line_number": 19,
         "col_offset": 1,
-        "variable": "d['wybgb']",
+        "variable": "d['twcsk']",
         "type": [
             "int"
         ]

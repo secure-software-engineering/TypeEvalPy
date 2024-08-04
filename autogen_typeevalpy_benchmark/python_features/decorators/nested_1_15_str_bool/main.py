@@ -6,7 +6,7 @@ def func():
         return modified_inner
 
     def modified_inner():
-        return 'azwbv'
+        return 'gtfcv'
 
     @dec
     def inner():

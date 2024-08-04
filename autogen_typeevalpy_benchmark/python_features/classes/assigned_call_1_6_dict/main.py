@@ -1,7 +1,7 @@
 # A class is instantiated and we assign one of its functions to a variable and then call that variable.
 class MyClass:
     def func(self):
-        return {'ygfoi': 82, 'pxddp': 18, 'bhyyo': 99}
+        return {'npaim': 76, 'mvqwf': 28, 'laiqb': 78}
 
 
 a = MyClass()

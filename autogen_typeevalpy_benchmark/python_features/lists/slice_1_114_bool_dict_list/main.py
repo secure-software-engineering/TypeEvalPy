@@ -2,15 +2,15 @@
 
 
 def func1():
-    return False
+    return True
 
 
 def func2():
-    return {'fuovb': 86, 'tjeai': 65, 'vgocp': 11}
+    return {'cdtek': 10, 'zulku': 8, 'stojk': 96}
 
 
 def func3():
-    return [51, 80, 93]
+    return [59, 71, 89]
 
 
 ls = [func1, func2, func3]

@@ -2,7 +2,7 @@
 
 
 def func():
-    return (81, 2, 16)
+    return (80, 20, 46)
 
 
 class Cls:

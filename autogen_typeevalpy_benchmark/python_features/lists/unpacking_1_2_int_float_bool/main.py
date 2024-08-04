@@ -1,3 +1,3 @@
 # Unpacking a list into individual variables.
-a = [55, 4.53, True]
+a = [13, 99.42, True]
 b, c, d = a

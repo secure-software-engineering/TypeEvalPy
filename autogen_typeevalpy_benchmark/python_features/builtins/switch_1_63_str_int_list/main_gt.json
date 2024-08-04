@@ -5,8 +5,8 @@
         "col_offset": 5,
         "function": "func",
         "type": [
-            "str",
-            "int"
+            "int",
+            "str"
         ]
     },
     {
@@ -16,9 +16,9 @@
         "function": "func",
         "parameter": "value",
         "type": [
+            "int",
             "str",
-            "list",
-            "int"
+            "list"
         ]
     },
     {

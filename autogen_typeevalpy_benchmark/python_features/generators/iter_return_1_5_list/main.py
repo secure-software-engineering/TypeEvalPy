@@ -2,7 +2,7 @@
 
 
 def func():
-    return [81, 69, 51]
+    return [77, 79, 88]
 
 
 class Cls:

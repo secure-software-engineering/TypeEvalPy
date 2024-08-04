@@ -16,8 +16,8 @@
         "function": "func",
         "parameter": "value",
         "type": [
-            "str",
             "list",
+            "str",
             "float"
         ]
     },

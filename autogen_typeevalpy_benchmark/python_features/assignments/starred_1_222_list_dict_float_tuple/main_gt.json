@@ -129,7 +129,7 @@
         "file": "main.py",
         "line_number": 21,
         "col_offset": 1,
-        "variable": "e['tifsz']",
+        "variable": "e['kjalu']",
         "type": [
             "int"
         ]
@@ -138,7 +138,7 @@
         "file": "main.py",
         "line_number": 21,
         "col_offset": 1,
-        "variable": "e['htiyn']",
+        "variable": "e['cnvdc']",
         "type": [
             "int"
         ]
@@ -147,7 +147,7 @@
         "file": "main.py",
         "line_number": 21,
         "col_offset": 1,
-        "variable": "e['rusud']",
+        "variable": "e['pudiy']",
         "type": [
             "int"
         ]

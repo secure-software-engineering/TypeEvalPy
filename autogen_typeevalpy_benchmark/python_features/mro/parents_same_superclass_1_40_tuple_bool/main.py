@@ -9,7 +9,7 @@ class A:
         pass
 
     def func(self):
-        return (36, 82, 65)
+        return (83, 24, 51)
 
 
 class B(A):
@@ -18,7 +18,7 @@ class B(A):
 
 class C(A):
     def func(self):
-        return True
+        return False
 
 
 class D(B, C):

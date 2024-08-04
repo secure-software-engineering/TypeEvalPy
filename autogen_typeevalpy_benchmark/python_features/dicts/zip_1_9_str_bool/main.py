@@ -1,6 +1,6 @@
 # Creating dictionaries from lists using the zip() function
 
 
-keys = ['trnal', 'trnal', 'trnal']
+keys = ['wjqih', 'wjqih', 'wjqih']
 values = [True, True, True]
 my_dict = dict(zip(keys, values))

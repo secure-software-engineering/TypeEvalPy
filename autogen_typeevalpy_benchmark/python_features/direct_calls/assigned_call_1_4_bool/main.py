@@ -2,7 +2,7 @@
 
 
 def return_func():
-    return True
+    return False
 
 
 def func():

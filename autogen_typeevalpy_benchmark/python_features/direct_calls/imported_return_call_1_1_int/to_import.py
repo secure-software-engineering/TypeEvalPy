@@ -1,5 +1,5 @@
 def return_func():
-    return 49
+    return 69
 
 
 def func():

@@ -3,7 +3,7 @@
 
 class A:
     def func(self):
-        return {'scnwm': 75, 'iychn': 48, 'nwrxn': 59}
+        return {'udgrw': 32, 'spvms': 46, 'rlrtz': 49}
 
 
 class B(A):

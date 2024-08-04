@@ -5,8 +5,8 @@
         "col_offset": 5,
         "function": "func",
         "type": [
-            "float",
-            "bool"
+            "bool",
+            "float"
         ]
     },
     {
@@ -16,8 +16,8 @@
         "parameter": "x",
         "function": "func",
         "type": [
-            "float",
-            "bool"
+            "bool",
+            "float"
         ]
     },
     {

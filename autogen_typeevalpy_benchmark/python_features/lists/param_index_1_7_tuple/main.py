@@ -2,7 +2,7 @@
 
 
 def func2():
-    return (72, 42, 33)
+    return (97, 36, 74)
 
 
 def func1(key):

@@ -5,7 +5,7 @@ import to_import as as_to_import
 
 
 def func():
-    return True
+    return False
 
 
 a = func()

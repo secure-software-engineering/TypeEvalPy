@@ -2,11 +2,11 @@
 
 
 def func1():
-    return [38, 99, 90]
+    return [37, 28, 5]
 
 
 def func2():
-    return 85
+    return 80
 
 
 x = lambda x: x()

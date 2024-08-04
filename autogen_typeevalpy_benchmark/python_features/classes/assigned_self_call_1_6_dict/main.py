@@ -1,7 +1,7 @@
 # A class is instantiated and we call one of its functions. The function called assigns self to a variable and using that variable we call a different function contained in the class
 class MyClass:
     def func1(self):
-        return {'incqn': 91, 'gzqmh': 8, 'plmmj': 94}
+        return {'wntqq': 11, 'zlaqf': 22, 'hmxam': 12}
 
     def func2(self):
         a = self

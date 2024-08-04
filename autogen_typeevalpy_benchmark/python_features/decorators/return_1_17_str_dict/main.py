@@ -6,14 +6,14 @@ def func1():
         return inner
 
     def inner():
-        return 'dyotc'
+        return 'qlkio'
 
     return dec
 
 
 @func1()
 def func2():
-    return {'iguer': 3, 'jiowk': 72, 'qnvsg': 91}
+    return {'revfc': 94, 'xkgzc': 10, 'fwvbc': 91}
 
 
 a = func2()

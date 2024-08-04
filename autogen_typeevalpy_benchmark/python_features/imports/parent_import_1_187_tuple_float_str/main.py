@@ -4,7 +4,7 @@ from nested import to_import
 
 
 def func():
-    return 96.12
+    return 78.47
 
 
 a = func()

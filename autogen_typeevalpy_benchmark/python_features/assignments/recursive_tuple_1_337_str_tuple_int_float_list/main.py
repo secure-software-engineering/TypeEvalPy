@@ -2,23 +2,23 @@
 
 
 def func1():
-    return 'pkvqx'
+    return 'egdeq'
 
 
 def func2():
-    return (59, 86, 34)
+    return (16, 86, 32)
 
 
 def func3():
-    return 86
+    return 17
 
 
 def func4():
-    return 70.11
+    return 71.4
 
 
 def func5():
-    return [58, 61, 87]
+    return [30, 32, 96]
 
 
 def func6():

@@ -18,8 +18,8 @@
         "parameter": "value",
         "type": [
             "dict",
-            "list",
-            "bool"
+            "bool",
+            "list"
         ]
     },
     {
@@ -71,7 +71,7 @@
         "file": "main.py",
         "line_number": 13,
         "col_offset": 1,
-        "variable": "b['odgku']",
+        "variable": "b['vktfb']",
         "type": [
             "int"
         ]
@@ -80,7 +80,7 @@
         "file": "main.py",
         "line_number": 13,
         "col_offset": 1,
-        "variable": "b['mjetm']",
+        "variable": "b['tpeeb']",
         "type": [
             "int"
         ]
@@ -89,7 +89,7 @@
         "file": "main.py",
         "line_number": 13,
         "col_offset": 1,
-        "variable": "b['xmuuh']",
+        "variable": "b['goxma']",
         "type": [
             "int"
         ]

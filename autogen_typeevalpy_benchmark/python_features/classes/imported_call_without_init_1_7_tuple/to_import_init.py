@@ -1,4 +1,4 @@
 # This module defines a class and function `func` which simply return a string.
 class MyClass:
     def func(self):
-        return (6, 22, 79)
+        return (4, 54, 50)

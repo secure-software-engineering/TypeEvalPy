@@ -1,6 +1,6 @@
 def func1():
-    return {'nsqst': 12, 'axmij': 95, 'ujwjy': 52}
+    return {'eyemy': 55, 'iwhsr': 63, 'iuxet': 52}
 
 
 def func2():
-    return [81, 6, 47]
+    return [95, 1, 67]

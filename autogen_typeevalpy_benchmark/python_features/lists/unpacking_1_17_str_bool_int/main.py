@@ -1,3 +1,3 @@
 # Unpacking a list into individual variables.
-a = ['akism', True, 70]
+a = ['djxzq', False, 68]
 b, c, d = a

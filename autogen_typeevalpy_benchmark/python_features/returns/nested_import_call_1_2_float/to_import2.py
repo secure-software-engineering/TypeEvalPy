@@ -1,3 +1,3 @@
 # This module defines the return_func
 def return_func():
-    return 96.15
+    return 9.92

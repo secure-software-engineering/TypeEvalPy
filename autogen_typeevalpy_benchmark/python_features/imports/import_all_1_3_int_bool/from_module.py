@@ -1,6 +1,6 @@
 def func1():
-    return 2
+    return 59
 
 
 def func2():
-    return False
+    return True

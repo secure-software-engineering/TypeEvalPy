@@ -14,7 +14,7 @@
         "line_number": 7,
         "col_offset": 9,
         "function": "A.__init__",
-        "variable": "A.a['elbxp']",
+        "variable": "A.a['cevdm']",
         "type": [
             "int"
         ]
@@ -24,7 +24,7 @@
         "line_number": 7,
         "col_offset": 9,
         "function": "A.__init__",
-        "variable": "A.a['kcrpa']",
+        "variable": "A.a['ekymr']",
         "type": [
             "int"
         ]
@@ -34,7 +34,7 @@
         "line_number": 7,
         "col_offset": 9,
         "function": "A.__init__",
-        "variable": "A.a['sfhin']",
+        "variable": "A.a['qqwzo']",
         "type": [
             "int"
         ]
@@ -70,7 +70,7 @@
         "file": "main.py",
         "line_number": 16,
         "col_offset": 1,
-        "variable": "c['elbxp']",
+        "variable": "c['cevdm']",
         "type": [
             "int"
         ]
@@ -79,7 +79,7 @@
         "file": "main.py",
         "line_number": 16,
         "col_offset": 1,
-        "variable": "c['kcrpa']",
+        "variable": "c['ekymr']",
         "type": [
             "int"
         ]
@@ -88,7 +88,7 @@
         "file": "main.py",
         "line_number": 16,
         "col_offset": 1,
-        "variable": "c['sfhin']",
+        "variable": "c['qqwzo']",
         "type": [
             "int"
         ]

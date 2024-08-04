@@ -2,11 +2,11 @@
 
 
 def func1():
-    return False
+    return True
 
 
 def func2():
-    return 'qqeqx'
+    return 'gqyzm'
 
 
 x = lambda x: x()

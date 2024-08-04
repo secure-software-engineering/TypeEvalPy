@@ -2,11 +2,11 @@
 # The 'param_func' function returns a string value.
 # The 'param_func2' function returns an integer value.
 def param_func():
-    return 93.82
+    return 22.05
 
 
 def param_func2():
-    return 'pgger'
+    return 'mxqdd'
 
 
 def func(a=param_func2):

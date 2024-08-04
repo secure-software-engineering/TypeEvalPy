@@ -2,11 +2,11 @@
 
 
 def func1():
-    return 'vyoaa'
+    return 'hbicp'
 
 
 def func2():
-    return 96.31
+    return 61.48
 
 
 d = {"a": {"b": func1}}

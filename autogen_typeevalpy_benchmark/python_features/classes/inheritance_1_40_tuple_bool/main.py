@@ -1,7 +1,7 @@
 # Calling methods of inherited class
 class MyClass:
     def func(self):
-        return (82, 17, 72)
+        return (36, 28, 59)
 
 
 class MySubClass(MyClass):

@@ -2,11 +2,11 @@
 
 
 def func1():
-    return [5, 29, 32]
+    return [92, 63, 20]
 
 
 def func2():
-    return 78
+    return 25
 
 
 a = b = func1

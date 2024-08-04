@@ -93,7 +93,7 @@
         "file": "main.py",
         "line_number": 20,
         "col_offset": 1,
-        "variable": "d['rnnuc']",
+        "variable": "d['qcrmy']",
         "type": [
             "int"
         ]
@@ -102,7 +102,7 @@
         "file": "main.py",
         "line_number": 20,
         "col_offset": 1,
-        "variable": "d['tkxoa']",
+        "variable": "d['cxqfr']",
         "type": [
             "int"
         ]
@@ -111,7 +111,7 @@
         "file": "main.py",
         "line_number": 20,
         "col_offset": 1,
-        "variable": "d['cefhy']",
+        "variable": "d['qanfp']",
         "type": [
             "int"
         ]

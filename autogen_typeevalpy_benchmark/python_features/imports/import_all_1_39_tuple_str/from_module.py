@@ -1,6 +1,6 @@
 def func1():
-    return (35, 84, 17)
+    return (3, 89, 30)
 
 
 def func2():
-    return 'cnfod'
+    return 'wofwf'

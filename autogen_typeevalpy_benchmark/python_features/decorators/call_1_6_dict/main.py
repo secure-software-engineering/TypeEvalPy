@@ -3,7 +3,7 @@
 
 def dec(f):
     def wrapper():
-        return {'msmzw': 81, 'diraj': 28, 'txrla': 33}
+        return {'xrcrb': 12, 'pvvrq': 23, 'upwzo': 86}
 
     return wrapper
 

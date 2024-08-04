@@ -7,4 +7,4 @@ def func(x):
 
 x = func
 a = x(True)
-b = x({'lqpud': 30, 'kltza': 19, 'wptmk': 79})
+b = x({'rfnbl': 23, 'pezyw': 93, 'fscny': 21})

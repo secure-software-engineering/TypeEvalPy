@@ -4,11 +4,11 @@ def func1():
 
 
 def func2():
-    return 'xavpf'
+    return 'bwwvb'
 
 
 def func3():
-    return [95, 47, 84]
+    return [7, 28, 62]
 
 
 a, b = func1, func2

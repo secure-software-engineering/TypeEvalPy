@@ -3,7 +3,7 @@
 
 class A:
     def func(self):
-        return 'npbpa'
+        return 'moblq'
 
 
 class B:

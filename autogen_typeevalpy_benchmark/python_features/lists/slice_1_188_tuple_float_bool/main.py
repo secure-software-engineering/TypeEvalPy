@@ -2,11 +2,11 @@
 
 
 def func1():
-    return (22, 29, 90)
+    return (11, 89, 64)
 
 
 def func2():
-    return 16.64
+    return 10.65
 
 
 def func3():

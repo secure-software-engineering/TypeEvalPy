@@ -7,4 +7,4 @@ class MyClass:
         return x + y
 
 
-result = MyClass.my_static_method((92, 46, 45), (92, 46, 45))
+result = MyClass.my_static_method((55, 87, 76), (55, 87, 76))

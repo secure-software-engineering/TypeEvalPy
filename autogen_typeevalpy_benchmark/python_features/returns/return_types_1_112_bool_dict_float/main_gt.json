@@ -39,7 +39,7 @@
         "file": "main.py",
         "line_number": 17,
         "col_offset": 1,
-        "variable": "b['letxc']",
+        "variable": "b['dmcif']",
         "type": [
             "int"
         ]
@@ -48,7 +48,7 @@
         "file": "main.py",
         "line_number": 17,
         "col_offset": 1,
-        "variable": "b['wvliq']",
+        "variable": "b['waeak']",
         "type": [
             "int"
         ]
@@ -57,7 +57,7 @@
         "file": "main.py",
         "line_number": 17,
         "col_offset": 1,
-        "variable": "b['fmbco']",
+        "variable": "b['zeqpo']",
         "type": [
             "int"
         ]

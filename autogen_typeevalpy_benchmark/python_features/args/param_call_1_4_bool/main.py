@@ -14,7 +14,7 @@ def func2():
 
 
 def func3():
-    return True
+    return False
 
 
 b = func(func2())

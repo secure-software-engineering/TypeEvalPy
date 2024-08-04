@@ -18,7 +18,7 @@ class B(A):
 
 class C(A):
     def func(self):
-        return (53, 90, 7)
+        return (83, 17, 14)
 
 
 class D(B, C):

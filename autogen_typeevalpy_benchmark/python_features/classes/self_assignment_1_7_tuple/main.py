@@ -9,7 +9,7 @@ class A:
         return self.smth()
 
     def func2(self):
-        return (10, 24, 8)
+        return (56, 5, 30)
 
 
 a = A()

@@ -2,7 +2,7 @@
 
 
 def func():
-    return 74
+    return 99
 
 
 a = [a for a in range(10) if func()]

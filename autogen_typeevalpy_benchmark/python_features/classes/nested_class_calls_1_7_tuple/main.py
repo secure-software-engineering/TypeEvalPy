@@ -1,7 +1,7 @@
 # Initialize classes with self parameters in a nested manner.
 class C:
     def func(self):
-        return (80, 41, 65)
+        return (33, 13, 24)
 
 
 class B:

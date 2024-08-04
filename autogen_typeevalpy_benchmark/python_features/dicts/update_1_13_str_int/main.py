@@ -2,11 +2,11 @@
 
 
 def func1():
-    return 66
+    return 71
 
 
 def func2():
-    return 'glbil'
+    return 'ildae'
 
 
 d = {"a": func1}
