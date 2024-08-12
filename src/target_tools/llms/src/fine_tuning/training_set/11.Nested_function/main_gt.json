@@ -1,0 +1,49 @@
+[
+    {
+        "file": "main.py",
+        "line_number": 1,
+        "col_offset": 5,
+        "function": "outer",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 2,
+        "col_offset": 5,
+        "function": "outer",
+        "variable": "x",
+        "type": [
+            "int"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 4,
+        "col_offset": 9,
+        "function": "inner",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 5,
+        "col_offset": 9,
+        "function": "inner",
+        "variable": "y",
+        "type": [
+            "str"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 11,
+        "col_offset": 1,
+        "variable": "result1",
+        "type": [
+            "str"
+        ]
+    }
+]
