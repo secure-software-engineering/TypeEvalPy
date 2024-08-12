@@ -1,0 +1,55 @@
+# Name: return_multi
+# Type: Complex
+# Data Types: str, int, list, dict
+# Python Code Template
+def some_simple_func(x):
+    if x:
+        return x
+    else:
+        return "Invalid input"
+
+
+a = some_simple_func(<value1>)
+b = some_simple_func(None)
+
+# JSON Template
+[
+    {
+        "file": "main.py",
+        "line_number": 1,
+        "col_offset": 5,
+        "function": "some_simple_func",
+        "type": [
+            "str",
+            "<value1>"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 1,
+        "parameter": "x",
+        "col_offset": 10,
+        "function": "some_simple_func",
+        "type": [
+            "<value1>"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 8,
+        "col_offset": 1,
+        "variable": "a",
+        "type": [
+            "<value1>"
+        ]
+    },
+    {
+        "file": "main.py",
+        "line_number": 9,
+        "col_offset": 1,
+        "variable": "b",
+        "type": [
+            "str"
+        ]
+    }
+]
