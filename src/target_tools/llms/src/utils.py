@@ -3,8 +3,15 @@ import os
 import re
 import shutil
 import sys
+import yaml
 
 import requests
+import logging
+import prompts
+
+
+logger = logging.getLogger("runner")
+logger.setLevel(logging.DEBUG)
 
 
 class JsonException(Exception):
@@ -92,6 +99,7 @@ def generate_json_from_answers(gt_json_file, answers):
         pattern = re.compile(r"^\s*(\d+)\.\s+(.+)\s*$", re.MULTILINE)
         parsed_answers = pattern.findall(answers)
 
+        parsed_answers = {int(x) - 1: y for x, y in parsed_answers}
         # if len(gt_data) != len(parsed_answers):
         #     return []
 
@@ -99,8 +107,9 @@ def generate_json_from_answers(gt_json_file, answers):
         for fact in range(len(gt_data)):
             _result = gt_data[fact]
             _result.pop("type")
-            _result["type"] = [x.strip() for x in parsed_answers[fact][1].split(",")]
-            answers_json_data.append(_result)
+            if fact in parsed_answers:
+                _result["type"] = [x.strip() for x in parsed_answers[fact].split(",")]
+                answers_json_data.append(_result)
 
         return answers_json_data
     except Exception as e:
@@ -172,3 +181,64 @@ def generate_questions_from_json(json_file):
 
     questions = [f"{x}. {y}" for x, y in zip(range(1, len(questions) + 1), questions)]
     return questions
+
+
+def load_models_config(config_path):
+    models_config = {"models": {}, "custom_models": {}}
+    with open(config_path, "r") as file:
+        config_data = yaml.safe_load(file)
+        for model_data in config_data["models"]:
+            models_config["models"][model_data["name"]] = model_data
+        for model_data in config_data["custom_models"]:
+            models_config["custom_models"][model_data["name"]] = model_data
+
+    return models_config
+
+
+def get_prompt(prompt_id, file_path, answers_placeholders=True, use_system_prompt=True):
+    json_filepath = str(file_path).replace(".py", "_gt.json")
+
+    # with open(json_filepath, "r") as file:
+    #     data = json.load(file)
+    with open(file_path, "r") as file:
+        code = file.read()
+        # Remove comments from code but keep line number structure
+        code = "\n".join(
+            [line if not line.startswith("#") else "#" for line in code.split("\n")]
+        )
+
+    if prompt_id in [
+        "prompt_template_questions_based_2",
+    ]:
+        questions_from_json = generate_questions_from_json(json_filepath)
+
+        prompt = eval(f"prompts.{prompt_id}")
+
+        prompt_data = {
+            "code": code,
+            "questions": "\n".join(questions_from_json),
+            "answers": (
+                "\n".join([f"{x}." for x in range(1, len(questions_from_json) + 1)])
+                if answers_placeholders
+                else ""
+            ),
+        }
+
+        if use_system_prompt:
+            prompt[1]["content"] = prompt[1]["content"].format(**prompt_data)
+        else:
+            prompt[0]["content"] = prompt[0]["content"].format(**prompt_data)
+
+    else:
+        logger.error("ERROR! Prompt not found!")
+        sys.exit(-1)
+
+    return prompt
+
+
+# Example usage:
+# loader = ConfigLoader("models_config.yaml")
+# loader.load_config()
+# models = loader.get_models()
+# for model in models:
+#     print(model.name, model.model_path)

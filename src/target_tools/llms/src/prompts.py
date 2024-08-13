@@ -618,3 +618,24 @@ Below is an instruction that describes a task, paired with an input that provide
 
 [/INST]
 """
+
+# Prompt templates vllms
+
+# prompt_template_questions_based_2_no_sys = [
+#     {
+#         "role": "user",
+#         "content": "You are an expert in machine learning and your task is to classify the code snippets into categories from the provided list of categories. List of categories: ['helper_functions', 'load_data', 'data_exploration', 'data_preprocessing', 'evaluation', 'modelling', 'prediction', 'result_visualization', 'save_results', 'comment_only']. Identify to which category the provided code belongs and assign the code snippet to at least 1 but up to 5 categories based on the probabilities, ignore if the probability of the category is negligible. Strictly provide your response as a list. Avoid providing any additional information, commentary, or personal opinions.\\nPython Code:{code}",
+#     },
+#     {"role": "assistant", "content": "{ground_truth}"},
+# ]
+
+prompt_template_questions_based_2 = [
+    {
+        "role": "system",
+        "content": "You will examine and identify the data types of various elements such as function parameters, local variables, and function return types in the given Python code.",
+    },
+    {
+        "role": "user",
+        "content": questions_based_2,
+    },
+]

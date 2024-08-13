@@ -1,21 +1,21 @@
 models:
-  - name: "TinyLlama-1.1B-Chat-v1.0-base-single-label"
+  - name: "TinyLlama-1.1B-Chat-v1.0"
     model_path: "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
     quantization: "bitsandbytes"
     lora_repo: null
     use_system_prompt: true
-    use_vllms_for_evaluation: false
+    use_vllms_for_evaluation: true
     max_model_len: 2048
 
-  - name: "TinyLlama-1.1B-Chat-v1.0-finetuned-single-label"
-    model_path: "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
+  - name: "CodeLlama-13b-Instruct"
+    model_path: "meta-llama/CodeLlama-13b-Instruct-hf"
     quantization: "bitsandbytes"
-    lora_repo: "/home/ssegpu/fine-tuning-apsv/models_single_label/TinyLlama-TinyLlama-1-1B-Chat-v1-0-single-label-v1"
+    lora_repo: null
     use_system_prompt: true
-    use_vllms_for_evaluation: false
+    use_vllms_for_evaluation: true
     max_model_len: 2048
 
-  - name: "mixtral-8-7B-v1-base-single-label"
+  - name: "mixtral-8-7B-v1"
     model_path: "mistralai/Mixtral-8x7B-Instruct-v0.1"
     quantization: "bitsandbytes"
     lora_repo: null
@@ -23,7 +23,48 @@ models:
     use_vllms_for_evaluation: false
     max_model_len: 2048
 
-  - name: "mixtral-8-7B-v1-finetuned-single-label"
+  - name: "llama3.1-8b-instruct"
+    model_path: "meta-llama/Meta-Llama-3.1-8B-Instruct"
+    quantization: "bitsandbytes"
+    lora_repo: null
+    use_system_prompt: true
+    use_vllms_for_evaluation: false
+    max_model_len: 8192
+
+  - name: "codellama-34b-python"
+    model_path: "meta-llama/CodeLlama-34b-Python-hf"
+    quantization: "bitsandbytes"
+    lora_repo: null
+    use_system_prompt: true
+    use_vllms_for_evaluation: false
+    max_model_len: 8192
+
+  - name: "codellama-13b-python"
+    model_path: "meta-llama/CodeLlama-13b-Python-hf"
+    quantization: "bitsandbytes"
+    lora_repo: null
+    use_system_prompt: true
+    use_vllms_for_evaluation: false
+    max_model_len: 8192
+
+  - name: "codegemma-2b"
+    model_path: "google/codegemma-2b"
+    quantization: "bitsandbytes"
+    lora_repo: null
+    use_system_prompt: true
+    use_vllms_for_evaluation: false
+    max_model_len: 8192
+
+custom_models:
+  - name: "TinyLlama-1.1B-Chat-v1.0-finetuned"
+    model_path: "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
+    quantization: "bitsandbytes"
+    lora_repo: "/home/ssegpu/fine-tuning-apsv/models_single_label/TinyLlama-TinyLlama-1-1B-Chat-v1-0-single-label-v1"
+    use_system_prompt: true
+    use_vllms_for_evaluation: true
+    max_model_len: 2048
+  
+  - name: "mixtral-8-7B-v1"
     model_path: "mistralai/Mixtral-8x7B-Instruct-v0.1"
     quantization: "bitsandbytes"
     lora_repo: "/home/ssegpu/fine-tuning-apsv/models_single_label/mistralai-Mixtral-8x7B-v0-1-single-label-v1"
@@ -31,31 +72,15 @@ models:
     use_vllms_for_evaluation: false
     max_model_len: 2048
 
-  - name: "llama3.1-8b-instruct-base-single-label"
-    model_path: "meta-llama/Meta-Llama-3.1-8B-Instruct"
-    quantization: "bitsandbytes"
-    lora_repo: null
-    use_system_prompt: true
-    use_vllms_for_evaluation: false
-    max_model_len: 8192
-
-  - name: "llama3.1-8b-instruct-finetuned-single-label"
+  - name: "llama3.1-8b-instruct"
     model_path: "meta-llama/Meta-Llama-3.1-8B-Instruct"
     quantization: "bitsandbytes"
     lora_repo: "/home/ssegpu/fine-tuning-apsv/models_single_label/meta-llama-Meta-Llama-3-1-8B-Instruct-sl-v1"
     use_system_prompt: true
     use_vllms_for_evaluation: false
     max_model_len: 8192
-
-  - name: "codellama-34b-python-base-single-label"
-    model_path: "meta-llama/CodeLlama-34b-Python-hf"
-    quantization: "bitsandbytes"
-    lora_repo: null
-    use_system_prompt: true
-    use_vllms_for_evaluation: false
-    max_model_len: 8192
-
-  - name: "codellama-34b-python-finetuned-single-label"
+  
+  - name: "codellama-34b-python"
     model_path: "meta-llama/CodeLlama-34b-Python-hf"
     quantization: "bitsandbytes"
     lora_repo: "/home/ssegpu/fine-tuning-apsv/models_single_label/codellama-CodeLlama-34b-Python-hf-single-label-v1"
@@ -63,34 +88,18 @@ models:
     use_vllms_for_evaluation: false
     max_model_len: 8192
 
-  - name: "codellama-13b-python-base-single-label"
-    model_path: "meta-llama/CodeLlama-13b-Python-hf"
-    quantization: "bitsandbytes"
-    lora_repo: null
-    use_system_prompt: true
-    use_vllms_for_evaluation: false
-    max_model_len: 8192
-
-  - name: "codellama-13b-python-finetuned-single-label"
+  - name: "codellama-13b-python"
     model_path: "meta-llama/CodeLlama-13b-Python-hf"
     quantization: "bitsandbytes"
     lora_repo: "/home/ssegpu/fine-tuning-apsv/models_single_label/codellama-CodeLlama-13b-Python-hf-single-label-v1"
     use_system_prompt: true
     use_vllms_for_evaluation: false
     max_model_len: 8192
-
-  - name: "codegemma-2b-base-single-label"
-    model_path: "google/codegemma-2b"
-    quantization: "bitsandbytes"
-    lora_repo: null
-    use_system_prompt: true
-    use_vllms_for_evaluation: false
-    max_model_len: 8192
-
-  - name: "codegemma-2b-finetuned-single-label"
+  
+  - name: "codegemma-2b"
     model_path: "google/codegemma-2b"
     quantization: "bitsandbytes"
     lora_repo: "/home/ssegpu/fine-tuning-apsv/models_single_label/google-codegemma-2b-sl-v1"
     use_system_prompt: true
     use_vllms_for_evaluation: false
-    max_model_len: 8192
+    max_model_len: 8192  
