@@ -8,7 +8,7 @@ import yaml
 import requests
 import logging
 import prompts
-
+import copy
 
 logger = logging.getLogger("runner")
 logger.setLevel(logging.DEBUG)
@@ -184,15 +184,24 @@ def generate_questions_from_json(json_file):
 
 
 def load_models_config(config_path):
-    models_config = {"models": {}, "custom_models": {}}
+    models_config = {"models": {}, "custom_models": {}, "openai_models": {}}
     with open(config_path, "r") as file:
         config_data = yaml.safe_load(file)
         for model_data in config_data["models"]:
             models_config["models"][model_data["name"]] = model_data
         for model_data in config_data["custom_models"]:
             models_config["custom_models"][model_data["name"]] = model_data
+        for model_data in config_data["openai_models"]:
+            models_config["openai_models"][model_data["name"]] = model_data
 
     return models_config
+
+
+def load_runner_config(config_path):
+    with open(config_path, "r") as file:
+        config_data = yaml.safe_load(file)
+
+    return config_data["runner_config"]
 
 
 def get_prompt(prompt_id, file_path, answers_placeholders=True, use_system_prompt=True):
@@ -212,7 +221,7 @@ def get_prompt(prompt_id, file_path, answers_placeholders=True, use_system_promp
     ]:
         questions_from_json = generate_questions_from_json(json_filepath)
 
-        prompt = eval(f"prompts.{prompt_id}")
+        prompt = copy.deepcopy(eval(f"prompts.{prompt_id}"))
 
         prompt_data = {
             "code": code,
