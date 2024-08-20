@@ -93,6 +93,7 @@ def initialize_engine(
     """Initialize the LLMEngine."""
 
     if quantization == "bitsandbytes":
+        # https://docs.vllm.ai/en/stable/quantization/bnb.html
         # QLoRA (https://arxiv.org/abs/2305.14314) is a quantization technique.
         # It quantizes the model when loading, with some config info from the
         # LoRA adapter repo. So need to set the parameter of load_format and
