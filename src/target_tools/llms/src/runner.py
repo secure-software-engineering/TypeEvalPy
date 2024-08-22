@@ -62,12 +62,50 @@ logger.addHandler(file_handler)
 logger.addHandler(console_handler)
 
 
-def invoke_llm(llm, prompt, queue):
-    try:
-        output = llm.invoke(prompt)
-        queue.put(output)
-    except Exception as e:
-        queue.put(e)
+def get_prompt_mapping(prompt_template, python_files, use_system_prompt=False):
+    id_mapping = {
+        idx: {
+            "file_path": file_path,
+            "json_filepath": str(file_path).replace(".py", "_gt.json"),
+            "result_filepath": str(file_path).replace(".py", f"_result.json"),
+            "result_dump_filepath": str(file_path).replace(".py", f"_result_dump.txt"),
+            "prompt": utils.get_prompt(
+                prompt_template, file_path, use_system_prompt=use_system_prompt
+            ),
+        }
+        for idx, file_path in enumerate(python_files)
+    }
+
+    return id_mapping
+
+
+def create_result_json_file(file_info, output_raw, prompt_template):
+    output = re.sub(r"```json", "", output_raw)
+    output = re.sub(r"```", "", output)
+    output = re.sub(r"<\|assistant\|>\\n", "", output)
+
+    with open(file_info["result_dump_filepath"], "w") as f:
+        f.write(output_raw)
+
+    # TODO: Improve the way this is done. Some plugin based design.
+    if prompt_template in [
+        "prompt_template_questions_based_2",
+    ]:
+        answers_json = utils.generate_json_from_answers(
+            file_info["json_filepath"], output
+        )
+        translated_json = translator.translate_content(answers_json)
+    else:
+        translated_json = translator.translate_content(output)
+
+    is_valid_json = utils.generate_json_file(
+        file_info["result_filepath"], translated_json
+    )
+    if not is_valid_json:
+        logger.info(f"{file_info['file_path']} failed: Not a valid JSON")
+        raise utils.JsonException("json")
+
+    logger.info(f"Processed file: {file_info['file_path']}")
 
 
 def list_python_files(folder_path):
@@ -86,20 +124,7 @@ def model_evaluation_vllm(
     sampling_params=None,
 ):
 
-    results_dump_file = results_dst / f"{model_name}_results_dump.csv"
-
-    id_mapping = {
-        idx: {
-            "file_path": file_path,
-            "json_filepath": str(file_path).replace(".py", "_gt.json"),
-            "result_filepath": str(file_path).replace(".py", f"_result.json"),
-            "result_dump_filepath": str(file_path).replace(".py", f"_result_dump.txt"),
-            "prompt": utils.get_prompt(
-                prompt_template, file_path, use_system_prompt=use_system_prompt
-            ),
-        }
-        for idx, file_path in enumerate(python_files)
-    }
+    id_mapping = get_prompt_mapping(prompt_template, python_files, use_system_prompt)
 
     prompts = [x["prompt"] for x in id_mapping.values()]
 
@@ -115,32 +140,7 @@ def model_evaluation_vllm(
         file_info = id_mapping[int(r_output.request_id)]
 
         output_raw = r_output.outputs[0].text
-        output = re.sub(r"```json", "", output_raw)
-        output = re.sub(r"```", "", output)
-        output = re.sub(r"<\|assistant\|>\\n", "", output)
-
-        with open(file_info["result_dump_filepath"], "w") as f:
-            f.write(output_raw)
-
-        # TODO: Improve the way this is done. Some plugin based design.
-        if prompt_template in [
-            "prompt_template_questions_based_2",
-        ]:
-            answers_json = utils.generate_json_from_answers(
-                file_info["json_filepath"], output
-            )
-            translated_json = translator.translate_content(answers_json)
-        else:
-            translated_json = translator.translate_content(output)
-
-        is_valid_json = utils.generate_json_file(
-            file_info["result_filepath"], translated_json
-        )
-        if not is_valid_json:
-            logger.info(f"{file_info['file_path']} failed: Not a valid JSON")
-            raise utils.JsonException("json")
-
-        logger.info(f"Processed file: {file_info['file_path']}")
+        create_result_json_file(file_info, output_raw, prompt_template)
 
 
 def model_evaluation_transformers(
@@ -150,63 +150,30 @@ def model_evaluation_transformers(
     pipe,
     results_dst,
     use_system_prompt=False,
+    batch_size=32,
 ):
 
-    results_dump_file = results_dst / f"{model_name}_results_dump.csv"
-
-    id_mapping = {
-        idx: {
-            "file_path": file_path,
-            "json_filepath": str(file_path).replace(".py", "_gt.json"),
-            "result_filepath": str(file_path).replace(".py", f"_result.json"),
-            "result_dump_filepath": str(file_path).replace(".py", f"_result_dump.txt"),
-            "prompt": utils.get_prompt(
-                prompt_template, file_path, use_system_prompt=use_system_prompt
-            ),
-        }
-        for idx, file_path in enumerate(python_files)
-    }
+    id_mapping = get_prompt_mapping(prompt_template, python_files, use_system_prompt)
 
     prompts = [x["prompt"] for x in id_mapping.values()]
 
-    # processed_prompts = pipe.tokenizer.apply_chat_template(
-    #     prompts, tokenize=False, add_generation_template=True
-    # )
+    processed_prompts = pipe.tokenizer.apply_chat_template(
+        prompts, tokenize=False, add_generation_template=True
+    )
 
     request_outputs = transformers_helpers.process_requests(
-        pipe, prompts, max_new_tokens=MAX_NEW_TOKENS, batch_size=1
+        pipe,
+        processed_prompts[:50],
+        max_new_tokens=MAX_NEW_TOKENS,
+        batch_size=batch_size,
     )
 
     for id, r_output in enumerate(request_outputs):
         file_info = id_mapping[id]
 
-        output_raw = r_output[0]["generated_text"][2]["content"]
-        output = re.sub(r"```json", "", output_raw)
-        output = re.sub(r"```", "", output)
-        output = re.sub(r"<\|assistant\|>\\n", "", output)
+        output_raw = r_output[0]["generated_text"].split(pipe.tokenizer.eos_token)[-1]
 
-        with open(file_info["result_dump_filepath"], "w") as f:
-            f.write(output_raw)
-
-        # TODO: Improve the way this is done. Some plugin based design.
-        if prompt_template in [
-            "prompt_template_questions_based_2",
-        ]:
-            answers_json = utils.generate_json_from_answers(
-                file_info["json_filepath"], output
-            )
-            translated_json = translator.translate_content(answers_json)
-        else:
-            translated_json = translator.translate_content(output)
-
-        is_valid_json = utils.generate_json_file(
-            file_info["result_filepath"], translated_json
-        )
-        if not is_valid_json:
-            logger.info(f"{file_info['file_path']} failed: Not a valid JSON")
-            raise utils.JsonException("json")
-
-        logger.info(f"Processed file: {file_info['file_path']}")
+        create_result_json_file(file_info, output_raw, prompt_template)
 
 
 def model_evaluation_openai(
@@ -217,20 +184,8 @@ def model_evaluation_openai(
     results_dst,
     use_system_prompt=False,
 ):
-    results_dump_file = results_dst / f"{model_name}_results_dump.csv"
 
-    id_mapping = {
-        idx: {
-            "file_path": file_path,
-            "json_filepath": str(file_path).replace(".py", "_gt.json"),
-            "result_filepath": str(file_path).replace(".py", f"_result.json"),
-            "result_dump_filepath": str(file_path).replace(".py", f"_result_dump.txt"),
-            "prompt": utils.get_prompt(
-                prompt_template, file_path, use_system_prompt=use_system_prompt
-            ),
-        }
-        for idx, file_path in enumerate(python_files)
-    }
+    id_mapping = get_prompt_mapping(prompt_template, python_files, use_system_prompt)
 
     prompts = [x["prompt"] for x in id_mapping.values()]
 
@@ -246,32 +201,7 @@ def model_evaluation_openai(
         file_info = id_mapping[id]
 
         output_raw = r_output
-        output = re.sub(r"```json", "", output_raw)
-        output = re.sub(r"```", "", output)
-        output = re.sub(r"<\|assistant\|>\\n", "", output)
-
-        with open(file_info["result_dump_filepath"], "w") as f:
-            f.write(output_raw)
-
-        # TODO: Improve the way this is done. Some plugin based design.
-        if prompt_template in [
-            "prompt_template_questions_based_2",
-        ]:
-            answers_json = utils.generate_json_from_answers(
-                file_info["json_filepath"], output
-            )
-            translated_json = translator.translate_content(answers_json)
-        else:
-            translated_json = translator.translate_content(output)
-
-        is_valid_json = utils.generate_json_file(
-            file_info["result_filepath"], translated_json
-        )
-        if not is_valid_json:
-            logger.info(f"{file_info['file_path']} failed: Not a valid JSON")
-            raise utils.JsonException("json")
-
-        logger.info(f"Processed file: {file_info['file_path']}")
+        create_result_json_file(file_info, output_raw, prompt_template)
 
 
 def main_runner(args, runner_config, models_to_run, openai_models_models_to_run):
@@ -294,8 +224,6 @@ def main_runner(args, runner_config, models_to_run, openai_models_models_to_run)
         utils.copy_folder(results_src, results_dst)
 
         python_files = list_python_files(results_dst)
-
-        # TODO: Kick off the vllm llm deployment
 
         if model["use_vllms_for_evaluation"]:
             engine = vllm_helpers.initialize_engine(
@@ -345,6 +273,7 @@ def main_runner(args, runner_config, models_to_run, openai_models_models_to_run)
                 pipe,
                 results_dst,
                 use_system_prompt=model["use_system_prompt"],
+                batch_size=model["batch_size"],
             )
 
             del pipe

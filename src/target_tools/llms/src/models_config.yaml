@@ -10,6 +10,7 @@ models:
   use_system_prompt: true
   use_vllms_for_evaluation: false
   max_model_len: 8192
+  batch_size: 32
   comment: "Does not support VLLMs with quantization bitsandbytes"
 
 # - name: "qwen2-it:72b"
@@ -19,6 +20,7 @@ models:
 #   use_system_prompt: true
 #   use_vllms_for_evaluation: true
 #   max_model_len: 8192
+#   batch_size: 32
 
 # - name: "gemma-it:9b"
 #   model_path: "google/gemma-2-9b-it"
@@ -27,6 +29,7 @@ models:
 #   use_system_prompt: true
 #   use_vllms_for_evaluation: true
 #   max_model_len: 8192
+#   batch_size: 32
 
 # - name: "gemma-it:27b"
 #   model_path: "google/gemma-2-27b-it"
@@ -35,6 +38,7 @@ models:
 #   use_system_prompt: true
 #   use_vllms_for_evaluation: true
 #   max_model_len: 8192
+#   batch_size: 32
 
 # - name: "gemma-it:2b"
 #   model_path: "google/gemma-2-2b-it"
@@ -43,6 +47,7 @@ models:
 #   use_system_prompt: true
 #   use_vllms_for_evaluation: true
 #   max_model_len: 8192
+#   batch_size: 32
 
 # - name: "codellama-it:7b"
 #   model_path: "meta-llama/CodeLlama-7b-Instruct-hf"
@@ -51,6 +56,7 @@ models:
 #   use_system_prompt: true
 #   use_vllms_for_evaluation: true
 #   max_model_len: 8192
+#   batch_size: 32
 
 # - name: "codellama-it:13b"
 #   model_path: "meta-llama/CodeLlama-13b-Instruct-hf"
@@ -59,6 +65,7 @@ models:
 #   use_system_prompt: true
 #   use_vllms_for_evaluation: true
 #   max_model_len: 8192
+#   batch_size: 32
 
 # - name: "codellama-it:34b"
 #   model_path: "meta-llama/CodeLlama-34b-Instruct-hf"
@@ -67,6 +74,7 @@ models:
 #   use_system_prompt: true
 #   use_vllms_for_evaluation: true
 #   max_model_len: 8192
+#   batch_size: 32
 
 # - name: "metaLlama-it:8b"
 #   model_path: "meta-llama/Meta-Llama-3.1-8B-Instruct"
@@ -75,6 +83,7 @@ models:
 #   use_system_prompt: true
 #   use_vllms_for_evaluation: true
 #   max_model_len: 8192
+#   batch_size: 32
 
 # - name: "metaLlama-it:70b"
 #   model_path: "meta-llama/Meta-Llama-3.1-70B-Instruct"
@@ -83,6 +92,7 @@ models:
 #   use_system_prompt: true
 #   use_vllms_for_evaluation: true
 #   max_model_len: 8192
+#   batch_size: 32
 
 # - name: "codellama-python:7b"
 #   model_path: "meta-llama/CodeLlama-7b-Python-hf"
@@ -91,6 +101,7 @@ models:
 #   use_system_prompt: true
 #   use_vllms_for_evaluation: true
 #   max_model_len: 8192
+#   batch_size: 32
 
 # - name: "codellama-python:13b"
 #   model_path: "meta-llama/CodeLlama-13b-Python-hf"
@@ -99,6 +110,7 @@ models:
 #   use_system_prompt: true
 #   use_vllms_for_evaluation: true
 #   max_model_len: 8192
+#   batch_size: 32
 
 # - name: "codellama-python:34b"
 #   model_path: "meta-llama/CodeLlama-34b-Python-hf"
@@ -107,6 +119,7 @@ models:
 #   use_system_prompt: true
 #   use_vllms_for_evaluation: true
 #   max_model_len: 8192
+#   batch_size: 32
 
 # - name: "tinyllama:1.1b"
 #   model_path: "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
@@ -115,6 +128,7 @@ models:
 #   use_system_prompt: true
 #   use_vllms_for_evaluation: true
 #   max_model_len: 8192
+#   batch_size: 32
 
 # - name: "phi3-small-it:7.3b"
 #   model_path: "microsoft/Phi-3-small-128k-instruct"
@@ -123,6 +137,7 @@ models:
 #   use_system_prompt: true
 #   use_vllms_for_evaluation: true
 #   max_model_len: 8192
+#   batch_size: 32
 
 # - name: "phi3-medium-it:14b"
 #   model_path: "microsoft/Phi-3-medium-128k-instruct"
@@ -131,6 +146,7 @@ models:
 #   use_system_prompt: true
 #   use_vllms_for_evaluation: true
 #   max_model_len: 8192
+#   batch_size: 32
 
 # - name: "phi3-mini-it:3.8b"
 #   model_path: "microsoft/Phi-3-mini-128k-instruct"
@@ -139,6 +155,7 @@ models:
 #   use_system_prompt: true
 #   use_vllms_for_evaluation: true
 #   max_model_len: 8192
+#   batch_size: 32
 
 # - name: "mixtral-v0.1-it:8x22b"
 #   model_path: "mistralai/Mixtral-8x22B-Instruct-v0.1"
@@ -147,6 +164,7 @@ models:
 #   use_system_prompt: true
 #   use_vllms_for_evaluation: true
 #   max_model_len: 8192
+#   batch_size: 32
 
 # - name: "mixtral-v0.1-it:8x7b"
 #   model_path: "mistralai/Mixtral-8x7B-Instruct-v0.1"
@@ -155,6 +173,7 @@ models:
 #   use_system_prompt: true
 #   use_vllms_for_evaluation: true
 #   max_model_len: 8192
+#   batch_size: 32
 
 # - name: "mistral-v0.3-it:7b"
 #   model_path: "mistralai/Mistral-7B-Instruct-v0.3"
@@ -163,6 +182,7 @@ models:
 #   use_system_prompt: true
 #   use_vllms_for_evaluation: true
 #   max_model_len: 8192
+#   batch_size: 32
 
 # - name: "mistral-nemo-it-2407:12.2b"
 #   model_path: "mistralai/Mistral-Nemo-Instruct-2407"
@@ -171,6 +191,7 @@ models:
 #   use_system_prompt: true
 #   use_vllms_for_evaluation: true
 #   max_model_len: 8192
+#   batch_size: 32
 
 # - name: "mistral-large-it-2407:123b"
 #   model_path: "mistralai/Mistral-Large-Instruct-2407"
@@ -179,6 +200,7 @@ models:
 #   use_system_prompt: true
 #   use_vllms_for_evaluation: true
 #   max_model_len: 8192
+#   batch_size: 32
 
 # - name: "codestral-v0.1:22b"
 #   model_path: "mistralai/Codestral-22B-v0.1"
@@ -187,6 +209,7 @@ models:
 #   use_system_prompt: true
 #   use_vllms_for_evaluation: true
 #   max_model_len: 8192
+#   batch_size: 32
 
 custom_models:
   - name: "TinyLlama-1.1B-Chat-v1.0-finetuned"
@@ -196,6 +219,7 @@ custom_models:
     use_system_prompt: true
     use_vllms_for_evaluation: true
     max_model_len: 2048
+    batch_size: 32
   
   - name: "mixtral-8-7B-v1"
     model_path: "mistralai/Mixtral-8x7B-Instruct-v0.1"
@@ -204,6 +228,7 @@ custom_models:
     use_system_prompt: true
     use_vllms_for_evaluation: false
     max_model_len: 8192
+    batch_size: 32
 
   - name: "llama3.1-8b-instruct"
     model_path: "meta-llama/Meta-Llama-3.1-8B-Instruct"
@@ -212,6 +237,7 @@ custom_models:
     use_system_prompt: true
     use_vllms_for_evaluation: false
     max_model_len: 8192
+    batch_size: 32
   
   - name: "codellama-34b-python"
     model_path: "meta-llama/CodeLlama-34b-Python-hf"
@@ -220,6 +246,7 @@ custom_models:
     use_system_prompt: true
     use_vllms_for_evaluation: false
     max_model_len: 8192
+    batch_size: 32
 
   - name: "codellama-13b-python"
     model_path: "meta-llama/CodeLlama-13b-Python-hf"
@@ -228,6 +255,7 @@ custom_models:
     use_system_prompt: true
     use_vllms_for_evaluation: false
     max_model_len: 8192
+    batch_size: 32
   
   - name: "codegemma-2b"
     model_path: "google/codegemma-2b"
@@ -236,6 +264,7 @@ custom_models:
     use_system_prompt: true
     use_vllms_for_evaluation: false
     max_model_len: 8192  
+    batch_size: 32
 
 openai_models:
 - name: "gpt-3.5-turbo"
