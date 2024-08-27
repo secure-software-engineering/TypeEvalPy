@@ -157,13 +157,13 @@ def model_evaluation_transformers(
 
     prompts = [x["prompt"] for x in id_mapping.values()]
 
-    processed_prompts = pipe.tokenizer.apply_chat_template(
-        prompts, tokenize=False, add_generation_template=True
-    )
+    # processed_prompts = pipe.tokenizer.apply_chat_template(
+    #     prompts, tokenize=False, add_generation_template=True
+    # )
 
     request_outputs = transformers_helpers.process_requests(
         pipe,
-        processed_prompts[:50],
+        prompts,
         max_new_tokens=MAX_NEW_TOKENS,
         batch_size=batch_size,
     )
@@ -171,7 +171,10 @@ def model_evaluation_transformers(
     for id, r_output in enumerate(request_outputs):
         file_info = id_mapping[id]
 
-        output_raw = r_output[0]["generated_text"].split(pipe.tokenizer.eos_token)[-1]
+        output_raw = r_output[0]["generated_text"][-1]["content"]
+
+        # output_raw = r_output[0]["generated_text"].split(pipe.tokenizer.eos_token)[-1]
+        # output_raw = r_output[0]["generated_text"].split("[/INST]")[-1]
 
         create_result_json_file(file_info, output_raw, prompt_template)
 
@@ -263,7 +266,7 @@ def main_runner(args, runner_config, models_to_run, openai_models_models_to_run)
                 model_path = model["lora_repo"]
 
             pipe = transformers_helpers.load_model_and_configurations(
-                args.hf_token, model_path, TEMPARATURE
+                args.hf_token, model_path, model["quantization"], TEMPARATURE
             )
             model_start_time = time.time()
             model_evaluation_transformers(
@@ -426,9 +429,24 @@ if __name__ == "__main__":
     main_runner(args, runner_config, models_to_run, openai_models_models_to_run)
 
 # example usage:
-# python runner.py --bechmark_path /tmp/micro-benchmark \
-# --ollama_url http://localhost:8000 \
-# --prompt_id questions_based_2 \
-# --ollama_models gpt-3.5-turbo gpt-3.5-turbo-instruct gpt-3.5-turbo-instruct-ft
-# --openai_key <openai_key>
-# --enable_streaming False
+"""
+python runner.py \
+--bechmark_path /home/ssegpu/TypeEvalPy/TypeEvalPy/micro-benchmark \
+--prompt_id prompt_template_questions_based_2 \
+--models gemma2-it:2b codellama-it:7b codellama-it:13b codellama-it:34b llama3.1-it:8b llama3.1-it:70b tinyllama:1.1b phi3-small-it:7.3b phi3-medium-it:14b phi3-mini-it:3.8b phi3.5-mini-it:3.8b phi3.5-moe-it:41.9b mixtral-v0.1-it:8x7b mistral-v0.3-it:7b mistral-nemo-it-2407:12.2b mistral-large-it-2407:123b codestral-v0.1:22b \
+--hf_token  \
+--openai_key token \
+--enable_streaming True \
+--models_config /home/ssegpu/TypeEvalPy/TypeEvalPy/src/target_tools/llms/src/models_config.yaml \
+--results_dir /home/ssegpu/TypeEvalPy/TypeEvalPy/.scrapy/results_final_1
+
+python runner.py \
+--bechmark_path /home/ssegpu/TypeEvalPy/TypeEvalPy/autogen_typeevalpy_benchmark \
+--prompt_id prompt_template_questions_based_2 \
+--models llama3.1-it:8b \
+--hf_token  \
+--openai_key token \
+--enable_streaming True \
+--models_config /home/ssegpu/TypeEvalPy/TypeEvalPy/src/target_tools/llms/src/models_config.yaml \
+--results_dir /home/ssegpu/TypeEvalPy/TypeEvalPy/.scrapy/results_full_1
+"""

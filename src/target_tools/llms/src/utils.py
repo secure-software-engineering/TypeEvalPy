@@ -221,8 +221,6 @@ def get_prompt(prompt_id, file_path, answers_placeholders=True, use_system_promp
     ]:
         questions_from_json = generate_questions_from_json(json_filepath)
 
-        prompt = copy.deepcopy(eval(f"prompts.{prompt_id}"))
-
         prompt_data = {
             "code": code,
             "questions": "\n".join(questions_from_json),
@@ -234,8 +232,10 @@ def get_prompt(prompt_id, file_path, answers_placeholders=True, use_system_promp
         }
 
         if use_system_prompt:
+            prompt = copy.deepcopy(eval(f"prompts.{prompt_id}"))
             prompt[1]["content"] = prompt[1]["content"].format(**prompt_data)
         else:
+            prompt = copy.deepcopy(eval(f"prompts.{prompt_id}_no_sys"))
             prompt[0]["content"] = prompt[0]["content"].format(**prompt_data)
 
     else:
