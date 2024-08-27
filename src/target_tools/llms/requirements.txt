@@ -3,3 +3,6 @@ langchain
 langchain_openai
 openai
 vllm
+einops
+pytest
+flash-attn

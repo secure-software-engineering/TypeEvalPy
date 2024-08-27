@@ -109,6 +109,7 @@ def initialize_engine(
                 max_model_len=max_model_len,
                 # set it only in GPUs of limited memory
                 enforce_eager=True,
+                trust_remote_code=True,
             )
         else:
             engine_args = EngineArgs(
@@ -117,12 +118,14 @@ def initialize_engine(
                 load_format="bitsandbytes",
                 max_model_len=max_model_len,
                 enforce_eager=True,
+                trust_remote_code=True,
             )
     else:
         engine_args = EngineArgs(
             model=model,
             max_model_len=max_model_len,
             enforce_eager=True,
+            trust_remote_code=True,
         )
     return LLMEngine.from_engine_args(engine_args)
 
