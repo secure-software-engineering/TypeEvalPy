@@ -21,6 +21,7 @@ from runner_class import (
     PyrightRunner,
     ScalpelRunner,
     Type4pyRunner,
+    LLMRunner,
 )
 from utils import FileHandler
 
@@ -147,6 +148,15 @@ def main():
         ),
         "ollama": (
             OllamaRunner,
+            {
+                "debug": args.debug,
+                "nocache": args.nocache,
+                "custom_benchmark_dir": args.custom_benchmark_dir,
+                "config": config,
+            },
+        ),
+        "llms": (
+            LLMRunner,
             {
                 "debug": args.debug,
                 "nocache": args.nocache,

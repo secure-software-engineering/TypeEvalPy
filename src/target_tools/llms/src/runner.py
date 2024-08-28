@@ -43,6 +43,7 @@ PROMPTS_MAP = {
     "questions_based_2_ft": prompts.questions_based_2_ft,
 }
 
+script_dir = Path(__file__).parent
 # Create a logger
 logger = logging.getLogger("runner")
 logger.setLevel(logging.DEBUG)
@@ -362,7 +363,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--models_config",
         type=str,
-        default="models_config.json",
+        default=f"{script_dir}/models_config.yaml",
     )
 
     parser.add_argument(
