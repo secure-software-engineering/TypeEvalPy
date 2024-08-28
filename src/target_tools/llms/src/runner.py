@@ -23,6 +23,7 @@ from vllm import LLM, SamplingParams
 from vllm.lora.request import LoRARequest
 import gc
 import torch
+from tqdm import tqdm
 
 
 AUTOFIX_WITH_OPENAI = False
@@ -47,9 +48,9 @@ logger = logging.getLogger("runner")
 logger.setLevel(logging.DEBUG)
 
 if utils.is_running_in_docker():
-    file_handler = logging.FileHandler("/tmp/ollama_log.log", mode="w")
+    file_handler = logging.FileHandler("/tmp/llm_log.log", mode="w")
 else:
-    file_handler = logging.FileHandler("ollama_log.log", mode="w")
+    file_handler = logging.FileHandler("llm_log.log", mode="w")
 
 file_handler.setLevel(logging.DEBUG)
 
@@ -105,7 +106,7 @@ def create_result_json_file(file_info, output_raw, prompt_template):
         logger.info(f"{file_info['file_path']} failed: Not a valid JSON")
         raise utils.JsonException("json")
 
-    logger.info(f"Processed file: {file_info['file_path']}")
+    # logger.info(f"Processed file: {file_info['file_path']}")
 
 
 def list_python_files(folder_path):
@@ -161,22 +162,27 @@ def model_evaluation_transformers(
     #     prompts, tokenize=False, add_generation_template=True
     # )
 
-    request_outputs = transformers_helpers.process_requests(
-        pipe,
-        prompts,
-        max_new_tokens=MAX_NEW_TOKENS,
-        batch_size=batch_size,
-    )
+    # Split prompts into batches
+    progress_batch = batch_size
+    for i in tqdm(range(0, len(prompts), progress_batch)):
+        prompt_batch = prompts[i : i + progress_batch]
 
-    for id, r_output in enumerate(request_outputs):
-        file_info = id_mapping[id]
+        request_outputs = transformers_helpers.process_requests(
+            pipe,
+            prompt_batch,
+            max_new_tokens=MAX_NEW_TOKENS,
+            batch_size=batch_size,
+        )
 
-        output_raw = r_output[0]["generated_text"][-1]["content"]
+        for id, r_output in enumerate(request_outputs):
+            file_info = id_mapping[id + i]
 
-        # output_raw = r_output[0]["generated_text"].split(pipe.tokenizer.eos_token)[-1]
-        # output_raw = r_output[0]["generated_text"].split("[/INST]")[-1]
+            output_raw = r_output[0]["generated_text"][-1]["content"]
 
-        create_result_json_file(file_info, output_raw, prompt_template)
+            # output_raw = r_output[0]["generated_text"].split(pipe.tokenizer.eos_token)[-1]
+            # output_raw = r_output[0]["generated_text"].split("[/INST]")[-1]
+
+            create_result_json_file(file_info, output_raw, prompt_template)
 
 
 def model_evaluation_openai(
