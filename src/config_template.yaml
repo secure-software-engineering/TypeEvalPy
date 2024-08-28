@@ -26,3 +26,36 @@ ollama:
     - gpt-4
     - gpt-3.5-turbo-1106
     - gpt-4-1106-preview
+
+llm:
+  openai_key: "<API_KEY>"
+  hf_token: "<API_KEY>"
+  prompt_id: "prompt_template_questions_based_2"
+  models:
+    - qwen2-it-7b
+    - qwen2-it-72b
+    - gemma2-it-9b
+    - gemma2-it-27b
+    - gemma2-it-2b
+    - codellama-it-7b
+    - codellama-it-13b
+    - codellama-it-34b
+    - llama3.1-it-8b
+    - llama3.1-it-70b
+    - tinyllama-1.1b
+    - phi3-small-it-7.3b
+    - phi3-medium-it-14b
+    - phi3-mini-it-3.8b
+    - phi3.5-mini-it-3.8b
+    - phi3.5-moe-it-41.9b
+    - mixtral-v0.1-it-8x22b
+    - mixtral-v0.1-it-8x7b
+    - mistral-v0.3-it-7b
+    - mistral-nemo-it-2407-12.2b
+    - mistral-large-it-2407-123b
+    - codestral-v0.1-22b
+  custom_models:
+    - tinyllama-ft-1.1b
+  openai_models:
+    - gpt-4o
+    - gpt-4o-mini

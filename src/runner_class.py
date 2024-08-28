@@ -382,7 +382,7 @@ class OllamaRunner(TypeEvalPyRunner):
             )
 
 
-class OllamaRunner(TypeEvalPyRunner):
+class LLMRunner(TypeEvalPyRunner):
     def __init__(
         self,
         host_results_path,
@@ -392,8 +392,8 @@ class OllamaRunner(TypeEvalPyRunner):
         custom_benchmark_dir=None,
     ):
         super().__init__(
-            "ollama",
-            "./target_tools/ollama",
+            "llms",
+            "./target_tools/llms",
             host_results_path,
             nocache=nocache,
             custom_benchmark_dir=custom_benchmark_dir,
@@ -406,25 +406,46 @@ class OllamaRunner(TypeEvalPyRunner):
             self.test_runner_script_path,
             "--bechmark_path",
             self.benchmark_path,
+            "--hf_token",
+            self.config["llm"]["hf_token"],
             "--openai_key",
-            self.config["ollama"]["openai_key"],
-            "--ollama_url",
-            self.config["ollama"]["ollama_url"],
+            self.config["llm"]["openai_key"],
             "--prompt_id",
-            self.config["ollama"]["prompt_id"],
-            "--ollama_models",
+            self.config["llm"]["prompt_id"],
         ]
-        command_to_run.extend(self.config["ollama"]["ollama_models"])
+
+        for i in ["models", "custom_models", "openai_models"]:
+            if self.config["llm"][i]:
+                command_to_run.append(f"--{i}")
+                command_to_run.extend(self.config["llm"][i])
 
         _, response = self.container.exec_run(" ".join(command_to_run), stream=True)
         for line in response:
             logger.info(line)
 
     def copy_results_from_container(self):
-        for model in self.config["ollama"]["ollama_models"]:
-            model_results_path = f"/tmp/{model}/micro-benchmark"
-            self.file_handler.copy_files_from_container(
-                self.container,
-                model_results_path,
-                f"{self.host_results_path}/{model}",
-            )
+        for i in ["models", "custom_models", "openai_models"]:
+            for model in self.config["llm"][i]:
+                model_results_path = f"/tmp/{model}/micro-benchmark"
+                self.file_handler.copy_files_from_container(
+                    self.container,
+                    model_results_path,
+                    f"{self.host_results_path}/{model}",
+                )
+
+    def spawn_docker_instance(self):
+        logger.info("Creating container")
+        container = self.docker_client.containers.run(
+            self.tool_name,
+            detach=True,
+            stdin_open=True,
+            tty=True,
+            volumes=self.volumes,
+            runtime="nvidia",
+            device_requests=[
+                docker.types.DeviceRequest(
+                    count=-1, capabilities=[["gpu"]]
+                )  # Request all available GPUs
+            ],
+        )
+        return container
