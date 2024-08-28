@@ -71,7 +71,7 @@ def load_model_and_configurations(
     )
 
     tokenizer = transformers.AutoTokenizer.from_pretrained(
-        model_name, token=HF_TOKEN, trust_remote_code=True
+        model_name, token=HF_TOKEN, trust_remote_code=True, padding_side="left"
     )
     # padding should be padding_side='left' for llama models
 
@@ -102,12 +102,9 @@ def process_requests(
 ):
     """Continuously process a list of prompts and handle the outputs."""
     # dataset = ListDataset(prompts) # TODO: issues making this work, mainly to show progress bar
-    print(f"Processing {len(prompts)} prompts for model {pipe.model.name_or_path}")
+    # print(f"Processing {len(prompts)} prompts for model {pipe.model.name_or_path}")
     responses = [
-        i
-        for i in tqdm(
-            pipe(prompts, max_new_tokens=max_new_tokens, batch_size=batch_size)
-        )
+        i for i in pipe(prompts, max_new_tokens=max_new_tokens, batch_size=batch_size)
     ]
 
     return responses

@@ -900,7 +900,7 @@ def generate_top_n_performance(test_suite_dir, tool_name=None):
     return results_cat
 
 
-def run_results_analyzer(results_dir):
+def run_results_analyzer(results_dir, benchmark_dir="micro-benchmark"):
     if results_dir is None:
         dir_path = Path(SCRIPT_DIR) / "../results"
         directories = [
@@ -930,19 +930,20 @@ def run_results_analyzer(results_dir):
                 if item.name in utils.ML_TOOLS:
                     tools_results[item.name]["top_n_results"] = (
                         generate_top_n_performance(
-                            item / "micro-benchmark/python_features",
+                            item / f"{benchmark_dir}/python_features",
                             tool_name=item.name,
                         )
                     )
+
                 (
                     tools_results[item.name]["error_result_data"],
                     tools_results[item.name]["exact_match"],
                     tools_results[item.name]["exact_match_category"],
                 ) = iterate_cats(
-                    item / "micro-benchmark/python_features", tool_name=item.name
+                    item / f"{benchmark_dir}/python_features", tool_name=item.name
                 )
                 tools_results[item.name]["total_benchmark_data"] = (
-                    utils.benchmark_count(item / "micro-benchmark/python_features")
+                    utils.benchmark_count(item / f"{benchmark_dir}/python_features")
                 )
                 # print(tools_results[item.name]["total_benchmark_data"])
                 # print(tools_results[item.name]["error_result_data"])
@@ -951,18 +952,18 @@ def run_results_analyzer(results_dir):
                     tools_results[item.name]["sound_complete_data"],
                     tools_results[item.name]["sound_complete_total_data"],
                 ) = generate_sound_complete_data(
-                    item / "micro-benchmark/python_features", tool_name=item.name
+                    item / f"{benchmark_dir}/python_features", tool_name=item.name
                 )
 
                 # check if analysis_sensitivities exists
-                if (item / "micro-benchmark/analysis_sensitivities").exists():
+                if (item / f"{benchmark_dir}/analysis_sensitivities").exists():
 
                     logger.info(f"Analyzing Sensitivities")
                     (
                         tools_results[item.name]["sensitivity_error_result_data"],
                         tools_results[item.name]["sensitivity_sound_data"],
                     ) = iterate_cats_sensitivities(
-                        item / "micro-benchmark/analysis_sensitivities",
+                        item / f"{benchmark_dir}/analysis_sensitivities",
                         tool_name=item.name,
                     )
 
@@ -1073,6 +1074,12 @@ if __name__ == "__main__":
         help="Specify the results path",
         default=None,
     )
+    parser.add_argument(
+        "--benchmark_dir",
+        help="Specify the benchmark path",
+        default="micro-benchmark",
+    )
+
     args = parser.parse_args()
 
-    run_results_analyzer(args.results_dir)
+    run_results_analyzer(args.results_dir, args.benchmark_dir)
