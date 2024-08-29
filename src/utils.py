@@ -16,6 +16,8 @@ class FileHandler:
             container.put_archive(dst, data)
 
     def copy_files_from_container(self, container, src, dst):
+        command_to_run = ["chmod", "-R", "777", src]
+        _, response = container.exec_run(" ".join(command_to_run), stream=True)
         stream, _ = container.get_archive(src)
         stream_bytes = b"".join(stream)
         stream_bytes_io = BytesIO(stream_bytes)
