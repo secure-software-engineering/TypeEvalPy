@@ -397,6 +397,12 @@ class LLMRunner(TypeEvalPyRunner):
             host_results_path,
             nocache=nocache,
             custom_benchmark_dir=custom_benchmark_dir,
+            volumes={
+                os.path.abspath("/mnt/hf_cache/huggingface"): {
+                    "bind": "/root/.cache/huggingface",
+                    "mode": "rw",
+                }
+            },
         )
         self.config = config
 
@@ -425,13 +431,14 @@ class LLMRunner(TypeEvalPyRunner):
 
     def copy_results_from_container(self):
         for i in ["models", "custom_models", "openai_models"]:
-            for model in self.config["llm"][i]:
-                model_results_path = f"/tmp/{model}/micro-benchmark"
-                self.file_handler.copy_files_from_container(
-                    self.container,
-                    model_results_path,
-                    f"{self.host_results_path}/{model}",
-                )
+            if self.config["llm"][i]:
+                for model in self.config["llm"][i]:
+                    model_results_path = f"/tmp/{model}/micro-benchmark"
+                    self.file_handler.copy_files_from_container(
+                        self.container,
+                        model_results_path,
+                        f"{self.host_results_path}/{model}",
+                    )
 
     def spawn_docker_instance(self):
         logger.info("Creating container")
