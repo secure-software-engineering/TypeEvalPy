@@ -67,7 +67,9 @@ def load_model_and_configurations(
         token=HF_TOKEN,
         trust_remote_code=True,
         torch_dtype="bfloat16" if model_name.startswith("google") else "auto",
-        # attn_implementation="flash_attention_2",
+        attn_implementation=(
+            "flash_attention_2" if model_name.startswith("microsoft") else None
+        ),
     )
 
     tokenizer = transformers.AutoTokenizer.from_pretrained(
