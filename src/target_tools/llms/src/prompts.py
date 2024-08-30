@@ -497,9 +497,9 @@ questions_based_2 = """
 3. Do not include additional explanations or commentary in your answers.
 
 **Python Code Provided**:
-```python
+
 {code}
-```
+
 
 **Questions**:
 {questions}

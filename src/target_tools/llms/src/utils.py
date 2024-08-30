@@ -204,17 +204,34 @@ def load_runner_config(config_path):
     return config_data["runner_config"]
 
 
+def gather_code_files_from_test_folder(test_folder, language_extension="py"):
+    """Recursively gathers all code files with the specified language extension."""
+    code_files = []
+    for root, _, files in os.walk(test_folder):
+        for file in files:
+            if file.endswith(f".{language_extension}"):
+                code_files.append(os.path.join(root, file))
+    return code_files
+
+
 def get_prompt(prompt_id, file_path, answers_placeholders=True, use_system_prompt=True):
     json_filepath = str(file_path).replace(".py", "_gt.json")
+    test_dir = os.path.dirname(json_filepath)
+    code_files = gather_code_files_from_test_folder(test_dir)
 
-    # with open(json_filepath, "r") as file:
-    #     data = json.load(file)
-    with open(file_path, "r") as file:
-        code = file.read()
-        # Remove comments from code but keep line number structure
-        code = "\n".join(
-            [line if not line.startswith("#") else "#" for line in code.split("\n")]
-        )
+    # Concatenate code contents
+    code = ""
+    for code_file in code_files:
+        with open(code_file, "r") as file:
+            code_content = file.read()
+            relative_path = os.path.relpath(code_file, test_dir)
+            # Add filename to the code content for context
+            code += f"```{relative_path}\n{code_content}```\n\n"
+
+    # Remove comments from code but keep line number structure
+    code = "\n".join(
+        [line if not line.startswith("#") else "#" for line in code.split("\n")]
+    )
 
     if prompt_id in [
         "prompt_template_questions_based_2",
