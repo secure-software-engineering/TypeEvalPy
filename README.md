@@ -154,6 +154,19 @@ docker run \
       typeevalpy --runners headergen scalpel
 ```
 
+📊 Run analysis on custom benchmarks:
+
+Here, running with the autogen benchmark on HeaderGen
+
+```bash
+docker run \
+      -v /var/run/docker.sock:/var/run/docker.sock \
+      -v ./results:/app/results \
+      typeevalpy \
+      --runners headergen \
+      --custom_benchmark_dir /app/autogen_typeevalpy_benchmark
+```
+
 🛠️ Available options: `headergen`, `pyright`, `scalpel`, `jedi`, `hityper`, `type4py`, `hityperdl`
 
 ### 🤖 Running TypeEvalPy with LLMs
