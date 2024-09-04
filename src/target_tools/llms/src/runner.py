@@ -199,6 +199,10 @@ def model_evaluation_openai(
 
     prompts = [x["prompt"] for x in id_mapping.values()]
 
+    utils.get_prompt_cost(prompts)
+    utils.dump_ft_jsonl(id_mapping, f"{results_dst}/ft_dataset.jsonl")
+    utils.dump_batch_prompt_jsonl(id_mapping, f"{results_dst}/batch_prompt.jsonl")
+
     request_outputs = openai_helpers.process_requests(
         model_name,
         prompts,
@@ -272,23 +276,31 @@ def main_runner(args, runner_config, models_to_run, openai_models_models_to_run)
             else:
                 model_path = model["lora_repo"]
 
-            pipe = transformers_helpers.load_model_and_configurations(
-                args.hf_token, model_path, model["quantization"], TEMPARATURE
-            )
-            model_start_time = time.time()
-            model_evaluation_transformers(
-                model["name"],
-                args.prompt_id,
-                python_files,
-                pipe,
-                results_dst,
-                use_system_prompt=model["use_system_prompt"],
-                batch_size=model["batch_size"],
-            )
+            pipe = None
+            try:
+                pipe = transformers_helpers.load_model_and_configurations(
+                    args.hf_token, model_path, model["quantization"], TEMPARATURE
+                )
+                model_start_time = time.time()
+                model_evaluation_transformers(
+                    model["name"],
+                    args.prompt_id,
+                    python_files,
+                    pipe,
+                    results_dst,
+                    use_system_prompt=model["use_system_prompt"],
+                    batch_size=model["batch_size"],
+                )
 
-            del pipe
-            gc.collect()
-            torch.cuda.empty_cache()
+            except Exception as e:
+                logger.error(f"Error in model {model['name']}: {e}")
+                error_count += 1
+                traceback.print_exc()
+            finally:
+                if pipe is not None:
+                    del pipe
+                gc.collect()
+                torch.cuda.empty_cache()
 
         logger.info(
             f"Model {model['name']} finished in {time.time()-model_start_time:.2f} seconds"
