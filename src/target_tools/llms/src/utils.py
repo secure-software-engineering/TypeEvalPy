@@ -9,6 +9,7 @@ import requests
 import logging
 import prompts
 import copy
+import tiktoken
 
 logger = logging.getLogger("runner")
 logger.setLevel(logging.DEBUG)
@@ -260,6 +261,58 @@ def get_prompt(prompt_id, file_path, answers_placeholders=True, use_system_promp
         sys.exit(-1)
 
     return prompt
+
+
+def dump_ft_jsonl(id_mapping, output_file):
+    mappings = copy.deepcopy(id_mapping)
+    for _m in mappings.values():
+        print(_m)
+        assistant_message = {
+            "role": "assistant",
+            "content": generate_answers_for_fine_tuning(_m["json_filepath"]),
+        }
+        _m["prompt"].append(assistant_message)
+
+    prompts = [x["prompt"] for x in mappings.values()]
+
+    with open(output_file, "w") as output:
+        for _m in prompts:
+            output.write(json.dumps(_m))
+            output.write("\n")
+
+
+def dump_batch_prompt_jsonl(id_mapping, output_file):
+    prompts = [x["prompt"] for x in id_mapping.values()]
+
+    with open(output_file, "w") as output:
+        for _m in prompts:
+            output.write(json.dumps(_m))
+            output.write("\n")
+
+
+def get_prompt_cost(prompts):
+    """
+    Retrieves the token count of the given text.
+
+    Args:
+        text (str): The text to be tokenized.
+
+    Returns:
+        int: The token count.
+    """
+
+    prices_per_token = {
+        "gpt-4o": 0.000005,
+        "gpt-4o-mini": 0.00000015,
+    }
+
+    for model, price in prices_per_token.items():
+        encoding = tiktoken.encoding_for_model(model)
+        number_of_tokens = len(encoding.encode(str(prompts)))
+        logger.info(
+            f"Number of tokens for model `{model}`: {number_of_tokens}"
+            + f" Cost: {number_of_tokens * price:.5f}"
+        )
 
 
 # Example usage:
