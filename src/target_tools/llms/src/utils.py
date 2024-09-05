@@ -266,7 +266,6 @@ def get_prompt(prompt_id, file_path, answers_placeholders=True, use_system_promp
 def dump_ft_jsonl(id_mapping, output_file):
     mappings = copy.deepcopy(id_mapping)
     for _m in mappings.values():
-        print(_m)
         assistant_message = {
             "role": "assistant",
             "content": generate_answers_for_fine_tuning(_m["json_filepath"]),
@@ -281,12 +280,22 @@ def dump_ft_jsonl(id_mapping, output_file):
             output.write("\n")
 
 
-def dump_batch_prompt_jsonl(id_mapping, output_file):
-    prompts = [x["prompt"] for x in id_mapping.values()]
-
+def dump_batch_prompt_jsonl(
+    id_mapping, output_file, id_prefix="types", model="gpt-4o-mini"
+):
     with open(output_file, "w") as output:
-        for _m in prompts:
-            output.write(json.dumps(_m))
+        for idx, _m in id_mapping.items():
+            prompt_dict = {
+                "custom_id": f"request-{id_prefix}-{idx}",
+                "method": "POST",
+                "url": "/v1/chat/completions",
+                "body": {
+                    "model": model,
+                    "messages": _m["prompt"],
+                    "max_tokens": 250,
+                },
+            }
+            output.write(json.dumps(prompt_dict))
             output.write("\n")
 
 
