@@ -88,7 +88,7 @@ def create_readme_with_table(
     print(f"{output_md_file} has been created successfully!")
 
 
-results_dir = "/mnt/Projects/PhD/Research/TypeEvalPy/git_sources/TypeEvalPy_LLM/results/types_llms"
+results_dir = "/mnt/Projects/PhD/Research/EMSE_FORGE/results/types/autogen"
 # results_dir = Path("../results/results_<>")
 if results_dir is None:
     dir_path = Path(ROOT_DIR) / "results"
@@ -119,18 +119,110 @@ tool_mapping = {
     },
     "scalpel": {"name": "Scalpel", "url": "https://github.com/SMAT-Lab/Scalpel/issues"},
     "type4py": {"name": "Type4Py", "url": "https://github.com/saltudelft/type4py"},
-    "gpt-4": {"name": "GPT-4", "url": "https://openai.com/research/gpt-4"},
-    "gpt-3.5-turbo": {
-        "name": "GPT 3.5 Turbo",
-        "url": "https://platform.openai.com/docs/models/gpt-3-5-turbo",
+    "gpt-4o": {"name": "GPT-4o", "url": "https://openai.com/index/hello-gpt-4o/"},
+    "gpt-4o-mini": {
+        "name": "GPT 4o Mini",
+        "url": "https://openai.com/index/gpt-4o-mini-advancing-cost-efficient-intelligence/",
     },
-    "codellama:34b-instruct": {
-        "name": "codellama:34b-instruct",
-        "url": "https://huggingface.co/docs/transformers/model_doc/code_llama",
+    "qwen2-it-7b": {
+        "name": "qwen2-it-7b",
+        "url": "https://huggingface.co/Qwen/Qwen2-7B-Instruct",
     },
-    "codellama:13b-instruct": {
-        "name": "codellama:13b-instruct",
-        "url": "https://huggingface.co/docs/transformers/model_doc/code_llama",
+    "qwen2-it-72b": {
+        "name": "qwen2-it-72b",
+        "url": "https://huggingface.co/Qwen/Qwen2-72B-Instruct",
+    },
+    "gemma2-it-9b": {
+        "name": "gemma2-it-9b",
+        "url": "https://huggingface.co/google/gemma-2-9b-it",
+    },
+    "gemma2-it-27b": {
+        "name": "gemma2-it-27b",
+        "url": "https://huggingface.co/google/gemma-2-27b-it",
+    },
+    "gemma2-it-2b": {
+        "name": "gemma2-it-2b",
+        "url": "https://huggingface.co/google/gemma-2-2b-it",
+    },
+    "codellama-it-7b": {
+        "name": "codellama-it-7b",
+        "url": "https://huggingface.co/meta-llama/CodeLlama-7b-Instruct-hf",
+    },
+    "codellama-it-13b": {
+        "name": "codellama-it-13b",
+        "url": "https://huggingface.co/meta-llama/CodeLlama-13b-Instruct-hf",
+    },
+    "codellama-it-34b": {
+        "name": "codellama-it-34b",
+        "url": "https://huggingface.co/meta-llama/CodeLlama-34b-Instruct-hf",
+    },
+    "llama3.1-it-8b": {
+        "name": "llama3.1-it-8b",
+        "url": "https://huggingface.co/meta-llama/Meta-Llama-3.1-8B-Instruct",
+    },
+    "llama3.1-it-70b": {
+        "name": "llama3.1-it-70b",
+        "url": "https://huggingface.co/meta-llama/Meta-Llama-3.1-70B-Instruct",
+    },
+    "tinyllama-1.1b": {
+        "name": "tinyllama-1.1b",
+        "url": "https://huggingface.co/TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+    },
+    "phi3-small-it-7.3b": {
+        "name": "phi3-small-it-7.3b",
+        "url": "https://huggingface.co/microsoft/Phi-3-small-128k-instruct",
+    },
+    "phi3-medium-it-14b": {
+        "name": "phi3-medium-it-14b",
+        "url": "https://huggingface.co/microsoft/Phi-3-medium-128k-instruct",
+    },
+    "phi3-mini-it-3.8b": {
+        "name": "phi3-mini-it-3.8b",
+        "url": "https://huggingface.co/microsoft/Phi-3-mini-128k-instruct",
+    },
+    "phi3.5-mini-it-3.8b": {
+        "name": "phi3.5-mini-it-3.8b",
+        "url": "https://huggingface.co/microsoft/Phi-3.5-mini-instruct",
+    },
+    "phi3.5-moe-it-41.9b": {
+        "name": "phi3.5-moe-it-41.9b",
+        "url": "https://huggingface.co/microsoft/Phi-3.5-MoE-instruct",
+    },
+    "mixtral-v0.1-it-8x22b": {
+        "name": "mixtral-v0.1-it-8x22b",
+        "url": "https://huggingface.co/mistralai/Mixtral-8x22B-Instruct-v0.1",
+    },
+    "mixtral-v0.1-it-8x7b": {
+        "name": "mixtral-v0.1-it-8x7b",
+        "url": "https://huggingface.co/mistralai/Mixtral-8x7B-Instruct-v0.1",
+    },
+    "mistral-v0.3-it-7b": {
+        "name": "mistral-v0.3-it-7b",
+        "url": "https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3",
+    },
+    "mistral-nemo-it-2407-12.2b": {
+        "name": "mistral-nemo-it-2407-12.2b",
+        "url": "https://huggingface.co/mistralai/Mistral-Nemo-Instruct-2407",
+    },
+    "mistral-large-it-2407-123b": {
+        "name": "mistral-large-it-2407-123b",
+        "url": "https://huggingface.co/mistralai/Mistral-Large-Instruct-2407",
+    },
+    "codestral-v0.1-22b": {
+        "name": "codestral-v0.1-22b",
+        "url": "https://huggingface.co/mistralai/Codestral-22B-v0.1",
+    },
+    "codellama-python-7b": {
+        "name": "codellama-python-7b",
+        "url": "https://huggingface.co/meta-llama/CodeLlama-7b-Python-hf",
+    },
+    "codellama-python-13b": {
+        "name": "codellama-python-13b",
+        "url": "https://huggingface.co/meta-llama/CodeLlama-13b-Python-hf",
+    },
+    "codellama-python-34b": {
+        "name": "codellama-python-34b",
+        "url": "https://huggingface.co/meta-llama/CodeLlama-34b-Python-hf",
     },
 }
 
@@ -145,7 +237,7 @@ header_mapping = {
 
 
 create_readme_with_table(
-    "README_template.md",
+    f"{SCRIPT_DIR}/README_template.md",
     "[INSERT_TABLE_HERE]",
     csv_str,
     tool_mapping,

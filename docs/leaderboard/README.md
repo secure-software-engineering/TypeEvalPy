@@ -14,31 +14,22 @@
 - 🔄 Efficiently transforms inferred types into a **standardized format**.
 - 📊 Automatically produces **meaningful metrics** for in-depth assessment and comparison.
 
-### [New] TypeEvalPy Autogen
-
-- 🤖 **Autogenerates code snippets** and ground truth to scale the benchmark based on the original `TypeEvalPy` benchmark.
-- 📈 The autogen benchmark now contains:
-  - **Python files**: 7121
-  - **Type annotations**: 78373
-
 ## 🛠️ Supported Tools
 
-| Supported :white_check_mark:                                          | In-progress :wrench:                                                 | Planned :bulb:                                        |
-| --------------------------------------------------------------------- | -------------------------------------------------------------------- | ----------------------------------------------------- |
-| [HeaderGen](https://github.com/secure-software-engineering/HeaderGen) | [Intellij PSI](https://plugins.jetbrains.com/docs/intellij/psi.html) | [MonkeyType](https://github.com/Instagram/MonkeyType) |
-| [Jedi](https://github.com/davidhalter/jedi)                           | [Pyre](https://github.com/facebook/pyre-check)                       | [Pyannotate](https://github.com/dropbox/pyannotate)   |
-| [Pyright](https://github.com/microsoft/pyright)                       | [PySonar2](https://github.com/yinwang0/pysonar2)                     |
-| [HiTyper](https://github.com/JohnnyPeng18/HiTyper)                    | [Pytype](https://github.com/google/pytype)                           |
-| [Scalpel](https://github.com/SMAT-Lab/Scalpel/issues)                 | [TypeT5](https://github.com/utopia-group/TypeT5)                     |
-| [Type4Py](https://github.com/saltudelft/type4py)                      |                                                                      |
-| [GPT](https://openai.com)                                             |                                                                      |
-| [Ollama](https://ollama.ai)                                           |                                                                      |
+| Supported :white_check_mark:                             | In-progress :wrench:                                                 | Planned :bulb:                             |
+| -------------------------------------------------------- | -------------------------------------------------------------------- | ------------------------------------------ |
+| [HeaderGen](https://github.com/ashwinprasadme/headergen) | [Intellij PSI](https://plugins.jetbrains.com/docs/intellij/psi.html) | [Llama 2](https://ai.meta.com/llama/)      |
+| [Jedi](https://github.com/davidhalter/jedi)              | [Pyre](https://github.com/facebook/pyre-check)                       | [ChatGPT](https://openai.com/blog/chatgpt) |
+| [Pyright](https://github.com/microsoft/pyright)          | [PySonar2](https://github.com/yinwang0/pysonar2)                     |
+| [HiTyper](https://github.com/JohnnyPeng18/HiTyper)       | [Pytype](https://github.com/google/pytype)                           |
+| [Scalpel](https://github.com/SMAT-Lab/Scalpel/issues)    | [TypeT5](https://github.com/utopia-group/TypeT5)                     |
+| [Type4Py](https://github.com/saltudelft/type4py)         |                                                                      |
 
 ---
 
 ## 🏆 TypeEvalPy Leaderboard
 
-Below is a comparison showcasing exact matches across different tools and LLMs on the Autogen benchmark.
+Below is a comparison showcasing exact matches across different tools, coupled with `top_n` predictions for ML-based tools.
 
 | Rank | 🛠️ Tool                                                                                        | Function Return Type | Function Parameter Type | Local Variable Type | Total |
 | ---- | ---------------------------------------------------------------------------------------------- | -------------------- | ----------------------- | ------------------- | ----- |
@@ -68,7 +59,7 @@ Below is a comparison showcasing exact matches across different tools and LLMs o
 | 24   | **[phi3.5-moe-it-41.9b](https://huggingface.co/microsoft/Phi-3.5-MoE-instruct)**               | 3090                 | 25                      | 273                 | 3388  |
 | 25   | **[gemma2-it-2b](https://huggingface.co/google/gemma-2-2b-it)**                                | 1497                 | 41                      | 1848                | 3386  |
 
-_<sub>(Auto-generated based on the the analysis run on 30 Aug 2024)</sub>_
+_<sub>(Auto-generated based on the the analysis run on 14 Jan 2024)</sub>_
 
 ---
 
@@ -93,25 +84,6 @@ docker build -t typeevalpy .
 📂 Results will be generated in the `results` folder within the root directory of the repository.
 Each results folder will have a timestamp, allowing you to easily track and compare different runs.
 
-<details>
-  <summary><b>Correlation of CSV Files Generated to Tables in ICSE Paper</b></summary>
-Here is how the auto-generated CSV tables relate to the paper's tables:
-
-- **Table 1** in the paper is derived from three auto-generated CSV tables:
-
-  - `paper_table_1.csv` - details Exact matches by type category.
-  - `paper_table_2.csv` - lists Exact matches for 18 micro-benchmark categories.
-  - `paper_table_3.csv` - provides Sound and Complete values for tools.
-
-- **Table 2** in the paper is based on the following CSV table:
-  - `paper_table_5.csv` - shows Exact matches with top_n values for machine learning tools.
-
-Additionally, there are CSV tables that are _not_ included in the paper:
-
-- `paper_table_4.csv` - containing Sound and Complete values for 18 micro-benchmark categories.
-- `paper_table_6.csv` - featuring Sensitivity analysis.
-</details>
-
 ```bash
 docker run \
       -v /var/run/docker.sock:/var/run/docker.sock \
@@ -128,42 +100,7 @@ docker run \
       typeevalpy --runners headergen scalpel
 ```
 
-📊 Run analysis on custom benchmarks:
-
-Here, running with the autogen benchmark on HeaderGen
-
-```bash
-docker run \
-      -v /var/run/docker.sock:/var/run/docker.sock \
-      -v ./results:/app/results \
-      typeevalpy \
-      --runners headergen \
-      --custom_benchmark_dir /app/autogen_typeevalpy_benchmark
-```
-
 🛠️ Available options: `headergen`, `pyright`, `scalpel`, `jedi`, `hityper`, `type4py`, `hityperdl`
-
-### 🤖 Running TypeEvalPy with LLMs
-
-TypeEvalPy integrates with LLMs through Ollama, streamlining their management. Begin by setting up your environment:
-
-- Create Configuration File: Copy the `config_template.yaml` from the src directory and rename it to `config.yaml`.
-
-In the `config.yaml`, configure in the following:
-
-- `openai_key`: your key for accessing OpenAI's models.
-- `ollama_url`: the URL for your Ollama instance. For simplicity, we recommend deploying Ollama using their Docker container. [Get started with Ollama here](https://hub.docker.com/r/ollama/ollama).
-- `prompt_id`: set this to `questions_based_2` for optimal performance, based on our tests.
-- `ollama_models`: select a list of model tags from the [Ollama library](https://ollama.com/library). For better operation, ensure the model is pre-downloaded with the `ollama pull` command.
-
-With the `config.yaml` configured, run the following command:
-
-```bash
-docker run \
-      -v /var/run/docker.sock:/var/run/docker.sock \
-      -v ./results:/app/results \
-      typeevalpy --runners ollama
-```
 
 ---
 
@@ -175,7 +112,7 @@ docker run \
 1.  **Clone the repo**
 
     ```bash
-    git clone https://github.com/secure-software-engineering/TypeEvalPy.git
+    git clone https://github.com/ashwinprasadme/TypeEvalPy.git
     ```
 
 2.  **Install Dependencies and Set Up Virtual Environment**
@@ -224,33 +161,9 @@ docker run \
 
 ---
 
-## Running TypeEvalPy Autogen
-
-To generate an extended version of the original TypeEvalPy benchmark to include many more Python types, run the following commands:
-
-1.  **Navigate to the `autogen` Directory**
-
-    ```bash
-    cd autogen
-    ```
-
-2.  **Execute the Generation Script**
-
-    Run the following command to start the generation process:
-
-    ```bash
-    python generate_typeevalpy_dataset.py
-    ```
-
-This will generate a folder in the repo root with the autogen benchmark with the current date.
-
----
-
 ### 🤝 Contributing
 
 Thank you for your interest in contributing! To add support for a new tool, please utilize the Docker templates provided in our repository. After implementing and testing your tool, please submit a pull request (PR) with a descriptive message. Our maintainers will review your submission, and merge them.
-
-To get started with integrating your tool, please follow the guide here: [docs/Tool_Integration_Guide.md](docs/Tool_Integration_Guide.md)
 
 ---
 
