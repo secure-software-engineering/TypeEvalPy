@@ -10,3 +10,4 @@ requests==2.31.0
 tqdm
 tiktoken
 openai
+tabulate

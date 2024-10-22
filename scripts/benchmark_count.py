@@ -2,7 +2,8 @@ import json
 import os
 from pathlib import Path
 
-microbench_folder_path = "../micro-benchmark/"
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+microbench_folder_path = f"{ROOT_DIR}/autogen_typeevalpy_benchmark"
 
 
 def get_fact_stats(json_files):
@@ -68,6 +69,9 @@ print(
 python_features_dir = microbench_folder_path + "/python_features"
 pf_overall_annotations = 0
 pf_overall_types = 0
+overall_functions = 0
+overall_params = 0
+overall_variables = 0
 for cat in sorted(os.listdir(python_features_dir)):
     cat_dir = os.path.join(python_features_dir, cat)
     json_files = [_file for _file in sorted(Path(cat_dir).rglob("*_gt.json"))]
@@ -76,10 +80,15 @@ for cat in sorted(os.listdir(python_features_dir)):
 
     pf_overall_annotations += _a
     pf_overall_types += _t
-
+    overall_functions += sum_functions
+    overall_params += sum_params
+    overall_variables += sum_variables
     print(cat, _a, _t, sum_functions, sum_params, sum_variables)
 
 print(pf_overall_annotations, pf_overall_types)
+# print names
+print("overall_functions", "overall_params", "overall_variables")
+print(overall_functions, overall_params, overall_variables)
 
 # analysis_sensitivities
 print("\nanalysis_sensitivities")
