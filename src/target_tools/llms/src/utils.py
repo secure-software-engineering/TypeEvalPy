@@ -215,6 +215,52 @@ def gather_code_files_from_test_folder(test_folder, language_extension="py"):
     return code_files
 
 
+def get_token_count(text, prompt_id):
+    """
+    Retrieves the token count of the given text.
+
+    Args:
+        text (str): The text to be tokenized.
+
+    Returns:
+        int: The token count.
+    """
+    prices_per_token = {
+        "gpt-3.5-turbo-0125": 0.0000005,
+        "gpt-4-turbo": 0.00001,
+        "gpt-4": 0.00001,
+        "gpt-4o": 0.000005,
+    }
+    encoding = tiktoken.encoding_for_model("gpt-4o")
+    number_of_tokens_4o = len(encoding.encode(text))
+    logger.debug(
+        f"Number of tokens for model `gpt-4o`: {number_of_tokens_4o}"
+        + f" Cost: {number_of_tokens_4o * prices_per_token['gpt-4o']:.5f}"
+        + f" Prompt: {prompt_id}"
+    )
+
+    encoding = tiktoken.encoding_for_model("gpt-3.5-turbo")
+    number_of_tokens_3_5 = len(encoding.encode(text))
+    logger.debug(
+        f"Number of tokens for model `gpt-3.5-turbo`: {number_of_tokens_3_5}"
+        + f" Cost: {number_of_tokens_3_5 * prices_per_token['gpt-3.5-turbo-0125']:.5f}"
+        + f" Prompt: {prompt_id}"
+    )
+
+    encoding = tiktoken.encoding_for_model("gpt-4")
+    number_of_tokens_4 = len(encoding.encode(text))
+    logger.debug(
+        f"Number of tokens for model `gpt-4-turbo`: {number_of_tokens_4}"
+        + f" Cost: {number_of_tokens_4 * prices_per_token['gpt-4']:.5f}"
+        + f" Prompt: {prompt_id}"
+    )
+
+    return {
+        "gpt-3.5-turbo": number_of_tokens_3_5,
+        "gpt-4-turbo": number_of_tokens_4,
+    }
+
+
 def get_prompt(prompt_id, file_path, answers_placeholders=True, use_system_prompt=True):
     json_filepath = str(file_path).replace(".py", "_gt.json")
     test_dir = os.path.dirname(json_filepath)
@@ -259,6 +305,8 @@ def get_prompt(prompt_id, file_path, answers_placeholders=True, use_system_promp
     else:
         logger.error("ERROR! Prompt not found!")
         sys.exit(-1)
+
+    get_token_count(f"{prompt[0]['content']}{prompt[1]['content']}", prompt_id)
 
     return prompt
 
