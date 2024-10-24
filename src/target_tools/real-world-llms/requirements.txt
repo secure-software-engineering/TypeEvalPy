@@ -1,0 +1,16 @@
+requests
+langchain
+langchain_openai
+openai
+vllm
+einops
+pytest
+bitsandbytes
+accelerate
+ninja
+packaging
+peft
+torch==2.1.2
+torchvision==0.16.2
+torchaudio
+tiktoken
