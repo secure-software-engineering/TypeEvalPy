@@ -30,15 +30,35 @@ class TypeAnnotatorTransformer(cst.CSTTransformer):
     def leave_Assign(
         self, original_node: cst.Assign, updated_node: cst.Assign
     ) -> cst.BaseStatement:
-        # Convert Assign to AnnAssign with 'MASK' annotation
-        if isinstance(updated_node.targets[0].target, cst.Name):
-            # Create AnnAssign with 'MASK' annotation
+        target = updated_node.targets[0].target
+
+        # Annotate `self` attributes (e.g., self.width)
+        if isinstance(target, cst.Attribute) and isinstance(target.value, cst.Name) and target.value.value == "self":
             annotated_node = cst.AnnAssign(
-                target=updated_node.targets[0].target,
+                target=target,
                 annotation=cst.Annotation(cst.Name("MASK")),
                 value=updated_node.value,
             )
             return annotated_node
+
+        # Annotate standalone variables (e.g., x = ...)
+        elif isinstance(target, cst.Name):
+            annotated_node = cst.AnnAssign(
+                target=target,
+                annotation=cst.Annotation(cst.Name("MASK")),
+                value=updated_node.value,
+            )
+            return annotated_node
+
+        # Annotate dictionary item assignments (e.g., d["key"] = ...)
+        elif isinstance(target, cst.Subscript):
+            annotated_node = cst.AnnAssign(
+                target=target,
+                annotation=cst.Annotation(cst.Name("MASK")),
+                value=updated_node.value,
+            )
+            return annotated_node
+        
         return updated_node
 
 def process_file(file_path):
