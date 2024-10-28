@@ -5,10 +5,10 @@ class TypeAnnotatorTransformer(cst.CSTTransformer):
     def leave_FunctionDef(
         self, original_node: cst.FunctionDef, updated_node: cst.FunctionDef
     ) -> cst.FunctionDef:
-        # Annotate parameters with 'MASK' if they are not annotated
+        # Annotate parameters with 'MASK' if they are not annotated or replace with 'MASK'
         new_params = []
         for param in updated_node.params.params:
-            if param.annotation is None:
+            if param.annotation is None or param.annotation.annotation.value != "MASK":
                 annotated_param = param.with_changes(
                     annotation=cst.Annotation(cst.Name("MASK"))
                 )
@@ -16,10 +16,12 @@ class TypeAnnotatorTransformer(cst.CSTTransformer):
             else:
                 new_params.append(param)
         
-        # Annotate return type with 'MASK' if not annotated
-        new_returns = updated_node.returns
-        if updated_node.returns is None:
-            new_returns = cst.Annotation(cst.Name("MASK"))
+        # Annotate or replace return type with 'MASK'
+        new_returns = (
+            updated_node.returns
+            if updated_node.returns and updated_node.returns.annotation.value == "MASK"
+            else cst.Annotation(cst.Name("MASK"))
+        )
 
         # Return the updated function definition
         return updated_node.with_changes(
@@ -30,15 +32,14 @@ class TypeAnnotatorTransformer(cst.CSTTransformer):
     def leave_Assign(
         self, original_node: cst.Assign, updated_node: cst.Assign
     ) -> cst.BaseStatement:
-        # Initialize a list to hold all the annotation statements
         annotations = []
 
         # Check for multiple targets (chained assignments)
         if len(updated_node.targets) > 1:
-            # Extract individual names from all targets, handling chained and nested tuples
+            # Generate individual annotations for each target, handling chained and nested tuples
             for assign_target in updated_node.targets:
                 target = assign_target.target
-                annotations.extend(self._generate_annotations_from_target(target))
+                annotations.extend(self._generate_annotations_from_target(target, updated_node.value))
             # Add the original assignment after the annotations
             return cst.FlattenSentinel(annotations + [updated_node])
 
@@ -58,19 +59,20 @@ class TypeAnnotatorTransformer(cst.CSTTransformer):
             ]
             return cst.FlattenSentinel(unpacked_annotations + [updated_node])
 
-        # Annotate standalone variables and other compatible targets
-        annotations.extend(self._generate_annotations_from_target(target))
+        # Annotate standalone variables, attributes, and other compatible targets
+        annotations.extend(self._generate_annotations_from_target(target, updated_node.value))
 
         # If we generated any annotations, add them before the original assignment
         return cst.FlattenSentinel(annotations + [updated_node]) if annotations else updated_node
 
-    def _generate_annotations_from_target(self, target):
+    def _generate_annotations_from_target(self, target, value):
         """
         Generates `AnnAssign` nodes with `MASK` for each standalone target or tuple unpacking.
+        If the target already has the annotation `MASK`, it skips re-annotation.
         """
         annotations = []
         if isinstance(target, cst.Name):
-            # Simple variable, add standalone annotation
+            # Add new AnnAssign if this target is unannotated
             annotations.append(
                 cst.AnnAssign(
                     target=target,
@@ -78,6 +80,12 @@ class TypeAnnotatorTransformer(cst.CSTTransformer):
                     value=None
                 )
             )
+        elif isinstance(target, cst.AnnAssign):
+            # If the target is already an AnnAssign, replace the annotation with MASK
+            if target.annotation.annotation.value != "MASK":
+                annotations.append(
+                    target.with_changes(annotation=cst.Annotation(cst.Name("MASK")))
+                )
         elif isinstance(target, cst.Tuple):
             # Recursive extraction for nested tuples
             for name in self._extract_names_from_tuple(target):
@@ -85,18 +93,22 @@ class TypeAnnotatorTransformer(cst.CSTTransformer):
                     cst.AnnAssign(
                         target=cst.Name(value=name),
                         annotation=cst.Annotation(cst.Name("MASK")),
-                        value=None
+                        value=None  # Keep original value only in the main assignment
                     )
                 )
-        elif isinstance(target, cst.Attribute) and isinstance(target.value, cst.Name) and target.value.value == "self":
-            # `self` attributes in class methods (e.g., self.width)
-            annotations.append(
-                cst.AnnAssign(
-                    target=target,
-                    annotation=cst.Annotation(cst.Name("MASK")),
-                    value=None
+        elif isinstance(target, cst.Attribute):
+            # For attribute assignments (e.g., resp.status), skip if already annotated with MASK
+            if (
+                not isinstance(target, cst.AnnAssign)
+                or target.annotation.annotation.value != "MASK"
+            ):
+                annotations.append(
+                    cst.AnnAssign(
+                        target=target,
+                        annotation=cst.Annotation(cst.Name("MASK")),
+                        value=value
+                    )
                 )
-            )
         elif isinstance(target, cst.Subscript):
             # Dictionary item (e.g., d["key"] = value)
             annotations.append(
@@ -140,7 +152,7 @@ def process_file(file_path):
     print(f"Processed and saved: {new_file_path}")
 
 # Set the root directory for the Python files based on the structure
-root_directory = '/media/pysse/analysis/TypeEvalPy/micro-benchmark/python_features'
+root_directory = '/media/pysse/analysis/TypeEvalPy/src/target_tools/real-world-llms/src/source_code_output'
 
 # Loop through all .py files in the directory tree
 for subdir, _, files in os.walk(root_directory):
