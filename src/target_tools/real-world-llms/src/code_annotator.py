@@ -30,36 +30,96 @@ class TypeAnnotatorTransformer(cst.CSTTransformer):
     def leave_Assign(
         self, original_node: cst.Assign, updated_node: cst.Assign
     ) -> cst.BaseStatement:
+        # Initialize a list to hold all the annotation statements
+        annotations = []
+
+        # Check for multiple targets (chained assignments)
+        if len(updated_node.targets) > 1:
+            # Extract individual names from all targets, handling chained and nested tuples
+            for assign_target in updated_node.targets:
+                target = assign_target.target
+                annotations.extend(self._generate_annotations_from_target(target))
+            # Add the original assignment after the annotations
+            return cst.FlattenSentinel(annotations + [updated_node])
+
+        # Handle standalone assignment or dictionary items
         target = updated_node.targets[0].target
 
-        # Annotate `self` attributes (e.g., self.width)
-        if isinstance(target, cst.Attribute) and isinstance(target.value, cst.Name) and target.value.value == "self":
-            annotated_node = cst.AnnAssign(
-                target=target,
-                annotation=cst.Annotation(cst.Name("MASK")),
-                value=updated_node.value,
-            )
-            return annotated_node
+        # If target is a complex structure (e.g., nested tuple unpacking)
+        if isinstance(target, cst.Tuple):
+            # Extract all individual names in the tuple unpacking and create annotations
+            unpacked_annotations = [
+                cst.AnnAssign(
+                    target=cst.Name(value=name),
+                    annotation=cst.Annotation(cst.Name("MASK")),
+                    value=None
+                )
+                for name in self._extract_names_from_tuple(target)
+            ]
+            return cst.FlattenSentinel(unpacked_annotations + [updated_node])
 
-        # Annotate standalone variables (e.g., x = ...)
-        elif isinstance(target, cst.Name):
-            annotated_node = cst.AnnAssign(
-                target=target,
-                annotation=cst.Annotation(cst.Name("MASK")),
-                value=updated_node.value,
-            )
-            return annotated_node
+        # Annotate standalone variables and other compatible targets
+        annotations.extend(self._generate_annotations_from_target(target))
 
-        # Annotate dictionary item assignments (e.g., d["key"] = ...)
+        # If we generated any annotations, add them before the original assignment
+        return cst.FlattenSentinel(annotations + [updated_node]) if annotations else updated_node
+
+    def _generate_annotations_from_target(self, target):
+        """
+        Generates `AnnAssign` nodes with `MASK` for each standalone target or tuple unpacking.
+        """
+        annotations = []
+        if isinstance(target, cst.Name):
+            # Simple variable, add standalone annotation
+            annotations.append(
+                cst.AnnAssign(
+                    target=target,
+                    annotation=cst.Annotation(cst.Name("MASK")),
+                    value=None
+                )
+            )
+        elif isinstance(target, cst.Tuple):
+            # Recursive extraction for nested tuples
+            for name in self._extract_names_from_tuple(target):
+                annotations.append(
+                    cst.AnnAssign(
+                        target=cst.Name(value=name),
+                        annotation=cst.Annotation(cst.Name("MASK")),
+                        value=None
+                    )
+                )
+        elif isinstance(target, cst.Attribute) and isinstance(target.value, cst.Name) and target.value.value == "self":
+            # `self` attributes in class methods (e.g., self.width)
+            annotations.append(
+                cst.AnnAssign(
+                    target=target,
+                    annotation=cst.Annotation(cst.Name("MASK")),
+                    value=None
+                )
+            )
         elif isinstance(target, cst.Subscript):
-            annotated_node = cst.AnnAssign(
-                target=target,
-                annotation=cst.Annotation(cst.Name("MASK")),
-                value=updated_node.value,
+            # Dictionary item (e.g., d["key"] = value)
+            annotations.append(
+                cst.AnnAssign(
+                    target=target,
+                    annotation=cst.Annotation(cst.Name("MASK")),
+                    value=None
+                )
             )
-            return annotated_node
-        
-        return updated_node
+        return annotations
+
+    def _extract_names_from_tuple(self, tuple_node):
+        """
+        Recursively extract names from nested tuples for unpacking assignments.
+        """
+        names = []
+        for element in tuple_node.elements:
+            if isinstance(element.value, cst.Name):
+                names.append(element.value.value)
+            elif isinstance(element.value, cst.Tuple):
+                # Recursive call for nested tuples
+                names.extend(self._extract_names_from_tuple(element.value))
+        return names
 
 def process_file(file_path):
     with open(file_path, "r") as source_code:
