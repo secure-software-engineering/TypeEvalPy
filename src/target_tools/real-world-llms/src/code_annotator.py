@@ -144,15 +144,14 @@ def process_file(file_path):
     transformer = TypeAnnotatorTransformer()
     modified_tree = tree.visit(transformer)
 
-    # Save the modified code to a new file
-    new_file_path = file_path.replace(".py", "_annotated.py")
-    with open(new_file_path, "w") as new_file:
-        new_file.write(modified_tree.code)
+    # Write the modified code back to the original file
+    with open(file_path, "w") as original_file:
+        original_file.write(modified_tree.code)
 
-    print(f"Processed and saved: {new_file_path}")
+    print(f"Processed and saved: {file_path}")
 
 # Set the root directory for the Python files based on the structure
-root_directory = '/media/pysse/analysis/TypeEvalPy/src/target_tools/real-world-llms/src/source_code_output'
+root_directory = '/media/pysse/analysis/TypeEvalPy/src/target_tools/real-world-llms/src/many-types-4-py-dataset/repos/ABitMoreDepth'
 
 # Loop through all .py files in the directory tree
 for subdir, _, files in os.walk(root_directory):
