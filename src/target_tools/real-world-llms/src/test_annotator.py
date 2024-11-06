@@ -20,28 +20,48 @@ def check_annotations_with_mask(file_path):
         print(f"Unexpected error while parsing {file_path}: {e}")
         return False
 
-    # Define a visitor class to collect all annotations
+    # Define a visitor class to collect all annotations and assignments
     class AnnotationChecker(cst.CSTVisitor):
         def __init__(self):
             self.all_annotations_masked = True  # Default assumption: all are masked
-        
+
         def visit_Param(self, node: cst.Param):
             # Check if the parameter annotation is MASK
-            if node.annotation and (not isinstance(node.annotation.annotation, cst.Name) or node.annotation.annotation.value != "MASK"):
+            if not node.annotation or not isinstance(node.annotation.annotation, cst.Name) or node.annotation.annotation.value != "MASK":
                 self.all_annotations_masked = False
-                print(f"Annotation check failed in {file_path}: Parameter not masked with MASK.")
+                print(f"Annotation check failed in {file_path}: Parameter '{node.name.value}' is missing MASK annotation.")
         
         def visit_AnnAssign(self, node: cst.AnnAssign):
-            # Check if the variable annotation is MASK
+            # Check if the variable annotation is MASK (for variables with explicit annotations)
             if not isinstance(node.annotation.annotation, cst.Name) or node.annotation.annotation.value != "MASK":
                 self.all_annotations_masked = False
-                print(f"Annotation check failed in {file_path}: Variable not masked with MASK")
+                if isinstance(node.target, cst.Name):
+                    print(f"Annotation check failed in {file_path}: Variable '{node.target.value}' is missing MASK annotation.")
         
         def visit_FunctionDef(self, node: cst.FunctionDef):
-            # Check if the return type annotation is MASK
-            if node.returns and (not isinstance(node.returns.annotation, cst.Name) or node.returns.annotation.value != "MASK"):
+            # Check if the return type annotation is MASK, even if not explicitly present
+            if node.returns:
+                if not isinstance(node.returns.annotation, cst.Name) or node.returns.annotation.value != "MASK":
+                    self.all_annotations_masked = False
+                    print(f"Annotation check failed in {file_path}: Return type of function '{node.name.value}' not masked with MASK.")
+            else:
+                # Log an error if the function does not have a return type at all
                 self.all_annotations_masked = False
-                print(f"Annotation check failed in {file_path}: Return type not masked with MASK")
+                print(f"Annotation check failed in {file_path}: Function '{node.name.value}' is missing return type annotation with MASK.")
+            
+            # Check each parameter within the function
+            for param in node.params.params:
+                if not param.annotation or not isinstance(param.annotation.annotation, cst.Name) or param.annotation.annotation.value != "MASK":
+                    self.all_annotations_masked = False
+                    print(f"Annotation check failed in {file_path}: Parameter '{param.name.value}' in function '{node.name.value}' is missing MASK annotation.")
+        
+        def visit_Assign(self, node: cst.Assign):
+            # Check unannotated variables, logging if an annotation is missing
+            for target in node.targets:
+                if isinstance(target.target, cst.Name):
+                    # Only log if no annotation is present for standalone assignments
+                    self.all_annotations_masked = False
+                    print(f"Annotation check failed in {file_path}: Variable '{target.target.value}' is missing MASK annotation.")
 
     # Use the visitor to verify annotations
     checker = AnnotationChecker()
@@ -71,7 +91,7 @@ def main():
 
     # Final result
     if all_files_passed:
-        print("All files passed: All annotations were correctly replaced with MASK")
+        print("All files passed: All annotations were correctly replaced with MASK.")
     else:
         print("Some files failed or were skipped due to errors: Not all annotations were replaced with MASK.")
 
