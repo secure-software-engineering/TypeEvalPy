@@ -5,35 +5,35 @@ class TypeAnnotatorTransformer(cst.CSTTransformer):
     def leave_FunctionDef(
         self, original_node: cst.FunctionDef, updated_node: cst.FunctionDef
     ) -> cst.FunctionDef:
-        # Force replace parameters and return type annotations with 'MASK'
+        # Force replace parameters and return type annotations with 'TP_MASK'
         new_params = [
-            param.with_changes(annotation=cst.Annotation(cst.Name("MASK")))
+            param.with_changes(annotation=cst.Annotation(cst.Name("TP_MASK")))
             for param in updated_node.params.params
         ]
         
-        # Annotate *args with MASK if it exists
+        # Annotate *args with TP_TP_MASK if it exists
         new_star_arg = updated_node.params.star_arg
         if isinstance(new_star_arg, cst.Param):
             new_star_arg = new_star_arg.with_changes(
-                annotation=cst.Annotation(cst.Name("MASK"))
+                annotation=cst.Annotation(cst.Name("TP_MASK"))
             )
 
-        # Annotate **kwargs with MASK if it exists
+        # Annotate **kwargs with TP_MASK if it exists
         new_star_kwarg = updated_node.params.star_kwarg
         if isinstance(new_star_kwarg, cst.Param):
             new_star_kwarg = new_star_kwarg.with_changes(
-                annotation=cst.Annotation(cst.Name("MASK"))
+                annotation=cst.Annotation(cst.Name("TP_MASK"))
             )
         
-        # Annotate keyword-only arguments after * with MASK if they exist
+        # Annotate keyword-only arguments after * with TP_MASK if they exist
         new_kwonly_params = [
-            kwonly_param.with_changes(annotation=cst.Annotation(cst.Name("MASK")))
+            kwonly_param.with_changes(annotation=cst.Annotation(cst.Name("TP_MASK")))
             if isinstance(kwonly_param, cst.Param) else kwonly_param
             for kwonly_param in updated_node.params.kwonly_params
         ]
 
-        # Replace return type with MASK
-        new_returns = cst.Annotation(cst.Name("MASK"))
+        # Replace return type with TP_MASK
+        new_returns = cst.Annotation(cst.Name("TP_MASK"))
 
         # Return the updated function definition
         return updated_node.with_changes(
@@ -49,9 +49,9 @@ class TypeAnnotatorTransformer(cst.CSTTransformer):
     def leave_AnnAssign(
         self, original_node: cst.AnnAssign, updated_node: cst.AnnAssign
     ) -> cst.BaseStatement:
-        # Force replace any existing annotation with 'MASK'
+        # Force replace any existing annotation with 'TP_MASK'
         return updated_node.with_changes(
-            annotation=cst.Annotation(cst.Name("MASK"))
+            annotation=cst.Annotation(cst.Name("TP_MASK"))
         )
 
     def leave_Assign(
@@ -66,7 +66,7 @@ class TypeAnnotatorTransformer(cst.CSTTransformer):
                 annotations.append(
                     cst.AnnAssign(
                         target=target,
-                        annotation=cst.Annotation(cst.Name("MASK")),
+                        annotation=cst.Annotation(cst.Name("TP_MASK")),
                         value=updated_node.value
                     )
                 )
@@ -93,7 +93,7 @@ def process_file(file_path):
 
 # Process all .py files in a specified directory
 def main():
-    root_directory = '/media/pysse/analysis/TypeEvalPy/src/target_tools/real-world-llms/src/test-repo'
+    root_directory = '/media/pysse/analysis/TypeEvalPy/results/gpt-4o-mini/micro-benchmark/python_features'
     for subdir, _, files in os.walk(root_directory):
         for file_name in files:
             if file_name.endswith('.py'):
