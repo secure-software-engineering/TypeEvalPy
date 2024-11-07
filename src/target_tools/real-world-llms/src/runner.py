@@ -24,6 +24,8 @@ from vllm.lora.request import LoRARequest
 import gc
 import torch
 from tqdm import tqdm
+import result_translator  # Import the translation module
+from datetime import datetime  # Import datetime for timestamp generation
 
 
 AUTOFIX_WITH_OPENAI = False
@@ -64,79 +66,97 @@ logger.addHandler(file_handler)
 logger.addHandler(console_handler)
 
 
-def get_prompt_mapping(prompt_template, train_json, translated_json, use_system_prompt=False):
-    with open(train_json, 'r') as f:
-        train_data = json.load(f)
-
-    with open(translated_json, 'r') as f:
-        translated_data = json.load(f)
-
-    translated_mapping = {}
-    for entry in translated_data:
-        file_path = entry["file"]
-        if file_path not in translated_mapping:
-            translated_mapping[file_path] = []
-        translated_mapping[file_path].append(entry)
-
-    id_mapping = {}
-    idx = 0
-    for project_name, project_info in train_data.items():
-        src_files = project_info.get("src_files", {})
-
-        for file_path, file_info in src_files.items():
-            source_code = file_info.get("source_code", "")
-
-            # Fetch the typing information for the file from translated_mapping
-            type_info_list = translated_mapping.get(file_path, [])
-
-            if(len(type_info_list) == 0):
-                continue
-            # Generate the prompt by passing source_code and the corresponding type_info_list
-            prompt = utils.get_prompt(
-                prompt_template, source_code, type_info_list, use_system_prompt=use_system_prompt
-            )
-
-            # Store the result in id_mapping
-            id_mapping[idx] = {
-                "project_name": project_name,
-                "file_path": file_path,
-                "json_filepath": file_path.replace(".py", "_gt.json"),
-                "result_filepath": file_path.replace(".py", "_result.json"),
-                "result_dump_filepath": file_path.replace(".py", "_result_dump.txt"),
-                "prompt": prompt
-            }
-            idx += 1
+def get_prompt_mapping(prompt_template, python_files, use_system_prompt=False):
+    id_mapping = {
+        idx: {
+            "file_path": file_path,
+            "json_filepath": str(file_path).replace(".py", "_gt.json"),
+            "result_filepath": str(file_path).replace(".py", f"_result.json"),
+            "result_dump_filepath": str(file_path).replace(".py", f"_result_dump.txt"),
+            "prompt": utils.get_prompt(
+                prompt_template, file_path, use_system_prompt=use_system_prompt
+            ),
+        }
+        for idx, file_path in enumerate(python_files)
+    }
 
     return id_mapping
 
+# def get_prompt_mapping(prompt_template, train_json, translated_json, use_system_prompt=False):
+#     with open(train_json, 'r') as f:
+#         train_data = json.load(f)
+
+#     with open(translated_json, 'r') as f:
+#         translated_data = json.load(f)
+
+#     translated_mapping = {}
+#     for entry in translated_data:
+#         file_path = entry["file"]
+#         if file_path not in translated_mapping:
+#             translated_mapping[file_path] = []
+#         translated_mapping[file_path].append(entry)
+
+#     id_mapping = {}
+#     idx = 0
+#     for project_name, project_info in train_data.items():
+#         src_files = project_info.get("src_files", {})
+
+#         for file_path, file_info in src_files.items():
+#             source_code = file_info.get("source_code", "")
+
+#             # Fetch the typing information for the file from translated_mapping
+#             type_info_list = translated_mapping.get(file_path, [])
+
+#             if(len(type_info_list) == 0):
+#                 continue
+#             # Generate the prompt by passing source_code and the corresponding type_info_list
+#             prompt = utils.get_prompt(
+#                 prompt_template, source_code, type_info_list, use_system_prompt=use_system_prompt
+#             )
+
+#             # Store the result in id_mapping
+#             id_mapping[idx] = {
+#                 "project_name": project_name,
+#                 "file_path": file_path,
+#                 "json_filepath": file_path.replace(".py", "_gt.json"),
+#                 "result_filepath": file_path.replace(".py", "_result.json"),
+#                 "result_dump_filepath": file_path.replace(".py", "_result_dump.txt"),
+#                 "prompt": prompt
+#             }
+#             idx += 1
+
+#     return id_mapping
 
 def create_result_json_file(file_info, output_raw, prompt_template):
-    output = re.sub(r"```json", "", output_raw)
-    output = re.sub(r"```", "", output)
-    output = re.sub(r"<\|assistant\|>\\n", "", output)
+    # Clean up the output by removing unnecessary formatting
+    output_cleaned = re.sub(r"```json|```|<\|assistant\|>\\n", "", output_raw)
 
+    # Save the raw output to the result dump filepath
     with open(file_info["result_dump_filepath"], "w") as f:
         f.write(output_raw)
 
-    # TODO: Improve the way this is done. Some plugin based design.
-    if prompt_template in [
-        "prompt_template_questions_based_2",
-    ]:
-        answers_json = utils.generate_json_from_answers(
-            file_info["json_filepath"], output
-        )
-        translated_json = translator.translate_content(answers_json)
-    else:
-        translated_json = translator.translate_content(output)
+    # Determine the filename, falling back if "filename" key is missing
+    filename = file_info["json_filepath"]
+    if filename is None:
+        # Generate a fallback filename with timestamp
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        fallback_dir = "outputs"  # You may specify any preferred directory
+        os.makedirs(fallback_dir, exist_ok=True)
+        filename = os.path.join(fallback_dir, f"output_{timestamp}.json")
+        logger.warning(f"'filename' key missing in file_info; saving output to {filename}")
 
-    is_valid_json = utils.generate_json_file(
-        file_info["result_filepath"], translated_json
+    # Directly translate the cleaned source code output to JSON annotations
+    translated_json = result_translator.translate_output_to_annotations(
+        output_cleaned, filename
     )
-    if not is_valid_json:
-        logger.info(f"{file_info['file_path']} failed: Not a valid JSON")
-        raise utils.JsonException("json")
 
-    # logger.info(f"Processed file: {file_info['file_path']}")
+    # Validate and save the translated JSON to the final result file
+    result_filepath = file_info.get("result_filepath", filename)
+    if utils.generate_json_file(result_filepath, translated_json):
+        logger.info(f"Processed file: {file_info.get('file_path', filename)} successfully.")
+    else:
+        logger.error(f"{file_info.get('file_path', filename)} failed: Not a valid JSON")
+        raise utils.JsonException("json")
 
 
 def list_python_files(folder_path):
@@ -224,7 +244,9 @@ def model_evaluation_openai(
     use_system_prompt=False,
 ):
 
-    id_mapping = get_prompt_mapping(prompt_template, '/home/pysse/TypeEvalPy/src/target_tools/real-world-llms/src/real-world-dataset/train.json','/home/pysse/TypeEvalPy/src/target_tools/real-world-llms/src/real-world-dataset/train_translated.json' , use_system_prompt)
+    id_mapping = get_prompt_mapping(prompt_template, python_files, use_system_prompt)
+
+    # id_mapping = get_prompt_mapping(prompt_template, '/home/pysse/TypeEvalPy/src/target_tools/real-world-llms/src/real-world-dataset/train.json','/home/pysse/TypeEvalPy/src/target_tools/real-world-llms/src/real-world-dataset/train_translated.json' , use_system_prompt)
 
     prompts = [x["prompt"] for x in id_mapping.values()]
 
@@ -247,6 +269,7 @@ def model_evaluation_openai(
     for id, r_output in enumerate(request_outputs):
         file_info = id_mapping[id]
 
+        # Store raw output from LLM
         output_raw = r_output
         create_result_json_file(file_info, output_raw, prompt_template)
 
@@ -363,6 +386,8 @@ def main_runner(args, runner_config, models_to_run, openai_models_models_to_run)
         utils.copy_folder(results_src, results_dst)
 
         python_files = list_python_files(results_dst)
+
+        python_files = python_files[:2]
 
         model_start_time = time.time()
         model_evaluation_openai(
