@@ -25,6 +25,13 @@ class TypeAnnotatorTransformer(cst.CSTTransformer):
                 annotation=cst.Annotation(cst.Name("MASK"))
             )
         
+        # Annotate keyword-only arguments after * with MASK if they exist
+        new_kwonly_params = [
+            kwonly_param.with_changes(annotation=cst.Annotation(cst.Name("MASK")))
+            if isinstance(kwonly_param, cst.Param) else kwonly_param
+            for kwonly_param in updated_node.params.kwonly_params
+        ]
+
         # Replace return type with MASK
         new_returns = cst.Annotation(cst.Name("MASK"))
 
@@ -33,7 +40,8 @@ class TypeAnnotatorTransformer(cst.CSTTransformer):
             params=updated_node.params.with_changes(
                 params=new_params,
                 star_arg=new_star_arg,
-                star_kwarg=new_star_kwarg
+                star_kwarg=new_star_kwarg,
+                kwonly_params=new_kwonly_params
             ),
             returns=new_returns,
         )
@@ -85,7 +93,7 @@ def process_file(file_path):
 
 # Process all .py files in a specified directory
 def main():
-    root_directory = '/media/pysse/analysis/TypeEvalPy/micro-benchmark/python_features'
+    root_directory = '/media/pysse/analysis/TypeEvalPy/src/target_tools/real-world-llms/src/test-repo'
     for subdir, _, files in os.walk(root_directory):
         for file_name in files:
             if file_name.endswith('.py'):
