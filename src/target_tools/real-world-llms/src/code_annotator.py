@@ -11,7 +11,7 @@ class TypeAnnotatorTransformer(cst.CSTTransformer):
             for param in updated_node.params.params
         ]
         
-        # Annotate *args with TP_TP_MASK if it exists
+        # Annotate *args with TP_MASK if it exists
         new_star_arg = updated_node.params.star_arg
         if isinstance(new_star_arg, cst.Param):
             new_star_arg = new_star_arg.with_changes(
@@ -54,25 +54,40 @@ class TypeAnnotatorTransformer(cst.CSTTransformer):
             annotation=cst.Annotation(cst.Name("TP_MASK"))
         )
 
+    def _extract_names(self, target):
+        """
+        Recursively extract names from tuples or lists for individual annotation.
+        """
+        names = []
+        if isinstance(target, (cst.Tuple, cst.List)):
+            for element in target.elements:
+                names.extend(self._extract_names(element.value))
+        elif isinstance(target, cst.Name):
+            names.append(target)
+        return names
+
     def leave_Assign(
         self, original_node: cst.Assign, updated_node: cst.Assign
     ) -> cst.BaseStatement:
         annotations = []
 
-        # Handle standalone variable assignments, attributes, dictionary keys, etc.
+        # Handle all types of unpacking and assignments by extracting individual names
         for target in updated_node.targets:
-            target = target.target
-            if isinstance(target, (cst.Name, cst.Attribute, cst.Subscript)):
+            extracted_names = self._extract_names(target.target)
+            for name in extracted_names:
                 annotations.append(
                     cst.AnnAssign(
-                        target=target,
+                        target=name,
                         annotation=cst.Annotation(cst.Name("TP_MASK")),
-                        value=updated_node.value
+                        value=None
                     )
                 )
 
-        # Place the updated assignments before the original assignment
-        return cst.FlattenSentinel(annotations) if annotations else updated_node
+        # Add the original assignment after the annotations
+        annotations.append(updated_node)
+
+        # Flatten the list of annotated statements
+        return cst.FlattenSentinel(annotations)
 
 def process_file(file_path):
     with open(file_path, "r") as source_code:
@@ -93,7 +108,7 @@ def process_file(file_path):
 
 # Process all .py files in a specified directory
 def main():
-    root_directory = '/media/pysse/analysis/TypeEvalPy/results/gpt-4o-mini/micro-benchmark/python_features'
+    root_directory = '/media/pysse/analysis/TypeEvalPy/micro-benchmark/python_features'
     for subdir, _, files in os.walk(root_directory):
         for file_name in files:
             if file_name.endswith('.py'):

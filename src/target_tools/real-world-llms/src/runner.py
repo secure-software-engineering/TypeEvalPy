@@ -295,8 +295,6 @@ def main_runner(args, runner_config, models_to_run, openai_models_models_to_run)
         utils.copy_folder(results_src, results_dst)
 
         python_files = list_python_files(results_dst)
-
-        python_files = python_files[:2]
         
         if model["use_vllms_for_evaluation"]:
             engine = vllm_helpers.initialize_engine(
@@ -386,8 +384,6 @@ def main_runner(args, runner_config, models_to_run, openai_models_models_to_run)
         utils.copy_folder(results_src, results_dst)
 
         python_files = list_python_files(results_dst)
-
-        python_files = python_files[:2]
 
         model_start_time = time.time()
         model_evaluation_openai(
