@@ -318,13 +318,14 @@ def get_prompt(prompt_id, file_path, use_system_prompt=True):
         [line if not line.startswith("#") else "#" for line in code.split("\n")]
     )
 
-   # Construct the prompt with clear instructions for line preservation
+    # Construct the prompt with clear instructions for line and offset preservation
     prompt_data = {
         "instructions": (
             "Please replace all instances of 'TP_MASK' in the provided code with the appropriate type annotations. "
-            "Return only the annotated code itself—do not include any additional explanations, comments, or headers. "
-            "Maintain the exact original formatting, line numbers, indentation, and spacing as in the input. "
-            "The output should be only the annotated code block."
+            "Return only the annotated code without adding any additional lines, such as filenames, headers, or comments. "
+            "Do not add, remove, or modify any lines, comments, or spacing from the original code. "
+            "Maintain the exact original line numbers, indentation, and column offsets. "
+            "The output should contain only the annotated code block, with all elements in the same positions as in the input."
         ),
         "code": code,
     }
