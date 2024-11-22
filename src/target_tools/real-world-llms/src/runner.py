@@ -82,6 +82,7 @@ def get_prompt_mapping(prompt_template, python_files, use_system_prompt=False):
 
     return id_mapping
 
+
 # def get_prompt_mapping(prompt_template, train_json, translated_json, use_system_prompt=False):
 #     with open(train_json, 'r') as f:
 #         train_data = json.load(f)
@@ -127,9 +128,20 @@ def get_prompt_mapping(prompt_template, python_files, use_system_prompt=False):
 
 #     return id_mapping
 
+
 def create_result_json_file(file_info, output_raw, prompt_template):
+    # Ensure output_raw is a string to prevent TypeError
+    if not isinstance(output_raw, str):
+        output_raw = str(output_raw) if output_raw is not None else ""
+
     # Clean up the output by removing unnecessary formatting
-    output_cleaned = re.sub(r"```json|```|<\|assistant\|>\\n", "", output_raw)
+    code =  re.search(r'```(?:.*?)\n(.*?)```', output_raw, re.DOTALL)
+
+    if(code):
+        output_cleaned = code.group(1).strip()   
+    else:
+        output_cleaned = re.sub(r"```json|```|<\|assistant\|>\\n", "", output_raw)
+
 
     # Save the raw output to the result dump filepath
     with open(file_info["result_dump_filepath"], "w") as f:
@@ -227,13 +239,9 @@ def model_evaluation_transformers(
         for id, r_output in enumerate(request_outputs):
             file_info = id_mapping[id + i]
 
+            # Store raw output from LLM
             output_raw = r_output[0]["generated_text"][-1]["content"]
-
-            # output_raw = r_output[0]["generated_text"].split(pipe.tokenizer.eos_token)[-1]
-            # output_raw = r_output[0]["generated_text"].split("[/INST]")[-1]
-
             create_result_json_file(file_info, output_raw, prompt_template)
-
 
 def model_evaluation_openai(
     model_name,
@@ -295,7 +303,7 @@ def main_runner(args, runner_config, models_to_run, openai_models_models_to_run)
         utils.copy_folder(results_src, results_dst)
 
         python_files = list_python_files(results_dst)
-        
+                
         if model["use_vllms_for_evaluation"]:
             engine = vllm_helpers.initialize_engine(
                 model["model_path"],
@@ -384,6 +392,8 @@ def main_runner(args, runner_config, models_to_run, openai_models_models_to_run)
         utils.copy_folder(results_src, results_dst)
 
         python_files = list_python_files(results_dst)
+
+        python_files = python_files[:2]
 
         model_start_time = time.time()
         model_evaluation_openai(

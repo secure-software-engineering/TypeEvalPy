@@ -10,7 +10,7 @@ models:
   use_system_prompt: true
   use_vllms_for_evaluation: false
   max_model_len: 8192
-  batch_size: 12
+  batch_size: 3
   comment: "Does not support VLLMs with quantization bitsandbytes"
 
 - name: "qwen2-it-72b"
@@ -30,7 +30,7 @@ models:
   use_system_prompt: false
   use_vllms_for_evaluation: false
   max_model_len: 4096
-  batch_size: 12
+  batch_size: 3
   torch_dtype: "bfloat16"
 
 - name: "gemma2-it-27b"
@@ -40,7 +40,7 @@ models:
   use_system_prompt: false
   use_vllms_for_evaluation: false
   max_model_len: 4096
-  batch_size: 12
+  batch_size: 3
   torch_dtype: "bfloat16"
 
 - name: "gemma2-it-2b"
@@ -50,7 +50,7 @@ models:
   use_system_prompt: false
   use_vllms_for_evaluation: false
   max_model_len: 4096
-  batch_size: 12
+  batch_size: 3
   torch_dtype: "bfloat16"
 
 - name: "codellama-it-7b"
@@ -60,7 +60,7 @@ models:
   use_system_prompt: true
   use_vllms_for_evaluation: false
   max_model_len: 8192
-  batch_size: 12
+  batch_size: 3
 
 - name: "codellama-it-13b"
   model_path: "meta-llama/CodeLlama-13b-Instruct-hf"
@@ -69,7 +69,7 @@ models:
   use_system_prompt: true
   use_vllms_for_evaluation: false
   max_model_len: 8192
-  batch_size: 12
+  batch_size: 3
 
 - name: "codellama-it-34b"
   model_path: "meta-llama/CodeLlama-34b-Instruct-hf"
@@ -78,7 +78,7 @@ models:
   use_system_prompt: true
   use_vllms_for_evaluation: false
   max_model_len: 8192
-  batch_size: 12
+  batch_size: 3
 
 - name: "llama3.1-it-8b"
   model_path: "meta-llama/Meta-Llama-3.1-8B-Instruct"
@@ -87,7 +87,7 @@ models:
   use_system_prompt: true
   use_vllms_for_evaluation: false
   max_model_len: 8192
-  batch_size: 12
+  batch_size: 3
 
 - name: "llama3.1-it-70b"
   model_path: "meta-llama/Meta-Llama-3.1-70B-Instruct"
@@ -105,7 +105,7 @@ models:
   use_system_prompt: true
   use_vllms_for_evaluation: false
   max_model_len: 2048
-  batch_size: 12
+  batch_size: 3
 
 - name: "phi3-small-it-7.3b"
   model_path: "microsoft/Phi-3-small-128k-instruct"
@@ -114,7 +114,7 @@ models:
   use_system_prompt: true
   use_vllms_for_evaluation: false
   max_model_len: 8192
-  batch_size: 12
+  batch_size: 3
 
 - name: "phi3-medium-it-14b"
   model_path: "microsoft/Phi-3-medium-128k-instruct"
@@ -123,7 +123,7 @@ models:
   use_system_prompt: true
   use_vllms_for_evaluation: false
   max_model_len: 8192
-  batch_size: 12
+  batch_size: 3
 
 - name: "phi3-mini-it-3.8b"
   model_path: "microsoft/Phi-3-mini-128k-instruct"
@@ -132,7 +132,7 @@ models:
   use_system_prompt: true
   use_vllms_for_evaluation: false
   max_model_len: 8192
-  batch_size: 12
+  batch_size: 3
 
 - name: "phi3.5-mini-it-3.8b"
   model_path: "microsoft/Phi-3.5-mini-instruct"
@@ -141,7 +141,7 @@ models:
   use_system_prompt: true
   use_vllms_for_evaluation: false
   max_model_len: 8192
-  batch_size: 12
+  batch_size: 3
 
 - name: "phi3.5-moe-it-41.9b"
   model_path: "microsoft/Phi-3.5-MoE-instruct"
@@ -150,7 +150,7 @@ models:
   use_system_prompt: true
   use_vllms_for_evaluation: false
   max_model_len: 8192
-  batch_size: 12
+  batch_size: 3
 
 - name: "mixtral-v0.1-it-8x22b"
   model_path: "mistralai/Mixtral-8x22B-Instruct-v0.1"
@@ -159,7 +159,7 @@ models:
   use_system_prompt: true
   use_vllms_for_evaluation: false
   max_model_len: 8192
-  batch_size: 12
+  batch_size: 3
   comment: "Does not work with 1 GPU"
 
 - name: "mixtral-v0.1-it-8x7b"
@@ -169,7 +169,7 @@ models:
   use_system_prompt: true
   use_vllms_for_evaluation: false
   max_model_len: 8192
-  batch_size: 12
+  batch_size: 3
 
 - name: "mistral-v0.3-it-7b"
   model_path: "mistralai/Mistral-7B-Instruct-v0.3"
@@ -178,7 +178,7 @@ models:
   use_system_prompt: true
   use_vllms_for_evaluation: false
   max_model_len: 8192
-  batch_size: 12
+  batch_size: 3
 
 - name: "mistral-nemo-it-2407-12.2b"
   model_path: "mistralai/Mistral-Nemo-Instruct-2407"
@@ -187,7 +187,7 @@ models:
   use_system_prompt: true
   use_vllms_for_evaluation: false
   max_model_len: 8192
-  batch_size: 12
+  batch_size: 3
 
 - name: "mistral-large-it-2407-123b"
   model_path: "mistralai/Mistral-Large-Instruct-2407"
@@ -196,7 +196,7 @@ models:
   use_system_prompt: true
   use_vllms_for_evaluation: false
   max_model_len: 8192
-  batch_size: 12
+  batch_size: 3
 
 - name: "codestral-v0.1-22b"
   model_path: "mistralai/Codestral-22B-v0.1"
@@ -205,7 +205,43 @@ models:
   use_system_prompt: true
   use_vllms_for_evaluation: false
   max_model_len: 8192
-  batch_size: 12
+  batch_size: 3
+
+- name: "qwen2.5-Coder-7B-Instruct"
+  model_path: "Qwen/Qwen2.5-Coder-7B-Instruct"
+  quantization: "bitsandbytes"
+  lora_repo: null
+  use_system_prompt: true
+  use_vllms_for_evaluation: false
+  max_model_len: 8192
+  batch_size: 3
+
+- name: "qwen2.5-Coder-14B-Instruct"
+  model_path: "Qwen/Qwen2.5-Coder-14B-Instruct"
+  quantization: "bitsandbytes"
+  lora_repo: null
+  use_system_prompt: true
+  use_vllms_for_evaluation: false
+  max_model_len: 8192
+  batch_size: 3
+
+- name: "qwen2.5-Coder-32B-Instruct"
+  model_path: "Qwen/Qwen2.5-Coder-32B-Instruct"
+  quantization: "bitsandbytes"
+  lora_repo: null
+  use_system_prompt: true
+  use_vllms_for_evaluation: false
+  max_model_len: 8192
+  batch_size: 3
+
+- name: "llama-3.1-Nemotron-70B-Instruct-HF"
+  model_path: "nvidia/Llama-3.1-Nemotron-70B-Instruct-HF"
+  quantization: "bitsandbytes"
+  lora_repo: null
+  use_system_prompt: true
+  use_vllms_for_evaluation: false
+  max_model_len: 8192
+  batch_size: 3
 
 # MODELS NOT SUPPORTED CURRENTLY! 
 
