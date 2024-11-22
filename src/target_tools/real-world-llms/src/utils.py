@@ -314,38 +314,24 @@ def get_prompt(prompt_id, file_path, use_system_prompt=True):
             code += f"```{relative_path}\n{masked_code_content}```\n\n"
 
     # Remove comments from code but keep line number structure
-    code = "\n".join(
-        [line if not line.startswith("#") else "#" for line in code.split("\n")]
-    )
+    # code = "\n".join(
+    #     [line if not line.startswith("#") else "#" for line in code.split("\n")]
+    # )
 
-    # Construct the prompt with clear instructions for line and offset preservation
     prompt_data = {
+        "code": code,
         "instructions": (
-                "Replace each instance of 'TP_MASK' placeholder in the code with the precise Python type annotation. Be thorough in analyzing variables, "
-                "function calls, and classes, ensuring that each is annotated appropriately."
-                "Respond with only the annotated code."
-            ),
-            "code": code,
-            "example": (
-                "Input:\n"
-                "```python\n"
-                "a: TP_MASK = 'Hi there!'\n"
-                "```\n"
-                "Output:\n"
-                "```python\n"
-                "a: str = 'Hi there!'\n"
-                "```\n\n"
-                "Input:\n"
-                "```python\n"
-                "from typing import List\n"
-                "items: TP_MASK = [1, 2, 3]\n"
-                "```\n"
-                "Output:\n"
-                "```python\n"
-                "from typing import List\n"
-                "items: List[int] = [1, 2, 3]\n"
-                "```"
-            )
+            "You are given a Python code snippet where all type annotations are currently represented by the placeholder '[MASK]'. "
+            "Your task is to replace '[MASK]' with the most appropriate Python type annotations, such as 'str', 'int', 'callable', etc., "
+            "for all function return types, variable annotations, and function parameters. "
+            "\n\nStrict Requirements:\n"
+            "1. Maintain the exact same structure, formatting, and indentation as in the input code.\n"
+            "2. Do not alter the line numbers or remove existing blank lines.\n"
+            "3. Do not add any additional blank lines or comments.\n"
+            "4. Do not add any explanations or extra information in the output.\n"
+            "5. Only return the annotated version of the code.\n"
+            "6. Ensure proper and consistent type annotations wherever applicable."
+        )
     }
     
     if use_system_prompt:
