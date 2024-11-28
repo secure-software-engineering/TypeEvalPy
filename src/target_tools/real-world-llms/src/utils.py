@@ -183,46 +183,6 @@ def generate_questions_from_json(json_file):
     questions = [f"{x}. {y}" for x, y in zip(range(1, len(questions) + 1), questions)]
     return questions
 
-# def generate_questions_from_metadata(metadata):
-#     """
-#     Generates questions based on the metadata passed (previously read from JSON).
-#     """
-#     questions = []
-
-#     for entry in metadata:
-#         file = entry.get("file")
-#         line_number = entry.get("line_number", "unknown")
-#         col_offset = entry.get("col_offset", "unknown")
-
-#         # Ensure we have either 'function', 'parameter', or 'variable'
-#         if "function" in entry and "parameter" not in entry and "variable" not in entry:
-#             question = (
-#                 f"What is the return type of the function '{entry['function']}' at line {line_number}, column {col_offset}?"
-#             )
-#         elif "parameter" in entry:
-#             question = (
-#                 f"What is the type of the parameter '{entry['parameter']}' at line {line_number}, column {col_offset}, within the function '{entry['function']}'?"
-#             )
-#         elif "variable" in entry and "function" not in entry:
-#             question = (
-#                 f"What is the type of the variable '{entry['variable']}' at line {line_number}, column {col_offset}?"
-#             )
-#         elif "variable" in entry and "function" in entry:
-#             question = (
-#                 f"What is the type of the variable '{entry['variable']}' at line {line_number}, column {col_offset}, within the function '{entry['function']}'?"
-#             )
-#         else:
-#             print(f"ERROR! Type could not be converted to types for entry: {entry}")
-#             continue
-
-#         questions.append(question)
-
-#     # Number the questions
-#     questions = [f"{x}. {y}" for x, y in zip(range(1, len(questions) + 1), questions)]
-
-#     return questions
-
-
 def load_models_config(config_path):
     models_config = {"models": {}, "custom_models": {}, "openai_models": {}}
     with open(config_path, "r") as file:
@@ -299,82 +259,119 @@ def get_token_count(text, prompt_id):
         "gpt-4-turbo": number_of_tokens_4,
     }
 
-def get_prompt(prompt_id, file_path, use_system_prompt=True):
-    json_filepath = str(file_path).replace(".py", "_gt.json")
-    test_dir = os.path.dirname(json_filepath)
-    code_files = gather_code_files_from_test_folder(test_dir)
+def generate_questions_from_metadata(metadata):
+    """
+    Generates questions based on the metadata passed (previously read from JSON).
+    """
+    questions = []
 
-    # Concatenate code contents with masked file input
-    code = ""
-    for code_file in code_files:
-        with open(code_file, "r") as file:
-            masked_code_content = file.read()  # Assuming files are already masked
-            relative_path = os.path.relpath(code_file, test_dir)
-            # Add filename to the code content for context
-            code += f"```{relative_path}\n{masked_code_content}```\n\n"
+    for entry in metadata:
+        file = entry.get("file")
+        line_number = entry.get("line_number", "unknown")
+        col_offset = entry.get("col_offset", "unknown")
 
-    # Remove comments from code but keep line number structure
-    # code = "\n".join(
-    #     [line if not line.startswith("#") else "#" for line in code.split("\n")]
-    # )
+        # Ensure we have either 'function', 'parameter', or 'variable'
+        if "function" in entry and "parameter" not in entry and "variable" not in entry:
+            question = f"What is the return type of the function '{entry['function']}' at line {line_number}, column {col_offset}?"
+        elif "parameter" in entry:
+            question = f"What is the type of the parameter '{entry['parameter']}' at line {line_number}, column {col_offset}, within the function '{entry['function']}'?"
+        elif "variable" in entry and "function" not in entry:
+            question = f"What is the type of the variable '{entry['variable']}' at line {line_number}, column {col_offset}?"
+        elif "variable" in entry and "function" in entry:
+            question = f"What is the type of the variable '{entry['variable']}' at line {line_number}, column {col_offset}, within the function '{entry['function']}'?"
+        else:
+            print(f"ERROR! Type could not be converted to types for entry: {entry}")
+            continue
 
-    prompt_data = {
-        "code": code,
-        "instructions": (
-            "You are given a Python code snippet where all type annotations are currently represented by the placeholder '[MASK]'. "
-            "Your task is to replace '[MASK]' with the most appropriate Python type annotations, such as 'str', 'int', 'callable', etc., "
-            "for all function return types, variable annotations, and function parameters. "
-            "\n\nStrict Requirements:\n"
-            "1. Maintain the exact same structure, formatting, and indentation as in the input code.\n"
-            "2. Do not alter the line numbers or remove existing blank lines.\n"
-            "3. Do not add any additional blank lines or comments.\n"
-            "4. Do not add any explanations or extra information in the output.\n"
-            "5. Only return the annotated version of the code.\n"
-            "6. Ensure proper and consistent type annotations wherever applicable."
-        )
-    }
-    
-    if use_system_prompt:
-        prompt = copy.deepcopy(eval(f"prompts.{prompt_id}"))
-        prompt[1]["content"] = "{instructions}\n\n{code}".format(**prompt_data)
+        questions.append(question)
+
+    # Number the questions
+    questions = [f"{x}. {y}" for x, y in zip(range(1, len(questions) + 1), questions)]
+
+    return questions
+
+
+def get_prompt(prompt_id, file_path, metadata=None, answers_placeholders=True, use_system_prompt=True):
+    """
+    Generates a prompt based on the given prompt_id, metadata, and file path.
+
+    Args:
+        prompt_id (str): Identifier for the prompt template.
+        file_path (str): Path to the file associated with the prompt.
+        metadata (list): Metadata used to generate questions (if applicable).
+        answers_placeholders (bool): Whether to include placeholder answers.
+        use_system_prompt (bool): Whether to include the system prompt.
+
+    Returns:
+        dict: The generated prompt.
+    """
+    if prompt_id in ["prompt_template_question_based_1"]:
+        # Use metadata to generate questions
+        if metadata is None:
+            raise ValueError("Metadata is required for this prompt template.")
+
+        questions_from_metadata = generate_questions_from_metadata(metadata)
+        prompt_data = {
+            "code": "",  # No code needed for question-based prompts
+            "questions": "\n".join(questions_from_metadata),
+            "answers": (
+                "\n".join([f"{x}." for x in range(1, len(questions_from_metadata) + 1)])
+                if answers_placeholders
+                else ""
+            ),
+        }
+
+        if use_system_prompt:
+            prompt = copy.deepcopy(eval(f"prompts.{prompt_id}"))
+            prompt[1]["content"] = prompt[1]["content"].format(**prompt_data)
+        else:
+            prompt = copy.deepcopy(eval(f"prompts.{prompt_id}_no_sys"))
+            prompt[0]["content"] = prompt[0]["content"].format(**prompt_data)
+
+    elif prompt_id in ["prompt_template_masked_code_based_1"]:
+        json_filepath = str(file_path).replace(".py", "_gt.json")
+        test_dir = os.path.dirname(json_filepath)
+        code_files = gather_code_files_from_test_folder(test_dir)
+
+        # Concatenate code contents with masked file input
+        code = ""
+        for code_file in code_files:
+            try:
+                with open(code_file, "r") as file:
+                    masked_code_content = file.read()  # Assuming files are already masked
+                    relative_path = os.path.relpath(code_file, test_dir)
+                    # Add filename to the code content for context
+                    code += f"```{relative_path}\n{masked_code_content}```\n\n"
+            except FileNotFoundError:
+                logger.warning(f"Code file {code_file} not found. Skipping.")
+
+        prompt_data = {
+                "code": code,
+                "instructions": (
+                    "You are given a Python code snippet where all type annotations are currently represented by the placeholder '[MASK]'. "
+                    "Your task is to replace '[MASK]' with the most appropriate Python type annotations, such as 'str', 'int', 'callable', etc., "
+                    "for all function return types, variable annotations, and function parameters. "
+                    "\n\nStrict Requirements:\n"
+                    "1. Maintain the exact same structure, formatting, and indentation as in the input code.\n"
+                    "2. Do not alter the line numbers or remove existing blank lines.\n"
+                    "3. Do not add any additional blank lines or comments.\n"
+                    "4. Do not add any explanations or extra information in the output.\n"
+                    "5. Only return the annotated version of the code.\n"
+                    "6. Ensure proper and consistent type annotations wherever applicable."
+                )
+            }
+
+        if use_system_prompt:
+            prompt = copy.deepcopy(eval(f"prompts.{prompt_id}"))
+            prompt[1]["content"] = "{instructions}\n\n{code}".format(**prompt_data)
+        else:
+            prompt = copy.deepcopy(eval(f"prompts.{prompt_id}_no_sys"))
+            prompt[0]["content"] = "{instructions}\n\n{code}".format(**prompt_data)
+
     else:
-        prompt = copy.deepcopy(eval(f"prompts.{prompt_id}_no_sys"))
-        prompt[0]["content"] = "{instructions}\n\n{code}".format(**prompt_data)
-
-    get_token_count(f"{prompt[0]['content']}{prompt[1]['content']}", prompt_id)
+        raise ValueError(f"Unknown prompt_id: {prompt_id}")
 
     return prompt
-
-# def get_prompt(prompt_id, source_code, metadata, answers_placeholders=True, use_system_prompt=True):
-    
-#     if prompt_id in [
-#         "prompt_template_questions_based_2",
-#     ]:
-#         # Instead of reading from a JSON file, use metadata directly
-#         questions_from_metadata = generate_questions_from_metadata(metadata)
-
-#         prompt_data = {
-#             "code": source_code,
-#             "questions": "\n".join(questions_from_metadata),
-#             "answers": (
-#                 "\n".join([f"{x}." for x in range(1, len(questions_from_metadata) + 1)])
-#                 if answers_placeholders
-#                 else ""
-#             ),
-#         }
-
-#         if use_system_prompt:
-#             prompt = copy.deepcopy(eval(f"prompts.{prompt_id}"))
-#             prompt[1]["content"] = prompt[1]["content"].format(**prompt_data)
-#         else:
-#             prompt = copy.deepcopy(eval(f"prompts.{prompt_id}_no_sys"))
-#             prompt[0]["content"] = prompt[0]["content"].format(**prompt_data)
-
-#     else:
-#         logger.error("ERROR! Prompt not found!")
-#         sys.exit(-1)
-
-#     return prompt
 
 
 def dump_ft_jsonl(id_mapping, output_file):
