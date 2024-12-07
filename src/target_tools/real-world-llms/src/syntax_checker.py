@@ -37,5 +37,5 @@ def find_files_with_syntax_errors(root_directory):
         print("No syntax errors found in any files.")
 
 if __name__ == "__main__":
-    root_directory = "/home/ssegpu/rashida/TypeEvalPy/micro-benchmark/python_features"
+    root_directory = "/home/ssegpu/rashida/TypeEvalPy/src/target_tools/real-world-llms/src/runner.py"
     find_files_with_syntax_errors(root_directory)

@@ -92,7 +92,7 @@ def generate_json_file(filename, type_info):
     return is_valid_json
 
 
-def generate_json_from_answers(gt_json_file, answers):
+def generate_json_from_answers(repo, gt_json_file, answers):
     try:
         with open(gt_json_file, "r") as file:
             gt_data = json.load(file)
@@ -104,9 +104,12 @@ def generate_json_from_answers(gt_json_file, answers):
         # if len(gt_data) != len(parsed_answers):
         #     return []
 
+         # Filter gt_data to only include instances where the file name matches the repo
+        repo_gt_data = [entry for entry in gt_data if entry.get("file") == repo]
+
         answers_json_data = []
-        for fact in range(len(gt_data)):
-            _result = gt_data[fact]
+        for fact in range(len(repo_gt_data)):
+            _result = repo_gt_data[fact]
             _result.pop("type")
             if fact in parsed_answers:
                 _result["type"] = [x.strip() for x in parsed_answers[fact].split(",")]
@@ -291,7 +294,7 @@ def generate_questions_from_metadata(metadata):
     return questions
 
 
-def get_prompt(prompt_id, file_path, metadata=None, answers_placeholders=True, use_system_prompt=True):
+def get_prompt(prompt_id, source_code , metadata=None, answers_placeholders=True, use_system_prompt=True):
     """
     Generates a prompt based on the given prompt_id, metadata, and file path.
 
@@ -305,14 +308,14 @@ def get_prompt(prompt_id, file_path, metadata=None, answers_placeholders=True, u
     Returns:
         dict: The generated prompt.
     """
-    if prompt_id in ["prompt_template_question_based_1"]:
+    if prompt_id in ["prompt_template_questions_based_2"]:
         # Use metadata to generate questions
         if metadata is None:
             raise ValueError("Metadata is required for this prompt template.")
 
         questions_from_metadata = generate_questions_from_metadata(metadata)
         prompt_data = {
-            "code": "",  # No code needed for question-based prompts
+            "code": source_code, 
             "questions": "\n".join(questions_from_metadata),
             "answers": (
                 "\n".join([f"{x}." for x in range(1, len(questions_from_metadata) + 1)])
@@ -329,7 +332,7 @@ def get_prompt(prompt_id, file_path, metadata=None, answers_placeholders=True, u
             prompt[0]["content"] = prompt[0]["content"].format(**prompt_data)
 
     elif prompt_id in ["prompt_template_masked_code_based_1"]:
-        json_filepath = str(file_path).replace(".py", "_gt.json")
+        json_filepath = str(source_code ).replace(".py", "_gt.json")
         test_dir = os.path.dirname(json_filepath)
         code_files = gather_code_files_from_test_folder(test_dir)
 

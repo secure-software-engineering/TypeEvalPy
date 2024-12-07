@@ -4,18 +4,12 @@ import os
 from typing import List, Dict, Any
 
 def parse_annotation(annotation_node: ast.AST) -> str:
-    """Convert AST annotation node into a readable type string."""
-    if isinstance(annotation_node, ast.Name):
-        return annotation_node.id
-    elif isinstance(annotation_node, ast.Subscript):
-        value = parse_annotation(annotation_node.value)
-        slice_value = parse_annotation(annotation_node.slice)
-        return f"{value}[{slice_value}]"
-    elif isinstance(annotation_node, ast.Tuple):
-        return f"tuple[{', '.join(parse_annotation(elt) for elt in annotation_node.elts)}]"
-    elif isinstance(annotation_node, ast.Constant):
-        return repr(annotation_node.value)
-    return ast.dump(annotation_node)  # Fallback to raw AST dump if unrecognized
+    """
+    Convert AST annotation node into the exact type string as present in the code.
+    """
+    if annotation_node is None:
+        return "None"
+    return ast.unparse(annotation_node)  # Use ast.unparse to get the exact annotation as a string.
 
 def get_type_annotations_from_content(source: str, filename: str) -> List[Dict[str, Any]]:
     """Parse type annotations from source code content with syntax error handling."""
@@ -30,7 +24,7 @@ def get_type_annotations_from_content(source: str, filename: str) -> List[Dict[s
 
     class TypeAnnotationVisitor(ast.NodeVisitor):
         def __init__(self, filename):
-            self.filename = os.path.basename(filename).replace("_gt.json", ".py")  # Standardize filename
+            self.filename = os.path.basename(filename).replace("_gt.json", ".py")
             self.current_class = None  # Track the current class name
             self.current_function = None  # Track the current function name
             self.processed_variables = set()  # Track processed variables to avoid duplicates
@@ -38,7 +32,7 @@ def get_type_annotations_from_content(source: str, filename: str) -> List[Dict[s
         def visit_ClassDef(self, node: ast.ClassDef):
             """Visit a class definition and track its name."""
             self.current_class = node.name
-            self.generic_visit(node)  # Visit all child nodes within the class
+            self.generic_visit(node)
             self.current_class = None  # Reset after leaving the class
 
         def visit_FunctionDef(self, node: ast.FunctionDef):
@@ -47,9 +41,9 @@ def get_type_annotations_from_content(source: str, filename: str) -> List[Dict[s
 
             try:
                 line = source_lines[node.lineno - 1]
-                name_col_offset = line.index(node.name) + 1  # 1-based col offset for function name
+                name_col_offset = line.index(node.name) + 1
 
-                # Process function parameters, including *args and **kwargs
+                # Process function parameters
                 for arg in node.args.args + node.args.kwonlyargs:
                     if arg.annotation:
                         param_id = (node.lineno, arg.arg)
@@ -105,22 +99,20 @@ def get_type_annotations_from_content(source: str, filename: str) -> List[Dict[s
                         })
                         self.processed_variables.add(func_id)
 
-                # Visit each statement in the function body
                 self.generic_visit(node)
 
-            except (SyntaxError, AttributeError, IndexError) as e:
+            except Exception as e:
                 print(f"Error in function '{function_name}' in {filename}: {e}")
 
             self.current_function = None
 
         def visit_AnnAssign(self, node: ast.AnnAssign):
             try:
-                # Determine if it's a class or function variable
                 if isinstance(node.target, ast.Name):
                     variable_name = node.target.id
                     function_name = self.current_function if self.current_function else None
                     var_id = (node.lineno, variable_name)
-                    
+
                     if var_id not in self.processed_variables:
                         if self.current_class and not function_name:
                             variable_name = f"{self.current_class}.{variable_name}"
@@ -139,62 +131,9 @@ def get_type_annotations_from_content(source: str, filename: str) -> List[Dict[s
                         annotations.append(annotation_entry)
                         self.processed_variables.add(var_id)
 
-                elif isinstance(node.target, ast.Attribute) and isinstance(node.target.value, ast.Name) and node.target.value.id == "self":
-                    variable_name = f"{self.current_class}.{node.target.attr}" if self.current_class else node.target.attr
-                    var_id = (node.lineno, variable_name)
-                    
-                    if var_id not in self.processed_variables:
-                        self.processed_variables.add(var_id)
-                        annotations.append({
-                            "file": self.filename,
-                            "line_number": node.lineno,
-                            "col_offset": node.col_offset + 1,
-                            "variable": variable_name,
-                            "function": f"{self.current_class}.{self.current_function}",
-                            "type": [parse_annotation(node.annotation)]
-                        })
-
-            except (SyntaxError, AttributeError) as e:
+            except Exception as e:
                 print(f"Error processing annotated assignment in {self.filename}: {e}")
 
-        def visit_Assign(self, node: ast.Assign):
-            # Handle assignments in functions (e.g., words, word_count in count_words)
-            function_name = self.current_function if self.current_function else None
-            for target in node.targets:
-                if isinstance(target, ast.Name):
-                    variable_name = target.id
-                    var_id = (node.lineno, variable_name)
-                    
-                    if var_id not in self.processed_variables:
-                        annotation_entry = {
-                            "file": self.filename,
-                            "line_number": node.lineno,
-                            "col_offset": node.col_offset + 1,
-                            "variable": variable_name,
-                            "type": ["int"]  # Placeholder; adapt as needed
-                        }
-                        if function_name:
-                            annotation_entry["function"] = function_name
-                        annotations.append(annotation_entry)
-                        self.processed_variables.add(var_id)
-
-                elif isinstance(target, ast.Attribute) and isinstance(target.value, ast.Name) and target.value.id == "self":
-                    variable_name = f"{self.current_class}.{target.attr}" if self.current_class else target.attr
-                    var_id = (node.lineno, variable_name)
-                    
-                    if var_id not in self.processed_variables:
-                        self.processed_variables.add(var_id)
-                        annotations.append({
-                            "file": self.filename,
-                            "line_number": node.lineno,
-                            "col_offset": node.col_offset + 1,
-                            "variable": variable_name,
-                            "function": f"{self.current_class}.{self.current_function}",
-                            "type": ["int"]  # Placeholder; adapt as needed
-                        })
-
-            self.generic_visit(node)
-    
     visitor = TypeAnnotationVisitor(filename)
     visitor.visit(tree)
 
@@ -209,18 +148,18 @@ def format_annotations_for_ground_truth(annotations: List[Dict[str, Any]]) -> Li
             "line_number": annotation["line_number"],
             "col_offset": annotation["col_offset"],
         }
-        
+
         if "function" in annotation:
             formatted_annotation["function"] = annotation["function"]
         if "variable" in annotation:
             formatted_annotation["variable"] = annotation["variable"]
         if "parameter" in annotation:
             formatted_annotation["parameter"] = annotation["parameter"]
-        
+
         formatted_annotation["type"] = annotation["type"]
 
         formatted_annotations.append(formatted_annotation)
-    
+
     return formatted_annotations
 
 def translate_output_to_annotations(source: str, filename: str) -> str:
@@ -231,17 +170,12 @@ def translate_output_to_annotations(source: str, filename: str) -> str:
 
 # Main function for testing
 def main():
-    test_file = "/home/ssegpu/rashida/TypeEvalPy/src/target_tools/real-world-llms/src/.scrapy/test.py"  # Update this path as necessary
-    
-    # Read the test file content
+    test_file = "/home/ssegpu/rashida/TypeEvalPy/src/target_tools/real-world-llms/src/.scrapy/main.py"  # Update this path as necessary
+
     with open(test_file, "r") as f:
         source_code = f.read()
 
-    # Run the translator on the test file
     output_json = translate_output_to_annotations(source_code, test_file)
-
-    # Print the output to verify
-    print("Translated Annotations Output:")
     print(output_json)
 
 if __name__ == "__main__":

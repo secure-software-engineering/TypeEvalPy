@@ -205,7 +205,7 @@ models:
   use_system_prompt: true
   use_vllms_for_evaluation: false
   max_model_len: 8192
-  batch_size: 3
+  batch_size: 8
 
 - name: "qwen2.5-Coder-7B-Instruct"
   model_path: "Qwen/Qwen2.5-Coder-7B-Instruct"
@@ -232,7 +232,7 @@ models:
   use_system_prompt: true
   use_vllms_for_evaluation: false
   max_model_len: 8192
-  batch_size: 3
+  batch_size: 8
 
 - name: "llama-3.1-Nemotron-70B-Instruct-HF"
   model_path: "nvidia/Llama-3.1-Nemotron-70B-Instruct-HF"

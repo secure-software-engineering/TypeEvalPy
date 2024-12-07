@@ -181,8 +181,8 @@ def check_match(
         return False
 
     # if "col_offset" in expected and "col_offset" in out:
-    #     if expected["col_offset"] != out["col_offset"]:
-    #         return False
+    if expected["col_offset"] != out["col_offset"]:
+        return False
 
     # check if function match
     if "function" in expected:
