@@ -388,7 +388,7 @@ def iterate_cats(test_suite_dir, tool_name=None):
             "total_facts": 0,
             "total_caught": 0,
         }
-        for k in utils.PYTHON_FEATURES_CATEGORIES
+        for k in ["test","train","valid"]
     }
 
     for cat in sorted(os.listdir(test_suite_dir)):
@@ -508,7 +508,7 @@ def iterate_cats(test_suite_dir, tool_name=None):
             }
             for k in utils.TYPE_CATEGORIES
         }
-        for k_n in utils.PYTHON_FEATURES_CATEGORIES
+        for k_n in ["test","train","valid"]
     }
     if tool_name in utils.ML_TOOLS:
         for _cat, _results in all_cat_exact.items():
@@ -758,7 +758,7 @@ def generate_top_n_performance(test_suite_dir, tool_name=None):
                 }
                 for t in utils.TYPE_CATEGORIES
             }
-            for k in utils.PYTHON_FEATURES_CATEGORIES
+            for k in ["test","train","valid"]
         }
         for k_n in utils.TOP_N
     }
@@ -930,7 +930,7 @@ def run_results_analyzer(results_dir, benchmark_dir="micro-benchmark"):
                 if item.name in utils.ML_TOOLS:
                     tools_results[item.name]["top_n_results"] = (
                         generate_top_n_performance(
-                            item / f"{benchmark_dir}/python_features",
+                            item / f"{benchmark_dir}",
                             tool_name=item.name,
                         )
                     )
@@ -940,10 +940,10 @@ def run_results_analyzer(results_dir, benchmark_dir="micro-benchmark"):
                     tools_results[item.name]["exact_match"],
                     tools_results[item.name]["exact_match_category"],
                 ) = iterate_cats(
-                    item / f"{benchmark_dir}/python_features", tool_name=item.name
+                    item / f"{benchmark_dir}", tool_name=item.name
                 )
                 tools_results[item.name]["total_benchmark_data"] = (
-                    utils.benchmark_count(item / f"{benchmark_dir}/python_features")
+                    utils.benchmark_count(item / f"{benchmark_dir}")
                 )
                 # print(tools_results[item.name]["total_benchmark_data"])
                 # print(tools_results[item.name]["error_result_data"])
@@ -952,7 +952,7 @@ def run_results_analyzer(results_dir, benchmark_dir="micro-benchmark"):
                     tools_results[item.name]["sound_complete_data"],
                     tools_results[item.name]["sound_complete_total_data"],
                 ) = generate_sound_complete_data(
-                    item / f"{benchmark_dir}/python_features", tool_name=item.name
+                    item / f"{benchmark_dir}", tool_name=item.name
                 )
 
                 # check if analysis_sensitivities exists
@@ -1072,12 +1072,12 @@ if __name__ == "__main__":
     parser.add_argument(
         "--results_dir",
         help="Specify the results path",
-        default="/home/ssegpu/rashida/TypeEvalPy/results/",
+        default="/home/ssegpu/rashida/TypeEvalPy/src/target_tools/real-world-llms/src/results/",
     )
     parser.add_argument(
         "--benchmark_dir",
         help="Specify the benchmark path",
-        default="micro-benchmark",
+        default="split_dataset",
     )
 
     args = parser.parse_args()

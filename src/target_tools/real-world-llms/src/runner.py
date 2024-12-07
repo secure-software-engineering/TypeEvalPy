@@ -66,70 +66,107 @@ logger.addHandler(file_handler)
 logger.addHandler(console_handler)
 
 
-def get_prompt_mapping(prompt_template, python_files, use_system_prompt=False):
-    id_mapping = {
-        idx: {
-            "file_path": file_path,
-            "json_filepath": str(file_path).replace(".py", "_gt.json"),
-            "result_filepath": str(file_path).replace(".py", f"_result.json"),
-            "result_dump_filepath": str(file_path).replace(".py", f"_result_dump.txt"),
-            "prompt": utils.get_prompt(
-                prompt_template, file_path, use_system_prompt=use_system_prompt
-            ),
-        }
-        for idx, file_path in enumerate(python_files)
-    }
+def get_prompt_mapping(prompt_template, json_files, file_type = "train", use_system_prompt=False):
+    code_json = json_files[0]
+    gt_json = json_files[1]
+
+    with open(code_json, 'r') as f:
+        code_data = json.load(f)
+
+    with open(gt_json, 'r') as f:
+        gt_data = json.load(f)
+
+    gt_mapping = {}
+    for entry in gt_data:
+        file_path = entry["file"]
+        if file_path not in gt_mapping:
+            gt_mapping[file_path] = []
+        gt_mapping[file_path].append(entry)
+
+    id_mapping = {}
+    idx = 0
+     # Create result file paths based on code_json location and name
+    code_json_path = Path(code_json)
+    result_filepath = code_json_path.with_name(code_json_path.stem + "_result.json")
+    result_dump_filepath = code_json_path.with_name(code_json_path.stem + "_result_dump.txt")
+
+    for project_name, project_info in code_data.items():
+        src_files = project_info.get("src_files", {})
+
+        for file_path, file_info in src_files.items():
+            source_code = file_info.get("source_code", "")
+
+            # Fetch the typing information for the file from translated_mapping
+            type_info_list = gt_mapping.get(file_path, [])
+
+            if(len(type_info_list) == 0):
+                continue
+            # Generate the prompt by passing source_code and the corresponding type_info_list
+            prompt = utils.get_prompt(
+                prompt_template, source_code, type_info_list, use_system_prompt=use_system_prompt
+            )
+
+            # Store the result in id_mapping
+            id_mapping[idx] = {
+                "project_name": project_name,
+                "file_path": file_path,
+                "json_filepath": gt_json,
+                "result_filepath": result_filepath,
+                "result_dump_filepath": result_dump_filepath,
+                "prompt": prompt
+            }
+            idx += 1
 
     return id_mapping
 
 
-# def get_prompt_mapping(prompt_template, train_json, translated_json, use_system_prompt=False):
-#     with open(train_json, 'r') as f:
-#         train_data = json.load(f)
+def create_result_json_file_from_answers(file_info, output_raw, prompt_template):
+    # Clean the raw output
+    output = re.sub(r"```json", "", output_raw)
+    output = re.sub(r"```", "", output)
+    output = re.sub(r"<\|assistant\|>\\n", "", output)
 
-#     with open(translated_json, 'r') as f:
-#         translated_data = json.load(f)
+    # Append raw output to the dump file for debugging
+    with open(file_info["result_dump_filepath"], "a") as f:
+        f.write(output_raw + "\n")
 
-#     translated_mapping = {}
-#     for entry in translated_data:
-#         file_path = entry["file"]
-#         if file_path not in translated_mapping:
-#             translated_mapping[file_path] = []
-#         translated_mapping[file_path].append(entry)
+    # Generate and translate content based on the prompt template
+    if prompt_template in [
+        "prompt_template_questions_based_2",
+    ]:
+        answers_json = utils.generate_json_from_answers(
+            file_info["file_path"], file_info["json_filepath"], output
+        )
+        translated_json = translator.translate_content(answers_json)
+    else:
+        translated_json = translator.translate_content(output)
 
-#     id_mapping = {}
-#     idx = 0
-#     for project_name, project_info in train_data.items():
-#         src_files = project_info.get("src_files", {})
+    # Load existing results if the file exists
+    existing_results = []
+    if os.path.exists(file_info["result_filepath"]):
+        with open(file_info["result_filepath"], "r") as f:
+            try:
+                existing_results = json.load(f)
+            except json.JSONDecodeError:
+                logger.warning(f"Invalid JSON in {file_info['result_filepath']}. Starting fresh.")
 
-#         for file_path, file_info in src_files.items():
-#             source_code = file_info.get("source_code", "")
+    # Append new results to the existing ones
+    if isinstance(translated_json, list):
+        existing_results.extend(translated_json)
+    else:
+        existing_results.append(translated_json)
 
-#             # Fetch the typing information for the file from translated_mapping
-#             type_info_list = translated_mapping.get(file_path, [])
+    # Save the combined results back to the result file
+    is_valid_json = utils.generate_json_file(file_info["result_filepath"], existing_results)
 
-#             if(len(type_info_list) == 0):
-#                 continue
-#             # Generate the prompt by passing source_code and the corresponding type_info_list
-#             prompt = utils.get_prompt(
-#                 prompt_template, source_code, type_info_list, use_system_prompt=use_system_prompt
-#             )
+    if not is_valid_json:
+        logger.error(f"{file_info['file_path']} failed: Not a valid JSON")
+        raise utils.JsonException("json")
 
-#             # Store the result in id_mapping
-#             id_mapping[idx] = {
-#                 "project_name": project_name,
-#                 "file_path": file_path,
-#                 "json_filepath": file_path.replace(".py", "_gt.json"),
-#                 "result_filepath": file_path.replace(".py", "_result.json"),
-#                 "result_dump_filepath": file_path.replace(".py", "_result_dump.txt"),
-#                 "prompt": prompt
-#             }
-#             idx += 1
-
-#     return id_mapping
+    logger.info(f"Results appended to {file_info['result_filepath']} successfully.")
 
 
-def create_result_json_file(file_info, output_raw, prompt_template):
+def create_result_json_file_from_code(file_info, output_raw, prompt_template):
     # Ensure output_raw is a string to prevent TypeError
     if not isinstance(output_raw, str):
         output_raw = str(output_raw) if output_raw is not None else ""
@@ -171,9 +208,9 @@ def create_result_json_file(file_info, output_raw, prompt_template):
         raise utils.JsonException("json")
 
 
-def list_python_files(folder_path):
-    python_files = sorted(Path(folder_path).rglob("main.py"))
-    return python_files
+def list_json_files(folder_path):
+    json_files = sorted(Path(folder_path).rglob("*.json"))
+    return json_files
 
 
 def model_evaluation_vllm(
@@ -209,39 +246,43 @@ def model_evaluation_vllm(
 def model_evaluation_transformers(
     model_name,
     prompt_template,
-    python_files,
+    json_files,
     pipe,
     results_dst,
     use_system_prompt=False,
     batch_size=32,
 ):
 
-    id_mapping = get_prompt_mapping(prompt_template, python_files, use_system_prompt)
+    # id_mapping = get_prompt_mapping(prompt_template, python_files, use_system_prompt)
 
-    prompts = [x["prompt"] for x in id_mapping.values()]
+    for type in results_dst.iterdir():
+        files = list_json_files(results_dst / type)
+        id_mapping = get_prompt_mapping(prompt_template, files, type.name, use_system_prompt)
 
-    # processed_prompts = pipe.tokenizer.apply_chat_template(
-    #     prompts, tokenize=False, add_generation_template=True
-    # )
+        prompts = [x["prompt"] for x in id_mapping.values()]
 
-    # Split prompts into batches
-    progress_batch = batch_size
-    for i in tqdm(range(0, len(prompts), progress_batch)):
-        prompt_batch = prompts[i : i + progress_batch]
+        # processed_prompts = pipe.tokenizer.apply_chat_template(
+        #     prompts, tokenize=False, add_generation_template=True
+        # )
 
-        request_outputs = transformers_helpers.process_requests(
-            pipe,
-            prompt_batch,
-            max_new_tokens=MAX_NEW_TOKENS,
-            batch_size=batch_size,
-        )
+        # Split prompts into batches
+        progress_batch = batch_size
+        for i in tqdm(range(0, len(prompts), progress_batch)):
+            prompt_batch = prompts[i : i + progress_batch]
 
-        for id, r_output in enumerate(request_outputs):
-            file_info = id_mapping[id + i]
+            request_outputs = transformers_helpers.process_requests(
+                pipe,
+                prompt_batch,
+                max_new_tokens=MAX_NEW_TOKENS,
+                batch_size=batch_size,
+            )
 
-            # Store raw output from LLM
-            output_raw = r_output[0]["generated_text"][-1]["content"]
-            create_result_json_file(file_info, output_raw, prompt_template)
+            for id, r_output in enumerate(request_outputs):
+                file_info = id_mapping[id + i]
+
+                # Store raw output from LLM
+                output_raw = r_output[0]["generated_text"][-1]["content"]
+                create_result_json_file_from_answers(file_info, output_raw, prompt_template)
 
 def model_evaluation_openai(
     model_name,
@@ -252,7 +293,7 @@ def model_evaluation_openai(
     use_system_prompt=False,
 ):
 
-    id_mapping = get_prompt_mapping(prompt_template, python_files, use_system_prompt)
+    id_mapping = get_prompt_mapping(prompt_template, json_files, use_system_prompt)
 
     # id_mapping = get_prompt_mapping(prompt_template, '/home/pysse/TypeEvalPy/src/target_tools/real-world-llms/src/real-world-dataset/train.json','/home/pysse/TypeEvalPy/src/target_tools/real-world-llms/src/real-world-dataset/train_translated.json' , use_system_prompt)
 
@@ -302,7 +343,7 @@ def main_runner(args, runner_config, models_to_run, openai_models_models_to_run)
 
         utils.copy_folder(results_src, results_dst)
 
-        python_files = list_python_files(results_dst)
+        json_files = list_json_files(results_dst)
                 
         if model["use_vllms_for_evaluation"]:
             engine = vllm_helpers.initialize_engine(
@@ -324,7 +365,7 @@ def main_runner(args, runner_config, models_to_run, openai_models_models_to_run)
             model_evaluation_vllm(
                 model["name"],
                 args.prompt_id,
-                python_files,
+                json_files,
                 engine,
                 results_dst,
                 use_system_prompt=model["use_system_prompt"],
@@ -350,7 +391,7 @@ def main_runner(args, runner_config, models_to_run, openai_models_models_to_run)
                 model_evaluation_transformers(
                     model["name"],
                     args.prompt_id,
-                    python_files,
+                    json_files,
                     pipe,
                     results_dst,
                     use_system_prompt=model["use_system_prompt"],
@@ -391,7 +432,7 @@ def main_runner(args, runner_config, models_to_run, openai_models_models_to_run)
 
         utils.copy_folder(results_src, results_dst)
 
-        python_files = list_python_files(results_dst)
+        python_files = list_json_files(results_dst)
 
         python_files = python_files[:2]
 
@@ -516,15 +557,15 @@ if __name__ == "__main__":
 
 # example usage:
 """
-python runner.py \
---bechmark_path /home/ssegpu/TypeEvalPy/TypeEvalPy/micro-benchmark \
+python3.10 runner.py \
+--bechmark_path /mnt/hf_cache/rashida_manytype4py/many-types-4-py-dataset/split_dataset \
 --prompt_id prompt_template_questions_based_2 \
---models gemma2-it:2b codellama-it:7b codellama-it:13b codellama-it:34b llama3.1-it:8b llama3.1-it:70b tinyllama:1.1b phi3-small-it:7.3b phi3-medium-it:14b phi3-mini-it:3.8b phi3.5-mini-it:3.8b phi3.5-moe-it:41.9b mixtral-v0.1-it:8x7b mistral-v0.3-it:7b mistral-nemo-it-2407:12.2b mistral-large-it-2407:123b codestral-v0.1:22b \
---hf_token  \
+--models codestral-v0.1-22b \
+--hf_token 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 \
 --openai_key token \
 --enable_streaming True \
---models_config /home/ssegpu/TypeEvalPy/TypeEvalPy/src/target_tools/llms/src/models_config.yaml \
---results_dir /home/ssegpu/TypeEvalPy/TypeEvalPy/.scrapy/results_final_1
+--models_config /home/ssegpu/rashida/TypeEvalPy/src/target_tools/real-world-llms/src/models_config.yaml \
+--results_dir /home/ssegpu/rashida/TypeEvalPy/results
 
 python runner.py \
 --bechmark_path /home/ssegpu/TypeEvalPy/TypeEvalPy/autogen_typeevalpy_benchmark \
