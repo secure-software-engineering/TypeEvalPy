@@ -70,7 +70,10 @@ def compare_json_files(expected, out):
         out_fact_matched = False
         out_fact_mismatch = None
         entry_match = False
-        for fact_out in data_out:
+        repo_name = fact_expected["file"]
+        repo_out_data = [entry for entry in data_out if entry.get("file") == repo_name]
+
+        for fact_out in repo_out_data:
             # Get full matches
             if utils.check_match(expected=fact_expected, out=fact_out):
                 total_matches += 1
@@ -248,7 +251,7 @@ def process_cat_dir(cat_dir, tool_name=None, print_mismatch=False):
     cat_only_cat_recall_grouped = {}
 
     for root, dirs, files in os.walk(cat_dir):
-        test_files = [x.split(".py")[0] for x in files if x.endswith(".py")]
+        test_files = ["train", "test", "valid"]
         logger.debug(
             "\n\n ################ ----------------------- ################# \n\n"
         )
@@ -1072,7 +1075,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--results_dir",
         help="Specify the results path",
-        default="/home/ssegpu/rashida/TypeEvalPy/src/target_tools/real-world-llms/src/results/",
+        default="/home/ssegpu/rashida/TypeEvalPy/results",
     )
     parser.add_argument(
         "--benchmark_dir",

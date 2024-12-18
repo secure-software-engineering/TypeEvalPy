@@ -495,6 +495,7 @@ questions_based_2 = """
 1. For each question below, provide a concise, one-word answer indicating the data type.
 2. For arguments and variables inside a function, list every data type they take within the current program context as a comma separated list.
 3. Do not include additional explanations or commentary in your answers.
+4. If you are not sure of the exact type, you can return 'Any' as the answer.
 
 **Python Code Provided**:
 
@@ -510,6 +511,7 @@ questions_based_2 = """
     1. int
     2. float
     3. str
+    4. Any
 
 **Your Answers**:
 {answers}"""
