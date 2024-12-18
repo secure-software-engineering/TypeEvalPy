@@ -10,6 +10,7 @@ import logging
 import prompts
 import copy
 import tiktoken
+import csv
 
 logger = logging.getLogger("runner")
 logger.setLevel(logging.DEBUG)
@@ -104,7 +105,7 @@ def generate_json_from_answers(repo, gt_json_file, answers):
         # if len(gt_data) != len(parsed_answers):
         #     return []
 
-         # Filter gt_data to only include instances where the file name matches the repo
+        # Filter gt_data to only include instances where the file name matches the repo
         repo_gt_data = [entry for entry in gt_data if entry.get("file") == repo]
 
         answers_json_data = []
@@ -186,6 +187,7 @@ def generate_questions_from_json(json_file):
     questions = [f"{x}. {y}" for x, y in zip(range(1, len(questions) + 1), questions)]
     return questions
 
+
 def load_models_config(config_path):
     models_config = {"models": {}, "custom_models": {}, "openai_models": {}}
     with open(config_path, "r") as file:
@@ -233,6 +235,14 @@ def get_token_count(text, prompt_id):
         "gpt-4": 0.00001,
         "gpt-4o": 0.000005,
     }
+
+    # Ensure text is a string
+    if isinstance(text, list):
+        # Convert list of dictionaries to list of strings
+        text = " ".join(
+            [str(item) if isinstance(item, dict) else item for item in text]
+        )
+
     encoding = tiktoken.encoding_for_model("gpt-4o")
     number_of_tokens_4o = len(encoding.encode(text))
     logger.debug(
@@ -261,6 +271,7 @@ def get_token_count(text, prompt_id):
         "gpt-3.5-turbo": number_of_tokens_3_5,
         "gpt-4-turbo": number_of_tokens_4,
     }
+
 
 def generate_questions_from_metadata(metadata):
     """
@@ -294,7 +305,40 @@ def generate_questions_from_metadata(metadata):
     return questions
 
 
-def get_prompt(prompt_id, source_code , metadata=None, answers_placeholders=True, use_system_prompt=True):
+def generate_csv(token_counts, prompt_id):
+    """
+    Generates a CSV file with the token count information.
+
+    Args:
+        token_counts (dict): Token counts for different models.
+        prompt_id (str): Identifier for the prompt template.
+    """
+    csv_file = "prompt_token_counts.csv"
+    fieldnames = ["prompt_id", "model", "token_count"]
+
+    # Check if the file exists
+    file_exists = os.path.isfile(csv_file)
+
+    with open(csv_file, mode="a", newline="") as file:
+        writer = csv.DictWriter(file, fieldnames=fieldnames)
+
+        # Write the header only if the file doesn't exist
+        if not file_exists:
+            writer.writeheader()
+
+        for model, token_count in token_counts.items():
+            writer.writerow(
+                {"prompt_id": prompt_id, "model": model, "token_count": token_count}
+            )
+
+
+def get_prompt(
+    prompt_id,
+    source_code,
+    metadata=None,
+    answers_placeholders=True,
+    use_system_prompt=True,
+):
     """
     Generates a prompt based on the given prompt_id, metadata, and file path.
 
@@ -315,7 +359,7 @@ def get_prompt(prompt_id, source_code , metadata=None, answers_placeholders=True
 
         questions_from_metadata = generate_questions_from_metadata(metadata)
         prompt_data = {
-            "code": source_code, 
+            "code": source_code,
             "questions": "\n".join(questions_from_metadata),
             "answers": (
                 "\n".join([f"{x}." for x in range(1, len(questions_from_metadata) + 1)])
@@ -332,7 +376,7 @@ def get_prompt(prompt_id, source_code , metadata=None, answers_placeholders=True
             prompt[0]["content"] = prompt[0]["content"].format(**prompt_data)
 
     elif prompt_id in ["prompt_template_masked_code_based_1"]:
-        json_filepath = str(source_code ).replace(".py", "_gt.json")
+        json_filepath = str(source_code).replace(".py", "_gt.json")
         test_dir = os.path.dirname(json_filepath)
         code_files = gather_code_files_from_test_folder(test_dir)
 
@@ -341,7 +385,9 @@ def get_prompt(prompt_id, source_code , metadata=None, answers_placeholders=True
         for code_file in code_files:
             try:
                 with open(code_file, "r") as file:
-                    masked_code_content = file.read()  # Assuming files are already masked
+                    masked_code_content = (
+                        file.read()
+                    )  # Assuming files are already masked
                     relative_path = os.path.relpath(code_file, test_dir)
                     # Add filename to the code content for context
                     code += f"```{relative_path}\n{masked_code_content}```\n\n"
@@ -349,20 +395,20 @@ def get_prompt(prompt_id, source_code , metadata=None, answers_placeholders=True
                 logger.warning(f"Code file {code_file} not found. Skipping.")
 
         prompt_data = {
-                "code": code,
-                "instructions": (
-                    "You are given a Python code snippet where all type annotations are currently represented by the placeholder '[MASK]'. "
-                    "Your task is to replace '[MASK]' with the most appropriate Python type annotations, such as 'str', 'int', 'callable', etc., "
-                    "for all function return types, variable annotations, and function parameters. "
-                    "\n\nStrict Requirements:\n"
-                    "1. Maintain the exact same structure, formatting, and indentation as in the input code.\n"
-                    "2. Do not alter the line numbers or remove existing blank lines.\n"
-                    "3. Do not add any additional blank lines or comments.\n"
-                    "4. Do not add any explanations or extra information in the output.\n"
-                    "5. Only return the annotated version of the code.\n"
-                    "6. Ensure proper and consistent type annotations wherever applicable."
-                )
-            }
+            "code": code,
+            "instructions": (
+                "You are given a Python code snippet where all type annotations are currently represented by the placeholder '[MASK]'. "
+                "Your task is to replace '[MASK]' with the most appropriate Python type annotations, such as 'str', 'int', 'callable', etc., "
+                "for all function return types, variable annotations, and function parameters. "
+                "\n\nStrict Requirements:\n"
+                "1. Maintain the exact same structure, formatting, and indentation as in the input code.\n"
+                "2. Do not alter the line numbers or remove existing blank lines.\n"
+                "3. Do not add any additional blank lines or comments.\n"
+                "4. Do not add any explanations or extra information in the output.\n"
+                "5. Only return the annotated version of the code.\n"
+                "6. Ensure proper and consistent type annotations wherever applicable."
+            ),
+        }
 
         if use_system_prompt:
             prompt = copy.deepcopy(eval(f"prompts.{prompt_id}"))
@@ -374,8 +420,13 @@ def get_prompt(prompt_id, source_code , metadata=None, answers_placeholders=True
     else:
         raise ValueError(f"Unknown prompt_id: {prompt_id}")
 
-    return prompt
+    # Calculate token count
+    token_counts = get_token_count(prompt, prompt_id)
 
+    # Generate CSV
+    generate_csv(token_counts, prompt_id)
+
+    return prompt
 
 def dump_ft_jsonl(id_mapping, output_file):
     mappings = copy.deepcopy(id_mapping)
