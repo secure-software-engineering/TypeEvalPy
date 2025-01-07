@@ -496,6 +496,7 @@ questions_based_2 = """
 2. For arguments and variables inside a function, list every data type they take within the current program context as a comma separated list.
 3. Do not include additional explanations or commentary in your answers.
 4. If you are not sure of the exact type, you can return 'Any' as the answer.
+5. If a type's nested level exceeds 2, replace all components at that level and beyond with Any
 
 **Python Code Provided**:
 
@@ -512,6 +513,7 @@ questions_based_2 = """
     2. float
     3. str
     4. Any
+    5. List[List[Any]]
 
 **Your Answers**:
 {answers}"""

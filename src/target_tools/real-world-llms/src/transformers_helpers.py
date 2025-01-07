@@ -73,7 +73,7 @@ def load_model_and_configurations(
     )
 
     tokenizer = transformers.AutoTokenizer.from_pretrained(
-        model_name, token=HF_TOKEN, trust_remote_code=True, padding_side="left"
+        model_name, token=HF_TOKEN, trust_remote_code=True, padding_side="left", truncation=True
     )
     # padding should be padding_side='left' for llama models
 
