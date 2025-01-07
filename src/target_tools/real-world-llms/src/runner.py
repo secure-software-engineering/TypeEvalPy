@@ -85,8 +85,70 @@ def log_memory_usage():
             logger.info(f"  Allocated: {torch.cuda.memory_allocated(i) / (1024 ** 3):.2f} GB")
             logger.info(f"  Cached: {torch.cuda.memory_reserved(i) / (1024 ** 3):.2f} GB")
 
+# def calculate_memory_approximation(token_count, base_memory=0.1, token_memory=0.0001):
+#     """
+#     Approximate the memory required for a batch based on the token count.
+#     :param token_count: Total number of tokens in the batch.
+#     :param base_memory: Base memory required for processing (in GB).
+#     :param token_memory: Memory required per token (in GB).
+#     :return: Approximated memory required (in GB).
+#     """
+#     return base_memory + (token_count * token_memory)
 
-def get_prompt_mapping(result_dir, prompt_template, use_system_prompt=False):
+def get_available_gpu_memory():
+    """Returns the available GPU memory in GB."""
+    if torch.cuda.is_available():
+        available_memory = torch.cuda.get_device_properties(0).total_memory - torch.cuda.memory_allocated(0)
+        return available_memory / (1024 ** 3)
+    return 0
+
+# def calculate_best_batch_size(prompts, token_limit, max_memory=40):
+#     """
+#     Calculate the best batch size based on token limit and memory constraints.
+#     :param prompts: List of prompts.
+#     :param token_limit: Maximum number of tokens per batch.
+#     :param max_memory: Maximum memory available for processing (in GB).
+#     :return: Best batch size.
+#     """
+#     sorted_prompts = sorted(prompts, key=lambda x: utils.get_token_count(x))
+#     batch_size = 1
+#     current_token_count = 0
+#     current_memory = 0
+
+#     for prompt in sorted_prompts:
+#         token_count = utils.get_token_count(prompt)
+#         memory_approx = calculate_memory_approximation(current_token_count + token_count)
+
+#         if current_token_count + token_count > token_limit or memory_approx > max_memory:
+#             break
+
+#         current_token_count += token_count
+#         current_memory = memory_approx
+#         batch_size += 1
+
+#     # Adjust batch size based on actual GPU memory usage
+#     available_memory = get_available_gpu_memory()
+#     while True:
+#         try:
+#             # Try to allocate a tensor of the given batch size
+#             _ = torch.randn(batch_size, 3, 224, 224).cuda()
+#             if available_memory < current_memory:
+#                 batch_size = batch_size // 2
+#                 torch.cuda.empty_cache()
+#             else:
+#                 break
+#         except RuntimeError as e:
+#             if 'out of memory' in str(e):
+#                 batch_size = batch_size // 2
+#                 torch.cuda.empty_cache()
+#             else:
+#                 raise e
+
+#     print(f"Available GPU memory: {available_memory:.2f} GB")
+
+#     return batch_size
+
+def get_prompt_mapping(result_dir, prompt_template, use_system_prompt=False, token_limit=4096):
     """
     Traverse the directory structure, pair .json and _gt.json files,
     and generate a combined id_mapping using get_prompt_mapping logic.
@@ -147,7 +209,12 @@ def get_prompt_mapping(result_dir, prompt_template, use_system_prompt=False):
                         source_code,
                         type_info_list,
                         use_system_prompt=use_system_prompt,
+                        file_path=file_path,
+                        token_limit=token_limit,
                     )
+
+                    if prompt is None:
+                        continue
 
                     # Store the result in id_mapping
                     id_mapping[idx] = {
@@ -306,17 +373,14 @@ def model_evaluation_transformers(
     results_dst,
     use_system_prompt=False,
     batch_size=32,
+    token_limit=3000,
+    max_memory=65,
 ):
 
-    # id_mapping = get_prompt_mapping(prompt_template, python_files, use_system_prompt)
-    id_mapping = get_prompt_mapping(results_dst, prompt_template, use_system_prompt)
+    id_mapping = get_prompt_mapping(results_dst, prompt_template, use_system_prompt, token_limit)
 
     prompts = [x["prompt"] for x in id_mapping.values()]
-
-    # processed_prompts = pipe.tokenizer.apply_chat_template(
-    #     prompts, tokenize=False, add_generation_template=True
-    # )
-
+ 
     # Split prompts into batches
     progress_batch = batch_size
     for i in tqdm(range(0, len(prompts), progress_batch)):
@@ -324,7 +388,8 @@ def model_evaluation_transformers(
 
         # Log the information of the file_path currently being accessed
         for j, prompt in enumerate(prompt_batch):
-            logger.info(f"Current processing file: {id_mapping[i + j]['file_path']}")
+            token_count = utils.get_token_count(prompt)
+            logger.info(f"Current processing file: {id_mapping[i + j]['file_path']} with token count: {token_count}")
 
         # Log memory usage before processing the batch
         log_memory_usage()
@@ -357,7 +422,6 @@ def model_evaluation_transformers(
             log_memory_usage()
             torch.cuda.empty_cache()
             raise e
-
         # Log memory usage after processing the batch
         log_memory_usage()
 
@@ -473,6 +537,7 @@ def main_runner(args, runner_config, models_to_run, openai_models_models_to_run)
                     results_dst,
                     use_system_prompt=model["use_system_prompt"],
                     batch_size=model["batch_size"],
+                    token_limit=model["max_model_len"],
                 )
 
             except Exception as e:
@@ -636,9 +701,9 @@ if __name__ == "__main__":
 # example usage:
 """
 python3.10 runner.py \
---bechmark_path /mnt/hf_cache/rashida_manytype4py/many-types-4-py-dataset/split_dataset \
+--bechmark_path /mnt/hf_cache/rashida_manytype4py/many-types-4-py-dataset/rw-benchmark \
 --prompt_id prompt_template_questions_based_2 \
---models codestral-v0.1-22b \
+--models qwen2.5-Coder-7B-Instruct \
 --hf_token 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 \
 --openai_key token \
 --enable_streaming True \
