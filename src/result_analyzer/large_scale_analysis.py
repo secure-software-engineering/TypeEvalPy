@@ -1,11 +1,12 @@
 import os
 import json
 import logging
-from concurrent.futures import ProcessPoolExecutor
+from concurrent.futures import ProcessPoolExecutor, as_completed
 from analysis_utils import format_type
 from tqdm import tqdm
 from multiprocessing import cpu_count
 from threading import Lock
+from collections import defaultdict
 
 SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
 TEST_DIR = os.path.join(
@@ -122,10 +123,13 @@ def load_and_sort_json(file_path):
 
 def measure_exact_matches(out, expected, tool_name=None, print_missed=False):
     """
-    Measure exact and partial matches between two JSON files.
+    Measure exact and partial matches between two JSON files using indexing for efficiency.
     """
     data_out = load_and_sort_json(out)
     data_expected = load_and_sort_json(expected)
+
+    # Create index for data_out
+    index = create_index(data_out)
 
     results = {
         "num_all": len(data_expected),
@@ -138,14 +142,17 @@ def measure_exact_matches(out, expected, tool_name=None, print_missed=False):
 
     # Process comparisons in parallel
     with ProcessPoolExecutor(max_workers=max(cpu_count() - 1, 1)) as executor:
-        futures = []
-        for fact_expected in data_expected:
-            futures.append(
-                executor.submit(process_fact_comparison, fact_expected, data_out)
-            )
+        futures = {
+            executor.submit(
+                process_fact_comparison_with_index, fact_expected, index
+            ): fact_expected
+            for fact_expected in data_expected
+        }
 
-        for future in futures:
-            fact_expected = data_expected[futures.index(future)]
+        for future in tqdm(
+            as_completed(futures), total=len(futures), desc="Matching facts"
+        ):
+            fact_expected = futures[future]  # Retrieve the corresponding fact
             try:
                 is_exact_match, is_partial_match = future.result()
                 with lock:
@@ -155,9 +162,10 @@ def measure_exact_matches(out, expected, tool_name=None, print_missed=False):
                         results["num_caught_partial"] += 1
                     elif print_missed:
                         log_missed_fact(tool_name, fact_expected)
-                    progress_bar.update(1)
             except Exception as e:
                 logging.error(f"Error processing fact: {fact_expected} - {e}")
+            finally:
+                progress_bar.update(1)
 
     progress_bar.close()
     return results
@@ -172,6 +180,41 @@ def process_fact_comparison(fact_expected, data_out):
     is_partial_match = False
 
     for fact_out in data_out:
+        exact_match, partial_match = check_match(fact_expected, fact_out)
+        is_exact_match = is_exact_match or exact_match
+        is_partial_match = is_partial_match or partial_match
+
+        # Break early if both matches are found
+        if is_exact_match and is_partial_match:
+            break
+
+    return is_exact_match, is_partial_match
+
+
+def create_index(data_out):
+    """
+    Create an index for data_out based on (file, line_number) and optionally other fields.
+    """
+    index = defaultdict(list)
+    for fact_out in data_out:
+        key = (fact_out.get("file"), fact_out.get("line_number"))
+        index[key].append(fact_out)
+    return index
+
+
+def process_fact_comparison_with_index(fact_expected, index):
+    """
+    Compare a single fact against indexed output facts for matches.
+    """
+    is_exact_match = False
+    is_partial_match = False
+
+    # Get the relevant facts from the index
+    key = (fact_expected.get("file"), fact_expected.get("line_number"))
+    relevant_facts = index.get(key, [])
+
+    # Compare only relevant facts
+    for fact_out in relevant_facts:
         exact_match, partial_match = check_match(fact_expected, fact_out)
         is_exact_match = is_exact_match or exact_match
         is_partial_match = is_partial_match or partial_match
