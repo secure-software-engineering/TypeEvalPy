@@ -47,22 +47,22 @@ PROMPTS_MAP = {
 }
 
 # Set max_split_size_mb to avoid memory fragmentation
-os.environ['PYTORCH_CUDA_ALLOC_CONF'] = 'max_split_size_mb:128'
+os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "max_split_size_mb:128"
 
 script_dir = Path(__file__).parent
 # Create a logger
 logger = logging.getLogger("runner")
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
 
 if utils.is_running_in_docker():
     file_handler = logging.FileHandler("/tmp/llm_log.log", mode="w")
 else:
     file_handler = logging.FileHandler("llm_log.log", mode="w")
 
-file_handler.setLevel(logging.DEBUG)
+file_handler.setLevel(logging.INFO)
 
 console_handler = logging.StreamHandler(stdout)
-console_handler.setLevel(logging.DEBUG)
+console_handler.setLevel(logging.INFO)
 formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 file_handler.setFormatter(formatter)
 console_handler.setFormatter(formatter)
@@ -77,13 +77,18 @@ def log_memory_usage():
     """Logs the current memory usage of the system and CUDA."""
     process = psutil.Process(os.getpid())
     mem_info = process.memory_info()
-    logger.info(f"System memory usage: {mem_info.rss / (1024 ** 3):.2f} GB")
+    logger.debug(f"System memory usage: {mem_info.rss / (1024 ** 3):.2f} GB")
 
     if torch.cuda.is_available():
         for i in range(torch.cuda.device_count()):
-            logger.info(f"CUDA memory usage for device {i}:")
-            logger.info(f"  Allocated: {torch.cuda.memory_allocated(i) / (1024 ** 3):.2f} GB")
-            logger.info(f"  Cached: {torch.cuda.memory_reserved(i) / (1024 ** 3):.2f} GB")
+            logger.debug(f"CUDA memory usage for device {i}:")
+            logger.debug(
+                f"  Allocated: {torch.cuda.memory_allocated(i) / (1024 ** 3):.2f} GB"
+            )
+            logger.debug(
+                f"  Cached: {torch.cuda.memory_reserved(i) / (1024 ** 3):.2f} GB"
+            )
+
 
 # def calculate_memory_approximation(token_count, base_memory=0.1, token_memory=0.0001):
 #     """
@@ -95,12 +100,16 @@ def log_memory_usage():
 #     """
 #     return base_memory + (token_count * token_memory)
 
+
 def get_available_gpu_memory():
     """Returns the available GPU memory in GB."""
     if torch.cuda.is_available():
-        available_memory = torch.cuda.get_device_properties(0).total_memory - torch.cuda.memory_allocated(0)
-        return available_memory / (1024 ** 3)
+        available_memory = torch.cuda.get_device_properties(
+            0
+        ).total_memory - torch.cuda.memory_allocated(0)
+        return available_memory / (1024**3)
     return 0
+
 
 # def calculate_best_batch_size(prompts, token_limit, max_memory=40):
 #     """
@@ -148,7 +157,10 @@ def get_available_gpu_memory():
 
 #     return batch_size
 
-def get_prompt_mapping(result_dir, prompt_template, use_system_prompt=False, token_limit=4096):
+
+def get_prompt_mapping(
+    result_dir, prompt_template, use_system_prompt=False, token_limit=4096
+):
     """
     Traverse the directory structure, pair .json and _gt.json files,
     and generate a combined id_mapping using get_prompt_mapping logic.
@@ -158,7 +170,7 @@ def get_prompt_mapping(result_dir, prompt_template, use_system_prompt=False, tok
     idx = 0
 
     # Walk through train, test, valid folders
-    for subfolder in ["train", "test", "valid"]:
+    for subfolder in ["test"]:
         folder_path = base_path / subfolder
         if not folder_path.exists():
             continue
@@ -177,6 +189,17 @@ def get_prompt_mapping(result_dir, prompt_template, use_system_prompt=False, tok
 
         # Process each pair
         for code_json, gt_json in json_pairs.items():
+            result_json_path = code_json.with_name(code_json.stem + "_result.json")
+            existing_results = {}
+
+            # Check if the result JSON file exists and load existing results
+            if result_json_path.exists():
+                with open(result_json_path, "r") as result_file:
+                    existing_results = json.load(result_file)
+
+            # Create a set of existing file paths for quick lookup
+            existing_files = {entry["file"] for entry in existing_results}
+
             with open(code_json, "r") as code_file:
                 code_data = json.load(code_file)
 
@@ -197,6 +220,13 @@ def get_prompt_mapping(result_dir, prompt_template, use_system_prompt=False, tok
 
                 for file_path, file_info in src_files.items():
                     source_code = file_info.get("source_code", "")
+
+                    if source_code == "":
+                        continue
+
+                    # Skip if the file is already present in existing results
+                    if file_path in existing_files:
+                        continue
 
                     # Fetch the typing information for the file from gt_mapping
                     type_info_list = gt_mapping.get(file_path, [])
@@ -221,9 +251,7 @@ def get_prompt_mapping(result_dir, prompt_template, use_system_prompt=False, tok
                         "project_name": project_name,
                         "file_path": file_path,
                         "json_filepath": str(gt_json),
-                        "result_filepath": str(
-                            code_json.with_name(code_json.stem + "_result.json")
-                        ),
+                        "result_filepath": str(result_json_path),
                         "result_dump_filepath": str(
                             code_json.with_name(code_json.stem + "_result_dump.txt")
                         ),
@@ -239,6 +267,13 @@ def create_result_json_file_from_answers(file_info, output_raw, prompt_template)
     output = re.sub(r"```json", "", output_raw)
     output = re.sub(r"```", "", output)
     output = re.sub(r"<\|assistant\|>\\n", "", output)
+
+    # For codestral as it returns whole sentence
+    # type_inference = re.search(r"(\w+Type)", output)
+    # if type_inference:
+    #     output = type_inference.group(1)
+    # else:
+    #     output = "Unknown"
 
     # Append raw output to the dump file for debugging
     with open(file_info["result_dump_filepath"], "a") as f:
@@ -281,8 +316,8 @@ def create_result_json_file_from_answers(file_info, output_raw, prompt_template)
         logger.error(f"{file_info['file_path']} failed: Not a valid JSON")
         raise utils.JsonException("json")
 
-    logger.info(f"Accessed {file_info['file_path']} successfully.")
-    logger.info(f"Results appended to {file_info['result_filepath']} successfully.")
+    logger.debug(f"Accessed {file_info['file_path']} successfully.")
+    logger.debug(f"Results appended to {file_info['result_filepath']} successfully.")
 
 
 def create_result_json_file_from_code(file_info, output_raw, prompt_template):
@@ -322,7 +357,7 @@ def create_result_json_file_from_code(file_info, output_raw, prompt_template):
     # Validate and save the translated JSON to the final result file
     result_filepath = file_info.get("result_filepath", filename)
     if utils.generate_json_file(result_filepath, translated_json):
-        logger.info(
+        logger.debug(
             f"Processed file: {file_info.get('file_path', filename)} successfully."
         )
     else:
@@ -372,24 +407,47 @@ def model_evaluation_transformers(
     pipe,
     results_dst,
     use_system_prompt=False,
-    batch_size=32,
+    initial_batch_size=32,
     token_limit=3000,
     max_memory=65,
 ):
 
-    id_mapping = get_prompt_mapping(results_dst, prompt_template, use_system_prompt, token_limit)
+    id_mapping = get_prompt_mapping(
+        results_dst, prompt_template, use_system_prompt, token_limit
+    )
 
-    prompts = [x["prompt"] for x in id_mapping.values()]
- 
-    # Split prompts into batches
-    progress_batch = batch_size
-    for i in tqdm(range(0, len(prompts), progress_batch)):
-        prompt_batch = prompts[i : i + progress_batch]
+    # Create a list of tuples containing both the prompt and its corresponding id_mapping entry
+    prompt_id_mapping_pairs = [(x["prompt"], x) for x in id_mapping.values()]
 
-        # Log the information of the file_path currently being accessed
-        for j, prompt in enumerate(prompt_batch):
-            token_count = utils.get_token_count(prompt)
-            logger.info(f"Current processing file: {id_mapping[i + j]['file_path']} with token count: {token_count}")
+    # Sort the list of tuples based on the token count of the prompts
+    sorted_prompt_id_mapping_pairs = sorted(
+        prompt_id_mapping_pairs, key=lambda x: utils.get_token_count(x[0])
+    )
+
+    # Separate the sorted prompts and id_mapping entries back into individual lists
+    sorted_prompts = [pair[0] for pair in sorted_prompt_id_mapping_pairs]
+    sorted_id_mapping = [pair[1] for pair in sorted_prompt_id_mapping_pairs]
+
+    # Initialize the progress bar
+    progress_bar = tqdm(total=len(sorted_prompts), desc="Processing Prompts")
+
+    # Split prompts into dynamic batches
+    i = 0
+    while i < len(sorted_prompts):
+        current_batch = []
+        current_token_count = 0
+        batch_size = initial_batch_size
+
+        while (
+            i < len(sorted_prompts)
+            and current_token_count + utils.get_token_count(sorted_prompts[i])
+            <= token_limit * batch_size
+        ):
+            prompt_token_count = utils.get_token_count(sorted_prompts[i])
+            logger.debug(f"Prompt {sorted_id_mapping[i]['file_path']}: {prompt_token_count} tokens")
+            current_batch.append(sorted_prompts[i])
+            current_token_count += prompt_token_count
+            i += 1
 
         # Log memory usage before processing the batch
         log_memory_usage()
@@ -397,33 +455,47 @@ def model_evaluation_transformers(
         try:
             request_outputs = transformers_helpers.process_requests(
                 pipe,
-                prompt_batch,
+                current_batch,
                 max_new_tokens=MAX_NEW_TOKENS,
-                batch_size=batch_size,
+                batch_size=len(current_batch),
             )
 
             for id, r_output in enumerate(request_outputs):
-                file_info = id_mapping[id + i]
+                file_info = sorted_id_mapping[id + i - len(current_batch)]
 
                 # Store raw output from LLM
                 output_raw = r_output[0]["generated_text"][-1]["content"]
-                create_result_json_file_from_answers(file_info, output_raw, prompt_template)
+                create_result_json_file_from_answers(
+                    file_info, output_raw, prompt_template
+                )
+
+            # Update the progress bar
+            progress_bar.update(len(current_batch))
 
             # Explicitly delete large variables
             del request_outputs
-            del prompt_batch
+            del current_batch
             gc.collect()
             torch.cuda.empty_cache()
 
         except torch.cuda.OutOfMemoryError as e:
-            logger.error(f"CUDA out of memory error while processing batch starting at index {i}")
+            logger.error(
+                f"CUDA out of memory error while processing batch starting at index {i - len(current_batch)}"
+            )
             logger.error(f"Error details: {e}")
-            logger.error(f"Batch details: {[id_mapping[i + j]['file_path'] for j in range(len(prompt_batch))]}")
+            logger.error(
+                f"Batch details: {[sorted_id_mapping[i - len(current_batch) + j]['file_path'] for j in range(len(current_batch))]}"
+            )
             log_memory_usage()
             torch.cuda.empty_cache()
-            raise e
-        # Log memory usage after processing the batch
-        log_memory_usage()
+            sys.exit("CUDA out of memory error. Stopping the program.")
+
+    # Log memory usage after processing the batch
+    log_memory_usage()
+
+    # Close the progress bar
+    progress_bar.close()
+
 
 def model_evaluation_openai(
     model_name,
@@ -536,7 +608,7 @@ def main_runner(args, runner_config, models_to_run, openai_models_models_to_run)
                     pipe,
                     results_dst,
                     use_system_prompt=model["use_system_prompt"],
-                    batch_size=model["batch_size"],
+                    initial_batch_size=model["batch_size"],
                     token_limit=model["max_model_len"],
                 )
 
