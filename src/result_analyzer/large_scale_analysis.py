@@ -135,6 +135,7 @@ def measure_exact_matches(out, expected, tool_name=None, print_missed=False):
         "num_all": len(data_expected),
         "num_caught_exact": 0,
         "num_caught_partial": 0,
+        "num_caught_exact_ignore_any": 0,
     }
 
     lock = Lock()
@@ -158,10 +159,14 @@ def measure_exact_matches(out, expected, tool_name=None, print_missed=False):
                 with lock:
                     if is_exact_match:
                         results["num_caught_exact"] += 1
+                        results["num_caught_exact_ignore_any"] += 1
                     elif is_partial_match:
                         results["num_caught_partial"] += 1
                     elif print_missed:
                         log_missed_fact(tool_name, fact_expected)
+                    if fact_expected.get("type") == ["Any"]:
+                        results["num_caught_exact_ignore_any"] += 1
+                    progress_bar.update(1)
             except Exception as e:
                 logging.error(f"Error processing fact: {fact_expected} - {e}")
             finally:
@@ -179,7 +184,10 @@ def process_fact_comparison(fact_expected, data_out):
     is_exact_match = False
     is_partial_match = False
 
-    for fact_out in data_out:
+    repo_name = fact_expected["file"]
+    repo_out_data = [entry for entry in data_out if entry.get("file") == repo_name]
+
+    for fact_out in repo_out_data:
         exact_match, partial_match = check_match(fact_expected, fact_out)
         is_exact_match = is_exact_match or exact_match
         is_partial_match = is_partial_match or partial_match
@@ -248,9 +256,9 @@ if __name__ == "__main__":
         results = measure_exact_matches(out, expected)
         print(results)
 
-    out = "/home/ashwin/Downloads/rw-benchmark/rw-benchmark/test/test_result.json"
-    expected = "/home/ashwin/Downloads/rw-benchmark/rw-benchmark/test/test_gt.json"
-    tool_name = "my_tool"
+    out = "/home/ssegpu/rashida/TypeEvalPy/results/codestral-v0.1-22b/rw-benchmark/test/test_result.json"
+    expected = "/home/ssegpu/rashida/TypeEvalPy/results/codestral-v0.1-22b/rw-benchmark/test/test_gt.json"
+    tool_name = "codestral-v0.1-22b"
 
     results = measure_exact_matches(out, expected, tool_name=tool_name)
     print(results)

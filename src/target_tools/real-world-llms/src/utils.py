@@ -11,9 +11,11 @@ import prompts
 import copy
 import tiktoken
 import csv
+from multiprocessing import Pool
+from tqdm import tqdm
 
 logger = logging.getLogger("runner")
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
 
 # Initialize counters
 exceeded_limit_count = 0
@@ -46,6 +48,8 @@ def is_ollama_online(server_url):
 def copy_folder(src, dst):
     """
     Copies a folder from the source (src) to the destination (dst).
+    If the destination folder exists, it retains its content and continues.
+    If the destination folder does not exist, it is created.
 
     :param src: Source folder path
     :param dst: Destination folder path
@@ -55,14 +59,15 @@ def copy_folder(src, dst):
         print(f"Source folder {src} does not exist.")
         return
 
-    # Check if the destination directory exists, if so, remove it
+    # Copy the folder, keeping existing contents in destination if it exists
     if os.path.exists(dst):
-        shutil.rmtree(dst)
-        print(f"Existing folder at {dst} has been removed.")
-
-    # Copy the folder
+        print(f"Destination folder {dst} already exists. Retaining its contents.")
+    else:
+        print(f"Destination folder {dst} does not exist. Creating it.")
+    
+    # Copy contents from source to destination
     shutil.copytree(src, dst, dirs_exist_ok=True)
-    print(f"Folder copied from {src} to {dst}")
+    print(f"Folder copied from {src} to {dst}.")
 
 
 def is_running_in_docker():
@@ -102,10 +107,19 @@ def generate_json_from_answers(repo, gt_json_file, answers):
         with open(gt_json_file, "r") as file:
             gt_data = json.load(file)
 
-        pattern = re.compile(r"^\s*(\d+)\.\s+(.+)\s*$", re.MULTILINE)
-        parsed_answers = pattern.findall(answers)
+        if isinstance(answers, str) and not re.search(r"^\s*\d+\.\s+", answers, re.MULTILINE):
+            # Extract type from the answers string
+            type_match = re.search(r"^[^\n]+", answers)
+            if type_match:
+                extracted_type = type_match.group(0).strip()
+                parsed_answers = {0: extracted_type}
+            else:
+                parsed_answers = {0: answers.strip()}
+        else:
+            pattern = re.compile(r"^\s*(\d+)\.\s+(.+)\s*$", re.MULTILINE)
+            parsed_answers = pattern.findall(answers)
+            parsed_answers = {int(x) - 1: y for x, y in parsed_answers}
 
-        parsed_answers = {int(x) - 1: y for x, y in parsed_answers}
         # if len(gt_data) != len(parsed_answers):
         #     return []
 
@@ -127,14 +141,13 @@ def generate_json_from_answers(repo, gt_json_file, answers):
         return []
 
 
-def generate_answers_for_fine_tuning(json_file):
+def generate_answers_for_fine_tuning(json_data, file_path):
     # Read and parse the JSON file
-    with open(json_file, "r") as file:
-        data = json.load(file)
 
+    repo_data = [entry for entry in json_data if entry.get("file") == file_path]
     counter = 1
     answers = []
-    for fact in data:
+    for fact in repo_data:
         answers.append(f"{counter}. {', '.join(fact['type'])}")
         counter += 1
 
@@ -458,15 +471,28 @@ def get_prompt(
         raise ValueError(f"Unknown prompt_id: {prompt_id}")
 
     # Calculate token count
-    # token_counts = get_token_count(prompt, prompt_id)
+    token_counts = get_token_count(prompt, prompt_id)
 
-    # if token_counts > token_limit:
-    #     global exceeded_limit_count
-    #     # prompt = truncate_prompt(prompt, token_limit)
-    #     exceeded_limit_count += 1
-    # else:
-    #     global within_limit_count
-    #     within_limit_count += 1
+    if token_counts > token_limit:
+        global exceeded_limit_count
+        exceeded_limit_count += 1
+        # Load existing data if the file exists
+        if os.path.exists("exceeded_token_limit_files.json"):
+            with open("exceeded_token_limit_files.json", "r") as file:
+                data = json.load(file)
+        else:
+            data = {"file_paths": []}
+
+        # Append the new file path
+        data["file_paths"].append(file_path)
+
+        # Write the updated data back to the file
+        with open("exceeded_token_limit_files.json", "w") as file:
+            json.dump(data, file, indent=4)
+        return None
+    else:
+        global within_limit_count
+        within_limit_count += 1
 
     # Generate CSV
     # generate_csv(token_counts, prompt_id)
@@ -480,22 +506,34 @@ def get_prompt(
     return prompt
 
 
-def dump_ft_jsonl(id_mapping, output_file):
-    mappings = copy.deepcopy(id_mapping)
-    for _m in mappings.values():
-        assistant_message = {
-            "role": "assistant",
-            "content": generate_answers_for_fine_tuning(_m["json_filepath"]),
-        }
-        _m["prompt"].append(assistant_message)
+def process_mapping(mapping):
+    assistant_message = {
+        "role": "assistant",
+        "content": generate_answers_for_fine_tuning(mapping["json_data"], mapping["file_path"]),
+    }
+    mapping["prompt"].append(assistant_message)
+    return mapping["prompt"]
 
-    prompts = [x["prompt"] for x in mappings.values()]
+def dump_ft_jsonl(id_mapping, output_file):
+    # Load the first mapping's JSON file
+    first_mapping = next(iter(id_mapping.values()))
+    with open(first_mapping["json_filepath"], "r") as file:
+        json_data = json.load(file)
+
+    mappings = copy.deepcopy(id_mapping)
+    with Pool() as pool:
+        with tqdm(total=len(mappings), desc="Processing mappings") as pbar:
+            prompts = []
+            for mapping in mappings.values():
+                mapping["json_data"] = json_data
+                result = process_mapping(mapping)
+                prompts.append(result)
+                pbar.update()
 
     with open(output_file, "w") as output:
         for _m in prompts:
             output.write(json.dumps(_m))
             output.write("\n")
-
 
 def dump_batch_prompt_jsonl(
     id_mapping, output_file, id_prefix="types", model="gpt-4o-mini"
