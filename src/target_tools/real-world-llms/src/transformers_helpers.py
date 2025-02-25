@@ -2,7 +2,7 @@ import transformers
 import torch
 from tqdm import tqdm
 from torch.utils.data import Dataset
-
+from peft import PeftModel
 
 class ListDataset(Dataset):
 
@@ -49,7 +49,7 @@ DEFAULT_CHAT_TEMPLATE = (
 
 # Load model, tokenizer and create pipeline
 def load_model_and_configurations(
-    HF_TOKEN, model_name, use_quantized_model=True, temperature=0.001
+    HF_TOKEN, model_name, use_quantized_model=True, temperature=0.001, lora_repo=None
 ):
     temperature = temperature
 
@@ -75,7 +75,12 @@ def load_model_and_configurations(
     tokenizer = transformers.AutoTokenizer.from_pretrained(
         model_name, token=HF_TOKEN, trust_remote_code=True, padding_side="left", truncation=True
     )
+    
     # padding should be padding_side='left' for llama models
+
+    if lora_repo:
+        model = PeftModel.from_pretrained(model, lora_repo)
+
 
     if not tokenizer.chat_template:
         tokenizer.chat_template = DEFAULT_CHAT_TEMPLATE
@@ -83,6 +88,7 @@ def load_model_and_configurations(
 
     if not tokenizer.pad_token:
         tokenizer.pad_token = tokenizer.eos_token
+
 
     pipe = transformers.pipeline(
         "text-generation",

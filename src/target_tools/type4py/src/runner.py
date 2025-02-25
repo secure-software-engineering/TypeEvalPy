@@ -56,7 +56,9 @@ def process_file(file_path):
 
 
 def main_runner(args):
+    logger.info("args: %s", args)
     python_files = list_python_files(args.bechmark_path)
+    logger.info(f"Found {len(python_files)} python files")
     error_count = 0
     for file in python_files:
         try:
@@ -64,6 +66,7 @@ def main_runner(args):
             inferred = process_file(file)
 
             translated = translator.translate_content(inferred)
+            logger.info(f"Translated: {translated}")
 
             json_file_path = str(file).replace(".py", "_result.json")
 

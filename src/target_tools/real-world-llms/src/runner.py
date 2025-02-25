@@ -411,32 +411,25 @@ def model_evaluation_transformers(
     token_limit=3000,
     max_memory=65,
 ):
-
     id_mapping = get_prompt_mapping(
         results_dst, prompt_template, use_system_prompt, token_limit
     )
 
-    # Create a list of tuples containing both the prompt and its corresponding id_mapping entry
     prompt_id_mapping_pairs = [(x["prompt"], x) for x in id_mapping.values()]
-
-    # Sort the list of tuples based on the token count of the prompts
     sorted_prompt_id_mapping_pairs = sorted(
         prompt_id_mapping_pairs, key=lambda x: utils.get_token_count(x[0])
     )
-
-    # Separate the sorted prompts and id_mapping entries back into individual lists
     sorted_prompts = [pair[0] for pair in sorted_prompt_id_mapping_pairs]
     sorted_id_mapping = [pair[1] for pair in sorted_prompt_id_mapping_pairs]
 
-    # Initialize the progress bar
     progress_bar = tqdm(total=len(sorted_prompts), desc="Processing Prompts")
-
-    # Split prompts into dynamic batches
+    
     i = 0
+    batch_size = initial_batch_size
+
     while i < len(sorted_prompts):
         current_batch = []
         current_token_count = 0
-        batch_size = initial_batch_size
 
         while (
             i < len(sorted_prompts)
@@ -449,9 +442,8 @@ def model_evaluation_transformers(
             current_token_count += prompt_token_count
             i += 1
 
-        # Log memory usage before processing the batch
         log_memory_usage()
-
+        
         try:
             request_outputs = transformers_helpers.process_requests(
                 pipe,
@@ -462,38 +454,29 @@ def model_evaluation_transformers(
 
             for id, r_output in enumerate(request_outputs):
                 file_info = sorted_id_mapping[id + i - len(current_batch)]
-
-                # Store raw output from LLM
                 output_raw = r_output[0]["generated_text"][-1]["content"]
                 create_result_json_file_from_answers(
                     file_info, output_raw, prompt_template
                 )
 
-            # Update the progress bar
             progress_bar.update(len(current_batch))
-
-            # Explicitly delete large variables
-            del request_outputs
-            del current_batch
+            del request_outputs, current_batch
             gc.collect()
             torch.cuda.empty_cache()
-
+        
         except torch.cuda.OutOfMemoryError as e:
-            logger.error(
-                f"CUDA out of memory error while processing batch starting at index {i - len(current_batch)}"
-            )
+            logger.error(f"CUDA out of memory error while processing batch starting at index {i - len(current_batch)}")
             logger.error(f"Error details: {e}")
-            logger.error(
-                f"Batch details: {[sorted_id_mapping[i - len(current_batch) + j]['file_path'] for j in range(len(current_batch))]}"
-            )
+            # logger.error(f"Batch details: {[sorted_id_mapping[i - len(current_batch) + j]['file_path'] for j in range(len(current_batch))]}")
             log_memory_usage()
             torch.cuda.empty_cache()
-            sys.exit("CUDA out of memory error. Stopping the program.")
+            
+            batch_size = max(1, batch_size - 3)  # Reduce batch size but ensure it's at least 1
+            i -= len(current_batch)  # Roll back the index to retry from unprocessed prompts
+            print(f"Reducing batch size to {batch_size}")
+            continue  # Retry with a smaller batch size
 
-    # Log memory usage after processing the batch
     log_memory_usage()
-
-    # Close the progress bar
     progress_bar.close()
 
 
@@ -592,13 +575,15 @@ def main_runner(args, runner_config, models_to_run, openai_models_models_to_run)
         else:
             if model["lora_repo"] is None:
                 model_path = model["model_path"]
+                lora_repo = None
             else:
-                model_path = model["lora_repo"]
+                model_path = model["model_path"]
+                lora_repo = model["lora_repo"]
 
             pipe = None
             try:
                 pipe = transformers_helpers.load_model_and_configurations(
-                    args.hf_token, model_path, model["quantization"], TEMPARATURE
+                    args.hf_token, model_path, model["quantization"], TEMPARATURE, lora_repo
                 )
                 model_start_time = time.time()
                 model_evaluation_transformers(
@@ -775,7 +760,7 @@ if __name__ == "__main__":
 python3.10 runner.py \
 --bechmark_path /mnt/hf_cache/rashida_manytype4py/many-types-4-py-dataset/rw-benchmark \
 --prompt_id prompt_template_questions_based_2 \
---models qwen2.5-Coder-7B-Instruct \
+--models finetuned-codestral-v0.1-22b \
 --hf_token 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 \
 --openai_key token \
 --enable_streaming True \

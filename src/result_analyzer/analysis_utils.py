@@ -111,7 +111,7 @@ def format_type(_types, is_ml=False):
         for _type in _types:
             i_type_list = []
             if is_ml:
-                if _type.startswith("Union["):
+                if is_ml and _type.startswith("Union["):
                     # TODO: Improve code, should not lower() for all. e.g., MyClass
                     types_split = [
                         x.replace(" ", "").lower()
@@ -124,7 +124,7 @@ def format_type(_types, is_ml=False):
                     # i_type_list.append(_t.split("[")[0].lower())
             else:
                 for _t in _type:
-                    if _t.startswith("Union["):
+                    if _t and _t.startswith("Union["):
                         types_split = [
                             x.replace(" ", "").lower()
                             for x in _t.split("Union[")[1].split("]")[0].split(",")
@@ -132,7 +132,8 @@ def format_type(_types, is_ml=False):
                         i_type_list.extend(types_split)
                     else:
                         # TODO: Maybe no translation should be done here
-                        i_type_list.append(_t.lower())
+                        if _t:
+                            i_type_list.append(_t.lower())
                         # i_type_list.append(_t.split("[")[0].lower())
             type_formatted.append(list(set(i_type_list)))
 
