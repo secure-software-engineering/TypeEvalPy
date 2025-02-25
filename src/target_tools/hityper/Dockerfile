@@ -26,6 +26,7 @@ RUN pip install .
 RUN pip install PyCG==0.0.4
 
 COPY src /tmp/src
+COPY repos /tmp/repos
 
 # Set the default command to run when the container starts
 CMD ["bash"]

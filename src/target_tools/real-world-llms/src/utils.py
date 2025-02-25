@@ -64,7 +64,7 @@ def copy_folder(src, dst):
         print(f"Destination folder {dst} already exists. Retaining its contents.")
     else:
         print(f"Destination folder {dst} does not exist. Creating it.")
-    
+
     # Copy contents from source to destination
     shutil.copytree(src, dst, dirs_exist_ok=True)
     print(f"Folder copied from {src} to {dst}.")
@@ -107,7 +107,9 @@ def generate_json_from_answers(repo, gt_json_file, answers):
         with open(gt_json_file, "r") as file:
             gt_data = json.load(file)
 
-        if isinstance(answers, str) and not re.search(r"^\s*\d+\.\s+", answers, re.MULTILINE):
+        if isinstance(answers, str) and not re.search(
+            r"^\s*\d+\.\s+", answers, re.MULTILINE
+        ):
             # Extract type from the answers string
             type_match = re.search(r"^[^\n]+", answers)
             if type_match:
@@ -116,7 +118,7 @@ def generate_json_from_answers(repo, gt_json_file, answers):
             else:
                 parsed_answers = {0: answers.strip()}
         else:
-            pattern = re.compile(r"^\s*(\d+)\.\s+(.+)\s*$", re.MULTILINE)
+            pattern = re.compile(r"^\s*(\d+)\.\s*(.+)\s*$", re.MULTILINE)
             parsed_answers = pattern.findall(answers)
             parsed_answers = {int(x) - 1: y for x, y in parsed_answers}
 
@@ -131,7 +133,7 @@ def generate_json_from_answers(repo, gt_json_file, answers):
             _result = repo_gt_data[fact]
             _result.pop("type")
             if fact in parsed_answers:
-                _result["type"] = [x.strip() for x in parsed_answers[fact].split(",")]
+                _result["type"] = [parsed_answers[fact].strip()]
                 answers_json_data.append(_result)
 
         return answers_json_data
@@ -409,7 +411,7 @@ def get_prompt(
 
         questions_from_metadata = generate_questions_from_metadata(metadata)
         prompt_data = {
-            "code": source_code,
+            "code": f"```{source_code}```",
             "questions": "\n".join(questions_from_metadata),
             "answers": (
                 "\n".join([f"{x}." for x in range(1, len(questions_from_metadata) + 1)])
@@ -509,10 +511,13 @@ def get_prompt(
 def process_mapping(mapping):
     assistant_message = {
         "role": "assistant",
-        "content": generate_answers_for_fine_tuning(mapping["json_data"], mapping["file_path"]),
+        "content": generate_answers_for_fine_tuning(
+            mapping["json_data"], mapping["file_path"]
+        ),
     }
     mapping["prompt"].append(assistant_message)
     return mapping["prompt"]
+
 
 def dump_ft_jsonl(id_mapping, output_file):
     # Load the first mapping's JSON file
@@ -532,8 +537,10 @@ def dump_ft_jsonl(id_mapping, output_file):
 
     with open(output_file, "w") as output:
         for _m in prompts:
-            output.write(json.dumps(_m))
+            message = {"messages": _m}
+            output.write(json.dumps(message, ensure_ascii=False))
             output.write("\n")
+
 
 def dump_batch_prompt_jsonl(
     id_mapping, output_file, id_prefix="types", model="gpt-4o-mini"

@@ -5,18 +5,39 @@ import re
 from pathlib import Path
 import utils
 
-
-def normalize_type(type_str):
+def normalize_type(type_str, nested_level=0):
     """
     Normalize the type string by removing module prefixes and simplifying typing constructs.
     Example: 'builtins.str' -> 'str',
              'typing.Tuple[builtins.str, builtins.float]' -> 'Tuple[str, float]',
-             'musictaxonomy.spotify.models.spotifyuser' -> 'SpotifyUser'.
+             'musictaxonomy.spotify.models.spotifyuser' -> 'SpotifyUser',
+             'List[List[Tuple[str]]]' -> 'List[List[Any]]' if nested level > 2.
     """
+
+    if type_str is None:
+        return None
+
+    # Remove extra quotes if present
+    if type_str.startswith('"') and type_str.endswith('"'):
+        type_str = type_str.strip('"')
+        
     # Mapping of module prefixes to remove
     type_mappings = {
         "builtins.": "",
         "typing.": "",
+    }
+      # Additional type mappings
+    additional_type_mappings = {
+        "integer": "int",
+        "string": "str",
+        "dictonary": "dict",
+        "method": "Callable",
+        "func": "Callable",
+        "function": "Callable",
+        "none": "None",
+        "Nonetype": "None",
+        "nonetype": "None",
+        "NoneType": "None",
     }
 
     if type_str is None:
@@ -26,13 +47,40 @@ def normalize_type(type_str):
     for prefix, replacement in type_mappings.items():
         type_str = type_str.replace(prefix, replacement)
 
+    # Apply additional type mappings
+    type_str = additional_type_mappings.get(type_str, type_str)
+
     # Handle generic types (e.g., Tuple[], List[], Dict[])
     if "[" in type_str and "]" in type_str:
         base_type, generic_content = type_str.split("[", 1)
+        generic_content = generic_content.rsplit("]", 1)[0]
         # Process the generic parameters recursively
-        generic_params = generic_content.rstrip("]").split(", ")
-        normalized_params = [normalize_type(param) for param in generic_params]
-        return f'{base_type}[{", ".join(normalized_params)}]'
+        generic_params = []
+        bracket_level = 0
+        param = ""
+        for char in generic_content:
+            if char == "[":
+                bracket_level += 1
+                param += char
+            elif char == "]":
+                bracket_level -= 1
+                param += char
+            elif char == "," and bracket_level == 0:
+                generic_params.append(param.strip())
+                param = ""
+            else:
+                param += char
+        if param:
+            generic_params.append(param.strip())
+        
+        # If nested level is greater than 0, replace with Any
+        if nested_level > 0:
+            normalized_params = ["Any"]
+        else:
+            normalized_params = [normalize_type(param, nested_level + 1) for param in generic_params]
+        
+        return f"{base_type}[{', '.join(normalized_params)}]"
+
 
     # Handle fully qualified names by extracting the last segment
     if "." in type_str:
@@ -40,23 +88,6 @@ def normalize_type(type_str):
 
     # Return the simplified type
     return type_str
-
-
-def merge_and_normalize_type(type_list):
-    """
-    Merges fragmented type strings and applies normalization.
-    Handles cases like:
-    ['Sequence[Union[float', 'Vector]]'] -> 'Sequence[Union[float, Vector]]'
-    """
-    if not type_list or not isinstance(type_list, list):
-        return []
-
-    # Merge fragments into a single string
-    full_type = "".join(type_list).replace(" ", "")
-
-    # Normalize the merged string
-    normalized = normalize_type(full_type)
-    return [normalized]
 
 
 def translate_pipeline(text, functions):
@@ -113,7 +144,6 @@ def translate_content(data):
         "none": "None",
         "Nonetype": "None",
         "nonetype": "None",
-        "object": "Any",
         "NoneType": "None",
     }
 
@@ -126,17 +156,7 @@ def translate_content(data):
 
     for entry in data:
         if "type" in entry:
-            # Merge and normalize the types
-            merged_types = merge_and_normalize_type(entry["type"])
-            # Apply the pipeline and normalize the types
-            processed_types = [translate_pipeline(t, functions) for t in merged_types]
-            normalized_types = [normalize_type(t) for t in processed_types]
-            # Map types to their common forms
-            translated_types = [
-                type_mapping[t.lower()] if t and t.lower() in type_mapping else t
-                for t in processed_types
-            ]
-            entry["type"] = translated_types
+            entry["type"] = [normalize_type(entry["type"][0])]
         else:
             entry["type"] = []
 
