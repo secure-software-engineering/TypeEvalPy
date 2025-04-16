@@ -117,7 +117,7 @@ def process_file(file_path):
 
 # Process all .py files in a specified directory
 def main():
-    root_directory = '/home/ssegpu/rashida/TypeEvalPy/autogen_typeevalpy_benchmark'
+    root_directory = '/home/ssegpu/rashida/TypeEvalPy/micro-benchmark/python_features'
     for subdir, _, files in os.walk(root_directory):
         for file_name in files:
             if file_name.endswith('.py'):

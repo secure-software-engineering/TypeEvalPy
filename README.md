@@ -132,14 +132,18 @@ docker run \
 
 Here, running with the autogen benchmark on HeaderGen
 
+cd /home/ssegpu/rashida/TypeEvalPy
+
 ```bash
 docker run \
       -v /var/run/docker.sock:/var/run/docker.sock \
-      -v ./results:/app/results \
+      -v ./.scrapy/ManyTypes4Py:/ManyTypes4Py \
+      -v .:/app \
       typeevalpy \
-      --runners headergen \
-      --custom_benchmark_dir /app/autogen_typeevalpy_benchmark
+      --runners hityperdl \
+      --custom_benchmark_dir /ManyTypes4Py
 ```
+      --nocache \
 
 🛠️ Available options: `headergen`, `pyright`, `scalpel`, `jedi`, `hityper`, `type4py`, `hityperdl`
 

@@ -70,10 +70,7 @@ def compare_json_files(expected, out):
         out_fact_matched = False
         out_fact_mismatch = None
         entry_match = False
-        repo_name = fact_expected["file"]
-        repo_out_data = [entry for entry in data_out if entry.get("file") == repo_name]
-
-        for fact_out in repo_out_data:
+        for fact_out in data_out:
             # Get full matches
             if utils.check_match(expected=fact_expected, out=fact_out):
                 total_matches += 1
@@ -251,7 +248,7 @@ def process_cat_dir(cat_dir, tool_name=None, print_mismatch=False):
     cat_only_cat_recall_grouped = {}
 
     for root, dirs, files in os.walk(cat_dir):
-        test_files = ["train", "test", "valid"]
+        test_files = [x.split(".py")[0] for x in files if x.endswith(".py")]
         logger.debug(
             "\n\n ################ ----------------------- ################# \n\n"
         )
@@ -391,7 +388,7 @@ def iterate_cats(test_suite_dir, tool_name=None):
             "total_facts": 0,
             "total_caught": 0,
         }
-        for k in ["test","train","valid"]
+        for k in utils.PYTHON_FEATURES_CATEGORIES
     }
 
     for cat in sorted(os.listdir(test_suite_dir)):
@@ -511,7 +508,7 @@ def iterate_cats(test_suite_dir, tool_name=None):
             }
             for k in utils.TYPE_CATEGORIES
         }
-        for k_n in ["test","train","valid"]
+        for k_n in utils.PYTHON_FEATURES_CATEGORIES
     }
     if tool_name in utils.ML_TOOLS:
         for _cat, _results in all_cat_exact.items():
@@ -761,7 +758,7 @@ def generate_top_n_performance(test_suite_dir, tool_name=None):
                 }
                 for t in utils.TYPE_CATEGORIES
             }
-            for k in ["test","train","valid"]
+            for k in utils.PYTHON_FEATURES_CATEGORIES
         }
         for k_n in utils.TOP_N
     }
@@ -933,7 +930,7 @@ def run_results_analyzer(results_dir, benchmark_dir="micro-benchmark"):
                 if item.name in utils.ML_TOOLS:
                     tools_results[item.name]["top_n_results"] = (
                         generate_top_n_performance(
-                            item / f"{benchmark_dir}",
+                            item / f"{benchmark_dir}/python_features",
                             tool_name=item.name,
                         )
                     )
@@ -943,10 +940,10 @@ def run_results_analyzer(results_dir, benchmark_dir="micro-benchmark"):
                     tools_results[item.name]["exact_match"],
                     tools_results[item.name]["exact_match_category"],
                 ) = iterate_cats(
-                    item / f"{benchmark_dir}", tool_name=item.name
+                    item / f"{benchmark_dir}/python_features", tool_name=item.name
                 )
                 tools_results[item.name]["total_benchmark_data"] = (
-                    utils.benchmark_count(item / f"{benchmark_dir}")
+                    utils.benchmark_count(item / f"{benchmark_dir}/python_features")
                 )
                 # print(tools_results[item.name]["total_benchmark_data"])
                 # print(tools_results[item.name]["error_result_data"])
@@ -955,7 +952,7 @@ def run_results_analyzer(results_dir, benchmark_dir="micro-benchmark"):
                     tools_results[item.name]["sound_complete_data"],
                     tools_results[item.name]["sound_complete_total_data"],
                 ) = generate_sound_complete_data(
-                    item / f"{benchmark_dir}", tool_name=item.name
+                    item / f"{benchmark_dir}/python_features", tool_name=item.name
                 )
 
                 # check if analysis_sensitivities exists
@@ -1075,12 +1072,12 @@ if __name__ == "__main__":
     parser.add_argument(
         "--results_dir",
         help="Specify the results path",
-        default="/home/ssegpu/rashida/TypeEvalPy/results",
+        default="/home/ssegpu/rashida/TypeEvalPy/src/target_tools/llms/src/results",
     )
     parser.add_argument(
         "--benchmark_dir",
         help="Specify the benchmark path",
-        default="split_dataset",
+        default="micro-benchmark",
     )
 
     args = parser.parse_args()

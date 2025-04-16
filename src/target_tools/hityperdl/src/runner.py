@@ -8,6 +8,7 @@ from sys import stdout
 
 import translator
 import utils
+from tqdm import tqdm
 
 # Create a logger
 logger = logging.getLogger("runner")
@@ -47,7 +48,7 @@ def main_runner(args):
     python_files = list_python_files(args.bechmark_path)
     error_count = 0
     error_list = []
-    for file in python_files:
+    for file in tqdm(python_files, desc="Processing files"):
         try:
             # logger.debug(file)
             process_file(file)

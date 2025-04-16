@@ -74,7 +74,7 @@ def check_annotations_with_mask(file_path):
 
 # Main function to test all .py files in a directory for MASK annotations
 def main():
-    root_directory = '/media/pysse/analysis/TypeEvalPy/results/gpt-4o-mini/micro-benchmark/python_features'
+    root_directory = '/home/ssegpu/rashida/TypeEvalPy/micro-benchmark/python_features'
     all_files_passed = True
 
     for subdir, _, files in os.walk(root_directory):

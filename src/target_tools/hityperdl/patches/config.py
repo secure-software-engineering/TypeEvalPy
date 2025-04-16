@@ -1,6 +1,6 @@
 config = {
     # Indicate the web API that HiTyper should call to invoke the DL model
-    "type4py": "http://localhost:5010/api/predict?tc=0",
+    "type4py": "http://type4py:5010/api/predict?tc=0",
     # Indicate the default DL model used in HiTyper
     "default_model": "type4py",
     # Indicate the maximum iterations that HiTyper iterates the whole TDG to conduct static inference

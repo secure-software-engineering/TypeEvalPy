@@ -3,7 +3,6 @@ FROM ghcr.io/saltudelft/type4py:latest
 
 COPY requirements.txt /app/requirements.txt
 COPY src /tmp/src
-COPY micro-benchmark/python_features /tmp/micro-benchmark
 
 # Install Python dependencies
 RUN pip install --upgrade pip

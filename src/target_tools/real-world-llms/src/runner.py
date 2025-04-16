@@ -90,17 +90,6 @@ def log_memory_usage():
             )
 
 
-# def calculate_memory_approximation(token_count, base_memory=0.1, token_memory=0.0001):
-#     """
-#     Approximate the memory required for a batch based on the token count.
-#     :param token_count: Total number of tokens in the batch.
-#     :param base_memory: Base memory required for processing (in GB).
-#     :param token_memory: Memory required per token (in GB).
-#     :return: Approximated memory required (in GB).
-#     """
-#     return base_memory + (token_count * token_memory)
-
-
 def get_available_gpu_memory():
     """Returns the available GPU memory in GB."""
     if torch.cuda.is_available():
@@ -109,53 +98,6 @@ def get_available_gpu_memory():
         ).total_memory - torch.cuda.memory_allocated(0)
         return available_memory / (1024**3)
     return 0
-
-
-# def calculate_best_batch_size(prompts, token_limit, max_memory=40):
-#     """
-#     Calculate the best batch size based on token limit and memory constraints.
-#     :param prompts: List of prompts.
-#     :param token_limit: Maximum number of tokens per batch.
-#     :param max_memory: Maximum memory available for processing (in GB).
-#     :return: Best batch size.
-#     """
-#     sorted_prompts = sorted(prompts, key=lambda x: utils.get_token_count(x))
-#     batch_size = 1
-#     current_token_count = 0
-#     current_memory = 0
-
-#     for prompt in sorted_prompts:
-#         token_count = utils.get_token_count(prompt)
-#         memory_approx = calculate_memory_approximation(current_token_count + token_count)
-
-#         if current_token_count + token_count > token_limit or memory_approx > max_memory:
-#             break
-
-#         current_token_count += token_count
-#         current_memory = memory_approx
-#         batch_size += 1
-
-#     # Adjust batch size based on actual GPU memory usage
-#     available_memory = get_available_gpu_memory()
-#     while True:
-#         try:
-#             # Try to allocate a tensor of the given batch size
-#             _ = torch.randn(batch_size, 3, 224, 224).cuda()
-#             if available_memory < current_memory:
-#                 batch_size = batch_size // 2
-#                 torch.cuda.empty_cache()
-#             else:
-#                 break
-#         except RuntimeError as e:
-#             if 'out of memory' in str(e):
-#                 batch_size = batch_size // 2
-#                 torch.cuda.empty_cache()
-#             else:
-#                 raise e
-
-#     print(f"Available GPU memory: {available_memory:.2f} GB")
-
-#     return batch_size
 
 
 def get_prompt_mapping(
@@ -760,8 +702,8 @@ if __name__ == "__main__":
 python3.10 runner.py \
 --bechmark_path /mnt/hf_cache/rashida_manytype4py/many-types-4-py-dataset/rw-benchmark \
 --prompt_id prompt_template_questions_based_2 \
---models finetuned-codestral-v0.1-22b \
---hf_token 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 \
+--models codestral-v0.1-22b finetuned-codestral-v0.1-22b qwen2.5-Coder-7B-Instruct finetuned-qwen2.5-Coder-7B-Instruct-without-any \
+--hf_token \
 --openai_key token \
 --enable_streaming True \
 --models_config /home/ssegpu/rashida/TypeEvalPy/src/target_tools/real-world-llms/src/models_config.yaml \

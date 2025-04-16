@@ -24,6 +24,7 @@ from vllm.lora.request import LoRARequest
 import gc
 import torch
 from tqdm import tqdm
+import result_translator  # Import the translation module
 
 
 AUTOFIX_WITH_OPENAI = False
@@ -108,6 +109,37 @@ def create_result_json_file(file_info, output_raw, prompt_template):
         raise utils.JsonException("json")
 
     # logger.info(f"Processed file: {file_info['file_path']}")
+
+def create_result_json_from_code_file(file_info, output_raw, prompt_template):
+     # Clean up the output by removing unnecessary formatting
+    output_cleaned = re.sub(r"```json|```|<\|assistant\|>\\n", "", output_raw)
+
+    # Save the raw output to the result dump filepath
+    with open(file_info["result_dump_filepath"], "w") as f:
+        f.write(output_raw)
+
+    # Determine the filename, falling back if "filename" key is missing
+    filename = file_info["json_filepath"]
+    if filename is None:
+        # Generate a fallback filename with timestamp
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        fallback_dir = "outputs"  # You may specify any preferred directory
+        os.makedirs(fallback_dir, exist_ok=True)
+        filename = os.path.join(fallback_dir, f"output_{timestamp}.json")
+        logger.warning(f"'filename' key missing in file_info; saving output to {filename}")
+
+    # Directly translate the cleaned source code output to JSON annotations
+    translated_json = result_translator.translate_output_to_annotations(
+        output_cleaned, filename
+    )
+
+    # Validate and save the translated JSON to the final result file
+    result_filepath = file_info.get("result_filepath", filename)
+    if utils.generate_json_file(result_filepath, translated_json):
+        logger.info(f"Processed file: {file_info.get('file_path', filename)} successfully.")
+    else:
+        logger.error(f"{file_info.get('file_path', filename)} failed: Not a valid JSON")
+        raise utils.JsonException("json")
 
 
 def list_python_files(folder_path):
@@ -219,7 +251,10 @@ def model_evaluation_openai(
         file_info = id_mapping[id]
 
         output_raw = r_output
-        create_result_json_file(file_info, output_raw, prompt_template)
+        if prompt_id in ["prompt_template_questions_based_2",]:
+            create_result_json_file(file_info, output_raw, prompt_template)
+        elif prompt_id in ["prompt_template_masked_code_based_1",]:
+            create_result_json_from_code_file(file_info, output_raw, prompt_template)
 
 
 def main_runner(args, runner_config, models_to_run, openai_models_models_to_run):
@@ -453,15 +488,15 @@ if __name__ == "__main__":
 
 # example usage:
 """
-python runner.py \
---bechmark_path /home/ssegpu/TypeEvalPy/TypeEvalPy/micro-benchmark \
---prompt_id prompt_template_questions_based_2 \
---models gemma2-it:2b codellama-it:7b codellama-it:13b codellama-it:34b llama3.1-it:8b llama3.1-it:70b tinyllama:1.1b phi3-small-it:7.3b phi3-medium-it:14b phi3-mini-it:3.8b phi3.5-mini-it:3.8b phi3.5-moe-it:41.9b mixtral-v0.1-it:8x7b mistral-v0.3-it:7b mistral-nemo-it-2407:12.2b mistral-large-it-2407:123b codestral-v0.1:22b \
---hf_token  \
+python3.10 runner.py \
+--bechmark_path /home/ssegpu/rashida/TypeEvalPy/micro-benchmark \
+--prompt_id prompt_template_masked_code_based_1 \
+--models masked-qwen2.5-Coder-7B-Instruct \
+--hf_token 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 \
 --openai_key token \
 --enable_streaming True \
---models_config /home/ssegpu/TypeEvalPy/TypeEvalPy/src/target_tools/llms/src/models_config.yaml \
---results_dir /home/ssegpu/TypeEvalPy/TypeEvalPy/.scrapy/results_final_1
+--models_config /home/ssegpu/rashida/TypeEvalPy/src/target_tools/llms/src/models_config.yaml \
+--results_dir /home/ssegpu/rashida/TypeEvalPy/src/target_tools/llms/src/results
 
 python runner.py \
 --bechmark_path /home/ssegpu/TypeEvalPy/TypeEvalPy/autogen_typeevalpy_benchmark \
@@ -473,3 +508,4 @@ python runner.py \
 --models_config /home/ssegpu/TypeEvalPy/TypeEvalPy/src/target_tools/llms/src/models_config.yaml \
 --results_dir /home/ssegpu/TypeEvalPy/TypeEvalPy/.scrapy/results_full_1
 """
+2

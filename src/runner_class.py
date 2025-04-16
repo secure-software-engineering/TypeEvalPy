@@ -247,6 +247,7 @@ class HityperDLRunner(TypeEvalPyRunner):
         logger.info("Creating container")
         container = self.docker_client.containers.run(
             self.tool_name,
+            runtime="nvidia",
             detach=True,
             stdin_open=True,
             tty=True,
@@ -328,7 +329,7 @@ class Type4pyRunner(TypeEvalPyRunner):
             detach=True,
             stdin_open=True,
             tty=True,
-            ports={"5010": 5001},
+            ports={"5010": 5003},
         )
         time.sleep(5)  # wait fot server to start
         return container

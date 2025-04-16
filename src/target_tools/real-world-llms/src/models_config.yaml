@@ -207,28 +207,10 @@ models:
   max_model_len: 4000
   batch_size: 40
 
-- name: "codestral-v0.1-22b-without-any"
-  model_path: "mistralai/Codestral-22B-v0.1"
-  quantization: "bitsandbytes"
-  lora_repo: null
-  use_system_prompt: true
-  use_vllms_for_evaluation: false
-  max_model_len: 4000
-  batch_size: 40
-
-- name: "finetuned-codestral-v0.1-22b-without-any"
-  model_path: "mistralai/Codestral-22B-v0.1"
-  quantization: "bitsandbytes"
-  lora_repo: "/home/ssegpu/rashida/TypeEvalPy/src/target_tools/real-world-llms/src/finetunellms/finetuned_without_any_Codestral-22B-v0.1"
-  use_system_prompt: true
-  use_vllms_for_evaluation: false
-  max_model_len: 4000
-  batch_size: 40
-
 - name: "finetuned-codestral-v0.1-22b"
   model_path: "mistralai/Codestral-22B-v0.1"
   quantization: "bitsandbytes"
-  lora_repo: "/home/ssegpu/rashida/TypeEvalPy/src/target_tools/real-world-llms/src/finetunellms/finetuned_Codestral-22B-v0.1"
+  lora_repo: "/home/ssegpu/rashida/TypeEvalPy/src/target_tools/real-world-llms/src/finetunellms/finetuned_without_any_Codestral-22B-v0.1"
   use_system_prompt: true
   use_vllms_for_evaluation: false
   max_model_len: 4000
@@ -241,30 +223,12 @@ models:
   use_system_prompt: true
   use_vllms_for_evaluation: false
   max_model_len: 4000
-  batch_size: 25
-
-- name: "qwen2.5-Coder-7B-Instruct-without-any"
-  model_path: "Qwen/Qwen2.5-Coder-7B-Instruct"
-  quantization: "bitsandbytes"
-  lora_repo: null
-  use_system_prompt: true
-  use_vllms_for_evaluation: false
-  max_model_len: 4000
   batch_size: 50
 
 - name: "finetuned-qwen2.5-Coder-7B-Instruct-without-any"
   model_path: "Qwen/Qwen2.5-Coder-7B-Instruct"
   quantization: "bitsandbytes"
   lora_repo: "/home/ssegpu/rashida/TypeEvalPy/src/target_tools/real-world-llms/src/finetunellms/finetuned_without_any_qwen2.5-Coder-7B-Instruct"
-  use_system_prompt: true
-  use_vllms_for_evaluation: false
-  max_model_len: 4000
-  batch_size: 50
-
-- name: "finetuned-qwen2.5-Coder-7B-Instruct"
-  model_path: "Qwen/Qwen2.5-Coder-7B-Instruct"
-  quantization: "bitsandbytes"
-  lora_repo: "/home/ssegpu/rashida/TypeEvalPy/src/target_tools/real-world-llms/src/finetunellms/finetuned_qwen2.5-Coder-7B-Instruct"
   use_system_prompt: true
   use_vllms_for_evaluation: false
   max_model_len: 4000

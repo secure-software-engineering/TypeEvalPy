@@ -10,6 +10,93 @@ def list_json_files(folder_path):
     return python_files
 
 
+def normalize_type(type_str, nested_level=0):
+    """
+    Normalize the type string by removing module prefixes and simplifying typing constructs.
+    Example: 'builtins.str' -> 'str',
+             'typing.Tuple[builtins.str, builtins.float]' -> 'Tuple[str, float]',
+             'musictaxonomy.spotify.models.spotifyuser' -> 'SpotifyUser',
+             'List[List[Tuple[str]]]' -> 'List[List[Any]]' if nested level > 2.
+    """
+
+    if type_str is None:
+        return None
+
+    # Remove extra quotes if present
+    if type_str.startswith('"') and type_str.endswith('"'):
+        type_str = type_str.strip('"')
+
+    # Mapping of module prefixes to remove
+    type_mappings = {
+        "builtins.": "",
+        "typing.": "",
+    }
+    # Additional type mappings
+    additional_type_mappings = {
+        "integer": "int",
+        "string": "str",
+        "dictonary": "dict",
+        "method": "Callable",
+        "func": "Callable",
+        "function": "Callable",
+        "none": "None",
+        "Nonetype": "None",
+        "nonetype": "None",
+        "NoneType": "None",
+        "Text": "str",
+    }
+
+    if type_str is None:
+        return None
+
+    # Replace module prefixes
+    for prefix, replacement in type_mappings.items():
+        type_str = type_str.replace(prefix, replacement)
+
+    # Apply additional type mappings
+    type_str = additional_type_mappings.get(type_str, type_str)
+
+    # Handle generic types (e.g., Tuple[], List[], Dict[])
+    if "[" in type_str and "]" in type_str:
+        base_type, generic_content = type_str.split("[", 1)
+        generic_content = generic_content.rsplit("]", 1)[0]
+        # Process the generic parameters recursively
+        generic_params = []
+        bracket_level = 0
+        param = ""
+        for char in generic_content:
+            if char == "[":
+                bracket_level += 1
+                param += char
+            elif char == "]":
+                bracket_level -= 1
+                param += char
+            elif char == "," and bracket_level == 0:
+                generic_params.append(param.strip())
+                param = ""
+            else:
+                param += char
+        if param:
+            generic_params.append(param.strip())
+
+        # If nested level is greater than 0, replace with Any
+        if nested_level > 0:
+            normalized_params = ["Any"]
+        else:
+            normalized_params = [
+                normalize_type(param, nested_level + 1) for param in generic_params
+            ]
+
+        return f"{base_type}[{', '.join(normalized_params)}]"
+
+    # Handle fully qualified names by extracting the last segment
+    if "." in type_str:
+        return type_str.split(".")[-1]
+
+    # Return the simplified type
+    return type_str
+
+
 def translate_content(file_path):
     dir_path, file_name = os.path.split(file_path)
     hityper_file = dir_path + "/._" + file_name.replace(".py", "_INFERREDTYPES.json")
@@ -46,9 +133,9 @@ def translate_content(file_path):
                                 "file": gt_item["file"],
                                 "line_number": gt_item["line_number"],
                                 "variable": gt_item["variable"],
-                                "type": [convert_type(item["type"][0])],
+                                "type": [normalize_type(item["type"][0])],
                                 "all_type_preds": [
-                                    [convert_type(type_item)]
+                                    [normalize_type(type_item)]
                                     for type_item in item["type"]
                                 ],
                             }
@@ -60,9 +147,9 @@ def translate_content(file_path):
                                 "line_number": gt_item["line_number"],
                                 "function": gt_item["function"],
                                 "variable": gt_item["variable"],
-                                "type": [convert_type(item["type"][0])],
+                                "type": [normalize_type(item["type"][0])],
                                 "all_type_preds": [
-                                    [convert_type(type_item)]
+                                    [normalize_type(type_item)]
                                     for type_item in item["type"]
                                 ],
                             }
@@ -78,9 +165,10 @@ def translate_content(file_path):
                             "line_number": gt_item["line_number"],
                             "function": gt_item["function"],
                             "parameter": gt_item["parameter"],
-                            "type": [convert_type(item["type"][0])],
+                            "type": [normalize_type(item["type"][0])],
                             "all_type_preds": [
-                                [convert_type(type_item)] for type_item in item["type"]
+                                [normalize_type(type_item)]
+                                for type_item in item["type"]
                             ],
                         }
                         formatted_output.append(formatted_item)
@@ -94,9 +182,10 @@ def translate_content(file_path):
                             "file": gt_item["file"],
                             "line_number": gt_item["line_number"],
                             "function": gt_item["function"],
-                            "type": [convert_type(item["type"][0])],
+                            "type": [normalize_type(item["type"][0])],
                             "all_type_preds": [
-                                [convert_type(type_item)] for type_item in item["type"]
+                                [normalize_type(type_item)]
+                                for type_item in item["type"]
                             ],
                         }
                         formatted_output.append(formatted_item)
