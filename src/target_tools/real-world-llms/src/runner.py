@@ -702,7 +702,7 @@ if __name__ == "__main__":
 python3.10 runner.py \
 --bechmark_path /mnt/hf_cache/rashida_manytype4py/many-types-4-py-dataset/rw-benchmark \
 --prompt_id prompt_template_questions_based_2 \
---models codestral-v0.1-22b finetuned-codestral-v0.1-22b qwen2.5-Coder-7B-Instruct finetuned-qwen2.5-Coder-7B-Instruct-without-any \
+--models codestral-v0.1-22b qwen2.5-Coder-7B-Instruct \
 --hf_token \
 --openai_key token \
 --enable_streaming True \

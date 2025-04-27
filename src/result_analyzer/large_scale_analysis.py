@@ -670,9 +670,9 @@ def analyze_rare_types(csv_file_path, data_out, data_expected):
 
 # Output the result
 if __name__ == "__main__":
-    out = "/home/ssegpu/rashida/TypeEvalPy/results/finetuned-codestral-v0.1-22b-without-any/rw-benchmark/test/test_result.json"
-    expected = "/home/ssegpu/rashida/TypeEvalPy/results/finetuned-codestral-v0.1-22b-without-any/rw-benchmark/test/test_gt.json"
-    tool_name = "hityperdl"
+    out = "/home/ssegpu/rashida/TypeEvalPy/results_new/finetuned-qwen2.5-Coder-7B-Instruct-without-any/rw-benchmark/test/test_result.json"
+    expected = "/home/ssegpu/rashida/TypeEvalPy/results_new/finetuned-qwen2.5-Coder-7B-Instruct-without-any/rw-benchmark/test/test_gt.json"
+    tool_name = ""
 
     # tools = {
     #     # "HiTyper": "/home/ssegpu/rashida/TypeEvalPy/results/results_25-02-25 19_06/hityperdl/micro-benchmark/repos",
@@ -851,7 +851,7 @@ if __name__ == "__main__":
     print(table_qa)
 
     # Save the tables to a file
-    analysis_file_path = "/home/ssegpu/rashida/TypeEvalPy/results/finetuned-codestral-v0.1-22b-without-any/analysis_results.txt"
+    analysis_file_path = "/home/ssegpu/rashida/TypeEvalPy/results_new/finetuned-qwen2.5-Coder-7B-Instruct-without-any/analysis_results.txt"
     os.makedirs(os.path.dirname(analysis_file_path), exist_ok=True)
     with open(analysis_file_path, "w") as f:
         f.write(f"Tool Name: {tool_name}\n")
