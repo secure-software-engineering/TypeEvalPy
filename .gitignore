@@ -181,8 +181,3 @@ src/target_tools/ollama/src/fine_tuning/outputs/*
 
 # Ignore autogen files
 autogen/data
-
-# Ignore real-world dataset
-src/target_tools/real-world-llms/src/real-world-dataset/
-finetunellms/
-results_new/
