@@ -210,13 +210,6 @@ def create_result_json_file_from_answers(file_info, output_raw, prompt_template)
     output = re.sub(r"```", "", output)
     output = re.sub(r"<\|assistant\|>\\n", "", output)
 
-    # For codestral as it returns whole sentence
-    # type_inference = re.search(r"(\w+Type)", output)
-    # if type_inference:
-    #     output = type_inference.group(1)
-    # else:
-    #     output = "Unknown"
-
     # Append raw output to the dump file for debugging
     with open(file_info["result_dump_filepath"], "a") as f:
         f.write(output_raw + "\n")

@@ -238,21 +238,6 @@ def gather_code_files_from_test_folder(test_folder, language_extension="py"):
     return code_files
 
 
-# def get_token_count(text, prompt_id=None):
-
-#     # Ensure text is a string
-#     if isinstance(text, list):
-#         # Convert list of dictionaries to list of strings
-#         text = " ".join(
-#             [str(item) if isinstance(item, dict) else item for item in text]
-#         )
-
-#     encoding = tiktoken.encoding_for_model("gpt-4o")
-#     number_of_tokens_4o = len(encoding.encode(text))
-
-#     return number_of_tokens_4o
-
-
 def get_token_count(text, prompt_id=None):
     """
     Calculate the token count for the input text.
@@ -347,39 +332,7 @@ def truncate_prompt(
             truncated_prompt.append(message)
             total_tokens += token_count
 
-    # Recalculate token count to confirm
-    # full_prompt = ''.join([msg['content'] for msg in truncated_prompt])
-    # token_counts = get_token_count(truncated_prompt)
-    # logger.info(f"Truncated prompt to fit within the token limit. New token count: {token_counts}")
-
     return truncated_prompt
-
-
-# def generate_csv(token_counts, prompt_id):
-#     """
-#     Generates a CSV file with the token count information.
-
-#     Args:
-#         token_counts (dict): Token counts for different models.
-#         prompt_id (str): Identifier for the prompt template.
-#     """
-#     csv_file = "prompt_token_counts.csv"
-#     fieldnames = ["prompt_id", "model", "token_count"]
-
-#     # Check if the file exists
-#     file_exists = os.path.isfile(csv_file)
-
-#     with open(csv_file, mode="a", newline="") as file:
-#         writer = csv.DictWriter(file, fieldnames=fieldnames)
-
-#         # Write the header only if the file doesn't exist
-#         if not file_exists:
-#             writer.writeheader()
-
-#         for model, token_count in token_counts.items():
-#             writer.writerow(
-#                 {"prompt_id": prompt_id, "model": model, "token_count": token_count}
-#             )
 
 
 def get_prompt(
@@ -495,15 +448,6 @@ def get_prompt(
     else:
         global within_limit_count
         within_limit_count += 1
-
-    # Generate CSV
-    # generate_csv(token_counts, prompt_id)
-
-    # Log the final counts
-    # logger.info(
-    #     f"Number of prompts that exceeded the token limit: {exceeded_limit_count}"
-    # )
-    # logger.info(f"Number of prompts within the token limit: {within_limit_count}")
 
     return prompt
 
