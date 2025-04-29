@@ -17,15 +17,6 @@ TEST_DIR = os.path.join(
     SCRIPT_DIR, "results_analysis_tests/test/micro-benchmark/python_features"
 )
 
-TOP_5_LARGEST_PROMPTS = [
-    "repos/ChrisCummins/phd/system/machines/mirrored_directory_test.py",
-    "repos/cmdmnt/commandment/commandment/dep/dep.py",
-    "repos/sara0871/sara0871.topics-scilkit-leam/homeassistant/components/vacuum/__init__.py",
-    "repos/zspatter/network-simulation/tests/test_network.py",
-    "repos/cabalamat/frambozenapp/app/bozen/mondoc.py",
-]
-
-
 def check_match(
     expected,
     out,

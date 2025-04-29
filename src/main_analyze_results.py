@@ -1072,7 +1072,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--results_dir",
         help="Specify the results path",
-        default="/home/ssegpu/rashida/TypeEvalPy/src/target_tools/llms/src/results",
+        default=None,
     )
     parser.add_argument(
         "--benchmark_dir",

@@ -324,7 +324,7 @@ def get_prompt(prompt_id, file_path, answers_placeholders=True, use_system_promp
         else:
             prompt = copy.deepcopy(eval(f"prompts.{prompt_id}_no_sys"))
             prompt[0]["content"] = "{instructions}\n\n{code}".format(**prompt_data)
-
+            
     return prompt
 
 

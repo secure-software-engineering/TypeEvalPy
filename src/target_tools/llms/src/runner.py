@@ -26,7 +26,6 @@ import torch
 from tqdm import tqdm
 import result_translator  # Import the translation module
 
-
 AUTOFIX_WITH_OPENAI = False
 REQUEST_TIMEOUT = 60
 USE_MULTIPROCESSING_FOR_TERMINATION = True
@@ -488,15 +487,16 @@ if __name__ == "__main__":
 
 # example usage:
 """
-python3.10 runner.py \
---bechmark_path /home/ssegpu/rashida/TypeEvalPy/micro-benchmark \
---prompt_id prompt_template_masked_code_based_1 \
---models masked-qwen2.5-Coder-7B-Instruct \
---hf_token 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 \
+
+python runner.py \
+--bechmark_path /home/ssegpu/TypeEvalPy/TypeEvalPy/micro-benchmark \
+--prompt_id prompt_template_questions_based_2 \
+--models gemma2-it:2b codellama-it:7b codellama-it:13b codellama-it:34b llama3.1-it:8b llama3.1-it:70b tinyllama:1.1b phi3-small-it:7.3b phi3-medium-it:14b phi3-mini-it:3.8b phi3.5-mini-it:3.8b phi3.5-moe-it:41.9b mixtral-v0.1-it:8x7b mistral-v0.3-it:7b mistral-nemo-it-2407:12.2b mistral-large-it-2407:123b codestral-v0.1:22b \
+--hf_token  \
 --openai_key token \
 --enable_streaming True \
---models_config /home/ssegpu/rashida/TypeEvalPy/src/target_tools/llms/src/models_config.yaml \
---results_dir /home/ssegpu/rashida/TypeEvalPy/src/target_tools/llms/src/results
+--models_config /home/ssegpu/TypeEvalPy/TypeEvalPy/src/target_tools/llms/src/models_config.yaml \
+--results_dir /home/ssegpu/TypeEvalPy/TypeEvalPy/.scrapy/results_final_1
 
 python runner.py \
 --bechmark_path /home/ssegpu/TypeEvalPy/TypeEvalPy/autogen_typeevalpy_benchmark \
@@ -508,4 +508,3 @@ python runner.py \
 --models_config /home/ssegpu/TypeEvalPy/TypeEvalPy/src/target_tools/llms/src/models_config.yaml \
 --results_dir /home/ssegpu/TypeEvalPy/TypeEvalPy/.scrapy/results_full_1
 """
-2

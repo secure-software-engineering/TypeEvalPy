@@ -23,4 +23,9 @@ WORKDIR /app/HiTyper
 RUN pip install .
 RUN pip install PyCG==0.0.4
 
-WORKDIR /type4py/type4py/server
+RUN pip install PyCG==0.0.4
+
+COPY src /tmp/src
+
+# Set the default command to run when the container starts
+CMD ["bash"]

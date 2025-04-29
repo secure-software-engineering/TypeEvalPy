@@ -184,12 +184,5 @@ autogen/data
 
 # Ignore real-world dataset
 src/target_tools/real-world-llms/src/real-world-dataset/
-
-# ignore local fine tune model
-src/target_tools/real-world-llms/src/finetunellms/data
-src/target_tools/real-world-llms/src/finetunellms/dataset
-src/target_tools/real-world-llms/src/finetunellms/outputs
-src/target_tools/real-world-llms/src/finetunellms/finetuned_qwen2.5-Coder-7B-Instruct
-
 finetunellms/
 results_new/

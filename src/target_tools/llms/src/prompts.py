@@ -641,7 +641,6 @@ prompt_template_questions_based_2_no_sys = [
     },
 ]
 
-
 prompt_template_masked_code_based_1 = [
     {
         "role": "system",
