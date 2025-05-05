@@ -56,19 +56,27 @@ def process_file(file_path):
 
 
 def main_runner(args):
+    logger.info("args: %s", args)
     python_files = list_python_files(args.bechmark_path)
+    logger.info(f"Found {len(python_files)} python files")
     error_count = 0
-    for file in python_files:
+    for i, file in enumerate(python_files):
         try:
+            logger.info(f"Processing file {i+1}/{len(python_files)}: {file}")
             # logger.debug(file)
             inferred = process_file(file)
 
             translated = translator.translate_content(inferred)
+            logger.info(f"Translated: {translated}")
 
             json_file_path = str(file).replace(".py", "_result.json")
+            result_dump_path = str(file).replace(".py", "_dump.json")
 
             with open(json_file_path, "w") as json_file:
                 json.dump(translated, json_file, indent=4)
+
+            with open(result_dump_path, "w") as json_file:
+                json.dump(inferred, json_file, indent=4)
 
         except Exception as e:
             logger.info(f"Command returned non-zero exit status: {e} for file: {file}")

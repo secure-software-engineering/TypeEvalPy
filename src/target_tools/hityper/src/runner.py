@@ -31,6 +31,8 @@ def list_python_files(folder_path):
 
 
 def process_file(file_path):
+    base_repo_folder = "/mnt/hf_cache/rashida_manytype4py/many-types-4-py-dataset"
+    file_path = os.path.join(base_repo_folder, file_path)
     dir_path, file_name = os.path.split(file_path)
     hitype_cmd = f"hityper infer -s ./{file_name} -p ."
     subprocess.run(
@@ -44,7 +46,16 @@ def process_file(file_path):
 
 
 def main_runner(args):
-    python_files = list_python_files(args.bechmark_path)
+
+    with open(args.bechmark_path, 'r', encoding='utf-8') as file:
+        data = json.load(file)
+    # Extract .py files
+    python_files = []
+
+    for repo, repo_data in data.items():
+        if "src_files" in repo_data:
+            python_files.extend(repo_data["src_files"].keys())
+
     error_count = 0
     error_list = []
     for file in python_files:
@@ -78,12 +89,20 @@ if __name__ == "__main__":
         parser.add_argument(
             "--bechmark_path",
             help="Specify the benchmark path",
-            default="/tmp/micro-benchmark",
+            default="repos",
         )
 
         args = parser.parse_args()
         main_runner(args)
     else:
         print("Python is not running inside a Docker container")
-        file_path = ""
-        process_file(file_path)
+
+        parser = argparse.ArgumentParser()
+        parser.add_argument(
+            "--bechmark_path",
+            help="Specify the benchmark path",
+            default="/home/ssegpu/rashida/TypeEvalPy/src/target_tools/hityper/rw-benchmark/test/test.json",
+        )
+
+        args = parser.parse_args()
+        main_runner(args)

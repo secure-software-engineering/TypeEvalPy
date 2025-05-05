@@ -1,0 +1,327 @@
+runner_config:
+  max_new_tokens: 1024
+  temperature: 0.001
+
+models:
+- name: "qwen2-it-7b"
+  model_path: "Qwen/Qwen2-7B-Instruct"
+  quantization: "bitsandbytes"
+  lora_repo: null
+  use_system_prompt: true
+  use_vllms_for_evaluation: false
+  max_model_len: 8192
+  batch_size: 3
+  comment: "Does not support VLLMs with quantization bitsandbytes"
+
+- name: "qwen2-it-72b"
+  model_path: "Qwen/Qwen2-72B-Instruct"
+  quantization: "bitsandbytes"
+  lora_repo: null
+  use_system_prompt: true
+  use_vllms_for_evaluation: false
+  max_model_len: 8192
+  batch_size: 12
+  comment: "Does not support VLLMs with quantization bitsandbytes"
+
+- name: "gemma2-it-9b"
+  model_path: "google/gemma-2-9b-it"
+  quantization: "bitsandbytes"
+  lora_repo: null
+  use_system_prompt: false
+  use_vllms_for_evaluation: false
+  max_model_len: 4096
+  batch_size: 3
+  torch_dtype: "bfloat16"
+
+- name: "gemma2-it-27b"
+  model_path: "google/gemma-2-27b-it"
+  quantization: "bitsandbytes"
+  lora_repo: null
+  use_system_prompt: false
+  use_vllms_for_evaluation: false
+  max_model_len: 4096
+  batch_size: 3
+  torch_dtype: "bfloat16"
+
+- name: "gemma2-it-2b"
+  model_path: "google/gemma-2-2b-it"
+  quantization: "bitsandbytes"
+  lora_repo: null
+  use_system_prompt: false
+  use_vllms_for_evaluation: false
+  max_model_len: 4096
+  batch_size: 3
+  torch_dtype: "bfloat16"
+
+- name: "codellama-it-7b"
+  model_path: "meta-llama/CodeLlama-7b-Instruct-hf"
+  quantization: "bitsandbytes"
+  lora_repo: null
+  use_system_prompt: true
+  use_vllms_for_evaluation: false
+  max_model_len: 8192
+  batch_size: 3
+
+- name: "codellama-it-13b"
+  model_path: "meta-llama/CodeLlama-13b-Instruct-hf"
+  quantization: "bitsandbytes"
+  lora_repo: null
+  use_system_prompt: true
+  use_vllms_for_evaluation: false
+  max_model_len: 8192
+  batch_size: 3
+
+- name: "codellama-it-34b"
+  model_path: "meta-llama/CodeLlama-34b-Instruct-hf"
+  quantization: "bitsandbytes"
+  lora_repo: null
+  use_system_prompt: true
+  use_vllms_for_evaluation: false
+  max_model_len: 8192
+  batch_size: 3
+
+- name: "llama3.1-it-8b"
+  model_path: "meta-llama/Meta-Llama-3.1-8B-Instruct"
+  quantization: "bitsandbytes"
+  lora_repo: null
+  use_system_prompt: true
+  use_vllms_for_evaluation: false
+  max_model_len: 8192
+  batch_size: 3
+
+- name: "llama3.1-it-70b"
+  model_path: "meta-llama/Meta-Llama-3.1-70B-Instruct"
+  quantization: "bitsandbytes"
+  lora_repo: null
+  use_system_prompt: true
+  use_vllms_for_evaluation: false
+  max_model_len: 8192
+  batch_size: 3
+
+- name: "tinyllama-1.1b"
+  model_path: "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
+  quantization: "bitsandbytes"
+  lora_repo: null
+  use_system_prompt: true
+  use_vllms_for_evaluation: false
+  max_model_len: 2048
+  batch_size: 3
+
+- name: "phi3-small-it-7.3b"
+  model_path: "microsoft/Phi-3-small-128k-instruct"
+  quantization: "bitsandbytes"
+  lora_repo: null
+  use_system_prompt: true
+  use_vllms_for_evaluation: false
+  max_model_len: 8192
+  batch_size: 3
+
+- name: "phi3-medium-it-14b"
+  model_path: "microsoft/Phi-3-medium-128k-instruct"
+  quantization: "bitsandbytes"
+  lora_repo: null
+  use_system_prompt: true
+  use_vllms_for_evaluation: false
+  max_model_len: 8192
+  batch_size: 3
+
+- name: "phi3-mini-it-3.8b"
+  model_path: "microsoft/Phi-3-mini-128k-instruct"
+  quantization: "bitsandbytes"
+  lora_repo: null
+  use_system_prompt: true
+  use_vllms_for_evaluation: false
+  max_model_len: 8192
+  batch_size: 3
+
+- name: "phi3.5-mini-it-3.8b"
+  model_path: "microsoft/Phi-3.5-mini-instruct"
+  quantization: "bitsandbytes"
+  lora_repo: null
+  use_system_prompt: true
+  use_vllms_for_evaluation: false
+  max_model_len: 8192
+  batch_size: 3
+
+- name: "phi3.5-moe-it-41.9b"
+  model_path: "microsoft/Phi-3.5-MoE-instruct"
+  quantization: "bitsandbytes"
+  lora_repo: null
+  use_system_prompt: true
+  use_vllms_for_evaluation: false
+  max_model_len: 8192
+  batch_size: 3
+
+- name: "mixtral-v0.1-it-8x22b"
+  model_path: "mistralai/Mixtral-8x22B-Instruct-v0.1"
+  quantization: "bitsandbytes"
+  lora_repo: null
+  use_system_prompt: true
+  use_vllms_for_evaluation: false
+  max_model_len: 8192
+  batch_size: 3
+  comment: "Does not work with 1 GPU"
+
+- name: "mixtral-v0.1-it-8x7b"
+  model_path: "mistralai/Mixtral-8x7B-Instruct-v0.1"
+  quantization: "bitsandbytes"
+  lora_repo: null
+  use_system_prompt: true
+  use_vllms_for_evaluation: false
+  max_model_len: 8192
+  batch_size: 3
+
+- name: "mistral-v0.3-it-7b"
+  model_path: "mistralai/Mistral-7B-Instruct-v0.3"
+  quantization: "bitsandbytes"
+  lora_repo: null
+  use_system_prompt: true
+  use_vllms_for_evaluation: false
+  max_model_len: 8192
+  batch_size: 3
+
+- name: "mistral-nemo-it-2407-12.2b"
+  model_path: "mistralai/Mistral-Nemo-Instruct-2407"
+  quantization: "bitsandbytes"
+  lora_repo: null
+  use_system_prompt: true
+  use_vllms_for_evaluation: false
+  max_model_len: 8192
+  batch_size: 3
+
+- name: "mistral-large-it-2407-123b"
+  model_path: "mistralai/Mistral-Large-Instruct-2407"
+  quantization: "bitsandbytes"
+  lora_repo: null
+  use_system_prompt: true
+  use_vllms_for_evaluation: false
+  max_model_len: 8192
+  batch_size: 3
+
+- name: "codestral-v0.1-22b"
+  model_path: "mistralai/Codestral-22B-v0.1"
+  quantization: "bitsandbytes"
+  lora_repo: null
+  use_system_prompt: true
+  use_vllms_for_evaluation: false
+  max_model_len: 4000
+  batch_size: 50
+
+- name: "qwen2.5-Coder-7B-Instruct"
+  model_path: "Qwen/Qwen2.5-Coder-7B-Instruct"
+  quantization: "bitsandbytes"
+  lora_repo: null
+  use_system_prompt: true
+  use_vllms_for_evaluation: false
+  max_model_len: 4000
+  batch_size: 50
+
+- name: "finetuned-codestral-v0.1-22b-without-any"
+  model_path: "rbharmal/finetuned_Codestral-22B-v0.1"
+  quantization: "bitsandbytes"
+  lora_repo: "/home/ssegpu/rashida/TypeEvalPy/src/target_tools/real-world-llms/src/finetunellms/finetuned_without_any_Codestral-22B-v0.1"
+  use_system_prompt: true
+  use_vllms_for_evaluation: false
+  max_model_len: 4000
+  batch_size: 40
+
+- name: "finetuned-qwen2.5-Coder-7B-Instruct-without-any"
+  model_path: "rbharmal/finetuned-qwen-2.5-Coder-7B-Instruct"
+  quantization: "bitsandbytes"
+  lora_repo: "/home/ssegpu/rashida/TypeEvalPy/src/target_tools/real-world-llms/src/finetunellms/finetuned_without_any_qwen2.5-Coder-7B-Instruct"
+  use_system_prompt: true
+  use_vllms_for_evaluation: false
+  max_model_len: 4000
+  batch_size: 50
+
+- name: "qwen2.5-Coder-14B-Instruct"
+  model_path: "Qwen/Qwen2.5-Coder-14B-Instruct"
+  quantization: "bitsandbytes"
+  lora_repo: null
+  use_system_prompt: true
+  use_vllms_for_evaluation: false
+  max_model_len: 8192
+  batch_size: 3
+
+- name: "qwen2.5-Coder-32B-Instruct"
+  model_path: "Qwen/Qwen2.5-Coder-32B-Instruct"
+  quantization: "bitsandbytes"
+  lora_repo: null
+  use_system_prompt: true
+  use_vllms_for_evaluation: false
+  max_model_len: 8192
+  batch_size: 8
+
+- name: "llama-3.1-Nemotron-70B-Instruct-HF"
+  model_path: "nvidia/Llama-3.1-Nemotron-70B-Instruct-HF"
+  quantization: "bitsandbytes"
+  lora_repo: null
+  use_system_prompt: true
+  use_vllms_for_evaluation: false
+  max_model_len: 8192
+  batch_size: 3
+
+- name: "deepSeek-R1-Distill-Qwen-14B"
+  model_path: "deepseek-ai/DeepSeek-R1-Distill-Qwen-14B"
+  quantization: "bitsandbytes"
+  lora_repo: null
+  use_system_prompt: true
+  use_vllms_for_evaluation: false
+  max_model_len: 4000
+  batch_size: 15
+
+# MODELS NOT SUPPORTED CURRENTLY! 
+
+# - name: "codellama-python-7b"
+#   model_path: "meta-llama/CodeLlama-7b-Python-hf"
+#   quantization: "bitsandbytes"
+#   lora_repo: null
+#   use_system_prompt: true
+#   use_vllms_for_evaluation: false
+#   max_model_len: 8192
+#   batch_size: 12
+
+# - name: "codellama-python-13b"
+#   model_path: "meta-llama/CodeLlama-13b-Python-hf"
+#   quantization: "bitsandbytes"
+#   lora_repo: null
+#   use_system_prompt: true
+#   use_vllms_for_evaluation: false
+#   max_model_len: 8192
+#   batch_size: 12
+
+# - name: "codellama-python-34b"
+#   model_path: "meta-llama/CodeLlama-34b-Python-hf"
+#   quantization: "bitsandbytes"
+#   lora_repo: null
+#   use_system_prompt: true
+#   use_vllms_for_evaluation: false
+#   max_model_len: 8192
+#   batch_size: 12
+
+custom_models:
+  - name: "tinyllama-ft-1.1b"
+    model_path: "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
+    quantization: "bitsandbytes"
+    lora_repo: "/home/ssegpu/fine-tuning-apsv/models_single_label/TinyLlama-TinyLlama-1-1B-Chat-v1-0-single-label-v1"
+    use_system_prompt: true
+    use_vllms_for_evaluation: true
+    max_model_len: 2048
+    batch_size: 12
+
+
+openai_models:
+- name: "gpt-3.5-turbo"
+  use_system_prompt: true
+  use_vllms_for_evaluation: false
+  max_model_len: null
+
+- name: "gpt-4o"
+  use_system_prompt: true
+  use_vllms_for_evaluation: false
+  max_model_len: null
+
+- name: "gpt-4o-mini"
+  use_system_prompt: true
+  use_vllms_for_evaluation: false
+  max_model_len: null

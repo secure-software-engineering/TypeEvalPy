@@ -11,6 +11,7 @@ import traceback
 from pathlib import Path
 from sys import stdout
 from typing import List, Optional
+import psutil  # Add this import
 
 import prompts
 import translator
@@ -25,6 +26,8 @@ import gc
 import torch
 from tqdm import tqdm
 import result_translator  # Import the translation module
+from datetime import datetime  # Import datetime for timestamp generation
+
 
 AUTOFIX_WITH_OPENAI = False
 REQUEST_TIMEOUT = 60
@@ -43,75 +46,227 @@ PROMPTS_MAP = {
     "questions_based_2_ft": prompts.questions_based_2_ft,
 }
 
+# Set max_split_size_mb to avoid memory fragmentation
+os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "max_split_size_mb:128"
+
 script_dir = Path(__file__).parent
 # Create a logger
 logger = logging.getLogger("runner")
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
 
 if utils.is_running_in_docker():
     file_handler = logging.FileHandler("/tmp/llm_log.log", mode="w")
 else:
     file_handler = logging.FileHandler("llm_log.log", mode="w")
 
-file_handler.setLevel(logging.DEBUG)
+file_handler.setLevel(logging.INFO)
 
 console_handler = logging.StreamHandler(stdout)
-console_handler.setLevel(logging.DEBUG)
+console_handler.setLevel(logging.INFO)
 formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 file_handler.setFormatter(formatter)
 console_handler.setFormatter(formatter)
 logger.addHandler(file_handler)
 logger.addHandler(console_handler)
 
+# Set the PYTORCH_CUDA_ALLOC_CONF environment variable
+os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "max_split_size_mb:128"
 
-def get_prompt_mapping(prompt_template, python_files, use_system_prompt=False):
-    id_mapping = {
-        idx: {
-            "file_path": file_path,
-            "json_filepath": str(file_path).replace(".py", "_gt.json"),
-            "result_filepath": str(file_path).replace(".py", f"_result.json"),
-            "result_dump_filepath": str(file_path).replace(".py", f"_result_dump.txt"),
-            "prompt": utils.get_prompt(
-                prompt_template, file_path, use_system_prompt=use_system_prompt
-            ),
-        }
-        for idx, file_path in enumerate(python_files)
-    }
+
+def log_memory_usage():
+    """Logs the current memory usage of the system and CUDA."""
+    process = psutil.Process(os.getpid())
+    mem_info = process.memory_info()
+    logger.debug(f"System memory usage: {mem_info.rss / (1024 ** 3):.2f} GB")
+
+    if torch.cuda.is_available():
+        for i in range(torch.cuda.device_count()):
+            logger.debug(f"CUDA memory usage for device {i}:")
+            logger.debug(
+                f"  Allocated: {torch.cuda.memory_allocated(i) / (1024 ** 3):.2f} GB"
+            )
+            logger.debug(
+                f"  Cached: {torch.cuda.memory_reserved(i) / (1024 ** 3):.2f} GB"
+            )
+
+
+def get_available_gpu_memory():
+    """Returns the available GPU memory in GB."""
+    if torch.cuda.is_available():
+        available_memory = torch.cuda.get_device_properties(
+            0
+        ).total_memory - torch.cuda.memory_allocated(0)
+        return available_memory / (1024**3)
+    return 0
+
+
+def get_prompt_mapping(
+    result_dir, prompt_template, use_system_prompt=False, token_limit=4096
+):
+    """
+    Traverse the directory structure, pair .json and _gt.json files,
+    and generate a combined id_mapping using get_prompt_mapping logic.
+    """
+    base_path = Path(result_dir)
+    id_mapping = {}
+    idx = 0
+
+    # Walk through train, test, valid folders
+    for subfolder in ["test"]:
+        folder_path = base_path / subfolder
+        if not folder_path.exists():
+            continue
+
+        # Get .json and _gt.json files
+        code_json_files = sorted(folder_path.glob("*.json"))
+        gt_json_files = sorted(folder_path.glob("*_gt.json"))
+
+        # Ensure files are paired correctly
+        json_pairs = {}
+        for code_json in code_json_files:
+            # Find the corresponding _gt.json
+            gt_json = folder_path / f"{code_json.stem}_gt.json"
+            if gt_json.exists():
+                json_pairs[code_json] = gt_json
+
+        # Process each pair
+        for code_json, gt_json in json_pairs.items():
+            result_json_path = code_json.with_name(code_json.stem + "_result.json")
+            existing_results = {}
+
+            # Check if the result JSON file exists and load existing results
+            if result_json_path.exists():
+                with open(result_json_path, "r") as result_file:
+                    existing_results = json.load(result_file)
+
+            # Create a set of existing file paths for quick lookup
+            existing_files = {entry["file"] for entry in existing_results}
+
+            with open(code_json, "r") as code_file:
+                code_data = json.load(code_file)
+
+            with open(gt_json, "r") as gt_file:
+                gt_data = json.load(gt_file)
+
+            # Create gt_mapping
+            gt_mapping = {}
+            for entry in gt_data:
+                file_path = entry["file"]
+                if file_path not in gt_mapping:
+                    gt_mapping[file_path] = []
+                gt_mapping[file_path].append(entry)
+
+            # Process the code and generate prompts
+            for project_name, project_info in code_data.items():
+                src_files = project_info.get("src_files", {})
+
+                for file_path, file_info in src_files.items():
+                    source_code = file_info.get("source_code", "")
+
+                    if source_code == "":
+                        continue
+
+                    # Skip if the file is already present in existing results
+                    if file_path in existing_files:
+                        continue
+
+                    # Fetch the typing information for the file from gt_mapping
+                    type_info_list = gt_mapping.get(file_path, [])
+                    if len(type_info_list) == 0:
+                        continue
+
+                    # Generate the prompt
+                    prompt = utils.get_prompt(
+                        prompt_template,
+                        source_code,
+                        type_info_list,
+                        use_system_prompt=use_system_prompt,
+                        file_path=file_path,
+                        token_limit=token_limit,
+                    )
+
+                    if prompt is None:
+                        continue
+
+                    # Store the result in id_mapping
+                    id_mapping[idx] = {
+                        "project_name": project_name,
+                        "file_path": file_path,
+                        "json_filepath": str(gt_json),
+                        "result_filepath": str(result_json_path),
+                        "result_dump_filepath": str(
+                            code_json.with_name(code_json.stem + "_result_dump.txt")
+                        ),
+                        "prompt": prompt,
+                    }
+                    idx += 1
 
     return id_mapping
 
 
-def create_result_json_file(file_info, output_raw, prompt_template):
+def create_result_json_file_from_answers(file_info, output_raw, prompt_template):
+    # Clean the raw output
     output = re.sub(r"```json", "", output_raw)
     output = re.sub(r"```", "", output)
     output = re.sub(r"<\|assistant\|>\\n", "", output)
 
-    with open(file_info["result_dump_filepath"], "w") as f:
-        f.write(output_raw)
+    # Append raw output to the dump file for debugging
+    with open(file_info["result_dump_filepath"], "a") as f:
+        f.write(output_raw + "\n")
 
-    # TODO: Improve the way this is done. Some plugin based design.
+    # Generate and translate content based on the prompt template
     if prompt_template in [
         "prompt_template_questions_based_2",
     ]:
         answers_json = utils.generate_json_from_answers(
-            file_info["json_filepath"], output
+            file_info["file_path"], file_info["json_filepath"], output
         )
         translated_json = translator.translate_content(answers_json)
     else:
         translated_json = translator.translate_content(output)
 
+    # Load existing results if the file exists
+    existing_results = []
+    if os.path.exists(file_info["result_filepath"]):
+        with open(file_info["result_filepath"], "r") as f:
+            try:
+                existing_results = json.load(f)
+            except json.JSONDecodeError:
+                logger.warning(
+                    f"Invalid JSON in {file_info['result_filepath']}. Starting fresh."
+                )
+
+    # Append new results to the existing ones
+    if isinstance(translated_json, list):
+        existing_results.extend(translated_json)
+    else:
+        existing_results.append(translated_json)
+
+    # Save the combined results back to the result file
     is_valid_json = utils.generate_json_file(
-        file_info["result_filepath"], translated_json
+        file_info["result_filepath"], existing_results
     )
+
     if not is_valid_json:
-        logger.info(f"{file_info['file_path']} failed: Not a valid JSON")
+        logger.error(f"{file_info['file_path']} failed: Not a valid JSON")
         raise utils.JsonException("json")
 
-    # logger.info(f"Processed file: {file_info['file_path']}")
+    logger.debug(f"Accessed {file_info['file_path']} successfully.")
+    logger.debug(f"Results appended to {file_info['result_filepath']} successfully.")
 
-def create_result_json_from_code_file(file_info, output_raw, prompt_template):
-     # Clean up the output by removing unnecessary formatting
-    output_cleaned = re.sub(r"```json|```|<\|assistant\|>\\n", "", output_raw)
+
+def create_result_json_file_from_code(file_info, output_raw, prompt_template):
+    # Ensure output_raw is a string to prevent TypeError
+    if not isinstance(output_raw, str):
+        output_raw = str(output_raw) if output_raw is not None else ""
+
+    # Clean up the output by removing unnecessary formatting
+    code = re.search(r"```(?:.*?)\n(.*?)```", output_raw, re.DOTALL)
+
+    if code:
+        output_cleaned = code.group(1).strip()
+    else:
+        output_cleaned = re.sub(r"```json|```|<\|assistant\|>\\n", "", output_raw)
 
     # Save the raw output to the result dump filepath
     with open(file_info["result_dump_filepath"], "w") as f:
@@ -125,7 +280,9 @@ def create_result_json_from_code_file(file_info, output_raw, prompt_template):
         fallback_dir = "outputs"  # You may specify any preferred directory
         os.makedirs(fallback_dir, exist_ok=True)
         filename = os.path.join(fallback_dir, f"output_{timestamp}.json")
-        logger.warning(f"'filename' key missing in file_info; saving output to {filename}")
+        logger.warning(
+            f"'filename' key missing in file_info; saving output to {filename}"
+        )
 
     # Directly translate the cleaned source code output to JSON annotations
     translated_json = result_translator.translate_output_to_annotations(
@@ -135,15 +292,17 @@ def create_result_json_from_code_file(file_info, output_raw, prompt_template):
     # Validate and save the translated JSON to the final result file
     result_filepath = file_info.get("result_filepath", filename)
     if utils.generate_json_file(result_filepath, translated_json):
-        logger.info(f"Processed file: {file_info.get('file_path', filename)} successfully.")
+        logger.debug(
+            f"Processed file: {file_info.get('file_path', filename)} successfully."
+        )
     else:
         logger.error(f"{file_info.get('file_path', filename)} failed: Not a valid JSON")
         raise utils.JsonException("json")
 
 
-def list_python_files(folder_path):
-    python_files = sorted(Path(folder_path).rglob("main.py"))
-    return python_files
+def list_json_files(folder_path):
+    json_files = sorted(Path(folder_path).rglob("*.json"))
+    return json_files
 
 
 def model_evaluation_vllm(
@@ -179,42 +338,81 @@ def model_evaluation_vllm(
 def model_evaluation_transformers(
     model_name,
     prompt_template,
-    python_files,
+    json_files,
     pipe,
     results_dst,
     use_system_prompt=False,
-    batch_size=32,
+    initial_batch_size=32,
+    token_limit=3000,
+    max_memory=65,
 ):
+    id_mapping = get_prompt_mapping(
+        results_dst, prompt_template, use_system_prompt, token_limit
+    )
 
-    id_mapping = get_prompt_mapping(prompt_template, python_files, use_system_prompt)
+    prompt_id_mapping_pairs = [(x["prompt"], x) for x in id_mapping.values()]
+    sorted_prompt_id_mapping_pairs = sorted(
+        prompt_id_mapping_pairs, key=lambda x: utils.get_token_count(x[0])
+    )
+    sorted_prompts = [pair[0] for pair in sorted_prompt_id_mapping_pairs]
+    sorted_id_mapping = [pair[1] for pair in sorted_prompt_id_mapping_pairs]
 
-    prompts = [x["prompt"] for x in id_mapping.values()]
+    progress_bar = tqdm(total=len(sorted_prompts), desc="Processing Prompts")
+    
+    i = 0
+    batch_size = initial_batch_size
 
-    # processed_prompts = pipe.tokenizer.apply_chat_template(
-    #     prompts, tokenize=False, add_generation_template=True
-    # )
+    while i < len(sorted_prompts):
+        current_batch = []
+        current_token_count = 0
 
-    # Split prompts into batches
-    progress_batch = batch_size
-    for i in tqdm(range(0, len(prompts), progress_batch)):
-        prompt_batch = prompts[i : i + progress_batch]
+        while (
+            i < len(sorted_prompts)
+            and current_token_count + utils.get_token_count(sorted_prompts[i])
+            <= token_limit * batch_size
+        ):
+            prompt_token_count = utils.get_token_count(sorted_prompts[i])
+            logger.debug(f"Prompt {sorted_id_mapping[i]['file_path']}: {prompt_token_count} tokens")
+            current_batch.append(sorted_prompts[i])
+            current_token_count += prompt_token_count
+            i += 1
 
-        request_outputs = transformers_helpers.process_requests(
-            pipe,
-            prompt_batch,
-            max_new_tokens=MAX_NEW_TOKENS,
-            batch_size=batch_size,
-        )
+        log_memory_usage()
+        
+        try:
+            request_outputs = transformers_helpers.process_requests(
+                pipe,
+                current_batch,
+                max_new_tokens=MAX_NEW_TOKENS,
+                batch_size=len(current_batch),
+            )
 
-        for id, r_output in enumerate(request_outputs):
-            file_info = id_mapping[id + i]
+            for id, r_output in enumerate(request_outputs):
+                file_info = sorted_id_mapping[id + i - len(current_batch)]
+                output_raw = r_output[0]["generated_text"][-1]["content"]
+                create_result_json_file_from_answers(
+                    file_info, output_raw, prompt_template
+                )
 
-            output_raw = r_output[0]["generated_text"][-1]["content"]
+            progress_bar.update(len(current_batch))
+            del request_outputs, current_batch
+            gc.collect()
+            torch.cuda.empty_cache()
+        
+        except torch.cuda.OutOfMemoryError as e:
+            logger.error(f"CUDA out of memory error while processing batch starting at index {i - len(current_batch)}")
+            logger.error(f"Error details: {e}")
+            # logger.error(f"Batch details: {[sorted_id_mapping[i - len(current_batch) + j]['file_path'] for j in range(len(current_batch))]}")
+            log_memory_usage()
+            torch.cuda.empty_cache()
+            
+            batch_size = max(1, batch_size - 3)  # Reduce batch size but ensure it's at least 1
+            i -= len(current_batch)  # Roll back the index to retry from unprocessed prompts
+            print(f"Reducing batch size to {batch_size}")
+            continue  # Retry with a smaller batch size
 
-            # output_raw = r_output[0]["generated_text"].split(pipe.tokenizer.eos_token)[-1]
-            # output_raw = r_output[0]["generated_text"].split("[/INST]")[-1]
-
-            create_result_json_file(file_info, output_raw, prompt_template)
+    log_memory_usage()
+    progress_bar.close()
 
 
 def model_evaluation_openai(
@@ -226,7 +424,9 @@ def model_evaluation_openai(
     use_system_prompt=False,
 ):
 
-    id_mapping = get_prompt_mapping(prompt_template, python_files, use_system_prompt)
+    id_mapping = get_prompt_mapping(prompt_template, json_files, use_system_prompt)
+
+    # id_mapping = get_prompt_mapping(prompt_template, '/home/pysse/TypeEvalPy/src/target_tools/real-world-llms/src/real-world-dataset/train.json','/home/pysse/TypeEvalPy/src/target_tools/real-world-llms/src/real-world-dataset/train_translated.json' , use_system_prompt)
 
     prompts = [x["prompt"] for x in id_mapping.values()]
 
@@ -249,11 +449,9 @@ def model_evaluation_openai(
     for id, r_output in enumerate(request_outputs):
         file_info = id_mapping[id]
 
+        # Store raw output from LLM
         output_raw = r_output
-        if prompt_id in ["prompt_template_questions_based_2",]:
-            create_result_json_file(file_info, output_raw, prompt_template)
-        elif prompt_id in ["prompt_template_masked_code_based_1",]:
-            create_result_json_from_code_file(file_info, output_raw, prompt_template)
+        create_result_json_file(file_info, output_raw, prompt_template)
 
 
 def main_runner(args, runner_config, models_to_run, openai_models_models_to_run):
@@ -263,6 +461,7 @@ def main_runner(args, runner_config, models_to_run, openai_models_models_to_run)
         timeout_count = 0
         json_count = 0
         files_analyzed = 0
+        model_start_time = 0  # Initialize model_start_time here
 
         # Create result folder for model specific results
         bechmark_path = Path(args.bechmark_path)
@@ -275,7 +474,7 @@ def main_runner(args, runner_config, models_to_run, openai_models_models_to_run)
 
         utils.copy_folder(results_src, results_dst)
 
-        python_files = list_python_files(results_dst)
+        json_files = list_json_files(results_dst)
 
         if model["use_vllms_for_evaluation"]:
             engine = vllm_helpers.initialize_engine(
@@ -297,7 +496,7 @@ def main_runner(args, runner_config, models_to_run, openai_models_models_to_run)
             model_evaluation_vllm(
                 model["name"],
                 args.prompt_id,
-                python_files,
+                json_files,
                 engine,
                 results_dst,
                 use_system_prompt=model["use_system_prompt"],
@@ -311,23 +510,26 @@ def main_runner(args, runner_config, models_to_run, openai_models_models_to_run)
         else:
             if model["lora_repo"] is None:
                 model_path = model["model_path"]
+                lora_repo = None
             else:
-                model_path = model["lora_repo"]
+                model_path = model["model_path"]
+                lora_repo = model["lora_repo"]
 
             pipe = None
             try:
                 pipe = transformers_helpers.load_model_and_configurations(
-                    args.hf_token, model_path, model["quantization"], TEMPARATURE
+                    args.hf_token, model_path, model["quantization"], TEMPARATURE, lora_repo
                 )
                 model_start_time = time.time()
                 model_evaluation_transformers(
                     model["name"],
                     args.prompt_id,
-                    python_files,
+                    json_files,
                     pipe,
                     results_dst,
                     use_system_prompt=model["use_system_prompt"],
-                    batch_size=model["batch_size"],
+                    initial_batch_size=model["batch_size"],
+                    token_limit=model["max_model_len"],
                 )
 
             except Exception as e:
@@ -364,7 +566,9 @@ def main_runner(args, runner_config, models_to_run, openai_models_models_to_run)
 
         utils.copy_folder(results_src, results_dst)
 
-        python_files = list_python_files(results_dst)
+        python_files = list_json_files(results_dst)
+
+        python_files = python_files[:2]
 
         model_start_time = time.time()
         model_evaluation_openai(
@@ -483,20 +687,20 @@ if __name__ == "__main__":
                     models_config["openai_models"][model]
                 )
 
+    torch.cuda.empty_cache()
     main_runner(args, runner_config, models_to_run, openai_models_models_to_run)
 
 # example usage:
 """
-
-python runner.py \
---bechmark_path /home/ssegpu/TypeEvalPy/TypeEvalPy/micro-benchmark \
+python3.10 runner.py \
+--bechmark_path /mnt/hf_cache/rashida_manytype4py/many-types-4-py-dataset/rw-benchmark \
 --prompt_id prompt_template_questions_based_2 \
---models gemma2-it:2b codellama-it:7b codellama-it:13b codellama-it:34b llama3.1-it:8b llama3.1-it:70b tinyllama:1.1b phi3-small-it:7.3b phi3-medium-it:14b phi3-mini-it:3.8b phi3.5-mini-it:3.8b phi3.5-moe-it:41.9b mixtral-v0.1-it:8x7b mistral-v0.3-it:7b mistral-nemo-it-2407:12.2b mistral-large-it-2407:123b codestral-v0.1:22b \
---hf_token  \
+--models codestral-v0.1-22b qwen2.5-Coder-7B-Instruct \
+--hf_token \
 --openai_key token \
 --enable_streaming True \
---models_config /home/ssegpu/TypeEvalPy/TypeEvalPy/src/target_tools/llms/src/models_config.yaml \
---results_dir /home/ssegpu/TypeEvalPy/TypeEvalPy/.scrapy/results_final_1
+--models_config /home/ssegpu/rashida/TypeEvalPy/src/target_tools/real-world-llms/src/models_config.yaml \
+--results_dir /home/ssegpu/rashida/TypeEvalPy/results
 
 python runner.py \
 --bechmark_path /home/ssegpu/TypeEvalPy/TypeEvalPy/autogen_typeevalpy_benchmark \

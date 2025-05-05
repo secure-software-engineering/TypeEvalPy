@@ -247,6 +247,7 @@ class HityperDLRunner(TypeEvalPyRunner):
         logger.info("Creating container")
         container = self.docker_client.containers.run(
             self.tool_name,
+            runtime="nvidia",
             detach=True,
             stdin_open=True,
             tty=True,

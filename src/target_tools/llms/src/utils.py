@@ -301,13 +301,30 @@ def get_prompt(prompt_id, file_path, answers_placeholders=True, use_system_promp
         else:
             prompt = copy.deepcopy(eval(f"prompts.{prompt_id}_no_sys"))
             prompt[0]["content"] = prompt[0]["content"].format(**prompt_data)
+    elif prompt_id in ["prompt_template_masked_code_based_1"]:
+        prompt_data = {
+            "code": code,
+            "instructions": (
+                "You are given a Python code snippet where all type annotations are currently represented by the placeholder '[MASK]'. "
+                "Your task is to replace '[MASK]' with the most appropriate Python type annotations, such as 'str', 'int', 'callable', etc., "
+                "for all function return types, variable annotations, and function parameters. "
+                "\n\nStrict Requirements:\n"
+                "1. Maintain the exact same structure, formatting, and indentation as in the input code.\n"
+                "2. Do not alter the line numbers or remove existing blank lines.\n"
+                "3. Do not add any additional blank lines or comments.\n"
+                "4. Do not add any explanations or extra information in the output.\n"
+                "5. Only return the annotated version of the code.\n"
+                "6. Ensure proper and consistent type annotations wherever applicable."
+            ),
+        }
 
-    else:
-        logger.error("ERROR! Prompt not found!")
-        sys.exit(-1)
-
-    get_token_count(f"{prompt[0]['content']}{prompt[1]['content']}", prompt_id)
-
+        if use_system_prompt:
+            prompt = copy.deepcopy(eval(f"prompts.{prompt_id}"))
+            prompt[1]["content"] = "{instructions}\n\n{code}".format(**prompt_data)
+        else:
+            prompt = copy.deepcopy(eval(f"prompts.{prompt_id}_no_sys"))
+            prompt[0]["content"] = "{instructions}\n\n{code}".format(**prompt_data)
+            
     return prompt
 
 

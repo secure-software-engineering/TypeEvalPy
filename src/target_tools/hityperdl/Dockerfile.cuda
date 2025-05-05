@@ -1,5 +1,10 @@
 # Pull the Python base image
-FROM ghcr.io/saltudelft/type4py:latest
+FROM ghcr.io/saltudelft/type4py.prod.gpu:latest
+
+# install git
+RUN rm /etc/apt/sources.list.d/cuda.list
+RUN rm /etc/apt/sources.list.d/nvidia-ml.list
+RUN apt update && apt install -y git
 
 COPY requirements.txt /app/requirements.txt
 COPY src /tmp/src
@@ -23,9 +28,4 @@ WORKDIR /app/HiTyper
 RUN pip install .
 RUN pip install PyCG==0.0.4
 
-RUN pip install PyCG==0.0.4
-
-COPY src /tmp/src
-
-# Set the default command to run when the container starts
-CMD ["bash"]
+WORKDIR /type4py/type4py/server
