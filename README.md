@@ -248,7 +248,7 @@ This will generate a folder in the repo root with the autogen benchmark with the
 
 ### Running TypeEvalPy ManyType4Py dataset
 
-To run the LLM based Type Inference for ManyType4Py dataset follow the guide here : [src/target_tools/real-world-llms/README.md](src/target_tools/real-world-llms/README.md)
+To run the LLM based Type Inference for ManyType4Py dataset, please follow the guide here : [src/target_tools/real-world-llms/README.md](src/target_tools/real-world-llms/README.md)
 
 
 ### 🤝 Contributing
