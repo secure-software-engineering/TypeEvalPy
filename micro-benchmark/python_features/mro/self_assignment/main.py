@@ -23,3 +23,5 @@ b = a.smth()
 
 a.funca()
 b = a.smth()
+
+B().func()

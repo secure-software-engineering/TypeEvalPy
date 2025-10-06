@@ -17,5 +17,5 @@ def func3():
 def func4():
     return [2, 4]
 
-
+func1(); func2(); func3(); func4();
 (a, b), (c, d) = [(func1, func2), (func3, func4)]

@@ -13,3 +13,4 @@ d = {"a": func1}
 
 d.update({"a": func2})
 e = d["a"]()
+func1()
