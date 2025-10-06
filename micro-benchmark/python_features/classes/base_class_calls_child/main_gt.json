@@ -5,7 +5,8 @@
         "col_offset": 9,
         "function": "A.func",
         "type": [
-            "str"
+            "str",
+            "int"
         ]
     },
     {

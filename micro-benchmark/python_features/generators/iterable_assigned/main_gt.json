@@ -44,8 +44,7 @@
         "col_offset": 9,
         "function": "Cls.__next__",
         "type": [
-            "int",
-            "Nonetype"
+            "int"
         ]
     },
     {

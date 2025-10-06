@@ -5,7 +5,7 @@
         "col_offset": 9,
         "function": "Shape.area",
         "type": [
-            "Nonetype"
+            "int"
         ]
     },
     {
