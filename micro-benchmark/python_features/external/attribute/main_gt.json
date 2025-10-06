@@ -1,7 +1,7 @@
 [
     {
         "file": "main.py",
-        "line_number": 9,
+        "line_number": 6,
         "col_offset": 1,
         "variable": "a",
         "type": [
@@ -10,7 +10,7 @@
     },
     {
         "file": "main.py",
-        "line_number": 9,
+        "line_number": 7,
         "col_offset": 1,
         "variable": "b",
         "type": [

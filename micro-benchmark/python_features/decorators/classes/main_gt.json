@@ -22,7 +22,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 13,
-        "function": "NewClass.my_method",
+        "function": "my_decorator.NewClass.my_method",
         "type": [
             "str"
         ]

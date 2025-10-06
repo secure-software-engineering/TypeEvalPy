@@ -2,7 +2,7 @@
     {
         "file": "main.py",
         "line_number": 4,
-        "col_offset": 5,        
+        "col_offset": 5,
         "function": "func",
         "type": [
             "int"
@@ -11,7 +11,7 @@
     {
         "file": "main.py",
         "line_number": 8,
-        "col_offset": 1,        
+        "col_offset": 1,
         "variable": "a",
         "type": [
             "int"
@@ -20,7 +20,7 @@
     {
         "file": "main.py",
         "line_number": 11,
-        "col_offset": 5,        
+        "col_offset": 5,
         "function": "func2",
         "type": [
             "int"
@@ -29,7 +29,7 @@
     {
         "file": "main.py",
         "line_number": 15,
-        "col_offset": 5,        
+        "col_offset": 5,
         "function": "func3",
         "type": [
             "callable"
@@ -38,7 +38,7 @@
     {
         "file": "main.py",
         "line_number": 19,
-        "col_offset": 5,        
+        "col_offset": 5,
         "function": "func4",
         "type": [
             "callable"
@@ -47,7 +47,7 @@
     {
         "file": "main.py",
         "line_number": 23,
-        "col_offset": 1,        
+        "col_offset": 1,
         "variable": "b",
         "type": [
             "int"
@@ -56,7 +56,7 @@
     {
         "file": "main.py",
         "line_number": 26,
-        "col_offset": 5,        
+        "col_offset": 5,
         "function": "func5",
         "type": [
             "int"
@@ -65,7 +65,7 @@
     {
         "file": "main.py",
         "line_number": 30,
-        "col_offset": 1,        
+        "col_offset": 1,
         "variable": "c",
         "type": [
             "int"

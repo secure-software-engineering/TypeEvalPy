@@ -22,7 +22,7 @@
         "file": "main.py",
         "line_number": 11,
         "col_offset": 9,
-        "variable": "B.a",
+        "variable": "self.a",
         "function": "B.__init__",
         "type": [
             "A"

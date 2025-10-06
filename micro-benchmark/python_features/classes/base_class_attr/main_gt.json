@@ -3,7 +3,8 @@
         "file": "main.py",
         "line_number": 5,
         "col_offset": 13,
-        "variable": "A.B.a",
+        "variable": "self.a",
+        "function": "A.B.__init__",
         "type": [
             "str"
         ]
