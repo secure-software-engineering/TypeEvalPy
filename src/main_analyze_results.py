@@ -1045,14 +1045,16 @@ def run_results_analyzer(results_dir, benchmark_dir="micro-benchmark"):
     )
 
     for tool in list(tools_results.keys()):
-        shutil.move(
-            f"{tool}_mismatches_reasons.csv",
-            f"{str(results_dir)}/mismatches/{tool}_mismatches_reasons.csv",
-        )
-        shutil.move(
-            f"{tool}_not_found_reasons.csv",
-            f"{str(results_dir)}/missing/{tool}_not_found_reasons.csv",
-        )
+        if Path(f"{tool}_mismatches_reasons.csv").exists():
+            shutil.move(
+                f"{tool}_mismatches_reasons.csv",
+                f"{str(results_dir)}/mismatches/{tool}_mismatches_reasons.csv",
+            )
+        if Path(f"{tool}_not_found_reasons.csv").exists():
+            shutil.move(
+                f"{tool}_not_found_reasons.csv",
+                f"{str(results_dir)}/missing/{tool}_not_found_reasons.csv",
+            )
 
         if tool in utils.ML_TOOLS:
             shutil.move(
