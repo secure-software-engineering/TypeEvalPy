@@ -45,14 +45,28 @@ class TypeEvalPyRunner:
             os.makedirs(self.host_results_path)
 
     def _build_docker_image(self):
+        from docker.errors import BuildError
+
         logger.info("Building image")
-        image, _ = self.docker_client.images.build(
-            path=self.dockerfile_path,
-            tag=self.tool_name,
-            dockerfile=self.dockerfile_name,
-            nocache=self.nocache,
-        )
-        return image
+        try:
+            image, logs = self.docker_client.images.build(
+                path=self.dockerfile_path,
+                tag=self.tool_name,
+                dockerfile=self.dockerfile_name,
+                nocache=self.nocache,
+            )
+            for chunk in logs:
+                if 'stream' in chunk:
+                    print(chunk['stream'], end='')
+
+            return image
+        except BuildError as e:
+            for chunk in e.build_log or []:
+                if 'stream' in chunk:
+                    print(chunk['stream'], end='')
+                elif 'errorDetail' in chunk:
+                    print(chunk['errorDetail'].get('message', ''))
+            raise
 
     def spawn_docker_instance(self):
         logger.info("Creating container")
