@@ -93,11 +93,7 @@ def compare_json_files(expected, out):
             #     for _type in fact_expected.get("type", []):
             #         if _type in fact_out.get("type", []):
             #             partial_matches += 1
-            elif all(
-                x in fact_out and fact_out[x] == fact_expected[x]
-                for x in fact_expected.keys()
-                if x not in ["type", "col_offset"]
-            ):
+            elif utils.is_same_element(fact_out, fact_expected):
                 entry_match = True
                 break
             else:
@@ -131,7 +127,8 @@ def format_missing_matches(all_missing_matches):
         "File",
         "Line Number",
         "Function",
-        "Parameter/Variable",
+        "Parameter",
+        "Variable",
         "Actual Type",
         "Predicted Type",
     ]
@@ -193,7 +190,7 @@ def format_missing_matches(all_missing_matches):
     ]
     formatted_output = (
         "\nMissing matches:\n{}\nTotal error entries: {}\nErrors in function return"
-        " type: {}\nErrors in param: {}\n/Errors in variables:{}\nMissing entries:"
+        " type: {}\nErrors in param: {}\nErrors in variables: {}\nMissing entries:"
         " {}\nMismatch entries: {}".format(
             missing_matches_table,
             total_missing_entries,
