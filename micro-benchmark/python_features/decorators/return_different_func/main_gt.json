@@ -29,15 +29,6 @@
     },
     {
         "file": "main.py",
-        "line_number": 12,
-        "col_offset": 5,
-        "function": "func",
-        "type": [
-            "str"
-        ]
-    },
-    {
-        "file": "main.py",
         "line_number": 16,
         "col_offset": 5,
         "function": "func2",
