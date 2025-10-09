@@ -10,3 +10,4 @@ def func():
 
 
 a = nested.to_import.func()
+func()

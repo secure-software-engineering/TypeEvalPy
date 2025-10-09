@@ -14,3 +14,4 @@ d = {"a": func1}
 d["a"] = func2
 
 e = d["a"]()
+func1()

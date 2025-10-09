@@ -23,3 +23,4 @@ class A:
 
 a = A()
 b = a.func()
+C().func()

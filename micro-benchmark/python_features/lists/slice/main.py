@@ -18,5 +18,4 @@ ls = [func1, func2, func3]
 ls2 = ls[1:3]
 
 c = ls2[0]()
-func1()
-func3()
+func1(); func3()

@@ -19,3 +19,4 @@ def func4():
 
 
 (a, b), (c, d) = [(func1, func2), (func3, func4)]
+a(); b(); c(); d();
