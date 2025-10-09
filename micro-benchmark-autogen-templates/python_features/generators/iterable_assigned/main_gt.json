@@ -21,7 +21,7 @@
             "file": "main.py",
             "line_number": 6,
             "col_offset": 9,
-            "variable": "Cls.max",
+            "variable": "self.max",
             "function": "Cls.__init__",
             "type": [
                 "int"
@@ -41,7 +41,7 @@
             "line_number": 9,
             "col_offset": 9,
             "function": "Cls.__iter__",
-            "variable": "Cls.n",
+            "variable": "self.n",
             "type": [
                 "int"
             ]
@@ -70,7 +70,7 @@
             "file": "main.py",
             "line_number": 17,
             "col_offset": 9,
-            "variable": "Cls.n",
+            "variable": "self.n",
             "function": "Cls.__next__",
             "type": [
                 "int"

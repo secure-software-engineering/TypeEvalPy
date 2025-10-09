@@ -29,7 +29,7 @@
             "file": "main.py",
             "line_number": 7,
             "col_offset": 9,
-            "function": "inner",
+            "function": "outer.inner",
             "type": [
                 "<value1>"
             ]
@@ -38,7 +38,8 @@
             "file": "main.py",
             "line_number": 9,
             "col_offset": 9,
-            "function": "inner",
+            "function": "outer.inner",
+            "variable": "x",
             "type": [
                 "<value1>"
             ]

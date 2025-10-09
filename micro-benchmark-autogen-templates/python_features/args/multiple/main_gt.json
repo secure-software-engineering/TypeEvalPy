@@ -41,7 +41,7 @@
             "line_number": 4,
             "col_offset": 19,
             "function": "my_sum",
-            "parameter": "integers",
+            "parameter": "arguments",
             "type": [
                 "tuple"
             ]

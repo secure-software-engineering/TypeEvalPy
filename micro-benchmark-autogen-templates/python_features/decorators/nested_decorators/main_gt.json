@@ -33,7 +33,7 @@
             "file": "main.py",
             "line_number": 5,
             "col_offset": 9,
-            "function": "inner",
+            "function": "dec1.inner",
             "type": [
                 "<value1>"
             ]
@@ -52,7 +52,7 @@
             "line_number": 11,
             "col_offset": 10,
             "parameter": "f",
-            "function": "dec",
+            "function": "dec2",
             "type": [
                 "callable"
             ]
@@ -61,7 +61,7 @@
             "file": "main.py",
             "line_number": 12,
             "col_offset": 9,
-            "function": "inner",
+            "function": "dec2.inner",
             "type": [
                 "<value1>"
             ]

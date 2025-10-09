@@ -47,7 +47,7 @@
         },
         {
             "file": "main.py",
-            "line_number": 18,
+            "line_number": 17,
             "col_offset": 1,
             "variable": "a",
             "type": [
@@ -56,7 +56,7 @@
         },
         {
             "file": "main.py",
-            "line_number": 18,
+            "line_number": 17,
             "col_offset": 5,
             "variable": "b",
             "type": [
@@ -83,7 +83,7 @@
         },
         {
             "file": "main.py",
-            "line_number": 18,
+            "line_number": 17,
             "col_offset": 8,
             "variable": "c",
             "type": [
@@ -92,7 +92,7 @@
         },
         {
             "file": "main.py",
-            "line_number": 20,
+            "line_number": 19,
             "col_offset": 1,
             "variable": "d",
             "type": [
@@ -101,7 +101,7 @@
         },
         {
             "file": "main.py",
-            "line_number": 21,
+            "line_number": 20,
             "col_offset": 1,
             "variable": "e",
             "type": [
@@ -110,7 +110,7 @@
         },
         {
             "file": "main.py",
-            "line_number": 22,
+            "line_number": 21,
             "col_offset": 1,
             "variable": "f",
             "type": [
@@ -119,7 +119,7 @@
         },
         {
             "file": "main.py",
-            "line_number": 23,
+            "line_number": 22,
             "col_offset": 1,
             "variable": "g",
             "type": [

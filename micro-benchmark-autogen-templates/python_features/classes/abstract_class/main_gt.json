@@ -38,7 +38,7 @@
             "file": "main.py",
             "line_number": 12,
             "col_offset": 9,
-            "variable": "Rectangle.width",
+            "variable": "self.width",
             "function": "Rectangle.__init__",
             "type": [
                 "<value1>"
@@ -48,7 +48,7 @@
             "file": "main.py",
             "line_number": 13,
             "col_offset": 9,
-            "variable": "Rectangle.height",
+            "variable": "self.height",
             "function": "Rectangle.__init__",
             "type": [
                 "<value1>"
@@ -57,7 +57,7 @@
         {
             "file": "main.py",
             "line_number": 15,
-            "col_offset": 5,
+            "col_offset": 9,
             "function": "Rectangle.area",
             "type": [
                 "<value1>"

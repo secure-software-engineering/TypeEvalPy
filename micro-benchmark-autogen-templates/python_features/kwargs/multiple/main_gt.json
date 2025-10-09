@@ -9,7 +9,7 @@
         {
             "file": "main.py",
             "line_number": 4,
-            "col_offset": 1,
+            "col_offset": 5,
             "function": "concatenate",
             "type": [
                 "<value1>"
@@ -18,7 +18,7 @@
         {
             "file": "main.py",
             "line_number": 4,
-            "col_offset": 17,
+            "col_offset": 19,
             "function": "concatenate",
             "parameter": "kwargs",
             "type": [
@@ -30,6 +30,7 @@
             "line_number": 5,
             "col_offset": 5,
             "variable": "result",
+            "function": "concatenate",
             "type": [
                 "<value1>"
             ]
@@ -39,6 +40,7 @@
             "line_number": 6,
             "col_offset": 9,
             "variable": "arg",
+            "function": "concatenate",
             "type": [
                 "<value1>"
             ]

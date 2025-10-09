@@ -41,7 +41,7 @@
             "file": "main.py",
             "line_number": 25,
             "col_offset": 1,
-            "variable": "C",
+            "variable": "c",
             "type": [
                 "<value3>"
             ]
