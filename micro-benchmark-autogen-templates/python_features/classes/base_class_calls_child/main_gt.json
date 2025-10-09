@@ -16,7 +16,8 @@
             "col_offset": 9,
             "function": "A.func",
             "type": [
-                "<value1>"
+                "<value1>",
+                "<value2>"
             ]
         },
         {
