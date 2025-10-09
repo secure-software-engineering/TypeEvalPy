@@ -16,8 +16,8 @@
         },
         {
             "file": "main.py",
-            "line_number": 4,
-            "col_offset": 18,
+            "line_number": 5,
+            "col_offset": 12,
             "function": "lambda",
             "variable": "x",
             "type": [
@@ -26,8 +26,8 @@
         },
         {
             "file": "main.py",
-            "line_number": 4,
-            "col_offset": 36,
+            "line_number": 6,
+            "col_offset": 11,
             "function": "lambda",
             "variable": "x",
             "type": [

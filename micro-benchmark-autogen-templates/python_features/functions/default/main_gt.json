@@ -18,8 +18,8 @@
         },
         {
             "file": "main.py",
-            "line_number": 2,
-            "col_offset": 13,
+            "line_number": 3,
+            "col_offset": 5,
             "parameter": "x",
             "function": "my_func",
             "type": [
@@ -29,8 +29,8 @@
         },
         {
             "file": "main.py",
-            "line_number": 2,
-            "col_offset": 18,
+            "line_number": 4,
+            "col_offset": 5,
             "parameter": "y",
             "function": "my_func",
             "type": [
@@ -40,7 +40,7 @@
         },
         {
             "file": "main.py",
-            "line_number": 6,
+            "line_number": 9,
             "col_offset": 1,
             "variable": "result1",
             "type": [
@@ -49,7 +49,7 @@
         },
         {
             "file": "main.py",
-            "line_number": 7,
+            "line_number": 10,
             "col_offset": 1,
             "variable": "result2",
             "type": [
@@ -58,7 +58,7 @@
         },
         {
             "file": "main.py",
-            "line_number": 8,
+            "line_number": 11,
             "col_offset": 1,
             "variable": "result3",
             "type": [

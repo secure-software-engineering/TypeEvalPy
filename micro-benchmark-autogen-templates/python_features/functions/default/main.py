@@ -1,5 +1,8 @@
 # Defining a function with default values for its parameters.
-def my_func(x=<value1>, y=<value1>):
+def my_func(
+    x=<value1>,
+    y=<value1>
+):
     return x + y
 
 

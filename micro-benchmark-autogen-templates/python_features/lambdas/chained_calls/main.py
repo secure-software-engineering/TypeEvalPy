@@ -15,4 +15,8 @@ def func1(a, b, c):
     return func2(b, c)
 
 
-d = func1(lambda x: x + <value1>, lambda x: x + <value1>, lambda x: x + <value1>)
+d = func1(
+    lambda x: x + <value1>,
+    lambda x: x + <value1>,
+    lambda x: x + <value1>
+)
