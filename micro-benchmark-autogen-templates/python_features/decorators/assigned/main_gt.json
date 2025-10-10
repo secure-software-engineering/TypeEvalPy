@@ -4,7 +4,6 @@
         "int",
         "float",
         "str",
-        "bool",
         "list",
         "tuple"
     ],
