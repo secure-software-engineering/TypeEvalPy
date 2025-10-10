@@ -35,7 +35,7 @@
             "parameter": "key",
             "function": "func1",
             "type": [
-                "<value1>"
+                "int"
             ]
         },
         {
