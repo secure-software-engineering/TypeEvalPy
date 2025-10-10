@@ -20,3 +20,4 @@ class C(A, B):
 
 c = C()
 d = c.func()
+B().func()
