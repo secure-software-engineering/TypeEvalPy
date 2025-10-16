@@ -32,6 +32,7 @@
         "line_number": 9,
         "col_offset": 5,
         "variable": "d['a']",
+        "function": "func",
         "type": [
             "callable"
         ]

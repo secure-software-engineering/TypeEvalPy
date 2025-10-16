@@ -40,7 +40,7 @@
         {
             "file": "main.py",
             "line_number": 12,
-            "col_offset": 5,
+            "col_offset": 1,
             "variable": "d[1]",
             "type": [
                 "callable"

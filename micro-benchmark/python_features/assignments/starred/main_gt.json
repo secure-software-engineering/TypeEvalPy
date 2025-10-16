@@ -56,7 +56,7 @@
     {
         "file": "main.py",
         "line_number": 18,
-        "col_offset": 8,
+        "col_offset": 5,
         "variable": "b[0]",
         "type": [
             "callable"
@@ -65,7 +65,7 @@
     {
         "file": "main.py",
         "line_number": 18,
-        "col_offset": 8,
+        "col_offset": 5,
         "variable": "b[1]",
         "type": [
             "callable"
