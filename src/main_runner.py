@@ -22,6 +22,7 @@ from runner_class import (
     ScalpelRunner,
     Type4pyRunner,
     LLMRunner,
+    RightTyperRunner,
 )
 from utils import FileHandler
 
@@ -65,10 +66,11 @@ def get_args():
             "hityper",
             "type4py",
             "hityperdl",
+            "righttyper",
         ],
         help=(
             "List of runners to execute. Choices are:"
-            "headergen, pyright, scalpel, jedi, hityper, type4py, hityperdl"
+            "headergen, pyright, scalpel, jedi, hityper, type4py, hityperdl, righttyper"
         ),
     )
     parser.add_argument(
@@ -157,6 +159,15 @@ def main():
         ),
         "llms": (
             LLMRunner,
+            {
+                "debug": args.debug,
+                "nocache": args.nocache,
+                "custom_benchmark_dir": args.custom_benchmark_dir,
+                "config": config,
+            },
+        ),
+        "righttyper": (
+            RightTyperRunner,
             {
                 "debug": args.debug,
                 "nocache": args.nocache,

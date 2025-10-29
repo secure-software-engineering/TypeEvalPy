@@ -471,3 +471,22 @@ class LLMRunner(TypeEvalPyRunner):
             ],
         )
         return container
+
+
+class RightTyperRunner(TypeEvalPyRunner):
+    def __init__(
+        self,
+        host_results_path,
+        config,
+        debug=False,
+        nocache=False,
+        custom_benchmark_dir=None,
+    ):
+        super().__init__(
+            "righttyper",
+            "./target_tools/righttyper",
+            host_results_path,
+            nocache=nocache,
+            custom_benchmark_dir=custom_benchmark_dir,
+        )
+        self.config = config

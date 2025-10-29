@@ -33,6 +33,7 @@
 | [Type4Py](https://github.com/saltudelft/type4py)                      |                                                                      |
 | [GPT](https://openai.com)                                             |                                                                      |
 | [Ollama](https://ollama.ai)                                           |                                                                      |
+| [RightTyper](https://github.com/RightTyper/RightTyper)                |                                                                      |
 
 ---
 
