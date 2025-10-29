@@ -11,7 +11,7 @@
         {
             "file": "main.py",
             "line_number": 6,
-            "col_offset": 5,
+            "col_offset": 9,
             "function": "MyClass.my_static_method",
             "type": [
                 "<value1>"

@@ -121,7 +121,7 @@
             "file": "main.py",
             "line_number": 33,
             "col_offset": 1,
-            "function": "a",
+            "variable": "a",
             "type": [
                 "callable"
             ]
@@ -174,7 +174,7 @@
         {
             "file": "main.py",
             "line_number": 37,
-            "col_offset": 5,
+            "col_offset": 4,
             "variable": "b",
             "type": [
                 "callable"

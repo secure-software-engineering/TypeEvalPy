@@ -2,7 +2,7 @@
     {
         "file": "main.py",
         "line_number": 4,
-        "col_offset": 5,        
+        "col_offset": 5,
         "function": "func",
         "type": [
             "int"
@@ -11,7 +11,7 @@
     {
         "file": "main.py",
         "line_number": 4,
-        "col_offset": 10,        
+        "col_offset": 10,
         "parameter": "a",
         "function": "func",
         "type": [
@@ -21,7 +21,7 @@
     {
         "file": "main.py",
         "line_number": 8,
-        "col_offset": 1,        
+        "col_offset": 1,
         "variable": "y",
         "type": [
             "callable"
@@ -30,9 +30,9 @@
     {
         "file": "main.py",
         "line_number": 8,
-        "col_offset": 12,        
+        "col_offset": 12,
         "function": "lambda",
-        "variable": "x",
+        "parameter": "x",
         "type": [
             "int"
         ]
@@ -40,7 +40,7 @@
     {
         "file": "main.py",
         "line_number": 10,
-        "col_offset": 1,        
+        "col_offset": 1,
         "variable": "b",
         "type": [
             "int"

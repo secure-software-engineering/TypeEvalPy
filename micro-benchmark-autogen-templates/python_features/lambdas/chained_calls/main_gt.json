@@ -104,8 +104,8 @@
         },
         {
             "file": "main.py",
-            "line_number": 18,
-            "col_offset": 18,
+            "line_number": 19,
+            "col_offset": 12,
             "function": "lambda",
             "variable": "x",
             "type": [
@@ -114,8 +114,8 @@
         },
         {
             "file": "main.py",
-            "line_number": 18,
-            "col_offset": 35,
+            "line_number": 20,
+            "col_offset": 12,
             "function": "lambda",
             "variable": "x",
             "type": [
@@ -124,8 +124,8 @@
         },
         {
             "file": "main.py",
-            "line_number": 18,
-            "col_offset": 52,
+            "line_number": 21,
+            "col_offset": 12,
             "function": "lambda",
             "variable": "x",
             "type": [

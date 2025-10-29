@@ -9,7 +9,7 @@
         ]
     },
     {
-        "file": "imported.py",
+        "file": "main.py",
         "line_number": 6,
         "col_offset": 1,
         "variable": "b",

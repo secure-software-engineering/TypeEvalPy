@@ -33,16 +33,7 @@
             "file": "main.py",
             "line_number": 5,
             "col_offset": 9,
-            "function": "wrapper",
-            "type": [
-                "<value1>"
-            ]
-        },
-        {
-            "file": "main.py",
-            "line_number": 12,
-            "col_offset": 5,
-            "function": "func",
+            "function": "dec.wrapper",
             "type": [
                 "<value1>"
             ]

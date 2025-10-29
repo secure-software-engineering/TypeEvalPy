@@ -170,6 +170,19 @@ def transform_type_string(s: str) -> str:
     return s
 
 
+def is_same_element(
+    a: dict[str, int|str|list[str]],
+    b: dict[str, int|str|list[str]]
+) -> bool:
+    """Decides whether the two entries refer to the same program element
+       (function return value, function parameter or variable)."""
+    return all(
+        a.get(k) == b.get(k)
+        # really, just file/line/column should be enough
+        for k in ('file', 'line_number', 'col_offset', 'function', 'parameter', 'variable')
+    )
+
+
 def check_match(
     expected,
     out,
@@ -179,45 +192,8 @@ def check_match(
     print_mismatch=False,
     metadata={},
 ):
-    if not all(
-        [
-            x in expected
-            for x in out.keys()
-            if x not in ["type", "all_type_preds", "col_offset"]
-        ]
-    ):
+    if not is_same_element(expected, out):
         return False
-
-    # check if file match
-    if expected.get("file") != out.get("file"):
-        return False
-
-    # # check if line_number match
-    if expected.get("line_number") != out.get("line_number"):
-        return False
-
-    # if "col_offset" in expected and "col_offset" in out:
-    if expected["col_offset"] != out["col_offset"]:
-        return False
-
-    if "col_offset" in expected and "col_offset" in out:
-        if expected["col_offset"] != out["col_offset"]:
-            return False
-
-    # check if function match
-    if "function" in expected:
-        if expected.get("function") != out.get("function"):
-            return False
-
-    # Check if parameters match
-    if "parameter" in expected:
-        if expected.get("parameter") != out.get("parameter"):
-            return False
-
-    # Check if variable match
-    if "variable" in expected:
-        if expected.get("variable") != out.get("variable"):
-            return False
 
     # logger.debug("Other facts match: checking for types")
     type_formatted = []
@@ -252,7 +228,7 @@ def check_match(
         # print only full mismatch
         if print_mismatch:
             logger.debug(
-                f"\n\n##### Type mismatch! #####\nPartial mactching: {partial_match}"
+                f"\n\n##### Type mismatch! #####\nPartial matching: {partial_match}"
             )
 
             with open(f"{metadata['tool_name']}_mismatches_reasons.csv", "a") as f:

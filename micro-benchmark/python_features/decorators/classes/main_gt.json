@@ -5,7 +5,7 @@
         "col_offset": 5,
         "function": "my_decorator",
         "type": [
-            "my_decorator.NewClass"
+            "type"
         ]
     },
     {
@@ -15,25 +15,16 @@
         "function": "my_decorator",
         "parameter": "cls",
         "type": [
-            "MyClass"
+            "type"
         ]
     },
     {
         "file": "main.py",
         "line_number": 6,
         "col_offset": 13,
-        "function": "NewClass.my_method",
+        "function": "my_decorator.NewClass.my_method",
         "type": [
             "str"
-        ]
-    },
-    {
-        "file": "main.py",
-        "line_number": 14,
-        "col_offset": 9,
-        "function": "MyClass.my_method",
-        "type": [
-            "int"
         ]
     },
     {
@@ -42,7 +33,7 @@
         "col_offset": 1,
         "variable": "a",
         "type": [
-            "my_decorator.NewClass"
+            "MyClass"
         ]
     },
     {

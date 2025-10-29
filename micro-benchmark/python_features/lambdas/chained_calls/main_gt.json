@@ -2,7 +2,7 @@
     {
         "file": "main.py",
         "line_number": 4,
-        "col_offset": 5,        
+        "col_offset": 5,
         "function": "func3",
         "type": [
             "int"
@@ -11,7 +11,7 @@
     {
         "file": "main.py",
         "line_number": 4,
-        "col_offset": 11,        
+        "col_offset": 11,
         "parameter": "a",
         "function": "func3",
         "type": [
@@ -21,7 +21,7 @@
     {
         "file": "main.py",
         "line_number": 8,
-        "col_offset": 5,        
+        "col_offset": 5,
         "function": "func2",
         "type": [
             "int"
@@ -30,7 +30,7 @@
     {
         "file": "main.py",
         "line_number": 8,
-        "col_offset": 11,        
+        "col_offset": 11,
         "parameter": "a",
         "function": "func2",
         "type": [
@@ -40,7 +40,7 @@
     {
         "file": "main.py",
         "line_number": 8,
-        "col_offset": 14,        
+        "col_offset": 14,
         "parameter": "b",
         "function": "func2",
         "type": [
@@ -50,7 +50,7 @@
     {
         "file": "main.py",
         "line_number": 13,
-        "col_offset": 5,        
+        "col_offset": 5,
         "function": "func1",
         "type": [
             "int"
@@ -59,7 +59,7 @@
     {
         "file": "main.py",
         "line_number": 13,
-        "col_offset": 11,        
+        "col_offset": 11,
         "parameter": "a",
         "function": "func1",
         "type": [
@@ -69,7 +69,7 @@
     {
         "file": "main.py",
         "line_number": 13,
-        "col_offset": 14,        
+        "col_offset": 14,
         "parameter": "b",
         "function": "func1",
         "type": [
@@ -79,7 +79,7 @@
     {
         "file": "main.py",
         "line_number": 13,
-        "col_offset": 17,        
+        "col_offset": 17,
         "parameter": "c",
         "function": "func1",
         "type": [
@@ -89,7 +89,7 @@
     {
         "file": "main.py",
         "line_number": 18,
-        "col_offset": 1,        
+        "col_offset": 1,
         "variable": "d",
         "type": [
             "int"
@@ -98,9 +98,9 @@
     {
         "file": "main.py",
         "line_number": 18,
-        "col_offset": 18,        
+        "col_offset": 18,
         "function": "lambda",
-        "variable": "x",
+        "parameter": "x",
         "type": [
             "int"
         ]
@@ -108,9 +108,9 @@
     {
         "file": "main.py",
         "line_number": 18,
-        "col_offset": 35,        
+        "col_offset": 35,
         "function": "lambda",
-        "variable": "x",
+        "parameter": "x",
         "type": [
             "int"
         ]
@@ -118,9 +118,9 @@
     {
         "file": "main.py",
         "line_number": 18,
-        "col_offset": 52,        
+        "col_offset": 52,
         "function": "lambda",
-        "variable": "x",
+        "parameter": "x",
         "type": [
             "int"
         ]

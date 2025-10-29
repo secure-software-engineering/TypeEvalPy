@@ -23,7 +23,7 @@
         "line_number": 6,
         "col_offset": 5,
         "function": "func1",
-        "parameter": "a",
+        "variable": "a",
         "type": [
             "int"
         ]
@@ -33,7 +33,7 @@
         "line_number": 7,
         "col_offset": 5,
         "function": "func1",
-        "parameter": "a",
+        "variable": "a",
         "type": [
             "int"
         ]

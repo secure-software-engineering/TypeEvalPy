@@ -16,14 +16,14 @@
             "col_offset": 5,
             "function": "func",
             "type": [
-                "<value2>"
+                "<value1>"
             ]
         },
         {
             "file": "main.py",
             "line_number": 5,
             "col_offset": 9,
-            "function": "dec",
+            "function": "func.dec",
             "type": [
                 "callable"
             ]
@@ -33,7 +33,7 @@
             "line_number": 5,
             "col_offset": 13,
             "parameter": "f",
-            "function": "dec",
+            "function": "func.dec",
             "type": [
                 "callable"
             ]
@@ -42,18 +42,9 @@
             "file": "main.py",
             "line_number": 8,
             "col_offset": 9,
-            "function": "modified_inner",
+            "function": "func.modified_inner",
             "type": [
                 "<value1>"
-            ]
-        },
-        {
-            "file": "main.py",
-            "line_number": 12,
-            "col_offset": 9,
-            "function": "inner",
-            "type": [
-                "<value2>"
             ]
         },
         {

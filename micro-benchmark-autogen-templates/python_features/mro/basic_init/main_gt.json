@@ -15,7 +15,7 @@
             "line_number": 7,
             "col_offset": 9,
             "function": "A.__init__",
-            "variable": "A.a",
+            "variable": "self.a",
             "type": [
                 "<value1>"
             ]

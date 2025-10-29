@@ -16,8 +16,8 @@
     "ground_truth": [
         {
             "file": "main.py",
-            "line_number": 5,
-            "col_offset": 5,
+            "line_number": 7,
+            "col_offset": 1,
             "variable": "a",
             "type": [
                 "<value1>"

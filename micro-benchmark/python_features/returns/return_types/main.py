@@ -18,11 +18,11 @@ b = func1()
 
 from collections import namedtuple
 
-
 # return_namedtuple
+Point = namedtuple("Point", ["x", "y"])
 def func3():
-    Point = namedtuple("Point", ["x", "y"])
     return Point(1, 2)
+
 
 
 c = func3()

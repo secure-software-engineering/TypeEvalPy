@@ -31,14 +31,14 @@
             "line_number": 6,
             "col_offset": 5,
             "function": "func1",
-            "parameter": "a",
+            "variable": "a",
             "type": [
                 "<value1>"
             ]
         },
         {
             "file": "main.py",
-            "line_number": 11,
+            "line_number": 10,
             "col_offset": 1,
             "variable": "b",
             "type": [

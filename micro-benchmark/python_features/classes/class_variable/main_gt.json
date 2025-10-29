@@ -13,7 +13,7 @@
         "line_number": 5,
         "col_offset": 24,
         "parameter": "instance_var",
-        "function": "__init__",
+        "function": "MyClass.__init__",
         "type": [
             "int"
         ]
@@ -22,8 +22,8 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 9,
-        "variable": "MyClass.instance_var",
-        "function": "__init__",
+        "variable": "self.instance_var",
+        "function": "MyClass.__init__",
         "type": [
             "int"
         ]

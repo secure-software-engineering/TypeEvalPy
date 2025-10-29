@@ -2,9 +2,9 @@
     {
         "file": "main.py",
         "line_number": 7,
-        "col_offset": 9,        
+        "col_offset": 9,
         "function": "A.__init__",
-        "variable": "A.a",
+        "variable": "self.a",
         "type": [
             "int"
         ]
@@ -12,7 +12,7 @@
     {
         "file": "main.py",
         "line_number": 11,
-        "col_offset": 9,        
+        "col_offset": 9,
         "function": "B.func",
         "type": [
             "int"

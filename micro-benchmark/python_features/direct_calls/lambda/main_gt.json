@@ -13,7 +13,7 @@
         "line_number": 4,
         "col_offset": 18,
         "function": "lambda",
-        "variable": "x",
+        "parameter": "x",
         "type": [
             "int"
         ]
@@ -23,7 +23,7 @@
         "line_number": 4,
         "col_offset": 36,
         "function": "lambda",
-        "variable": "x",
+        "parameter": "x",
         "type": [
             "int"
         ]

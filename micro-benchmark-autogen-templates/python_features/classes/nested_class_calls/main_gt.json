@@ -13,7 +13,7 @@
         {
             "file": "main.py",
             "line_number": 3,
-            "col_offset": 5,
+            "col_offset": 9,
             "function": "C.func",
             "type": [
                 "<value1>"
@@ -34,7 +34,7 @@
             "line_number": 9,
             "col_offset": 9,
             "function": "B.__init__",
-            "variable": "B.c",
+            "variable": "self.c",
             "type": [
                 "C"
             ]
@@ -53,7 +53,7 @@
             "line_number": 17,
             "col_offset": 9,
             "function": "A.__init__",
-            "variable": "A.c",
+            "variable": "self.c",
             "type": [
                 "C"
             ]

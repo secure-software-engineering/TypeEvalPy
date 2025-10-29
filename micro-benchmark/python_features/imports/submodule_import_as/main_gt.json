@@ -2,7 +2,7 @@
     {
         "file": "main.py",
         "line_number": 6,
-        "col_offset": 1,        
+        "col_offset": 1,
         "variable": "a",
         "type": [
             "int"

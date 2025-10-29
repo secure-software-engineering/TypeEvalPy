@@ -5,14 +5,16 @@
         "col_offset": 9,
         "function": "A.func",
         "type": [
-            "str"
+            "str",
+            "int"
         ]
     },
     {
         "file": "main.py",
         "line_number": 9,
         "col_offset": 9,
-        "variable": "B.child",
+        "variable": "self.child",
+        "function": "B.__init__",
         "type": [
             "callable"
         ]
@@ -30,7 +32,8 @@
         "file": "main.py",
         "line_number": 17,
         "col_offset": 9,
-        "variable": "C.child",
+        "variable": "self.child",
+        "function": "C.__init__",
         "type": [
             "callable"
         ]

@@ -18,8 +18,8 @@
             "file": "main.py",
             "line_number": 6,
             "col_offset": 9,
-            "parameter": "func.n",
             "function": "func.__init__",
+            "variable": "self.n",
             "type": [
                 "int"
             ]
@@ -28,8 +28,8 @@
             "file": "main.py",
             "line_number": 7,
             "col_offset": 9,
-            "parameter": "func.num",
             "function": "func.__init__",
+            "variable": "self.num",
             "type": [
                 "int"
             ]
@@ -49,8 +49,7 @@
             "col_offset": 9,
             "function": "func.__next__",
             "type": [
-                "int",
-                "Nonetype"
+                "int"
             ]
         },
         {
@@ -67,7 +66,7 @@
             "file": "main.py",
             "line_number": 14,
             "col_offset": 18,
-            "variable": "func.num",
+            "variable": "self.num",
             "function": "func.__next__",
             "type": [
                 "int"

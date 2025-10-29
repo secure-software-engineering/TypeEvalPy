@@ -4,7 +4,6 @@
         "int",
         "float",
         "str",
-        "bool",
         "list",
         "tuple"
     ],
@@ -32,7 +31,7 @@
             "file": "main.py",
             "line_number": 5,
             "col_offset": 9,
-            "function": "wrapper",
+            "function": "dec1.wrapper",
             "type": [
                 "<value1>"
             ]
@@ -42,7 +41,7 @@
             "line_number": 5,
             "col_offset": 17,
             "parameter": "a",
-            "function": "wrapper",
+            "function": "dec1.wrapper",
             "type": [
                 "<value1>"
             ]
@@ -52,7 +51,7 @@
             "line_number": 5,
             "col_offset": 20,
             "parameter": "b",
-            "function": "wrapper",
+            "function": "dec1.wrapper",
             "type": [
                 "<value1>"
             ]
@@ -62,7 +61,7 @@
             "line_number": 6,
             "col_offset": 9,
             "variable": "result",
-            "function": "wrapper",
+            "function": "dec1.wrapper",
             "type": [
                 "<value1>"
             ]

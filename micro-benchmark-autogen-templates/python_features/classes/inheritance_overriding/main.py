@@ -11,3 +11,4 @@ class MySubClass(MyClass):
 
 a = MySubClass()
 b = a.func()
+MyClass().func()

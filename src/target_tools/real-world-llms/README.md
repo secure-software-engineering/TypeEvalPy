@@ -1,7 +1,7 @@
 # 🧠 TypeEvalPy: Type Inference Evaluation for Python
 
 This adapter provides tools for:
-- Preprocessing the [ManyTypes4Py](https://github.com/saltudelft/many-types-4-py) dataset
+- Preprocessing the [ManyTypes4Py](https://github.com/saltudelft/many-types-4-py-dataset) dataset
 - Running type inference using large language models (LLMs)
 - Analyzing and evaluating results on real-world Python benchmarks
 
@@ -9,7 +9,7 @@ This adapter provides tools for:
 
 ## 📦 1. Data Preprocessing
 
-Start by downloading and preparing the [ManyTypes4Py](https://github.com/saltudelft/many-types-4-py) dataset.
+Start by downloading and preparing the [ManyTypes4Py](https://github.com/saltudelft/many-types-4-py-dataset) dataset.
 
 ### Steps:
 

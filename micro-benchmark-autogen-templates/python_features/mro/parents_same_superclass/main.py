@@ -27,3 +27,4 @@ class D(B, C):
 
 d = D()
 e = d.func()
+A().func()

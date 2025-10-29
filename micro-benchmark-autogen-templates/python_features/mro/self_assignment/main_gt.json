@@ -24,7 +24,7 @@
             "line_number": 6,
             "col_offset": 9,
             "function": "B.funcb",
-            "variable": "B.smth",
+            "variable": "self.smth",
             "type": [
                 "callable"
             ]
@@ -52,7 +52,7 @@
             "line_number": 14,
             "col_offset": 9,
             "function": "A.funca",
-            "variable": "A.smth",
+            "variable": "self.smth",
             "type": [
                 "callable"
             ]

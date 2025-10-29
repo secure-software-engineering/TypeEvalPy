@@ -46,9 +46,8 @@
     },
     {
         "file": "main.py",
-        "line_number": 24,
-        "col_offset": 5,
-        "function": "func3",
+        "line_number": 22,
+        "col_offset": 1,
         "variable": "Point",
         "type": [
             "type"

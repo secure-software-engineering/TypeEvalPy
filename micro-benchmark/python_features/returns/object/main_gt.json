@@ -23,7 +23,7 @@
         "file": "main.py",
         "line_number": 6,
         "col_offset": 9,
-        "variable": "Person.name",
+        "variable": "self.name",
         "function": "Person.__init__",
         "type": [
             "str"
@@ -33,8 +33,8 @@
         "file": "main.py",
         "line_number": 7,
         "col_offset": 9,
-        "parameter": "Person.age",
         "function": "Person.__init__",
+        "variable": "self.age",
         "type": [
             "int"
         ]

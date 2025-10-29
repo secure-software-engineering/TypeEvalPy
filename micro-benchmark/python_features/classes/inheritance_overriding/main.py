@@ -8,6 +8,6 @@ class MySubClass(MyClass):
     def func(self):
         return 42
 
-
+MyClass().func()
 a = MySubClass()
 b = a.func()

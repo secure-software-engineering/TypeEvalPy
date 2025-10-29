@@ -15,3 +15,4 @@ def func2():
 ls = [func1, func2]
 
 a = ls[key]()
+func1()

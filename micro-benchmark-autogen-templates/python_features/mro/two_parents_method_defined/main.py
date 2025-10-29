@@ -24,3 +24,4 @@ class C(A, B):
 
 c = C()
 d = c.func()
+A().func(); B().func()
