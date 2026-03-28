@@ -3,7 +3,10 @@ import json
 import logging
 import os
 import sys
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
+
+from tqdm import tqdm
 
 import utils
 from agent import AgenticTypeInferrer
@@ -14,6 +17,10 @@ logging.basicConfig(
     handlers=[logging.StreamHandler(sys.stdout)],
 )
 logger = logging.getLogger("runner")
+
+# Suppress noisy third-party loggers
+for _noisy in ("LiteLLM", "litellm", "httpx", "httpcore", "openai", "urllib3"):
+    logging.getLogger(_noisy).setLevel(logging.WARNING)
 
 
 def trajectory_to_markdown(trajectory: list, file_path: str) -> str:
@@ -114,6 +121,33 @@ def list_python_files(folder_path: str) -> list:
     return sorted(Path(folder_path).rglob("main.py"))
 
 
+def process_file(agent, file_path) -> tuple[bool, str]:
+    """Process a single test case. Returns (success, short_label)."""
+    result_path = str(file_path).replace(".py", "_result.json")
+    trajectory_path = str(file_path).replace(".py", "_trajectory.json")
+    label = file_path.parent.name  # e.g. "assign_1"
+    try:
+        logger.debug(f"Processing: {file_path}")
+        annotations, trajectory = agent.infer_types(
+            file_path=str(file_path),
+            benchmark_dir=str(file_path.parent),
+        )
+        with open(result_path, "w") as f:
+            json.dump(annotations, f, indent=4, sort_keys=True)
+        with open(trajectory_path, "w") as f:
+            json.dump(trajectory, f, indent=4, ensure_ascii=False)
+        md_path = str(file_path).replace(".py", "_trajectory.md")
+        with open(md_path, "w") as f:
+            f.write(trajectory_to_markdown(trajectory, str(file_path)))
+        logger.debug(f"Saved {len(annotations)} annotations to {result_path}")
+        return True, label
+    except Exception as e:
+        logger.error(f"Failed on {file_path}: {e}")
+        with open(result_path, "w") as f:
+            json.dump([], f)
+        return False, label
+
+
 def main_runner(args):
     agent = AgenticTypeInferrer(
         model=args.model,
@@ -124,33 +158,20 @@ def main_runner(args):
     )
 
     python_files = list_python_files(args.bechmark_path)
-    logger.info(f"Found {len(python_files)} test files in {args.bechmark_path}")
+    logger.info(f"Found {len(python_files)} test cases | workers={args.workers} | model={args.model}")
+
     error_count = 0
+    with ThreadPoolExecutor(max_workers=args.workers) as executor:
+        futures = {executor.submit(process_file, agent, fp): fp for fp in python_files}
+        with tqdm(total=len(python_files), desc="Inferring types", unit="file", dynamic_ncols=True) as pbar:
+            for future in as_completed(futures):
+                success, label = future.result()
+                if not success:
+                    error_count += 1
+                pbar.set_postfix(errors=error_count, last=label, refresh=False)
+                pbar.update(1)
 
-    for file_path in python_files:
-        result_path = str(file_path).replace(".py", "_result.json")
-        trajectory_path = str(file_path).replace(".py", "_trajectory.json")
-        try:
-            logger.info(f"Processing: {file_path}")
-            annotations, trajectory = agent.infer_types(
-                file_path=str(file_path),
-                benchmark_dir=str(file_path.parent),
-            )
-            with open(result_path, "w") as f:
-                json.dump(annotations, f, indent=4, sort_keys=True)
-            with open(trajectory_path, "w") as f:
-                json.dump(trajectory, f, indent=4, ensure_ascii=False)
-            md_path = str(file_path).replace(".py", "_trajectory.md")
-            with open(md_path, "w") as f:
-                f.write(trajectory_to_markdown(trajectory, str(file_path)))
-            logger.info(f"Saved {len(annotations)} annotations to {result_path}")
-        except Exception as e:
-            logger.error(f"Failed on {file_path}: {e}")
-            error_count += 1
-            with open(result_path, "w") as f:
-                json.dump([], f)
-
-    logger.info(f"Runner finished. Processed {len(python_files)} files. Errors: {error_count}")
+    logger.info(f"Done. {len(python_files)} files processed, {error_count} errors.")
 
 
 if __name__ == "__main__":
@@ -186,6 +207,12 @@ if __name__ == "__main__":
         type=float,
         default=0.1,
         help="LLM sampling temperature",
+    )
+    parser.add_argument(
+        "--workers",
+        type=int,
+        default=1,
+        help="Number of parallel workers for concurrent file processing (default: 1 = sequential)",
     )
 
     args = parser.parse_args()

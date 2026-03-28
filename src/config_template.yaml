@@ -60,9 +60,18 @@ llm:
     - gpt-4o
     - gpt-4o-mini
 
+# agentic_llm:
+#   model: "gpt-5-nano"          # Any liteLLM model string: "ollama/llama3", "anthropic/claude-sonnet-4-5", etc.
+#   api_key: "<API_KEY>"     # Empty string for Ollama or env-var-based auth
+#   api_base: null           # e.g. "http://localhost:11434" for Ollama, null for cloud APIs
+#   max_iterations: 10       # Maximum tool-calling rounds per file before giving up
+#   temperature: 0.1         # Low temperature for deterministic type inference
+#   workers: 1               # Number of parallel workers (1 = sequential; increase for faster runs, mind API rate limits)
+
 agentic_llm:
-  model: "gpt-5-nano"          # Any liteLLM model string: "ollama/llama3", "anthropic/claude-sonnet-4-5", etc.
-  api_key: "<API_KEY>"     # Empty string for Ollama or env-var-based auth
-  api_base: null           # e.g. "http://localhost:11434" for Ollama, null for cloud APIs
+  model: "openai/Qwen/Qwen3-30B-A3B-Instruct-2507-FP8"          # Any liteLLM model string: "ollama/llama3", "anthropic/claude-sonnet-4-5", etc.
+  api_key: "token"     # Empty string for Ollama or env-var-based auth
+  api_base: "http://localhost:8000/v1"           # e.g. "http://localhost:11434" for Ollama, null for cloud APIs
   max_iterations: 10       # Maximum tool-calling rounds per file before giving up
   temperature: 0.1         # Low temperature for deterministic type inference
+  max_workers: 10           # Parallel test cases — tune to server GPU/throughput capacity

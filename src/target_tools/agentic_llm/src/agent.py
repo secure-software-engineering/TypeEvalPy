@@ -1,5 +1,7 @@
 import json
 import logging
+import re
+import uuid
 from typing import Optional
 
 import litellm
@@ -61,9 +63,15 @@ class AgenticTypeInferrer:
 
             assistant_msg = response.choices[0].message
 
+            # Hermes/Qwen models embed tool calls in content as <tool_call>...</tool_call>
+            # instead of using the OpenAI tool_calls field — parse them as a fallback.
+            effective_tool_calls = assistant_msg.tool_calls or self._parse_hermes_tool_calls(
+                assistant_msg.content or ""
+            )
+
             # Build assistant dict for message history
             assistant_dict = {"role": "assistant", "content": assistant_msg.content or ""}
-            if assistant_msg.tool_calls:
+            if effective_tool_calls:
                 assistant_dict["tool_calls"] = [
                     {
                         "id": tc.id,
@@ -73,7 +81,7 @@ class AgenticTypeInferrer:
                             "arguments": tc.function.arguments,
                         },
                     }
-                    for tc in assistant_msg.tool_calls
+                    for tc in effective_tool_calls
                 ]
             messages.append(assistant_dict)
 
@@ -85,7 +93,7 @@ class AgenticTypeInferrer:
                 "tool_calls": [],
             }
 
-            if not assistant_msg.tool_calls:
+            if not effective_tool_calls:
                 logger.warning(
                     f"LLM returned plain text on iteration {iteration + 1}, nudging."
                 )
@@ -103,7 +111,7 @@ class AgenticTypeInferrer:
             tool_result_messages = []
             submit_result = None
 
-            for tool_call in assistant_msg.tool_calls:
+            for tool_call in effective_tool_calls:
                 tool_name = tool_call.function.name
                 try:
                     tool_args = json.loads(tool_call.function.arguments)
@@ -187,6 +195,37 @@ class AgenticTypeInferrer:
                 ),
             },
         ]
+
+    def _parse_hermes_tool_calls(self, content: str) -> list:
+        """
+        Parse <tool_call>...</tool_call> blocks from assistant content.
+        Used as a fallback for Hermes/Qwen-style vLLM servers that embed tool
+        calls in message content instead of the OpenAI tool_calls field.
+        """
+        pattern = re.compile(r"<tool_call>\s*(.*?)\s*</tool_call>", re.DOTALL)
+        tool_calls = []
+        for match in pattern.finditer(content):
+            try:
+                data = json.loads(match.group(1))
+            except json.JSONDecodeError as e:
+                logger.warning(f"Failed to parse hermes tool_call JSON: {e}")
+                continue
+
+            tc_id = f"call_{uuid.uuid4().hex[:8]}"
+            arguments = data.get("arguments", {})
+            # Build a lightweight object matching the litellm tool_call interface
+            tc = type("ToolCall", (), {
+                "id": tc_id,
+                "function": type("Function", (), {
+                    "name": data.get("name", ""),
+                    "arguments": json.dumps(arguments) if not isinstance(arguments, str) else arguments,
+                })(),
+            })()
+            tool_calls.append(tc)
+
+        if tool_calls:
+            logger.debug(f"Parsed {len(tool_calls)} hermes tool call(s) from content")
+        return tool_calls
 
     def _call_llm(self, messages: list):
         kwargs = dict(

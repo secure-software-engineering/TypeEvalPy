@@ -63,8 +63,12 @@ def _normalize_type(t: str) -> str:
     """Apply the full normalization pipeline to a single type string."""
     for fn in _PIPELINE:
         t = fn(t)
-    lower = t.lower().strip()
-    return _TYPE_MAPPING.get(lower, t)
+    t = t.strip()
+    lower = t.lower()
+    if lower in _TYPE_MAPPING:
+        return _TYPE_MAPPING[lower]
+    # Preserve module-qualified names (e.g. itertools.count, to_import.A) as-is
+    return t
 
 
 def translate_content(data) -> list:

@@ -513,6 +513,7 @@ class AgenticLLMRunner(TypeEvalPyRunner):
             "--api_base", str(cfg.get("api_base") or "null"),
             "--max_iterations", str(cfg.get("max_iterations", 10)),
             "--temperature", str(cfg.get("temperature", 0.1)),
+            "--workers", str(cfg.get("max_workers", 1)),
         ]
         _, response = self.container.exec_run(" ".join(command_to_run), stream=True)
         for line in response:

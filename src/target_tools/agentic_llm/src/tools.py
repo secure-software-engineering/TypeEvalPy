@@ -55,26 +55,120 @@ def get_ast_summary(path: str) -> str:
         "module_variables": [],
     }
 
-    # Collect function-level assignments per function node
+    # ------------------------------------------------------------------
+    # Helpers
+    # ------------------------------------------------------------------
+
+    def _flatten_assign_targets(targets, stmt_lineno):
+        """
+        Yield (name, lineno, col_offset+1) for every Name/Attribute leaf in
+        an assignment target list, recursively handling Tuple/List unpacking.
+        Uses stmt_lineno as a fallback when a sub-target lacks its own lineno
+        (e.g. elements inside a Tuple target share the statement's lineno).
+        """
+        for target in targets:
+            yield from _flatten_target(target, stmt_lineno)
+
+    def _flatten_target(target, stmt_lineno):
+        if isinstance(target, ast.Name):
+            yield (target.id, getattr(target, "lineno", stmt_lineno), target.col_offset + 1)
+        elif isinstance(target, ast.Attribute):
+            # e.g. self.x = ...
+            if isinstance(target.value, ast.Name):
+                attr_name = f"{target.value.id}.{target.attr}"
+                yield (attr_name, getattr(target, "lineno", stmt_lineno), target.col_offset + 1)
+        elif isinstance(target, (ast.Tuple, ast.List)):
+            for elt in target.elts:
+                yield from _flatten_target(elt, stmt_lineno)
+
     def collect_local_vars(func_node):
+        """
+        Collect variable names (with line/col) from a function body.
+        Handles: simple assignments, tuple unpacking, for-loop targets,
+        walrus operators, augmented assignments, and self.x attributes.
+        Does NOT descend into nested functions or class definitions.
+        """
         local_vars = []
-        for child in ast.walk(func_node):
-            if child is func_node:
-                continue
-            if isinstance(child, ast.Assign):
-                for target in child.targets:
-                    if isinstance(target, ast.Name):
-                        local_vars.append({
-                            "name": target.id,
-                            "line_number": child.lineno,
-                            "col_offset": target.col_offset + 1,
-                        })
-            elif isinstance(child, (ast.FunctionDef, ast.AsyncFunctionDef)):
-                # Don't descend into nested functions
-                break
+        seen = set()  # deduplicate (name, line, col)
+
+        def _add(name, lineno, col):
+            key = (name, lineno, col)
+            if key not in seen:
+                seen.add(key)
+                local_vars.append({"name": name, "line_number": lineno, "col_offset": col})
+
+        def _walk_body(stmts):
+            for stmt in stmts:
+                # Don't descend into nested functions or classes
+                if isinstance(stmt, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)):
+                    continue
+
+                # Simple / tuple-unpacking assignments
+                if isinstance(stmt, ast.Assign):
+                    for name, ln, col in _flatten_assign_targets(stmt.targets, stmt.lineno):
+                        _add(name, ln, col)
+
+                # Annotated assignment (x: int = ...)
+                elif isinstance(stmt, ast.AnnAssign):
+                    for name, ln, col in _flatten_target(stmt.target, stmt.lineno):
+                        _add(name, ln, col)
+
+                # Augmented assignment (a += 1)
+                elif isinstance(stmt, ast.AugAssign):
+                    if isinstance(stmt.target, ast.Name):
+                        _add(stmt.target.id, stmt.lineno, stmt.target.col_offset + 1)
+
+                # For-loop target (for x in ..., for a, b in ...)
+                elif isinstance(stmt, ast.For):
+                    for name, ln, col in _flatten_target(stmt.target, stmt.lineno):
+                        _add(name, ln, col)
+                    _walk_body(stmt.body)
+                    _walk_body(stmt.orelse)
+
+                # With statement (with open() as f:)
+                elif isinstance(stmt, ast.With):
+                    for item in stmt.items:
+                        if item.optional_vars is not None:
+                            for name, ln, col in _flatten_target(item.optional_vars, stmt.lineno):
+                                _add(name, ln, col)
+                    _walk_body(stmt.body)
+
+                # Exception handler (except E as e:)
+                elif isinstance(stmt, ast.ExceptHandler):
+                    if stmt.name:
+                        _add(stmt.name, stmt.lineno, stmt.col_offset + 1)
+
+                # Try block — recurse into handlers and body
+                elif isinstance(stmt, ast.Try):
+                    _walk_body(stmt.body)
+                    for handler in stmt.handlers:
+                        _walk_body([handler])
+                    _walk_body(stmt.orelse)
+                    _walk_body(stmt.finalbody if hasattr(stmt, "finalbody") else [])
+
+                # If/While — recurse
+                elif isinstance(stmt, (ast.If, ast.While)):
+                    _walk_body(stmt.body)
+                    _walk_body(stmt.orelse)
+
+                # Walrus operator inside expressions (e.g. if (n := len(a)) > 10:)
+                # Walk all child expressions for NamedExpr nodes
+                for child in ast.walk(stmt):
+                    if isinstance(child, ast.NamedExpr):
+                        _add(child.target.id,
+                             getattr(child.target, "lineno", stmt.lineno),
+                             child.target.col_offset + 1)
+
+        _walk_body(func_node.body)
         return local_vars
 
-    for node in ast.walk(tree):
+    # ------------------------------------------------------------------
+    # Build the qualified name prefix stack while walking the AST.
+    # We do a manual recursive walk (not ast.walk) so we can track the
+    # enclosing class chain for method/class-variable naming.
+    # ------------------------------------------------------------------
+
+    def _visit(node, class_stack):
         if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
             params = []
             for arg in node.args.args:
@@ -83,7 +177,6 @@ def get_ast_summary(path: str) -> str:
                     "line_number": arg.lineno,
                     "col_offset": arg.col_offset + 1,
                 })
-            # posonlyargs, kwonlyargs, vararg, kwarg
             for arg in node.args.posonlyargs + node.args.kwonlyargs:
                 params.append({
                     "name": arg.arg,
@@ -92,47 +185,70 @@ def get_ast_summary(path: str) -> str:
                 })
             if node.args.vararg:
                 a = node.args.vararg
-                params.append({
-                    "name": f"*{a.arg}",
-                    "line_number": a.lineno,
-                    "col_offset": a.col_offset + 1,
-                })
+                params.append({"name": f"*{a.arg}", "line_number": a.lineno, "col_offset": a.col_offset + 1})
             if node.args.kwarg:
                 a = node.args.kwarg
-                params.append({
-                    "name": f"**{a.arg}",
-                    "line_number": a.lineno,
-                    "col_offset": a.col_offset + 1,
-                })
+                params.append({"name": f"**{a.arg}", "line_number": a.lineno, "col_offset": a.col_offset + 1})
 
-            # node.col_offset points to 'def'/'async'; name starts after the keyword + space
             keyword_len = len("async def ") if isinstance(node, ast.AsyncFunctionDef) else len("def ")
+            qualified_name = ".".join(class_stack + [node.name]) if class_stack else node.name
+
             summary["functions"].append({
-                "name": node.name,
+                "name": qualified_name,
                 "line_number": node.lineno,
-                "col_offset": node.col_offset + keyword_len + 1,  # +keyword_len to skip past keyword, +1 for 1-indexing
+                "col_offset": node.col_offset + keyword_len + 1,
                 "parameters": params,
                 "local_variables": collect_local_vars(node),
             })
+            # Do NOT recurse into function body for class/function discovery here
+            # (nested functions are handled by collect_local_vars skipping them,
+            #  but we still want to find nested class definitions)
+            for child in node.body:
+                _visit(child, class_stack)
 
         elif isinstance(node, ast.ClassDef):
+            qualified_class = ".".join(class_stack + [node.name])
+            class_vars = []
+            for stmt in node.body:
+                if isinstance(stmt, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)):
+                    continue  # handled separately
+                if isinstance(stmt, ast.Assign):
+                    for name, ln, col in _flatten_assign_targets(stmt.targets, stmt.lineno):
+                        # Only plain Name targets at class body level → ClassName.varname
+                        if "." not in name:
+                            class_vars.append({"name": f"{qualified_class}.{name}", "line_number": ln, "col_offset": col})
+                elif isinstance(stmt, ast.AnnAssign) and isinstance(stmt.target, ast.Name):
+                    class_vars.append({
+                        "name": f"{qualified_class}.{stmt.target.id}",
+                        "line_number": stmt.lineno,
+                        "col_offset": stmt.target.col_offset + 1,
+                    })
+
             summary["classes"].append({
-                "name": node.name,
+                "name": qualified_class,
                 "line_number": node.lineno,
-                "col_offset": node.col_offset + len("class ") + 1,  # skip 'class ' keyword, +1 for 1-indexing
+                "col_offset": node.col_offset + len("class ") + 1,
+                "class_variables": class_vars,
             })
+            # Recurse into class body
+            for child in node.body:
+                _visit(child, class_stack + [node.name])
+
+    for top_node in tree.body:
+        _visit(top_node, [])
 
     # Module-level assignments (only top-level body)
     for node in tree.body:
         if isinstance(node, ast.Assign):
-            for target in node.targets:
-                if isinstance(target, ast.Name):
+            for name, ln, col in _flatten_assign_targets(node.targets, node.lineno):
+                # Skip attribute targets (self.x etc.) at module level — unlikely but safe
+                if "." not in name:
                     summary["module_variables"].append({
-                        "name": target.id,
-                        "line_number": node.lineno,
-                        "col_offset": target.col_offset + 1,
+                        "name": name,
+                        "line_number": ln,
+                        "col_offset": col,
                     })
-        elif isinstance(node, (ast.AnnAssign,)):
+        elif isinstance(node, ast.AnnAssign):
             if isinstance(node.target, ast.Name):
                 summary["module_variables"].append({
                     "name": node.target.id,
