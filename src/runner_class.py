@@ -473,6 +473,52 @@ class LLMRunner(TypeEvalPyRunner):
         return container
 
 
+class AgenticLLMRunner(TypeEvalPyRunner):
+    def __init__(
+        self,
+        host_results_path,
+        config,
+        debug=False,
+        nocache=False,
+        custom_benchmark_dir=None,
+    ):
+        super().__init__(
+            "agentic_llm",
+            "./target_tools/agentic_llm",
+            host_results_path,
+            nocache=nocache,
+            custom_benchmark_dir=custom_benchmark_dir,
+        )
+        self.config = config
+
+    def spawn_docker_instance(self):
+        logger.info("Creating container")
+        cfg = self.config.get("agentic_llm", {})
+        api_base = cfg.get("api_base", "") or ""
+        # Use host networking when api_base points to localhost (e.g. Ollama)
+        use_host_network = "localhost" in api_base or "127.0.0.1" in api_base
+        kwargs = dict(detach=True, stdin_open=True, tty=True)
+        if use_host_network:
+            kwargs["network_mode"] = "host"
+        return self.docker_client.containers.run(self.tool_name, **kwargs)
+
+    def run_test_in_session(self):
+        cfg = self.config.get("agentic_llm", {})
+        command_to_run = [
+            "python",
+            self.test_runner_script_path,
+            "--bechmark_path", self.benchmark_path,
+            "--model", cfg["model"],
+            "--api_key", cfg.get("api_key", ""),
+            "--api_base", str(cfg.get("api_base") or "null"),
+            "--max_iterations", str(cfg.get("max_iterations", 10)),
+            "--temperature", str(cfg.get("temperature", 0.1)),
+        ]
+        _, response = self.container.exec_run(" ".join(command_to_run), stream=True)
+        for line in response:
+            logger.info(line)
+
+
 class RightTyperRunner(TypeEvalPyRunner):
     def __init__(
         self,

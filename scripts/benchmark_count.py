@@ -3,7 +3,7 @@ import os
 from pathlib import Path
 
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-microbench_folder_path = f"{ROOT_DIR}/autogen_typeevalpy_benchmark"
+microbench_folder_path = f"{ROOT_DIR}/micro-benchmark"
 
 
 def get_fact_stats(json_files):

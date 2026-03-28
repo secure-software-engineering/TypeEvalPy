@@ -13,6 +13,7 @@ import yaml
 
 from main_analyze_results import run_results_analyzer
 from runner_class import (
+    AgenticLLMRunner,
     HeaderGenRunner,
     HityperDLRunner,
     HityperRunner,
@@ -168,6 +169,15 @@ def main():
         ),
         "righttyper": (
             RightTyperRunner,
+            {
+                "debug": args.debug,
+                "nocache": args.nocache,
+                "custom_benchmark_dir": args.custom_benchmark_dir,
+                "config": config,
+            },
+        ),
+        "agentic_llm": (
+            AgenticLLMRunner,
             {
                 "debug": args.debug,
                 "nocache": args.nocache,

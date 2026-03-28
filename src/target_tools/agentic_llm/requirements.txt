@@ -1,0 +1,2 @@
+litellm>=1.40.0
+pyyaml
