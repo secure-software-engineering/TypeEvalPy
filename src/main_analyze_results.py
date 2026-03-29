@@ -233,7 +233,7 @@ def display_all_cats_data(all_cats_data):
     return missing_analysis_rows
 
 
-def process_cat_dir(cat_dir, tool_name=None, print_mismatch=False):
+def process_cat_dir(cat_dir, gt_dir=None, tool_name=None, print_mismatch=False):
     all_missing_matches = {}
     complete_passed = 0
     sound_passed = 0
@@ -245,25 +245,29 @@ def process_cat_dir(cat_dir, tool_name=None, print_mismatch=False):
     cat_only_cat_recall_grouped = {}
 
     for root, dirs, files in os.walk(cat_dir):
+        # Resolve the corresponding directory in the ground truth benchmark.
+        # When gt_dir is provided (original benchmark), gt files live there;
+        # otherwise fall back to the same directory (legacy behaviour).
+        rel_path = os.path.relpath(root, cat_dir)
+        gt_root = os.path.join(gt_dir, rel_path) if gt_dir else root
+        gt_files = (
+            os.listdir(gt_root)
+            if (gt_dir and os.path.isdir(gt_root))
+            else files
+        )
+
         test_files = [x.split(".py")[0] for x in files if x.endswith(".py")]
         logger.debug(
             "\n\n ################ ----------------------- ################# \n\n"
         )
         logger.debug(root.split("/")[-3:])
 
-        if (
-            root
-            == "/mnt/Projects/PhD/Research/TypeEvalPy/git_sources/TypeEvalPy_LLM/.scrapy/test_results/gpt4/micro-benchmark/python_features/lambdas/composition"
-        ):
-            # Debug point
-            pass
-
         for test in test_files:
             logger.debug(f"File: {test}")
-            if f"{test}_gt.json" in files:
+            if f"{test}_gt.json" in gt_files:
                 file_count += 1
-                gt_file = os.path.abspath(os.path.join(root, f"{test}_gt.json"))
-                dir_path = os.path.relpath(os.path.dirname(gt_file), cat_dir)
+                gt_file = os.path.abspath(os.path.join(gt_root, f"{test}_gt.json"))
+                dir_path = os.path.relpath(os.path.dirname(gt_file), gt_dir if gt_dir else cat_dir)
                 file_name = dir_path + "/" + os.path.basename(gt_file)
                 if f"{test}_result.json" in files:
                     result_file = os.path.abspath(
@@ -352,7 +356,7 @@ def process_cat_dir(cat_dir, tool_name=None, print_mismatch=False):
     return results_dict
 
 
-def iterate_cats(test_suite_dir, tool_name=None):
+def iterate_cats(test_suite_dir, gt_suite_dir=None, tool_name=None):
     all_cats_data = []
     all_cat_sound_complete = []
     all_cat_exact = {}
@@ -392,7 +396,8 @@ def iterate_cats(test_suite_dir, tool_name=None):
         cat_dir = os.path.join(test_suite_dir, cat)
         if os.path.isdir(cat_dir):
             # logger.info("Iterating category {}...".format(cat))
-            results = process_cat_dir(cat_dir, tool_name=tool_name, print_mismatch=True)
+            gt_cat_dir = os.path.join(gt_suite_dir, cat) if gt_suite_dir else None
+            results = process_cat_dir(cat_dir, gt_dir=gt_cat_dir, tool_name=tool_name, print_mismatch=True)
             all_cat_exact[cat] = results
             cat_data = {
                 "Category": cat,
@@ -585,7 +590,7 @@ def iterate_cats(test_suite_dir, tool_name=None):
     return display_all_cats_data(all_cats_data), exact_match, exact_results_cat
 
 
-def iterate_cats_sensitivities(test_suite_dir, tool_name=None):
+def iterate_cats_sensitivities(test_suite_dir, gt_suite_dir=None, tool_name=None):
     all_cats_data = []
     all_cat_sound_complete = []
     max_cat_length = 25
@@ -607,7 +612,8 @@ def iterate_cats_sensitivities(test_suite_dir, tool_name=None):
         cat_dir = os.path.join(test_suite_dir, cat)
         if os.path.isdir(cat_dir):
             # logger.info("Iterating category {}...".format(cat))
-            results = process_cat_dir(cat_dir, tool_name=tool_name, print_mismatch=True)
+            gt_cat_dir = os.path.join(gt_suite_dir, cat) if gt_suite_dir else None
+            results = process_cat_dir(cat_dir, gt_dir=gt_cat_dir, tool_name=tool_name, print_mismatch=True)
 
             cat_data = {
                 "Category": cat,
@@ -652,7 +658,7 @@ def iterate_cats_sensitivities(test_suite_dir, tool_name=None):
     return display_all_cats_data(all_cats_data), sound_match
 
 
-def generate_sound_complete_data(test_suite_dir, tool_name=None):
+def generate_sound_complete_data(test_suite_dir, gt_suite_dir=None, tool_name=None):
     cat_sound_complete = {}
     cat_sound_totals = {"s": 0, "c": 0, "t": 0}
 
@@ -660,7 +666,8 @@ def generate_sound_complete_data(test_suite_dir, tool_name=None):
         cat_dir = os.path.join(test_suite_dir, cat)
         if os.path.isdir(cat_dir):
             # logger.info("Iterating category {}...".format(cat))
-            results = process_cat_dir(cat_dir, tool_name=tool_name)
+            gt_cat_dir = os.path.join(gt_suite_dir, cat) if gt_suite_dir else None
+            results = process_cat_dir(cat_dir, gt_dir=gt_cat_dir, tool_name=tool_name)
             cat_sound_complete[cat] = {
                 "complete": results["complete_passed"],
                 "sound": results["sound_passed"],
@@ -674,7 +681,7 @@ def generate_sound_complete_data(test_suite_dir, tool_name=None):
     return cat_sound_complete, cat_sound_totals
 
 
-def generate_top_n_performance(test_suite_dir, tool_name=None):
+def generate_top_n_performance(test_suite_dir, gt_suite_dir=None, tool_name=None):
     all_cats_data = {}
     all_cat_sound_complete = []
     cat_sound_complete = {}
@@ -704,7 +711,8 @@ def generate_top_n_performance(test_suite_dir, tool_name=None):
         cat_dir = os.path.join(test_suite_dir, cat)
         if os.path.isdir(cat_dir):
             # logger.info("Iterating category {}...".format(cat))
-            results = process_cat_dir(cat_dir, tool_name=tool_name)
+            gt_cat_dir = os.path.join(gt_suite_dir, cat) if gt_suite_dir else None
+            results = process_cat_dir(cat_dir, gt_dir=gt_cat_dir, tool_name=tool_name)
             cat_sound_complete[cat] = {
                 "complete": results["complete_passed"],
                 "sound": results["sound_passed"],
@@ -911,6 +919,12 @@ def run_results_analyzer(results_dir, benchmark_dir="micro-benchmark"):
     else:
         results_dir = Path(results_dir)
 
+    # Ground truth files are not copied into/out of the container, so resolve
+    # them from the original benchmark directory on the host.
+    original_benchmark_dir = Path(SCRIPT_DIR) / ".." / benchmark_dir
+    gt_python_features = original_benchmark_dir / "python_features"
+    gt_sensitivities = original_benchmark_dir / "analysis_sensitivities"
+
     tools_results = {}
 
     for item in sorted(results_dir.glob("*")):
@@ -928,6 +942,7 @@ def run_results_analyzer(results_dir, benchmark_dir="micro-benchmark"):
                     tools_results[item.name]["top_n_results"] = (
                         generate_top_n_performance(
                             item / f"{benchmark_dir}/python_features",
+                            gt_suite_dir=gt_python_features,
                             tool_name=item.name,
                         )
                     )
@@ -937,10 +952,12 @@ def run_results_analyzer(results_dir, benchmark_dir="micro-benchmark"):
                     tools_results[item.name]["exact_match"],
                     tools_results[item.name]["exact_match_category"],
                 ) = iterate_cats(
-                    item / f"{benchmark_dir}/python_features", tool_name=item.name
+                    item / f"{benchmark_dir}/python_features",
+                    gt_suite_dir=gt_python_features,
+                    tool_name=item.name,
                 )
                 tools_results[item.name]["total_benchmark_data"] = (
-                    utils.benchmark_count(item / f"{benchmark_dir}/python_features")
+                    utils.benchmark_count(gt_python_features)
                 )
                 # print(tools_results[item.name]["total_benchmark_data"])
                 # print(tools_results[item.name]["error_result_data"])
@@ -949,7 +966,9 @@ def run_results_analyzer(results_dir, benchmark_dir="micro-benchmark"):
                     tools_results[item.name]["sound_complete_data"],
                     tools_results[item.name]["sound_complete_total_data"],
                 ) = generate_sound_complete_data(
-                    item / f"{benchmark_dir}/python_features", tool_name=item.name
+                    item / f"{benchmark_dir}/python_features",
+                    gt_suite_dir=gt_python_features,
+                    tool_name=item.name,
                 )
 
                 # check if analysis_sensitivities exists
@@ -961,6 +980,7 @@ def run_results_analyzer(results_dir, benchmark_dir="micro-benchmark"):
                         tools_results[item.name]["sensitivity_sound_data"],
                     ) = iterate_cats_sensitivities(
                         item / f"{benchmark_dir}/analysis_sensitivities",
+                        gt_suite_dir=gt_sensitivities,
                         tool_name=item.name,
                     )
 

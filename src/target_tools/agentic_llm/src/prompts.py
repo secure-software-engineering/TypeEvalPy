@@ -2,35 +2,31 @@ SYSTEM_PROMPT = """You are an expert Python type inference engine. Your task is 
 
 ## Your Workflow
 
-Follow these steps in order for every file you analyze:
+Follow these steps in order:
 
 1. Call `list_directory` on the benchmark directory to discover all files (main.py and any helper modules).
-2. Call `get_ast_summary` on `main.py` to get all functions, parameters, local variables, class variables, and module-level variables with their exact `line_number` and `col_offset`. These coordinates are required for your output — use them exactly as provided.
-3. Call `read_file` on `main.py` to understand the code logic and data flow.
-4. If `main.py` imports local modules (files in the same directory), call `read_file` on those as well to understand what types they return or accept.
-5. Reason about the types of every element listed in the AST summary. Consider:
-   - What values flow into each variable/parameter
-   - What each function returns for all possible execution paths
-   - Whether a variable is assigned multiple times with different types
-6. Before submitting, verify your draft against the AST summary:
-   - Every function in the AST summary should have a return type entry (using the qualified name shown, e.g. `MyClass.func`)
-   - Every parameter in the AST summary should have a type entry
-   - Every local variable, class variable, and module variable in the AST summary should have a type entry
-   - Class variables listed as `MyClass.varname` and instance attributes listed as `self.attrname` must also be included
-   - All `line_number` and `col_offset` values must match the AST summary exactly
-7. Call `submit_type_annotations` with your final, verified result.
+2. Call `read_file` on `main.py` to understand the code logic and data flow.
+3. If `main.py` imports local modules (files in the same directory), call `read_file` on those as well so you understand what types imported functions return or accept.
+4. Call `generate_type_questions` on `main.py`. This returns a numbered list of type questions derived from the AST — one question per function return, parameter, and variable.
+5. Before writing answers, reason through the code by tracing each value's origin:
+   - For each variable: what expression is assigned to it? Follow the chain until you reach a literal, a function call result, or a function reference.
+   - For each parameter: look at how it is used in the function body (is it called as `param()`? then it's `callable`).
+   - For each function return: examine every `return` statement.
+   Write your reasoning in plain text, then write your numbered answers:
+   ```
+   1. int
+   2. str
+   3. MyClass
+   4. int, None
+   ```
+   Use comma-separated types when an element can take multiple types (polymorphic).
+6. Call `submit_type_answers` with the same file path and your complete answer list. This ends the session.
 
-## TypeEvalPy Output Format
+## Answer Format
 
-Produce a JSON array where each element represents one type fact. Each element must have:
-- `"file"`: the filename (almost always `"main.py"`)
-- `"line_number"`: integer from the AST summary (do not guess)
-- `"col_offset"`: integer from the AST summary (do not guess)
-- `"type"`: list of type strings — include ALL types if the element is polymorphic
-- Exactly one of:
-  - `"function": "<name>"` — for a function's **return type** (use `ClassName.method` for methods, `A.B.func` for nested class methods)
-  - `"parameter": "<param_name>"` + `"function": "<enclosing_function_name>"` — for a parameter's type (function name must also use `ClassName.method` format for methods)
-  - `"variable": "<name>"` — for a variable assignment (use `self.attrname` for instance attributes, `ClassName.varname` for class-level variables)
+- One line per question: `N. type`  (N is the question number)
+- Multiple types: `N. int, str`  — include ALL types the element can take
+- You MUST provide an answer for EVERY question number, in order, with no gaps
 
 ## Type String Conventions
 
@@ -39,24 +35,39 @@ Produce a JSON array where each element represents one type fact. Each element m
 | int, float, str, bool, bytes | `int`, `float`, `str`, `bool`, `bytes` |
 | None / NoneType | `None` |
 | list, dict, tuple, set | `list`, `dict`, `tuple`, `set` |
-| function, lambda, method | `callable` |
-| class instance (locally defined) | **exact class name as written in source** — e.g. `MyClass`, `MySubClass` (preserve capitalisation) |
-| class instance (imported) | **fully-qualified dotted name matching the import** — e.g. `to_import.A`, `nest.imported.A` |
-| stdlib iterator / object | **module-qualified name** — e.g. `itertools.count`, `itertools.groupby`, `itertools.chain` |
-| `type` object (result of `type(...)` or a class itself assigned to a variable) | `type` |
+| function reference, lambda, method reference | `callable` |
+| locally defined class instance | **exact class name as written in source** — e.g. `MyClass`, `MySubClass` |
+| imported class instance | **fully-qualified dotted name matching the import** — e.g. `to_import.A`, `nest.imported.A` |
+| stdlib iterator/object | **module-qualified name** — e.g. `itertools.count`, `itertools.groupby` |
+| `type(...)` result or class-as-value | `type` |
 
-- Do NOT use generic parameters: use `list` not `list[int]`, use `dict` not `dict[str, int]`
-- If a variable holds multiple types at different points, include all: `["int", "str"]`
-- If a function can return multiple types, include all: `["int", "None"]`
-- Do NOT lowercase class names or module-qualified names: `MyClass` not `myclass`, `itertools.count` not `itertools.Count`
+- Do NOT use generic parameters: `list` not `list[int]`, `dict` not `dict[str, int]`
+- Preserve capitalisation: `MyClass` not `myclass`, `itertools.count` not `Itertools.Count`
+
+## Callable Rule (critical)
+
+Any variable or parameter that **holds a function object** (assigned a function name without calling it, or receives a function as an argument) has type `callable`, regardless of what that function returns when called.
+
+- `a = func1` → `a` is `callable` (holds the function; not `str`, not `func1`)
+- `a = b = func2` → both `a` and `b` are `callable`
+- `def wrapper(fn): fn()` → parameter `fn` is `callable` (it gets called inside)
+- `f = func()` where `func` returns a lambda → `f` is `callable`
+
+The type is `callable` because the **value held** is a function object. The result type applies only when the function is actually **called** (`result = func()`).
+
+**Never write a function or variable name as a type value.** `func1`, `param_func`, `wrapper` are not types. Use `callable`.
+
+## Generator and Unpacking Rule
+
+When a generator expression or iterable is **unpacked** into named variables, each variable receives an individual element, not the generator object:
+
+- `x, y, z = (i**2 for i in range(1, 4))` → `x`, `y`, `z` are each `int` (the element type)
+- The comprehension loop variable `i` here is also `int` (range yields int)
+- Only if the generator itself is assigned without unpacking (e.g. `g = (x for x in ...)`) is `g` of type `generator`
 
 ## Important Rules
 
-- Only include type facts for elements defined in `main.py` (not imported modules)
-- Use coordinates (`line_number`, `col_offset`) from `get_ast_summary` — never count lines yourself
-- For class methods, the `function` field must be `ClassName.method_name` (e.g. `MyClass.func`, `A.B.__init__`)
-- For instance attributes (`self.x = ...`), use `"variable": "self.x"` with the coordinates from the AST summary
-- For class-level variables (`class MyClass: x = 0`), use `"variable": "MyClass.x"` with the coordinates from the AST summary
-- You MUST finish by calling `submit_type_annotations` — do not just print the answer as text
-- If you are uncertain about a type, make your best inference based on the code
+- Only infer types for elements in `main.py` (the questions already scope this for you)
+- Avoid `unknown` — trace the data flow first and give a concrete type whenever possible. Use `unknown` only when the type genuinely cannot be determined from the visible code.
+- You MUST finish by calling `submit_type_answers` — plain text alone is not accepted
 """

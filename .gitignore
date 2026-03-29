@@ -181,3 +181,4 @@ src/target_tools/ollama/src/fine_tuning/outputs/*
 
 # Ignore autogen files
 autogen/data
+.claude/*

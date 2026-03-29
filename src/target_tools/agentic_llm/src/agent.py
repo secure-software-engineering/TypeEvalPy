@@ -98,8 +98,8 @@ class AgenticTypeInferrer:
                     f"LLM returned plain text on iteration {iteration + 1}, nudging."
                 )
                 nudge = (
-                    "You must call the submit_type_annotations tool to provide your answer. "
-                    "Do not respond with plain text."
+                    "You must call `submit_type_answers` (or `submit_type_annotations`) "
+                    "to provide your final answer. Do not respond with plain text only."
                 )
                 traj_step["tool_calls"] = []
                 trajectory.append(traj_step)
@@ -120,12 +120,16 @@ class AgenticTypeInferrer:
                     tool_args = None
 
                 if tool_args is not None:
-                    if tool_name == "submit_type_annotations":
+                    if tool_name in ("submit_type_answers", "submit_type_annotations"):
                         try:
-                            submit_type_annotations_result = TOOL_DISPATCH[tool_name](tool_args)
-                            submit_result = tool_args.get("annotations", [])
+                            tool_result = TOOL_DISPATCH[tool_name](tool_args)
+                            if tool_name == "submit_type_answers":
+                                result_data = json.loads(tool_result)
+                                submit_result = result_data.get("annotations", [])
+                            else:
+                                submit_result = tool_args.get("annotations", [])
                         except (ValueError, KeyError) as e:
-                            tool_result = f"ERROR: Invalid annotations: {e}. Please fix and resubmit."
+                            tool_result = f"ERROR: {e}. Please fix and resubmit."
                             traj_step["tool_calls"].append({
                                 "name": tool_name,
                                 "arguments": tool_args,
@@ -143,13 +147,13 @@ class AgenticTypeInferrer:
                         traj_step["tool_calls"].append({
                             "name": tool_name,
                             "arguments": tool_args,
-                            "response": submit_type_annotations_result,
+                            "response": tool_result,
                         })
                         tool_result_messages.append({
                             "role": "tool",
                             "tool_call_id": tool_call.id,
                             "name": tool_name,
-                            "content": submit_type_annotations_result,
+                            "content": tool_result,
                         })
                         trajectory.append(traj_step)
                         messages.extend(tool_result_messages)
@@ -190,8 +194,9 @@ class AgenticTypeInferrer:
                 "content": (
                     f"Please infer all types for the Python file: `{file_path}`\n"
                     f"The benchmark directory containing this test case is: `{benchmark_dir}`\n\n"
-                    "Start by calling list_directory on the benchmark directory, then get_ast_summary "
-                    "on main.py, then read the source files, and finally submit_type_annotations."
+                    "Workflow: call list_directory, then read_file on main.py (and any helper "
+                    "modules it imports), then generate_type_questions on main.py, write your "
+                    "answers, and finally call submit_type_answers."
                 ),
             },
         ]

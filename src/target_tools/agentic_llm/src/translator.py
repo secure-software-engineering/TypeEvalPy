@@ -47,6 +47,8 @@ _TYPE_MAPPING = {
     "none": "None",
     "nonetype": "None",
     "notype": "None",
+    "???": "unknown",
+    "unknown": "unknown",
     "list": "list",
     "tuple": "tuple",
     "set": "set",
