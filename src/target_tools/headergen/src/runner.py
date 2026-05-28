@@ -62,6 +62,7 @@ def main_runner(args):
             logger.info(file)
 
             inferred = process_file(file)
+            inferred = translator.enrich_with_col_offsets(file, inferred)
 
             json_file_path = str(file).replace(".py", "_result.json")
 

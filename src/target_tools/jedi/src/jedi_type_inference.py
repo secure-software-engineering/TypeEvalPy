@@ -100,17 +100,24 @@ class TypeInferenceJedi:
         return _type
 
     def get_function_name(self, jedi_obj):
+        """Return the qualified name of jedi_obj relative to its module,
+        walking up parent scopes so nested functions become 'outer.inner'."""
         try:
             if jedi_obj.name == "<lambda>":
-                func_name = "lambda"
-            else:
-                parts = jedi_obj.full_name.split(".", 1)
-                func_name = parts[-1] if len(parts) > 1 else jedi_obj.full_name
-        except Exception as e:
+                return "lambda"
+            parts = []
+            current = jedi_obj
+            while current is not None and current.type != "module":
+                name = "lambda" if current.name == "<lambda>" else current.name
+                parts.append(name)
+                try:
+                    current = current.parent()
+                except Exception:
+                    break
+            return ".".join(reversed(parts)) if parts else jedi_obj.name
+        except Exception:
             print("full_name not found in jedi_obj?")
-            func_name = jedi_obj.name
-
-        return func_name
+            return jedi_obj.name
 
     def infer_types(self):
         """
@@ -143,24 +150,46 @@ class TypeInferenceJedi:
                 if _infer:
                     for inferred in _infer:
                         if inferred.type == "function":
-                            # _type = self.parse_type_hint(inferred.get_type_hint())
-                            # if not _type:
-                            #     self.find_types_by_execute(inferred)
+                            # Distinguish between the function's own definition
+                            # site (return-type is what's wanted, e.g. for `def
+                            # func1():`) and a reference to it (callable is
+                            # what's wanted, e.g. for `a = func1`).
+                            at_def_site = (
+                                pos["line"] == inferred.line
+                                and pos["column"] == inferred.column
+                            )
 
-                            _type = self.find_types_by_execute(inferred)
+                            if at_def_site:
+                                _type = self.find_types_by_execute(inferred)
 
-                            _info = {
-                                "file": node.name,
-                                "line_number": pos["line"],
-                            }
-                            if inferred.name != "<lambda>":
-                                _info["function"] = self.get_function_name(inferred)
-                            _info["type"] = _type if _type else {"any"}
+                                _info = {
+                                    "file": node.name,
+                                    "line_number": pos["line"],
+                                    "col_offset": pos["column"] + 1,
+                                }
+                                if inferred.name != "<lambda>":
+                                    _info["function"] = self.get_function_name(inferred)
+                                _info["type"] = _type if _type else {"any"}
 
-                            variable_name = var.split(":")[0].strip()
-                            if variable_name != self.get_function_name(inferred):
-                                _info["variable"] = variable_name
-                            if _type:
+                                variable_name = var.split(":")[0].strip()
+                                if variable_name != self.get_function_name(inferred):
+                                    _info["variable"] = variable_name
+                                if _type:
+                                    output_inferred.append(_info)
+                            else:
+                                variable_name = var.split(":")[0].strip()
+                                _info = {
+                                    "file": node.name,
+                                    "line_number": pos["line"],
+                                    "col_offset": pos["column"] + 1,
+                                    "variable": variable_name,
+                                    "type": {"callable"},
+                                }
+                                parent = pos["jedi_obj"].parent()
+                                if parent and parent.type != "module":
+                                    parent_func = self.get_function_name(parent)
+                                    if parent_func:
+                                        _info["function"] = parent_func
                                 output_inferred.append(_info)
 
                         elif inferred.type == "instance":
@@ -187,17 +216,15 @@ class TypeInferenceJedi:
                             _info = {
                                 "file": node.name,
                                 "line_number": pos["line"],
+                                "col_offset": pos["column"] + 1,
                                 "variable": var.split(":")[0],
                                 "type": {_type},
                             }
-                            if (
-                                not pos["jedi_obj"].parent().name
-                                == pos["jedi_obj"].parent().module_name
-                            ):
-                                if self.get_function_name(pos["jedi_obj"].parent()):
-                                    _info["function"] = self.get_function_name(
-                                        pos["jedi_obj"].parent()
-                                    )
+                            parent = pos["jedi_obj"].parent()
+                            if parent and parent.type != "module":
+                                parent_func = self.get_function_name(parent)
+                                if parent_func:
+                                    _info["function"] = parent_func
                             if _type:
                                 output_inferred.append(_info)
 
@@ -206,6 +233,7 @@ class TypeInferenceJedi:
                             _info = {
                                 "file": node.name,
                                 "line_number": pos["line"],
+                                "col_offset": pos["column"] + 1,
                                 "variable": var.split(":")[0],
                                 "function": self.get_function_name(
                                     pos["jedi_obj"].parent()
@@ -225,6 +253,7 @@ class TypeInferenceJedi:
                         _info = {
                             "file": node.name,
                             "line_number": pos["line"],
+                            "col_offset": pos["column"] + 1,
                             "parameter": var.split(":")[0],
                             "function": self.get_function_name(
                                 pos["jedi_obj"].parent()

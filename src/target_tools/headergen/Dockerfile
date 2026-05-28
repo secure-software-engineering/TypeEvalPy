@@ -10,7 +10,7 @@ WORKDIR /app
 
 # Install dependencies
 RUN apt-get update \
-    && apt-get -y install git gcc
+    && apt-get -y install git gcc g++
 
 
 COPY requirements.txt /app/requirements.txt

@@ -4,6 +4,7 @@ import logging
 import os
 from pathlib import Path
 
+import translator
 import utils
 from scalpel.typeinfer.typeinfer import TypeInference
 
@@ -42,6 +43,7 @@ def main_runner(args):
         try:
             # logger.debug(file)
             inferred = process_file(file)
+            inferred = translator.enrich_with_col_offsets(file, inferred)
             json_file_path = str(file).replace(".py", "_result.json")
 
             with open(json_file_path, "w") as json_file:
