@@ -261,6 +261,42 @@ To get started with integrating your tool, please follow the guide here: [docs/T
 
 ---
 
+### 📄 License
+
+TypeEvalPy is licensed under the [Apache License 2.0](LICENSE). This includes the
+benchmark itself — the code snippets under `micro-benchmark/`,
+`micro-benchmark-excluded/`, `autogen/`, `autogen_typeevalpy_benchmark/` and
+`micro-benchmark-autogen-templates/`, together with their ground truth files — so
+you are free to reuse and adapt the snippets (for example, in another tool's test
+suite or benchmark collection), provided you keep the attribution and license
+notices required by Apache-2.0 Section 4 and state any changes you made.
+
+The license does not extend to the third-party type inference tools that
+TypeEvalPy runs: those are installed at container build time and remain under
+their own licenses, as do external datasets such as ManyTypes4Py and any
+models accessed through third-party APIs. See [NOTICE](NOTICE) for details.
+
+---
+
+### 📚 Citation
+
+If you use TypeEvalPy or its benchmark in your work, please cite:
+
+```bibtex
+@misc{venkatesh2023typeevalpy,
+  title         = {TypeEvalPy: A Micro-benchmarking Framework for Python Type Inference Tools},
+  author        = {Ashwin Prasad Shivarpatna Venkatesh and Samkutty Sabu and Jiawei Wang and Amir M. Mir and Li Li and Eric Bodden},
+  year          = {2023},
+  eprint        = {2312.16882},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.SE},
+  note          = {To appear at ICSE 2024},
+  url           = {https://arxiv.org/abs/2312.16882}
+}
+```
+
+---
+
 ### ⭐️ Show Your Support
 
 Give a ⭐️ if this project helped you!

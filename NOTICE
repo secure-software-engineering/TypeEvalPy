@@ -1,0 +1,19 @@
+TypeEvalPy
+Copyright 2023 The TypeEvalPy Authors
+
+This product includes software developed at the Secure Software Engineering
+Group, Heinz Nixdorf Institute, Paderborn University.
+
+Licensed under the Apache License, Version 2.0 (see LICENSE).
+
+The license covers the contents of this repository, including the
+micro-benchmark code snippets and their ground truth files
+(micro-benchmark/, micro-benchmark-excluded/, autogen/,
+autogen_typeevalpy_benchmark/, micro-benchmark-autogen-templates/), the
+framework and tool runners (src/, scripts/, extras/), and the documentation
+(docs/).
+
+It does not cover the third-party type inference tools that TypeEvalPy
+executes. Those are fetched at container build time and remain under their
+own licenses, as do the external datasets referenced by the framework (e.g.
+ManyTypes4Py) and the models accessed through third-party APIs.
